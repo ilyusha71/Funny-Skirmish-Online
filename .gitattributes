@@ -1,2 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+# keep lf on unity files
+*.asset text eol=lf
+*.meta text eol=lf
+*.prefab text eol=lf
+*.unity text eol=lf
