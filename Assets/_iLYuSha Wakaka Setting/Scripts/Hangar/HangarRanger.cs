@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
+
 public enum HangarState
 {
     Ready,
@@ -14,6 +16,7 @@ public enum HangarState
 }
 public class HangarRanger : MonoBehaviour
 {
+    public Text textHangarInfo;
     public Transform[] hangarCenter;
     private Transform hangarCamera;
     private Transform hangarRailX;
@@ -27,7 +30,11 @@ public class HangarRanger : MonoBehaviour
         hangarRailY = hangarRailX.parent;
 
         hangarState = HangarState.Moving;
-        hangarRailY.DOMove(hangarCenter[now].position, 0.73f).OnComplete(() => { hangarState = HangarState.Ready; });
+        hangarRailY.DOMove(hangarCenter[now].position, 0.73f).OnComplete(() =>
+        {
+            hangarState = HangarState.Ready;
+            textHangarInfo.text = Kocmoca.HangarData.OKB[now] + "\n" + Kocmoca.HangarData.Kocmocraft[now] + "\n" + Kocmoca.HangarData.Code[now] + "\n" + Kocmoca.HangarData.Dubi[now] + "\n拦截";
+        });
         //hangarRailY.DORotateQuaternion(hangarCenter[now].rotation, 0.73f);
     }	
 
@@ -56,7 +63,11 @@ public class HangarRanger : MonoBehaviour
         now = (int)Mathf.Repeat(++now,hangarCenter.Length);
         hangarRailY.DOKill();
         hangarState = HangarState.Moving;
-        hangarRailY.DOMove(hangarCenter[now].position, 0.73f).OnComplete(()=>{ hangarState = HangarState.Ready; });
+        hangarRailY.DOMove(hangarCenter[now].position, 0.73f).OnComplete(()=>
+        {
+            hangarState = HangarState.Ready;
+            textHangarInfo.text = Kocmoca.HangarData.OKB[now] + "\n" + Kocmoca.HangarData.Kocmocraft[now] + "\n" + Kocmoca.HangarData.Code[now] + "\n" + Kocmoca.HangarData.Dubi[now] + "\n拦截";
+        });
         //hangarRailY.DORotateQuaternion(hangarCenter[now].rotation, 0.73f);
     }
 
@@ -65,7 +76,11 @@ public class HangarRanger : MonoBehaviour
         now = (int)Mathf.Repeat(--now, hangarCenter.Length);
         hangarRailY.DOKill();
         hangarState = HangarState.Moving;
-        hangarRailY.DOMove(hangarCenter[now].position, 0.73f).OnComplete(() => { hangarState = HangarState.Ready; });
+        hangarRailY.DOMove(hangarCenter[now].position, 0.73f).OnComplete(() =>
+        {
+            hangarState = HangarState.Ready;
+            textHangarInfo.text = Kocmoca.HangarData.OKB[now] + "\n" + Kocmoca.HangarData.Kocmocraft[now] + "\n" + Kocmoca.HangarData.Code[now] + "\n" + Kocmoca.HangarData.Dubi[now] + "\n拦截";
+        });
         //hangarRailY.DORotateQuaternion(hangarCenter[now].rotation, 0.73f);
     }
 }
