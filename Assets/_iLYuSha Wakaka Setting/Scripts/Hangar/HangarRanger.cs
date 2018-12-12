@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Kocmoca
 {
@@ -27,13 +28,18 @@ namespace Kocmoca
         public HangarState hangarState = HangarState.Ready;
 
         public Text textHangarInfo;
-        public Text textKocmocraft;
+        [Header("Hangar Data")]
+        public TextMeshProUGUI textOKB;
+        public TextMeshProUGUI textKocmocraft;
+        public TextMeshProUGUI textCode;
+        public TextMeshProUGUI textDubi;
+        public TextMeshProUGUI textEngine;
         [Header("Kocmocraft Data")]
-        public Text textMaxHull;
-        public Text textMaxShield;
-        public Text textMaxEnergy;
-        public Text textCruiseSpeed;
-        public Text textAfterburneSpeed;
+        public TextMeshProUGUI textMaxHull;
+        public TextMeshProUGUI textMaxShield;
+        public TextMeshProUGUI textMaxEnergy;
+        public TextMeshProUGUI textCruiseSpeed;
+        public TextMeshProUGUI textAfterburneSpeed;
         [Header("Weapon Data")]
         public Text textTurretCount;
         public Text textFireRPS;
@@ -99,25 +105,31 @@ namespace Kocmoca
 
         void LoadHangarData()
         {
-            // General
-            textHangarInfo.text = HangarData.OKB[now] + "\n" + HangarData.Kocmocraft[now] + "\n" + HangarData.Code[now] + "\n" + HangarData.Dubi[now] + "\n拦截";
-            // 
-            textKocmocraft.text =
-                KocmocraftData.MaxHull[now] + "\n" + 
-                KocmocraftData.MaxShieldl[now] + "\n" + 
-                KocmocraftData.MaxEnergy[now] + "\n" + 
-                KocmocraftData.CruiseSpeed[now] * 3.6f + " km/h\n" + 
-                KocmocraftData.AfterburnerSpeed[now] * 3.6f + " km/h";
+            //// General
+            //textHangarInfo.text = HangarData.OKB[now] + "\n" + HangarData.Kocmocraft[now] + "\n" + HangarData.Code[now] + "\n" + HangarData.Dubi[now] + "\n拦截";
+            //// 
+            //textKocmocraft.text =
+            //    KocmocraftData.MaxHull[now] + "\n" + 
+            //    KocmocraftData.MaxShieldl[now] + "\n" + 
+            //    KocmocraftData.MaxEnergy[now] + "\n" + 
+            //    KocmocraftData.CruiseSpeed[now] * 3.6f + " km/h\n" + 
+            //    KocmocraftData.AfterburnerSpeed[now] * 3.6f + " km/h";
 
-            //textMaxHull.text = "" + KocmocraftData.MaxHull[now];
-            //textMaxShield.text = "" + KocmocraftData.MaxShieldl[now];
-            //textMaxEnergy.text = "" + KocmocraftData.MaxEnergy[now];
-            //textCruiseSpeed.text = "" + KocmocraftData.CruiseSpeed[now] * 3.6f + " km/h";
-            //textAfterburneSpeed.text = "" + KocmocraftData.AfterburnerSpeed[now] * 3.6f + " km/h";
+            textOKB.text = "" + HangarData.OKB[now];
+            textKocmocraft.text = "" + HangarData.Kocmocraft[now];
+            textCode.text = "" + HangarData.Code[now];
+            textDubi.text = "" + HangarData.Dubi[now];
+            textEngine.text = "" + HangarData.Engine[now];
+
+            textMaxHull.text = "" + KocmocraftData.MaxHull[now];
+            textMaxShield.text = "" + KocmocraftData.MaxShieldl[now];
+            textMaxEnergy.text = "" + KocmocraftData.MaxEnergy[now];
+            textCruiseSpeed.text = "" + KocmocraftData.CruiseSpeed[now] * 194.38445f + " knot";
+            textAfterburneSpeed.text = "" + KocmocraftData.AfterburnerSpeed[now] * 194.38445f + " knot";
             //textTurretCount.text = "" + KocmocraftData.GetTurretCount((Type)now) + "x Assault Laser";
             //textFireRPS.text = "" + KocmoLaserCannon.fireRoundPerSecond + " rps";
             //textDamage.text = "" + KocmocraftData.GetPowerData((Type)now) + " dmg";
-            //textMaxRange.text = "" + KocmocraftData.GetMaxRangeData((Type)now) + " m"; 
+            //textMaxRange.text = "" + KocmocraftData.GetMaxRangeData((Type)now) + " m";
         }
     }
 }
