@@ -36,7 +36,7 @@ namespace Kocmoca
         IEnumerator FlyingInitialize()
         {
             yield return new WaitForSeconds(0.0001f);
-            float fix = KocmocraftData.TurretDamageFix(owner.Type); 
+            float fix = KocmocraftData.TurretDamage(owner.Type); 
             if (target)
             {
                 float nowDistance = Vector3.Distance(target.transform.position, myTransform.position);

@@ -21,7 +21,7 @@ namespace Kocmoca
             "北极星设计局", // "北极星特快";
             "北极星设计局", // "远古飞鱼";
             "南方公园设计局", // "玩具独角兽";
-            "北极星设计局", // "南瓜派对";
+            "北极星设计局", // "南瓜魅影";
             "南方公园设计局", // "赏金猎人";
             "南方公园设计局", // "屎蛋风暴";
             "迷因设计局", //  "安格瑞";
@@ -73,7 +73,7 @@ namespace Kocmoca
             "Polaris Express", // "北极星特快";
             "Ancient Fish", // "远古飞鱼";
             "Papoy Unicorn", // "玩具独角兽";
-            "Pumpkin Party", // "南瓜派对";
+            "Pumpkin Party", // "南瓜魅影";
             "Boundy Hunter", // "赏金猎人";
             "Stan", // "屎蛋风暴";
             "Angry", //  "安格瑞";
@@ -99,7 +99,7 @@ namespace Kocmoca
             "滑稽", // "北极星特快";
             "海绵宝宝", // "远古飞鱼";
             "公主阿尼", // "玩具独角兽";
-            "哆啦啦", // "南瓜派对";
+            "哆啦啦", // "南瓜魅影";
             "凯子", // "赏金猎人";
             "屎蛋", // "屎蛋风暴";
             "安格瑞", //  "安格瑞";
@@ -125,7 +125,7 @@ namespace Kocmoca
             "涡轮扇发动机 x 5", // "北极星特快";
             "涡轮轴发动机 x 4", // "远古飞鱼";
             "火箭推进器 x 4", // "玩具独角兽";
-            "涡轮轴发动机 x 1", // "南瓜派对";
+            "涡轮轴发动机 x 1", // "南瓜魅影";
             "涡轮扇发动机 x 3", // "赏金猎人";
             "研发中", // "屎蛋风暴";
             "研发中", //  "安格瑞";
@@ -190,7 +190,7 @@ namespace Kocmoca
             152.6686f, // "北极星特快";
             70.73558282f, // "远古飞鱼";
             68.74551578f, // "玩具独角兽";
-            122.675175f, // "南瓜派对";
+            122.675175f, // "南瓜魅影";
             111.4062f, // "赏金猎人";
             99999, // "屎蛋风暴";
             99999, // "安格瑞";
@@ -217,7 +217,7 @@ namespace Kocmoca
             124.7412f, // "北极星特快";
             50.4355016f, // "远古飞鱼";
             64.1464130587f, // "玩具独角兽";
-            101.595858f, // "南瓜派对";
+            101.595858f, // "南瓜魅影";
             64.00921f, // "赏金猎人";
             99999, // "屎蛋风暴";
             99999, // "安格瑞";
@@ -244,7 +244,7 @@ namespace Kocmoca
             343.213f, // "北极星特快";
             246.857114f, // "远古飞鱼";
             197.10966682f, // "玩具独角兽";
-            302.01148f, // "南瓜派对";
+            302.01148f, // "南瓜魅影";
             279.8407f, // "赏金猎人";
             99999, // "屎蛋风暴";
             99999, // "安格瑞";
@@ -276,7 +276,7 @@ namespace Kocmoca
             29734, // "北极星特快";
             13754, // "远古飞鱼";
             15082, // "玩具独角兽";
-            28841, // "南瓜派对";
+            28841, // "南瓜魅影";
             16371, // "赏金猎人";
             9999999, // "屎蛋风暴";
             9999999, // "安格瑞";
@@ -287,23 +287,23 @@ namespace Kocmoca
         };
         public static readonly int[] MaxShieldl = {
             11645, // "神偷机兵"
-            7180, // "红牛能量";
-            6946, // "普鲸";
-            8850, // "纸飞机";
-            19589, // "咕咕鸡 ";
-            9726, // "炮弹比尔";
-            3927, // "时光机";
-            4533, // "王牌狗屋";
-            3172, // "卡比之星";
-            13099, // "蝎红";
-            15385, // "恩威迪亚";
-            10243, // "快餐侠";
-            12391, // "驯鹿空运";
-            17184, // "北极星特快";
-            12170, // "远古飞鱼";
-            9918, // "玩具独角兽";
-            14977, // "南瓜派对";
-            13752, // "赏金猎人";
+            5890, // "红牛能量";
+            15970, // "普鲸";
+            13958, // "纸飞机";
+            12515, // "咕咕鸡 ";
+            3980, // "炮弹比尔";
+            7770, // "时光机";
+            6954, // "王牌狗屋";
+            9984, // "卡比之星";
+            7655, // "蝎红";
+            9322, // "恩威迪亚";
+            7390, // "快餐侠";
+            5692, // "驯鹿空运";
+            13760, // "北极星特快";
+            6759, // "远古飞鱼";
+            13755, // "玩具独角兽";
+            29744, // "南瓜魅影";
+            15579, // "赏金猎人";
             9999999, // "屎蛋风暴";
             9999999, // "安格瑞";
             9999999, // "即将登场";
@@ -312,24 +312,24 @@ namespace Kocmoca
             9999999, // "即将登场";
         };
         public static readonly int[] MaxEnergy = {
-            2500, // "神偷机兵"
-            2700, // "红牛能量";
-            1750, // "普鲸";
-            2400, // "纸飞机";
-            1600, // "咕咕鸡 ";
-            3000, // "炮弹比尔";
-            2450, // "时光机";
-            2650, // "王牌狗屋";
-            1950, // "卡比之星";
-            2700, // "蝎红";
-            2200, // "恩威迪亚";
-            2900, // "快餐侠";
-            2550, // "驯鹿空运";
-            1500, // "北极星特快";
-            2750, // "远古飞鱼";
-            2600, // "玩具独角兽";
-            2450, // "南瓜派对";
-            1400, // "赏金猎人";
+            1950, // "神偷机兵"
+            2990, // "红牛能量";
+            2020, // "普鲸";
+            1980, // "纸飞机";
+            2730, // "咕咕鸡 ";
+            2170, // "炮弹比尔";
+            2390, // "时光机";
+            2730, // "王牌狗屋";
+            2380, // "卡比之星";
+            2980, // "蝎红";
+            1790, // "恩威迪亚";
+            1660, // "快餐侠";
+            2020, // "驯鹿空运";
+            1370, // "北极星特快";
+            2840, // "远古飞鱼";
+            2290, // "玩具独角兽";
+            1650, // "南瓜魅影";
+            2450, // "赏金猎人";
             5, // "屎蛋风暴";
             5, // "安格瑞";
             5, // "即将登场";
@@ -341,7 +341,7 @@ namespace Kocmoca
             37, // "神偷机兵"
             34, // "红牛能量";
             33, // "普鲸";
-            25, // "纸飞机";
+            49, // "纸飞机";
             28, // "咕咕鸡 ";
             39, // "炮弹比尔";
             33, // "时光机";
@@ -354,7 +354,7 @@ namespace Kocmoca
             47, // "北极星特快";
             27, // "远古飞鱼";
             32, // "玩具独角兽";
-            29, // "南瓜派对";
+            29, // "南瓜魅影";
             23, // "赏金猎人";
             99999, // "屎蛋风暴";
             99999, // "安格瑞";
@@ -368,20 +368,20 @@ namespace Kocmoca
             96, // "红牛能量";
             93, // "普鲸";
             75, // "纸飞机";
-            74, // "咕咕鸡 ";
+            84, // "咕咕鸡 ";
             109, // "炮弹比尔";
             97, // "时光机";
             93, // "王牌狗屋";
             103, // "卡比之星";
-            79, // "蝎红";
-            73, // "恩威迪亚";
-            97, // "快餐侠";
-            91, // "驯鹿空运";
+            91, // "蝎红";
+            89, // "恩威迪亚";
+            107, // "快餐侠";
+            95, // "驯鹿空运";
             99, // "北极星特快";
-            71, // "远古飞鱼";
+            86, // "远古飞鱼";
             82, // "玩具独角兽";
-            77, // "南瓜派对";
-            94, // "赏金猎人";
+            77, // "南瓜魅影";
+            91, // "赏金猎人";
             9, // "屎蛋风暴";
             9, // "安格瑞";
             9, // "即将登场";
@@ -411,7 +411,7 @@ namespace Kocmoca
                 case 13: return "北极星特快";
                 case 14: return "远古飞鱼";
                 case 15: return "玩具独角兽";
-                case 16: return "南瓜派对";
+                case 16: return "南瓜魅影";
                 case 17: return "即将登场";
                 default: return "未知宇航机";
             }
@@ -549,8 +549,8 @@ namespace Kocmoca
                 case Type.PolarisExpress: return 13790; // 北极星特快：Huge
                 case Type.AncientFish: return 10990; // 远古鱼：Large
                 case Type.PapoyUnicorn: return 10350; // 玩具独角兽：Large
-                case Type.PumpkinParty: return 15500; // 南瓜派对：Huge
-                case Type.ComingSoon: return 0; // 南瓜派对：Large
+                case Type.PumpkinParty: return 15500; // 南瓜魅影：Huge
+                case Type.ComingSoon: return 0; // 南瓜魅影：Large
                 default: return 21120903;
             }
         }
@@ -575,8 +575,8 @@ namespace Kocmoca
                 case Type.PolarisExpress: return 7490; // 北极星特快 - 六管 - 征服舰
                 case Type.AncientFish: return 7660; // 远古鱼 - 双管 - 战术舰
                 case Type.PapoyUnicorn: return 11990; // 玩具独角兽：Large
-                case Type.PumpkinParty: return 9420; // 南瓜派对：Large
-                case Type.ComingSoon: return 0; // 南瓜派对：Large
+                case Type.PumpkinParty: return 9420; // 南瓜魅影：Large
+                case Type.ComingSoon: return 0; // 南瓜魅影：Large
                 default: return 21120903;
             }
         }
@@ -604,8 +604,8 @@ namespace Kocmoca
                 case Type.PolarisExpress: return 2520; // 北极星特快 - 六管 - 征服舰
                 case Type.AncientFish: return 2980; // 远古鱼 - 双管 - 战术舰
                 case Type.PapoyUnicorn: return 3250; // 玩具独角兽：Large
-                case Type.PumpkinParty: return 2880; // 南瓜派对：Large
-                case Type.ComingSoon: return 0; // 南瓜派对：Large
+                case Type.PumpkinParty: return 2880; // 南瓜魅影：Large
+                case Type.ComingSoon: return 0; // 南瓜魅影：Large
                 default: return 5000;
             }
         }
@@ -633,8 +633,8 @@ namespace Kocmoca
                 case Type.PolarisExpress: return 44; // 北极星特快：Large
                 case Type.AncientFish: return 42; // 远古鱼：Large
                 case Type.PapoyUnicorn: return 43; // 玩具独角兽：Large
-                case Type.PumpkinParty: return 46; // 南瓜派对：Large
-                case Type.ComingSoon: return 0; // 南瓜派对：Large
+                case Type.PumpkinParty: return 46; // 南瓜魅影：Large
+                case Type.ComingSoon: return 0; // 南瓜魅影：Large
                 default: return 50;
             }
         }
@@ -662,8 +662,8 @@ namespace Kocmoca
                 case Type.PolarisExpress: return 83; // 北极星特快：Low Speed
                 case Type.AncientFish: return 85; // 远古鱼：Low Speed
                 case Type.PapoyUnicorn: return 88; // 玩具独角兽：Medium Speed
-                case Type.PumpkinParty: return 87; // 南瓜派对：Large
-                case Type.ComingSoon: return 0; // 南瓜派对：Large
+                case Type.PumpkinParty: return 87; // 南瓜魅影：Large
+                case Type.ComingSoon: return 0; // 南瓜魅影：Large
                 default: return 300;
             }
         }
@@ -736,9 +736,20 @@ namespace Kocmoca
                 case Type.PolarisExpress: return 0.61f; // 北极星特快 - 六管 - 征服舰
                 case Type.AncientFish: return 1.0f; // 远古鱼 - 双管 - 战术舰
                 case Type.PapoyUnicorn: return 0.73f; // 玩具独角兽：Medium Speed
-                case Type.PumpkinParty: return 0.73f; // 南瓜派对：Large
-                case Type.ComingSoon: return 0; // 南瓜派对：Large
+                case Type.PumpkinParty: return 0.73f; // 南瓜魅影：Large
+                case Type.ComingSoon: return 0; // 南瓜魅影：Large
                 default: return 1.0f;
+            }
+        }
+        public static float TurretDamage(Type type)
+        {
+            int count = GetTurretCount(type);
+            switch (count)
+            {
+                case 2: return 1.0f;
+                case 4: return 0.73f;
+                case 6: return 0.63f;
+                default:return 1.0f;
             }
         }
         // Display
@@ -762,18 +773,23 @@ namespace Kocmoca
                 case Type.PolarisExpress: return 6; // 北极星特快 - 六管 - 征服舰
                 case Type.AncientFish: return 2; // 远古鱼 - 双管 - 战术舰
                 case Type.PapoyUnicorn: return 4; // 玩具独角兽：Medium Speed
-                case Type.PumpkinParty: return 4; // 南瓜派对：Large
-                case Type.ComingSoon: return 0; // 南瓜派对：Large
+                case Type.PumpkinParty: return 4; // 南瓜魅影：Large
+                case Type.ComingSoon: return 0; // 南瓜魅影：Large
                 default: return 2;
             }
         }
 
         public static string GetPowerData(Type type)
         {
-            float velocity = KocmoLaserCannon.flightVelocity * TurretDamageFix(type);
+            float velocity = KocmoLaserCannon.flightVelocity * TurretDamage(type);
             float minDamage = velocity * velocity * 0.0001f * KocmoLaserCannon.coefficientMinDamage * GetTurretCount(type) * 0.5f;
-            float maxDamage = (velocity + GetMaxSpeed(type)) * (velocity + GetMaxSpeed(type)) * 0.0001f * KocmoLaserCannon.coefficientMaxDamage * GetTurretCount(type) * 0.5f;
+            float maxDamage = (velocity + AfterburnerSpeed[(int)type]) * (velocity + AfterburnerSpeed[(int)type]) * 0.0001f * KocmoLaserCannon.coefficientMaxDamage * GetTurretCount(type) * 0.5f;
             return (int)minDamage + "~" + (int)maxDamage;
+        }
+        public static int GetMaxDamage(Type type)
+        {
+            float velocity = KocmoLaserCannon.flightVelocity * TurretDamage(type) + AfterburnerSpeed[(int)type];
+            return (int)(velocity * velocity * 0.0001f * KocmoLaserCannon.coefficientMaxDamage * GetTurretCount(type) * 0.5f);
         }
         public static int GetMaxRangeData(Type type)
         {
