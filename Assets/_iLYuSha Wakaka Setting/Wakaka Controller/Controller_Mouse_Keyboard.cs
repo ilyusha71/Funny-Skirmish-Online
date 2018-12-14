@@ -11,11 +11,6 @@ using UnityEngine.UI;
 
 public partial class Controller : MonoBehaviour
 {
-    [Header("Mouse & Keyboard")]
-    public Toggle tabMouseKeyboard2;
-    public GameObject panelMouseKeyboard2;
-    [Header("Mouse & Keyboard - FunctionKey")]
-    public Toggle[] hotkeyFunction;
     public static FunctionKey Operation = new FunctionKey("FunctionKey-Operation");
     public static FunctionKey Hangar = new FunctionKey("FunctionKey-Hangar");
     public static FunctionKey Vocal = new FunctionKey("FunctionKey-Vocal");
@@ -29,27 +24,13 @@ public partial class Controller : MonoBehaviour
     public static FunctionKey Missile = new FunctionKey("FunctionKey-Missile");
     public static FunctionKey ActiveKey;
 
-    void InitializeMouseKeyboard()
+    public static void InitializeHotkeyData()
     {
-        tabMouseKeyboard2.onValueChanged.AddListener(isOn => 
-        {
-            panelMouseKeyboard2.SetActive(isOn);
-            controllerType = ControllerType.MouseAndKeyboard;
-            PlayerPrefs.SetInt("saveType", (int)controllerType);
-        });
-        if (controllerType == ControllerType.MouseAndKeyboard) tabMouseKeyboard2.isOn = true;
-        hotkeyFunction = panelMouseKeyboard2.GetComponentsInChildren<Toggle>();
-        Operation.InitializeHotkey(hotkeyFunction[0], (int)KeyCode.O);
-        Hangar.InitializeHotkey(hotkeyFunction[1], (int)KeyCode.H);
-        Vocal.InitializeHotkey(hotkeyFunction[2], (int)KeyCode.Space);
-        WhoAttackU.InitializeHotkey(hotkeyFunction[3], (int)KeyCode.Return); //KeyCode.Joystick1Button2
-        Respawn.InitializeHotkey(hotkeyFunction[4], (int)KeyCode.Backspace); // KeyCode.Joystick1Button3
-        CockpitView.InitializeHotkey(hotkeyFunction[5], (int)KeyCode.C); // KeyCode.Joystick1Button0
-        Afterburner.InitializeHotkey(hotkeyFunction[6], (int)KeyCode.LeftShift);
-        LockOn.InitializeHotkey(hotkeyFunction[7], (int)KeyCode.R);
-        Laser.InitializeHotkey(hotkeyFunction[8], (int)KeyCode.Mouse0);
-        Rocket.InitializeHotkey(hotkeyFunction[9], (int)KeyCode.Space);
-        Missile.InitializeHotkey(hotkeyFunction[10], (int)KeyCode.Mouse1);
+    }
+    public static void UseKeyboardMouse()
+    {
+        controllerType = ControllerType.MouseAndKeyboard;
+        PlayerPrefs.SetInt("Controller_Type", (int)controllerType);
     }
 
     void MouseKeyboardHotkeySetting(int numberCode)

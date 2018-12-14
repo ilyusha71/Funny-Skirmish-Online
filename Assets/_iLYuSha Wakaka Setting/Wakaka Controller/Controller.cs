@@ -43,7 +43,7 @@ public partial class Controller : MonoBehaviour
 
     [Header("Controller Setting")]
     public static PanelState state = PanelState.Ready;
-    private static ControllerType controllerType;
+    public static ControllerType controllerType;
     private static ControlMode controlMode;
     private static ControlHands controlHands;
     [Header("New Setting")]
@@ -59,71 +59,108 @@ public partial class Controller : MonoBehaviour
     private static Toggle[] mode;
     private static Toggle[] hands;
 
-
-
-    void Awake()
+    static Controller()
     {
-        if (!Testing)
-        {
-            if (!ArduinoController.Instance)
-            {
-                SceneManager.LoadScene("Arduino Controller");
-                return;
-            }
-            else
-            {
-                ArduinoController.commandsCount = commandsCount; // 設定本專案單次接收Unity訊息的數量
-                ArduinoController.msgQueueCombine = true;
-                msgBox = ArduinoController.Instance.msgBox;
-            }
+        GameObject go = new GameObject("Controller");
+        DontDestroyOnLoad(go);
+        Instance = go.AddComponent<Controller>();
+    }
 
-            if (Instance == null) Instance = this;
-            DontDestroyOnLoad(this);
-            SceneManager.LoadScene(PlayerPrefs.GetInt("MainScene"));
-        }
-        else
-        {
-            if (!ArduinoController.Instance)
-            {
-                PlayerPrefs.SetInt("MainScene", SceneManager.GetActiveScene().buildIndex);
-                SceneManager.LoadScene("Arduino Controller");
-                return;
-            }
-            else
-            {
-                ArduinoController.commandsCount = commandsCount; // 設定本專案單次接收Unity訊息的數量
-                ArduinoController.msgQueueCombine = true;
-                msgBox = ArduinoController.Instance.msgBox;
-            }
-
-            if (Instance == null) Instance = this;
-        }
-
-        showFPS = PlayerPrefs.GetInt("Open FPS") == 1 ? true : false;
-        toggleFPS.isOn = showFPS;
+    public static void InitializeController()
+    {
+        //showFPS = PlayerPrefs.GetInt("Open FPS") == 1 ? true : false;
+        //toggleFPS.isOn = showFPS;
 
         // Initialize
         int loadType = PlayerPrefs.GetInt("saveType");
         int loadMode = PlayerPrefs.GetInt("saveMode");
         int loadHands = PlayerPrefs.GetInt("saveHands");
         controllerType = (ControllerType)loadType;
-        panelHotkey.SetActive(false);
+        //panelHotkey.SetActive(false);
 
         // Old
-        type = groupType.GetComponentsInChildren<Toggle>();
-        type[loadType].isOn = true;
-        mode = groupMode.GetComponentsInChildren<Toggle>();
-        mode[loadMode].isOn = true;
-        hands = groupHands.GetComponentsInChildren<Toggle>();
-        hands[loadHands].isOn = true;
-        panelSetting.SetActive(false);
+        //type = groupType.GetComponentsInChildren<Toggle>();
+        //type[loadType].isOn = true;
+        //mode = groupMode.GetComponentsInChildren<Toggle>();
+        //mode[loadMode].isOn = true;
+        //hands = groupHands.GetComponentsInChildren<Toggle>();
+        //hands[loadHands].isOn = true;
+        //panelSetting.SetActive(false);
 
-        values = (int[])System.Enum.GetValues(typeof(KeyCode));
-        InitializeWakakaMode();
-        InitializeMouseKeyboard();
         //InitializeHotkey();
         // Xbox 360 Setting
-        InitializeXbox360Setting();
+        //InitializeXbox360Setting();
+    }
+    private void Start()
+    {
+        values = (int[])System.Enum.GetValues(typeof(KeyCode));
+
+    }
+
+    void Awake()
+    {
+        //if (Instance == null) Instance = this;
+        //DontDestroyOnLoad(this);
+        //SceneManager.LoadScene(PlayerPrefs.GetInt("MainScene"));
+        //if (!Testing)
+        //{
+        //    if (!ArduinoController.Instance)
+        //    {
+        //        SceneManager.LoadScene("Arduino Controller");
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        ArduinoController.commandsCount = commandsCount; // 設定本專案單次接收Unity訊息的數量
+        //        ArduinoController.msgQueueCombine = true;
+        //        msgBox = ArduinoController.Instance.msgBox;
+        //    }
+
+        //    if (Instance == null) Instance = this;
+        //    DontDestroyOnLoad(this);
+        //    SceneManager.LoadScene(PlayerPrefs.GetInt("MainScene"));
+        //}
+        //else
+        //{
+        //    if (!ArduinoController.Instance)
+        //    {
+        //        PlayerPrefs.SetInt("MainScene", SceneManager.GetActiveScene().buildIndex);
+        //        SceneManager.LoadScene("Arduino Controller");
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        ArduinoController.commandsCount = commandsCount; // 設定本專案單次接收Unity訊息的數量
+        //        ArduinoController.msgQueueCombine = true;
+        //        msgBox = ArduinoController.Instance.msgBox;
+        //    }
+
+        //    if (Instance == null) Instance = this;
+        //}
+
+        //showFPS = PlayerPrefs.GetInt("Open FPS") == 1 ? true : false;
+        //toggleFPS.isOn = showFPS;
+
+        //// Initialize
+        //int loadType = PlayerPrefs.GetInt("saveType");
+        //int loadMode = PlayerPrefs.GetInt("saveMode");
+        //int loadHands = PlayerPrefs.GetInt("saveHands");
+        //controllerType = (ControllerType)loadType;
+        //panelHotkey.SetActive(false);
+
+        //// Old
+        //type = groupType.GetComponentsInChildren<Toggle>();
+        //type[loadType].isOn = true;
+        //mode = groupMode.GetComponentsInChildren<Toggle>();
+        //mode[loadMode].isOn = true;
+        //hands = groupHands.GetComponentsInChildren<Toggle>();
+        //hands[loadHands].isOn = true;
+        //panelSetting.SetActive(false);
+
+        //values = (int[])System.Enum.GetValues(typeof(KeyCode));
+        ////InitializeHotkey();
+        //// Xbox 360 Setting
+        //InitializeXbox360Setting();
     }
 
     void Update()
@@ -135,14 +172,7 @@ public partial class Controller : MonoBehaviour
         //else if (Input.GetButtonUp("Fire1"))
         //    Debug.LogWarning("Up");
 
-        //if (Input.GetKey(KeyCode.D))
-        //    Debug.Log("FIRE");
-        //if (Input.GetKeyDown(KeyCode.D))
-        //    Debug.LogWarning("Down");
-        //else if (Input.GetKeyUp(KeyCode.D))
-        //    Debug.LogWarning("Up");
-
-        if (showFPS) ShowFPS();
+        //if (showFPS) ShowFPS();
         if (state == PanelState.Ready)
         {
             if (ArduinoController.Instance)
@@ -170,13 +200,13 @@ public partial class Controller : MonoBehaviour
                 panelSetting.SetActive(!panelSetting.activeSelf);
                 MouseLock.MouseLocked = panelSetting.activeSelf ? false : MouseLock.nowState;
             }
-            else if (Input.GetKeyDown(KeyCode.F5))
-            {
-                if (!panelHotkey.activeSelf)
-                    MouseLock.nowState = MouseLock.MouseLocked;
-                panelHotkey.SetActive(!panelHotkey.activeSelf);
-                MouseLock.MouseLocked = panelHotkey.activeSelf ? false : MouseLock.nowState;
-            }
+            //else if (Input.GetKeyDown(KeyCode.F5))
+            //{
+            //    if (!panelHotkey.activeSelf)
+            //        MouseLock.nowState = MouseLock.MouseLocked;
+            //    panelHotkey.SetActive(!panelHotkey.activeSelf);
+            //    MouseLock.MouseLocked = panelHotkey.activeSelf ? false : MouseLock.nowState;
+            //}
 
             // Steering wheel mode
             if (Input.GetKeyDown(KeyCode.H))

@@ -36,11 +36,11 @@ namespace Kocmoca
         IEnumerator FlyingInitialize()
         {
             yield return new WaitForSeconds(0.0001f);
-            float fix = KocmocraftData.TurretDamage(owner.Type); 
+            float coefficient = WeaponData.GetCoefficient(owner.Type); 
             if (target)
             {
                 float nowDistance = Vector3.Distance(target.transform.position, myTransform.position);
-                float expectedTime = Mathf.Sqrt(nowDistance * nowDistance / (fix * fix * KocmoLaserCannon.flightVelocity * KocmoLaserCannon.flightVelocity - target.GetComponent<Rigidbody>().velocity.sqrMagnitude));
+                float expectedTime = Mathf.Sqrt(nowDistance * nowDistance / (coefficient * coefficient * KocmoLaserCannon.flightVelocity * KocmoLaserCannon.flightVelocity - target.GetComponent<Rigidbody>().velocity.sqrMagnitude));
 
                 Vector3 expectedTargetPosition =
                     target.transform.position +
@@ -50,7 +50,7 @@ namespace Kocmoca
             }
             myTransform.localRotation *= Quaternion.Euler(0, projectileSpread, 0);
             timeRecovery = Time.time + KocmoLaserCannon.flightTime;
-            myRigidbody.AddForce(myTransform.forward * KocmoLaserCannon.propulsion* fix);
+            myRigidbody.AddForce(myTransform.forward * KocmoLaserCannon.propulsion* coefficient);
             vfx.enabled = true;
         }
 
@@ -81,7 +81,7 @@ namespace Kocmoca
                     KocmocraftMechDroid hull = raycastHits[i].transform.GetComponent<KocmocraftMechDroid>();
                     if (hull)
                     {
-                        float basicDamage = myRigidbody.velocity.sqrMagnitude * 0.0001f; ;
+                        float basicDamage = myRigidbody.velocity.sqrMagnitude * 0.000066f; ;
                         hull.Hit(new DamageInfo()
                         {
                             Attacker = owner,

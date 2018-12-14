@@ -536,8 +536,8 @@ namespace Kocmoca
                 {
                     case 1: textWeapon[1].text = "" + KocmocraftData.GetTurretCount((Type)now) + "x Assault Laser"; break;
                     case 2: textWeapon[2].text = "" + KocmoLaserCannon.fireRoundPerSecond + " rps"; break;
-                    case 3: textWeapon[3].text = "" + KocmocraftData.GetPowerData((Type)now) + " dmg"; break;
-                    case 4: textWeapon[4].text = "" + KocmocraftData.GetMaxRangeData((Type)now) + " m"; break;
+                    case 3: textWeapon[3].text = "update" + " dmg"; break;
+                    case 4: textWeapon[4].text = "update" + " m"; break;
                 }
             }
             if (index == dataWeapon.count - 1)

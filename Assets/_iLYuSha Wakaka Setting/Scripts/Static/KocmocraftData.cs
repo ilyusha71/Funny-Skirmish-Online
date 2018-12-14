@@ -74,7 +74,7 @@ namespace Kocmoca
             "Ancient Fish", // "远古飞鱼";
             "Papoy Unicorn", // "玩具独角兽";
             "Pumpkin Party", // "南瓜魅影";
-            "Boundy Hunter", // "赏金猎人";
+            "Boundy Hunter MK.II", // "赏金猎人";
             "Stan", // "屎蛋风暴";
             "Angry", //  "安格瑞";
             "Meme", //  "即将登场";
@@ -260,134 +260,134 @@ namespace Kocmoca
         // 炮弹比尔 普鲸 红牛能量 6K~8K  2~3星
         // 王牌狗屋 卡比之星 时光机 3K~5K 1~2星
         public static readonly int[] MaxHull = {
-            9155, //   ★★★☆☆☆☆ 神偷机兵
-            7784, //   ★★☆☆☆☆☆ 红牛能量
-            7952, //   ★★★☆☆☆☆ 普鲸
-            9963, //   ★★★★☆☆☆ 纸飞机
-            16550, // ★★★★★★☆ 咕咕鸡 
-            9727, //   ★★★☆☆☆☆ 炮弹比尔
-            3927, //   ★☆☆☆☆☆☆ 时光机
-            5398, //   ★★☆☆☆☆☆ 王牌狗屋
-            4451, //   ★☆☆☆☆☆☆ 卡比之星
-            15492, // ★★★★★★☆ 蝎红
-            17709, // ★★★★★★★ 恩威迪亚
-            11127, // ★★★★☆☆☆ 快餐侠
-            17673, // ★★★★★☆☆ 驯鹿空运
-            18092, // ★★★★★★★ 北极星特快
-            13754, // ★★★★☆☆☆ 远古飞鱼
-            15082, // ★★★★☆☆☆ 玩具独角兽
-            19737, // ★★★★★★★ 南瓜魅影
-            16371, // ★★★★★☆☆ 赏金猎人
-            99999, // ★★★★★★★ 屎蛋风暴
-            99999, // ★★★★★★★ 安格瑞
-            99999, // ★★★★★★★ 即将登场
-            99999, // ★★★★★★★ 即将登场
-            99999, // ★★★★★★★ 即将登场
-            99999, // ★★★★★★★ 即将登场
+            16049, // ★★★★★☆☆ 神偷机兵
+            7831, //   ★★☆☆☆☆☆ 红牛能量
+            10848, // ★★★☆☆☆☆ 普鲸
+            12656, // ★★★☆☆☆☆ 纸飞机
+            19439, // ★★★★★★☆ 咕咕鸡 
+            15339, // ★★★★☆☆☆ 炮弹比尔
+            5350, //   ★☆☆☆☆☆☆ 时光机
+            11315, // ★★★☆☆☆☆ 王牌狗屋
+            7476, //   ★★☆☆☆☆☆ 卡比之星
+            17649, // ★★★★★☆☆ 蝎红
+            21059, // ★★★★★★☆ 恩威迪亚
+            12650, // ★★★☆☆☆☆ 快餐侠
+            16326, // ★★★★★☆☆ 驯鹿空运
+            20680, // ★★★★★★☆ 北极星特快
+            15475, // ★★★★☆☆☆ 远古飞鱼
+            15851, // ★★★★☆☆☆ 玩具独角兽
+            22295, // ★★★★★★★ 南瓜魅影
+            18308, // ★★★★★☆☆ 赏金猎人
+            10075, // ★★★☆☆☆☆ 屎蛋风暴
+            9724, //   ★★☆☆☆☆☆ 安格瑞
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
         };
         public static readonly int[] MaxShieldl = {
-            11645, // 神偷机兵
-            5890, // 红牛能量;
-            15970, //  普鲸;
-            13958, // "纸飞机";
-            12515, // "咕咕鸡 ";
-            3980, // "炮弹比尔";
-            7770, // "时光机";
-            6954, // "王牌狗屋";
-            9984, // "卡比之星";
-            7655, // "蝎红";
-            9322, // "恩威迪亚";
-            7390, // "快餐侠";
-            5692, // "驯鹿空运";
-            13760, // "北极星特快";
-            6759, // "远古飞鱼";
-            13755, // "玩具独角兽";
-            29744, // "南瓜魅影";
-            15579, // "赏金猎人";
-            9999999, // "屎蛋风暴";
-            9999999, // "安格瑞";
-            9999999, // "即将登场";
-            9999999, // "即将登场";
-            9999999, // "即将登场";
-            9999999, // "即将登场";
+            11754, // ★★★☆☆☆☆ 神偷机兵
+            12934, // ★★★★☆☆☆ 红牛能量
+            16450, // ★★★★★☆☆ 普鲸
+            20741, // ★★★★★★☆ 纸飞机
+            17801, // ★★★★★☆☆ 咕咕鸡 
+            5229, //   ★☆☆☆☆☆☆ 炮弹比尔
+            23740, // ★★★★★★★ 时光机
+            14859, // ★★★★☆☆☆ 王牌狗屋
+            10721, // ★★★☆☆☆☆ 卡比之星
+            13915, // ★★★★☆☆☆ 蝎红
+            10773, // ★★★☆☆☆☆ 恩威迪亚
+            7945, //   ★★☆☆☆☆☆ 快餐侠
+            8409, //   ★★☆☆☆☆☆ 驯鹿空运
+            3999, //   ★☆☆☆☆☆☆ 北极星特快
+            20884, // ★★★★★★☆ 远古飞鱼
+            22058, // ★★★★★★★ 玩具独角兽
+            19242, // ★★★★★★☆ 南瓜魅影
+            13749, // ★★★★☆☆☆ 赏金猎人
+            15052, // ★★★★★☆☆ 屎蛋风暴
+            8856, //   ★★☆☆☆☆☆ 安格瑞
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
         };
         public static readonly int[] MaxEnergy = {
-            1950, // 神偷机兵
-            2990, // 红牛能量;
-            2020, //  普鲸;
-            1980, // "纸飞机";
-            2730, // "咕咕鸡 ";
-            2170, // "炮弹比尔";
-            2390, // "时光机";
-            2730, // "王牌狗屋";
-            2380, // "卡比之星";
-            2980, // "蝎红";
-            1790, // "恩威迪亚";
-            1660, // "快餐侠";
-            2020, // "驯鹿空运";
-            1370, // "北极星特快";
-            2840, // "远古飞鱼";
-            2290, // "玩具独角兽";
-            1650, // "南瓜魅影";
-            2450, // "赏金猎人";
-            5, // "屎蛋风暴";
-            5, // "安格瑞";
-            5, // "即将登场";
-            5, // "即将登场";
-            5, // "即将登场";
-            5, // "即将登场";
+            1192, // ★★☆☆☆☆☆ 神偷机兵
+            3690, // ★★★★★★★ 红牛能量
+            1263, // ★★☆☆☆☆ 普鲸
+            1597, // ★★★☆☆☆☆ 纸飞机
+            2311, // ★★★★☆☆☆ 咕咕鸡 
+            2075, // ★★★★☆☆☆ 炮弹比尔
+            2773, // ★★★★★☆☆ 时光机
+            2237, // ★★★★☆☆☆ 王牌狗屋
+            888, //   ★☆☆☆☆☆☆ 卡比之星
+            3392, // ★★★★★★★ 蝎红
+            1398, // ★★☆☆☆☆☆ 恩威迪亚
+            3154, // ★★★★★★☆ 快餐侠
+            3131, // ★★★★★★☆ 驯鹿空运
+            2498, // ★★★★★☆☆ 北极星特快
+            1407, // ★★☆☆☆☆☆ 远古飞鱼
+            2707, // ★★★★★☆☆ 玩具独角兽
+            1639, // ★★★☆☆☆☆ 南瓜魅影
+            1553, // ★★★☆☆☆☆ 赏金猎人
+            2174, // ★★★★☆☆☆ 屎蛋风暴
+            2990, // ★★★★★★☆ 安格瑞
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
         };
         public static readonly int[] CruiseSpeed = {
-            37, // 神偷机兵
-            34, // 红牛能量;
-            33, //  普鲸;
-            49, // "纸飞机";
-            28, // "咕咕鸡 ";
-            39, // "炮弹比尔";
-            33, // "时光机";
-            31, // "王牌狗屋";
-            36, // "卡比之星";
-            26, // "蝎红";
-            28, // "恩威迪亚";
-            43, // "快餐侠";
-            41, // "驯鹿空运";
-            47, // "北极星特快";
-            27, // "远古飞鱼";
-            32, // "玩具独角兽";
-            29, // "南瓜魅影";
-            23, // "赏金猎人";
-            99999, // "屎蛋风暴";
-            99999, // "安格瑞";
-            99999, // "即将登场";
-            99999, // "即将登场";
-            99999, // "即将登场";
-            99999, // "即将登场";
+            53, // ★★★★★★☆ 神偷机兵
+            28, // ★★☆☆☆☆☆ 红牛能量
+            23, // ★☆☆☆☆☆☆ 普鲸
+            59, // ★★★★★★★ 纸飞机
+            37, // ★★★☆☆☆☆ 咕咕鸡 
+            35, // ★★★☆☆☆☆ 炮弹比尔
+            27, // ★★☆☆☆☆☆ 时光机
+            54, // ★★★★★★☆ 王牌狗屋
+            60, // ★★★★★★★ 卡比之星
+            29, // ★★☆☆☆☆☆ 蝎红
+            47, // ★★★☆☆☆☆ 恩威迪亚
+            39, // ★★★★☆☆☆ 快餐侠
+            48, // ★★★★★☆☆ 驯鹿空运
+            38, // ★★★★☆☆☆ 北极星特快
+            44, // ★★★★★☆☆ 远古飞鱼
+            40, // ★★★★☆☆☆ 玩具独角兽
+            36, // ★★★☆☆☆☆ 南瓜魅影
+            22, // ★☆☆☆☆☆☆ 赏金猎人
+            45, // ★★★★★☆☆ 屎蛋风暴
+            34, // ★★★☆☆☆☆ 安格瑞
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
         };
         public static readonly int[] AfterburnerSpeed = {
-            81, // 神偷机兵
-            96, // 红牛能量;
-            93, //  普鲸;
-            75, // "纸飞机";
-            84, // "咕咕鸡 ";
-            109, // "炮弹比尔";
-            97, // "时光机";
-            93, // "王牌狗屋";
-            103, // "卡比之星";
-            91, // "蝎红";
-            89, // "恩威迪亚";
-            107, // "快餐侠";
-            95, // "驯鹿空运";
-            99, // "北极星特快";
-            86, // "远古飞鱼";
-            82, // "玩具独角兽";
-            77, // "南瓜魅影";
-            91, // "赏金猎人";
-            9, // "屎蛋风暴";
-            9, // "安格瑞";
-            9, // "即将登场";
-            9, // "即将登场";
-            9, // "即将登场";
-            9, // "即将登场";
+            97, //   ★★★★☆☆☆ 神偷机兵
+            114, // ★★★★★☆☆ 红牛能量
+            116, // ★★★★★★☆ 普鲸
+            75, //   ★☆☆☆☆☆☆ 纸飞机
+            87, //   ★★☆☆☆☆☆ 咕咕鸡 
+            133, // ★★★★★★★ 炮弹比尔
+            127, // ★★★★★★★ 时光机
+            85, //   ★★☆☆☆☆☆ 王牌狗屋
+            120, // ★★★★★★☆ 卡比之星
+            119, // ★★★★★★☆ 蝎红
+            100, // ★★★★☆☆☆ 恩威迪亚
+            129, // ★★★★★★★ 快餐侠
+            117, // ★★★★★★☆ 驯鹿空运
+            107, // ★★★★★☆☆ 北极星特快
+            113, // ★★★★★☆☆ 远古飞鱼
+            77, //   ★☆☆☆☆☆☆ 玩具独角兽
+            91, //   ★★★☆☆☆☆ 南瓜魅影
+            99, //   ★★★★☆☆☆ 赏金猎人
+            95, //   ★★★☆☆☆☆ 屎蛋风暴
+            102, // ★★★★☆☆☆ 安格瑞
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
         };
 
         // Display
@@ -716,42 +716,7 @@ namespace Kocmoca
                 default: return new Vector3(0, 3.37f, 7);
             }
         }
-        public static float TurretDamageFix(Type type)
-        {
-            switch (type)
-            {
-                case Type.MinionArmor: return 1.0f; // 神偷机兵 - 双管 - 拦截机
-                case Type.RedBullEnergy: return 0.73f; // 红牛能量 - 四管 - 拦截机
-                case Type.VladimirPutin: return 0.61f; // 普鲸 - 六管 - 拦截机
-                case Type.PaperAeroplane: return 0.73f; // 纸飞机 - 四管 - 巡航机
-                case Type.Cuckoo: return 0.61f; // 咕咕鸡 - 六管 - 攻击机
-                case Type.BulletBill: return 1.0f; // 炮弹比尔 - 双管 - 攻击机
-                case Type.TimeMachine: return 1.0f; // 时光机 - 双管 - 特攻机
-                case Type.AceKennel: return 1.0f; // 王牌狗屋 - 双管 - 特攻机
-                case Type.KirbyStar: return 0.73f; // 卡比之星 - 四管 - 特攻机
-                case Type.ScorpioRouge: return 1.0f; // 蝎红 - 双管 - 征服舰
-                case Type.Nwidia: return 0.73f; // 恩威迪亚 - 四管 - 征服舰
-                case Type.FastFoodMan: return 1.0f; // 快餐侠 - 双管 - 巡航机
-                case Type.ReindeerTransport: return 1.0f; // 驯鹿空运 - 双管 - 战术舰
-                case Type.PolarisExpress: return 0.61f; // 北极星特快 - 六管 - 征服舰
-                case Type.AncientFish: return 1.0f; // 远古鱼 - 双管 - 战术舰
-                case Type.PapoyUnicorn: return 0.73f; // 玩具独角兽：Medium Speed
-                case Type.PumpkinParty: return 0.73f; // 南瓜魅影：Large
-                case Type.ComingSoon: return 0; // 南瓜魅影：Large
-                default: return 1.0f;
-            }
-        }
-        public static float TurretDamage(Type type)
-        {
-            int count = GetTurretCount(type);
-            switch (count)
-            {
-                case 2: return 1.0f;
-                case 4: return 0.73f;
-                case 6: return 0.63f;
-                default:return 1.0f;
-            }
-        }
+
         // Display
         public static int GetTurretCount(Type type)
         {
@@ -774,26 +739,73 @@ namespace Kocmoca
                 case Type.AncientFish: return 2; // 远古鱼 - 双管 - 战术舰
                 case Type.PapoyUnicorn: return 4; // 玩具独角兽：Medium Speed
                 case Type.PumpkinParty: return 4; // 南瓜魅影：Large
-                case Type.ComingSoon: return 0; // 南瓜魅影：Large
+                case Type.ComingSoon: return 6; // 南瓜魅影：Large
                 default: return 2;
             }
         }
+    }
 
-        public static string GetPowerData(Type type)
+    public static class WeaponData
+    {
+        public static readonly int[] TurretCount = {
+            2, // ★★☆☆☆☆ 神偷机兵
+            4, // ★★★★☆☆ 红牛能量
+            6, // ★★★★★★ 普鲸
+            4, // ★★★★☆☆ 纸飞机
+            6, // ★★★★★★ 咕咕鸡 
+            2, // ★★☆☆☆☆ 炮弹比尔
+            2, // ★★☆☆☆☆ 时光机
+            2, // ★★☆☆☆☆ 王牌狗屋
+            4, // ★★★★☆☆ 卡比之星
+            2, // ★★☆☆☆☆ 蝎红
+            4, // ★★★★☆☆ 恩威迪亚
+            2, // ★★☆☆☆☆ 快餐侠
+            2, // ★★☆☆☆☆ 驯鹿空运
+            6, // ★★★★★★ 北极星特快
+            2, // ★★☆☆☆☆ 远古飞鱼
+            2, // ★★☆☆☆☆ 玩具独角兽
+            4, // ★★★★☆☆ 南瓜魅影
+            6, // ★★★★★★ 赏金猎人
+            6, // ★★★★★★ 屎蛋风暴
+            4, // ★★★★☆☆ 安格瑞
+            2, // ★★☆☆☆☆ 即将登场
+            2, // ★★☆☆☆☆ 即将登场
+            2, // ★★☆☆☆☆ 即将登场
+            2, // ★★☆☆☆☆ 即将登场
+        };
+        private static float TurretDamageCoefficient;
+        private static float AmmoVelocity;
+        public static int MinDamage;
+        public static int MaxDamage;
+        public static int MaxRange;
+
+        // For hangar data using
+        public static void GetWeaponData(int type)
         {
-            float velocity = KocmoLaserCannon.flightVelocity * TurretDamage(type);
-            float minDamage = velocity * velocity * 0.0001f * KocmoLaserCannon.coefficientMinDamage * GetTurretCount(type) * 0.5f;
-            float maxDamage = (velocity + AfterburnerSpeed[(int)type]) * (velocity + AfterburnerSpeed[(int)type]) * 0.0001f * KocmoLaserCannon.coefficientMaxDamage * GetTurretCount(type) * 0.5f;
-            return (int)minDamage + "~" + (int)maxDamage;
+            switch (TurretCount[type])
+            {
+                case 2: TurretDamageCoefficient = 1.0f;break;
+                case 4: TurretDamageCoefficient = 0.843f; break;
+                case 6: TurretDamageCoefficient = 0.779f; break;
+            }
+            AmmoVelocity = KocmoLaserCannon.flightVelocity * TurretDamageCoefficient;
+            MinDamage = (int)((AmmoVelocity + KocmocraftData.CruiseSpeed[type]*5) * (AmmoVelocity + KocmocraftData.CruiseSpeed[type]*5) * 
+                TurretCount[type] * KocmoLaserCannon.coefficientMinDamage * 0.000033f);
+            MaxDamage = (int)((AmmoVelocity + KocmocraftData.AfterburnerSpeed[type]*5) * (AmmoVelocity + KocmocraftData.AfterburnerSpeed[type]*5) *
+                TurretCount[type] * KocmoLaserCannon.coefficientMaxDamage * 0.000033f);
+            MaxRange = (int)((KocmoLaserCannon.flightVelocity * TurretDamageCoefficient + KocmocraftData.AfterburnerSpeed[type]) * KocmoLaserCannon.flightTime);
         }
-        public static int GetMaxDamage(Type type)
+
+        // For KocmoLaserFlying.cs using
+        public static float GetCoefficient(Type type)
         {
-            float velocity = KocmoLaserCannon.flightVelocity * TurretDamage(type) + AfterburnerSpeed[(int)type];
-            return (int)(velocity * velocity * 0.0001f * KocmoLaserCannon.coefficientMaxDamage * GetTurretCount(type) * 0.5f);
-        }
-        public static int GetMaxRangeData(Type type)
-        {
-            return (int)((KocmoLaserCannon.flightVelocity * TurretDamageFix(type) + GetMaxSpeed(type)) * KocmoLaserCannon.flightTime);
+            switch (TurretCount[(int)type])
+            {
+                case 2: return 1.0f; 
+                case 4: return 0.843f; 
+                case 6: return 0.779f;
+                default: return 1.0f;
+            }
         }
     }
 
@@ -843,7 +855,7 @@ namespace Kocmoca
         public static readonly float projectileSpread = 0.39f; //彈道散布 degree
         public static readonly int flightVelocity = 1630;//2970; // 飛行速率 m/s
         public static readonly int propulsion = flightVelocity * 50; // 開火推力
-        public static readonly float flightTime = 0.73f; // 飛行時間 sec
+        public static readonly float flightTime = 0.71f; // 飛行時間 sec
         public static readonly float operationalRange = flightVelocity * flightTime; // 射程 m
         public static readonly float fireRoundPerSecond = 4.77f; // 射速 rps
         public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec

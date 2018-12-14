@@ -48,6 +48,7 @@ namespace Kocmoca
             if (level < 0.4285714f) bar[3].enabled = false;
             if (level < 0.2857142f) bar[2].enabled = false;
             if (level < 0.1428571f) bar[1].enabled = false;
+            if (level < 0.0100001f) bar[0].enabled = false;
         }
     }
     public class HangarRanger : MonoBehaviour
@@ -80,9 +81,9 @@ namespace Kocmoca
         private SciFiBar barAfterburne;
         [Header("Weapon Data")]
         public TextMeshProUGUI textTurretCount;
-        private SciFiBar barTurretCount;
+        //private SciFiBar barTurretCount;
         public TextMeshProUGUI textFireRPS;
-        private SciFiBar barFireRPS;
+        //private SciFiBar barFireRPS;
         public TextMeshProUGUI textDamage;
         private SciFiBar barDamage;
         public TextMeshProUGUI textMaxRange;
@@ -97,14 +98,14 @@ namespace Kocmoca
                 LoadHangarData();
             });
             //hangarRailY.DORotateQuaternion(hangarCenter[now].rotation, 0.73f);
-            barHull.Initialize(textMaxHull.transform.parent.GetComponentsInChildren<Image>(), 3000, 30000);
-            barShield.Initialize(textMaxShield.transform.parent.GetComponentsInChildren<Image>(), 3000, 20000);
-            barEnergy.Initialize(textMaxEnergy.transform.parent.GetComponentsInChildren<Image>(), 1000, 3000);
-            barCruise.Initialize(textCruiseSpeed.transform.parent.GetComponentsInChildren<Image>(), 20, 50);
-            barAfterburne.Initialize(textAfterburneSpeed.transform.parent.GetComponentsInChildren<Image>(), 70, 110);
+            barHull.Initialize(textMaxHull.transform.parent.GetComponentsInChildren<Image>(), 4000, 25000);
+            barShield.Initialize(textMaxShield.transform.parent.GetComponentsInChildren<Image>(), 3000, 24000);
+            barEnergy.Initialize(textMaxEnergy.transform.parent.GetComponentsInChildren<Image>(), 500, 3700);
+            barCruise.Initialize(textCruiseSpeed.transform.parent.GetComponentsInChildren<Image>(), 20, 60);
+            barAfterburne.Initialize(textAfterburneSpeed.transform.parent.GetComponentsInChildren<Image>(), 70, 133);
 
-            barDamage.Initialize(textDamage.transform.parent.GetComponentsInChildren<Image>(), 1200, 1600);
-
+            barDamage.Initialize(textDamage.transform.parent.GetComponentsInChildren<Image>(), 1092, 2842);
+            barMaxRange.Initialize(textMaxRange.transform.parent.GetComponentsInChildren<Image>(), 955, 1270);
         }
 
         void Update()
@@ -177,17 +178,18 @@ namespace Kocmoca
             barShield.SetBar(KocmocraftData.MaxShieldl[now]);
             textMaxEnergy.text = "" + KocmocraftData.MaxEnergy[now];
             barEnergy.SetBar(KocmocraftData.MaxEnergy[now]);
-            textCruiseSpeed.text = "" + (KocmocraftData.CruiseSpeed[now] * 1.9438445f).ToString(".00") + " knot";
+            textCruiseSpeed.text = (KocmocraftData.CruiseSpeed[now] * 1.9438445f).ToString(".00") + " knot";
             barCruise.SetBar(KocmocraftData.CruiseSpeed[now]);
-            textAfterburneSpeed.text = "" + (KocmocraftData.AfterburnerSpeed[now] * 1.9438445f).ToString(".00") + " knot";
+            textAfterburneSpeed.text = (KocmocraftData.AfterburnerSpeed[now] * 1.9438445f).ToString(".00") + " knot";
             barAfterburne.SetBar(KocmocraftData.AfterburnerSpeed[now]);
 
-
-            textTurretCount.text = "" + KocmocraftData.GetTurretCount((Type)now) + "x 突击激光炮";
-            textFireRPS.text = "" + KocmoLaserCannon.fireRoundPerSecond + " rps";
-            textDamage.text = "" + KocmocraftData.GetPowerData((Type)now) + " dmg";
-            barDamage.SetBar(KocmocraftData.GetMaxDamage((Type)now));
-            textMaxRange.text = "" + KocmocraftData.GetMaxRangeData((Type)now) + " m";
+            WeaponData.GetWeaponData(now);
+            textTurretCount.text = WeaponData.TurretCount[now] + "x 突击激光炮";
+            textFireRPS.text = KocmoLaserCannon.fireRoundPerSecond + " rps";
+            textDamage.text = string.Format("{0} ~ {1} dmg", WeaponData.MinDamage, WeaponData.MaxDamage);
+            barDamage.SetBar(WeaponData.MaxDamage);
+            textMaxRange.text = WeaponData.MaxRange + " m";
+            barMaxRange.SetBar(WeaponData.MaxRange);
         }
     }
 }

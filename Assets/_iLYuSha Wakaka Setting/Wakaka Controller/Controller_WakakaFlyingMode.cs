@@ -14,82 +14,49 @@ public partial class Controller : MonoBehaviour
     // Event
     public delegate void HotKeyChanged();
     public static event HotKeyChanged OnHotKeyChanged;
-    [Header("Wakaka Flying Mode")]
-    public Toggle tabWakakaFlyingMode;
-    public GameObject panelWakakaFlyingMode;
-    [Header("Wakaka Flying Mode - Flying Axis")]
-    public Slider sliderFlyingAxis;
-    public TextMeshProUGUI textSensitivityFlyingAxis;
-    public Transform virtualJoystick;
-    public float sensitivityFlyingAxis, sensitivityFlyingKey = 0.7f;
-    private FlyingAxis[] FlyingAxis = new FlyingAxis[4]
+    public static float FlyingAxisSensitivity, sensitivityFlyingKey = 0.7f;
+    // Flying Axis
+    public static FlyingAxis[] FlyingAxis = new FlyingAxis[4]
     {
         new FlyingAxis{Plus = new WakakaButton("", "", "WakakaButton-X+"),Minus = new WakakaButton("", "", "WakakaButton-X-")},
         new FlyingAxis{Plus = new WakakaButton("", "", "WakakaButton-Y+"),Minus = new WakakaButton("", "", "WakakaButton-Y-")},
         new FlyingAxis{Plus = new WakakaButton("", "", "WakakaButton-H+"),Minus = new WakakaButton("", "", "WakakaButton-H-")},
         new FlyingAxis{Plus = new WakakaButton("", "", "WakakaButton-V+"),Minus = new WakakaButton("", "", "WakakaButton-V-")}
     };
-    [Header("Wakaka Flying Mode - Wakaka Button")]
-    public Toggle[] hotkeyWakakaButton;
-    public WakakaButton JoystickRoot = new WakakaButton("RS", "rs", "WakakaButton-JoystickRoot");
-    public WakakaButton JoystickThumb = new WakakaButton("RB", "rb", "WakakaButton-JoystickThumb");
-    public WakakaButton JoystickIndex = new WakakaButton("RT", "rt", "WakakaButton-JoystickIndex");
-    public WakakaButton Back = new WakakaButton("BACK", "back", "WakakaButton-Back");
-    public WakakaButton Stop = new WakakaButton("STOP", "stop", "WakakaButton-Stop");
-    public WakakaButton Play = new WakakaButton("PLAY", "play", "WakakaButton-Play");
-    public WakakaButton ThrustLeverRoot = new WakakaButton("LS", "ls", "WakakaButton-ThrustLeverRoot");
-    public WakakaButton ThrustLeverThumb = new WakakaButton("LB", "lb", "WakakaButton-ThrustLeverThumb");
-    public WakakaButton ThrustLeverIndex = new WakakaButton("LT", "lt", "WakakaButton-ThrustLeverIndex");
-    public WakakaButton ThrustLeverMiddle = new WakakaButton("LM", "lm", "WakakaButton-ThrustLeverMiddle");
-    public WakakaButton ThrustLeverExtension = new WakakaButton("LE", "le", "WakakaButton-ThrustLeverExtension");
-    public static WakakaButton ActiveButton;
+    // Wakaka Button
+    public static WakakaButton JoystickRoot = new WakakaButton("RS", "rs", "WakakaButton-JoystickRoot");
+    public static WakakaButton JoystickThumb = new WakakaButton("RB", "rb", "WakakaButton-JoystickThumb");
+    public static WakakaButton JoystickIndex = new WakakaButton("RT", "rt", "WakakaButton-JoystickIndex");
+    public static WakakaButton Back = new WakakaButton("BACK", "back", "WakakaButton-Back");
+    public static WakakaButton Stop = new WakakaButton("STOP", "stop", "WakakaButton-Stop");
+    public static WakakaButton Play = new WakakaButton("PLAY", "play", "WakakaButton-Play");
+    public static WakakaButton ThrustLeverRoot = new WakakaButton("LS", "ls", "WakakaButton-ThrustLeverRoot");
+    public static WakakaButton ThrustLeverThumb = new WakakaButton("LB", "lb", "WakakaButton-ThrustLeverThumb");
+    public static WakakaButton ThrustLeverIndex = new WakakaButton("LT", "lt", "WakakaButton-ThrustLeverIndex");
+    public static WakakaButton ThrustLeverMiddle = new WakakaButton("LM", "lm", "WakakaButton-ThrustLeverMiddle");
+    public static WakakaButton ThrustLeverExtension = new WakakaButton("LE", "le", "WakakaButton-ThrustLeverExtension");
+    public static WakakaButton ActiveWakakaButton;
+    // Prefs
+    private static readonly string PREFS_FLYING_AXIS_SENSITIVITY = "Prefs_FlyingAxis_Sensitivity";
 
-    void InitializeWakakaMode()
+    public static void InitializeWakakaModeData()
     {
-        tabWakakaFlyingMode.onValueChanged.AddListener(isOn => 
-        {
-            panelWakakaFlyingMode.SetActive(isOn);
-            controllerType = ControllerType.WakakaFlyingMode;
-            PlayerPrefs.SetInt("saveType", (int)controllerType);
-        });
-        if (controllerType == ControllerType.WakakaFlyingMode) tabWakakaFlyingMode.isOn = true;
-        hotkeyWakakaButton = panelWakakaFlyingMode.GetComponentsInChildren<Toggle>();
-        // Slider Bar
-        sensitivityFlyingAxis = PlayerPrefs.GetFloat("SensitivityFlyingAxis");
-        if (sensitivityFlyingAxis == 0) sensitivityFlyingAxis = 0.37f;
-        sliderFlyingAxis.value = sensitivityFlyingAxis;
-        textSensitivityFlyingAxis.text = sensitivityFlyingAxis.ToString("0.00");
-        sliderFlyingAxis.onValueChanged.AddListener(Value =>
-        {
-            sensitivityFlyingAxis = Value;
-            textSensitivityFlyingAxis.text = sensitivityFlyingAxis.ToString("0.00");
-            PlayerPrefs.SetFloat("SensitivityFlyingAxis", sensitivityFlyingAxis);
-        });
-        // Auto loading Wakaka Button setting or use default key mapping
-        FlyingAxis[0].Plus.InitializeHotkey(hotkeyWakakaButton[0], (int)KeyCode.Keypad6);
-        FlyingAxis[0].Minus.InitializeHotkey(hotkeyWakakaButton[1], (int)KeyCode.Keypad4);
-        FlyingAxis[1].Plus.InitializeHotkey(hotkeyWakakaButton[2], (int)KeyCode.Keypad8);
-        FlyingAxis[1].Minus.InitializeHotkey(hotkeyWakakaButton[3], (int)KeyCode.Keypad2);
-        FlyingAxis[2].Plus.InitializeHotkey(hotkeyWakakaButton[4], (int)KeyCode.D);
-        FlyingAxis[2].Minus.InitializeHotkey(hotkeyWakakaButton[5], (int)KeyCode.A);
-        FlyingAxis[3].Plus.InitializeHotkey(hotkeyWakakaButton[6], (int)KeyCode.W);
-        FlyingAxis[3].Minus.InitializeHotkey(hotkeyWakakaButton[7], (int)KeyCode.S);
-        JoystickRoot.InitializeHotkey(hotkeyWakakaButton[8], (int)KeyCode.Mouse2);
-        JoystickThumb.InitializeHotkey(hotkeyWakakaButton[9], (int)KeyCode.Mouse1);
-        JoystickIndex.InitializeHotkey(hotkeyWakakaButton[10], (int)KeyCode.Mouse0);
-        //Back.InitializeHotkey((int)KeyCode.Escape, hotkeyWakakaButton[0]);
-        //Stop.InitializeHotkey((int)KeyCode.Space, hotkeyWakakaButton[0]);
-        //Play.InitializeHotkey((int)KeyCode.Return, hotkeyWakakaButton[0]);
-        ThrustLeverRoot.InitializeHotkey(hotkeyWakakaButton[11], (int)KeyCode.Backspace);
-        ThrustLeverThumb.InitializeHotkey(hotkeyWakakaButton[12], (int)KeyCode.LeftShift);
-        ThrustLeverIndex.InitializeHotkey(hotkeyWakakaButton[13], (int)KeyCode.Space);
-        ThrustLeverMiddle.InitializeHotkey(hotkeyWakakaButton[14], (int)KeyCode.R);
-        ThrustLeverExtension.InitializeHotkey(hotkeyWakakaButton[15], (int)KeyCode.C);
+        FlyingAxisSensitivity = PlayerPrefs.GetFloat(PREFS_FLYING_AXIS_SENSITIVITY);
+        if (FlyingAxisSensitivity == 0) FlyingAxisSensitivity = 0.37f;
     }
-
-    void WakakaFlyingModeSetting(int numberCode)
+    public static void UseWakakaFlyingMode()
     {
-        ActiveButton.SetHotkey(numberCode);
+        controllerType = ControllerType.WakakaFlyingMode;
+        PlayerPrefs.SetInt("Controller_Type", (int)controllerType);
+    }
+    public static void SetFlyingAxisSensitivity(float value)
+    {
+        FlyingAxisSensitivity = value;
+        PlayerPrefs.SetFloat(PREFS_FLYING_AXIS_SENSITIVITY, FlyingAxisSensitivity);
+    }
+    public static void WakakaFlyingModeSetting(int numberCode)
+    {
+        ActiveWakakaButton.SetHotkey(numberCode);
     }
 
     private void WakakaModeJoystickInput()
@@ -99,21 +66,23 @@ public partial class Controller : MonoBehaviour
         if (command.AxisY == -999) command.AxisY = controlValue[1];
         if (command.AxisH == -999) command.AxisH = controlValue[2];
         if (command.AxisV == -999) command.AxisV = controlValue[3];
-        virtualJoystick.localPosition = new Vector3(command.AxisX * 200, -command.AxisY * 200, 0);
+        //virtualJoystick.localPosition = new Vector3(command.AxisX * 200, -command.AxisY * 200, 0);
 
         // 控制值
-        controlValue[0] = command.AxisX == 0 && controlMode == ControlMode.Flying ? Input.GetAxis("Mouse X") : command.AxisX;
-        controlValue[1] = command.AxisY == 0 && controlMode == ControlMode.Flying ? Input.GetAxis("Mouse Y") : command.AxisY;
-        controlValue[2] = command.AxisH == 0 && controlMode == ControlMode.Flying ? Input.GetAxis("Horizontal") : command.AxisH;
-        controlValue[3] = command.AxisV == 0 && controlMode == ControlMode.Flying ? Input.GetAxis("Vertical") : command.AxisV;
+        if (controlMode == ControlMode.Flying)
+        {
+            controlValue[0] = command.AxisX == 0 ? Input.GetAxis("Mouse X") : command.AxisX;
+            controlValue[1] = command.AxisY == 0 ? Input.GetAxis("Mouse Y") : command.AxisY;
+            controlValue[2] = command.AxisH == 0 ? Input.GetAxis("Horizontal") : command.AxisH;
+            controlValue[3] = command.AxisV == 0 ? Input.GetAxis("Vertical") : command.AxisV;
+        }
 
         // 飛行輸入值
-        roll = Mathf.Clamp(controlValue[indexRoll] * sensitivityFlyingAxis, -1, 1);
-        pitch = Mathf.Clamp(controlValue[indexPitch] * sensitivityFlyingAxis, -1, 1);
-        yaw = Mathf.Clamp(controlValue[indexYaw] * sensitivityFlyingAxis, -1, 1);
-        throttle = Mathf.Clamp(controlValue[indexThrotte] * sensitivityFlyingAxis, -1, 1);
+        roll = Mathf.Clamp(controlValue[indexRoll] * FlyingAxisSensitivity, -1, 1);
+        pitch = Mathf.Clamp(controlValue[indexPitch] * FlyingAxisSensitivity, -1, 1);
+        yaw = Mathf.Clamp(controlValue[indexYaw] * FlyingAxisSensitivity, -1, 1);
+        throttle = Mathf.Clamp(controlValue[indexThrotte] * FlyingAxisSensitivity, -1, 1);
 
-        if (controlMode == ControlMode.Flying) return;
         // 軸映射鍵值
         for (int i = 0; i < 4; i++)
         {
@@ -130,6 +99,7 @@ public partial class Controller : MonoBehaviour
             }
             else
             {
+
                 if (FlyingAxis[i].Plus.Pressed)
                 {
                     FlyingAxis[i].Plus.Pressed = false;
@@ -305,7 +275,7 @@ public class WakakaButton: IHotkey
         {
             if (isOn)
             {
-                Controller.ActiveButton = this;
+                Controller.ActiveWakakaButton = this;
                 Controller.state = PanelState.HotkeyInput;
             }
             else
