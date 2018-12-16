@@ -147,7 +147,7 @@ namespace Kocmoca
                 SceneManager.LoadScene("Wakaka Controller");
                 return;
             }
-            Controller.ChangeMode(ControlMode.General);
+            //Controller.ChangeMode(ControlMode.General);
             mainCamera = transform;
             mainCamera.position = new Vector3(0, 5000, 0);
             mainCamera.rotation = Quaternion.identity;
@@ -167,6 +167,9 @@ namespace Kocmoca
             doraraHand.gameObject.SetActive(true);
             xbox360 = doraraHand.GetComponent<Animation>();
             xbox360["Xbox 360"].speed = 0;
+        }
+        void Display()
+        {
             // 初始化顯示器
             display.localPosition = displayLeftReady.localPosition;
             display.gameObject.SetActive(true);
@@ -256,16 +259,17 @@ namespace Kocmoca
         }
         public void VisitHangar()
         {
-            OnCameraMove();
-            MouseLock.MouseLocked = true;
-            now = PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
-            state = MainState.Hangar;
-            mainPanel.SetActivePanel("");
-            mainPanel.inHangar = true;
-            mainCamera.SetParent(pointHangarRail);
-            mainCamera.localPosition = Vector3.zero;
-            mainCamera.localRotation = Quaternion.identity;
-            TransitCamera();
+            SceneManager.LoadScene("New Airport 3");
+            //OnCameraMove();
+            //MouseLock.MouseLocked = true;
+            //now = PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
+            //state = MainState.Hangar;
+            //mainPanel.SetActivePanel("");
+            //mainPanel.inHangar = true;
+            //mainCamera.SetParent(pointHangarRail);
+            //mainCamera.localPosition = Vector3.zero;
+            //mainCamera.localRotation = Quaternion.identity;
+            //TransitCamera();
         }
         void Exhibition()
         {
@@ -327,8 +331,8 @@ namespace Kocmoca
             }
             else if (state == MainState.Hangar)
             {
-                pointHangarRail.localRotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X"), 0);
-                mainCamera.localRotation *= Quaternion.Euler(Input.GetAxis("Mouse Y"),0, 0);
+                //pointHangarRail.localRotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X"), 0);
+                //mainCamera.localRotation *= Quaternion.Euler(Input.GetAxis("Mouse Y"),0, 0);
                 if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Joystick1Button6))
                     VisitLobby();
                 if (Input.GetKeyDown(Controller.KEY_PreviousHangar_0) ||
@@ -506,11 +510,11 @@ namespace Kocmoca
                 switch (index)
                 {
                     case 0: textKocmocraft[0].text = "" + KocmocraftData.GetKocmocraftName(now); break;
-                    case 1: textKocmocraft[1].text = "" + KocmocraftData.GetMaxHull((Type)now); break;
-                    case 2: textKocmocraft[2].text = "" + KocmocraftData.GetMaxShield((Type)now); break;
-                    case 3: textKocmocraft[3].text = "" + KocmocraftData.GetMaxEnergy((Type)now); break;
-                    case 4: textKocmocraft[4].text = "" + KocmocraftData.GetCruiseSpeed((Type)now) * 3.6f + " km/h"; break;
-                    case 5: textKocmocraft[5].text = "" + KocmocraftData.GetMaxSpeed((Type)now) * 3.6f + " km/h"; break;
+                    case 1: textKocmocraft[1].text = "" + KocmocraftData.MaxHull[now]; break;
+                    case 2: textKocmocraft[2].text = "" + KocmocraftData.MaxShieldl[now]; break;
+                    case 3: textKocmocraft[3].text = "" + KocmocraftData.MaxEnergy[now]; break;
+                    case 4: textKocmocraft[4].text = "" + KocmocraftData.CruiseSpeed[now] * 3.6f + " km/h"; break;
+                    case 5: textKocmocraft[5].text = "" + KocmocraftData.AfterburnerSpeed[now] * 3.6f + " km/h"; break;
                 }
             }
             if (index == dataKocmocraft.count - 1)

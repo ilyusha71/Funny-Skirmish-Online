@@ -156,7 +156,7 @@ namespace Kocmoca
         {
             //int faction = portNumber % 2;
             //int order = portNumber / 2;
-            int type = Random.Range(0,17); // 測試  (int)factionData[faction].Type[order];
+            int type = Random.Range(0,18); // 測試  (int)factionData[faction].Type[order];
             string typeName = "Kocmocraft " + type.ToString("00") + " - " + KocmocraftData.GetKocmocraftName(type);
             Transform localAI = PhotonNetwork.Instantiate(typeName.ToString(), new Vector3(0, 10000, 0), Quaternion.identity, 0).transform;
             localAI.GetComponent<KocmocraftManager>().InitializeLocalBot(portNumber);

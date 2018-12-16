@@ -38,8 +38,11 @@ namespace Kocmoca
 
         private void Awake()
         {
-            myTransform = transform;
-            Controller.ChangeMode(ControlMode.Flying);
+            myTransform = transform;            
+        }
+        private void Start()
+        {
+            Controller.controlMode = ControlMode.Flying;
         }
         public void InitializeView(Transform cockpitViewpoint, Transform cockpitKocmonaut, int kocmonautNumber)
         {

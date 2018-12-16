@@ -44,10 +44,10 @@ public partial class Controller : MonoBehaviour
     [Header("Controller Setting")]
     public static PanelState state = PanelState.Ready;
     public static ControllerType controllerType;
-    private static ControlMode controlMode;
+    public static ControlMode controlMode;
     private static ControlHands controlHands;
     [Header("New Setting")]
-    private static int indexRoll, indexPitch, indexYaw, indexThrotte; // 飛行控制慣用手索引
+    private static int indexRoll=0, indexPitch=1, indexYaw=2, indexThrotte=3; // 飛行控制慣用手索引
 
 
     [Header("Old Setting")]

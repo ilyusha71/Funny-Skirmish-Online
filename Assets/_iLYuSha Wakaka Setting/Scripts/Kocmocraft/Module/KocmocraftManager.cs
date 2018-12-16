@@ -73,8 +73,8 @@ namespace Kocmoca
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
             gameObject.AddComponent<EngineController>().Initialize(Type);
-            gameObject.AddComponent<AvionicsSystem>().Initialize(Type); // local only
-            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalPlayer, Type, Number, wreckage);
+            gameObject.AddComponent<AvionicsSystem>().Initialize((int)Type); // local only
+            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalPlayer, (int)Type, Number, wreckage);
             gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalPlayer, (int)Faction, (int)Type, Number); // local only
             gameObject.AddComponent<LocalPlayerController>();
             ActiveFCS(true);
@@ -100,7 +100,7 @@ namespace Kocmoca
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
             gameObject.AddComponent<EngineController>().Initialize(Type);
-            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.RemotePlayer, Type, Number, wreckage);
+            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.RemotePlayer, (int)Type, Number, wreckage);
             ActiveFCS(false);
         }
         public void InitializeLocalBot(int portNumber)
@@ -120,8 +120,8 @@ namespace Kocmoca
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
             gameObject.AddComponent<EngineController>().Initialize(Type);
-            gameObject.AddComponent<AvionicsSystem>().Initialize(Type); // local only
-            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalBot, Type, Number, wreckage);
+            gameObject.AddComponent<AvionicsSystem>().Initialize((int)Type); // local only
+            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalBot, (int)Type, Number, wreckage);
             gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalBot, (int)Faction, (int)Type, Number); // local only
             gameObject.AddComponent<LocalBotController>();
             ActiveFCS(true);
@@ -143,7 +143,7 @@ namespace Kocmoca
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
             gameObject.AddComponent<EngineController>().Initialize(Type);
-            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.RemoteBot, Type, Number, wreckage);
+            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.RemoteBot, (int)Type, Number, wreckage);
             ActiveFCS(false);
         }
 

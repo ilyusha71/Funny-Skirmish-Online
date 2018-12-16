@@ -46,7 +46,7 @@ namespace Kocmoca
         private Kocmonaut lastAttacker = new Kocmonaut { Number = -1 };
         private Vector3 lastHitVelocity;
 
-        public void Initialize(Core core, Type type, int number, GameObject remnant)
+        public void Initialize(Core core, int type, int number, GameObject remnant)
         {
             // Dependent Components
             myRigidbody = GetComponent<Rigidbody>();
@@ -65,8 +65,8 @@ namespace Kocmoca
             else
                 SatelliteCommander.Instance.Observer.listOthers.Add(Number);
             // Modular Parameter
-            dataHull = new Data { Max = KocmocraftData.GetMaxHull(type), Value = KocmocraftData.GetMaxHull(type) };
-            dataShield = new Data { Max = KocmocraftData.GetMaxShield(type), Value = KocmocraftData.GetMaxShield(type) };
+            dataHull = new Data { Max = KocmocraftData.MaxHull[type] ,Value = KocmocraftData.MaxHull[type] };
+            dataShield = new Data { Max = KocmocraftData.MaxShieldl[type], Value = KocmocraftData.MaxShieldl[type] };
             // Crash
             ammoRemnantOPD = ObjectPoolManager.Instance.CreatObjectPool(remnant, 1,5);
         }

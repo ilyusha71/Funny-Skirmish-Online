@@ -52,16 +52,16 @@ namespace Kocmoca
         public bool DirectVelocity = true;// if true this riggidbody will not receive effect by other force.
         public float DampingVelocity = 5;
 
-        public void Initialize(Type type)
+        public void Initialize(int type)
         {
             // Dependent Components
             myRigidbody = GetComponent<Rigidbody>();
             myEngineController = GetComponent<EngineController>();
             // Modular Parameter
-            dataEnergy = new Data { Max = KocmocraftData.GetMaxEnergy(type), Value = KocmocraftData.GetMaxEnergy(type) };
-            dataSpeed = new Data { Max = KocmocraftData.GetMaxSpeed(type), Value = 0 };
-            valueSpeedCruise = KocmocraftData.GetCruiseSpeed(type);
-            valueSpeedHigh = valueSpeedCruise * 1.5f;        
+            dataEnergy = new Data { Max = KocmocraftData.MaxEnergy[type], Value = KocmocraftData.MaxEnergy[type] };
+            dataSpeed = new Data { Max = KocmocraftData.AfterburnerSpeed[type], Value = 0 };
+            valueSpeedCruise = KocmocraftData.CruiseSpeed[type];
+            valueSpeedHigh = valueSpeedCruise * 1.1f;        
         }
 
         void Start()

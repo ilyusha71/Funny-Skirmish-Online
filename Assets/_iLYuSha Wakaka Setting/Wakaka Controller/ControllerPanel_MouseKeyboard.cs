@@ -28,9 +28,12 @@ public partial class ControllerPanel : MonoBehaviour
         Controller.WhoAttackU.InitializeHotkey(hotkeyFunction[3], (int)KeyCode.Return); //KeyCode.Joystick1Button2
         Controller.Respawn.InitializeHotkey(hotkeyFunction[4], (int)KeyCode.Backspace); // KeyCode.Joystick1Button3
         Controller.CockpitView.InitializeHotkey(hotkeyFunction[5], (int)KeyCode.C); // KeyCode.Joystick1Button0
-        Controller.Laser.InitializeHotkey(hotkeyFunction[6], (int)KeyCode.Mouse0);
-        Controller.Rocket.InitializeHotkey(hotkeyFunction[7], (int)KeyCode.Space);
-        Controller.Missile.InitializeHotkey(hotkeyFunction[8], (int)KeyCode.Mouse1);
+
+        Controller.Afterburner.InitializeHotkey(hotkeyFunction[6], (int)KeyCode.LeftShift);
+        Controller.LockOn.InitializeHotkey(hotkeyFunction[7], (int)KeyCode.R);
+        Controller.Laser.InitializeHotkey(hotkeyFunction[8], (int)KeyCode.Mouse0);
+        Controller.Rocket.InitializeHotkey(hotkeyFunction[9], (int)KeyCode.Space);
+        Controller.Missile.InitializeHotkey(hotkeyFunction[10], (int)KeyCode.Mouse1);
     }
 
 }

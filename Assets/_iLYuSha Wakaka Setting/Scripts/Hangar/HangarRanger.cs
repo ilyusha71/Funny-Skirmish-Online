@@ -1,21 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using DG.Tweening;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 namespace Kocmoca
 {
-    public enum HangarState
+    public enum TweenerState
     {
         Ready,
         Moving,
-        Login,
-        Lobby,
-        Hangar,
-        Show,
-        newEvent,
+        Open,
+        Hide,
     }
     public struct SciFiBar
     {
@@ -23,9 +20,9 @@ namespace Kocmoca
         private int Denominator;
         private int Minimum;
 
-        public void Initialize(Image[] shell, int min,int max)
+        public void Initialize(Image[] shell, int min, int max)
         {
-            bar =new Image[7];
+            bar = new Image[7];
             for (int i = 0; i < 7; i++)
             {
                 bar[i] = shell[i + 1];
@@ -53,15 +50,32 @@ namespace Kocmoca
     }
     public class HangarRanger : MonoBehaviour
     {
-        [Header("Hangar Camera")]
+        public CanvasGroup hangarCanvas;
+        public CanvasGroup mask;
+        [Header("Hangar Rail & Camera")]
+        public Transform hangarRailMain;
         public Transform hangarRailY;
         public Transform hangarRailX;
         public Transform hangarCamera;
         public Transform[] hangarCenter;
-        private int now = 0;
-        public HangarState hangarState = HangarState.Ready;
-
-        public Text textHangarInfo;
+        private TweenerState hangarState = TweenerState.Ready;
+        private int hangarIndex;
+        [Header("Billboard")]
+        public Transform billboard;
+        private Vector3 billboardPos = new Vector3(9.289f,0,12.972f);
+        private Vector3 billboardHide = new Vector3(0, -100, 0);
+        [Header("Panel")]
+        public Transform blockInfo;
+        public Transform blockHangar;
+        public Transform blockKocmocraft;
+        public Transform blockData;
+        public Button btnOpen;
+        public Button btnHide;
+        private TweenerState panelState = TweenerState.Hide;
+        [Header("Info")]
+        public Image imageFrame;
+        public Image imageButton;
+        public TextMeshProUGUI textInfo;
         [Header("Hangar Data")]
         public TextMeshProUGUI textOKB;
         public TextMeshProUGUI textKocmocraft;
@@ -91,34 +105,68 @@ namespace Kocmoca
 
         void Awake()
         {
-            hangarState = HangarState.Moving;
-            hangarRailY.DOMove(hangarCenter[now].position, 0.73f).OnComplete(() =>
-            {
-                hangarState = HangarState.Ready;
-                LoadHangarData();
-            });
-            //hangarRailY.DORotateQuaternion(hangarCenter[now].rotation, 0.73f);
+            mask.alpha = 1;
+            hangarIndex = PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
+            billboard.localPosition = billboardHide;
+            blockInfo.localScale = Vector3.zero;
+            blockHangar.localPosition = new Vector3(blockHangar.localPosition.x, -128,0);
+            blockKocmocraft.localPosition = new Vector3(blockKocmocraft.localPosition.x, -128, 0);
+            blockData.localPosition = new Vector3(blockData.localPosition.x, -128, 0);
+            btnOpen.onClick.AddListener(() => OpenPanel());
+            btnHide.onClick.AddListener(() => HidePanel());
             barHull.Initialize(textMaxHull.transform.parent.GetComponentsInChildren<Image>(), 4000, 25000);
             barShield.Initialize(textMaxShield.transform.parent.GetComponentsInChildren<Image>(), 3000, 24000);
             barEnergy.Initialize(textMaxEnergy.transform.parent.GetComponentsInChildren<Image>(), 500, 3700);
             barCruise.Initialize(textCruiseSpeed.transform.parent.GetComponentsInChildren<Image>(), 20, 60);
             barAfterburne.Initialize(textAfterburneSpeed.transform.parent.GetComponentsInChildren<Image>(), 70, 133);
-
             barDamage.Initialize(textDamage.transform.parent.GetComponentsInChildren<Image>(), 1092, 2842);
             barMaxRange.Initialize(textMaxRange.transform.parent.GetComponentsInChildren<Image>(), 955, 1270);
         }
 
+        private void Start()
+        {
+            mask.DOFade(0, 3.37f);
+            hangarState = TweenerState.Moving;
+            hangarRailY.DOLocalRotate(hangarIndex < 12 ? new Vector3(0, -117, 0) : new Vector3(0, 117, 0), 3.37f);
+            hangarRailX.DOLocalRotate(new Vector3(71, 0, 0), 3.37f);
+            hangarCamera.DOLocalMove(new Vector3(0, 0, -13.7f), 3.37f);
+            hangarRailMain.DOMove(hangarCenter[hangarIndex].position, 3.37f).OnComplete(() =>
+            {
+                hangarState = TweenerState.Ready;
+                billboard.localPosition = hangarIndex < 12 ? billboardPos : -billboardPos;
+                LoadHangarData();
+            });
+        }
+
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.D))
-                NextHanger();
-            else if (Input.GetKeyDown(KeyCode.A))
-                PreviousHanger();
+            if (Input.GetKeyDown(KeyCode.Escape))
+                SceneManager.LoadScene("Galaxy Lobby");
 
-            if (hangarState == HangarState.Ready)
+            if (Input.GetKeyDown(KeyCode.D))
             {
+                hangarIndex = (int)Mathf.Repeat(++hangarIndex, hangarCenter.Length);
+                MoveHangarRail();
+            }
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                hangarIndex = (int)Mathf.Repeat(--hangarIndex, hangarCenter.Length);
+                MoveHangarRail();
+            }
+
+            billboard.LookAt(hangarCamera);
+            billboard.eulerAngles = new Vector3(0, billboard.eulerAngles.y, 0);
+
+            if (hangarState == TweenerState.Ready)
+            {
+                hangarCanvas.alpha = 1.0f;
+                if (Input.GetKeyDown(KeyCode.J))
+                    OpenPanel();
+                if (Input.GetKeyDown(KeyCode.K))
+                    HidePanel();
                 if (Input.GetKey(KeyCode.Mouse1))
                 {
+                    hangarCanvas.alpha = 0;
                     hangarRailY.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * 2, 0);
                     hangarRailX.rotation *= Quaternion.Euler(-Input.GetAxis("Mouse Y") * 2, 0, 0);
                     hangarRailX.eulerAngles = new Vector3(Mathf.Clamp(hangarRailX.rotation.eulerAngles.x, 60, 120), hangarRailX.rotation.eulerAngles.y, hangarRailX.rotation.eulerAngles.z);
@@ -128,68 +176,105 @@ namespace Kocmoca
             }
         }
 
-        void NextHanger()
+        void MoveHangarRail()
         {
-            now = (int)Mathf.Repeat(++now, hangarCenter.Length);
-            hangarRailY.DOKill();
-            hangarState = HangarState.Moving;
-            hangarRailY.DOMove(hangarCenter[now].position, 0.73f).OnComplete(() =>
+            billboard.localPosition = billboardHide;
+            hangarCanvas.alpha = 0.0f;
+            hangarRailMain.DOKill();
+            hangarState = TweenerState.Moving;
+            hangarRailMain.DOMove(hangarCenter[hangarIndex].position, 0.73f).OnComplete(() =>
             {
-                hangarState = HangarState.Ready;
+                hangarState = TweenerState.Ready;
+                if (hangarIndex < 20)
+                    PlayerPrefs.SetInt(LobbyInfomation.PREFS_TYPE, hangarIndex);
+                billboard.localPosition = hangarIndex < 12 ? billboardPos : -billboardPos;
                 LoadHangarData();
             });
-            //hangarRailY.DORotateQuaternion(hangarCenter[now].rotation, 0.73f);
-        }
-
-        void PreviousHanger()
-        {
-            now = (int)Mathf.Repeat(--now, hangarCenter.Length);
-            hangarRailY.DOKill();
-            hangarState = HangarState.Moving;
-            hangarRailY.DOMove(hangarCenter[now].position, 0.73f).OnComplete(() =>
-            {
-                hangarState = HangarState.Ready;
-                LoadHangarData();
-            });
-            //hangarRailY.DORotateQuaternion(hangarCenter[now].rotation, 0.73f);
         }
 
         void LoadHangarData()
         {
-            //// General
-            //textHangarInfo.text = HangarData.OKB[now] + "\n" + HangarData.Kocmocraft[now] + "\n" + HangarData.Code[now] + "\n" + HangarData.Dubi[now] + "\n拦截";
-            //// 
-            //textKocmocraft.text =
-            //    KocmocraftData.MaxHull[now] + "\n" + 
-            //    KocmocraftData.MaxShieldl[now] + "\n" + 
-            //    KocmocraftData.MaxEnergy[now] + "\n" + 
-            //    KocmocraftData.CruiseSpeed[now] * 3.6f + " km/h\n" + 
-            //    KocmocraftData.AfterburnerSpeed[now] * 3.6f + " km/h";
+            imageFrame.color = HangarData.FrameColor[hangarIndex];
+            imageButton.color = HangarData.ButtonColor[hangarIndex];
+            textInfo.color = HangarData.TextColor[hangarIndex];
+            textInfo.text = HangarData.Info[hangarIndex];
 
-            textOKB.text = "" + HangarData.OKB[now];
-            textKocmocraft.text = "" + HangarData.Kocmocraft[now];
-            textCode.text = "" + HangarData.Code[now];
-            textDubi.text = "" + HangarData.Dubi[now];
-            textEngine.text = "" + HangarData.Engine[now];
+            textOKB.text = "" + HangarData.OKB[hangarIndex];
+            textKocmocraft.text = "" + HangarData.Kocmocraft[hangarIndex];
+            textCode.text = "" + HangarData.Code[hangarIndex];
+            textDubi.text = "" + HangarData.Dubi[hangarIndex];
+            textEngine.text = "" + HangarData.Engine[hangarIndex];
 
-            textMaxHull.text = "" + KocmocraftData.MaxHull[now];
-            barHull.SetBar(KocmocraftData.MaxHull[now]);
-            textMaxShield.text = "" + KocmocraftData.MaxShieldl[now];
-            barShield.SetBar(KocmocraftData.MaxShieldl[now]);
-            textMaxEnergy.text = "" + KocmocraftData.MaxEnergy[now];
-            barEnergy.SetBar(KocmocraftData.MaxEnergy[now]);
-            textCruiseSpeed.text = (KocmocraftData.CruiseSpeed[now] * 1.9438445f).ToString(".00") + " knot";
-            barCruise.SetBar(KocmocraftData.CruiseSpeed[now]);
-            textAfterburneSpeed.text = (KocmocraftData.AfterburnerSpeed[now] * 1.9438445f).ToString(".00") + " knot";
-            barAfterburne.SetBar(KocmocraftData.AfterburnerSpeed[now]);
+            textMaxHull.text = "" + KocmocraftData.MaxHull[hangarIndex];
+            barHull.SetBar(KocmocraftData.MaxHull[hangarIndex]);
+            textMaxShield.text = "" + KocmocraftData.MaxShieldl[hangarIndex];
+            barShield.SetBar(KocmocraftData.MaxShieldl[hangarIndex]);
+            textMaxEnergy.text = "" + KocmocraftData.MaxEnergy[hangarIndex];
+            barEnergy.SetBar(KocmocraftData.MaxEnergy[hangarIndex]);
+            textCruiseSpeed.text = (KocmocraftData.CruiseSpeed[hangarIndex] * 1.9438445f).ToString("0.00") + " knot";
+            barCruise.SetBar(KocmocraftData.CruiseSpeed[hangarIndex]);
+            textAfterburneSpeed.text = (KocmocraftData.AfterburnerSpeed[hangarIndex] * 1.9438445f).ToString("0.00") + " knot";
+            barAfterburne.SetBar(KocmocraftData.AfterburnerSpeed[hangarIndex]);
 
-            WeaponData.GetWeaponData(now);
-            textTurretCount.text = WeaponData.TurretCount[now] + "x 突击激光炮";
-            textFireRPS.text = KocmoLaserCannon.fireRoundPerSecond + " rps";
-            textDamage.text = string.Format("{0} ~ {1} dmg", WeaponData.MinDamage, WeaponData.MaxDamage);
-            barDamage.SetBar(WeaponData.MaxDamage);
-            textMaxRange.text = WeaponData.MaxRange + " m";
-            barMaxRange.SetBar(WeaponData.MaxRange);
+            if (hangarIndex < 20)
+            {
+                WeaponData.GetWeaponData(hangarIndex);
+                textTurretCount.text = WeaponData.TurretCount[hangarIndex] + "x 突击激光炮";
+                textFireRPS.text = KocmoLaserCannon.fireRoundPerSecond + " rps";
+                textDamage.text = string.Format("{0} ~ {1} dmg", WeaponData.MinDamage, WeaponData.MaxDamage);
+                barDamage.SetBar(WeaponData.MaxDamage);
+                textMaxRange.text = WeaponData.MaxRange + " m";
+                barMaxRange.SetBar(WeaponData.MaxRange);
+            }
+            else
+            {
+                textTurretCount.text = "---";
+                textFireRPS.text = "---";
+                textDamage.text = "---";
+                barDamage.SetBar(0);
+                textMaxRange.text = "--- m";
+                barMaxRange.SetBar(0);
+            }
+
+        }
+
+        public void OpenPanel()
+        {
+            if (panelState != TweenerState.Hide) return;
+            blockInfo.DOKill();
+            blockHangar.DOKill();
+            blockKocmocraft.DOKill();
+            blockData.DOKill();
+            panelState = TweenerState.Moving;
+
+            blockInfo.DOScale(Vector3.one,0.37f).OnComplete(() => 
+            {
+                StartCoroutine(Animation());
+            });
+        }
+
+        public void HidePanel()
+        {
+            if (panelState != TweenerState.Open) return;
+            blockInfo.DOKill();
+            blockHangar.DOKill();
+            blockKocmocraft.DOKill();
+            blockData.DOKill();
+            panelState = TweenerState.Moving;
+
+            blockInfo.DOScale(Vector3.zero, 0.37f);
+            blockHangar.DOLocalMoveY(-128, 0.37f);
+            blockKocmocraft.DOLocalMoveY(-128, 0.37f);
+            blockData.DOLocalMoveY(-128, 0.37f).OnComplete(() => { panelState = TweenerState.Hide; });
+        }
+        readonly WaitForSeconds delay = new WaitForSeconds(0.137f);
+        IEnumerator Animation()
+        {
+            blockKocmocraft.DOLocalMoveY(128, 1.0f).SetEase(Ease.OutElastic);
+            yield return delay;
+            blockHangar.DOLocalMoveY(128, 1.0f).SetEase(Ease.OutElastic);
+            yield return delay;
+            blockData.DOLocalMoveY(128, 1.0f).SetEase(Ease.OutElastic).OnComplete(() => { panelState = TweenerState.Open; });
         }
     }
 }
