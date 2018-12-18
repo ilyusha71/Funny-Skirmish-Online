@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015676601373238}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.33}
+  m_LocalPosition: {x: 0, y: 0, z: -1.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2800623184754391948}
@@ -42,7 +42,7 @@ Halo:
   m_Color:
     serializedVersion: 2
     rgba: 4294941696
-  m_Size: 0.55
+  m_Size: 0.5
 --- !u!1 &1445535951384046
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,7 +70,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445535951384046}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2800623184754391948}
@@ -158,8 +158,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 1
+      minMaxState: 0
+      scalar: 2
       minScalar: 0.37
       maxCurve:
         serializedVersion: 2
@@ -212,8 +212,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 27
-      minScalar: 23
+      scalar: 11
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -311,7 +311,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 0.73
-      minScalar: 0.37
+      minScalar: 0.137
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -668,7 +668,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 0
+    angle: 7
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -754,7 +754,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.01
+      value: 0.37
       mode: 0
       spread: 0
       speed:
@@ -811,7 +811,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 0.01
+      value: 360
       mode: 0
       spread: 0
       speed:
@@ -4662,7 +4662,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2fbac1fb84fe14c79944e97176473868, type: 2}
+  - {fileID: 2100000, guid: ae4bd2bfbe5feee409f42cd62343a844, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4717,7 +4717,7 @@ Halo:
   m_Color:
     serializedVersion: 2
     rgba: 4294941696
-  m_Size: 0.55
+  m_Size: 0.5
 --- !u!1 &1630159191688104
 GameObject:
   m_ObjectHideFlags: 0
@@ -4822,7 +4822,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8691217102453135536}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 1.9099998, z: -1.37}
+  m_LocalPosition: {x: 0, y: 1.9099998, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4482553642978034}
