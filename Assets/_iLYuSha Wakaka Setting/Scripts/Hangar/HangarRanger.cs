@@ -52,6 +52,7 @@ namespace Kocmoca
     {
         public CanvasGroup hangarCanvas;
         public CanvasGroup mask;
+        private AudioSource SFX;
         [Header("Hangar Rail & Camera")]
         public Transform hangarRailMain;
         public Transform hangarRailY;
@@ -71,6 +72,8 @@ namespace Kocmoca
         public Transform blockData;
         public Button btnOpen;
         public Button btnHide;
+        public AudioClip sfxOpen;
+        public AudioClip sfxHide;
         private TweenerState panelState = TweenerState.Hide;
         [Header("Info")]
         public Image imageFrame;
@@ -106,6 +109,7 @@ namespace Kocmoca
         void Awake()
         {
             mask.alpha = 1;
+            SFX = GetComponent<AudioSource>();
             hangarIndex = PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
             billboard.localPosition = billboardHide;
             blockInfo.localScale = Vector3.zero;
@@ -246,7 +250,7 @@ namespace Kocmoca
             blockKocmocraft.DOKill();
             blockData.DOKill();
             panelState = TweenerState.Moving;
-
+            SFX.PlayOneShot(sfxOpen);
             blockInfo.DOScale(Vector3.one,0.37f).OnComplete(() => 
             {
                 StartCoroutine(Animation());
@@ -261,7 +265,7 @@ namespace Kocmoca
             blockKocmocraft.DOKill();
             blockData.DOKill();
             panelState = TweenerState.Moving;
-
+            SFX.PlayOneShot(sfxHide);
             blockInfo.DOScale(Vector3.zero, 0.37f);
             blockHangar.DOLocalMoveY(-128, 0.37f);
             blockKocmocraft.DOLocalMoveY(-128, 0.37f);
