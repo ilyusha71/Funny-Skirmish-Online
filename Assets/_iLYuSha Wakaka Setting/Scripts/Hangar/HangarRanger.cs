@@ -50,6 +50,8 @@ namespace Kocmoca
     }
     public class HangarRanger : MonoBehaviour
     {
+        private readonly int hangarMaxCount = 24;
+        private readonly int hangarHalfCount = 12;
         public CanvasGroup hangarCanvas;
         public CanvasGroup mask;
         private AudioSource SFX;
@@ -59,11 +61,16 @@ namespace Kocmoca
         public Transform hangarRailX;
         public Transform hangarCamera;
         public Transform[] hangarCenter;
+        public Camera cameraTop;
+        public Camera cameraSide;
+        public Camera cameraFront;
+        private BoxCollider[] prototype;
         private TweenerState hangarState = TweenerState.Ready;
         private int hangarIndex;
+        private int hangarMax = 18;
         [Header("Billboard")]
         public Transform billboard;
-        private Vector3 billboardPos = new Vector3(9.289f,0,12.972f);
+        private Vector3 billboardPos = new Vector3(-12.972f, 0, 9.289f);
         private Vector3 billboardHide = new Vector3(0, -100, 0);
         [Header("Panel")]
         public Transform blockInfo;
@@ -78,6 +85,9 @@ namespace Kocmoca
         [Header("Info")]
         public Image imageFrame;
         public Image imageButton;
+        public TextMeshProUGUI textWingspan;
+        public TextMeshProUGUI textLength;
+        public TextMeshProUGUI textHeight;
         public TextMeshProUGUI textInfo;
         [Header("Hangar Data")]
         public TextMeshProUGUI textOKB;
@@ -110,6 +120,8 @@ namespace Kocmoca
         {
             mask.alpha = 1;
             SFX = GetComponent<AudioSource>();
+            prototype = new BoxCollider[hangarMaxCount];
+            for (int i = 0; i < hangarMaxCount; i++) { prototype[i] = hangarCenter[i].GetComponentsInChildren<BoxCollider>()[1]; }
             hangarIndex = PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
             billboard.localPosition = billboardHide;
             blockInfo.localScale = Vector3.zero;
@@ -131,13 +143,14 @@ namespace Kocmoca
         {
             mask.DOFade(0, 3.37f);
             hangarState = TweenerState.Moving;
-            hangarRailY.DOLocalRotate(hangarIndex < 12 ? new Vector3(0, -117, 0) : new Vector3(0, 117, 0), 3.37f);
+            hangarRailY.DOLocalRotate(hangarIndex < hangarHalfCount ? new Vector3(0, 153, 0) : new Vector3(0, -153, 0), 3.37f);
             hangarRailX.DOLocalRotate(new Vector3(71, 0, 0), 3.37f);
             hangarCamera.DOLocalMove(new Vector3(0, 0, -13.7f), 3.37f);
-            hangarRailMain.DOMove(hangarCenter[hangarIndex].position, 3.37f).OnComplete(() =>
+            hangarRailMain.DORotateQuaternion(prototype[hangarIndex].transform.rotation, 3.37f);
+            hangarRailMain.DOMove(prototype[hangarIndex].transform.position, 3.37f).OnComplete(() =>
             {
                 hangarState = TweenerState.Ready;
-                billboard.localPosition = hangarIndex < 12 ? billboardPos : -billboardPos;
+                billboard.localPosition = billboardPos;
                 LoadHangarData();
             });
         }
@@ -186,12 +199,13 @@ namespace Kocmoca
             hangarCanvas.alpha = 0.0f;
             hangarRailMain.DOKill();
             hangarState = TweenerState.Moving;
-            hangarRailMain.DOMove(hangarCenter[hangarIndex].position, 0.73f).OnComplete(() =>
+            hangarRailMain.DORotateQuaternion(prototype[hangarIndex].transform.rotation, 0.73f);
+            hangarRailMain.DOMove(prototype[hangarIndex].transform.position, 0.73f).OnComplete(() =>
             {
                 hangarState = TweenerState.Ready;
                 if (hangarIndex < 20)
                     PlayerPrefs.SetInt(LobbyInfomation.PREFS_TYPE, hangarIndex);
-                billboard.localPosition = hangarIndex < 12 ? billboardPos : -billboardPos;
+                billboard.localPosition = billboardPos;
                 LoadHangarData();
             });
         }
@@ -200,6 +214,19 @@ namespace Kocmoca
         {
             imageFrame.color = HangarData.FrameColor[hangarIndex];
             imageButton.color = HangarData.ButtonColor[hangarIndex];
+
+            if (hangarIndex < hangarMax)
+            {
+                float max = Mathf.Max(prototype[hangarIndex].size.x, prototype[hangarIndex].size.y);
+                max = Mathf.Max(max, prototype[hangarIndex].size.z) * 0.5f;
+                cameraTop.orthographicSize = max;
+                cameraSide.orthographicSize = max;
+                cameraFront.orthographicSize = max;
+                textWingspan.text = prototype[hangarIndex].size.x + " m";
+                textLength.text = prototype[hangarIndex].size.z + " m";
+                textHeight.text = prototype[hangarIndex].size.y + " m";
+            }
+            
             textInfo.color = HangarData.TextColor[hangarIndex];
             textInfo.text = HangarData.Info[hangarIndex];
 

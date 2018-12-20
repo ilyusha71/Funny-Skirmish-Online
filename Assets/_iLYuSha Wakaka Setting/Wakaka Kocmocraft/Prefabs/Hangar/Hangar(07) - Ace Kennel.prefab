@@ -40,7 +40,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4096866639541554}
-  - component: {fileID: 114487038622627272}
   m_Layer: 10
   m_Name: Hangar(07) - Ace Kennel
   m_TagString: Hangar
@@ -65,36 +64,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &114487038622627272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413480944677018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 779697b71aac05943bf6f45eefdfe272, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.07, z: 0}
-  period: 0.237
---- !u!111 &3781760418599007864
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4536987555409495660}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 40a702d4ba3682f4abb0ac3863222d1d, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 40a702d4ba3682f4abb0ac3863222d1d, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &6445751319469338770
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,11 +235,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 354926ecf27b5ad4a8b9d919efd2327a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 354926ecf27b5ad4a8b9d919efd2327a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.27
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 354926ecf27b5ad4a8b9d919efd2327a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -394,12 +363,6 @@ PrefabInstance:
 --- !u!4 &1448456377661655362 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8675198854870145996, guid: c72eb9703fea28a44b093de588c52e57,
-    type: 3}
-  m_PrefabInstance: {fileID: 7817558474900181646}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4536987555409495660 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5947867692756636898, guid: c72eb9703fea28a44b093de588c52e57,
     type: 3}
   m_PrefabInstance: {fileID: 7817558474900181646}
   m_PrefabAsset: {fileID: 0}

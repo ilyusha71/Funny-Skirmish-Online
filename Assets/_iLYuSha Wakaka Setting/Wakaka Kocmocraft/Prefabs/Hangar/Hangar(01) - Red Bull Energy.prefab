@@ -4727,7 +4727,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4908477390876494}
-  - component: {fileID: 114213040303012124}
   m_Layer: 10
   m_Name: Hangar(01) - Red Bull Energy
   m_TagString: Hangar
@@ -4752,20 +4751,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -179.99998, z: 0}
---- !u!114 &114213040303012124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1630159191688104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 779697b71aac05943bf6f45eefdfe272, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.07, z: 0}
-  period: 0.237
 --- !u!1 &1733207851499660
 GameObject:
   m_ObjectHideFlags: 0
@@ -4822,7 +4807,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8691217102453135536}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 1.9099998, z: -3}
+  m_LocalPosition: {x: -0, y: 2.37, z: -2.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4482553642978034}
@@ -4970,7 +4955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4637219653713064, guid: 8bb9dae1930e5fc4db6a17947140fbac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.93
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 4637219653713064, guid: 8bb9dae1930e5fc4db6a17947140fbac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5023,6 +5008,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4908477390876494}
     m_Modifications:
+    - target: {fileID: 7165428353671528654, guid: 432c1f2918c0fc942985a281f6903fa6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 561573445605279497, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_Name
@@ -5081,11 +5071,6 @@ PrefabInstance:
     - target: {fileID: 561573445605776169, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7165428353671528654, guid: 432c1f2918c0fc942985a281f6903fa6,
-        type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147838255269236}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1773056824182320768}
@@ -4671,7 +4671,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4862236061290434}
-  - component: {fileID: 114478777876048718}
   m_Layer: 10
   m_Name: Hangar(09) - Scorpio Rouge
   m_TagString: Hangar
@@ -4696,20 +4695,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &114478777876048718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681112131345880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 779697b71aac05943bf6f45eefdfe272, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.07, z: 0}
-  period: 0.237
 --- !u!1 &1735759239090218
 GameObject:
   m_ObjectHideFlags: 0
@@ -4766,7 +4751,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3689720168107483832}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: -0.49, z: -2.42}
+  m_LocalPosition: {x: 0, y: -0.62, z: -2.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4719545616797134}
@@ -4913,11 +4898,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4587359364461090, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.75
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: 4587359364461090, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.16
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4587359364461090, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
       propertyPath: m_LocalRotation.x

@@ -4671,7 +4671,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4344818207295468}
-  - component: {fileID: 114806062425941338}
   m_Layer: 10
   m_Name: Hangar(05) - Bullet Bill
   m_TagString: Hangar
@@ -4696,20 +4695,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &114806062425941338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267311499308674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 779697b71aac05943bf6f45eefdfe272, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.07, z: 0}
-  period: 0.237
 --- !u!1 &1813311643428118
 GameObject:
   m_ObjectHideFlags: 0
@@ -4766,7 +4751,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5057239215749350857}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: -0}
-  m_LocalPosition: {x: 0, y: 0, z: -4.22}
+  m_LocalPosition: {x: 0, y: -0.2, z: -3.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4658621429762570}
@@ -4916,12 +4901,12 @@ PrefabInstance:
     - target: {fileID: 933992902942747222, guid: a787ead40b8acf140bc573aaae0e6659,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.83
+      value: 0.563
       objectReference: {fileID: 0}
     - target: {fileID: 933992902942747222, guid: a787ead40b8acf140bc573aaae0e6659,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.70000005
+      value: -0.146
       objectReference: {fileID: 0}
     - target: {fileID: 933992902942747222, guid: a787ead40b8acf140bc573aaae0e6659,
         type: 3}

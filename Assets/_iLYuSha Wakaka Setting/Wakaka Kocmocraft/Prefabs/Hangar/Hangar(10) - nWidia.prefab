@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816511864}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.85, z: -4.83}
+  m_LocalPosition: {x: 0, y: 0, z: -4.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4457193159290934}
@@ -9396,9 +9396,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4915294787258302}
-  - component: {fileID: 114577700055429258}
   m_Layer: 10
-  m_Name: Hangar(10) - Nwidia
+  m_Name: Hangar(10) - nWidia
   m_TagString: Hangar
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -9421,20 +9420,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &114577700055429258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910837519299430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 779697b71aac05943bf6f45eefdfe272, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.07, z: 0}
-  period: 0.237
 --- !u!1001 &779876634455880610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9516,7 +9501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4482165334355012, guid: d0714980d49adbc4ab8d8a6374b80d93, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.75
+      value: 1.73
       objectReference: {fileID: 0}
     - target: {fileID: 4482165334355012, guid: d0714980d49adbc4ab8d8a6374b80d93, type: 3}
       propertyPath: m_LocalPosition.z
