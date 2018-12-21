@@ -4735,6 +4735,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8851178125097018956}
+  - component: {fileID: 1334754700757772249}
   - component: {fileID: 3603594673830610449}
   m_Layer: 10
   m_Name: Engine
@@ -4758,6 +4759,19 @@ Transform:
   m_Father: {fileID: 4784808489038146}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1334754700757772249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90434964383094508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engineType: 100
 --- !u!82 &3603594673830610449
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4782,9 +4796,9 @@ AudioSource:
   MaxDistance: 150
   Pan2D: 0
   rolloffMode: 2
-  BypassEffects: 1
-  BypassListenerEffects: 1
-  BypassReverbZones: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:

@@ -4685,8 +4685,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1638409085743542}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 130, y: 1260, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3219446496554026866}
@@ -4694,7 +4694,7 @@ Transform:
   - {fileID: 4909210459776130}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1918597359397204
 GameObject:
   m_ObjectHideFlags: 0
@@ -9397,6 +9397,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3376420185796140825}
+  - component: {fileID: 3205573220260311597}
   - component: {fileID: 7030808023687423165}
   m_Layer: 10
   m_Name: Engine
@@ -9421,6 +9422,20 @@ Transform:
   m_Father: {fileID: 4725810067923350}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3205573220260311597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080031137312915229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: 0.5
+  engineType: 107
 --- !u!82 &7030808023687423165
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9431,10 +9446,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9022727746117ac479325fb06f2285ef, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b708ae86047881e45bbaf645ff6df31e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.097
-  m_Pitch: 1.3
+  m_Volume: 0.5
+  m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -9445,9 +9460,9 @@ AudioSource:
   MaxDistance: 150
   Pan2D: 0
   rolloffMode: 2
-  BypassEffects: 1
-  BypassListenerEffects: 1
-  BypassReverbZones: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -9614,72 +9629,62 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4725810067923350}
     m_Modifications:
-    - target: {fileID: 6152997583720768508, guid: 8afb1776fefc90e42ad637f86c6714c2,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6152997583720768508, guid: 8afb1776fefc90e42ad637f86c6714c2,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3955520033240159652, guid: 8afb1776fefc90e42ad637f86c6714c2,
+    - target: {fileID: 5483071484400955455, guid: 8afb1776fefc90e42ad637f86c6714c2,
         type: 3}
       propertyPath: m_Name
       value: Prototype(02) - Vladimir Putin
       objectReference: {fileID: 0}
-    - target: {fileID: 3955520033240582532, guid: 8afb1776fefc90e42ad637f86c6714c2,
+    - target: {fileID: 6152997583720768508, guid: 8afb1776fefc90e42ad637f86c6714c2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 3955520033240582532, guid: 8afb1776fefc90e42ad637f86c6714c2,
+    - target: {fileID: 6152997583720768508, guid: 8afb1776fefc90e42ad637f86c6714c2,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3955520033240582532, guid: 8afb1776fefc90e42ad637f86c6714c2,
+    - target: {fileID: 6152997583720768508, guid: 8afb1776fefc90e42ad637f86c6714c2,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3955520033240582532, guid: 8afb1776fefc90e42ad637f86c6714c2,
+    - target: {fileID: 6152997583720768508, guid: 8afb1776fefc90e42ad637f86c6714c2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 3955520033240582532, guid: 8afb1776fefc90e42ad637f86c6714c2,
+    - target: {fileID: 6152997583720768508, guid: 8afb1776fefc90e42ad637f86c6714c2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 3955520033240582532, guid: 8afb1776fefc90e42ad637f86c6714c2,
+    - target: {fileID: 6152997583720768508, guid: 8afb1776fefc90e42ad637f86c6714c2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 3955520033240582532, guid: 8afb1776fefc90e42ad637f86c6714c2,
+    - target: {fileID: 6152997583720768508, guid: 8afb1776fefc90e42ad637f86c6714c2,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3955520033240582532, guid: 8afb1776fefc90e42ad637f86c6714c2,
+    - target: {fileID: 6152997583720768508, guid: 8afb1776fefc90e42ad637f86c6714c2,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3955520033240582532, guid: 8afb1776fefc90e42ad637f86c6714c2,
+    - target: {fileID: 6152997583720768508, guid: 8afb1776fefc90e42ad637f86c6714c2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3955520033240582532, guid: 8afb1776fefc90e42ad637f86c6714c2,
+    - target: {fileID: 6152997583720768508, guid: 8afb1776fefc90e42ad637f86c6714c2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 3955520033240582532, guid: 8afb1776fefc90e42ad637f86c6714c2,
+    - target: {fileID: 6152997583720768508, guid: 8afb1776fefc90e42ad637f86c6714c2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0

@@ -73,6 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5730563567575025306}
+  - component: {fileID: 2815302713315462071}
   - component: {fileID: 5813481015383572239}
   m_Layer: 10
   m_Name: Engine
@@ -95,6 +96,23 @@ Transform:
   m_Father: {fileID: 4096866639541554}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2815302713315462071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6445751319469338770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: 0
+  engineType: 102
+  propeller:
+  - kkk: 0
+  - kkk: 0
 --- !u!82 &5813481015383572239
 AudioSource:
   m_ObjectHideFlags: 0
@@ -107,8 +125,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 39032fa862cd7e046b4d18b5f7aee926, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.237
-  m_Pitch: 1.1
+  m_Volume: 0.5
+  m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -119,9 +137,9 @@ AudioSource:
   MaxDistance: 150
   Pan2D: 0
   rolloffMode: 2
-  BypassEffects: 1
-  BypassListenerEffects: 1
-  BypassReverbZones: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -347,16 +365,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5386034754055609021, guid: c72eb9703fea28a44b093de588c52e57,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5386034754055609021, guid: c72eb9703fea28a44b093de588c52e57,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 267.36328
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c72eb9703fea28a44b093de588c52e57, type: 3}

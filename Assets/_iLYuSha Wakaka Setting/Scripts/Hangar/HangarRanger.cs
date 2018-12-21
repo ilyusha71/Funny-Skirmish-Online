@@ -85,6 +85,9 @@ namespace Kocmoca
         [Header("Info")]
         public Image imageFrame;
         public Image imageButton;
+        public RectTransform scaleWingspan;
+        public RectTransform scaleLength;
+        public RectTransform scaleHeight;
         public TextMeshProUGUI textWingspan;
         public TextMeshProUGUI textLength;
         public TextMeshProUGUI textHeight;
@@ -217,14 +220,21 @@ namespace Kocmoca
 
             if (hangarIndex < hangarMax)
             {
-                float max = Mathf.Max(prototype[hangarIndex].size.x, prototype[hangarIndex].size.y);
-                max = Mathf.Max(max, prototype[hangarIndex].size.z) * 0.5f;
-                cameraTop.orthographicSize = max;
-                cameraSide.orthographicSize = max;
-                cameraFront.orthographicSize = max;
-                textWingspan.text = prototype[hangarIndex].size.x + " m";
-                textLength.text = prototype[hangarIndex].size.z + " m";
-                textHeight.text = prototype[hangarIndex].size.y + " m";
+                float wingspan = prototype[hangarIndex].size.x;
+                float length = prototype[hangarIndex].size.z;
+                float height = prototype[hangarIndex].size.y;
+                float max = Mathf.Max(wingspan, length);
+                max = Mathf.Max(max, height);
+                float maxSize = max * 0.5f;
+                cameraTop.orthographicSize = maxSize;
+                cameraSide.orthographicSize = maxSize;
+                cameraFront.orthographicSize = maxSize;
+                scaleWingspan.localScale = new Vector3(wingspan / max,1,1);
+                scaleLength.localScale = new Vector3(length / max, 1, 1);
+                scaleHeight.localScale = new Vector3(height / max, 1, 1);
+                textWingspan.text = wingspan + " m";
+                textLength.text = length + " m";
+                textHeight.text = height + " m";
             }
             
             textInfo.color = HangarData.TextColor[hangarIndex];

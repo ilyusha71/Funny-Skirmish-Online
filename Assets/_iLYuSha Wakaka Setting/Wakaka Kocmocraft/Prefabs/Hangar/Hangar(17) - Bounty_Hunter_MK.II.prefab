@@ -4735,6 +4735,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3021260092872517518}
+  - component: {fileID: 3050453063204085203}
   - component: {fileID: 7944465958010138378}
   m_Layer: 10
   m_Name: Engine
@@ -4758,6 +4759,19 @@ Transform:
   m_Father: {fileID: 4613548342188736}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &3050453063204085203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584397314755252927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engineType: 104
 --- !u!82 &7944465958010138378
 AudioSource:
   m_ObjectHideFlags: 0

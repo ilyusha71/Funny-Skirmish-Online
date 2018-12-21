@@ -13,9 +13,9 @@ namespace Kocmoca
         [Header("Engine Data")]
         public float enginePower;
         public float engineMinVol;
-        public float engineMaxVol;
-        public float engineMinPitch;
-        public float engineMaxPitch;
+        public float engineMaxVolume;
+        public float engineMinThrottlePitch;
+        public float engineMaxThrottlePitch;
         ParticleSystem.MainModule mainModule;
         public ParticleSystem[] engineThruster;
         float thrusterStartLife;                //The start life that the thrusters normally have
@@ -29,23 +29,20 @@ namespace Kocmoca
             // Engine Data
             switch (KocmocraftData.GetEngineType(type))
             {
-                case EngineType.TurboJet:
-                    engineMinVol = TurboJet.engineMinVol;
-                    engineMaxVol = TurboJet.engineMaxVol;
-                    engineMinPitch = TurboJet.engineMinPitch;
-                    engineMaxPitch = TurboJet.engineMaxPitch;
+                case EngineType.Turbojet:
+                    engineMaxVolume = Turbojet.engineMaxVolume;
+                    engineMinThrottlePitch = Turbojet.engineMinThrottlePitch;
+                    engineMaxThrottlePitch = Turbojet.engineMaxThrottlePitch;
                     break;
-                case EngineType.TurboFan:
-                    engineMinVol = TurboFan.engineMinVol;
-                    engineMaxVol = TurboFan.engineMaxVol;
-                    engineMinPitch = TurboFan.engineMinPitch;
-                    engineMaxPitch = TurboFan.engineMaxPitch;
+                case EngineType.Turbofan:
+                    engineMaxVolume = Turbofan.engineMaxVolume;
+                    engineMinThrottlePitch = Turbofan.engineMinThrottlePitch;
+                    engineMaxThrottlePitch = Turbofan.engineMaxThrottlePitch;
                     break;
-                case EngineType.TurboProp:
-                    engineMinVol = Propeller.engineMinVol;
-                    engineMaxVol = Propeller.engineMaxVol;
-                    engineMinPitch = Propeller.engineMinPitch;
-                    engineMaxPitch = Propeller.engineMaxPitch;
+                case EngineType.Turboprop:
+                    engineMaxVolume = Turboprop.engineMaxVolume;
+                    engineMinThrottlePitch = Turboprop.engineMinThrottlePitch;
+                    engineMaxThrottlePitch = Turboprop.engineMaxThrottlePitch;
                     break;
             }
             engineThruster = GetComponentsInChildren<ParticleSystem>();
@@ -74,8 +71,8 @@ namespace Kocmoca
         }
         void EngineControl()
         {
-            myAudioSource.volume = Mathf.Lerp(engineMinVol, engineMaxVol, enginePower);
-            myAudioSource.pitch = Mathf.Lerp(engineMinPitch, engineMaxPitch, enginePower);
+            myAudioSource.volume = Mathf.Lerp(0, engineMaxVolume, enginePower);
+            myAudioSource.pitch = Mathf.Lerp(engineMinThrottlePitch, engineMaxThrottlePitch, enginePower);
             if (myPropeller) myPropeller.SetAnimationSpeed(enginePower);
 
             if (engineThruster.Length > 1)

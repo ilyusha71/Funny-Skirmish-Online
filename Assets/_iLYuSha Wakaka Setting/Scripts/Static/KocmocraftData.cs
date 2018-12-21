@@ -5,30 +5,30 @@ namespace Kocmoca
     public static class HangarData
     {
         public static readonly Color32[] FrameColor = new Color32[] {
-            new Color32(255,255,123,232), // 神偷机兵：黄123
-            new Color32(255,255,255,232), // 红牛能量：白255
-            new Color32(117,185,255,232), // 普鲸：蓝
-            new Color32(255,255,255,232), // 纸飞机：白255
-            new Color32(255,223,83,232), // 咕咕鸡：橘黄
-            new Color32(163,163,163,232), // 炮弹比尔：黑163
-            new Color32(161,213,255,232), // 时光机：淡蓝
-            new Color32(255,71,71,232), // 王牌狗屋：红71
-            new Color32(255,255,163,232), // 卡比之星：淡黄137
-            new Color32(255,71,71,232), // 蝎红：红71
-            new Color32(255,255,255,232), // 恩威迪亚：白255
-            new Color32(255,207,155,232), // 快餐侠：淡棕
-            new Color32(227,171,103,232), // 驯鹿空运：棕
-            new Color32(163,163,163,232), // 北极星特快：黑163
-            new Color32(163,147,255,232), // 远古飞鱼：紫
-            new Color32(255,255,255,232), // 玩具独角兽：白255
-            new Color32(255,127,0,232), // 南瓜魅影：橘127
-            new Color32(127,255,127,232), // 赏金猎人：：绿127
-            new Color32(227,171,103,232), // 屎蛋风暴：棕
-            new Color32(255,137,137,232), // 安格瑞：淡红137
-            new Color32(255,255,255,232), // 即将登场
-            new Color32(255,255,255,232), // 即将登场
-            new Color32(255,255,255,232), // 即将登场
-            new Color32(255,255,255,232), // 即将登场
+            new Color32(255,255,123,237), // 神偷机兵：黄123
+            new Color32(255,255,255,237), // 红牛能量：白255
+            new Color32(117,185,255,237), // 普鲸：蓝
+            new Color32(255,255,255,237), // 纸飞机：白255
+            new Color32(255,223,83,237), // 咕咕鸡：橘黄
+            new Color32(163,163,163,237), // 炮弹比尔：黑163
+            new Color32(161,213,255,237), // 时光机：淡蓝
+            new Color32(255,71,71,237), // 王牌狗屋：红71
+            new Color32(255,255,163,237), // 卡比之星：淡黄137
+            new Color32(255,71,71,237), // 蝎红：红71
+            new Color32(255,255,255,237), // 恩威迪亚：白255
+            new Color32(255,207,155,237), // 快餐侠：淡棕
+            new Color32(227,171,103,237), // 驯鹿空运：棕
+            new Color32(163,163,163,237), // 北极星特快：黑163
+            new Color32(163,147,255,237), // 远古飞鱼：紫
+            new Color32(255,255,255,237), // 玩具独角兽：白255
+            new Color32(255,127,0,237), // 南瓜魅影：橘127
+            new Color32(127,255,127,237), // 赏金猎人：：绿127
+            new Color32(227,171,103,237), // 屎蛋风暴：棕
+            new Color32(255,137,137,237), // 安格瑞：淡红137
+            new Color32(255,255,255,237), // 即将登场
+            new Color32(255,255,255,237), // 即将登场
+            new Color32(255,255,255,237), // 即将登场
+            new Color32(255,255,255,237), // 即将登场
         };
         public static readonly Color32[] ButtonColor = new Color32[] {
             new Color32(0,163,255,232), // 神偷机兵：蓝
@@ -662,24 +662,25 @@ namespace Kocmoca
         {
             switch (type)
             {
-                case Type.MinionArmor: return EngineType.TurboFan;
-                case Type.RedBullEnergy: return EngineType.TurboJet;
-                case Type.VladimirPutin: return EngineType.TurboFan;
-                case Type.PaperAeroplane: return EngineType.TurboJet;
-                case Type.Cuckoo: return EngineType.TurboJet;
-                case Type.BulletBill: return EngineType.TurboFan;
-                case Type.TimeMachine: return EngineType.TurboJet;
-                case Type.AceKennel: return EngineType.TurboProp;
-                case Type.KirbyStar: return EngineType.TurboJet;
-                case Type.ScorpioRouge: return EngineType.TurboFan;
-                case Type.Nwidia: return EngineType.TurboJet;
-                case Type.FastFoodMan: return EngineType.TurboFan;
-                case Type.ReindeerTransport: return EngineType.TurboFan;
-                case Type.PolarisExpress: return EngineType.TurboFan;
-                case Type.AncientFish: return EngineType.TurboProp;
-                case Type.PapoyUnicorn: return EngineType.TurboFan;
-                case Type.PumpkinParty: return EngineType.TurboProp;
-                default: return EngineType.None;
+                case Type.MinionArmor: return EngineType.Turbofan;
+                case Type.RedBullEnergy: return EngineType.Turbojet;
+                case Type.VladimirPutin: return EngineType.PulsedPlasmaThruster;
+                case Type.PaperAeroplane: return EngineType.IonThruster;
+                case Type.Cuckoo: return EngineType.BiomassEnergy;
+                case Type.BulletBill: return EngineType.Turbofan;
+                case Type.TimeMachine: return EngineType.IonThruster;
+                case Type.AceKennel: return EngineType.Turboprop;
+                case Type.KirbyStar: return EngineType.Turbojet;
+                case Type.ScorpioRouge: return EngineType.Turbofan;
+                case Type.Nwidia: return EngineType.IonThruster;
+                case Type.FastFoodMan: return EngineType.Turbofan;
+                case Type.ReindeerTransport: return EngineType.BiomassEnergy;
+                case Type.PolarisExpress: return EngineType.Turbofan;
+                case Type.AncientFish: return EngineType.Turboshaft;
+                case Type.PapoyUnicorn: return EngineType.PulsedPlasmaThruster;
+                case Type.PumpkinGhost: return EngineType.Turboshaft;
+                case Type.BoundyHunterMKII: return EngineType.IonThruster;
+                default: return EngineType.Turbofan;
             }
         }
 
@@ -702,7 +703,7 @@ namespace Kocmoca
                 case Type.AceKennel: return new Vector3(0, 1.37f, 0);
                 case Type.KirbyStar: return new Vector3(0, 2.37f, 0);
                 case Type.AncientFish: return new Vector3(0, 3.93f, 10.0f);
-                case Type.PumpkinParty: return new Vector3(0, 5.37f, 10.0f);
+                case Type.PumpkinGhost: return new Vector3(0, 5.37f, 10.0f);
                 default: return new Vector3(0, 3.37f, 7);
             }
         }
@@ -728,8 +729,8 @@ namespace Kocmoca
                 case Type.PolarisExpress: return 6; // 北极星特快 - 六管 - 征服舰
                 case Type.AncientFish: return 2; // 远古鱼 - 双管 - 战术舰
                 case Type.PapoyUnicorn: return 4; // 玩具独角兽：Medium Speed
-                case Type.PumpkinParty: return 4; // 南瓜魅影：Large
-                case Type.ComingSoon: return 6; // 南瓜魅影：Large
+                case Type.PumpkinGhost: return 4; // 南瓜魅影：Large
+                case Type.BoundyHunterMKII: return 6; // 南瓜魅影：Large
                 default: return 2;
             }
         }
@@ -801,33 +802,61 @@ namespace Kocmoca
 
     public enum EngineType
     {
-        None = 0,
-        TurboJet = 1, // 渦輪噴射
-        TurboFan = 2, // 渦輪扇
-        TurboProp = 3, // 渦輪螺旋槳
+        Turbojet = 100, //
+        Turbofan = 101, // TurboFan
+        Turboprop = 102, //
+        Turboshaft = 103, //
+        IonThruster = 104, //
+        BiomassEnergy = 106, // 生質能動力引擎
+        PulsedPlasmaThruster = 107, // 脈衝等離子推進器
     }
 
-    public static class TurboJet
+    public static class Turbojet
     {
-        public static readonly float engineMinVol = 0f;         //The minimum volume of the engine
-        public static readonly float engineMaxVol = 0.137f;        //The maximum volume of the engine
-        public static readonly float engineMinPitch = 0.77f;      //The minimum pitch of the engine
-        public static readonly float engineMaxPitch = 1f;		//The maximum pitch of the engine
+        public static readonly float engineMaxVolume = 0.137f;        //The maximum volume of the engine
+        public static readonly float engineMinThrottlePitch = 0.77f;      //The minimum pitch of the engine
+        public static readonly float engineMaxThrottlePitch = 1f;		//The maximum pitch of the engine
     }
-    public static class TurboFan
+    public static class Turbofan
     {
-        public static readonly float engineMinVol = 0f;         //The minimum volume of the engine
-        public static readonly float engineMaxVol = 0.097f;        //The maximum volume of the engine
-        public static readonly float engineMinPitch = 0.8f;      //The minimum pitch of the engine
-        public static readonly float engineMaxPitch = 1.3f;		//The maximum pitch of the engine
+        public static readonly float engineMaxVolume = 0.097f;        //The maximum volume of the engine
+        public static readonly float engineMinThrottlePitch = 0.8f;      //The minimum pitch of the engine
+        public static readonly float engineMaxThrottlePitch = 1.3f;		//The maximum pitch of the engine
     }
-    public static class Propeller
+    public static class Turboprop
     {
-        public static readonly float engineMinVol = 0f;         //The minimum volume of the engine
-        public static readonly float engineMaxVol = 0.237f;        //The maximum volume of the engine
-        public static readonly float engineMinPitch = .9f;      //The minimum pitch of the engine
-        public static readonly float engineMaxPitch = 1.1f;		//The maximum pitch of the engine
+        public static readonly float engineMaxVolume = 0.237f;        //The maximum volume of the engine
+        public static readonly float engineMinThrottlePitch = .9f;      //The minimum pitch of the engine
+        public static readonly float engineMaxThrottlePitch = 1.1f;		//The maximum pitch of the engine
     }
+    public static class Turboshaft
+    {
+        public static readonly float engineMaxVolume = 0.237f;        //The maximum volume of the engine
+        public static readonly float engineMinThrottlePitch = .9f;      //The minimum pitch of the engine
+        public static readonly float engineMaxThrottlePitch = 1.1f;		//The maximum pitch of the engine
+    }
+
+    public static class IonThruster
+    {
+        public static readonly float engineMaxVolume = 0.77f;        //The maximum volume of the engine
+        public static readonly float engineMinThrottlePitch = 0.7f;      //The minimum pitch of the engine
+        public static readonly float engineMaxThrottlePitch = 1.3f;		//The maximum pitch of the engine
+    }
+    public static class BiomassEnergy
+    {
+        public static readonly float engineMaxVolume = 0.77f;        //The maximum volume of the engine
+        public static readonly float engineMinThrottlePitch = 0.8f;      //The minimum pitch of the engine
+        public static readonly float engineMaxThrottlePitch = 1.2f;		//The maximum pitch of the engine
+    }
+    public static class PulsedPlasmaThruster
+    {
+        public static readonly float engineMaxVolume = 0.77f;        //The maximum volume of the engine
+        public static readonly float engineMinThrottlePitch = .7f;      //The minimum pitch of the engine
+        public static readonly float engineMaxThrottlePitch = 1.3f;		//The maximum pitch of the engine
+    }
+
+
+
     public static class OriginalSettingEngine
     {
         public static readonly float engineMinVol = 0f;         //The minimum volume of the engine
@@ -1150,8 +1179,8 @@ namespace Kocmoca
         PolarisExpress = 13,
         AncientFish=14,
         PapoyUnicorn = 15,
-        PumpkinParty = 16,
-        ComingSoon = 17,
+        PumpkinGhost = 16,
+        BoundyHunterMKII = 17,
         Unknown = -999,
     }
     public enum FireControlSystemType
