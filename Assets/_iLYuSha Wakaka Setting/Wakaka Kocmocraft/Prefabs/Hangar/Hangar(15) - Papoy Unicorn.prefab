@@ -49,7 +49,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  engineType: 105
+  power: 0
+  engineType: 106
+  engineThruster: []
+  thrusterStartLife: 0
+  countVFX: 0
+  propeller: []
 --- !u!82 &308665171118185212
 AudioSource:
   m_ObjectHideFlags: 0
@@ -60,10 +65,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1312394c627c35a47974211440826a51, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ee0fae2da16f29e46978847543c1d1ee, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.097
-  m_Pitch: 1.3
+  m_Volume: 0.73
+  m_Pitch: 1.22
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -228,7 +233,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1595220853927336}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 3.5, z: 0}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7780504136877462920}

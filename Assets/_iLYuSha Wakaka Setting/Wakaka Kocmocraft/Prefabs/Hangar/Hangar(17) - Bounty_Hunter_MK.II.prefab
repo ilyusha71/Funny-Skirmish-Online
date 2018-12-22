@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527402082739422}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8583607484970850609}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 7490452508370781795}
   - component: {fileID: 558735066027963658}
   m_Layer: 10
-  m_Name: VFX - Turbofan
+  m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4771,7 +4771,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  power: 0
   engineType: 104
+  engineThruster: []
+  thrusterStartLife: 0
+  countVFX: 0
+  propeller: []
 --- !u!82 &7944465958010138378
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4782,7 +4787,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9db9336e9f17c9744847c5fe94c1650f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 64b0c1fef01638d4aac6794fb316af92, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.7
   m_Pitch: 1
@@ -4796,9 +4801,9 @@ AudioSource:
   MaxDistance: 150
   Pan2D: 0
   rolloffMode: 2
-  BypassEffects: 1
-  BypassListenerEffects: 1
-  BypassReverbZones: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:

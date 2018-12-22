@@ -4773,6 +4773,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   power: 0
   engineType: 101
+  engineThruster: []
+  thrusterStartLife: 0
+  countVFX: 0
+  propeller: []
 --- !u!82 &4870732657617550954
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4783,7 +4787,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9022727746117ac479325fb06f2285ef, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a5682e3dc49874845ad29ca0990eeebe, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1

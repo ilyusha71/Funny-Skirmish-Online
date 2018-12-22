@@ -831,9 +831,9 @@ namespace Kocmoca
     }
     public static class Turboshaft
     {
-        public static readonly float engineMaxVolume = 0.237f;        //The maximum volume of the engine
-        public static readonly float engineMinThrottlePitch = .9f;      //The minimum pitch of the engine
-        public static readonly float engineMaxThrottlePitch = 1.1f;		//The maximum pitch of the engine
+        public static readonly float engineMaxVolume = 0.93f;        //The maximum volume of the engine
+        public static readonly float engineMinThrottlePitch = .7f;      //The minimum pitch of the engine
+        public static readonly float engineMaxThrottlePitch = 1.3f;		//The maximum pitch of the engine
     }
 
     public static class IonThruster

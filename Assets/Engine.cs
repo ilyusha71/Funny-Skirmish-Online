@@ -11,9 +11,24 @@ namespace Kocmoca
         [Serializable]
         public class Propeller // A class for storing the advanced options.
         {
-            public GameObject Rotor;
-            public Animation Animation;
+            public GameObject Hopter;
+            public AnimationClip Clip;
+            public float Omega;
             public bool Reverse;
+            private Animation Animation;
+
+            public void InitializePropeller()
+            {
+                Animation = Hopter.AddComponent<Animation>();
+                Animation.clip = Clip;
+                Animation.AddClip(Clip, Clip.name);
+                Animation[Clip.name].speed = Reverse ? -Omega : Omega;
+                Animation.Play();
+            }
+            public void Power(float power)
+            {
+                Animation[Clip.name].speed = Reverse ? -Omega* power : Omega* power;
+            }
         }
         [Range(0,1)]public float power;
         private AudioSource engineSound;
@@ -21,14 +36,21 @@ namespace Kocmoca
         private float engineMaxVolume;
         private float engineMinThrottlePitch;
         private float engineMaxThrottlePitch;
+        [Header("VFX")]
+        ParticleSystem.MainModule mainModule;
+        public ParticleSystem[] engineThruster;
+        public float thrusterStartLife;                //The start life that the thrusters normally have
+        public int countVFX;
         [Header("Propeller")]
         public Propeller[] propeller;
+        private int countPropeller;
 
 
         public void InitializeEngine()
         {
-            engineSound = GetComponent<AudioSource>();
             power = 0.5f;
+
+            engineSound = GetComponent<AudioSource>();
             switch (engineType)
             {
                 case EngineType.Turbojet:
@@ -67,9 +89,24 @@ namespace Kocmoca
                     engineMaxThrottlePitch = PulsedPlasmaThruster.engineMaxThrottlePitch;
                     break;
             }
+
+            engineThruster = GetComponentsInChildren<ParticleSystem>();
+            countVFX = engineThruster.Length;
+            //Record the thruster's particle start life property
+            if (countVFX > 0)
+            {
+                mainModule = engineThruster[0].main;
+                thrusterStartLife = mainModule.startLifetime.constant;
+            }
+
+            countPropeller = propeller.Length;
+            for (int i = 0; i < countPropeller; i++)
+            {
+                propeller[i].InitializePropeller();
+            }
         }
 
-        void Awake()
+        void Start()
         {
             InitializeEngine();
         }
@@ -77,6 +114,39 @@ namespace Kocmoca
         {
             engineSound.volume = Mathf.Lerp(0, engineMaxVolume, power);
             engineSound.pitch = Mathf.Lerp(engineMinThrottlePitch, engineMaxThrottlePitch, power);
+
+            if (countVFX > 0)
+            {
+                float currentLifeTime = thrusterStartLife * power;
+
+                //If the thrusters are powered on at all...
+                if (currentLifeTime > 0f)
+                {
+                    for (int i = 0; i < countVFX; i++)
+                    {
+                        //...play the particle systems...
+                        engineThruster[i].Play();
+
+                        //...update the particle life for the left thruster...
+                        mainModule = engineThruster[i].main;
+                        mainModule.startLifetime = currentLifeTime;
+                    }
+                }
+                //...Otherwise stop the particle effects
+                else
+                {
+                    for (int i = 0; i < countVFX; i++)
+                    {
+                        //...play the particle systems...
+                        engineThruster[i].Stop();
+                    }
+                }
+            }
+
+            for (int i = 0; i < countPropeller; i++)
+            {
+                propeller[i].Power(power);
+            }
         }
     }
 }
