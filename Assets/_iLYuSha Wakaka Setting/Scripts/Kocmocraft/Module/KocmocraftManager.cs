@@ -72,7 +72,7 @@ namespace Kocmoca
             SatelliteCommander.Instance.SetHangar(myTransform, portNumber);
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
-            gameObject.AddComponent<EngineController>().Initialize(Type);
+            //gameObject.AddComponent<EngineController>().Initialize(Type);
             gameObject.AddComponent<AvionicsSystem>().Initialize((int)Type); // local only
             gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalPlayer, (int)Type, Number, wreckage);
             gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalPlayer, (int)Faction, (int)Type, Number); // local only
@@ -99,7 +99,7 @@ namespace Kocmoca
                 SatelliteCommander.Instance.NewKocmonautJoin(Core.RemotePlayer, portNumber, Type, Number, myTransform.name);
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
-            gameObject.AddComponent<EngineController>().Initialize(Type);
+            //gameObject.AddComponent<EngineController>().Initialize(Type);
             gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.RemotePlayer, (int)Type, Number, wreckage);
             ActiveFCS(false);
         }
@@ -119,7 +119,7 @@ namespace Kocmoca
             SatelliteCommander.Instance.SetHangar(myTransform, portNumber);
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
-            gameObject.AddComponent<EngineController>().Initialize(Type);
+            //gameObject.AddComponent<EngineController>().Initialize(Type);
             gameObject.AddComponent<AvionicsSystem>().Initialize((int)Type); // local only
             gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalBot, (int)Type, Number, wreckage);
             gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalBot, (int)Faction, (int)Type, Number); // local only
@@ -142,7 +142,7 @@ namespace Kocmoca
                 SatelliteCommander.Instance.NewKocmonautJoin(Core.RemoteBot, portNumber, Type, Number, myTransform.name);
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
-            gameObject.AddComponent<EngineController>().Initialize(Type);
+            //gameObject.AddComponent<EngineController>().Initialize(Type);
             gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.RemoteBot, (int)Type, Number, wreckage);
             ActiveFCS(false);
         }

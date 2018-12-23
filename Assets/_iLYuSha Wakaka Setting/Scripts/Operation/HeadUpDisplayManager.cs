@@ -48,6 +48,9 @@ namespace Kocmoca
         [Header("UI - HUD")]
         public CanvasGroup uiHUD;
         public TextMeshProUGUI textPING;
+        public TextMeshProUGUI textFPS;
+        private float deltaTime;
+
         [Header("UI - Kocmocraft Realtime Status")]
         public Image barEnergy;
         public Image barSpeed;
@@ -171,6 +174,8 @@ namespace Kocmoca
         private void Update()
         {
             textPING.text = PhotonNetwork.GetPing() + " ms";
+            deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+            textFPS.text = Mathf.Ceil(1.0f / deltaTime) + " fps"; ;
             if (Input.GetKeyDown(KeyCode.F9))
             {
                 uiMask.alpha = 1;

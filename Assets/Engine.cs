@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 namespace Kocmoca
 {
     [RequireComponent(typeof(AudioSource))]
-    public class Engine : MonoBehaviour
+    public class Engine : MonoBehaviour, IPunObservable
     {
         [Serializable]
         public class Propeller // A class for storing the advanced options.
@@ -30,7 +31,7 @@ namespace Kocmoca
                 Animation[Clip.name].speed = Reverse ? -Omega* power : Omega* power;
             }
         }
-        [Range(0,1)]public float power;
+        [Range(0,1)]public float enginePower = 0.5f;
         private AudioSource engineSound;
         [SerializeField]private EngineType engineType;
         private float engineMaxVolume;
@@ -45,11 +46,8 @@ namespace Kocmoca
         public Propeller[] propeller;
         private int countPropeller;
 
-
-        public void InitializeEngine()
+        void Awake()
         {
-            power = 0.5f;
-
             engineSound = GetComponent<AudioSource>();
             switch (engineType)
             {
@@ -108,16 +106,33 @@ namespace Kocmoca
 
         void Start()
         {
-            InitializeEngine();
+            Power(0.5f);
+            PhotonView view = transform.root.GetComponent<PhotonView>();
+            if (view)
+                view.ObservedComponents.Add(this);
         }
-        private void Update()
+
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
-            engineSound.volume = Mathf.Lerp(0, engineMaxVolume, power);
-            engineSound.pitch = Mathf.Lerp(engineMinThrottlePitch, engineMaxThrottlePitch, power);
+            if (stream.IsWriting)
+            {
+                stream.SendNext(enginePower);
+            }
+            else
+            {
+                enginePower = (float)stream.ReceiveNext();
+            }
+        }
+
+        public void Power(float power)
+        {
+            enginePower = power;
+            engineSound.volume = Mathf.Lerp(0, engineMaxVolume, enginePower);
+            engineSound.pitch = Mathf.Lerp(engineMinThrottlePitch, engineMaxThrottlePitch, enginePower);
 
             if (countVFX > 0)
             {
-                float currentLifeTime = thrusterStartLife * power;
+                float currentLifeTime = thrusterStartLife * enginePower;
 
                 //If the thrusters are powered on at all...
                 if (currentLifeTime > 0f)
@@ -145,7 +160,7 @@ namespace Kocmoca
 
             for (int i = 0; i < countPropeller; i++)
             {
-                propeller[i].Power(power);
+                propeller[i].Power(enginePower);
             }
         }
     }

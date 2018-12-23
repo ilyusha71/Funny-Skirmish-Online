@@ -205,7 +205,7 @@ namespace Kocmoca
             "Polaris Express", // 北极星特快
             "Ancient Fish", // 远古飞鱼
             "Papoy Unicorn", // 玩具独角兽
-            "Pumpkin Party", // 南瓜魅影
+            "Pumpkin Ghost", // 南瓜魅影
             "Boundy Hunter MK.II", // 赏金猎人
             "Stan", // 屎蛋风暴
             "Angry", // 安格瑞
@@ -650,7 +650,7 @@ namespace Kocmoca
                 case 13: return "Polaris Express"; // 北极星特快 -- 特大型六管
                 case 14: return "Ancient Fish"; // 远古鱼 -- 大型双管
                 case 15: return "Papoy Unicorn";
-                case 16: return "Pumpkin Party";
+                case 16: return "Pumpkin Ghost";
                 case 17: return "Boundy Hunter MK.II";
                 default: return "---";
             }

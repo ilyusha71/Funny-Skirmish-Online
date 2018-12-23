@@ -32,7 +32,7 @@ namespace Kocmoca
         private AudioSource myAudioSource;
         private PhotonView myPhotonView;
         private AvionicsSystem myAvionicsSystem;
-        private ParticleSystem myOnFireParticle;
+        //private ParticleSystem myOnFireParticle;
         private Transform myCockpitViewpoint;
         // Basic Data
         public Core Core { get; protected set; }
@@ -54,14 +54,14 @@ namespace Kocmoca
             myPhotonView = GetComponent<PhotonView>();
             myPhotonView.ObservedComponents.Add(this);
             myAvionicsSystem = GetComponent<AvionicsSystem>();
-            myOnFireParticle = transform.Find("OnFire").GetComponent<ParticleSystem>();
-            if (!myOnFireParticle) Debug.LogError("No OnFire VFX");
+            //myOnFireParticle = transform.Find("OnFire").GetComponent<ParticleSystem>();
+            //if (!myOnFireParticle) Debug.LogError("No OnFire VFX");
             myCockpitViewpoint = transform.Find("Cockpit Viewpoint");
             // Kocmonaut Data
             Core = core;
             Number = number;
             if (core == Core.LocalPlayer)
-                SatelliteCommander.Instance.Observer.InitializeView(myCockpitViewpoint, transform.Find("Pilot"), Number);
+                SatelliteCommander.Instance.Observer.InitializeView(myCockpitViewpoint, transform.GetChild(0).Find("Pilot"), Number);
             else
                 SatelliteCommander.Instance.Observer.listOthers.Add(Number);
             // Modular Parameter
@@ -75,10 +75,10 @@ namespace Kocmoca
             if (Input.GetKeyDown(KeyCode.U) && Core == Core.LocalPlayer)
                 dataHull.Value = 1000000;
 
-            if (dataHull.Value < (int)(dataHull.Max * 0.237f))
-                myOnFireParticle.Play();
-            else
-                myOnFireParticle.Stop();
+            //if (dataHull.Value < (int)(dataHull.Max * 0.237f))
+            //    myOnFireParticle.Play();
+            //else
+            //    myOnFireParticle.Stop();
 
             if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
             dataShield.Value = Mathf.Clamp(dataShield.Value + Time.deltaTime * myAvionicsSystem.dataEnergy.Value * 0.1f, 0, dataShield.Max);
@@ -170,8 +170,8 @@ namespace Kocmoca
                 else if (damageInfo.Attacker.Core == Core.RemotePlayer)
                     myPhotonView.RPC("ShowHitDamage", RpcTarget.AllViaServer, damageInfo.Attacker.Number, damageInfo.Hull);
 
-                if (Core == Core.LocalPlayer)
-                    myAudioSource.PlayOneShot(ResourceManager.instance.soundHitSelf, 1.0f);
+                //if (Core == Core.LocalPlayer)
+                //    myAudioSource.PlayOneShot(ResourceManager.instance.soundHitSelf, 1.0f);
             }
 
             if (dataHull.Value <= 0)
