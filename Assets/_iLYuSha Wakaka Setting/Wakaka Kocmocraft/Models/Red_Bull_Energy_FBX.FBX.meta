@@ -4,11 +4,24 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Cylinder001
+    100004: Object001
+    100006: Object002
     400000: //RootNode
+    400002: Cylinder001
+    400004: Object001
+    400006: Object002
     2300000: //RootNode
+    2300002: Cylinder001
+    2300004: Object001
+    2300006: Object002
     3300000: //RootNode
+    3300002: Cylinder001
+    3300004: Object001
+    3300006: Object002
     4300000: Cylinder001
-    2186277476908879412: ImportLogs
+    4300002: Object001
+    4300004: Object002
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -48,6 +61,7 @@ ModelImporter:
     globalScale: 0.7
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
@@ -71,7 +85,10 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-    normalCalculationMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 0
   copyAvatar: 0
   humanDescription:
@@ -86,7 +103,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

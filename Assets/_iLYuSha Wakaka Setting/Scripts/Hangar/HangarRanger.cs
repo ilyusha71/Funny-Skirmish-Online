@@ -161,7 +161,7 @@ namespace Kocmoca
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
-                SceneManager.LoadScene("Galaxy Lobby");
+                SceneManager.LoadScene("New Galaxy Lobby");
 
             if (Input.GetKeyDown(KeyCode.D))
             {

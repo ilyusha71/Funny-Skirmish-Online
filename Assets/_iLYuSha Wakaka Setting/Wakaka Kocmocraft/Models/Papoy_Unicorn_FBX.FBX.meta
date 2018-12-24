@@ -57,6 +57,7 @@ ModelImporter:
     2300028: Tube001
     2300030: Cone001
     2300032: Cylinder005
+    2300034: //RootNode
     3300000: Box001
     3300002: Box002
     3300004: Box005
@@ -74,6 +75,7 @@ ModelImporter:
     3300028: Tube001
     3300030: Cone001
     3300032: Cylinder005
+    3300034: //RootNode
     4300000: Cylinder002
     4300002: Box001
     4300004: Tube001
@@ -91,7 +93,6 @@ ModelImporter:
     4300028: Sphere001
     4300030: Cone001
     4300032: Cylinder005
-    2186277476908879412: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -131,10 +132,10 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    importVisibility: 0
+    importVisibility: 1
     importBlendShapes: 1
-    importCameras: 0
-    importLights: 0
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -155,7 +156,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

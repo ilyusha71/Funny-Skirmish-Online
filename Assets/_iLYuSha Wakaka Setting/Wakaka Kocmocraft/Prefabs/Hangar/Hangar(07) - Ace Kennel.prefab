@@ -108,13 +108,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 0
+  enginePower: 0.5
   engineType: 102
   engineThruster: []
   thrusterStartLife: 0
   countVFX: 0
   propeller:
-  - Hopter: {fileID: 5091693202789011635}
+  - Hopter: {fileID: 4208742789907285874}
     Clip: {fileID: 7400000, guid: 40a702d4ba3682f4abb0ac3863222d1d, type: 2}
     Omega: 1.73
     Reverse: 0
@@ -379,9 +379,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7917101083839630095}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5091693202789011635 stripped
+--- !u!1 &4208742789907285874 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 3131798895070124988, guid: c72eb9703fea28a44b093de588c52e57,
+  m_CorrespondingSourceObject: {fileID: 6320595615897488509, guid: c72eb9703fea28a44b093de588c52e57,
     type: 3}
   m_PrefabInstance: {fileID: 7917101083839630095}
   m_PrefabAsset: {fileID: 0}

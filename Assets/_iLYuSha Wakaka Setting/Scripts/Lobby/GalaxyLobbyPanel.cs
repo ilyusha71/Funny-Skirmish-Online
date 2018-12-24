@@ -80,10 +80,17 @@ namespace Kocmoca
 
         private void Start()
         {
-            if (!PhotonNetwork.IsConnected) FindObjectOfType<DynamicCameraUI>().VisitLogin();
-            PhotonNetwork.NetworkingClient.AppId = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime;
-            PhotonNetwork.NetworkingClient.AddCallbackTarget(this);
-            PhotonNetwork.NetworkingClient.ConnectToNameServer();
+            if (!PhotonNetwork.IsConnected)
+            {
+                FindObjectOfType<DynamicCameraUI>().VisitLogin();
+                PhotonNetwork.NetworkingClient.AppId = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime;
+                PhotonNetwork.NetworkingClient.AddCallbackTarget(this);
+                PhotonNetwork.NetworkingClient.ConnectToNameServer();
+            }
+            else
+            {
+                FindObjectOfType<DynamicCameraUI>().VisitLobby();
+            }
         }
 
         private void Update()
