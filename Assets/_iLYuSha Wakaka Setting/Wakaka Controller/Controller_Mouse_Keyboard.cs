@@ -11,6 +11,16 @@ using UnityEngine.UI;
 
 public partial class Controller : MonoBehaviour
 {
+    public static KeyCode KEY_CockpitView;
+    public static KeyCode KEY_Afterburner;
+    public static KeyCode KEY_LockOn;
+    public static KeyCode KEY_Laser;
+    public static KeyCode KEY_Rocket;
+    public static KeyCode KEY_Missile;
+
+
+
+
     public static FunctionKey Operation = new FunctionKey("FunctionKey-Operation");
     public static FunctionKey Hangar = new FunctionKey("FunctionKey-Hangar");
     public static FunctionKey Vocal = new FunctionKey("FunctionKey-Vocal");

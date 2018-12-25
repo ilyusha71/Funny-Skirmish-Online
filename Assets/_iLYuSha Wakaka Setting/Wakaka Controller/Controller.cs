@@ -214,14 +214,14 @@ public partial class Controller : MonoBehaviour
 
             RealtimeControl();
         }
-        else if (state == PanelState.Xbox360Setting)
-        {
-            for (int i = 0; i < values.Length; i++)
-            {
-                if (Input.GetKey((KeyCode)values[i]))
-                    Xbox360KeyboardMapping(values[i]);
-            }
-        }
+        //else if (state == PanelState.Xbox360Setting)
+        //{
+        //    for (int i = 0; i < values.Length; i++)
+        //    {
+        //        if (Input.GetKey((KeyCode)values[i]))
+        //            Xbox360KeyboardMapping(values[i]);
+        //    }
+        //}
         else if (state == PanelState.HotkeyInput)
         {
             for (int i = 0; i < values.Length; i++)
@@ -611,12 +611,7 @@ public partial class Controller : MonoBehaviour
 }
 
 
-public enum PanelState
-{
-    Ready = 1,
-    Xbox360Setting = 2,
-    HotkeyInput = 3,
-}
+
 public enum ControllerType
 {
     MouseAndKeyboard = 1,

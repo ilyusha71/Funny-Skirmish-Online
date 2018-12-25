@@ -32,7 +32,7 @@ public partial class Controller : MonoBehaviour
     public void SetKey(int index)
     {
         indexXbox360Button = index;
-        state = toggleXboxButton[indexXbox360Button].isOn ? PanelState.Xbox360Setting : PanelState.Ready;
+        //state = toggleXboxButton[indexXbox360Button].isOn ? PanelState.Xbox360Setting : PanelState.Ready;
     }
 
     void Xbox360KeyboardMapping(int unityCode)
