@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -55,13 +56,14 @@ public enum PanelState
     HotkeyInput = 3,
 }
 
+[Serializable]
 public class HotkeyToggle
 {
     private Toggle Listener;
-    private KeyCode Hotkey;
+    public KeyCode Hotkey;
     private string PrefKeySetting;
 
-    public HotkeyToggle(Toggle toggle, KeyCode key, string prefCode, int defaultKey)
+    public HotkeyToggle(Toggle toggle,ref KeyCode key, string prefCode, int defaultKey)
     {
         Listener = toggle;
         Hotkey = key;
@@ -87,6 +89,7 @@ public class HotkeyToggle
         if (KeyIsExist(unityCode))
             PlayerPrefs.SetInt(PrefKeySetting, unityCode); // 儲存Unity鍵碼
         Listener.isOn = false;
+        //ControllerPanel.Up();
     }
 
     public bool KeyIsExist(int unityCode)

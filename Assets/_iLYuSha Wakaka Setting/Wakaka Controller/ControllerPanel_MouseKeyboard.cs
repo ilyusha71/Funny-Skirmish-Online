@@ -13,12 +13,23 @@ public partial class ControllerPanel : MonoBehaviour
     [Header("Mouse & Keyboard - FunctionKey")]
     public Toggle[] hotkeyFunction;
 
-    private HotkeyToggle CockpitView;
-    private HotkeyToggle Afterburner;
-    private HotkeyToggle LockOn;
-    private HotkeyToggle Laser;
-    private HotkeyToggle Rocket;
-    private HotkeyToggle Missile;
+    public static HotkeyToggle CockpitView;
+    public static HotkeyToggle Afterburner;
+    public static HotkeyToggle LockOn;
+    public static HotkeyToggle Laser;
+    public static HotkeyToggle Rocket;
+    public static HotkeyToggle Missile;
+
+    public static void Up()
+    {
+        Controller.KEY_CockpitView = CockpitView.Hotkey;
+        Controller.KEY_Afterburner = Afterburner.Hotkey;
+        Controller.KEY_LockOn = LockOn.Hotkey;
+        Controller.KEY_Laser = Laser.Hotkey;
+        Controller.KEY_Rocket = Rocket.Hotkey;
+        Controller.KEY_Missile = Missile.Hotkey;
+
+    }
 
 
     void InitializeMouseKeyboard()
@@ -32,13 +43,13 @@ public partial class ControllerPanel : MonoBehaviour
         if (Controller.controllerType == ControllerType.MouseAndKeyboard) tabMouseKeyboard.isOn = true;
         hotkeyFunction = panelMouseKeyboard.GetComponentsInChildren<Toggle>();
 
-        CockpitView = new HotkeyToggle(hotkeyFunction[0], Controller.KEY_CockpitView, "HotkeyToggle-CockpitView", (int)KeyCode.C);
-        Afterburner = new HotkeyToggle(hotkeyFunction[1], Controller.KEY_Afterburner, "HotkeyToggle-Afterburner", (int)KeyCode.LeftShift);
-        LockOn = new HotkeyToggle(hotkeyFunction[2], Controller.KEY_LockOn, "HotkeyToggle-LockOn", (int)KeyCode.R);
-        Laser = new HotkeyToggle(hotkeyFunction[3], Controller.KEY_Laser, "HotkeyToggle-Laser", (int)KeyCode.Mouse0);
-        Rocket = new HotkeyToggle(hotkeyFunction[4], Controller.KEY_Rocket, "HotkeyToggle-Rocket", (int)KeyCode.Space);
-        Missile = new HotkeyToggle(hotkeyFunction[5], Controller.KEY_Missile, "HotkeyToggle-Missile", (int)KeyCode.Mouse1);
-
+        CockpitView = new HotkeyToggle(hotkeyFunction[0], ref Controller.KEY_CockpitView, "HotkeyToggle-CockpitView", (int)KeyCode.C);
+        Afterburner = new HotkeyToggle(hotkeyFunction[1], ref Controller.KEY_Afterburner, "HotkeyToggle-Afterburner", (int)KeyCode.LeftShift);
+        LockOn = new HotkeyToggle(hotkeyFunction[2], ref Controller.KEY_LockOn, "HotkeyToggle-LockOn", (int)KeyCode.R);
+        Laser = new HotkeyToggle(hotkeyFunction[3], ref Controller.KEY_Laser, "HotkeyToggle-Laser", (int)KeyCode.Mouse0);
+        Rocket = new HotkeyToggle(hotkeyFunction[4], ref Controller.KEY_Rocket, "HotkeyToggle-Rocket", (int)KeyCode.Space);
+        Missile = new HotkeyToggle(hotkeyFunction[5],ref  Controller.KEY_Missile, "HotkeyToggle-Missile", (int)KeyCode.Mouse1);
+        Up();
 
 
 

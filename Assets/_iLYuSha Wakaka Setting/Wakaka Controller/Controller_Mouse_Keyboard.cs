@@ -11,12 +11,12 @@ using UnityEngine.UI;
 
 public partial class Controller : MonoBehaviour
 {
-    public static KeyCode KEY_CockpitView;
-    public static KeyCode KEY_Afterburner;
-    public static KeyCode KEY_LockOn;
+public static KeyCode KEY_CockpitView;
+public static KeyCode KEY_Afterburner;
+public static KeyCode KEY_LockOn;
     public static KeyCode KEY_Laser;
-    public static KeyCode KEY_Rocket;
-    public static KeyCode KEY_Missile;
+public static KeyCode KEY_Rocket;
+ public static KeyCode KEY_Missile;
 
 
 
@@ -41,6 +41,7 @@ public partial class Controller : MonoBehaviour
     {
         controllerType = ControllerType.MouseAndKeyboard;
         PlayerPrefs.SetInt("Controller_Type", (int)controllerType);
+        Debug.Log(KEY_CockpitView.ToString());
     }
 
     void MouseKeyboardHotkeySetting(int numberCode)

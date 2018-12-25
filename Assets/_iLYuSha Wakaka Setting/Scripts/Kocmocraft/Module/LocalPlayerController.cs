@@ -39,12 +39,12 @@ namespace Kocmoca
         void OnHotKeyChanged()
         {
             Debug.LogWarning("Hot Key Changed");
-            KEY_ActiveAfterburner = Controller.Afterburner.KeyCode;
-            KEY_SwtichView = Controller.CockpitView.KeyCode;
-            KEY_LockOn = Controller.LockOn.KeyCode;
-            KEY_LaserShoot = Controller.Laser.KeyCode;
-            KEY_RocketLaunch = Controller.Rocket.KeyCode;
-            KEY_MissileLaunch = Controller.Missile.KeyCode;
+            KEY_ActiveAfterburner = Controller.KEY_Afterburner;
+            KEY_SwtichView = Controller.KEY_CockpitView;
+            KEY_LockOn = Controller.KEY_LockOn;
+            KEY_LaserShoot = Controller.KEY_Laser;
+            KEY_RocketLaunch = Controller.KEY_Rocket;
+            KEY_MissileLaunch = Controller.KEY_Missile;
         }
         void Start()
         {
