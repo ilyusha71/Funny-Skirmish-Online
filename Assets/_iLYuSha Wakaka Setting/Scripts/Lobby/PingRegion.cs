@@ -74,7 +74,7 @@ namespace Kocmoca
                     btnRegion.onClick.AddListener(() =>
                     {
                         PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = region;
-                        FindObjectOfType<GalaxyLobbyPanel>().OnLoginButtonClicked();
+                        //FindObjectOfType<GalaxyLobbyPanel>().OnLoginButtonClicked();
                     });
                 }
                 showRegion = false;

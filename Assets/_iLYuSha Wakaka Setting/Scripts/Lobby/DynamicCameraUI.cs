@@ -6,13 +6,6 @@ using DG.Tweening;
 
 namespace Kocmoca
 {
-    public enum DisplayContent
-    {
-        None = 0,
-        Kocmocraft = 1,
-        Weapon = 2,
-        Radar = 3,
-    }
     public enum MainState
     {
         Moving,
@@ -22,51 +15,18 @@ namespace Kocmoca
         Show,
         newEvent,
     }
-    public enum DynamicUIState
-    {
-        Ready,
-        Hangar,
-        Show,
-        newEvent,
-    }
-    public enum DataShowState
-    {
-        Ready,
-        Wait,
-        Moving,
-        Show,
-    }
+
     public struct Movable
     {
         internal Vector3 Ready;
         internal Vector3 Show;
         internal float Interval;
     }
-    public struct DisplayData
-    {
-        public int count;
-        public Vector3[] posReady;
-        public Vector3[] posShow;
-
-        public void Initialize(int count)
-        {
-            this.count = count;
-            posReady = new Vector3[count];
-            posShow = new Vector3[count];
-        }
-    }
-
-    //public enum DisplayState
-    //{
-    //    Ready,
-    //    Wait,
-    //    Moving,
-    //    Show,
-    //}
 
     public class DynamicCameraUI : MonoBehaviour
     {
         public MainState state = MainState.Login;
+        public CanvasGroup OpeningCanvas;
         [Header("Camera")]
         public Transform pointLogin;
         public Transform pointLobby;
@@ -141,13 +101,8 @@ namespace Kocmoca
 
         void Awake()
         {
-            if (Controller.Instance == null)
-            {
-                PlayerPrefs.SetInt("MainScene", SceneManager.GetActiveScene().buildIndex);
-                SceneManager.LoadScene("Wakaka Controller");
-                return;
-            }
-            //Controller.ChangeMode(ControlMode.General);
+            OpeningCanvas.alpha = 1;
+            OpeningCanvas.DOFade(0, 2.0f).OnComplete(() => OpeningCanvas.blocksRaycasts = false);
             mainCamera = transform;
             mainCamera.position = new Vector3(0, 5000, 0);
             mainCamera.rotation = Quaternion.identity;
@@ -255,19 +210,10 @@ namespace Kocmoca
             mainCamera.DOLookAt(pointLobby.TransformPoint(new Vector3(0, 0, 1)), timeCameraMoving);
             mainCamera.DORotate(pointLobby.rotation.eulerAngles, timeCameraMoving);
         }
+
         public void VisitHangar()
         {
             SceneManager.LoadScene("New Airport 3");
-            //OnCameraMove();
-            //MouseLock.MouseLocked = true;
-            //now = PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
-            //state = MainState.Hangar;
-            //mainPanel.SetActivePanel("");
-            //mainPanel.inHangar = true;
-            //mainCamera.SetParent(pointHangarRail);
-            //mainCamera.localPosition = Vector3.zero;
-            //mainCamera.localRotation = Quaternion.identity;
-            //TransitCamera();
         }
         void Exhibition()
         {
@@ -299,7 +245,6 @@ namespace Kocmoca
         {
             state = MainState.Moving;
             doraraHand.DOLocalMove(posDoraraHand.Ready, posDoraraHand.Interval);
-            ResetDisplay();
         }
         private void MoveCamera(Transform destination)
         {
@@ -310,10 +255,6 @@ namespace Kocmoca
 
         void Update()
         {
-            //if (Input.GetKeyDown(KeyCode.V))
-            //    SceneManager.LoadScene(LobbyInfomation.SCENE_LOBBY);
-            //if (Input.GetKeyDown(KeyCode.N))
-            //    mainPanel.SetActivePanel("CreateRoomPanel");
             if (state == MainState.Lobby)
             {
                 if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Joystick1Button6))
@@ -327,289 +268,6 @@ namespace Kocmoca
                     Input.GetKeyDown(Controller.XBOX360_Operation))
                     mainPanel.OnJoinRandomRoomButtonClicked();
             }
-            //else if (state == MainState.Hangar)
-            //{
-            //    //pointHangarRail.localRotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X"), 0);
-            //    //mainCamera.localRotation *= Quaternion.Euler(Input.GetAxis("Mouse Y"),0, 0);
-            //    if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Joystick1Button6))
-            //        VisitLobby();
-            //    if (Input.GetKeyDown(Controller.KEY_PreviousHangar_0) ||
-            //        Input.GetKeyDown(Controller.KEY_PreviousHangar_1))
-            //        PreviousHangar();
-            //    else if (Input.GetKeyDown(Controller.KEY_NextHangar_0) ||
-            //        Input.GetKeyDown(Controller.KEY_NextHangar_1))
-            //        NextHangar();
-            //    if (Input.GetKeyDown(Controller.KEY_PreviousData_0) ||
-            //        Input.GetKeyDown(Controller.KEY_PreviousData_1))
-            //        PreviousData();
-            //    else if (Input.GetKeyDown(Controller.KEY_NextData_0) ||
-            //        Input.GetKeyDown(Controller.KEY_NextData_1))
-            //        NextData();
-            //    if (Input.GetKeyDown(Controller.Vocal.KeyCode) ||
-            //        Input.GetKeyDown(Controller.XBOX360_Vocal))
-            //        myAudioSource.PlayOneShot(voiceTakeOff[now]);
-
-            //    if (isMovingCamera)
-            //    {
-            //        if (Time.time > timeIntoHangar && isMovingCamera)
-            //        {
-            //            isMovingCamera = false;
-            //            CameraInPlaceCallback();
-            //        }
-            //    }
-            //    if (allowShowData)
-            //    {
-            //        if (Time.time > nextBlockTime)
-            //            NextData();
-            //    }
-            //}
-        }
-
-        void NextHangar()
-        {
-            now++;
-            now = (int)Mathf.Repeat(now, max);
-            TransitCamera();
-        }
-        void PreviousHangar()
-        {
-            now--;
-            now = (int)Mathf.Repeat(now, max);
-            TransitCamera();
-        }
-        void TransitCamera()
-        {
-            if (now <= indexAvailable) PlayerPrefs.SetInt(LobbyInfomation.PREFS_TYPE, now);
-            // 攝影機移動過程
-            isMovingCamera = true;
-            timeIntoHangar = Time.time + timeCameraMoving;
-            pointHangarRail.DOMove(point[now].position, timeCameraMoving);
-            pointHangarRail.DOLookAt(point[now].TransformPoint(new Vector3(0, 0, 1)), timeCameraMoving);
-            pointHangarRail.DORotate(point[now].rotation.eulerAngles, timeCameraMoving);
-
-            ResetDisplay();
-        }
-        //顯示器恢復預設
-        void ResetDisplay()
-        {
-            allowShowData = false; // 限制顯示器畫面輸出
-            display.DOKill();
-            if (now < 8)
-                display.DOLocalMove(displayLeftReady.localPosition, 0.73f);
-            else
-                display.DOLocalMove(displayRightReady.localPosition, 0.73f);
-            blockType.DOKill();
-            blockType.position = display.TransformPoint(readyPosType);
-            HideData();
-            currentContent = DisplayContent.None;
-        }
-        // 攝影機就位
-        void CameraInPlaceCallback()
-        {
-            display.DOKill();
-            if (now < 8)
-            {
-                display.localPosition = displayLeftReady.localPosition;
-                display.localRotation = displayLeftReady.localRotation;
-                display.DOLocalMove(displayLeft.localPosition, timeDisplayDropDown).SetEase(Ease.OutFlash).OnComplete(DisplayInPlaceCallback);
-            }
-            else
-            {
-                display.localPosition = displayRightReady.localPosition;
-                display.localRotation = displayRightReady.localRotation;
-                display.DOLocalMove(displayRight.localPosition, timeDisplayDropDown).SetEase(Ease.OutFlash).OnComplete(DisplayInPlaceCallback);
-            }
-        }
-        // 顯示器就位
-        void DisplayInPlaceCallback()
-        {
-            blockType.DOKill();
-            blockType.position = display.TransformPoint(readyPosType);
-            blockType.DOMove(display.TransformPoint(relativePosType), timeBlockTypeDown).OnComplete(ShowData); ;
-            textType.text = KocmocraftData.GetTypeChineseName(now);
-        }
-        void ShowData()
-        {
-            allowShowData = true;
-            nextBlockTime = 0;
-            if (currentContent != DisplayContent.None)
-                Debug.LogError("Fucku");
-        }
-        void HideData()
-        {
-            switch (currentContent)
-            {
-                case DisplayContent.Kocmocraft:
-                    for (int i = 0; i < dataKocmocraft.count; i++)
-                    {
-                        blockKocmocraft[i].DOKill();
-                        blockKocmocraft[i].position = display.TransformPoint(dataKocmocraft.posReady[i]);
-                    }
-                    break;
-                case DisplayContent.Weapon:
-                    for (int i = 0; i < dataWeapon.count; i++)
-                    {
-                        blockWeapon[i].DOKill();
-                        blockWeapon[i].position = display.TransformPoint(dataWeapon.posReady[i]);
-                    }
-                    break;
-                case DisplayContent.Radar:
-                    for (int i = 0; i < datatRadar.count; i++)
-                    {
-                        blockRadar[i].DOKill();
-                        blockRadar[i].position = display.TransformPoint(datatRadar.posReady[i]);
-                    }
-                    break;
-            }
-        }
-        void NextData()
-        {
-            if (!allowShowData)
-                return;
-            nextBlockTime = Time.time + timeSwitchBlock;
-            HideData();
-            switch (currentContent)
-            {
-                case DisplayContent.None: ShowKocmocraftData(0); break;
-                case DisplayContent.Kocmocraft: ShowWeaponData(0); break;
-                case DisplayContent.Weapon: ShowRadarData(0); break;
-                case DisplayContent.Radar: ShowKocmocraftData(0); break;
-            }
-        }
-        void PreviousData()
-        {
-            if (!allowShowData)
-                return;
-            nextBlockTime = Time.time + timeSwitchBlock;
-            HideData();
-            switch (currentContent)
-            {
-                case DisplayContent.Kocmocraft: ShowRadarData(0); break;
-                case DisplayContent.Weapon: ShowKocmocraftData(0); break;
-                case DisplayContent.Radar: ShowWeaponData(0); break;
-            }
-        }
-        void ShowKocmocraftData(int index)
-        {
-            if (!allowShowData)
-                return;
-            currentContent = DisplayContent.Kocmocraft;
-            if (now > indexAvailable)
-            {
-                textKocmocraft[0].text = "" + KocmocraftData.GetKocmocraftName(now);
-                textKocmocraft[1].text = "---";
-                textKocmocraft[2].text = "---";
-                textKocmocraft[3].text = "---";
-                textKocmocraft[4].text = "---";
-                textKocmocraft[5].text = "---";
-            }
-            else
-            {
-                switch (index)
-                {
-                    case 0: textKocmocraft[0].text = "" + KocmocraftData.GetKocmocraftName(now); break;
-                    case 1: textKocmocraft[1].text = "" + KocmocraftData.MaxHull[now]; break;
-                    case 2: textKocmocraft[2].text = "" + KocmocraftData.MaxShieldl[now]; break;
-                    case 3: textKocmocraft[3].text = "" + KocmocraftData.MaxEnergy[now]; break;
-                    case 4: textKocmocraft[4].text = "" + KocmocraftData.CruiseSpeed[now] * 3.6f + " km/h"; break;
-                    case 5: textKocmocraft[5].text = "" + KocmocraftData.AfterburnerSpeed[now] * 3.6f + " km/h"; break;
-                }
-            }
-            if (index == dataKocmocraft.count - 1)
-                blockKocmocraft[index].DOMove(display.TransformPoint(dataKocmocraft.posShow[index]), timeOpenData);
-            else
-                blockKocmocraft[index].DOMove(display.TransformPoint(dataKocmocraft.posShow[index]), timeOpenData).OnComplete(() => ShowKocmocraftData(index + 1));
-        }
-        void ShowWeaponData(int index)
-        {
-            if (!allowShowData)
-                return;
-            currentContent = DisplayContent.Weapon;
-            if (now > indexAvailable)
-            {
-                textWeapon[1].text = "---";
-                textWeapon[2].text = "---";
-                textWeapon[3].text = "---";
-                textWeapon[4].text = "---";
-            }
-            else
-            {
-                switch (index)
-                {
-                    case 1: textWeapon[1].text = "" + KocmocraftData.GetTurretCount((Type)now) + "x Assault Laser"; break;
-                    case 2: textWeapon[2].text = "" + KocmoLaserCannon.fireRoundPerSecond + " rps"; break;
-                    case 3: textWeapon[3].text = "update" + " dmg"; break;
-                    case 4: textWeapon[4].text = "update" + " m"; break;
-                }
-            }
-            if (index == dataWeapon.count - 1)
-                blockWeapon[index].DOMove(display.TransformPoint(dataWeapon.posShow[index]), timeOpenData);
-            else
-                blockWeapon[index].DOMove(display.TransformPoint(dataWeapon.posShow[index]), timeOpenData).OnComplete(() => ShowWeaponData(index + 1));
-        }
-        void ShowRadarData(int index)
-        {
-            if (!allowShowData)
-                return;
-            currentContent = DisplayContent.Radar;
-            if (index == datatRadar.count - 1)
-                blockRadar[index].DOMove(display.TransformPoint(datatRadar.posShow[index]), timeOpenData);
-            else
-                blockRadar[index].DOMove(display.TransformPoint(datatRadar.posShow[index]), timeOpenData).OnComplete(() => ShowRadarData(index + 1));
-        }
-
-        IEnumerator TakeOff()
-        {
-            display.DOKill();
-            if (now < 8)
-                display.DOLocalMove(displayLeftReady.localPosition, 0.73f);
-            else
-                display.DOLocalMove(displayRightReady.localPosition, 0.73f);
-            blockType.position = display.TransformPoint(readyPosType);
-
-            //for (int i = 0; i < countDisplayData; i++)
-            //{
-            //    blockAircraft[i].position = display.TransformPoint(dataKocmocraft[i]);
-            //    if (i < countRadarData)
-            //}
-            yield return new WaitForSeconds(1.73f);
-            isMovingCamera = true;
-            mainCamera.DOMove(camPoint[0].position, 5.0f);
-            mainCamera.DOLookAt(camPoint[0].TransformPoint(new Vector3(0, 0, 1)), 5.0f);
-            mainCamera.DORotateQuaternion(camPoint[0].rotation, 5.0f);
-            yield return new WaitForSeconds(4.0f);
-            myAudioSource.clip = BGMTakeOff;
-            myAudioSource.Play();
-            for (int i = 0; i < takeOffAircraft.Length; i++)
-            {
-                takeOffAircraft[i].GetComponent<HarmonicMotion>().enabled = false;
-                takeOffAircraft[i].GetComponent<AudioSource>().DOFade(0.3f, 4.0f);
-            }
-            yield return new WaitForSeconds(2.0f);
-            for (int i = 0; i < takeOffAircraft.Length; i++)
-            {
-                takeOffAircraft[i].transform.DOLocalMoveX(takeOffAircraft[i].transform.localPosition.z - 1000, 25.0f).SetEase(Ease.InCubic);
-                if (i % 2 == 0)
-                    yield return new WaitForSeconds(0.3f);
-                else
-                    yield return new WaitForSeconds(0.7f);
-            }
-            mainCamera.DOMove(camPoint[1].position, 5.0f);
-            mainCamera.DOLookAt(camPoint[2].TransformPoint(new Vector3(0, 0, 1)), 5.0f);
-            mainCamera.DORotateQuaternion(camPoint[1].rotation, 5.0f);
-            yield return new WaitForSeconds(3.0f);
-            mainCamera.DOMove(camPoint[2].position, 5.0f);
-            mainCamera.DOLookAt(camPoint[2].TransformPoint(new Vector3(0, 0, 1)), 5.0f);
-            mainCamera.DORotateQuaternion(camPoint[2].rotation, 5.0f);
-            yield return new WaitForSeconds(5.0f);
-            for (int i = 0; i < takeOffAircraft.Length; i++)
-            {
-                takeOffAircraft[i].GetComponent<HarmonicMotion>().enabled = false;
-                takeOffAircraft[i].GetComponent<AudioSource>().DOFade(0.05f, 2.0f);
-            }
-            mask.DOFade(1.0f, 1.5f);
-            yield return new WaitForSeconds(1.5f);
-            SceneManager.LoadSceneAsync("Airport2");
         }
     }
 }

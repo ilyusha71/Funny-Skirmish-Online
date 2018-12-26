@@ -5,12 +5,16 @@ using TMPro;
 using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
+using DG.Tweening;
 
 namespace Kocmoca
 {
     public class GalaxyLobbyPanel : MonoBehaviourPunCallbacks
     {
+        [Header("Connection Status")]
         public TextMeshProUGUI ConnectionStatusText;
+        public TextMeshProUGUI RegionPingText;
+        private string serverRegion;
 
         [Header("Region Panel")]
         public Transform listRegion; 
@@ -26,7 +30,7 @@ namespace Kocmoca
         [Header("Login Panel")]
         public GameObject LoginPanel;
         public TMP_InputField PlayerNameInput;
-        private readonly string connectionStatusMessage = "    Connection Status: ";
+        private readonly string connectionStatusMessage = "[Connection Status]\n";
 
         [Header("Selection Panel")]
         public GameObject SelectionPanel;
@@ -79,19 +83,18 @@ namespace Kocmoca
 
         private void Start()
         {
-            if (!PhotonNetwork.IsConnected)
-            {
-                PhotonNetwork.NetworkingClient.AppId = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime;
-                PhotonNetwork.NetworkingClient.AddCallbackTarget(this);
-                PhotonNetwork.NetworkingClient.ConnectToNameServer();
-            }
             Invoke("Opening", 1.0f);
         }
 
         void Opening()
         {
             if (!PhotonNetwork.IsConnected)
+            {
+                PhotonNetwork.NetworkingClient.AppId = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime;
+                PhotonNetwork.NetworkingClient.AddCallbackTarget(this);
+                PhotonNetwork.NetworkingClient.ConnectToNameServer();
                 FindObjectOfType<DynamicCameraUI>().VisitLogin();
+            }
             else
                 FindObjectOfType<DynamicCameraUI>().VisitLobby();
         }
@@ -99,6 +102,7 @@ namespace Kocmoca
         private void Update()
         {
             ConnectionStatusText.text = connectionStatusMessage + PhotonNetwork.NetworkClientState;
+            RegionPingText.text = string.Format("[Server] {0}\n{1} ms", serverRegion, PhotonNetwork.GetPing());
 
             if (showRegion)
             {
@@ -140,8 +144,8 @@ namespace Kocmoca
                     }
                     btnRegion.onClick.AddListener(() =>
                     {
-                        PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = region;
-                        OnLoginButtonClicked();
+                        serverRegion = GetRegionName(region);
+                        OnLoginButtonClicked(region);
                     });
                 }
                 showRegion = false;
@@ -182,7 +186,7 @@ namespace Kocmoca
             showRegion = true;
             Debug.Log("OnRegionPingCompleted " + regionHandler.BestRegion);
             Debug.Log("RegionPingSummary: " + regionHandler.SummaryToCache);
-            PhotonNetwork.Disconnect();
+            //PhotonNetwork.Disconnect();
         }
 
         private string GetRegionName(string region)
@@ -385,7 +389,7 @@ namespace Kocmoca
             PhotonNetwork.LeaveRoom();
         }
 
-        public void OnLoginButtonClicked()
+        public void OnLoginButtonClicked(string region)
         {
             string playerName = PlayerNameInput.text == ""? "iLYuSha " + Number2Scheme(Random.Range(1000, 10000)) : PlayerNameInput.text;
 
@@ -393,7 +397,8 @@ namespace Kocmoca
             {
                 this.SetActivePanel("Close all panel");
                 PhotonNetwork.LocalPlayer.NickName = playerName;
-                PhotonNetwork.ConnectUsingSettings();
+                PhotonNetwork.NetworkingClient.ConnectToRegionMaster(region);
+                //PhotonNetwork.ConnectUsingSettings();
             }
             else
             {
@@ -434,6 +439,7 @@ namespace Kocmoca
         public void OnEscapeButtonClicked()
         {
             PhotonNetwork.Disconnect();
+            FindObjectOfType<DynamicCameraUI>().VisitLogin();
         }
 
         #endregion
