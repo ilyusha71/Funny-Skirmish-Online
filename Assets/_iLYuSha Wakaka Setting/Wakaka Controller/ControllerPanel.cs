@@ -13,11 +13,53 @@ public partial class ControllerPanel : MonoBehaviour
     public static HotkeyToggle ActiveHotkey;
     private readonly int[] values = (int[])System.Enum.GetValues(typeof(KeyCode));
 
+    [Header("Panel")]
+    public Toggle tabMouseKeyboard;
+    public Toggle tabXbox360;
+    public GameObject panelMouseKeyboard;
+    public GameObject panelXbox360;
+    [Header("Toggle")]
+    public Toggle[] hotkeyMouseKeyboard;
+    public Toggle[] hotkeyXbox360;
+    // Hotkey
+    public static HotkeyToggle KEYBOARD_CockpitView;
+    public static HotkeyToggle KEYBOARD_Afterburner;
+    public static HotkeyToggle KEYBOARD_LockOn;
+    public static HotkeyToggle XBOX360_CockpitView;
+    public static HotkeyToggle XBOX360_Afterburner;
+    public static HotkeyToggle XBOX360_LockOn;
+
     void Start ()
     {
         //values = (int[])System.Enum.GetValues(typeof(KeyCode));
         //InitializeWakakaMode();
-        InitializeMouseKeyboard();
+
+        tabMouseKeyboard.onValueChanged.AddListener(isOn =>
+        {
+            panelMouseKeyboard.SetActive(isOn);
+            if (isOn) Controller.UseMouseKeyboard();
+        });
+        tabXbox360.onValueChanged.AddListener(isOn =>
+        {
+            panelXbox360.SetActive(isOn);
+            if (isOn) Controller.UseXbox360();
+        });
+
+        switch (Controller.controllerType)
+        {
+            case ControllerType.MouseKeyboard: tabMouseKeyboard.isOn = true;break;
+            case ControllerType.Xbox360: tabXbox360.isOn = true; break;
+        }
+
+        hotkeyMouseKeyboard = panelMouseKeyboard.GetComponentsInChildren<Toggle>();
+        KEYBOARD_CockpitView = new HotkeyToggle(hotkeyMouseKeyboard[0], "KEYBOARD_CockpitView", (int)KeyCode.C);
+        KEYBOARD_Afterburner = new HotkeyToggle(hotkeyMouseKeyboard[1], "KEYBOARD_Afterburner", (int)KeyCode.LeftShift);
+        KEYBOARD_LockOn = new HotkeyToggle(hotkeyMouseKeyboard[2], "KEYBOARD_LockOn", (int)KeyCode.R);
+
+        hotkeyXbox360 = panelXbox360.GetComponentsInChildren<Toggle>();
+        XBOX360_CockpitView = new HotkeyToggle(hotkeyXbox360[0], "XBOX360_CockpitView", (int)KeyCode.Joystick1Button0);
+        XBOX360_Afterburner = new HotkeyToggle(hotkeyXbox360[1], "XBOX360_Afterburner", (int)KeyCode.Joystick1Button2);
+        XBOX360_LockOn = new HotkeyToggle(hotkeyXbox360[2], "XBOX360_LockOn", (int)KeyCode.Joystick1Button1);
     }
 
     void Update ()
@@ -26,6 +68,8 @@ public partial class ControllerPanel : MonoBehaviour
         {
             if (!panelHotkey.activeSelf)
                 MouseLock.nowState = MouseLock.MouseLocked;
+            else
+                SaveControllerSetting();
             panelHotkey.SetActive(!panelHotkey.activeSelf);
             MouseLock.MouseLocked = panelHotkey.activeSelf ? false : MouseLock.nowState;
         }
@@ -48,6 +92,16 @@ public partial class ControllerPanel : MonoBehaviour
             }
         }
     }
+
+    void SaveControllerSetting()
+    {
+        Controller.KEYBOARD_CockpitView = KEYBOARD_CockpitView.Hotkey;
+        Controller.KEYBOARD_Afterburner = KEYBOARD_Afterburner.Hotkey;
+        Controller.KEYBOARD_LockOn = KEYBOARD_LockOn.Hotkey;
+        Controller.XBOX360_CockpitView = XBOX360_CockpitView.Hotkey;
+        Controller.XBOX360_Afterburner = XBOX360_Afterburner.Hotkey;
+        Controller.XBOX360_LockOn = XBOX360_LockOn.Hotkey;
+    }
 }
 
 public enum PanelState
@@ -56,17 +110,15 @@ public enum PanelState
     HotkeyInput = 3,
 }
 
-[Serializable]
 public class HotkeyToggle
 {
     private Toggle Listener;
     public KeyCode Hotkey;
     private string PrefKeySetting;
 
-    public HotkeyToggle(Toggle toggle,ref KeyCode key, string prefCode, int defaultKey)
+    public HotkeyToggle(Toggle toggle, string prefCode, int defaultKey)
     {
         Listener = toggle;
-        Hotkey = key;
         PrefKeySetting = prefCode;
 
         int prefKey = PlayerPrefs.GetInt(PrefKeySetting);
@@ -89,7 +141,6 @@ public class HotkeyToggle
         if (KeyIsExist(unityCode))
             PlayerPrefs.SetInt(PrefKeySetting, unityCode); // 儲存Unity鍵碼
         Listener.isOn = false;
-        //ControllerPanel.Up();
     }
 
     public bool KeyIsExist(int unityCode)
@@ -169,6 +220,15 @@ public class HotkeyToggle
                 case KeyCode.Backslash: keyName.text = "\\"; return true; // 反斜線 管線
                 case KeyCode.RightBracket: keyName.text = "]"; return true; // 後引號
                 case KeyCode.BackQuote: keyName.text = "~"; return true; // 毛毛蟲~
+                // 搖桿
+                case KeyCode.Joystick1Button0: keyName.text = "A"; return true; // A Button
+                case KeyCode.Joystick1Button1: keyName.text = "B"; return true; // B Button
+                case KeyCode.Joystick1Button2: keyName.text = "X"; return true; // X Button
+                case KeyCode.Joystick1Button3: keyName.text = "Y"; return true; // Y Button
+                case KeyCode.Joystick1Button4: keyName.text = "LB"; return true; // Left Bumper
+                case KeyCode.Joystick1Button5: keyName.text = "RB"; return true; // Right Bumper
+                case KeyCode.Joystick1Button6: keyName.text = "Back"; return true; // Back Button
+                case KeyCode.Joystick1Button7: keyName.text = "Start"; return true; // Start Button
             }
         }
         return false;

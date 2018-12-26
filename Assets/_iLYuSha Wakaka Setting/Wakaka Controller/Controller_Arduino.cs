@@ -9,7 +9,7 @@ public partial class Controller : MonoBehaviour
     public static float roll, pitch, yaw, throttle; // Flying Mode
 
 
-    public float[] controlValue = new float[4];
+
     private int rightHorizontalState, rightVerticalState, leftHorizontalState, leftVerticalState, accelState;
     public static float sensitivityWSAD; // 映射WSAD靈敏度
     public static float axisSensasity = 3.0f;

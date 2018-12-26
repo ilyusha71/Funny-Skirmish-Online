@@ -59,7 +59,7 @@ public partial class Controller : MonoBehaviour
         ActiveWakakaButton.SetHotkey(numberCode);
     }
 
-    private void WakakaModeJoystickInput()
+    private void WakakaFlyingAxisInput()
     {
         // -999為這一幀沒收到訊號，使用前一幀數值
         if (command.AxisX == -999) command.AxisX = controlValue[0];
@@ -82,6 +82,9 @@ public partial class Controller : MonoBehaviour
         pitch = Mathf.Clamp(controlValue[indexPitch] * FlyingAxisSensitivity, -1, 1);
         yaw = Mathf.Clamp(controlValue[indexYaw] * FlyingAxisSensitivity, -1, 1);
         throttle = Mathf.Clamp(controlValue[indexThrotte] * FlyingAxisSensitivity, -1, 1);
+
+        axisLevel = 0.7f;
+
 
         // 軸映射鍵值
         for (int i = 0; i < 4; i++)
@@ -276,11 +279,11 @@ public class WakakaButton: IHotkey
             if (isOn)
             {
                 Controller.ActiveWakakaButton = this;
-                Controller.state = PanelState.HotkeyInput;
+                //Controller.state = PanelState.HotkeyInput;
             }
             else
             {
-                Controller.state = PanelState.Ready;
+                //Controller.state = PanelState.Ready;
             }
         });
     }
@@ -313,7 +316,7 @@ public class WakakaButton: IHotkey
             KeyName = unityKeyCode.ToString();
             return true;
         }
-        else if (unityCode >= 256 && unityCode <= 265) // 數字鍵盤
+        else if (unityCode >= 256 && unityCode <= 265) // 數字鍵盤 96~105
         {
             Keycode = unityCode - 160;
             KeyName = "Num " + (unityCode - 256);

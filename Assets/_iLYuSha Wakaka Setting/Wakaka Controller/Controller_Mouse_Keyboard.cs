@@ -5,173 +5,32 @@
  * Description:
  * 1. 
  ***************************************************************************/
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public partial class Controller : MonoBehaviour
 {
-public static KeyCode KEY_CockpitView;
-public static KeyCode KEY_Afterburner;
-public static KeyCode KEY_LockOn;
-    public static KeyCode KEY_Laser;
-public static KeyCode KEY_Rocket;
- public static KeyCode KEY_Missile;
+    private static readonly float MouseAxisSensitivity = 1.0f;
+    private static readonly float KeyboardAxisSensitivity = 1.0f;
 
-
-
-
-    public static FunctionKey Operation = new FunctionKey("FunctionKey-Operation");
-    public static FunctionKey Hangar = new FunctionKey("FunctionKey-Hangar");
-    public static FunctionKey Vocal = new FunctionKey("FunctionKey-Vocal");
-    public static FunctionKey WhoAttackU = new FunctionKey("FunctionKey-WhoAttackU");
-    public static FunctionKey Respawn = new FunctionKey("FunctionKey-Respawn");
-    public static FunctionKey CockpitView = new FunctionKey("FunctionKey-CockpitView");
-    public static FunctionKey Afterburner = new FunctionKey("FunctionKey-Afterburner");
-    public static FunctionKey LockOn = new FunctionKey("FunctionKey-LockOn");
-    public static FunctionKey Laser = new FunctionKey("FunctionKey-Laser");
-    public static FunctionKey Rocket = new FunctionKey("FunctionKey-Rocket");
-    public static FunctionKey Missile = new FunctionKey("FunctionKey-Missile");
-    public static FunctionKey ActiveKey;
-
-    public static void InitializeHotkeyData()
+    public static void UseMouseKeyboard()
     {
-    }
-    public static void UseKeyboardMouse()
-    {
-        controllerType = ControllerType.MouseAndKeyboard;
-        PlayerPrefs.SetInt("Controller_Type", (int)controllerType);
-        Debug.Log(KEY_CockpitView.ToString());
+        controllerType = ControllerType.MouseKeyboard;
+        PlayerPrefs.SetInt(PREFS_CONTROLLER_TYPE, (int)controllerType);
     }
 
-    void MouseKeyboardHotkeySetting(int numberCode)
+    private void MouseKeyboardAxisInput()
     {
-        ActiveKey.SetHotkey(numberCode);
-    }
-}
+        controlValue[0] = Input.GetAxis("Mouse X");
+        controlValue[1] = Input.GetAxis("Mouse Y");
+        controlValue[2] = Input.GetAxis("Horizontal"); // 方向鍵或WSAD鍵
+        controlValue[3] = Input.GetAxis("Vertical");
 
-public class FunctionKey : IHotkey
-{
-    public readonly string PrefKeySetting; // PlayerPrefs name
-    public KeyCode KeyCode; // Unity keycode
-    public string KeyName; // Keyboard key name or maker
-    public Toggle Hotkey;
-    public TextMeshProUGUI HotkeyName;
+        // 飛行輸入值
+        roll = Mathf.Clamp(controlValue[indexRoll] * MouseAxisSensitivity, -1, 1);
+        pitch = Mathf.Clamp(controlValue[indexPitch] * MouseAxisSensitivity, -1, 1);
+        yaw = Mathf.Clamp(controlValue[indexYaw] * KeyboardAxisSensitivity, -1, 1);
+        throttle = Mathf.Clamp(controlValue[indexThrotte] * KeyboardAxisSensitivity, -1, 1);
 
-    public FunctionKey(string pref)
-    {
-        PrefKeySetting = pref;
-    }
-
-    public void InitializeHotkey(Toggle hotkey, int unityCode)
-    {
-        Hotkey = hotkey;
-        HotkeyName = Hotkey.GetComponentInChildren<TextMeshProUGUI>();
-        int prefValue = PlayerPrefs.GetInt(PrefKeySetting);
-        SetHotkey(prefValue == 0 ? unityCode : prefValue);
-
-        Hotkey.onValueChanged.AddListener(isOn =>
-        {
-            if (isOn)
-            {
-                Controller.ActiveKey = this;
-                Controller.state = PanelState.HotkeyInput;
-            }
-            else
-            {
-                Controller.state = PanelState.Ready;
-            }
-        });
-    }
-
-    public void SetHotkey(int unityCode)
-    {
-        if (KeyIsExist(unityCode))
-        {
-            PlayerPrefs.SetInt(PrefKeySetting, unityCode); // 儲存Unity鍵碼
-            HotkeyName.text = KeyName;
-        }
-        Hotkey.isOn = false;
-    }
-
-    public bool KeyIsExist(int unityCode)
-    {
-        KeyCode = (KeyCode)unityCode;
-        KeyName = "";
-
-        if (unityCode >= 48 && unityCode <= 57) // Alpha 數字
-        {
-            KeyName = "#" + (unityCode - 48);
-            return true;
-        }
-        else if (unityCode >= 97 && unityCode <= 122) // 字母
-        {
-            KeyName = KeyCode.ToString();
-            return true;
-        }
-        else if (unityCode >= 256 && unityCode <= 265) // 數字鍵盤
-        {
-            KeyName = "Num " + (unityCode - 256);
-            return true;
-        }
-        else if (unityCode >= 277 && unityCode <= 296) // 中央功能鍵 + F1~F12
-        {
-            KeyName = KeyCode.ToString();
-            return true;
-        }
-        else
-        {
-            switch (KeyCode)
-            {
-                case KeyCode.Mouse0: KeyName = "LClick"; return true;
-                case KeyCode.Mouse1: KeyName = "RClick"; return true;
-                case KeyCode.Mouse2: KeyName = "Wheel"; return true;
-
-                case KeyCode.Backspace: KeyName = KeyCode.ToString(); return true;
-                case KeyCode.Tab: KeyName = KeyCode.ToString(); return true;
-                case KeyCode.Clear: KeyName = KeyCode.ToString(); return true;
-                case KeyCode.Return: KeyName = "Enter"; return true;
-
-                case KeyCode.RightShift: KeyName = "RShift"; return true;
-                case KeyCode.LeftShift: KeyName = "LShift"; return true;
-                case KeyCode.RightControl: KeyName = "RCtrl"; return true;
-                case KeyCode.LeftControl: KeyName = "LCtrl"; return true;
-                case KeyCode.RightAlt: KeyName = "RAlt"; return true;
-                case KeyCode.LeftAlt: KeyName = "LAlt"; return true;
-                case KeyCode.AltGr: KeyName = "RAlt"; return true;
-
-                case KeyCode.CapsLock: KeyName = KeyCode.ToString(); return true;
-                case KeyCode.Pause: KeyName = KeyCode.ToString(); return true;
-                case KeyCode.Escape: KeyName = "Esc"; return true;
-                case KeyCode.Space: KeyName = KeyCode.ToString(); return true;
-                case KeyCode.Delete: KeyName = KeyCode.ToString(); return true;
-
-                // 方向键 273~276
-                case KeyCode.UpArrow: KeyName = "Up"; return true;
-                case KeyCode.DownArrow: KeyName = "Down"; return true;
-                case KeyCode.RightArrow: KeyName = "Right"; return true;
-                case KeyCode.LeftArrow: KeyName = "Left"; return true;
-                // 數字鍵盤 266~271
-                case KeyCode.KeypadPeriod: KeyName = "Num ."; return true; // . Del
-                case KeyCode.KeypadDivide: KeyName = "Num /"; return true; // /
-                case KeyCode.KeypadMultiply: KeyName = "Num *"; return true; // *
-                case KeyCode.KeypadMinus: KeyName = "Num -"; return true; // -
-                case KeyCode.KeypadPlus: KeyName = "Num +"; return true; // +
-                case KeyCode.KeypadEnter: KeyName = "Num Enter"; return true;
-                // 符號
-                case KeyCode.Quote: KeyName = "'"; return true; // 英文引號
-                case KeyCode.Comma: KeyName = ","; return true; // 逗號 <
-                case KeyCode.Minus: KeyName = "-"; return true; // 減號 底線
-                case KeyCode.Period: KeyName = "."; return true; // 句號 >
-                case KeyCode.Slash: KeyName = "/"; return true; // 斜線 問號
-                case KeyCode.Semicolon: KeyName = ";"; return true; // 分號 冒號
-                case KeyCode.Equals: KeyName = "="; return true; // 等於 加號
-                case KeyCode.LeftBracket: KeyName = "["; return true; // 前引號
-                case KeyCode.Backslash: KeyName = "\\"; return true; // 反斜線 管線
-                case KeyCode.RightBracket: KeyName = "]"; return true; // 後引號
-                case KeyCode.BackQuote: KeyName = "~"; return true; // 毛毛蟲~
-            }
-        }
-        return false;
+        axisLevel = 0.01f;
     }
 }

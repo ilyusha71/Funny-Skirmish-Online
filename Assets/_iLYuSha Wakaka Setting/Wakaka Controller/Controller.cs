@@ -18,10 +18,40 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+
+
 public partial class Controller : MonoBehaviour
 {
     public static Controller Instance { get; private set; }
     public bool Testing;
+
+    // General Setting
+    [SerializeField] public static ControllerType controllerType = ControllerType.MouseKeyboard;
+    private static readonly string PREFS_CONTROLLER_TYPE = "ControllerType";
+    [SerializeField] public static ControlMode controlMode = ControlMode.General;
+    [SerializeField] public static ControlHands controlHands = ControlHands.AmericanHands;
+    private static readonly string PREFS_CONTROLLER_HAND = "ControllerHand";
+
+    // General Control
+    private float[] controlValue = new float[4];
+    private AxisData axisHorizontal = new AxisData { Plus = new AxisButton { Keycode = 102 }, Minus = new AxisButton { Keycode = 100 } };
+    private AxisData axisVertical = new AxisData { Plus = new AxisButton { Keycode = 104 }, Minus = new AxisButton { Keycode = 98 } };
+    private static float axisLevel; // 軸映射點擊事件的臨界值
+
+    private void LoadPrefs()
+    {
+        controllerType = (ControllerType)PlayerPrefs.GetInt(PREFS_CONTROLLER_TYPE);
+        controlHands = (ControlHands)PlayerPrefs.GetInt(PREFS_CONTROLLER_HAND);
+    }
+
+    private void Awake()
+    {
+        LoadPrefs();
+    }
+
+
+
+
 
     #region FPS Setting
     [Header("FPS")]
@@ -42,10 +72,10 @@ public partial class Controller : MonoBehaviour
     #endregion
 
     [Header("Controller Setting")]
-    public static PanelState state = PanelState.Ready;
-    public static ControllerType controllerType;
-    public static ControlMode controlMode;
-    private static ControlHands controlHands;
+    //public static PanelState state = PanelState.Ready;
+    //public static ControllerType controllerType;
+    //public static ControlMode controlMode;
+    //private static ControlHands controlHands;
     [Header("New Setting")]
     private static int indexRoll=0, indexPitch=1, indexYaw=2, indexThrotte=3; // 飛行控制慣用手索引
 
@@ -91,77 +121,8 @@ public partial class Controller : MonoBehaviour
         // Xbox 360 Setting
         //InitializeXbox360Setting();
     }
-    private void Start()
-    {
-        values = (int[])System.Enum.GetValues(typeof(KeyCode));
 
-    }
 
-    void Awake()
-    {
-        //if (Instance == null) Instance = this;
-        //DontDestroyOnLoad(this);
-        //SceneManager.LoadScene(PlayerPrefs.GetInt("MainScene"));
-        //if (!Testing)
-        //{
-        //    if (!ArduinoController.Instance)
-        //    {
-        //        SceneManager.LoadScene("Arduino Controller");
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        ArduinoController.commandsCount = commandsCount; // 設定本專案單次接收Unity訊息的數量
-        //        ArduinoController.msgQueueCombine = true;
-        //        msgBox = ArduinoController.Instance.msgBox;
-        //    }
-
-        //    if (Instance == null) Instance = this;
-        //    DontDestroyOnLoad(this);
-        //    SceneManager.LoadScene(PlayerPrefs.GetInt("MainScene"));
-        //}
-        //else
-        //{
-        //    if (!ArduinoController.Instance)
-        //    {
-        //        PlayerPrefs.SetInt("MainScene", SceneManager.GetActiveScene().buildIndex);
-        //        SceneManager.LoadScene("Arduino Controller");
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        ArduinoController.commandsCount = commandsCount; // 設定本專案單次接收Unity訊息的數量
-        //        ArduinoController.msgQueueCombine = true;
-        //        msgBox = ArduinoController.Instance.msgBox;
-        //    }
-
-        //    if (Instance == null) Instance = this;
-        //}
-
-        //showFPS = PlayerPrefs.GetInt("Open FPS") == 1 ? true : false;
-        //toggleFPS.isOn = showFPS;
-
-        //// Initialize
-        //int loadType = PlayerPrefs.GetInt("saveType");
-        //int loadMode = PlayerPrefs.GetInt("saveMode");
-        //int loadHands = PlayerPrefs.GetInt("saveHands");
-        //controllerType = (ControllerType)loadType;
-        //panelHotkey.SetActive(false);
-
-        //// Old
-        //type = groupType.GetComponentsInChildren<Toggle>();
-        //type[loadType].isOn = true;
-        //mode = groupMode.GetComponentsInChildren<Toggle>();
-        //mode[loadMode].isOn = true;
-        //hands = groupHands.GetComponentsInChildren<Toggle>();
-        //hands[loadHands].isOn = true;
-        //panelSetting.SetActive(false);
-
-        //values = (int[])System.Enum.GetValues(typeof(KeyCode));
-        ////InitializeHotkey();
-        //// Xbox 360 Setting
-        //InitializeXbox360Setting();
-    }
 
     void Update()
     {
@@ -173,124 +134,120 @@ public partial class Controller : MonoBehaviour
         //    Debug.LogWarning("Up");
 
         //if (showFPS) ShowFPS();
-        if (state == PanelState.Ready)
+        if (ArduinoController.Instance)
         {
-            if (ArduinoController.Instance)
+            countQueue = ArduinoController.queueCommand.Count;
+            if (countQueue > 0)
             {
-                countQueue = ArduinoController.queueCommand.Count;
-                if (countQueue > 0)
+                for (int i = 0; i < countQueue; i++)
                 {
-                    for (int i = 0; i < countQueue; i++)
-                    {
-                        msgBox.AddNewMsg(ArduinoController.queueMsg.Dequeue().Replace("Wakaka/", ""));
-                        command.Input(ArduinoController.queueCommand.Dequeue());
-                    }
+                    msgBox.AddNewMsg(ArduinoController.queueMsg.Dequeue().Replace("Wakaka/", ""));
+                    command.Input(ArduinoController.queueCommand.Dequeue());
                 }
             }
+        }
 
-            // Special Function
-            if (Input.GetKeyDown(KeyCode.B))
-                toggleFPS.isOn = !toggleFPS.isOn;
-            if (Input.GetKeyDown(KeyCode.BackQuote))
-                MouseLock.MouseLocked = !MouseLock.MouseLocked;
-            if (Input.GetKeyDown(KeyCode.F11))
-            {
-                if (!panelSetting.activeSelf)
-                    MouseLock.nowState = MouseLock.MouseLocked;
-                panelSetting.SetActive(!panelSetting.activeSelf);
-                MouseLock.MouseLocked = panelSetting.activeSelf ? false : MouseLock.nowState;
-            }
-            //else if (Input.GetKeyDown(KeyCode.F5))
-            //{
-            //    if (!panelHotkey.activeSelf)
-            //        MouseLock.nowState = MouseLock.MouseLocked;
-            //    panelHotkey.SetActive(!panelHotkey.activeSelf);
-            //    MouseLock.MouseLocked = panelHotkey.activeSelf ? false : MouseLock.nowState;
-            //}
+        // Special Function
+        //if (Input.GetKeyDown(KeyCode.B))
+        //    toggleFPS.isOn = !toggleFPS.isOn;
+        if (Input.GetKeyDown(KeyCode.BackQuote))
+            MouseLock.MouseLocked = !MouseLock.MouseLocked;
+        //if (Input.GetKeyDown(KeyCode.F11))
+        //{
+        //    if (!panelSetting.activeSelf)
+        //        MouseLock.nowState = MouseLock.MouseLocked;
+        //    panelSetting.SetActive(!panelSetting.activeSelf);
+        //    MouseLock.MouseLocked = panelSetting.activeSelf ? false : MouseLock.nowState;
+        //}
 
-            // Steering wheel mode
-            if (Input.GetKeyDown(KeyCode.H))
-                UseSteeringWheel();
+        // Steering wheel mode
+        //if (Input.GetKeyDown(KeyCode.H))
+        //    UseSteeringWheel();
 
             RealtimeControl();
-        }
-        //else if (state == PanelState.Xbox360Setting)
-        //{
-        //    for (int i = 0; i < values.Length; i++)
-        //    {
-        //        if (Input.GetKey((KeyCode)values[i]))
-        //            Xbox360KeyboardMapping(values[i]);
-        //    }
-        //}
-        else if (state == PanelState.HotkeyInput)
-        {
-            for (int i = 0; i < values.Length; i++)
-            {
-                if (Input.GetKey((KeyCode)values[i]))
-                {
-                    int numberCode = values[i];
-                    if (numberCode == 27 || // 禁止映射Esc
-                        (numberCode >= 300 && numberCode <= 302) || //禁止映射Lock鍵
-                        (numberCode >= 309 && numberCode <= 312) || //禁止映射系統鍵
-                        (numberCode >= 316 && numberCode <= 317))  //禁止映射Print/SysReq鍵
-                        return;
-                    switch (controllerType)
-                    {
-                        case ControllerType.MouseAndKeyboard: MouseKeyboardHotkeySetting(numberCode); break;
-                        case ControllerType.WakakaFlyingMode: WakakaFlyingModeSetting(numberCode); break;
-                    }
-                    state = PanelState.Ready;
-                }
-            }
-        }
-        
     }
 
     void LateUpdate()
     {
-        command.Reset();
+        if (ArduinoController.Instance)
+            command.Reset();
     }
 
     void RealtimeControl()
     {
-        //Debug.Log(Time.frameCount + " / " + commands[1]);
-
         InputControllerType();
-        //InputControllerMode();
+        if (controlMode == ControlMode.General)
+            AxisButtonClickEvent();
+    }
+
+    private void AxisButtonClickEvent()
+    {
+        // 水平軸映射左右方向鍵點擊事件
+        axisHorizontal.Value = controlValue[2];
+        if (axisHorizontal.Value > 0.01f)
+        {
+            axisHorizontal.Plus.Pressed = true;
+            MappingEvent(axisHorizontal.Plus.Keycode, 0);
+        }
+        else if (axisHorizontal.Value < -0.01f)
+        {
+            axisHorizontal.Minus.Pressed = true;
+            MappingEvent(axisHorizontal.Minus.Keycode, 0);
+        }
+        else
+        {
+            if (axisHorizontal.Plus.Pressed)
+            {
+                axisHorizontal.Plus.Pressed = false;
+                MappingEvent(axisHorizontal.Plus.Keycode, 2);
+            }
+            if (axisHorizontal.Minus.Pressed)
+            {
+                axisHorizontal.Minus.Pressed = false;
+                MappingEvent(axisHorizontal.Minus.Keycode, 2);
+            }
+        }
+
+        // 垂直軸映射上下方向鍵點擊事件
+        axisVertical.Value = controlValue[3];
+        if (axisVertical.Value > 0.7f)
+        {
+            axisVertical.Plus.Pressed = true;
+            MappingEvent(axisVertical.Plus.Keycode, 0);
+        }
+        else if (axisVertical.Value < -0.7f)
+        {
+            axisVertical.Minus.Pressed = true;
+            MappingEvent(axisVertical.Minus.Keycode, 0);
+        }
+        else
+        {
+            if (axisVertical.Plus.Pressed)
+            {
+                axisVertical.Plus.Pressed = false;
+                MappingEvent(axisVertical.Plus.Keycode, 2);
+            }
+            if (axisVertical.Minus.Pressed)
+            {
+                axisVertical.Minus.Pressed = false;
+                MappingEvent(axisVertical.Minus.Keycode, 2);
+            }
+        }
     }
 
     void InputControllerType()
     {
-        if (controllerType == ControllerType.MouseAndKeyboard)
+        if (controllerType == ControllerType.MouseKeyboard)
+            MouseKeyboardAxisInput();
+        else if (controllerType == ControllerType.Xbox360)
         {
-            controlValue[0] = Input.GetAxis("Mouse X");
-            controlValue[1] = Input.GetAxis("Mouse Y");
-            controlValue[2] = Input.GetAxis("Horizontal"); // 方向鍵或WSAD鍵
-            controlValue[3] = Input.GetAxis("Vertical");
-            // 方向鍵映射WSAD鍵點擊事件
-            if (Input.GetKeyDown(KeyCode.UpArrow)) Keybd_event(87, 0, 0, 0);
-            else if (Input.GetKeyUp(KeyCode.UpArrow)) Keybd_event(87, 0, 2, 0);
-            if (Input.GetKeyDown(KeyCode.DownArrow)) Keybd_event(83, 0, 0, 0);
-            else if (Input.GetKeyUp(KeyCode.DownArrow)) Keybd_event(83, 0, 2, 0);
-            if (Input.GetKeyDown(KeyCode.LeftArrow)) Keybd_event(65, 0, 0, 0);
-            else if (Input.GetKeyUp(KeyCode.LeftArrow)) Keybd_event(65, 0, 2, 0);
-            if (Input.GetKeyDown(KeyCode.RightArrow)) Keybd_event(68, 0, 0, 0);
-            else if (Input.GetKeyUp(KeyCode.RightArrow)) Keybd_event(68, 0, 2, 0);
-
-            FlyingHandleButtonMapping();
-            roll = Mathf.Clamp(controlValue[indexRoll] * axisSensasity, -1, 1);
-            pitch = Mathf.Clamp(controlValue[indexPitch] * axisSensasity, -1, 1);
-            yaw = Mathf.Clamp(controlValue[indexYaw] * axisSensasity, -1, 1);
-            throttle = Mathf.Clamp(controlValue[indexThrotte] * axisSensasity, -1, 1);
-        }
-        else if (controllerType == ControllerType.XboxJoystick)
-        {
-            Xbox360JoystickInput();
-            Xbox360ButtonMapping();
+            Xbox360AxisInput();
+            if (controlMode == ControlMode.Xbox360) // 使用Xbox360搖桿按鍵映射
+                Xbox360ButtonMapping();
         }
         else if (controllerType == ControllerType.WakakaFlyingMode)
         {
-            WakakaModeJoystickInput();
+            WakakaFlyingAxisInput();
             WakakaModeButtonMapping();
         }
     }
@@ -394,7 +351,7 @@ public partial class Controller : MonoBehaviour
     {
         //if (controllerType == ControllerType.Controller)
         //    WakakaModeButtonMapping();
-         if (controllerType == ControllerType.XboxJoystick)
+         if (controllerType == ControllerType.Xbox360)
         {
             // 開火（滑鼠左鍵映射）
             if (Input.GetKey(KeyCode.Joystick1Button5))
@@ -608,28 +565,108 @@ public partial class Controller : MonoBehaviour
         return false;
     }
 
+
+
+
+
+
+
+
+
+
+
+    void OLDAwake()
+    {
+
+        //if (Instance == null) Instance = this;
+        //DontDestroyOnLoad(this);
+        //SceneManager.LoadScene(PlayerPrefs.GetInt("MainScene"));
+        //if (!Testing)
+        //{
+        //    if (!ArduinoController.Instance)
+        //    {
+        //        SceneManager.LoadScene("Arduino Controller");
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        ArduinoController.commandsCount = commandsCount; // 設定本專案單次接收Unity訊息的數量
+        //        ArduinoController.msgQueueCombine = true;
+        //        msgBox = ArduinoController.Instance.msgBox;
+        //    }
+
+        //    if (Instance == null) Instance = this;
+        //    DontDestroyOnLoad(this);
+        //    SceneManager.LoadScene(PlayerPrefs.GetInt("MainScene"));
+        //}
+        //else
+        //{
+        //    if (!ArduinoController.Instance)
+        //    {
+        //        PlayerPrefs.SetInt("MainScene", SceneManager.GetActiveScene().buildIndex);
+        //        SceneManager.LoadScene("Arduino Controller");
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        ArduinoController.commandsCount = commandsCount; // 設定本專案單次接收Unity訊息的數量
+        //        ArduinoController.msgQueueCombine = true;
+        //        msgBox = ArduinoController.Instance.msgBox;
+        //    }
+
+        //    if (Instance == null) Instance = this;
+        //}
+
+        //showFPS = PlayerPrefs.GetInt("Open FPS") == 1 ? true : false;
+        //toggleFPS.isOn = showFPS;
+
+        //// Initialize
+        //int loadType = PlayerPrefs.GetInt("saveType");
+        //int loadMode = PlayerPrefs.GetInt("saveMode");
+        //int loadHands = PlayerPrefs.GetInt("saveHands");
+        //controllerType = (ControllerType)loadType;
+        //panelHotkey.SetActive(false);
+
+        //// Old
+        //type = groupType.GetComponentsInChildren<Toggle>();
+        //type[loadType].isOn = true;
+        //mode = groupMode.GetComponentsInChildren<Toggle>();
+        //mode[loadMode].isOn = true;
+        //hands = groupHands.GetComponentsInChildren<Toggle>();
+        //hands[loadHands].isOn = true;
+        //panelSetting.SetActive(false);
+
+        //values = (int[])System.Enum.GetValues(typeof(KeyCode));
+        ////InitializeHotkey();
+        //// Xbox 360 Setting
+        //InitializeXbox360Setting();
+    }
+
+
 }
 
 
 
 public enum ControllerType
 {
-    MouseAndKeyboard = 1,
-    XboxJoystick = 2,
-    WakakaFlyingMode = 3,
+    MouseKeyboard = 0,
+    Xbox360 = 1,
+    WakakaFlyingMode = 2,
 }
 public enum ControlMode
 {
-    General = 1,
-    Flying = 2,
-    Driving = 3,
-    Custom = 4,
+    Disable = -1,
+    General = 0,
+    Flying = 1,
+    Driving = 2,
+    Custom = 3,
+    Xbox360 = 10,
 }
 public enum ControlHands
 {
-    AmericanHands = 1,
-    JapaneseHands = 2,
-    ChineseHands = 3,
+    AmericanHands = 0,
+    JapaneseHands = 1,
+    ChineseHands = 2,
 }
 
 public static class MouseLock
@@ -652,3 +689,17 @@ public static class MouseLock
         }
     }
 }
+
+public class AxisData
+{
+    public float Value;
+    public AxisButton Plus;
+    public AxisButton Minus;
+}
+
+public class AxisButton
+{
+    public bool Pressed;
+    public int Keycode;
+}
+

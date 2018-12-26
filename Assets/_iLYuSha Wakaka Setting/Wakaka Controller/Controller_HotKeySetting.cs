@@ -12,6 +12,66 @@ using UnityEngine.UI;
 
 public partial class Controller : MonoBehaviour
 {
+    // Key Setting - Lobby
+    public static readonly KeyCode KEY_Operation = KeyCode.F1;
+    public static readonly KeyCode KEYBOARD_Operation = KeyCode.O;
+    public static readonly KeyCode XBOX360_Operation = KeyCode.Joystick1Button1; // B Button
+    public static readonly KeyCode KEY_Hangar = KeyCode.F3;
+    public static readonly KeyCode KEYBOARD_Hangar = KeyCode.H;
+    public static readonly KeyCode XBOX360_Hangar = KeyCode.Joystick1Button3; // Y Button
+    public static readonly KeyCode KEY_Hotkey = KeyCode.F5;
+    public static readonly KeyCode KEYBOARD_Hotkey = KeyCode.K;
+    public static readonly KeyCode XBOX360_Hotkey = KeyCode.Joystick1Button2; // X Button
+    public static readonly KeyCode KEY_Quit = KeyCode.Escape;
+    public static readonly KeyCode KEYBOARD_Quit = KeyCode.Q;
+    public static readonly KeyCode XBOX360_Quit = KeyCode.Joystick1Button0; // Back Button
+    // Key Setting - Hangar
+    public static readonly KeyCode KEY_PreviousHangar = KeyCode.Keypad4;
+    public static readonly KeyCode KEY_NextHangar = KeyCode.Keypad6;
+    public static readonly KeyCode KEYBOARD_Panel = KeyCode.P;
+    public static readonly KeyCode XBOX360_Panel = KeyCode.Joystick1Button3; // Y Button
+    public static readonly KeyCode KEYBOARD_Vocal = KeyCode.Space;
+    public static readonly KeyCode XBOX360_Vocal = KeyCode.Joystick1Button2; // X Button
+    // Key Setting - Operation
+    public static readonly KeyCode KEY_WhoAttackU = KeyCode.F2;
+    public static readonly KeyCode XBOX360_WhoAttackU = KeyCode.Joystick1Button2; // X Button
+    public static readonly KeyCode KEY_Respawn = KeyCode.F3;
+    public static readonly KeyCode XBOX360_Respawn = KeyCode.Joystick1Button3; // Y Button
+    public static readonly KeyCode KEY_PreviousKocmocraft = KeyCode.Keypad4;
+    public static readonly KeyCode KEY_NextKocmocraft = KeyCode.Keypad6;
+    // Key Setting - Kocmocraft
+    public static KeyCode KEYBOARD_CockpitView; // C
+    public static KeyCode XBOX360_CockpitView; // A Button
+    public static KeyCode KEYBOARD_Afterburner; // Left Shift
+    public static KeyCode XBOX360_Afterburner; // X Button
+    public static KeyCode KEYBOARD_LockOn; // R
+    public static KeyCode XBOX360_LockOn; // B Button
+    // Key Setting - Weapon
+    public static readonly KeyCode KEYBOARD_Laser; // Left Mouse Button
+    public static readonly KeyCode KEYBOARD_Rocket; // Space
+    public static readonly KeyCode KEYBOARD_Missile; // Right Mouse Button
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     [Header("Hotkey - Mouse Keyboard")]
     public Toggle tabMouseKeyboard;
     public GameObject panelMouseKeyboard;
@@ -30,20 +90,20 @@ public partial class Controller : MonoBehaviour
     {
         tabMouseKeyboard.onValueChanged.AddListener(isOn => { panelMouseKeyboard.SetActive(isOn); });
 
-        LoadHotkeySetting("KEYBOARD_Operation", ref KEYBOARD_Operation, KeyCode.O);
-        LoadHotkeySetting("KEYBOARD_Hangar", ref KEYBOARD_Hangar, KeyCode.H);
-        LoadHotkeySetting("KEYBOARD_Vocal", ref KEYBOARD_Vocal, KeyCode.Space);
-        LoadHotkeySetting("KEYBOARD_WhoAttackU", ref KEYBOARD_WhoAttackU, KeyCode.Return); // Enter
-        LoadHotkeySetting("KEYBOARD_Respawn", ref KEYBOARD_Respawn, KeyCode.K);
-        LoadHotkeySetting("KEYBOARD_CockpitView", ref KEYBOARD_CockpitView, KeyCode.C);
-        LoadHotkeySetting("XBOX360_WhoAttackU", ref XBOX360_WhoAttackU, KeyCode.Joystick1Button2); // X Button
-        LoadHotkeySetting("XBOX360_Respawn", ref XBOX360_Respawn, KeyCode.Joystick1Button3); // Y Button
-        LoadHotkeySetting("XBOX360_CockpitView", ref XBOX360_CockpitView, KeyCode.Joystick1Button0); // A Button
-        LoadHotkeySetting("KEYBOARD_Afterburner", ref KEYBOARD_ActiveAfterburner, KeyCode.LeftShift);
-        LoadHotkeySetting("KEYBOARD_LockOn", ref KEYBOARD_LockOn, KeyCode.R);
-        LoadHotkeySetting("KEYBOARD_Laser", ref KEYBOARD_Laser, KeyCode.Mouse0);
-        LoadHotkeySetting("KEYBOARD_Rocket", ref KEYBOARD_Rocket, KeyCode.Space);
-        LoadHotkeySetting("KEYBOARD_Missile", ref KEYBOARD_Missile, KeyCode.Mouse1);
+        //LoadHotkeySetting("KEYBOARD_Operation", ref KEYBOARD_Operation, KeyCode.O);
+        //LoadHotkeySetting("KEYBOARD_Hangar", ref KEYBOARD_Hangar, KeyCode.H);
+        //LoadHotkeySetting("KEYBOARD_Vocal", ref KEYBOARD_Vocal, KeyCode.Space);
+        //LoadHotkeySetting("KEYBOARD_WhoAttackU", ref KEYBOARD_WhoAttackU, KeyCode.Return); // Enter
+        //LoadHotkeySetting("KEYBOARD_Respawn", ref KEYBOARD_Respawn, KeyCode.K);
+        //LoadHotkeySetting("KEYBOARD_CockpitView", ref KEYBOARD_CockpitView, KeyCode.C);
+        //LoadHotkeySetting("XBOX360_WhoAttackU", ref XBOX360_WhoAttackU, KeyCode.Joystick1Button2); // X Button
+        //LoadHotkeySetting("XBOX360_Respawn", ref XBOX360_Respawn, KeyCode.Joystick1Button3); // Y Button
+        //LoadHotkeySetting("XBOX360_CockpitView", ref XBOX360_CockpitView, KeyCode.Joystick1Button0); // A Button
+        //LoadHotkeySetting("KEYBOARD_Afterburner", ref KEYBOARD_ActiveAfterburner, KeyCode.LeftShift);
+        //LoadHotkeySetting("KEYBOARD_LockOn", ref KEYBOARD_LockOn, KeyCode.R);
+        //LoadHotkeySetting("KEYBOARD_Laser", ref KEYBOARD_Laser, KeyCode.Mouse0);
+        //LoadHotkeySetting("KEYBOARD_Rocket", ref KEYBOARD_Rocket, KeyCode.Space);
+        //LoadHotkeySetting("KEYBOARD_Missile", ref KEYBOARD_Missile, KeyCode.Mouse1);
 
         hotkeyMouseKeyboard = tabMouseKeyboard.GetComponentsInChildren<Toggle>();
         int count = hotkeyMouseKeyboard.Length;
@@ -60,12 +120,12 @@ public partial class Controller : MonoBehaviour
                     activeHotkey = hotkey;
                     activeHotkeyName = hotkey.GetComponentInChildren<TextMeshProUGUI>();
                     activeFunctionName = hotkey.name;
-                    state = PanelState.HotkeyInput;
+                    //state = PanelState.HotkeyInput;
                     Debug.LogWarning("On");
                 }
                 else
                 {
-                    state = PanelState.Ready;
+                    //state = PanelState.Ready;
                     Debug.LogWarning("Off");
                 }
             });
@@ -173,51 +233,5 @@ public partial class Controller : MonoBehaviour
     }
 
 
-    // Key Setting - Lobby
-    public static readonly KeyCode KEY_Operation = KeyCode.F1;
-    public static readonly KeyCode KEY_Hangar = KeyCode.F3;
-    public static readonly KeyCode KEY_Hotkey = KeyCode.F5;
-    public static KeyCode KEYBOARD_Operation; // O
-    public static KeyCode KEYBOARD_Hangar; // H
-    public static readonly KeyCode XBOX360_Operation = KeyCode.Joystick1Button2; // X Button
-    public static readonly KeyCode XBOX360_Hangar = KeyCode.Joystick1Button3; // Y Button
-    // Key Setting - Hangar
-    public static readonly KeyCode KEY_PreviousHangar_0 = KeyCode.LeftArrow;
-    public static readonly KeyCode KEY_NextHangar_0 = KeyCode.RightArrow;
-    public static readonly KeyCode KEY_PreviousData_0 = KeyCode.UpArrow;
-    public static readonly KeyCode KEY_NextData_0 = KeyCode.DownArrow;
-    public static readonly KeyCode KEY_PreviousHangar_1 = KeyCode.A;
-    public static readonly KeyCode KEY_NextHangar_1 = KeyCode.D;
-    public static readonly KeyCode KEY_PreviousData_1 = KeyCode.W;
-    public static readonly KeyCode KEY_NextData_1 = KeyCode.S;
-    public static KeyCode KEYBOARD_Vocal; // Space
-    public static readonly KeyCode XBOX360_Vocal = KeyCode.Joystick1Button7; // Start Button
-    // Key Setting - Operation
-    public static readonly KeyCode KEY_WhoAttackU = KeyCode.F2;
-    public static readonly KeyCode KEY_Respawn = KeyCode.F3;
-    public static readonly KeyCode KEY_PreviousKocmocraft_0 = KeyCode.LeftArrow;
-    public static readonly KeyCode KEY_NextKocmocraft_0 = KeyCode.RightArrow;
-    public static readonly KeyCode KEY_PreviousKocmocraft_1 = KeyCode.A;
-    public static readonly KeyCode KEY_NextKocmocraft_1 = KeyCode.D;
-    public static KeyCode KEYBOARD_WhoAttackU; // Enter
-    public static KeyCode KEYBOARD_Respawn; // K
-    public static KeyCode KEYBOARD_CockpitView; // C
-    public static KeyCode XBOX360_WhoAttackU; // X Button
-    public static KeyCode XBOX360_Respawn; // Y Button
-    public static KeyCode XBOX360_CockpitView; // A Button
-    // Key Setting - Kocmocraft
-    public static KeyCode KEYBOARD_ActiveAfterburner; // Left Shift
-    public static KeyCode KEYBOARD_LockOn; // R
-    public static KeyCode KEYBOARD_Laser; // Left Mouse Button
-    public static KeyCode KEYBOARD_Rocket; // Space
-    public static KeyCode KEYBOARD_Missile; // Right Mouse Button
 
-
-
-
-    public static KeyCode WAKAKA_ActiveAfterburner; // Thrust Lever Thumb
-    public static KeyCode WAKAKA_LockOn; // Thrust Lever Middle
-    public static KeyCode WAKAKA_Laser; // Joystick Thumb
-    public static KeyCode WAKAKA_Rocket; // Thrust Lever Index
-    public static KeyCode WAKAKA_Missile; // Joystick Index
 }

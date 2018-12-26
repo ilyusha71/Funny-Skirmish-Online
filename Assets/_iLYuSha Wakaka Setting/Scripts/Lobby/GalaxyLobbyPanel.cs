@@ -26,7 +26,6 @@ namespace Kocmoca
         [Header("Login Panel")]
         public GameObject LoginPanel;
         public TMP_InputField PlayerNameInput;
-        public bool inHangar;
         private readonly string connectionStatusMessage = "    Connection Status: ";
 
         [Header("Selection Panel")]
@@ -82,20 +81,24 @@ namespace Kocmoca
         {
             if (!PhotonNetwork.IsConnected)
             {
-                FindObjectOfType<DynamicCameraUI>().VisitLogin();
                 PhotonNetwork.NetworkingClient.AppId = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime;
                 PhotonNetwork.NetworkingClient.AddCallbackTarget(this);
                 PhotonNetwork.NetworkingClient.ConnectToNameServer();
             }
+            Invoke("Opening", 1.0f);
+        }
+
+        void Opening()
+        {
+            if (!PhotonNetwork.IsConnected)
+                FindObjectOfType<DynamicCameraUI>().VisitLogin();
             else
-            {
                 FindObjectOfType<DynamicCameraUI>().VisitLobby();
-            }
         }
 
         private void Update()
         {
-            ConnectionStatusText.text = inHangar ? "" : connectionStatusMessage + PhotonNetwork.NetworkClientState;
+            ConnectionStatusText.text = connectionStatusMessage + PhotonNetwork.NetworkClientState;
 
             if (showRegion)
             {

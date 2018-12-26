@@ -11,6 +11,52 @@ using UnityEngine.UI;
 
 public partial class Controller : MonoBehaviour
 {
+    private static readonly float XBox360AxisSensitivity = 0.7f;
+
+    public static void UseXbox360()
+    {
+        controllerType = ControllerType.Xbox360;
+        PlayerPrefs.SetInt(PREFS_CONTROLLER_TYPE, (int)controllerType);
+    }
+
+    private void Xbox360AxisInput()
+    {
+        controlValue[0] = Input.GetAxis("Xbox360 Horizontal"); // 右搖桿水平軸，需要額外在Input Manager設定
+        controlValue[1] = Input.GetAxis("Xbox360 Vertical"); // 右搖桿垂直軸，需要額外在Input Manager設定
+        controlValue[2] = Input.GetAxis("Horizontal"); // 左搖桿水平軸，直接映射左右方向鍵（Xbox360原始設定）
+        controlValue[3] = Input.GetAxis("Vertical"); // 左搖桿垂直軸，直接映射上下方向鍵（Xbox360原始設定）
+
+        // 飛行輸入值
+        roll = Mathf.Clamp(controlValue[indexRoll] * XBox360AxisSensitivity, -1, 1);
+        pitch = Mathf.Clamp(controlValue[indexPitch] * XBox360AxisSensitivity, -1, 1);
+        yaw = Mathf.Clamp(controlValue[indexYaw] * XBox360AxisSensitivity, -1, 1);
+        throttle = Mathf.Clamp(controlValue[indexThrotte] * XBox360AxisSensitivity, -1, 1);
+
+        axisLevel = 0.7f;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private int[] values;
     private int[] keysXbox360 = new int[10];
     [Header("Xbox 360 Setting")]
@@ -44,7 +90,7 @@ public partial class Controller : MonoBehaviour
             keysXbox360[indexXbox360Button] = PlayerPrefs.GetInt(Xbox360_Keyboard[indexXbox360Button]);
             textKeyName[indexXbox360Button].text = inputKeyName;
             toggleXboxButton[indexXbox360Button].isOn = false;
-            state = PanelState.Ready;
+            //state = PanelState.Ready;
         }
     }
 

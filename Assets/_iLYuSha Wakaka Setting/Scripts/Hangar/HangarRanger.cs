@@ -144,6 +144,7 @@ namespace Kocmoca
 
         private void Start()
         {
+            Controller.controlMode = ControlMode.General;
             mask.DOFade(0, 3.37f);
             hangarState = TweenerState.Moving;
             hangarRailY.DOLocalRotate(hangarIndex < hangarHalfCount ? new Vector3(0, 153, 0) : new Vector3(0, -153, 0), 3.37f);
@@ -163,12 +164,12 @@ namespace Kocmoca
             if (Input.GetKeyDown(KeyCode.Escape))
                 SceneManager.LoadScene("New Galaxy Lobby");
 
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(Controller.KEY_NextHangar))
             {
                 hangarIndex = (int)Mathf.Repeat(++hangarIndex, hangarCenter.Length);
                 MoveHangarRail();
             }
-            else if (Input.GetKeyDown(KeyCode.A))
+            else if (Input.GetKeyDown(Controller.KEY_PreviousHangar))
             {
                 hangarIndex = (int)Mathf.Repeat(--hangarIndex, hangarCenter.Length);
                 MoveHangarRail();
@@ -180,17 +181,23 @@ namespace Kocmoca
             if (hangarState == TweenerState.Ready)
             {
                 hangarCanvas.alpha = 1.0f;
-                if (Input.GetKeyDown(KeyCode.J))
-                    OpenPanel();
-                if (Input.GetKeyDown(KeyCode.K))
-                    HidePanel();
+                if (Input.GetKeyDown(Controller.KEYBOARD_Panel) || Input.GetKeyDown(Controller.XBOX360_Panel))
+                {
+                    if (panelState == TweenerState.Hide)
+                        OpenPanel();
+                    else if (panelState == TweenerState.Open)
+                        HidePanel();
+                    else
+                        return;
+                }
+                   
                 if (Input.GetKey(KeyCode.Mouse1))
                 {
                     hangarCanvas.alpha = 0;
                     hangarRailY.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * 2, 0);
                     hangarRailX.rotation *= Quaternion.Euler(-Input.GetAxis("Mouse Y") * 2, 0, 0);
-                    hangarRailX.eulerAngles = new Vector3(Mathf.Clamp(hangarRailX.rotation.eulerAngles.x, 60, 120), hangarRailX.rotation.eulerAngles.y, hangarRailX.rotation.eulerAngles.z);
                 }
+                hangarRailX.eulerAngles = new Vector3(Mathf.Clamp(hangarRailX.rotation.eulerAngles.x, 60, 120), hangarRailX.rotation.eulerAngles.y, hangarRailX.rotation.eulerAngles.z);
                 hangarCamera.localPosition = Vector3.Lerp(hangarCamera.localPosition, hangarCamera.localPosition + new Vector3(0, 0, 10 * Input.GetAxis("Mouse ScrollWheel")), 0.5f);
                 hangarCamera.localPosition = new Vector3(hangarCamera.localPosition.x, hangarCamera.localPosition.y, Mathf.Clamp(hangarCamera.localPosition.z, -20, -5));
             }
@@ -281,7 +288,6 @@ namespace Kocmoca
 
         public void OpenPanel()
         {
-            if (panelState != TweenerState.Hide) return;
             blockInfo.DOKill();
             blockHangar.DOKill();
             blockKocmocraft.DOKill();
@@ -296,7 +302,6 @@ namespace Kocmoca
 
         public void HidePanel()
         {
-            if (panelState != TweenerState.Open) return;
             blockInfo.DOKill();
             blockHangar.DOKill();
             blockKocmocraft.DOKill();
