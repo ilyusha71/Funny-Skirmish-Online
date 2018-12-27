@@ -7931,7 +7931,7 @@ Transform:
   m_Children:
   - {fileID: 1450142544}
   m_Father: {fileID: 937960343}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 44.5, z: 0}
 --- !u!4 &506069781
 Transform:
@@ -12001,7 +12001,7 @@ Transform:
   - {fileID: 50989369}
   - {fileID: 1773402022}
   m_Father: {fileID: 937960343}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &797316026
 PrefabInstance:
@@ -14009,8 +14009,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 2, z: -360}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 796468320}
   - {fileID: 498807760}
+  - {fileID: 796468320}
   - {fileID: 1106909469}
   - {fileID: 1707366415}
   - {fileID: 795411}
@@ -14119,9 +14119,9 @@ AudioSource:
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 1
-  BypassListenerEffects: 1
-  BypassReverbZones: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -27743,7 +27743,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 600, y: 128}
+  m_AnchoredPosition: {x: 600.00006, y: 128}
   m_SizeDelta: {x: 576, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1860333301

@@ -7,6 +7,14 @@ using UnityEngine.SceneManagement;
 
 namespace Kocmoca
 {
+    public enum HangarState
+    {
+        Portal = 0,
+        Ready,
+        Moving,
+        Open,
+        Hide,
+    }
     public enum TweenerState
     {
         Ready,
@@ -67,7 +75,7 @@ namespace Kocmoca
         public Camera cameraSide;
         public Camera cameraFront;
         private BoxCollider[] prototype;
-        private TweenerState hangarState = TweenerState.Hide;
+        private HangarState hangarState = HangarState.Portal;
         private int hangarIndex;
         private int hangarMax = 18;
         [Header("Billboard")]
@@ -84,6 +92,7 @@ namespace Kocmoca
         public AudioClip sfxOpen;
         public AudioClip sfxHide;
         private TweenerState panelState = TweenerState.Hide;
+        private readonly WaitForSeconds delay = new WaitForSeconds(0.137f);
         [Header("Info")]
         public Image imageFrame;
         public Image imageButton;
@@ -145,14 +154,14 @@ namespace Kocmoca
         private void EnterHangar()
         {
             Controller.controlMode = ControlMode.General;
-            hangarState = TweenerState.Moving;
+            hangarState = HangarState.Moving;
             hangarRailY.DOLocalRotate(hangarIndex < hangarHalfCount ? new Vector3(0, 153, 0) : new Vector3(0, -153, 0), 3.37f);
             hangarRailX.DOLocalRotate(new Vector3(71, 0, 0), 3.37f);
             hangarCamera.DOLocalMove(new Vector3(0, 0, -13.7f), 3.37f);
             hangarRailMain.DORotateQuaternion(prototype[hangarIndex].transform.rotation, 3.37f);
             hangarRailMain.DOMove(prototype[hangarIndex].transform.position, 3.37f).OnComplete(() =>
             {
-                hangarState = TweenerState.Ready;
+                hangarState = HangarState.Ready;
                 billboard.localPosition = billboardPos;
                 LoadHangarData();
             });
@@ -162,11 +171,13 @@ namespace Kocmoca
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                hangarState = HangarState.Portal;
+                hangarCanvas.alpha = 0;
                 Portal.Ending();
                 Invoke("BackLobby", 2.0f);
             }
 
-            if (hangarState == TweenerState.Hide) return;
+            if (hangarState == HangarState.Portal) return;
 
             if (Input.GetKeyDown(Controller.KEY_NextHangar))
             {
@@ -182,7 +193,7 @@ namespace Kocmoca
             billboard.LookAt(hangarCamera);
             billboard.eulerAngles = new Vector3(0, billboard.eulerAngles.y, 0);
 
-            if (hangarState == TweenerState.Ready)
+            if (hangarState == HangarState.Ready)
             {
                 hangarCanvas.alpha = 1.0f;
                 if (Input.GetKeyDown(Controller.KEYBOARD_Panel) || Input.GetKeyDown(Controller.XBOX360_Panel))
@@ -212,11 +223,11 @@ namespace Kocmoca
             billboard.localPosition = billboardHide;
             hangarCanvas.alpha = 0.0f;
             hangarRailMain.DOKill();
-            hangarState = TweenerState.Moving;
+            hangarState = HangarState.Moving;
             hangarRailMain.DORotateQuaternion(prototype[hangarIndex].transform.rotation, 0.73f);
             hangarRailMain.DOMove(prototype[hangarIndex].transform.position, 0.73f).OnComplete(() =>
             {
-                hangarState = TweenerState.Ready;
+                hangarState = HangarState.Ready;
                 if (hangarIndex < 20)
                     PlayerPrefs.SetInt(LobbyInfomation.PREFS_TYPE, hangarIndex);
                 billboard.localPosition = billboardPos;
@@ -317,7 +328,7 @@ namespace Kocmoca
             blockKocmocraft.DOLocalMoveY(-128, 0.37f);
             blockData.DOLocalMoveY(-128, 0.37f).OnComplete(() => { panelState = TweenerState.Hide; });
         }
-        readonly WaitForSeconds delay = new WaitForSeconds(0.137f);
+
         IEnumerator Animation()
         {
             blockKocmocraft.DOLocalMoveY(128, 1.0f).SetEase(Ease.OutElastic);

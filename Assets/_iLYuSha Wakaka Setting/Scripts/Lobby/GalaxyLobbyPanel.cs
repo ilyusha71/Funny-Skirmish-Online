@@ -9,7 +9,7 @@ using DG.Tweening;
 
 namespace Kocmoca
 {
-    public enum MainState
+    public enum LobbyState
     {
         Portal = 0,
         Moving,
@@ -23,7 +23,7 @@ namespace Kocmoca
     }
     public partial class GalaxyLobbyPanel : MonoBehaviourPunCallbacks
     {
-        public MainState State = MainState.Portal;
+        public LobbyState State = LobbyState.Portal;
 
         [Header("External Scripts")]
         public PortalController Portal;
@@ -101,7 +101,7 @@ namespace Kocmoca
 
         void Connect()
         {
-            State = MainState.Moving;
+            State = LobbyState.Moving;
             if (!PhotonNetwork.IsConnected)
             {
                 PhotonNetwork.NetworkingClient.AppId = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime;
@@ -165,7 +165,7 @@ namespace Kocmoca
                 showRegion = false;
             }
 
-            if (State == MainState.Portal) return;
+            if (State == LobbyState.Portal) return;
             Command();
         }
 

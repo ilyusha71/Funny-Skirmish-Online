@@ -29,20 +29,16 @@ namespace Kocmoca
         public void OnHoverExhibition()
         {
             platformAxis.localRotation *= Quaternion.Euler(0,180,0);
-            //exhibitionPlatform[0].SetActive(false);
-            //exhibitionPlatform[1].SetActive(true);
         }
 
         public void OnExitExhibition()
         {
             platformAxis.localRotation = Quaternion.identity;
-            //exhibitionPlatform[0].SetActive(true);
-            //exhibitionPlatform[1].SetActive(false);
         }
 
         public void OnHangarButtonClicked()
         {
-            State = MainState.Portal;
+            State = LobbyState.Portal;
             Portal.Ending();
             Invoke("LoadHangarScene", 2.0f);
         }

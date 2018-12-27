@@ -47,9 +47,9 @@ public partial class Controller : MonoBehaviour
     public static KeyCode KEYBOARD_LockOn; // R
     public static KeyCode XBOX360_LockOn; // B Button
     // Key Setting - Weapon
-    public static readonly KeyCode KEYBOARD_Laser; // Left Mouse Button
-    public static readonly KeyCode KEYBOARD_Rocket; // Space
-    public static readonly KeyCode KEYBOARD_Missile; // Right Mouse Button
+    public static readonly KeyCode KEYBOARD_Laser = KeyCode.Mouse0; // Left Mouse Button
+    public static readonly KeyCode KEYBOARD_Rocket = KeyCode.Space; // Space
+    public static readonly KeyCode KEYBOARD_Missile = KeyCode.Mouse1; // Right Mouse Button
 
 
 

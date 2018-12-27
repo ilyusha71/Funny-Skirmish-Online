@@ -52,7 +52,7 @@ namespace Kocmoca
 
     public class DynamicDisplay : MonoBehaviour
     {
-        public MainState state = MainState.Login;
+        public LobbyState state = LobbyState.Login;
         public CanvasGroup OpeningCanvas;
         [Header("Camera")]
         public Transform pointLogin;
@@ -216,7 +216,7 @@ namespace Kocmoca
             mainCamera.DOLookAt(pointLogin.TransformPoint(new Vector3(0, 0, 1)), timeCameraMoving * 2);
             mainCamera.DORotate(pointLogin.rotation.eulerAngles, timeCameraMoving * 2).OnComplete(() =>
             {
-                state = MainState.Login;
+                state = LobbyState.Login;
                 mainPanel.SetActivePanel("LoginPanel");
                 StartCoroutine(FindObjectOfType<AnimationTween>().Play());
             });
@@ -230,7 +230,7 @@ namespace Kocmoca
             Exhibition();
             mainCamera.DOMove(pointLobby.position, timeCameraMoving).OnComplete(() =>
             {
-                state = MainState.Lobby;
+                state = LobbyState.Lobby;
                 mainPanel.SetActivePanel("SelectionPanel");
                 doraraHand.DOLocalMove(posDoraraHand.Show, posDoraraHand.Interval);
             });
@@ -273,7 +273,7 @@ namespace Kocmoca
         }
         void OnCameraMove()
         {
-            state = MainState.Moving;
+            state = LobbyState.Moving;
             doraraHand.DOLocalMove(posDoraraHand.Ready, posDoraraHand.Interval);
             ResetDisplay();
         }
@@ -290,7 +290,7 @@ namespace Kocmoca
             //    SceneManager.LoadScene(LobbyInfomation.SCENE_LOBBY);
             //if (Input.GetKeyDown(KeyCode.N))
             //    mainPanel.SetActivePanel("CreateRoomPanel");
-            if (state == MainState.Lobby)
+            if (state == LobbyState.Lobby)
             {
                 if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Joystick1Button6))
                     mainPanel.OnEscapeButtonClicked();
@@ -303,7 +303,7 @@ namespace Kocmoca
                     Input.GetKeyDown(Controller.XBOX360_Operation))
                     mainPanel.OnJoinRandomRoomButtonClicked();
             }
-            else if (state == MainState.Hangar)
+            else if (state == LobbyState.Hangar)
             {
                 //if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Joystick1Button6))
                 //    VisitLobby();
