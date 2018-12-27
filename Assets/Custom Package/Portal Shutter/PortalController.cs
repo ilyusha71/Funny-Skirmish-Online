@@ -44,7 +44,7 @@ public class PortalController : MonoBehaviour
         sfx = GetComponent<AudioSource>();
         countBlade = blades.Length;
         openPosition = blades[0].transform.localPosition.x;
-        closePosition = openPosition + blades[0].GetComponent<RectTransform>().rect.width * 2;
+        closePosition = openPosition + 300;
         clipName = Portal.clip.name;
         Portal[clipName].speed = 0.7f;
         PrimaryRing[clipName].speed = 0.1f;

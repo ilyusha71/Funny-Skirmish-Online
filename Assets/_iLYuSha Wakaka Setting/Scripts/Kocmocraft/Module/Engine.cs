@@ -33,7 +33,7 @@ namespace Kocmoca
         }
         [Range(0,1)]public float enginePower = 0.5f;
         private AudioSource engineSound;
-        [SerializeField]private EngineType engineType;
+        [SerializeField]private EngineType engineType= EngineType.IonThruster;
         private float engineMaxVolume;
         private float engineMinThrottlePitch;
         private float engineMaxThrottlePitch;

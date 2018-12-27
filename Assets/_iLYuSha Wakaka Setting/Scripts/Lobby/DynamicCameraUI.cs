@@ -44,50 +44,18 @@ namespace Kocmoca
         public Transform displayLeftReady;
         public Transform displayRightReady;
         [Header("Display Control")]
-        private float timeDisplayDropDown = 0.137f;
-        private float timeBlockTypeDown = 0.37f;
-        private float timeSwitchBlock = 7.93f;
-        private float timeOpenData = 0.137f;
+        //private float timeDisplayDropDown = 0.137f;
+        //private float timeBlockTypeDown = 0.37f;
+        //private float timeSwitchBlock = 7.93f;
+        //private float timeOpenData = 0.137f;
         private bool isMovingCamera;
         private bool allowShowData;
-        private int indexAvailable = 16; // 可使用的宇航機編號
+        //private int indexAvailable = 16; // 可使用的宇航機編號
         private float nextBlockTime;
 
         public DynamicUIState uiState = DynamicUIState.Hangar;
         public DisplayContent currentContent = DisplayContent.Kocmocraft;
-
-
-
-        [Header("Aircraft Type")]
-        public Transform blockType;
-        private TextMeshProUGUI textType;
-        private Vector3 relativePosType;
-        private Vector3 readyPosType;
-        [Header("Data")]
-        public Transform[] blockKocmocraft;
-        public Transform[] blockWeapon;
-        public Transform[] blockRadar;
-        private TextMeshProUGUI[] textKocmocraft;
-        private TextMeshProUGUI[] textWeapon;
-        private TextMeshProUGUI[] textRadar;
-        private DisplayData dataKocmocraft = new DisplayData();
-        private DisplayData dataWeapon = new DisplayData();
-        private DisplayData datatRadar = new DisplayData();
-        [Header("Control")]
-
-
-        public GameObject[] apron;
-        public Transform[] point;
-        int max;
         int now;
-
-        [Header("起飛語音")]
-        public AudioClip[] voiceTakeOff;
-        //bool enterFlag;
-        [Header("起飛鏡頭")]
-        public Transform[] camPoint;
-        public Transform[] takeOffAircraft;
-        public CanvasGroup mask;
         public AudioClip BGMTakeOff;
 
         void Awake()

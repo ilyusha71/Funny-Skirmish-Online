@@ -80,14 +80,14 @@ public partial class Controller : MonoBehaviour
     private static int indexRoll=0, indexPitch=1, indexYaw=2, indexThrotte=3; // 飛行控制慣用手索引
 
 
-    [Header("Old Setting")]
-    public GameObject panelSetting;
-    public GameObject groupType;
-    public GameObject groupMode;
-    public GameObject groupHands;
-    private static Toggle[] type;
-    private static Toggle[] mode;
-    private static Toggle[] hands;
+    //[Header("Old Setting")]
+    //public GameObject panelSetting;
+    //public GameObject groupType;
+    //public GameObject groupMode;
+    //public GameObject groupHands;
+    //private static Toggle[] type;
+    //private static Toggle[] mode;
+    //private static Toggle[] hands;
 
     static Controller()
     {
@@ -183,19 +183,9 @@ public partial class Controller : MonoBehaviour
     private void AxisButtonClickEvent()
     {
         // 水平軸映射左右方向鍵點擊事件
-        axisHorizontal.Value = controlValue[2];
-        if (axisHorizontal.Value > 0.01f)
+        if (Math.Abs(axisHorizontal.Value) < Math.Abs(controlValue[2]))
         {
-            axisHorizontal.Plus.Pressed = true;
-            MappingEvent(axisHorizontal.Plus.Keycode, 0);
-        }
-        else if (axisHorizontal.Value < -0.01f)
-        {
-            axisHorizontal.Minus.Pressed = true;
-            MappingEvent(axisHorizontal.Minus.Keycode, 0);
-        }
-        else
-        {
+            axisHorizontal.Value = controlValue[2];
             if (axisHorizontal.Plus.Pressed)
             {
                 axisHorizontal.Plus.Pressed = false;
@@ -207,15 +197,31 @@ public partial class Controller : MonoBehaviour
                 MappingEvent(axisHorizontal.Minus.Keycode, 2);
             }
         }
+        else
+        {
+            axisHorizontal.Value = controlValue[2];
+            if (axisHorizontal.Value > axisLevel)
+            {
+                axisHorizontal.Plus.Pressed = true;
+                MappingEvent(axisHorizontal.Plus.Keycode, 0);
+            }
+            else if (axisHorizontal.Value < -axisLevel)
+            {
+                axisHorizontal.Minus.Pressed = true;
+                MappingEvent(axisHorizontal.Minus.Keycode, 0);
+            }
+        }
+
+
 
         // 垂直軸映射上下方向鍵點擊事件
         axisVertical.Value = controlValue[3];
-        if (axisVertical.Value > 0.7f)
+        if (axisVertical.Value > axisLevel)
         {
             axisVertical.Plus.Pressed = true;
             MappingEvent(axisVertical.Plus.Keycode, 0);
         }
-        else if (axisVertical.Value < -0.7f)
+        else if (axisVertical.Value < -axisLevel)
         {
             axisVertical.Minus.Pressed = true;
             MappingEvent(axisVertical.Minus.Keycode, 0);
@@ -411,28 +417,28 @@ public partial class Controller : MonoBehaviour
 
 
     /* Auto Setting */
-    public static void ChangeType(ControllerType newType)
-    {
-        type[(int)controllerType].isOn = false;
-        controllerType = newType;
-        PlayerPrefs.SetInt("saveType", (int)controllerType);
-        type[(int)controllerType].isOn = true;
-    }
-    public static void ChangeMode(ControlMode newMode)
-    {
-        mode[(int)controlMode].isOn = false;
-        controlMode = newMode;
-        PlayerPrefs.SetInt("saveMode", (int)controlMode);
-        mode[(int)controlMode].isOn = true;
-    }
-    public static void ChangeHands(ControlHands newHands)
-    {
-        hands[(int)controlHands].isOn = false;
-        controlHands = newHands;
-        PlayerPrefs.SetInt("saveHands", (int)controlHands);
-        hands[(int)controlHands].isOn = true;
-        HandsUpdate();
-    }
+    //public static void ChangeType(ControllerType newType)
+    //{
+    //    type[(int)controllerType].isOn = false;
+    //    controllerType = newType;
+    //    PlayerPrefs.SetInt("saveType", (int)controllerType);
+    //    type[(int)controllerType].isOn = true;
+    //}
+    //public static void ChangeMode(ControlMode newMode)
+    //{
+    //    mode[(int)controlMode].isOn = false;
+    //    controlMode = newMode;
+    //    PlayerPrefs.SetInt("saveMode", (int)controlMode);
+    //    mode[(int)controlMode].isOn = true;
+    //}
+    //public static void ChangeHands(ControlHands newHands)
+    //{
+    //    hands[(int)controlHands].isOn = false;
+    //    controlHands = newHands;
+    //    PlayerPrefs.SetInt("saveHands", (int)controlHands);
+    //    hands[(int)controlHands].isOn = true;
+    //    HandsUpdate();
+    //}
     /* Manual Setting */
     public void ChangeType(Toggle toggle)
     {

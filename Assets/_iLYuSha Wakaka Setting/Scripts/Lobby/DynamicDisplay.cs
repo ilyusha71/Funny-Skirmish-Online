@@ -303,42 +303,40 @@ namespace Kocmoca
                     Input.GetKeyDown(Controller.XBOX360_Operation))
                     mainPanel.OnJoinRandomRoomButtonClicked();
             }
-            //else if (state == MainState.Hangar)
-            //{
-            //    //pointHangarRail.localRotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X"), 0);
-            //    //mainCamera.localRotation *= Quaternion.Euler(Input.GetAxis("Mouse Y"),0, 0);
-            //    if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Joystick1Button6))
-            //        VisitLobby();
-            //    if (Input.GetKeyDown(Controller.KEY_PreviousHangar_0) ||
-            //        Input.GetKeyDown(Controller.KEY_PreviousHangar_1))
-            //        PreviousHangar();
-            //    else if (Input.GetKeyDown(Controller.KEY_NextHangar_0) ||
-            //        Input.GetKeyDown(Controller.KEY_NextHangar_1))
-            //        NextHangar();
-            //    if (Input.GetKeyDown(Controller.KEY_PreviousData_0) ||
-            //        Input.GetKeyDown(Controller.KEY_PreviousData_1))
-            //        PreviousData();
-            //    else if (Input.GetKeyDown(Controller.KEY_NextData_0) ||
-            //        Input.GetKeyDown(Controller.KEY_NextData_1))
-            //        NextData();
-            //    if (Input.GetKeyDown(Controller.Vocal.KeyCode) ||
-            //        Input.GetKeyDown(Controller.XBOX360_Vocal))
-            //        myAudioSource.PlayOneShot(voiceTakeOff[now]);
+            else if (state == MainState.Hangar)
+            {
+                //if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Joystick1Button6))
+                //    VisitLobby();
+                //if (Input.GetKeyDown(Controller.KEY_PreviousHangar_0) ||
+                //    Input.GetKeyDown(Controller.KEY_PreviousHangar_1))
+                //    PreviousHangar();
+                //else if (Input.GetKeyDown(Controller.KEY_NextHangar_0) ||
+                //    Input.GetKeyDown(Controller.KEY_NextHangar_1))
+                //    NextHangar();
+                //if (Input.GetKeyDown(Controller.KEY_PreviousData_0) ||
+                //    Input.GetKeyDown(Controller.KEY_PreviousData_1))
+                //    PreviousData();
+                //else if (Input.GetKeyDown(Controller.KEY_NextData_0) ||
+                //    Input.GetKeyDown(Controller.KEY_NextData_1))
+                //    NextData();
+                //if (Input.GetKeyDown(Controller.Vocal.KeyCode) ||
+                //    Input.GetKeyDown(Controller.XBOX360_Vocal))
+                //    myAudioSource.PlayOneShot(voiceTakeOff[now]);
 
-            //    if (isMovingCamera)
-            //    {
-            //        if (Time.time > timeIntoHangar && isMovingCamera)
-            //        {
-            //            isMovingCamera = false;
-            //            CameraInPlaceCallback();
-            //        }
-            //    }
-            //    if (allowShowData)
-            //    {
-            //        if (Time.time > nextBlockTime)
-            //            NextData();
-            //    }
-            //}
+                if (isMovingCamera)
+                {
+                    if (Time.time > timeIntoHangar && isMovingCamera)
+                    {
+                        isMovingCamera = false;
+                        CameraInPlaceCallback();
+                    }
+                }
+                if (allowShowData)
+                {
+                    if (Time.time > nextBlockTime)
+                        NextData();
+                }
+            }
         }
 
         void NextHangar()
