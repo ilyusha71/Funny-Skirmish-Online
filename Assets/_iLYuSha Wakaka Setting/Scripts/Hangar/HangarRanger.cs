@@ -52,8 +52,10 @@ namespace Kocmoca
     {
         private readonly int hangarMaxCount = 24;
         private readonly int hangarHalfCount = 12;
+        [Header("External Scripts")]
+        public PortalController Portal;
+        [Header("UI")]
         public CanvasGroup hangarCanvas;
-        public CanvasGroup mask;
         private AudioSource SFX;
         [Header("Hangar Rail & Camera")]
         public Transform hangarRailMain;
@@ -65,13 +67,13 @@ namespace Kocmoca
         public Camera cameraSide;
         public Camera cameraFront;
         private BoxCollider[] prototype;
-        private TweenerState hangarState = TweenerState.Ready;
+        private TweenerState hangarState = TweenerState.Hide;
         private int hangarIndex;
         private int hangarMax = 18;
         [Header("Billboard")]
         public Transform billboard;
         private Vector3 billboardPos = new Vector3(-12.972f, 0, 9.289f);
-        private Vector3 billboardHide = new Vector3(0, -100, 0);
+        private Vector3 billboardHide = new Vector3(0, 1000, 0);
         [Header("Panel")]
         public Transform blockInfo;
         public Transform blockHangar;
@@ -111,9 +113,7 @@ namespace Kocmoca
         private SciFiBar barAfterburne;
         [Header("Weapon Data")]
         public TextMeshProUGUI textTurretCount;
-        //private SciFiBar barTurretCount;
         public TextMeshProUGUI textFireRPS;
-        //private SciFiBar barFireRPS;
         public TextMeshProUGUI textDamage;
         private SciFiBar barDamage;
         public TextMeshProUGUI textMaxRange;
@@ -121,7 +121,7 @@ namespace Kocmoca
 
         void Awake()
         {
-            mask.alpha = 1;
+            Portal.OnShutterPressedUp += EnterHangar;
             SFX = GetComponent<AudioSource>();
             prototype = new BoxCollider[hangarMaxCount];
             for (int i = 0; i < hangarMaxCount; i++) { prototype[i] = hangarCenter[i].GetComponentsInChildren<BoxCollider>()[1]; }
@@ -142,10 +142,9 @@ namespace Kocmoca
             barMaxRange.Initialize(textMaxRange.transform.parent.GetComponentsInChildren<Image>(), 955, 1270);
         }
 
-        private void Start()
+        private void EnterHangar()
         {
             Controller.controlMode = ControlMode.General;
-            mask.DOFade(0, 3.37f);
             hangarState = TweenerState.Moving;
             hangarRailY.DOLocalRotate(hangarIndex < hangarHalfCount ? new Vector3(0, 153, 0) : new Vector3(0, -153, 0), 3.37f);
             hangarRailX.DOLocalRotate(new Vector3(71, 0, 0), 3.37f);
@@ -162,7 +161,12 @@ namespace Kocmoca
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
-                SceneManager.LoadScene("New Galaxy Lobby");
+            {
+                Portal.Ending();
+                Invoke("BackLobby", 2.0f);
+            }
+
+            if (hangarState == TweenerState.Hide) return;
 
             if (Input.GetKeyDown(Controller.KEY_NextHangar))
             {
@@ -321,6 +325,11 @@ namespace Kocmoca
             blockHangar.DOLocalMoveY(128, 1.0f).SetEase(Ease.OutElastic);
             yield return delay;
             blockData.DOLocalMoveY(128, 1.0f).SetEase(Ease.OutElastic).OnComplete(() => { panelState = TweenerState.Open; });
+        }
+
+        void BackLobby()
+        {
+            SceneManager.LoadScene(LobbyInfomation.SCENE_LOBBY);
         }
     }
 }

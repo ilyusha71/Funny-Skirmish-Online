@@ -9,8 +9,26 @@ using DG.Tweening;
 
 namespace Kocmoca
 {
-    public class GalaxyLobbyPanel : MonoBehaviourPunCallbacks
+    public enum MainState
     {
+        Portal = 0,
+        Moving,
+        Login,
+        Lobby,
+
+
+        Hangar,
+        Show,
+        newEvent,       
+    }
+    public partial class GalaxyLobbyPanel : MonoBehaviourPunCallbacks
+    {
+        public MainState State = MainState.Portal;
+
+        [Header("External Scripts")]
+        public PortalController Portal;
+        public DynamicCameraUI Lobby;
+
         [Header("Connection Status")]
         public TextMeshProUGUI ConnectionStatusText;
         public TextMeshProUGUI RegionPingText;
@@ -73,30 +91,26 @@ namespace Kocmoca
 
         private void Awake()
         {
+            Portal.OnShutterPressedUp += Connect;
             PhotonNetwork.AutomaticallySyncScene = true;
-
             cachedRoomList = new Dictionary<string, RoomInfo>();
             roomListEntries = new Dictionary<string, GameObject>();
             this.SetActivePanel("Close all panel");
             PlayerNameInput.gameObject.SetActive(false);
         }
 
-        private void Start()
+        void Connect()
         {
-            Invoke("Opening", 1.0f);
-        }
-
-        void Opening()
-        {
+            State = MainState.Moving;
             if (!PhotonNetwork.IsConnected)
             {
                 PhotonNetwork.NetworkingClient.AppId = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime;
                 PhotonNetwork.NetworkingClient.AddCallbackTarget(this);
                 PhotonNetwork.NetworkingClient.ConnectToNameServer();
-                FindObjectOfType<DynamicCameraUI>().VisitLogin();
+                Lobby.VisitLogin();
             }
             else
-                FindObjectOfType<DynamicCameraUI>().VisitLobby();
+                Lobby.VisitLobby();
         }
 
         private void Update()
@@ -151,6 +165,8 @@ namespace Kocmoca
                 showRegion = false;
             }
 
+            if (State == MainState.Portal) return;
+            Command();
         }
 
         private string Number2Scheme(int number)
@@ -167,7 +183,7 @@ namespace Kocmoca
         public override void OnConnectedToMaster()
         {
             this.SetActivePanel("Close all panel");
-            FindObjectOfType<DynamicCameraUI>().VisitLobby();
+            Lobby.VisitLobby();
         }
 
         public override void OnRegionListReceived(RegionHandler regionHandler)
@@ -434,12 +450,6 @@ namespace Kocmoca
 
             if (PhotonNetwork.IsMasterClient)
                 LocalPlayerPropertiesUpdated();
-        }
-
-        public void OnEscapeButtonClicked()
-        {
-            PhotonNetwork.Disconnect();
-            FindObjectOfType<DynamicCameraUI>().VisitLogin();
         }
 
         #endregion

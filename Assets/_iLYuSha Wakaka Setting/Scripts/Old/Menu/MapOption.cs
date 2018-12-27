@@ -7,7 +7,7 @@ namespace AirSupremacy
 {
     public class MapOption : MenuOption
     {
-        private ShutterController shutter;
+        private PortalController shutter;
         bool switchStage;
         bool enterFlag;
 
@@ -28,7 +28,7 @@ namespace AirSupremacy
             toggleOption = GetComponentsInChildren<Toggle>();
             countOption = toggleOption.Length;
             nowOption = PlayerPrefs.GetInt(GeneralInfo.saveMap);
-            shutter = FindObjectOfType<ShutterController>();
+            shutter = FindObjectOfType<PortalController>();
             shutter.OnShutterPressedUp += SwitchOption;
         }
 
@@ -41,12 +41,12 @@ namespace AirSupremacy
         {
             yield return new WaitForSeconds(0.7f);
             switchStage = true;
-            shutter.Shot();
+            //shutter.Shot();
         }
 
         IEnumerator BtnPlay()
         {
-            shutter.Shot();
+            //shutter.Shot();
             yield return new WaitForSeconds(1.7f);
             SceneManager.LoadScene("Aircraft Option");
         }
@@ -90,13 +90,13 @@ namespace AirSupremacy
         {
             nowOption++;
             nowOption = (int)Mathf.Repeat(nowOption, countOption);
-            shutter.Shot();
+            //shutter.Shot();
         }
         override internal void PreviousOption()
         {
             nowOption--;
             nowOption = (int)Mathf.Repeat(nowOption, countOption);
-            shutter.Shot();
+            //shutter.Shot();
         }
         override internal void SwitchOption()
         {

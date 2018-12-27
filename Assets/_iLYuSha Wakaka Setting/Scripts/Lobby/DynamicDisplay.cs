@@ -239,17 +239,11 @@ namespace Kocmoca
         }
         public void VisitHangar()
         {
+            Invoke("LoadHangarScene", 2.0f);
+        }
+        private void LoadHangarScene()
+        {
             SceneManager.LoadScene("New Airport 3");
-            //OnCameraMove();
-            //MouseLock.MouseLocked = true;
-            //now = PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
-            //state = MainState.Hangar;
-            //mainPanel.SetActivePanel("");
-            //mainPanel.inHangar = true;
-            //mainCamera.SetParent(pointHangarRail);
-            //mainCamera.localPosition = Vector3.zero;
-            //mainCamera.localRotation = Quaternion.identity;
-            //TransitCamera();
         }
         void Exhibition()
         {

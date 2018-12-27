@@ -294,7 +294,8 @@ namespace Kocmoca
     }
     public static class LobbyInfomation
     {
-        public static readonly string SCENE_LOBBY = "Galaxy Lobby";
+        public static readonly string SCENE_LOBBY = "New Galaxy Lobby";
+        public static readonly string SCENE_HANGAR = "New Airport 3";
         public static readonly string SCENE_OPERATION = "Skirmish in Dusk Lakeside";
         public static readonly string PLAYER_READY = "IsPlayerReady";
         public static readonly string PLAYER_LOADING = "isLoading";
