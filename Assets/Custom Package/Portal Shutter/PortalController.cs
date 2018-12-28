@@ -70,10 +70,9 @@ public class PortalController : MonoBehaviour
         }
         blades[0].transform.DOLocalMoveX(closePosition, 0.37f).OnComplete(() =>
         {
-            Portal[clipName].speed = 0;
-            PrimaryRing[clipName].speed = 0;
-            SecondaryRing[clipName].speed = 0;
             Portal.gameObject.SetActive(false);
+            PrimaryRing.Stop();
+            SecondaryRing.Stop();
             blades[0].transform.DOLocalMoveX(openPosition, 0.37f).OnComplete(() =>
             {
                 Invoke("EnterScene", 0.37f);
@@ -85,9 +84,9 @@ public class PortalController : MonoBehaviour
     {
         viewPlane.DOLocalMoveZ(-1000, 1.0f).OnComplete(()=> 
         {
-            Portal.transform.rotation = Quaternion.identity;
-            PrimaryRing.transform.rotation = Quaternion.identity;
-            SecondaryRing.transform.rotation = Quaternion.identity;
+            Portal.transform.localRotation = Quaternion.identity;
+            PrimaryRing.transform.localRotation = Quaternion.identity;
+            SecondaryRing.transform.localRotation = Quaternion.identity;
             OnShutterPressedUp();
             mkVFX.GlowIntensityInner = glowIntensity;
         });
@@ -107,6 +106,7 @@ public class PortalController : MonoBehaviour
             blades[0].transform.DOLocalMoveX(closePosition, 0.37f).OnComplete(() =>
             {
                 Portal.gameObject.SetActive(true);
+                Portal.Stop();
                 blades[0].transform.DOLocalMoveX(openPosition, 0.37f);
             });
         });

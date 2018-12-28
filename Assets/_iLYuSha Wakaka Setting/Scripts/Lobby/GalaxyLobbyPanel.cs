@@ -23,7 +23,7 @@ namespace Kocmoca
     }
     public partial class GalaxyLobbyPanel : MonoBehaviourPunCallbacks
     {
-        public LobbyState State = LobbyState.Portal;
+        public LobbyState lobbyState = LobbyState.Portal;
 
         [Header("External Scripts")]
         public PortalController Portal;
@@ -101,7 +101,7 @@ namespace Kocmoca
 
         void Connect()
         {
-            State = LobbyState.Moving;
+            lobbyState = LobbyState.Moving;
             if (!PhotonNetwork.IsConnected)
             {
                 PhotonNetwork.NetworkingClient.AppId = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime;
@@ -165,7 +165,7 @@ namespace Kocmoca
                 showRegion = false;
             }
 
-            if (State == LobbyState.Portal) return;
+            if (lobbyState == LobbyState.Portal) return;
             Command();
         }
 
@@ -182,8 +182,8 @@ namespace Kocmoca
 
         public override void OnConnectedToMaster()
         {
-            this.SetActivePanel("Close all panel");
-            Lobby.VisitLobby();
+            if (lobbyState == LobbyState.Login)
+                Lobby.VisitLobby();
         }
 
         public override void OnRegionListReceived(RegionHandler regionHandler)
@@ -437,7 +437,7 @@ namespace Kocmoca
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
 
-            PhotonNetwork.LoadLevel("Loading");
+            PhotonNetwork.LoadLevel(LobbyInfomation.SCENE_LOADING_ONLINE);
         }
 
         public void OnReadyButtonClicked()

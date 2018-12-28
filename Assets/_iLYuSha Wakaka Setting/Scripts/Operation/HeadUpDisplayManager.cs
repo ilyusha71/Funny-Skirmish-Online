@@ -13,6 +13,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 namespace Kocmoca
 {

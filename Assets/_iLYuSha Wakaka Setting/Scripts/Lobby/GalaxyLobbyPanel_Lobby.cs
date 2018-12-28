@@ -22,6 +22,9 @@ namespace Kocmoca
                 Input.GetKeyDown(Controller.KEYBOARD_Hangar) ||
                 Input.GetKeyDown(Controller.XBOX360_Hangar))
                 OnHangarButtonClicked();
+
+            if (Input.GetKeyDown(KeyCode.Backspace))
+                Application.Quit();
         }
 
         #region LOBBY CALLBACKS 
@@ -38,9 +41,10 @@ namespace Kocmoca
 
         public void OnHangarButtonClicked()
         {
-            State = LobbyState.Portal;
+            lobbyState = LobbyState.Portal;
             Portal.Ending();
-            Invoke("LoadHangarScene", 2.0f);
+            PlayerPrefs.SetString(LobbyInfomation.PREFS_LOAD_SCENE, LobbyInfomation.SCENE_HANGAR);
+            Invoke("Loading", 2.0f);
         }
 
         public void OnEscapeButtonClicked()
@@ -51,9 +55,9 @@ namespace Kocmoca
 
         #endregion
 
-        void LoadHangarScene()
+        void Loading()
         {
-            SceneManager.LoadScene(LobbyInfomation.SCENE_HANGAR);
+            SceneManager.LoadScene(LobbyInfomation.SCENE_LOADING);
         }
     }
 }

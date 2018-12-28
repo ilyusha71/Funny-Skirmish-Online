@@ -297,12 +297,15 @@ namespace Kocmoca
         public static readonly string SCENE_LOBBY = "New Galaxy Lobby";
         public static readonly string SCENE_HANGAR = "New Airport 3";
         public static readonly string SCENE_OPERATION = "Skirmish in Dusk Lakeside";
+        public static readonly string SCENE_LOADING = "Loading";
+        public static readonly string SCENE_LOADING_ONLINE = "LoadingOnline";
         public static readonly string PLAYER_READY = "IsPlayerReady";
         public static readonly string PLAYER_LOADING = "isLoading";
         public static readonly string PLAYER_LOADED_LEVEL = "PlayerLoadedLevel";
         public static readonly string PLAYER_DATA_KEY = "PlayerUnknownData"; // 用於PUN設定玩家數據
         public static readonly int PLAYER_DATA_VALUE = 999; // 用於PUN設定玩家數據之對應值
         public static readonly string PREFS_TYPE = "Prefs Type";
+        public static readonly string PREFS_LOAD_SCENE = "LoadScene";
     }
     public static class KocmocraftData
     {

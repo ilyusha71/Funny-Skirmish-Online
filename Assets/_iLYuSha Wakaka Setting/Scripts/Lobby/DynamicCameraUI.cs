@@ -92,6 +92,7 @@ namespace Kocmoca
             mainCamera.DORotate(pointLogin.rotation.eulerAngles, timeCameraMoving * 2).OnComplete(() =>
             {
                 state = LobbyState.Login;
+                mainPanel.lobbyState = LobbyState.Login;
                 mainPanel.SetActivePanel("LoginPanel");
                 StartCoroutine(FindObjectOfType<AnimationTween>().Play());
             });
@@ -106,6 +107,7 @@ namespace Kocmoca
             mainCamera.DOMove(pointLobby.position, timeCameraMoving).OnComplete(() =>
             {
                 state = LobbyState.Lobby;
+                mainPanel.lobbyState = LobbyState.Lobby;
                 mainPanel.SetActivePanel("SelectionPanel");
                 doraraHand.DOLocalMove(posDoraraHand.Show, posDoraraHand.Interval);
             });

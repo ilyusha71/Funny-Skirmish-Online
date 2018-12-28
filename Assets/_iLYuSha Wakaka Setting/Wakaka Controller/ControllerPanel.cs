@@ -60,6 +60,8 @@ public partial class ControllerPanel : MonoBehaviour
         XBOX360_CockpitView = new HotkeyToggle(hotkeyXbox360[0], "XBOX360_CockpitView", (int)KeyCode.Joystick1Button0);
         XBOX360_Afterburner = new HotkeyToggle(hotkeyXbox360[1], "XBOX360_Afterburner", (int)KeyCode.Joystick1Button2);
         XBOX360_LockOn = new HotkeyToggle(hotkeyXbox360[2], "XBOX360_LockOn", (int)KeyCode.Joystick1Button1);
+
+        SaveControllerSetting();
     }
 
     void Update ()
