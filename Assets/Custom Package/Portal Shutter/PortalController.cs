@@ -27,6 +27,7 @@ public class PortalController : MonoBehaviour
     private AudioSource sfx;
     public Transform viewPlane;
     [Header("Leaves")]
+    public CanvasGroup leaves;
     public Image[] blades;
     private int countBlade;
     private float openPosition;
@@ -42,9 +43,10 @@ public class PortalController : MonoBehaviour
     void Awake()
     {
         sfx = GetComponent<AudioSource>();
+        leaves.alpha = 0.77f;
         countBlade = blades.Length;
-        openPosition = blades[0].transform.localPosition.x;
-        closePosition = openPosition + 300;
+        closePosition  = blades[0].transform.localPosition.x;
+        openPosition = closePosition - 300;
         clipName = Portal.clip.name;
         Portal[clipName].speed = 0.7f;
         PrimaryRing[clipName].speed = 0.1f;
@@ -57,23 +59,28 @@ public class PortalController : MonoBehaviour
     private void Start()
     {
         viewPlane.gameObject.SetActive(true);
+        sfx.Play();
+        for (int i = 0; i < countBlade; i++)
+        {
+            blades[i].transform.DOLocalMoveX(openPosition, 0.37f);
+        }
         Invoke("Opening", 1.97f);
     }
 
     public void Opening()
     {
         sfx.Play();
-        for (int i = 1; i < countBlade; i++)
+        for (int i = 0; i < countBlade; i++)
         {
             int index = i;
             blades[index].transform.DOLocalMoveX(closePosition,0.37f).OnComplete(()=> blades[index].transform.DOLocalMoveX(openPosition, 0.37f));
         }
-        blades[0].transform.DOLocalMoveX(closePosition, 0.37f).OnComplete(() =>
+        leaves.DOFade(0.88f,0.37f).OnComplete(() =>
         {
             Portal.gameObject.SetActive(false);
             PrimaryRing.Stop();
             SecondaryRing.Stop();
-            blades[0].transform.DOLocalMoveX(openPosition, 0.37f).OnComplete(() =>
+            leaves.DOFade(0.5f, 0.37f).OnComplete(() =>
             {
                 Invoke("EnterScene", 0.37f);
             });
@@ -98,16 +105,15 @@ public class PortalController : MonoBehaviour
         viewPlane.DOLocalMoveZ(0, 1.0f).OnComplete(() =>
         {
             sfx.Play();
-            for (int i = 1; i < countBlade; i++)
+            for (int i = 0; i < countBlade; i++)
             {
                 int index = i;
-                blades[index].transform.DOLocalMoveX(closePosition, 0.37f).OnComplete(() => blades[index].transform.DOLocalMoveX(openPosition, 0.37f));
+                blades[index].transform.DOLocalMoveX(closePosition, 0.37f);
             }
-            blades[0].transform.DOLocalMoveX(closePosition, 0.37f).OnComplete(() =>
+            leaves.DOFade(0.77f, 0.37f).OnComplete(() =>
             {
                 Portal.gameObject.SetActive(true);
                 Portal.Stop();
-                blades[0].transform.DOLocalMoveX(openPosition, 0.37f);
             });
         });
     }

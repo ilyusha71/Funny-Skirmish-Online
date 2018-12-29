@@ -173,8 +173,9 @@ namespace Kocmoca
             {
                 hangarState = HangarState.Portal;
                 hangarCanvas.alpha = 0;
+                PlayerPrefs.SetString(LobbyInfomation.PREFS_LOAD_SCENE, LobbyInfomation.SCENE_LOBBY);
                 Portal.Ending();
-                Invoke("BackLobby", 2.0f);
+                Invoke("Loading", 2.0f);
             }
 
             if (hangarState == HangarState.Portal) return;
@@ -338,9 +339,9 @@ namespace Kocmoca
             blockData.DOLocalMoveY(128, 1.0f).SetEase(Ease.OutElastic).OnComplete(() => { panelState = TweenerState.Open; });
         }
 
-        void BackLobby()
+        void Loading()
         {
-            SceneManager.LoadScene(LobbyInfomation.SCENE_LOBBY);
+            SceneManager.LoadScene(LobbyInfomation.SCENE_LOADING);
         }
     }
 }

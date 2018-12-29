@@ -675,27 +675,6 @@ public enum ControlHands
     ChineseHands = 2,
 }
 
-public static class MouseLock
-{
-    public static bool nowState;
-    private static bool mouseLocked;
-    public static bool MouseLocked
-    {
-        get
-        { return mouseLocked; }
-        set
-        {
-            mouseLocked = value;
-#if UNITY_4_6
-            Screen.lockCursor = mouseLocked;
-#else
-            Cursor.visible = !value;
-            Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
-#endif
-        }
-    }
-}
-
 public class AxisData
 {
     public float Value;

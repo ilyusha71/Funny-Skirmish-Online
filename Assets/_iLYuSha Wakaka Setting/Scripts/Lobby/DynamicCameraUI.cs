@@ -18,7 +18,7 @@ namespace Kocmoca
     public class DynamicCameraUI : MonoBehaviour
     {
         public LobbyState state = LobbyState.Login;
-        public CanvasGroup OpeningCanvas;
+        //public CanvasGroup OpeningCanvas;
         [Header("Camera")]
         public Transform pointLogin;
         public Transform pointLobby;
@@ -60,8 +60,8 @@ namespace Kocmoca
 
         void Awake()
         {
-            OpeningCanvas.alpha = 1;
-            OpeningCanvas.DOFade(0, 2.0f).OnComplete(() => OpeningCanvas.blocksRaycasts = false);
+            //OpeningCanvas.alpha = 1;
+            //OpeningCanvas.DOFade(0, 2.0f).OnComplete(() => OpeningCanvas.blocksRaycasts = false);
             mainCamera = transform;
             mainCamera.position = new Vector3(0, 5000, 0);
             mainCamera.rotation = Quaternion.Euler(0,77,0);
@@ -146,20 +146,6 @@ namespace Kocmoca
             mainCamera.DOMove(destination.position, timeCameraMoving);
             mainCamera.DOLookAt(destination.TransformPoint(new Vector3(0, 0, 1)), timeCameraMoving);
             mainCamera.DORotate(destination.rotation.eulerAngles, timeCameraMoving);
-        }
-
-        void Update()
-        {
-            if (state == LobbyState.Lobby)
-            {
-                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Joystick1Button6))
-                    mainPanel.OnEscapeButtonClicked();
-
-                 if (Input.GetKeyDown(Controller.KEY_Operation) ||
-                    Input.GetKeyDown(Controller.KEYBOARD_Operation) ||
-                    Input.GetKeyDown(Controller.XBOX360_Operation))
-                    mainPanel.OnJoinRandomRoomButtonClicked();
-            }
         }
     }
 }

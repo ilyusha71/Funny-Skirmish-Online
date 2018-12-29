@@ -13,18 +13,17 @@ using UnityEngine.UI;
 public partial class Controller : MonoBehaviour
 {
     // Key Setting - Lobby
-    public static readonly KeyCode KEY_Operation = KeyCode.F1;
-    public static readonly KeyCode KEYBOARD_Operation = KeyCode.O;
-    public static readonly KeyCode XBOX360_Operation = KeyCode.Joystick1Button1; // B Button
     public static readonly KeyCode KEY_Hangar = KeyCode.F3;
     public static readonly KeyCode KEYBOARD_Hangar = KeyCode.H;
     public static readonly KeyCode XBOX360_Hangar = KeyCode.Joystick1Button3; // Y Button
-    public static readonly KeyCode KEY_Hotkey = KeyCode.F5;
-    public static readonly KeyCode KEYBOARD_Hotkey = KeyCode.K;
-    public static readonly KeyCode XBOX360_Hotkey = KeyCode.Joystick1Button2; // X Button
-    public static readonly KeyCode KEY_Quit = KeyCode.Escape;
-    public static readonly KeyCode KEYBOARD_Quit = KeyCode.Q;
-    public static readonly KeyCode XBOX360_Quit = KeyCode.Joystick1Button0; // Back Button
+    public static readonly KeyCode KEY_Operation = KeyCode.F1;
+    public static readonly KeyCode KEYBOARD_Operation = KeyCode.O;
+    public static readonly KeyCode XBOX360_Operation = KeyCode.Joystick1Button1; // B Button
+    public static readonly KeyCode KEY_Controller = KeyCode.F5;
+    public static readonly KeyCode KEYBOARD_Controller = KeyCode.K;
+    public static readonly KeyCode XBOX360_Controller = KeyCode.Joystick1Button2; // X Button
+    public static readonly KeyCode KEY_Escape = KeyCode.Escape;
+    public static readonly KeyCode XBOX360_Escape = KeyCode.Joystick1Button0; // Back Button
     // Key Setting - Hangar
     public static readonly KeyCode KEY_PreviousHangar = KeyCode.Keypad4;
     public static readonly KeyCode KEY_NextHangar = KeyCode.Keypad6;

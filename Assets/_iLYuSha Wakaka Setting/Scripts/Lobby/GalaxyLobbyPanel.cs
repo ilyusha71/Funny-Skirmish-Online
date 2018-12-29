@@ -15,9 +15,12 @@ namespace Kocmoca
         Moving,
         Login,
         Lobby,
-
-
         Hangar,
+        Operation,
+        Controller,
+        Escape,
+
+
         Show,
         newEvent,       
     }
@@ -39,11 +42,11 @@ namespace Kocmoca
         public GameObject prefabRegion;
         private Dictionary<string, int> dataRegion = new Dictionary<string, int>();
         private bool showRegion = false;
-        private Color32 colorVeryStrong = new Color32(0, 255, 30, 255);
-        private Color32 colorStrong = new Color32(209, 255, 69, 255);
-        private Color32 colorMedium = new Color32(255, 196, 0, 255);
-        private Color32 colorWeak = new Color32(255, 100, 0, 255);
-        private Color32 colorVeryWeak = new Color32(255, 59, 59, 255);
+        private readonly Color32 colorVeryStrong = new Color32(0, 255, 30, 255);
+        private readonly Color32 colorStrong = new Color32(209, 255, 69, 255);
+        private readonly Color32 colorMedium = new Color32(255, 196, 0, 255);
+        private readonly Color32 colorWeak = new Color32(255, 100, 0, 255);
+        private readonly Color32 colorVeryWeak = new Color32(255, 59, 59, 255);
 
         [Header("Login Panel")]
         public GameObject LoginPanel;
@@ -165,8 +168,8 @@ namespace Kocmoca
                 showRegion = false;
             }
 
-            if (lobbyState == LobbyState.Portal) return;
-            Command();
+            if (lobbyState == LobbyState.Lobby)
+                Command();
         }
 
         private string Number2Scheme(int number)
@@ -184,6 +187,11 @@ namespace Kocmoca
         {
             if (lobbyState == LobbyState.Login)
                 Lobby.VisitLobby();
+            else // 离开房间也会触发OnConnectedToMaster，必须触发OnConnectedToMaster才能重新进行PUN的动作
+            {
+                lobbyState = LobbyState.Lobby;
+                SetActivePanel("SelectionPanel");
+            }
         }
 
         public override void OnRegionListReceived(RegionHandler regionHandler)
@@ -300,8 +308,7 @@ namespace Kocmoca
 
         public override void OnLeftRoom()
         {
-            // 不用開，會呼叫OnConnectedToMaster
-            SetActivePanel(SelectionPanel.name);
+            this.SetActivePanel("Close all panel");
 
             foreach (GameObject entry in playerListEntries.Values)
             {

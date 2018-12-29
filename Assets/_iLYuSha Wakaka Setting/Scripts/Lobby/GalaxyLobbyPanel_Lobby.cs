@@ -22,7 +22,17 @@ namespace Kocmoca
                 Input.GetKeyDown(Controller.KEYBOARD_Hangar) ||
                 Input.GetKeyDown(Controller.XBOX360_Hangar))
                 OnHangarButtonClicked();
-
+            else if (Input.GetKeyDown(Controller.KEY_Operation) ||
+                Input.GetKeyDown(Controller.KEYBOARD_Operation) ||
+                Input.GetKeyDown(Controller.XBOX360_Operation))
+                OnOperationButtonClicked();
+            else if (Input.GetKeyDown(Controller.KEY_Controller) ||
+                Input.GetKeyDown(Controller.KEYBOARD_Controller) ||
+                Input.GetKeyDown(Controller.XBOX360_Controller))
+                OnControllerButtonClicked();
+            else if (Input.GetKeyDown(Controller.KEY_Escape) ||
+                Input.GetKeyDown(Controller.XBOX360_Escape))
+                OnEscapeButtonClicked();
             if (Input.GetKeyDown(KeyCode.Backspace))
                 Application.Quit();
         }
@@ -41,16 +51,31 @@ namespace Kocmoca
 
         public void OnHangarButtonClicked()
         {
-            lobbyState = LobbyState.Portal;
+            lobbyState = LobbyState.Hangar;
             Portal.Ending();
             PlayerPrefs.SetString(LobbyInfomation.PREFS_LOAD_SCENE, LobbyInfomation.SCENE_HANGAR);
             Invoke("Loading", 2.0f);
         }
 
+        public void OnOperationButtonClicked()
+        {
+            lobbyState = LobbyState.Operation;
+            OnJoinRandomRoomButtonClicked();
+        }
+
+        public void OnControllerButtonClicked()
+        {
+            if(lobbyState == LobbyState.Controller)
+                lobbyState = LobbyState.Lobby;
+            else if (lobbyState == LobbyState.Lobby)
+                lobbyState = LobbyState.Controller;
+            FindObjectOfType<ControllerPanel>().SetController();
+        }
+
         public void OnEscapeButtonClicked()
         {
-            PhotonNetwork.Disconnect();
-            Lobby.VisitLogin();
+            lobbyState = LobbyState.Escape;
+            Escape();
         }
 
         #endregion
@@ -58,6 +83,12 @@ namespace Kocmoca
         void Loading()
         {
             SceneManager.LoadScene(LobbyInfomation.SCENE_LOADING);
+        }
+
+        void Escape()
+        {
+            PhotonNetwork.Disconnect();
+            Lobby.VisitLogin();
         }
     }
 }

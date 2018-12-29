@@ -67,14 +67,7 @@ public partial class ControllerPanel : MonoBehaviour
     void Update ()
     {
         if (Input.GetKeyDown(KeyCode.F5))
-        {
-            if (!panelHotkey.activeSelf)
-                MouseLock.nowState = MouseLock.MouseLocked;
-            else
-                SaveControllerSetting();
-            panelHotkey.SetActive(!panelHotkey.activeSelf);
-            MouseLock.MouseLocked = panelHotkey.activeSelf ? false : MouseLock.nowState;
-        }
+            SetController();
 
         if (State == PanelState.HotkeyInput)
         {
@@ -95,6 +88,16 @@ public partial class ControllerPanel : MonoBehaviour
         }
     }
 
+    public void SetController()
+    {
+        if (!panelHotkey.activeSelf)
+            MouseLock.nowState = MouseLock.MouseLocked;
+        else
+            SaveControllerSetting();
+        panelHotkey.SetActive(!panelHotkey.activeSelf);
+        MouseLock.MouseLocked = panelHotkey.activeSelf ? false : MouseLock.nowState;
+    }
+
     void SaveControllerSetting()
     {
         Controller.KEYBOARD_CockpitView = KEYBOARD_CockpitView.Hotkey;
@@ -110,6 +113,27 @@ public enum PanelState
 {
     Ready = 1,
     HotkeyInput = 3,
+}
+
+public static class MouseLock
+{
+    public static bool nowState;
+    private static bool mouseLocked;
+    public static bool MouseLocked
+    {
+        get
+        { return mouseLocked; }
+        set
+        {
+            mouseLocked = value;
+#if UNITY_4_6
+            Screen.lockCursor = mouseLocked;
+#else
+            Cursor.visible = !value;
+            Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
+#endif
+        }
+    }
 }
 
 public class HotkeyToggle

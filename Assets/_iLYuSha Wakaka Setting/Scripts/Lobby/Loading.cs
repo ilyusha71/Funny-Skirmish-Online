@@ -14,16 +14,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using Photon.Pun;
-using Photon.Realtime;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 namespace Kocmoca
 {
-    public class Loading : MonoBehaviourPun
+    public class Loading : MonoBehaviour
     {
         public Image barLoading;
         public TextMeshProUGUI textProgress;
+        private float progress;
+        private float percent;
 
         void Start()
         {
@@ -46,23 +45,28 @@ namespace Kocmoca
             while (!asyncOperation.isDone)
             {
                 //Output the current progress
-                barLoading.fillAmount = asyncOperation.progress;
-                textProgress.text = string.Format("{0:0.00%}", asyncOperation.progress);
+                progress = asyncOperation.progress;
 
                 // Check if the load has finished
                 if (asyncOperation.progress >= 0.9f)
                 {
                     //Change the Text to show the Scene is ready
-                    barLoading.fillAmount = 1.0f;
-                    textProgress.text = "100%";
+                    progress = 1.0f;
                     //Wait to you press the space key to activate the Scene
-                    //if (Input.GetKeyDown(KeyCode.Space))
+                    if (percent > 0.99999f)
                         //Activate the Scene
                         asyncOperation.allowSceneActivation = true;
                 }
 
                 yield return null;
             }
+        }
+
+        private void Update()
+        {
+            percent = Mathf.Lerp(percent, progress, 0.1f);
+            barLoading.fillAmount = percent;
+            textProgress.text = string.Format("{0:0%}", percent);
         }
     }
 }
