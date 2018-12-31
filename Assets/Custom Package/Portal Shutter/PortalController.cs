@@ -4,12 +4,11 @@
  * Last Updated: 2018/12/27
  * Description:
  * 1. Shutter Controller -> Portal Controller
- * 2. Opening開場，共計4.08秒
- *      a. 傳送門動畫 1.97 秒
- *      b. 快門關 0.37 秒
+ * 2. Opening開場，共計2.74秒
+ *      a. Loading Bar 1.00 秒
  *      c. 快門開 0.37 秒
  *      d. 等待 0.37 秒
- *      e. 離開傳送門 1.0 秒
+ *      e. 離開傳送門 1.00 秒
  * 2. Ending，共計1.74秒
  *      a. 返回傳送門 1.0 秒
  *      b. 快門關 0.37 秒
@@ -26,10 +25,13 @@ public class PortalController : MonoBehaviour
     public event EventHandler OnShutterPressedUp;
     private AudioSource sfx;
     public Transform viewPlane;
+    public Image bar;
     [Header("Leaves")]
     public CanvasGroup leaves;
     public Image[] blades;
     private int countBlade;
+    public AudioClip sfxOpen;
+    public AudioClip sfxClose;
     private float openPosition;
     private float closePosition;
     [Header("Animation")]
@@ -59,31 +61,23 @@ public class PortalController : MonoBehaviour
     private void Start()
     {
         viewPlane.gameObject.SetActive(true);
-        sfx.Play();
-        for (int i = 0; i < countBlade; i++)
-        {
-            blades[i].transform.DOLocalMoveX(openPosition, 0.37f);
-        }
-        Invoke("Opening", 1.97f);
+        bar.fillAmount = 1.0f;
+        bar.DOFillAmount(0, 1.0f).OnComplete(Opening);
     }
 
     public void Opening()
     {
-        sfx.Play();
+        sfx.PlayOneShot(sfxOpen);
         for (int i = 0; i < countBlade; i++)
         {
-            int index = i;
-            blades[index].transform.DOLocalMoveX(closePosition,0.37f).OnComplete(()=> blades[index].transform.DOLocalMoveX(openPosition, 0.37f));
+            blades[i].transform.DOLocalMoveX(openPosition, 0.37f);
         }
-        leaves.DOFade(0.88f,0.37f).OnComplete(() =>
+        leaves.DOFade(0.5f,0.37f).OnComplete(() =>
         {
             Portal.gameObject.SetActive(false);
             PrimaryRing.Stop();
             SecondaryRing.Stop();
-            leaves.DOFade(0.5f, 0.37f).OnComplete(() =>
-            {
-                Invoke("EnterScene", 0.37f);
-            });
+            Invoke("EnterScene", 0.37f);
         });
     }
 
@@ -91,6 +85,7 @@ public class PortalController : MonoBehaviour
     {
         viewPlane.DOLocalMoveZ(-1000, 1.0f).OnComplete(()=> 
         {
+            bar.enabled = false;
             Portal.transform.localRotation = Quaternion.identity;
             PrimaryRing.transform.localRotation = Quaternion.identity;
             SecondaryRing.transform.localRotation = Quaternion.identity;
@@ -104,7 +99,7 @@ public class PortalController : MonoBehaviour
         mkVFX.GlowIntensityInner = 0;
         viewPlane.DOLocalMoveZ(0, 1.0f).OnComplete(() =>
         {
-            sfx.Play();
+            sfx.PlayOneShot(sfxClose);
             for (int i = 0; i < countBlade; i++)
             {
                 int index = i;

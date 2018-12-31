@@ -66,7 +66,7 @@ namespace Kocmoca
         {
             percent = Mathf.Lerp(percent, progress, 0.1f);
             barLoading.fillAmount = percent;
-            textProgress.text = string.Format("{0:0%}", percent);
+            textProgress.text = "" + Mathf.RoundToInt(percent * 100);
         }
     }
 }

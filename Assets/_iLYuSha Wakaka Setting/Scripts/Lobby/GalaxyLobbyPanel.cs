@@ -30,7 +30,6 @@ namespace Kocmoca
 
         [Header("External Scripts")]
         public PortalController Portal;
-        public DynamicCameraUI Lobby;
 
         [Header("Connection Status")]
         public TextMeshProUGUI ConnectionStatusText;
@@ -100,6 +99,7 @@ namespace Kocmoca
             roomListEntries = new Dictionary<string, GameObject>();
             this.SetActivePanel("Close all panel");
             PlayerNameInput.gameObject.SetActive(false);
+            Initialize();
         }
 
         void Connect()
@@ -110,16 +110,19 @@ namespace Kocmoca
                 PhotonNetwork.NetworkingClient.AppId = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime;
                 PhotonNetwork.NetworkingClient.AddCallbackTarget(this);
                 PhotonNetwork.NetworkingClient.ConnectToNameServer();
-                Lobby.VisitLogin();
+                MoveToLogin();
             }
             else
-                Lobby.VisitLobby();
+                MoveToLobby();
         }
 
         private void Update()
         {
             ConnectionStatusText.text = connectionStatusMessage + PhotonNetwork.NetworkClientState;
-            RegionPingText.text = string.Format("[Server] {0}\n{1} ms", serverRegion, PhotonNetwork.GetPing());
+            if (PhotonNetwork.IsConnected)
+                RegionPingText.text = string.Format("[Server] {0}\n{1} ms", serverRegion, PhotonNetwork.GetPing());
+            else
+                RegionPingText.text = "[Server] Disconnect\n";
 
             if (showRegion)
             {
@@ -186,7 +189,7 @@ namespace Kocmoca
         public override void OnConnectedToMaster()
         {
             if (lobbyState == LobbyState.Login)
-                Lobby.VisitLobby();
+                MoveToLobby();
             else // 离开房间也会触发OnConnectedToMaster，必须触发OnConnectedToMaster才能重新进行PUN的动作
             {
                 lobbyState = LobbyState.Lobby;
@@ -210,7 +213,6 @@ namespace Kocmoca
             showRegion = true;
             Debug.Log("OnRegionPingCompleted " + regionHandler.BestRegion);
             Debug.Log("RegionPingSummary: " + regionHandler.SummaryToCache);
-            //PhotonNetwork.Disconnect();
         }
 
         private string GetRegionName(string region)
@@ -421,7 +423,6 @@ namespace Kocmoca
                 this.SetActivePanel("Close all panel");
                 PhotonNetwork.LocalPlayer.NickName = playerName;
                 PhotonNetwork.NetworkingClient.ConnectToRegionMaster(region);
-                //PhotonNetwork.ConnectUsingSettings();
             }
             else
             {

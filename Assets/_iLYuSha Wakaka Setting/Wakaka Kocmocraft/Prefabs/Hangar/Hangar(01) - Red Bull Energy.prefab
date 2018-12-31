@@ -4859,7 +4859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 0
+  enginePower: 0.5
   engineType: 100
   engineThruster: []
   thrusterStartLife: 0
@@ -5005,7 +5005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4637219653713064, guid: 8bb9dae1930e5fc4db6a17947140fbac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.45
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 4637219653713064, guid: 8bb9dae1930e5fc4db6a17947140fbac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5071,7 +5071,7 @@ PrefabInstance:
     - target: {fileID: 7165428353671528654, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7165428353671528654, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}

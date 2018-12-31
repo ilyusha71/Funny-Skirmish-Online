@@ -1,20 +1,49 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using ExitGames.Client.Photon;
+﻿using UnityEngine;
 using Photon.Pun;
-using Photon.Realtime;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
 
 namespace Kocmoca
 {
+    public struct Movable
+    {
+        internal Vector3 Ready;
+        internal Vector3 Show;
+        internal float Interval;
+    }
     public partial class GalaxyLobbyPanel
     {
-        [Header("Lobby")]
+        [Header("Main Camera")]
+        public Transform mainCamera;
+        public Transform pointLogin;
+        public Transform pointLobby;
+        private float timeCameraMoving = 1.0f;
+        [Header("Dorara Hand & Xbox 360")]
+        public Transform doraraHand;
+        private Movable posDoraraHand = new Movable();
+        public Animation controllerAnimation;
+        [Header("Exhibition")]
         public Transform platformAxis;
+        public GameObject[] model;
+        public GameObject[] scan;
+
+        void Initialize()
+        {
+            mainCamera.position = new Vector3(0, 5000, 0);
+            mainCamera.rotation = Quaternion.Euler(0, 77, 0);
+
+            // 初始化哆啦手
+            posDoraraHand = new Movable
+            {
+                Show = doraraHand.localPosition,
+                Ready = doraraHand.localPosition - new Vector3(0, 0.7f, 0),
+                Interval = 0.37f
+            };
+            doraraHand.localPosition = posDoraraHand.Ready;
+            doraraHand.gameObject.SetActive(true);
+            controllerAnimation = doraraHand.GetComponent<Animation>();
+            controllerAnimation["Xbox 360"].speed = 0;
+        }
 
         void Command()
         {
@@ -47,6 +76,15 @@ namespace Kocmoca
         public void OnExitExhibition()
         {
             platformAxis.localRotation = Quaternion.identity;
+        }
+
+        public void OnHoverXbox360()
+        {
+            controllerAnimation["Xbox 360"].speed = 1;
+        }
+        public void OnExitXbox360()
+        {
+            controllerAnimation["Xbox 360"].speed = 0;
         }
 
         public void OnHangarButtonClicked()
@@ -85,10 +123,45 @@ namespace Kocmoca
             SceneManager.LoadScene(LobbyInfomation.SCENE_LOADING);
         }
 
+        void MoveToLogin()
+        {
+            lobbyState = LobbyState.Moving;
+            doraraHand.DOLocalMove(posDoraraHand.Ready, posDoraraHand.Interval);
+            MouseLock.MouseLocked = false;
+            mainCamera.DOMove(pointLogin.position, timeCameraMoving * 2);
+            mainCamera.DOLookAt(pointLogin.TransformPoint(new Vector3(0, 0, 1)), timeCameraMoving * 2);
+            mainCamera.DORotate(pointLogin.rotation.eulerAngles, timeCameraMoving * 2).OnComplete(() =>
+            {
+                lobbyState = LobbyState.Login;
+                SetActivePanel("LoginPanel");
+                StartCoroutine(FindObjectOfType<AnimationTween>().Play());
+            });
+        }
+
+        void MoveToLobby()
+        {
+            lobbyState = LobbyState.Moving;
+            MouseLock.MouseLocked = false;
+            int type = PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
+            for (int i = 0; i < model.Length; i++)
+            {
+                model[i].SetActive(i == type);
+                scan[i].SetActive(i == type);
+            }
+            mainCamera.DOMove(pointLobby.position, timeCameraMoving);
+            mainCamera.DOLookAt(pointLobby.TransformPoint(new Vector3(0, 0, 1)), timeCameraMoving);
+            mainCamera.DORotate(pointLobby.rotation.eulerAngles, timeCameraMoving).OnComplete(() =>
+            {
+                lobbyState = LobbyState.Lobby;
+                SetActivePanel("SelectionPanel");
+                doraraHand.DOLocalMove(posDoraraHand.Show, posDoraraHand.Interval);
+            });
+        }
+
         void Escape()
         {
             PhotonNetwork.Disconnect();
-            Lobby.VisitLogin();
+            MoveToLogin();
         }
     }
 }
