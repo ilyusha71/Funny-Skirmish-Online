@@ -31,7 +31,7 @@ GameObject:
   - component: {fileID: 1344425223739993644}
   m_Layer: 9
   m_Name: Prototype(01) - Red Bull Energy
-  m_TagString: Untagged
+  m_TagString: Kocmocraft
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,6 +71,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7165428353671528654}
     m_Modifications:
+    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_Name
       value: Red_Bull_Energy_FBX
@@ -87,9 +91,13 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Layer
-      value: 9
+    - target: {fileID: 400006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000008202523
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -133,14 +141,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.00000008202523
-      objectReference: {fileID: 0}
-    - target: {fileID: 400006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

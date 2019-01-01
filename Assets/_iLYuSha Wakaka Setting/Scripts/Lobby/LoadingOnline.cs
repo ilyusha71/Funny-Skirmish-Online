@@ -24,10 +24,14 @@ namespace Kocmoca
     {
         public Image barLoading;
         public TextMeshProUGUI textProgress;
+        private float progress;
+        private float percent;
+
         private readonly float intervalBatch = 0.05f; // 間隔時間
         private readonly int countBatch = 50; // 克隆批數
         private float orderBatch; // 批次序列
         public float percentBatch { get { return (orderBatch / countBatch); } } // 克隆批次百分比
+        bool wait=false;
 
         private void Awake()
         {
@@ -55,13 +59,10 @@ namespace Kocmoca
             //Don't let the Scene activate until you allow it to
             asyncOperation.allowSceneActivation = false;
             //When the load is still in progress, output the Text and progress bar
-            float percentProgress;
             while (!asyncOperation.isDone)
             {
                 //Output the current progress
-                percentProgress = (asyncOperation.progress + percentBatch) * 0.5f;
-                barLoading.fillAmount = percentProgress;
-                textProgress.text = string.Format("{0:0.00%}", percentProgress);
+                progress = (asyncOperation.progress + percentBatch) * 0.5f;
 
                 // Check if the load has finished
                 if (asyncOperation.progress >= 0.9f)
@@ -75,11 +76,11 @@ namespace Kocmoca
                     else
                     {
                         //Change the Text to show the Scene is ready
-                        barLoading.fillAmount = 1.0f;
-                        textProgress.text = "100%\nWaiting for other players...";
+                        progress = 1.0f;
                         PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { LobbyInfomation.PLAYER_LOADING, true } });
-                        if (CheckPlayersLoading())
+                        if (percent > 0.99999f && CheckPlayersLoading())
                         {
+                            wait = true;
                             Destroy(camera);
                             //Activate the Scene
                             asyncOperation.allowSceneActivation = true;
@@ -108,6 +109,14 @@ namespace Kocmoca
                     return false;
             }
             return true;
+        }
+
+        private void Update()
+        {
+            if (wait) return;
+            percent = Mathf.Lerp(percent, progress, 0.1f);
+            barLoading.fillAmount = percent;
+            textProgress.text = "" + Mathf.RoundToInt(percent * 100);
         }
     }
 }

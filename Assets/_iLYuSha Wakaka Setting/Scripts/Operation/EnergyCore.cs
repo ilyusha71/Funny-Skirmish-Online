@@ -50,7 +50,7 @@ namespace Kocmoca
             {
                 EnergyEmitter emitter = queueEmitter.Dequeue();
                 emitter.target = other.transform;
-                emitter.targetFaction = other.GetComponent<KocmocraftManager>().Faction;
+                emitter.targetFaction = other.transform.root.GetComponent<KocmocraftManager>().Faction;
                 emitter.enabled = true;
             }
         }

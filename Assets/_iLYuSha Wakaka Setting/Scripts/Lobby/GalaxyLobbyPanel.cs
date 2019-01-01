@@ -109,11 +109,23 @@ namespace Kocmoca
             {
                 PhotonNetwork.NetworkingClient.AppId = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime;
                 PhotonNetwork.NetworkingClient.AddCallbackTarget(this);
-                PhotonNetwork.NetworkingClient.ConnectToNameServer();
-                MoveToLogin();
+                RefreshRegion();                
             }
             else
                 MoveToLobby();
+        }
+
+        void RefreshRegion()
+        {
+            dataRegion.Clear();
+            Button[] btn = listRegion.GetComponentsInChildren<Button>();
+            int count = btn.Length;
+            for (int i = 0; i < count; i++)
+            {
+                Destroy(btn[i].gameObject);
+            }
+            PhotonNetwork.NetworkingClient.ConnectToNameServer();
+            MoveToLogin();
         }
 
         private void Update()
@@ -376,6 +388,7 @@ namespace Kocmoca
         public override void OnDisconnected(DisconnectCause cause)
         {
             Debug.LogWarning("Galaxy Lobby: OnDisconnected(" + cause + ")");
+            RefreshRegion();
             //UnityEngine.SceneManagement.SceneManager.LoadScene(LobbyInfomation.SCENE_LOBBY);
         }
 

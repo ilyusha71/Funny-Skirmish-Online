@@ -161,7 +161,6 @@ namespace Kocmoca
         void Escape()
         {
             PhotonNetwork.Disconnect();
-            MoveToLogin();
         }
     }
 }
