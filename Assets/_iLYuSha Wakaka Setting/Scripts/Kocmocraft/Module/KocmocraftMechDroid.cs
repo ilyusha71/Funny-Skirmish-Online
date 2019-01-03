@@ -42,9 +42,10 @@ namespace Kocmoca
         public Data dataShield;
         [Header("Crash Info")]
         public Dictionary<int, int> listAttacker = new Dictionary<int, int>(); // 損傷記錄索引
-        public ObjectPoolData ammoRemnantOPD;
         private Kocmonaut lastAttacker = new Kocmonaut { Number = -1 };
         private Vector3 lastHitVelocity;
+        //public ObjectPoolData ammoRemnantOPD;
+        private GameObject wrekeage;
 
         public void Initialize(Core core, int type, int number, GameObject remnant)
         {
@@ -68,7 +69,8 @@ namespace Kocmoca
             dataHull = new Data { Max = KocmocraftData.MaxHull[type] ,Value = KocmocraftData.MaxHull[type] };
             dataShield = new Data { Max = KocmocraftData.MaxShieldl[type], Value = KocmocraftData.MaxShieldl[type] };
             // Crash
-            ammoRemnantOPD = ObjectPoolManager.Instance.CreatObjectPool(remnant, 1,5);
+            //ammoRemnantOPD = ObjectPoolManager.Instance.CreatObjectPool(remnant, 1,5);
+            wrekeage = remnant;
         }
         private void Update()
         {
@@ -216,30 +218,46 @@ namespace Kocmoca
                     SatelliteCommander.Instance.ClearData();
                     HeadUpDisplayManager.Instance.ClearData();
                     Destroy(GetComponent<LocalPlayerController>());
-                    Destroy(GetComponent<OnboardRadar>());
+                    GetComponent<OnboardRadar>().Stop();
+                    //Destroy(GetComponent<OnboardRadar>());
                     break;
                 case Core.LocalBot:
                     Destroy(GetComponent<LocalBotController>());
-                    Destroy(GetComponent<OnboardRadar>());
+                    GetComponent<OnboardRadar>().Stop();
+                    //Destroy(GetComponent<OnboardRadar>());
                     break;
             }
-            StartCoroutine(Crash());
+            ShowRemnant();
+            if (myPhotonView.IsMine)
+                PhotonNetwork.Destroy(this.gameObject);
+            //StartCoroutine(Crash());
         }
         IEnumerator Crash()
         {
-            yield return new WaitForSeconds(0.5f);
-            ShowRemnant();
-            if(myPhotonView.IsMine)
-                PhotonNetwork.Destroy(this.gameObject);
+            yield return new WaitForSeconds(0.01f);
+            //ShowRemnant();
+            //if(myPhotonView.IsMine)
+            //    PhotonNetwork.Destroy(this.gameObject);
         }
         private void ShowRemnant()
         {
-            if (myRigidbody.velocity == Vector3.zero)
+            if (myRigidbody.velocity == Vector3.zero) // 撞击可能触发修正而变成0向量
                 myRigidbody.velocity = lastHitVelocity;
-            GameObject obj = ammoRemnantOPD.Reuse(transform.position, transform.rotation);
-            obj.GetComponent<Rigidbody>().velocity = (myRigidbody.velocity == Vector3.zero) ? lastHitVelocity : myRigidbody.velocity;
-            obj.GetComponent<Rigidbody>().AddForce(Random.rotation.eulerAngles * Random.Range(100, 500));
-            obj.GetComponent<Rigidbody>().AddTorque(Random.rotation.eulerAngles * Random.Range(100, 2000));
+            wrekeage.transform.SetParent(null);
+            wrekeage.tag = "Untagged";
+            Rigidbody rigid = wrekeage.AddComponent<Rigidbody>();
+            rigid.mass = 100;
+            rigid.velocity = myRigidbody.velocity;
+            rigid.AddForce(Random.rotation.eulerAngles * Random.Range(100, 500));
+            rigid.AddTorque(Random.rotation.eulerAngles * Random.Range(100, 2000));
+            Destroy(wrekeage, 10.0f);
+            //remnant
+            //myRigidbody.useGravity = true;
+
+            //GameObject obj = ammoRemnantOPD.Reuse(transform.position, transform.rotation);
+            //obj.GetComponent<Rigidbody>().velocity = (myRigidbody.velocity == Vector3.zero) ? lastHitVelocity : myRigidbody.velocity;
+            //obj.GetComponent<Rigidbody>().AddForce(Random.rotation.eulerAngles * Random.Range(100, 500));
+            //obj.GetComponent<Rigidbody>().AddTorque(Random.rotation.eulerAngles * Random.Range(100, 2000));
         }
 
         //private void OnTriggerStay(Collider other)

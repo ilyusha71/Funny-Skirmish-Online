@@ -516,8 +516,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114373452745459558}
   - {fileID: 114304271391855062}
-  viewIdField: 4
-  InstantiationId: 4
+  viewIdField: 0
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &114373452745459558
 MonoBehaviour:
@@ -565,7 +565,7 @@ MonoBehaviour:
   listFCS: []
   countFCS: 0
   currentFCS: 0
-  wreckage: {fileID: 1699532906777220, guid: 0adb4c7cdf5e27244a165ff0dc3acb30, type: 3}
+  wreckage: {fileID: 6252199996351449440}
 --- !u!1 &1950295614133236
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,6 +836,12 @@ MeshRenderer:
 --- !u!23 &789549146763492068 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 8183347622196170281, guid: 172671efd248a5c4c85a019ebe042dea,
+    type: 3}
+  m_PrefabInstance: {fileID: 8891264043265209549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6252199996351449440 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3287728124724034989, guid: 172671efd248a5c4c85a019ebe042dea,
     type: 3}
   m_PrefabInstance: {fileID: 8891264043265209549}
   m_PrefabAsset: {fileID: 0}

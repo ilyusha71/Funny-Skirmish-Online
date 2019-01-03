@@ -27,7 +27,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6001216215600861115}
+  - {fileID: 696645391505066148}
   m_Father: {fileID: 4613548342188736}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4771,7 +4771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 0
+  enginePower: 0.5
   engineType: 104
   engineThruster: []
   thrusterStartLife: 0
@@ -5030,11 +5030,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6552136701887966801, guid: 7d54a1a0b8ae2854fb665b2035aa0196,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.79
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d54a1a0b8ae2854fb665b2035aa0196, type: 3}
---- !u!4 &6001216215600861115 stripped
+--- !u!4 &696645391505066148 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4429439835466062, guid: 7d54a1a0b8ae2854fb665b2035aa0196,
+  m_CorrespondingSourceObject: {fileID: 6552136701887966801, guid: 7d54a1a0b8ae2854fb665b2035aa0196,
     type: 3}
   m_PrefabInstance: {fileID: 6000807735447676661}
   m_PrefabAsset: {fileID: 0}

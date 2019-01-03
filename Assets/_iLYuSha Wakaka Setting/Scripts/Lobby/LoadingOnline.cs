@@ -50,7 +50,7 @@ namespace Kocmoca
             PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { LobbyInfomation.PLAYER_LOADING, false } });
             GameObject camera = Camera.main.gameObject;
             barLoading.fillAmount = 0;
-            textProgress.text = "Loading...";
+            textProgress.text = "?";
 
             yield return null;
 

@@ -23,6 +23,14 @@ namespace Kocmoca
         public TextMeshProUGUI textProgress;
         private float progress;
         private float percent;
+        private string levelName;
+
+        void Awake()
+        {
+            levelName = PlayerPrefs.GetString(LobbyInfomation.PREFS_LOAD_SCENE);
+            if (levelName == "")
+                levelName = LobbyInfomation.SCENE_LOBBY;
+        }
 
         void Start()
         {
@@ -32,12 +40,12 @@ namespace Kocmoca
         IEnumerator LoadScene()
         {
             barLoading.fillAmount = 0;
-            textProgress.text = "Loading...";
+            textProgress.text = "?";
 
             yield return null;
 
             //Begin to load the Scene you specify
-            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(PlayerPrefs.GetString(LobbyInfomation.PREFS_LOAD_SCENE));
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(levelName);
             //Don't let the Scene activate until you allow it to
             asyncOperation.allowSceneActivation = false;
             //Debug.Log("Pro :" + asyncOperation.progress);
@@ -57,7 +65,6 @@ namespace Kocmoca
                         //Activate the Scene
                         asyncOperation.allowSceneActivation = true;
                 }
-
                 yield return null;
             }
         }

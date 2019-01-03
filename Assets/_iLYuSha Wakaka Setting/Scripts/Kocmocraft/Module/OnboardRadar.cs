@@ -198,7 +198,7 @@ namespace Kocmoca
         {
             targetRadarLockOn = targetNearest;
         }
-        private void OnDestroy()
+        public void Stop() // 应改写成坠机Crash呼叫，不要使用Destroy
         {
             targetRadarLockOn = null;
             RadarWarningEmitter();

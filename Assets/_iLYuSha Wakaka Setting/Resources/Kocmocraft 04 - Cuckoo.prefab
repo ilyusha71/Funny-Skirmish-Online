@@ -307,8 +307,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114740641719832178}
   - {fileID: 114046079616600618}
-  viewIdField: 20
-  InstantiationId: 20
+  viewIdField: 0
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &114740641719832178
 MonoBehaviour:
@@ -356,7 +356,7 @@ MonoBehaviour:
   listFCS: []
   countFCS: 0
   currentFCS: 0
-  wreckage: {fileID: 1086527362232122, guid: 9dc76e6998032a4449fad444b977b276, type: 3}
+  wreckage: {fileID: 5250063453904800410}
 --- !u!1 &1236698958465534
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,6 +825,12 @@ PrefabInstance:
 --- !u!4 &4019426124450220980 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4350908399310892, guid: e6dd15b09b894d7448117f2e60805329,
+    type: 3}
+  m_PrefabInstance: {fileID: 4019651660506764184}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5250063453904800410 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9156753754002888962, guid: e6dd15b09b894d7448117f2e60805329,
     type: 3}
   m_PrefabInstance: {fileID: 4019651660506764184}
   m_PrefabAsset: {fileID: 0}

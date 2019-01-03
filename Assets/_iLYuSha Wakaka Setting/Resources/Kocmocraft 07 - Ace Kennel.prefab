@@ -452,8 +452,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114241924769974728}
   - {fileID: 114392944397655898}
-  viewIdField: 9
-  InstantiationId: 9
+  viewIdField: 0
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &114241924769974728
 MonoBehaviour:
@@ -501,7 +501,7 @@ MonoBehaviour:
   listFCS: []
   countFCS: 0
   currentFCS: 0
-  wreckage: {fileID: 1294032358539422, guid: 951dda36d132d8045a0c0e7b8cf197cd, type: 3}
+  wreckage: {fileID: 4861384034040985211}
 --- !u!1 &1637928791944178
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,9 +763,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7cdbfc1e51478647a91dbc79c05a4ed, type: 3}
---- !u!4 &1934816532084734785 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4096866639541554, guid: b7cdbfc1e51478647a91dbc79c05a4ed,
+--- !u!23 &2367792092910359264 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4182508334486510739, guid: b7cdbfc1e51478647a91dbc79c05a4ed,
     type: 3}
   m_PrefabInstance: {fileID: 1934110731927244403}
   m_PrefabAsset: {fileID: 0}
@@ -775,9 +775,15 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 1934110731927244403}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &2367792092910359264 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4182508334486510739, guid: b7cdbfc1e51478647a91dbc79c05a4ed,
+--- !u!1 &4861384034040985211 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6458245923210262536, guid: b7cdbfc1e51478647a91dbc79c05a4ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 1934110731927244403}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1934816532084734785 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4096866639541554, guid: b7cdbfc1e51478647a91dbc79c05a4ed,
     type: 3}
   m_PrefabInstance: {fileID: 1934110731927244403}
   m_PrefabAsset: {fileID: 0}
