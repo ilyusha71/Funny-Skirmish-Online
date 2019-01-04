@@ -90,10 +90,10 @@ namespace Kocmoca
         public TextMeshProUGUI textMissileCount;
         public TextMeshProUGUI textMissileReloadPecentage;
         [Header("UI - Beacon")]
-        public Vector3[] posBeacon = new Vector3[4];
+        public Vector3[] posBeacon = new Vector3[3];
         public Image[] markerBeacon;
-        private TextMeshProUGUI[] textBeaconFaction = new TextMeshProUGUI[4];
-        private TextMeshProUGUI[] textBeaconDistance = new TextMeshProUGUI[4];
+        private TextMeshProUGUI[] textBeaconFaction = new TextMeshProUGUI[3];
+        private TextMeshProUGUI[] textBeaconDistance = new TextMeshProUGUI[3];
 
         [Header("【機載雷達】")]
         public Transform onboardRadar;

@@ -10,7 +10,7 @@ namespace Kocmoca
         public Faction beaconFaction;
         private float energy;
         private int limitRadius = 300;
-        private int countEmitter = 12;
+        private int countEmitter = 20;
         public GameObject prefabEmitter;
         public CounterManager counter;
         public Queue<EnergyEmitter> queueEmitter = new Queue<EnergyEmitter>();
@@ -46,7 +46,7 @@ namespace Kocmoca
         }
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag == "Kocmocraft")
+            if (other.CompareTag("Kocmocraft"))
             {
                 EnergyEmitter emitter = queueEmitter.Dequeue();
                 emitter.target = other.transform;

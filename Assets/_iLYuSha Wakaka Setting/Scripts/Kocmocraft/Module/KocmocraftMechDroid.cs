@@ -281,7 +281,7 @@ namespace Kocmoca
 
             // 計算傷害
             DamageInfo damageInfo = new DamageInfo();
-            if (collision.gameObject.tag == "Scene")
+            if (collision.gameObject.CompareTag("Scene"))
             {
                 damageInfo.Hull = 3000;
                 Vector3 inDirection = -collision.relativeVelocity;

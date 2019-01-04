@@ -296,7 +296,7 @@ namespace Kocmoca
     {
         public static readonly string SCENE_LOBBY = "New Galaxy Lobby";
         public static readonly string SCENE_HANGAR = "New Airport 3";
-        public static readonly string SCENE_OPERATION = "Skirmish in Dusk Lakeside";
+        public static readonly string SCENE_OPERATION = "Kocmocarkstan";//"Skirmish in Dusk Lakeside";
         public static readonly string SCENE_LOADING = "Loading";
         public static readonly string SCENE_LOADING_ONLINE = "LoadingOnline";
         public static readonly string PLAYER_READY = "IsPlayerReady";

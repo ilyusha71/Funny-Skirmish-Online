@@ -13,40 +13,48 @@ namespace Kocmoca
 {
     public class Ammo : ObjectRecycleSystem
     {
+        protected Transform myTransform;
+        protected Rigidbody myRigidbody;
         [Header("Basic")]
         public Transform target;
         public Kocmonaut owner;
-        protected Transform myTransform;
-        protected Rigidbody myRigidbody;
-        protected float timeRecovery;
-        [Header("Raycast")]
+        // Physics Param
         protected Vector3 pointStarting;
-        protected float distanceRay;
+        protected float timeRecovery;
+        protected float projectileSpread;
+        // Raycast
         protected RaycastHit[] raycastHits;
         protected int countRaycastHits;
+
+
+        //protected float distanceRay;
         //[Header("Damage")]
         ////public int ammoDamage;
-        protected float projectileSpread;
+
         protected void InitializeAmmo()
         {
             myTransform = transform;
             myRigidbody = GetComponent<Rigidbody>();
             ResetAmmo();
         }
+
         protected void ResetAmmo()
         {
+            target = null;
             myRigidbody.Sleep();
             pointStarting = Vector3.zero;
             timeRecovery = Time.time + 100;
+            pointStarting = myTransform.position;
         }
+
         public virtual void InputAmmoData(int numberShooter, int numberTarget, Vector3 initialVelocity, float spread)
-        {
-            target = null;
+        {            
             SatelliteCommander.Instance.listKocmonaut.TryGetValue(numberShooter, out owner);
             SatelliteCommander.Instance.listKocmocraft.TryGetValue(numberTarget, out target);
             myRigidbody.velocity = initialVelocity;
             projectileSpread = spread;
         }
+
         protected virtual void CollisionDetection()
         {
             raycastHits = Physics.RaycastAll(pointStarting, transform.forward, Vector3.Distance(myTransform.position, pointStarting));

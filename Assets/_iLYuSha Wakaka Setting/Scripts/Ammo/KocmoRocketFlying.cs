@@ -63,31 +63,22 @@ namespace Kocmoca
         protected override void CollisionDetection()
         {
             raycastHits = Physics.RaycastAll(pointStarting, transform.forward, Vector3.Distance(myTransform.position, pointStarting));
-            countRaycastHits = raycastHits.Length;
-            for (int i = 0; i < countRaycastHits; i++)
+            if (raycastHits.Length > 0)
             {
-                if (pointStarting != Vector3.zero &&
-                    raycastHits[i].transform.name != owner.Name &&
-                    raycastHits[i].transform.tag != myTransform.tag &&
-                    raycastHits[i].transform.tag != "SupremacyRange" &&
-                    raycastHits[i].transform.tag != "Particle")
+                objPoolData.Reuse(raycastHits[0].point, Quaternion.identity);
+                KocmocraftMechDroid hull = raycastHits[0].transform.GetComponent<KocmocraftMechDroid>();
+                if (hull)
                 {
-                    objPoolData.Reuse(raycastHits[i].point, Quaternion.identity);
-                    KocmocraftMechDroid hull = raycastHits[i].transform.GetComponent<KocmocraftMechDroid>();
-                    if (hull)
+                    float basicDamage = myRigidbody.velocity.magnitude * KocmoRocketLauncher.coefficientDamageBasic;
+                    hull.Hit(new DamageInfo()
                     {
-                        float basicDamage = myRigidbody.velocity.magnitude * KocmoRocketLauncher.coefficientDamageBasic;
-                        hull.Hit(new DamageInfo()
-                        {
-                            Attacker = owner,
-                            Hull = (int)(basicDamage * KocmoRocketLauncher.coefficientDamageHull),
-                            Shield = (int)(basicDamage * KocmoRocketLauncher.coefficientDamageShield)
-                        }
-                        );
-                    }
-                    Recycle(gameObject);
-                    return;
+                        Attacker = owner,
+                        Hull = (int)(basicDamage * KocmoRocketLauncher.coefficientDamageHull),
+                        Shield = (int)(basicDamage * KocmoRocketLauncher.coefficientDamageShield)
+                    });
                 }
+                Recycle(gameObject);
+                return;
             }
             pointStarting = myTransform.position;
         }
