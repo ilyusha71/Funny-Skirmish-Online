@@ -330,7 +330,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.8184189, g: 0.990566, b: 0.4625756, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4775,6 +4775,7 @@ MonoBehaviour:
   engineType: 104
   engineThruster: []
   thrusterStartLife: 0
+  currentLifeTime: 0
   countVFX: 0
   propeller: []
 --- !u!82 &7944465958010138378
@@ -4798,7 +4799,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 0
-  MaxDistance: 150
+  MaxDistance: 700
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -4907,11 +4908,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4613548342188736}
     m_Modifications:
-    - target: {fileID: 1279466575802944862, guid: 111b017849d566c419d1df4e56758be7,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype(17) - Bounty_Hunter_MK.II
-      objectReference: {fileID: 0}
     - target: {fileID: 7103894989937176421, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4967,6 +4963,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1279466575802944862, guid: 111b017849d566c419d1df4e56758be7,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype(17) - Bounty_Hunter_MK.II
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 111b017849d566c419d1df4e56758be7, type: 3}
 --- !u!4 &8583607484970850609 stripped
@@ -4982,6 +4983,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4482093417629828}
     m_Modifications:
+    - target: {fileID: 6552136701887966801, guid: 7d54a1a0b8ae2854fb665b2035aa0196,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.79
+      objectReference: {fileID: 0}
     - target: {fileID: 1308763738306454, guid: 7d54a1a0b8ae2854fb665b2035aa0196, type: 3}
       propertyPath: m_Name
       value: Dubi - Kyle Broflovski
@@ -5029,11 +5035,6 @@ PrefabInstance:
     - target: {fileID: 4429439835466062, guid: 7d54a1a0b8ae2854fb665b2035aa0196, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6552136701887966801, guid: 7d54a1a0b8ae2854fb665b2035aa0196,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.79
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d54a1a0b8ae2854fb665b2035aa0196, type: 3}

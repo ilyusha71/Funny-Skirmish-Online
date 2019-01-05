@@ -44,10 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 0
+  enginePower: 0.5
   engineType: 103
   engineThruster: []
   thrusterStartLife: 0
+  currentLifeTime: 0
   countVFX: 0
   propeller:
   - Hopter: {fileID: 559074063031075121}
@@ -87,7 +88,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 0
-  MaxDistance: 150
+  MaxDistance: 700
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -260,10 +261,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4419483593812038}
     m_Modifications:
-    - target: {fileID: 1488312898911950, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8, type: 3}
-      propertyPath: m_Name
-      value: Dubi - SpongeBob
-      objectReference: {fileID: 0}
     - target: {fileID: 4279304707719072, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -308,6 +305,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1488312898911950, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8, type: 3}
+      propertyPath: m_Name
+      value: Dubi - SpongeBob
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8, type: 3}
 --- !u!4 &2239468489777379689 stripped
@@ -323,11 +324,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4277830745315218}
     m_Modifications:
-    - target: {fileID: 8272309618461701603, guid: ef4c2ee132a9f04429f1a396f845f249,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype(14) - Ancient Fish
-      objectReference: {fileID: 0}
     - target: {fileID: 5506300234452335841, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -382,6 +378,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8272309618461701603, guid: ef4c2ee132a9f04429f1a396f845f249,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype(14) - Ancient Fish
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef4c2ee132a9f04429f1a396f845f249, type: 3}

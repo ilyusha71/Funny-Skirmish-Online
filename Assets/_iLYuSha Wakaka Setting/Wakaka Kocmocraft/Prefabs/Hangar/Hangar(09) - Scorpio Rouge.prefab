@@ -204,7 +204,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.5424528, b: 0.5424528, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1268,7 +1268,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0, b: 0.44068432, a: 0}
+        key1: {r: 1, g: 0, b: 0.1361413, a: 0}
         key2: {r: 0.11764706, g: 0, b: 1, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -4771,10 +4771,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 0
+  enginePower: 0.5
   engineType: 101
   engineThruster: []
   thrusterStartLife: 0
+  currentLifeTime: 0
   countVFX: 0
   propeller: []
 --- !u!82 &3968204298130827470
@@ -4907,10 +4908,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4533323772085648}
     m_Modifications:
-    - target: {fileID: 1172087338551586, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
-      propertyPath: m_Name
-      value: Dubi - Faceless
-      objectReference: {fileID: 0}
     - target: {fileID: 4587359364461090, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4955,6 +4952,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1172087338551586, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
+      propertyPath: m_Name
+      value: Dubi - Faceless
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
 --- !u!4 &2238077862243041867 stripped
@@ -4970,11 +4971,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4862236061290434}
     m_Modifications:
-    - target: {fileID: 5766658155981536278, guid: 191dffe131fe1a74eab766767e31603e,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype(09) - Scorpio Rouge
-      objectReference: {fileID: 0}
     - target: {fileID: 1975614829, guid: 191dffe131fe1a74eab766767e31603e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -5018,6 +5014,11 @@ PrefabInstance:
     - target: {fileID: 1975614829, guid: 191dffe131fe1a74eab766767e31603e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766658155981536278, guid: 191dffe131fe1a74eab766767e31603e,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype(09) - Scorpio Rouge
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 191dffe131fe1a74eab766767e31603e, type: 3}

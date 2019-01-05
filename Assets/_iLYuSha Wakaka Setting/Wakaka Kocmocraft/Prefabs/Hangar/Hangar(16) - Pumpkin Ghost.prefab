@@ -50,6 +50,7 @@ MonoBehaviour:
   engineType: 103
   engineThruster: []
   thrusterStartLife: 0
+  currentLifeTime: 0
   countVFX: 0
   propeller:
   - Hopter: {fileID: 8183347622198169837}
@@ -77,7 +78,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 0
-  MaxDistance: 150
+  MaxDistance: 700
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -411,8 +412,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 25.370842
-      minScalar: 3
+      scalar: 27
+      minScalar: 11
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -867,7 +868,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 7
+    angle: 3
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -953,7 +954,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.7
       mode: 0
       spread: 0
       speed:
@@ -1072,7 +1073,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 73
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5073,8 +5074,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 25.370842
-      minScalar: 3
+      scalar: 27
+      minScalar: 11
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5529,7 +5530,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 7
+    angle: 3
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -5615,7 +5616,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.7
       mode: 0
       spread: 0
       speed:
@@ -5734,7 +5735,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 73
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -9574,11 +9575,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4148994515626186}
     m_Modifications:
-    - target: {fileID: 4541451366065218571, guid: a05cd34a6deff514988fbeeedf50ba1f,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype(16) - Pumpkin Ghost
-      objectReference: {fileID: 0}
     - target: {fileID: 3047981653739518846, guid: a05cd34a6deff514988fbeeedf50ba1f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9634,6 +9630,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4541451366065218571, guid: a05cd34a6deff514988fbeeedf50ba1f,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype(16) - Pumpkin Ghost
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a05cd34a6deff514988fbeeedf50ba1f, type: 3}
 --- !u!4 &4101294445615784664 stripped
@@ -9655,10 +9656,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4226639910520844}
     m_Modifications:
-    - target: {fileID: 1702306143893052, guid: 446ea75210419a0498149817f3205fd3, type: 3}
-      propertyPath: m_Name
-      value: Dubi - Dorara
-      objectReference: {fileID: 0}
     - target: {fileID: 4443139100776250, guid: 446ea75210419a0498149817f3205fd3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9702,6 +9699,10 @@ PrefabInstance:
     - target: {fileID: 4443139100776250, guid: 446ea75210419a0498149817f3205fd3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702306143893052, guid: 446ea75210419a0498149817f3205fd3, type: 3}
+      propertyPath: m_Name
+      value: Dubi - Dorara
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 446ea75210419a0498149817f3205fd3, type: 3}

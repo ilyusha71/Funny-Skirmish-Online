@@ -6,6 +6,7 @@ namespace Kocmoca
     {
         public static ResourceManager instance;
         [Header("Ammo Prefab")]
+        public GameObject BigKocmoLaser;
         public GameObject prefabKocmoLaser;
         public GameObject prefabKocmoRocket;
         public GameObject prefabKocmoMissile;
@@ -25,6 +26,7 @@ namespace Kocmoca
 
         // OPD
         public ObjectPoolData[] listAmmoOPD = new ObjectPoolData[3];
+        public ObjectPoolData listAmmoBS = new ObjectPoolData();
 
         private void Awake()
         {
@@ -41,6 +43,8 @@ namespace Kocmoca
             listAmmoOPD[0] = ObjectPoolManager.Instance.CreateObjectPool(prefabKocmoLaser, KocmoLaserCannon.countPerBatch, KocmoLaserCannon.maxPoorInventory);
             listAmmoOPD[1] = ObjectPoolManager.Instance.CreateObjectPool(prefabKocmoRocket, KocmoRocketLauncher.countPerBatch, KocmoRocketLauncher.maxPoorInventory);
             listAmmoOPD[2] = ObjectPoolManager.Instance.CreateObjectPool(prefabKocmoMissile, KocmoMissileLauncher.countPerBatch, KocmoMissileLauncher.maxPoorInventory);
+            listAmmoBS = ObjectPoolManager.Instance.CreateObjectPool(BigKocmoLaser, 5, 100);
+
         }
 
         public void BatchClone()
@@ -48,6 +52,8 @@ namespace Kocmoca
             ObjectPoolManager.Instance.Clone(listAmmoOPD[0]);
             ObjectPoolManager.Instance.Clone(listAmmoOPD[1]);
             ObjectPoolManager.Instance.Clone(listAmmoOPD[2]);
+            ObjectPoolManager.Instance.Clone(listAmmoBS);
+
         }
     }
 }

@@ -41,6 +41,7 @@ namespace Kocmoca
         ParticleSystem.MainModule mainModule;
         public ParticleSystem[] engineThruster;
         public float thrusterStartLife;                //The start life that the thrusters normally have
+        public float currentLifeTime;
         public int countVFX;
         [Header("Propeller")]
         public Propeller[] propeller;
@@ -132,7 +133,7 @@ namespace Kocmoca
 
             if (countVFX > 0)
             {
-                float currentLifeTime = thrusterStartLife * enginePower;
+                 currentLifeTime = thrusterStartLife * enginePower;
 
                 //If the thrusters are powered on at all...
                 if (currentLifeTime > 0f)

@@ -14,7 +14,7 @@ namespace Kocmoca
 
     public class LocalBotController : MonoBehaviour
     {
-        private EnergyCore[] beacons;
+        public EnergyCore[] beacons;
         // Dependent Components
         private Transform myTransform;
         private Rigidbody myRigidbody;
@@ -31,7 +31,7 @@ namespace Kocmoca
         public Vector3 coordinateDestination;
         public float distanceDestination; // 目的地距離
         public float radiusBattle = 700;// limited distance between (BattlePosition and AI position) , this is will create a circle battle area and AI cannot go far out of this area.
-        public float limitElevation = 200;
+        public float limitElevation = 2000;
         [HideInInspector]
         //   public string[] TargetTag;// list of Tags that AI will attack to
         [Header("Target Locked")]
@@ -92,6 +92,7 @@ namespace Kocmoca
             coordinateDestination = beacons[nearestBeacon].transform.position;
             myAvionicsSystem.PositionTarget = coordinateDestination;
         }
+
         void FlyToFarthestBeacon()
         {
             int farthestBeacon = -1;

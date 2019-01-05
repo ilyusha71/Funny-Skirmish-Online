@@ -6,32 +6,40 @@ namespace Kocmoca
 {
     public class EnergyCore : MonoBehaviour, IPunObservable
     {
-        public int beaconNumber;
-        public Faction beaconFaction;
-        private float energy;
-        private int limitRadius = 300;
-        private int countEmitter = 20;
-        public GameObject prefabEmitter;
-        public CounterManager counter;
+        [Header("Beacon")]
+        public int number;
+        public float energy { get; set; } = 0;
+        private readonly int limitRadius = 300;
+        private readonly int countEmitter = 20;
+        private Faction faction = Faction.Unknown;
         public Queue<EnergyEmitter> queueEmitter = new Queue<EnergyEmitter>();
+        [Header("VFX")]
+        public GameObject energyEmitter;
+        public GameObject vfxUnknow;
+        public GameObject vfxFriend;
+        public GameObject vfxFoe;
+
 
         private void Awake()
         {
-            energy = beaconFaction == Faction.Apovaka ? 30 : -30;
             GetComponent<SphereCollider>().radius = limitRadius;
             for (int i = 0; i < countEmitter; i++)
             {
-                EnergyEmitter emitter = Instantiate(prefabEmitter).GetComponent<EnergyEmitter>();
+                EnergyEmitter emitter = Instantiate(energyEmitter).GetComponent<EnergyEmitter>();
                 emitter.transform.SetParent(transform);
-                emitter.transform.localPosition = Vector3.zero;
                 emitter.Initialize(this, limitRadius);
                 queueEmitter.Enqueue(emitter);
             }
+            vfxUnknow.SetActive(true);
+            vfxFriend.SetActive(false);
+            vfxFoe.SetActive(false);
         }
+
         private void Start()
         {
-            HeadUpDisplayManager.Instance.InitializeBeaconUI(beaconNumber, beaconFaction, transform.position);
+            HeadUpDisplayManager.Instance.InitializeBeaconUI(number, faction, transform.position);
         }
+
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             if (stream.IsWriting)
@@ -41,31 +49,54 @@ namespace Kocmoca
             else
             {
                 energy = (float)stream.ReceiveNext();
-                counter.ShowNumber(Mathf.CeilToInt(Mathf.Abs(energy)));
+                //counter.ShowNumber(Mathf.CeilToInt(Mathf.Abs(energy)));
             }
         }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Kocmocraft"))
             {
                 EnergyEmitter emitter = queueEmitter.Dequeue();
-                emitter.target = other.transform;
-                emitter.targetFaction = other.transform.root.GetComponent<KocmocraftManager>().Faction;
                 emitter.enabled = true;
+                emitter.SetReceiver(other.transform, other.transform.root.GetComponent<KocmocraftManager>().Faction);
             }
         }
-        public void CountEnergy(Faction faction, float amount)
+
+        public void CountEnergy(Faction energySource, float amount)
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                bool isPositive = energy > 0 ? true : false;
-                energy = Mathf.Clamp(energy + (faction == Faction.Apovaka ? amount : -amount), -999, 999);
-                counter.ShowNumber(Mathf.CeilToInt(Mathf.Abs(energy)));
+                energy = Mathf.Clamp(energy + (energySource == Faction.Apovaka ? amount : -amount), -999, 999);
+                //counter.ShowNumber(Mathf.CeilToInt(Mathf.Abs(energy)));
 
-                if (isPositive != energy > 0 ? true : false)
+                if (energy > 100)
                 {
-                    beaconFaction = energy > 0 ? Faction.Apovaka : Faction.Perivaka;
-                    HeadUpDisplayManager.Instance.ChangeBeaconFaction(beaconNumber, beaconFaction);
+                    if (faction == Faction.Apovaka) return;
+                    faction = Faction.Apovaka;
+                }
+                else if (energy < -100)
+                {
+                    if (faction == Faction.Perivaka) return;
+                    faction = Faction.Perivaka;
+                }
+                else
+                {
+                    if (faction == Faction.Unknown) return;
+                    faction = Faction.Unknown;
+                }
+                Identification identification = LocalPlayer.CheckFriendOrFoe(faction);
+                HeadUpDisplayManager.Instance.SetBeaconInfo(number, identification);
+
+                vfxUnknow.SetActive(false);
+                vfxFriend.SetActive(false);
+                vfxFoe.SetActive(false);
+
+                switch (identification)
+                {
+                    case Identification.Unknown: vfxUnknow.SetActive(true); break;
+                    case Identification.Friend: vfxFriend.SetActive(true); break;
+                    case Identification.Foe: vfxFoe.SetActive(true); break;
                 }
             }
         }

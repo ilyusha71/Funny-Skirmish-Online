@@ -48,10 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 0
+  enginePower: 0.5
   engineType: 106
   engineThruster: []
   thrusterStartLife: 0
+  currentLifeTime: 0
   countVFX: 0
   propeller: []
 --- !u!82 &145913918658260434
@@ -66,7 +67,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ee0fae2da16f29e46978847543c1d1ee, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.097
+  m_Volume: 0.73
   m_Pitch: 1.3
   Loop: 1
   Mute: 0
@@ -75,7 +76,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 0
-  MaxDistance: 150
+  MaxDistance: 700
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -18896,11 +18897,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4790882186273152}
     m_Modifications:
-    - target: {fileID: 3322143062568316750, guid: 5db0b5139d0a1244998ef6a68ef32984,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype(12) - Reindeer Transport
-      objectReference: {fileID: 0}
     - target: {fileID: 5659499168613414548, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18956,6 +18952,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3322143062568316750, guid: 5db0b5139d0a1244998ef6a68ef32984,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype(12) - Reindeer Transport
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5db0b5139d0a1244998ef6a68ef32984, type: 3}
 --- !u!4 &6662999807876068226 stripped
@@ -18971,10 +18972,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4131806369224376}
     m_Modifications:
-    - target: {fileID: 1651482141216588, guid: 2fffac00edd8be8408fb39b49ef542cd, type: 3}
-      propertyPath: m_Name
-      value: Dubi - Mole
-      objectReference: {fileID: 0}
     - target: {fileID: 4825200097253470, guid: 2fffac00edd8be8408fb39b49ef542cd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -19018,6 +19015,10 @@ PrefabInstance:
     - target: {fileID: 4825200097253470, guid: 2fffac00edd8be8408fb39b49ef542cd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651482141216588, guid: 2fffac00edd8be8408fb39b49ef542cd, type: 3}
+      propertyPath: m_Name
+      value: Dubi - Mole
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fffac00edd8be8408fb39b49ef542cd, type: 3}

@@ -393,7 +393,7 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 1104581001983105213}
-    - renderer: {fileID: 6985336672150257988}
+    - renderer: {fileID: 0}
     - renderer: {fileID: 6985097082322299570}
     - renderer: {fileID: 4003815309922325987}
     - renderer: {fileID: 4004527137690899129}
@@ -424,8 +424,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114146438379477400}
   - {fileID: 114497083572894444}
-  viewIdField: 23
-  InstantiationId: 23
+  viewIdField: 0
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &114146438379477400
 MonoBehaviour:
@@ -817,12 +817,6 @@ MeshRenderer:
 --- !u!23 &4003815309922325987 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 6171306184269488593, guid: 01a479201e3f53040b1353557313ad31,
-    type: 3}
-  m_PrefabInstance: {fileID: 7076433234442925106}
-  m_PrefabAsset: {fileID: 0}
---- !u!199 &6985336672150257988 stripped
-ParticleSystemRenderer:
-  m_CorrespondingSourceObject: {fileID: 199403276582237558, guid: 01a479201e3f53040b1353557313ad31,
     type: 3}
   m_PrefabInstance: {fileID: 7076433234442925106}
   m_PrefabAsset: {fileID: 0}

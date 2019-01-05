@@ -869,6 +869,23 @@ namespace Kocmoca
         public static readonly float engineMaxPitch = .8f;      //The maximum pitch of the engine
     }
 
+    public static class BigLaserCannon
+    {
+        public static readonly int countPerBatch = 5; // 每批生成量
+        public static readonly int maxPoorInventory = 500; // 最大物件池存量
+        public static readonly float maxFireAngle = Mathf.Cos(7 * Mathf.Deg2Rad); // 最大開火夾角
+        public static readonly int maxAmmoCapacity = 999; // 最大載彈量
+        public static readonly float projectileSpread = 0.39f; //彈道散布 degree
+        public static readonly int flightVelocity = 16300;//2970; // 飛行速率 m/s
+        public static readonly int propulsion = flightVelocity * 50; // 開火推力
+        public static readonly float flightTime = 0.71f; // 飛行時間 sec
+        public static readonly float operationalRange = flightVelocity * flightTime; // 射程 m
+        public static readonly float fireRoundPerSecond = 4.77f; // 射速 rps
+        public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec
+        public static readonly float coefficientMinDamage = 1.3035f;
+        public static readonly float coefficientMaxDamage = 4.1949f;
+    }
+
     public static class KocmoLaserCannon
     {
         public static readonly int countPerBatch = 5; // 每批生成量
@@ -1154,7 +1171,13 @@ namespace Kocmoca
     {
         Apovaka = 0,
         Perivaka = 1,
-        Unknown = -999,
+        Unknown,
+    }
+    public enum Identification
+    {
+        Unknown = 0,
+        Friend = 1,
+        Foe = 2,
     }
     public enum Order
     {

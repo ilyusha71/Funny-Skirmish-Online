@@ -1,10 +1,11 @@
 ﻿/***************************************************************************
  * Head Up Display Manager
  * 觀察者攝影機
- * Last Updated: 2018/09/22
+ * Last Updated: 2019/01/05
  * Description:
  * 1. 管理HUD各類UI切換與賦值
  * 2. 管理HUD相關音效
+ * 3. myNumber與myFaction參數移至Local Player靜態腳本
  ***************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
@@ -121,8 +122,8 @@ namespace Kocmoca
         private KocmocraftMechDroid myMechDroid;
         private FireControlSystem myRocketFCS;
         private FireControlSystem myMissileFCS;
-        private int myNumber;
-        private Faction myFaction;
+        //private int myNumber;
+        //private Faction myFaction;
         //public WeaponManager myWeaponManager;
         //public WeaponSystem myWeaponSystem;
         //public WeaponSystem myRocketSystem;
@@ -135,7 +136,7 @@ namespace Kocmoca
             uiGlobal.alpha = 0;
             uiHUD.alpha = 0;
         }
-        public void InitializeHUD(Transform myKocmocraft,int kocmonautNumber)
+        public void InitializeHUD(Transform myKocmocraft)
         {
             this.myKocmocraft = myKocmocraft;
             myRigidbody = myKocmocraft.GetComponent<Rigidbody>();
@@ -144,8 +145,8 @@ namespace Kocmoca
             myMechDroid = myKocmocraft.GetComponent<KocmocraftMechDroid>();
             myRocketFCS = myKocmocraft.GetComponentsInChildren<FireControlSystem>()[1];
             myMissileFCS = myKocmocraft.GetComponentsInChildren<FireControlSystem>()[2];
-            myNumber = kocmonautNumber;
-            myFaction = SatelliteCommander.Instance.listKocmonaut[myNumber].Faction;
+            //myNumber = kocmonautNumber;
+            //myFaction = SatelliteCommander.Instance.listKocmonaut[myNumber].Faction;
 
             uiMask.alpha = 1;
             uiMask.DOFade(0, 3.0f);
@@ -376,7 +377,7 @@ namespace Kocmoca
             string info = SatelliteCommander.Instance.listKocmonaut[destroyedNumber].Name.Split('-')[0];
             TextMeshProUGUI show = listDestroyedText.Dequeue();
             show.DOFade(1,0.73f);
-            show.text = (destroyed.Faction == myFaction ? FriendText(info) : FoeText(info)) + " Destroyed";
+            show.text = (destroyed.Faction == LocalPlayer.Faction ? FriendText(info) : FoeText(info)) + " Destroyed";
             yield return new WaitForSeconds(3.37f);
             show.DOFade(0, 0.73f);
             yield return new WaitForSeconds(1.00f);
@@ -390,15 +391,15 @@ namespace Kocmoca
             Kocmonaut attacker = SatelliteCommander.Instance.listKocmonaut[attackerNumber];
             string infoAttacker = attacker.Name.Split('-')[0] + "\n";
             string infoDamage = damage + "\n";
-            if (myNumber == attackerNumber)
+            if (LocalPlayer.Number == attackerNumber)
             {
                 textAttackerInfo.text += PlayerText(infoAttacker);
                 textDamageInfo.text += PlayerText(infoDamage);
             }
             else
             {
-                textAttackerInfo.text += (attacker.Faction == myFaction ? FriendText(infoAttacker) : FoeText(infoAttacker));
-                textDamageInfo.text += (attacker.Faction == myFaction ? FriendText(infoDamage) : FoeText(infoDamage));
+                textAttackerInfo.text += (attacker.Faction == LocalPlayer.Faction ? FriendText(infoAttacker) : FoeText(infoAttacker));
+                textDamageInfo.text += (attacker.Faction == LocalPlayer.Faction ? FriendText(infoDamage) : FoeText(infoDamage));
             }
         }
         public void ShowKillStealer(int stealerNumber)
@@ -447,14 +448,33 @@ namespace Kocmoca
             textBeaconDistance[index] = markerBeacon[index].GetComponentsInChildren<TextMeshProUGUI>()[1];
             // Load Data
             posBeacon[index] = position;
-            ChangeBeaconFaction(index, faction);
+            SetBeaconInfo(index, Identification.Unknown);
         }
-        public void ChangeBeaconFaction(int index, Faction faction)
+
+        private readonly Color UnknownColor = new Color32(255, 237, 73, 255);
+        private readonly Color FriendColor = new Color32(0, 255, 0, 255);
+        private readonly Color FoeColor = new Color32(255, 97, 93, 255);
+
+        public void SetBeaconInfo(int index, Identification identification)
         {
-            markerBeacon[index].color = faction == myFaction ? new Color32(0, 255, 0, 255) : new Color32(255, 64, 65, 255);
-            textBeaconFaction[index].color = faction == myFaction ? colorTextFriend : colorTextFoe;
-            textBeaconFaction[index].text = faction.ToString();
-            textBeaconDistance[index].color = faction == myFaction ? colorTextFriend : colorTextFoe;
+            switch (identification)
+            {
+                case Identification.Friend:
+                    markerBeacon[index].color = FriendColor;
+                    textBeaconFaction[index].color = FriendColor;
+                    textBeaconDistance[index].color = FriendColor;
+                    break;
+                case Identification.Foe:
+                    markerBeacon[index].color = FoeColor;
+                    textBeaconFaction[index].color = FoeColor;
+                    textBeaconDistance[index].color = FoeColor;
+                    break;
+                case Identification.Unknown:
+                    markerBeacon[index].color = UnknownColor;
+                    textBeaconFaction[index].color = UnknownColor;
+                    textBeaconDistance[index].color = UnknownColor;
+                    break;
+            }
         }
     }
 }
