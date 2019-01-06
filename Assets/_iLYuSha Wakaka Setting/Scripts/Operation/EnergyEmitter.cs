@@ -58,7 +58,7 @@ namespace Kocmoca
         {
             receiver = target;
             receiverFaction = targetFaction;
-            if (LocalPlayer.CheckFriendOrFoe(targetFaction) == Identification.Friend)
+            if (LocalPlayerRealtimeData.CheckFriendOrFoe(targetFaction) == Identification.Friend)
                 line = lineFriend;
             else
                 line = lineFoe;

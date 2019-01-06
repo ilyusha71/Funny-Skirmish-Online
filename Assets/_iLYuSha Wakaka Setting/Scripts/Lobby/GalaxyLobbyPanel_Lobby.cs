@@ -125,12 +125,13 @@ namespace Kocmoca
 
         void MoveToLogin()
         {
+            RefreshRegion();
             lobbyState = LobbyState.Moving;
             doraraHand.DOLocalMove(posDoraraHand.Ready, posDoraraHand.Interval);
             MouseLock.MouseLocked = false;
-            mainCamera.DOMove(pointLogin.position, timeCameraMoving * 2);
-            mainCamera.DOLookAt(pointLogin.TransformPoint(new Vector3(0, 0, 1)), timeCameraMoving * 2);
-            mainCamera.DORotate(pointLogin.rotation.eulerAngles, timeCameraMoving * 2).OnComplete(() =>
+            mainCamera.DOMove(pointLogin.position, timeCameraMoving);
+            mainCamera.DOLookAt(pointLogin.TransformPoint(new Vector3(0, 0, 1)), timeCameraMoving);
+            mainCamera.DORotate(pointLogin.rotation.eulerAngles, timeCameraMoving).OnComplete(() =>
             {
                 lobbyState = LobbyState.Login;
                 SetActivePanel("LoginPanel");

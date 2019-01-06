@@ -13,9 +13,13 @@ using TMPro;
 
 namespace Kocmoca
 {
-    public class ObserverCamera : MonoBehaviour
+    public class ObserverCamera : CameraTrackingSystem
     {
-        private Transform myTransform;
+        [Header("Observer")]
+        public Transform Target;// player ( Your Plane)
+        public Transform targetViewpoint; // 視角位置
+        public GameObject targetKocmonaut; // 宇航員物件
+
         private CameraSway sway;
         private bool isCockpitView;
         private bool isLocalView;
@@ -32,13 +36,11 @@ namespace Kocmoca
         public List<int> listOthers = new List<int>();
         public int observerNumber;
         public int indexOtherViewpoint;
-        public Transform Target;// player ( Your Plane)
-        public Transform targetViewpoint; // 視角位置
-        public GameObject targetKocmonaut; // 宇航員物件
+
 
         private void Awake()
         {
-            myTransform = transform;            
+            InitializeTrackingSystem();
         }
         private void Start()
         {
@@ -56,20 +58,25 @@ namespace Kocmoca
 
             targetKocmonaut.SetActive(false);
             Target = null;
-            myTransform.SetParent(targetViewpoint.parent);
-            myTransform.localPosition = targetViewpoint.localPosition;
-            myTransform.localRotation = targetViewpoint.localRotation;
+            pivot.SetParent(targetViewpoint.parent);
+            pivot.localPosition = targetViewpoint.localPosition;
+            pivot.localRotation = targetViewpoint.localRotation;
+            ReturnToZero();
             sway.enabled = true;
         }
+
+        // 本地玩家坠机后转移摄影机
         public void TransferCamera()
         {
-            myTransform.SetParent(null);
+            pivot.SetParent(null);
             sway.enabled = false;
+            ReturnToZero();
             StartCoroutine(Delay());
         }
         IEnumerator Delay()
         {
             yield return new WaitForSeconds(1.73f);
+            LocalPlayerRealtimeData.Status = FlyingStatus.Respawn;
             isLocalView = false;
             NextBotViewpoint();
         }
@@ -111,24 +118,25 @@ namespace Kocmoca
             {
                 targetKocmonaut.SetActive(false);
                 Target = null;
-                myTransform.SetParent(targetViewpoint.parent);
-                myTransform.localPosition = targetViewpoint.localPosition;
-                myTransform.localRotation = targetViewpoint.localRotation;
+                pivot.SetParent(targetViewpoint.parent);
+                pivot.localPosition = targetViewpoint.localPosition;
+                pivot.localRotation = targetViewpoint.localRotation;
                 sway.enabled = true;
             }
             else
             {
                 targetKocmonaut.SetActive(true);
                 Target = targetViewpoint;
-                myTransform.SetParent(null);
+                pivot.SetParent(null);
                 sway.enabled = false;
+                ReturnToZero();
                 Offset = KocmocraftData.GetCameraOffset(Target.root.GetComponent<KocmocraftManager>().Type);
             }
         }
 
         private void Update()
         {
-            if (!isLocalView)
+            if (LocalPlayerRealtimeData.Status == FlyingStatus.Respawn)
             {
                 if (Input.GetKeyDown(KeyCode.D))
                     NextBotViewpoint();
@@ -136,16 +144,26 @@ namespace Kocmoca
                     PreviousBotViewpoint();
             }
         }
+
         void FixedUpdate()
         {
             if (!Target)
                 return;
 
-            myTransform.rotation = Target.rotation;
-            positionTargetUp = Vector3.Lerp(positionTargetUp, ((-Target.forward * Offset.z) + (Target.up * Offset.y)), Time.fixedDeltaTime * TurnSpeedMult);
-            positionTarget = Target.position + (positionTargetUp);
-            float distance = Vector3.Distance(positionTarget, myTransform.position);
-            myTransform.position = Vector3.Lerp(myTransform.position, positionTarget, Time.fixedDeltaTime * (distance * FollowSpeedMult));
+            if (LocalPlayerRealtimeData.Status == FlyingStatus.Flying)
+            {
+                pivot.rotation = Target.rotation;
+                positionTargetUp = Vector3.Lerp(positionTargetUp, ((-Target.forward * Offset.z) + (Target.up * Offset.y)), Time.fixedDeltaTime * TurnSpeedMult);
+                positionTarget = Target.position + (positionTargetUp);
+                float distance = Vector3.Distance(positionTarget, pivot.position);
+                pivot.position = Vector3.Lerp(pivot.position, positionTarget, Time.fixedDeltaTime * (distance * FollowSpeedMult));
+            }
+            else if (LocalPlayerRealtimeData.Status == FlyingStatus.Respawn)
+            {
+                pivot.position = Target.position;
+                pivot.rotation = Target.rotation;
+                Control();
+            }
         }
     }
 }

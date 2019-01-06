@@ -214,6 +214,7 @@ namespace Kocmoca
             switch (Core)
             {
                 case Core.LocalPlayer:
+                    LocalPlayerRealtimeData.Status = FlyingStatus.Crash;
                     SatelliteCommander.Instance.Observer.TransferCamera();
                     SatelliteCommander.Instance.ClearData();
                     HeadUpDisplayManager.Instance.ClearData();

@@ -32,15 +32,19 @@ namespace Kocmoca
             // Camera Setting
             MouseLock.MouseLocked = true;
         }
+
+        int reverse = 1;
         void Update()
-        {
+        {// TEMP
+            if (Input.GetKeyDown(KeyCode.F7))
+                reverse *= -1;
             if (!myAvionicsSystem || !Active)
                 return;
             Operation();
         }
         void Operation()
         {
-            myAvionicsSystem.AxisControl(new Vector2(Controller.roll, Controller.pitch));
+            myAvionicsSystem.AxisControl(new Vector2(Controller.roll, reverse*Controller.pitch));
             myAvionicsSystem.TurnControl(Controller.yaw);
             myAvionicsSystem.SpeedControl(Controller.throttle, useAfterBurner);
 

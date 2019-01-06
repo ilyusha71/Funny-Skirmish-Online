@@ -82,8 +82,8 @@ namespace Kocmoca
             photonView.RPC("SynchronizePlayerKocmocraft", RpcTarget.Others);
             // Local Data - Initialize
             FindObjectOfType<HeadUpDisplayManager>().InitializeHUD(myTransform);
-            LocalPlayer.Number = Number;
-            LocalPlayer.Faction = SatelliteCommander.Instance.listKocmonaut[Number].Faction;
+            LocalPlayerRealtimeData.Number = Number;
+            LocalPlayerRealtimeData.Faction = SatelliteCommander.Instance.listKocmonaut[Number].Faction;
         }
         [PunRPC]
         public void SynchronizePlayerKocmocraft(PhotonMessageInfo info)

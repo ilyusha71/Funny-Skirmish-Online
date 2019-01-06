@@ -85,7 +85,7 @@ namespace Kocmoca
                     if (faction == Faction.Unknown) return;
                     faction = Faction.Unknown;
                 }
-                Identification identification = LocalPlayer.CheckFriendOrFoe(faction);
+                Identification identification = LocalPlayerRealtimeData.CheckFriendOrFoe(faction);
                 HeadUpDisplayManager.Instance.SetBeaconInfo(number, identification);
 
                 vfxUnknow.SetActive(false);

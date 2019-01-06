@@ -702,12 +702,19 @@ namespace Kocmoca
         {
             switch (type)
             {
+                case Type.RedBullEnergy: return new Vector3(0, 3.0f, 7.0f);
+                case Type.VladimirPutin: return new Vector3(0, 3.0f, 5.0f);
+                case Type.PaperAeroplane: return new Vector3(0, 3.0f, 7.0f);
+
                 case Type.BulletBill: return new Vector3(0,3.37f,7);
                 case Type.TimeMachine: return new Vector3(0, 2.97f, 0);
                 case Type.AceKennel: return new Vector3(0, 1.37f, 0);
                 case Type.KirbyStar: return new Vector3(0, 2.37f, 0);
+
+                case Type.ScorpioRouge: return new Vector3(0, 5.0f, 10.0f);
+
                 case Type.AncientFish: return new Vector3(0, 3.93f, 10.0f);
-                case Type.PumpkinGhost: return new Vector3(0, 5.37f, 10.0f);
+                case Type.PumpkinGhost: return new Vector3(0, 7.0f, 10.0f);
                 default: return new Vector3(0, 3.37f, 7);
             }
         }

@@ -56,7 +56,7 @@ namespace Kocmoca
             if (level < 0.0100001f) bar[0].enabled = false;
         }
     }
-    public class HangarRanger : MonoBehaviour
+    public class HangarRanger : CameraTrackingSystem
     {
         private readonly int hangarMaxCount = 24;
         private readonly int hangarHalfCount = 12;
@@ -66,10 +66,10 @@ namespace Kocmoca
         public CanvasGroup hangarCanvas;
         private AudioSource SFX;
         [Header("Hangar Rail & Camera")]
-        public Transform hangarRailMain;
-        public Transform hangarRailY;
-        public Transform hangarRailX;
-        public Transform hangarCamera;
+        //public Transform hangarRailMain;
+        //public Transform hangarRailY;
+        //public Transform hangarRailX;
+        //public Transform hangarCamera;
         public Transform[] hangarCenter;
         public Camera cameraTop;
         public Camera cameraSide;
@@ -130,6 +130,7 @@ namespace Kocmoca
 
         void Awake()
         {
+            InitializeTrackingSystem();
             Portal.OnShutterPressedUp += EnterHangar;
             SFX = GetComponent<AudioSource>();
             prototype = new BoxCollider[hangarMaxCount];
@@ -153,18 +154,29 @@ namespace Kocmoca
 
         private void EnterHangar()
         {
+            valueRotY = hangarIndex < hangarHalfCount ? valueRotY : -valueRotY;
             Controller.controlMode = ControlMode.General;
             hangarState = HangarState.Moving;
-            hangarRailY.DOLocalRotate(hangarIndex < hangarHalfCount ? new Vector3(0, 153, 0) : new Vector3(0, -153, 0), 3.37f);
-            hangarRailX.DOLocalRotate(new Vector3(71, 0, 0), 3.37f);
-            hangarCamera.DOLocalMove(new Vector3(0, 0, -13.7f), 3.37f);
-            hangarRailMain.DORotateQuaternion(prototype[hangarIndex].transform.rotation, 3.37f);
-            hangarRailMain.DOMove(prototype[hangarIndex].transform.position, 3.37f).OnComplete(() =>
+            axisY.DOLocalRotate(new Vector3(0, valueRotY, 0), 3.37f);
+            axisX.DOLocalRotate(new Vector3(valueRotX, 0, 0), 3.37f);
+            slider.DOLocalMove(new Vector3(0, 0, valuePosZ), 3.37f);
+            pivot.DORotateQuaternion(prototype[hangarIndex].transform.rotation, 3.37f);
+            pivot.DOMove(prototype[hangarIndex].transform.position, 3.37f).OnComplete(() =>
             {
                 hangarState = HangarState.Ready;
                 billboard.localPosition = billboardPos;
                 LoadHangarData();
             });
+            //hangarRailY.DOLocalRotate(hangarIndex < hangarHalfCount ? new Vector3(0, 153, 0) : new Vector3(0, -153, 0), 3.37f);
+            //hangarRailX.DOLocalRotate(new Vector3(71, 0, 0), 3.37f);
+            //hangarCamera.DOLocalMove(new Vector3(0, 0, -13.7f), 3.37f);
+            //hangarRailMain.DORotateQuaternion(prototype[hangarIndex].transform.rotation, 3.37f);
+            //hangarRailMain.DOMove(prototype[hangarIndex].transform.position, 3.37f).OnComplete(() =>
+            //{
+            //    hangarState = HangarState.Ready;
+            //    billboard.localPosition = billboardPos;
+            //    LoadHangarData();
+            //});
         }
 
         void Update()
@@ -191,7 +203,7 @@ namespace Kocmoca
                 MoveHangarRail();
             }
 
-            billboard.LookAt(hangarCamera);
+            billboard.LookAt(slider);
             billboard.eulerAngles = new Vector3(0, billboard.eulerAngles.y, 0);
 
             if (hangarState == HangarState.Ready)
@@ -206,16 +218,17 @@ namespace Kocmoca
                     else
                         return;
                 }
+                Control();
                    
-                if (Input.GetKey(KeyCode.Mouse1))
-                {
-                    hangarCanvas.alpha = 0;
-                    hangarRailY.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * 2, 0);
-                    hangarRailX.rotation *= Quaternion.Euler(-Input.GetAxis("Mouse Y") * 2, 0, 0);
-                }
-                hangarRailX.eulerAngles = new Vector3(Mathf.Clamp(hangarRailX.rotation.eulerAngles.x, 60, 120), hangarRailX.rotation.eulerAngles.y, hangarRailX.rotation.eulerAngles.z);
-                hangarCamera.localPosition = Vector3.Lerp(hangarCamera.localPosition, hangarCamera.localPosition + new Vector3(0, 0, 10 * Input.GetAxis("Mouse ScrollWheel")), 0.5f);
-                hangarCamera.localPosition = new Vector3(hangarCamera.localPosition.x, hangarCamera.localPosition.y, Mathf.Clamp(hangarCamera.localPosition.z, -20, -5));
+                //if (Input.GetKey(KeyCode.Mouse1))
+                //{
+                //    hangarCanvas.alpha = 0;
+                //    hangarRailY.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * 2, 0);
+                //    hangarRailX.rotation *= Quaternion.Euler(-Input.GetAxis("Mouse Y") * 2, 0, 0);
+                //}
+                //hangarRailX.eulerAngles = new Vector3(Mathf.Clamp(hangarRailX.rotation.eulerAngles.x, 60, 120), hangarRailX.rotation.eulerAngles.y, hangarRailX.rotation.eulerAngles.z);
+                //hangarCamera.localPosition = Vector3.Lerp(hangarCamera.localPosition, hangarCamera.localPosition + new Vector3(0, 0, 10 * Input.GetAxis("Mouse ScrollWheel")), 0.5f);
+                //hangarCamera.localPosition = new Vector3(hangarCamera.localPosition.x, hangarCamera.localPosition.y, Mathf.Clamp(hangarCamera.localPosition.z, -20, -5));
             }
         }
 
@@ -223,10 +236,10 @@ namespace Kocmoca
         {
             billboard.localPosition = billboardHide;
             hangarCanvas.alpha = 0.0f;
-            hangarRailMain.DOKill();
+            pivot.DOKill();
             hangarState = HangarState.Moving;
-            hangarRailMain.DORotateQuaternion(prototype[hangarIndex].transform.rotation, 0.73f);
-            hangarRailMain.DOMove(prototype[hangarIndex].transform.position, 0.73f).OnComplete(() =>
+            pivot.DORotateQuaternion(prototype[hangarIndex].transform.rotation, 0.73f);
+            pivot.DOMove(prototype[hangarIndex].transform.position, 0.73f).OnComplete(() =>
             {
                 hangarState = HangarState.Ready;
                 if (hangarIndex < 20)

@@ -77,7 +77,7 @@ namespace Kocmoca
         }
         void Start()
         {
-
+            LocalPlayerRealtimeData.Status = FlyingStatus.Waiting;
             InitializeRadar();
 
         }
@@ -151,6 +151,7 @@ namespace Kocmoca
             string typeName = "Kocmocraft " + type.ToString("00")+ " - " + KocmocraftData.GetKocmocraftName(type);
             localPlayer = PhotonNetwork.Instantiate(typeName.ToString(), new Vector3(0, 10000, 0), Quaternion.identity, 0).transform;
             localPlayer.GetComponent<KocmocraftManager>().InitializeLocalPlayer();
+            LocalPlayerRealtimeData.Status = FlyingStatus.Flying;
         }
         void SpawnBotKocmocraft(int portNumber)
         {

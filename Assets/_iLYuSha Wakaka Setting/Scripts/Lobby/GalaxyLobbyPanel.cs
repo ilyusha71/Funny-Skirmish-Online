@@ -34,6 +34,7 @@ namespace Kocmoca
         [Header("Connection Status")]
         public TextMeshProUGUI ConnectionStatusText;
         public TextMeshProUGUI RegionPingText;
+        public TextMeshProUGUI SearchText;
         private string serverRegion;
 
         [Header("Region Panel")]
@@ -93,6 +94,14 @@ namespace Kocmoca
 
         private void Awake()
         {
+            PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime = "8d3d0446-b335-47c1-ab69-7aa9e6878c10"; // TODO: replace with your own AppId
+
+//#if CHINA
+//    PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime  = "8d3d0446-b335-47c1-ab69-7aa9e6878c10"; // TODO: replace with your own AppId
+//#else
+//            PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime = "6790855d-98ce-4acd-b64f-688c4a354ccf"; // TODO: replace with your own AppId
+//#endif
+
             Portal.OnShutterPressedUp += Connect;
             PhotonNetwork.AutomaticallySyncScene = true;
             cachedRoomList = new Dictionary<string, RoomInfo>();
@@ -107,12 +116,34 @@ namespace Kocmoca
             lobbyState = LobbyState.Moving;
             if (!PhotonNetwork.IsConnected)
             {
-                PhotonNetwork.NetworkingClient.AppId = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime;
+                //PhotonNetwork.NetworkingClient.AppId = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime;
                 PhotonNetwork.NetworkingClient.AddCallbackTarget(this);
-                RefreshRegion();                
+                MoveToLogin();
+                //RefreshRegion();                
             }
             else
                 MoveToLobby();
+        }
+
+        public void ConnectChinaServer()
+        {
+            SearchText.enabled = true;
+            PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime = "8d3d0446-b335-47c1-ab69-7aa9e6878c10"; // TODO: replace with your own AppId
+            PhotonNetwork.NetworkingClient.AppId = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime;
+            PhotonNetwork.NetworkingClient.NameServerHost = "ns.photonengine.cn";
+            RefreshRegion();
+            PhotonNetwork.NetworkingClient.ConnectToNameServer();
+
+        }
+
+        public void ConnectInternationServer()
+        {
+            SearchText.enabled = true;
+            PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime = "6790855d-98ce-4acd-b64f-688c4a354ccf"; // TODO: replace with your own AppId
+            PhotonNetwork.NetworkingClient.AppId = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime;
+            PhotonNetwork.NetworkingClient.NameServerHost = "ns.exitgames.com";
+            RefreshRegion();
+            PhotonNetwork.NetworkingClient.ConnectToNameServer();
         }
 
         void RefreshRegion()
@@ -124,8 +155,6 @@ namespace Kocmoca
             {
                 Destroy(btn[i].gameObject);
             }
-            PhotonNetwork.NetworkingClient.ConnectToNameServer();
-            MoveToLogin();
         }
 
         private void Update()
@@ -138,6 +167,7 @@ namespace Kocmoca
 
             if (showRegion)
             {
+                SearchText.enabled = false;
                 foreach (KeyValuePair<string, int> data in dataRegion)
                 {
                     string region = data.Key;
@@ -231,19 +261,20 @@ namespace Kocmoca
         {
             switch (region)
             {
-                case "eu": return "Europe";
-                case "us": return "USA, East";
-                case "usw": return "USA, West";
-                case "cae": return "Canada, East";
-                case "asia": return "Asia";
-                case "jp": return "Japan";
-                case "au": return "Australia";
-                case "sa": return "South America";
-                case "in": return "India";
-                case "ru": return "Russia";
-                case "rue": return "Russia, East";
-                case "kr": return "South Korea";
-                default: return "Unknown";
+                case "eu": return "欧洲地区";
+                case "us": return "美国东部";
+                case "usw": return "美国西部";
+                case "cae": return "加拿大东部";
+                case "asia": return "亚洲地区";
+                case "jp": return "日本";
+                case "au": return "澳大利亚";
+                case "sa": return "南美地区";
+                case "in": return "印度";
+                case "ru": return "俄罗斯";
+                case "rue": return "远东地区";
+                case "kr": return "南韩";
+                case "cn": return "中国";
+                default: return "未知区域";
             }
         }
 
@@ -388,7 +419,9 @@ namespace Kocmoca
         public override void OnDisconnected(DisconnectCause cause)
         {
             Debug.LogWarning("Galaxy Lobby: OnDisconnected(" + cause + ")");
-            RefreshRegion();
+            serverRegion = "";
+            MoveToLogin();
+            //RefreshRegion();
             //UnityEngine.SceneManagement.SceneManager.LoadScene(LobbyInfomation.SCENE_LOBBY);
         }
 

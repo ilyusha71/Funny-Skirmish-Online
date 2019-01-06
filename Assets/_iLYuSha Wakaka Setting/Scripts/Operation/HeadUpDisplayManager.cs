@@ -199,7 +199,8 @@ namespace Kocmoca
                     blockWhoAttackU.alpha = Mathf.Repeat(blockWhoAttackU.alpha + 1, 2);
                 if (Input.GetKeyDown(KeyCode.F2)) // 暂时 只能按一次
                 {
-                    SatelliteCommander.Instance.SpawnPlayerKocmocraft();
+                    if (LocalPlayerRealtimeData.Status == FlyingStatus.Respawn)
+                        SatelliteCommander.Instance.SpawnPlayerKocmocraft();
                 }
             }
         }
@@ -377,7 +378,7 @@ namespace Kocmoca
             string info = SatelliteCommander.Instance.listKocmonaut[destroyedNumber].Name.Split('-')[0];
             TextMeshProUGUI show = listDestroyedText.Dequeue();
             show.DOFade(1,0.73f);
-            show.text = (destroyed.Faction == LocalPlayer.Faction ? FriendText(info) : FoeText(info)) + " Destroyed";
+            show.text = (destroyed.Faction == LocalPlayerRealtimeData.Faction ? FriendText(info) : FoeText(info)) + " Destroyed";
             yield return new WaitForSeconds(3.37f);
             show.DOFade(0, 0.73f);
             yield return new WaitForSeconds(1.00f);
@@ -391,15 +392,15 @@ namespace Kocmoca
             Kocmonaut attacker = SatelliteCommander.Instance.listKocmonaut[attackerNumber];
             string infoAttacker = attacker.Name.Split('-')[0] + "\n";
             string infoDamage = damage + "\n";
-            if (LocalPlayer.Number == attackerNumber)
+            if (LocalPlayerRealtimeData.Number == attackerNumber)
             {
                 textAttackerInfo.text += PlayerText(infoAttacker);
                 textDamageInfo.text += PlayerText(infoDamage);
             }
             else
             {
-                textAttackerInfo.text += (attacker.Faction == LocalPlayer.Faction ? FriendText(infoAttacker) : FoeText(infoAttacker));
-                textDamageInfo.text += (attacker.Faction == LocalPlayer.Faction ? FriendText(infoDamage) : FoeText(infoDamage));
+                textAttackerInfo.text += (attacker.Faction == LocalPlayerRealtimeData.Faction ? FriendText(infoAttacker) : FoeText(infoAttacker));
+                textDamageInfo.text += (attacker.Faction == LocalPlayerRealtimeData.Faction ? FriendText(infoDamage) : FoeText(infoDamage));
             }
         }
         public void ShowKillStealer(int stealerNumber)
