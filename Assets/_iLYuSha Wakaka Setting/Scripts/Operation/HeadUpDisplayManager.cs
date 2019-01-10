@@ -69,6 +69,7 @@ namespace Kocmoca
         [Header("UI - Onboard Radar Lock On")]
         public Transform markerLock; // 射控雷達開火提示 only one
         public TextMeshProUGUI textTargetName;
+        public TextMeshProUGUI textTargetType;
         public TextMeshProUGUI textTargetDistance;
         public Image targetHull;
         public Image targetShield;
@@ -95,6 +96,9 @@ namespace Kocmoca
         public Image[] markerBeacon;
         private TextMeshProUGUI[] textBeaconFaction = new TextMeshProUGUI[3];
         private TextMeshProUGUI[] textBeaconDistance = new TextMeshProUGUI[3];
+
+
+
 
         [Header("【機載雷達】")]
         public Transform onboardRadar;
@@ -433,7 +437,8 @@ namespace Kocmoca
             screenPos.z = 999;
 
             markerLock.position = screenPos;
-            textTargetName.text = target.name.Split('-')[0] + "\n<size=23>" + target.name.Split('-')[1] + "</size>";
+            textTargetName.text = target.name.Split('-')[0];
+            textTargetType.text = target.name.Split('-')[2];
             textTargetDistance.text = Mathf.Floor(distance) + " m";
 
             KocmocraftMechDroid targetInfo = target.GetComponent<KocmocraftMechDroid>();
@@ -452,6 +457,13 @@ namespace Kocmoca
             SetBeaconInfo(index, Identification.Unknown);
         }
 
+        [Header("Material")]
+        public Material matMiniUnknown;
+        public Material matMiniFriend;
+        public Material matMiniFoe;
+        private readonly Color colorMiniUnknown = new Color32(69, 0, 0, 255);
+        private readonly Color colorMiniFriend = new Color32(0, 69, 8, 255);
+        private readonly Color colorMiniFoe = new Color32(93, 0, 0, 255);
         private readonly Color UnknownColor = new Color32(255, 237, 73, 255);
         private readonly Color FriendColor = new Color32(0, 255, 0, 255);
         private readonly Color FoeColor = new Color32(255, 97, 93, 255);
@@ -460,20 +472,26 @@ namespace Kocmoca
         {
             switch (identification)
             {
+                case Identification.Unknown:
+                    markerBeacon[index].color = UnknownColor;
+                    textBeaconFaction[index].fontSharedMaterial = matMiniUnknown;
+                    textBeaconFaction[index].color = colorMiniUnknown;
+                    textBeaconDistance[index].fontSharedMaterial = matMiniUnknown;
+                    textBeaconDistance[index].color = colorMiniUnknown;
+                    break;
                 case Identification.Friend:
                     markerBeacon[index].color = FriendColor;
-                    textBeaconFaction[index].color = FriendColor;
-                    textBeaconDistance[index].color = FriendColor;
+                    textBeaconFaction[index].fontSharedMaterial = matMiniFriend;
+                    textBeaconFaction[index].color = colorMiniFriend;
+                    textBeaconDistance[index].fontSharedMaterial = matMiniFriend;
+                    textBeaconDistance[index].color = colorMiniFriend;
                     break;
                 case Identification.Foe:
                     markerBeacon[index].color = FoeColor;
-                    textBeaconFaction[index].color = FoeColor;
-                    textBeaconDistance[index].color = FoeColor;
-                    break;
-                case Identification.Unknown:
-                    markerBeacon[index].color = UnknownColor;
-                    textBeaconFaction[index].color = UnknownColor;
-                    textBeaconDistance[index].color = UnknownColor;
+                    textBeaconFaction[index].fontSharedMaterial = matMiniFoe;
+                    textBeaconFaction[index].color = colorMiniFoe;
+                    textBeaconDistance[index].fontSharedMaterial = matMiniFoe;
+                    textBeaconDistance[index].color = colorMiniFoe;
                     break;
             }
         }
