@@ -516,7 +516,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114373452745459558}
   - {fileID: 114304271391855062}
-  viewIdField: 16
+  viewIdField: 0
   InstantiationId: 16
   isRuntimeInstantiated: 0
 --- !u!114 &114373452745459558
@@ -748,10 +748,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4761620463260672}
     m_Modifications:
-    - target: {fileID: 1057709863474104, guid: 172671efd248a5c4c85a019ebe042dea, type: 3}
-      propertyPath: m_Name
-      value: Hangar (16) - Pumpkin Ghost
-      objectReference: {fileID: 0}
     - target: {fileID: 4148994515626186, guid: 172671efd248a5c4c85a019ebe042dea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -795,6 +791,10 @@ PrefabInstance:
     - target: {fileID: 4148994515626186, guid: 172671efd248a5c4c85a019ebe042dea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057709863474104, guid: 172671efd248a5c4c85a019ebe042dea, type: 3}
+      propertyPath: m_Name
+      value: Hangar (16) - Pumpkin Ghost
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 172671efd248a5c4c85a019ebe042dea, type: 3}
