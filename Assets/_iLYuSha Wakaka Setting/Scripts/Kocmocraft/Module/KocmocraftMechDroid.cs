@@ -45,9 +45,9 @@ namespace Kocmoca
         private Kocmonaut lastAttacker = new Kocmonaut { Number = -1 };
         private Vector3 lastHitVelocity;
         //public ObjectPoolData ammoRemnantOPD;
-        private GameObject wrekeage;
+        private GameObject wreckage;
 
-        public void Initialize(Core core, int type, int number, GameObject remnant)
+        public void Initialize(Core core, int type, int number, GameObject pilot, GameObject wreckage)
         {
             // Dependent Components
             myRigidbody = GetComponent<Rigidbody>();
@@ -62,7 +62,7 @@ namespace Kocmoca
             Core = core;
             Number = number;
             if (core == Core.LocalPlayer)
-                SatelliteCommander.Instance.Observer.InitializeView(myCockpitViewpoint, transform.GetChild(0).Find("Pilot"), Number);
+                SatelliteCommander.Instance.Observer.InitializeView(myCockpitViewpoint, pilot, Number);
             else
                 SatelliteCommander.Instance.Observer.listOthers.Add(Number);
             // Modular Parameter
@@ -70,7 +70,7 @@ namespace Kocmoca
             dataShield = new Data { Max = KocmocraftData.MaxShieldl[type], Value = KocmocraftData.MaxShieldl[type] };
             // Crash
             //ammoRemnantOPD = ObjectPoolManager.Instance.CreatObjectPool(remnant, 1,5);
-            wrekeage = remnant;
+            this.wreckage = wreckage;
         }
         private void Update()
         {
@@ -244,14 +244,14 @@ namespace Kocmoca
         {
             if (myRigidbody.velocity == Vector3.zero) // 撞击可能触发修正而变成0向量
                 myRigidbody.velocity = lastHitVelocity;
-            wrekeage.transform.SetParent(null);
-            wrekeage.tag = "Untagged";
-            Rigidbody rigid = wrekeage.AddComponent<Rigidbody>();
+            wreckage.transform.SetParent(null);
+            wreckage.tag = "Untagged";
+            Rigidbody rigid = wreckage.AddComponent<Rigidbody>();
             rigid.mass = 100;
             rigid.velocity = myRigidbody.velocity;
             rigid.AddForce(Random.rotation.eulerAngles * Random.Range(100, 500));
             rigid.AddTorque(Random.rotation.eulerAngles * Random.Range(100, 2000));
-            Destroy(wrekeage, 10.0f);
+            Destroy(wreckage, 10.0f);
             //remnant
             //myRigidbody.useGravity = true;
 

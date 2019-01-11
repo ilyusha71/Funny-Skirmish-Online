@@ -1,0 +1,192 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1106102004751826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4780586525071482}
+  m_Layer: 10
+  m_Name: Exhibition (09) - Scorpio Rouge
+  m_TagString: Kocmocraft
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4780586525071482
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106102004751826}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.363, z: -0.187}
+  m_LocalScale: {x: 0.21, y: 0.21, z: 0.21}
+  m_Children:
+  - {fileID: 3375691067421289162}
+  - {fileID: 4691041263655720016}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4688208237733659114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4691041263655720016}
+  m_Layer: 11
+  m_Name: Pilot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4691041263655720016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4688208237733659114}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6775324590342787979}
+  m_Father: {fileID: 4780586525071482}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3375691069363296167
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4780586525071482}
+    m_Modifications:
+    - target: {fileID: 5766658155981536278, guid: 191dffe131fe1a74eab766767e31603e,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype(09) - Scorpio Rouge
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975614829, guid: 191dffe131fe1a74eab766767e31603e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975614829, guid: 191dffe131fe1a74eab766767e31603e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975614829, guid: 191dffe131fe1a74eab766767e31603e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975614829, guid: 191dffe131fe1a74eab766767e31603e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975614829, guid: 191dffe131fe1a74eab766767e31603e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975614829, guid: 191dffe131fe1a74eab766767e31603e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975614829, guid: 191dffe131fe1a74eab766767e31603e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975614829, guid: 191dffe131fe1a74eab766767e31603e, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975614829, guid: 191dffe131fe1a74eab766767e31603e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975614829, guid: 191dffe131fe1a74eab766767e31603e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975614829, guid: 191dffe131fe1a74eab766767e31603e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 191dffe131fe1a74eab766767e31603e, type: 3}
+--- !u!4 &3375691067421289162 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1975614829, guid: 191dffe131fe1a74eab766767e31603e,
+    type: 3}
+  m_PrefabInstance: {fileID: 3375691069363296167}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6779753608582390185
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4691041263655720016}
+    m_Modifications:
+    - target: {fileID: 1172087338551586, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
+      propertyPath: m_Name
+      value: Dubi - Faceless
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587359364461090, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587359364461090, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587359364461090, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587359364461090, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587359364461090, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587359364461090, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587359364461090, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587359364461090, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587359364461090, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587359364461090, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587359364461090, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9, type: 3}
+--- !u!4 &6775324590342787979 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4587359364461090, guid: 5c12f3e9c0aa27c4a81987016d9a1eb9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6779753608582390185}
+  m_PrefabAsset: {fileID: 0}

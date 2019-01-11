@@ -1,0 +1,203 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1350595548433052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4905105355549448}
+  m_Layer: 10
+  m_Name: Exhibition (15) - Papoy Unicorn
+  m_TagString: Hangar
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4905105355549448
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350595548433052}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.246, z: -0.285}
+  m_LocalScale: {x: 0.27, y: 0.27, z: 0.27}
+  m_Children:
+  - {fileID: 3402979515351190247}
+  - {fileID: 4958025627294417625}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4955503725568648099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4958025627294417625}
+  m_Layer: 11
+  m_Name: Pilot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4958025627294417625
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4955503725568648099}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3699154291585964612}
+  m_Father: {fileID: 4905105355549448}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1380452893708098822
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4905105355549448}
+    m_Modifications:
+    - target: {fileID: 692105255668595190, guid: a44b4b4d338087f4eb6e37ea1c50ee78,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype(15) - Papoy Unicorn
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328404823835793377, guid: a44b4b4d338087f4eb6e37ea1c50ee78,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328404823835793377, guid: a44b4b4d338087f4eb6e37ea1c50ee78,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328404823835793377, guid: a44b4b4d338087f4eb6e37ea1c50ee78,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328404823835793377, guid: a44b4b4d338087f4eb6e37ea1c50ee78,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328404823835793377, guid: a44b4b4d338087f4eb6e37ea1c50ee78,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328404823835793377, guid: a44b4b4d338087f4eb6e37ea1c50ee78,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328404823835793377, guid: a44b4b4d338087f4eb6e37ea1c50ee78,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328404823835793377, guid: a44b4b4d338087f4eb6e37ea1c50ee78,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328404823835793377, guid: a44b4b4d338087f4eb6e37ea1c50ee78,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328404823835793377, guid: a44b4b4d338087f4eb6e37ea1c50ee78,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328404823835793377, guid: a44b4b4d338087f4eb6e37ea1c50ee78,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a44b4b4d338087f4eb6e37ea1c50ee78, type: 3}
+--- !u!4 &3402979515351190247 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4328404823835793377, guid: a44b4b4d338087f4eb6e37ea1c50ee78,
+    type: 3}
+  m_PrefabInstance: {fileID: 1380452893708098822}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3699921408889848140
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4958025627294417625}
+    m_Modifications:
+    - target: {fileID: 1701431995415994, guid: 8b5d44741cd8c0b4aa5ba14acab2bf43, type: 3}
+      propertyPath: m_Name
+      value: Dubi - Kenny McCormick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164751251331848, guid: 8b5d44741cd8c0b4aa5ba14acab2bf43, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164751251331848, guid: 8b5d44741cd8c0b4aa5ba14acab2bf43, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164751251331848, guid: 8b5d44741cd8c0b4aa5ba14acab2bf43, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164751251331848, guid: 8b5d44741cd8c0b4aa5ba14acab2bf43, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164751251331848, guid: 8b5d44741cd8c0b4aa5ba14acab2bf43, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164751251331848, guid: 8b5d44741cd8c0b4aa5ba14acab2bf43, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164751251331848, guid: 8b5d44741cd8c0b4aa5ba14acab2bf43, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164751251331848, guid: 8b5d44741cd8c0b4aa5ba14acab2bf43, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164751251331848, guid: 8b5d44741cd8c0b4aa5ba14acab2bf43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164751251331848, guid: 8b5d44741cd8c0b4aa5ba14acab2bf43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164751251331848, guid: 8b5d44741cd8c0b4aa5ba14acab2bf43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8b5d44741cd8c0b4aa5ba14acab2bf43, type: 3}
+--- !u!4 &3699154291585964612 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4164751251331848, guid: 8b5d44741cd8c0b4aa5ba14acab2bf43,
+    type: 3}
+  m_PrefabInstance: {fileID: 3699921408889848140}
+  m_PrefabAsset: {fileID: 0}

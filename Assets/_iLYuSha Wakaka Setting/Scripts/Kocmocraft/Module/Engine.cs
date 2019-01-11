@@ -88,7 +88,6 @@ namespace Kocmoca
                     engineMaxThrottlePitch = PulsedPlasmaThruster.engineMaxThrottlePitch;
                     break;
             }
-
             engineThruster = GetComponentsInChildren<ParticleSystem>();
             countVFX = engineThruster.Length;
             //Record the thruster's particle start life property
@@ -107,7 +106,7 @@ namespace Kocmoca
 
         void Start()
         {
-            Power(0.5f);
+            Power(0.3f);
             PhotonView view = transform.root.GetComponent<PhotonView>();
             if (view)
                 view.ObservedComponents.Add(this);

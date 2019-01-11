@@ -18,11 +18,11 @@ namespace Kocmoca
         [Header("Observer")]
         public Transform Target;// player ( Your Plane)
         public Transform targetViewpoint; // 視角位置
-        public GameObject targetKocmonaut; // 宇航員物件
+        public GameObject targetPilot; // 飛行員層級
 
         private CameraSway sway;
-        private bool isCockpitView;
-        private bool isLocalView;
+        private bool isCockpitView = false;
+        private bool isLocalView = false;
         private float FollowSpeedMult = 0.5f; // camera following speed 
         private float TurnSpeedMult = 5; // camera turning speed 
         [SerializeField]
@@ -46,17 +46,17 @@ namespace Kocmoca
         {
             Controller.controlMode = ControlMode.Flying;
         }
-        public void InitializeView(Transform cockpitViewpoint, Transform cockpitKocmonaut, int kocmonautNumber)
+        public void InitializeView(Transform cockpitViewpoint, GameObject pilot, int kocmonautNumber)
         {
             isLocalView = true;
             isCockpitView = true;
             targetViewpoint = cockpitViewpoint;
-            targetKocmonaut = cockpitKocmonaut.gameObject;
+            targetPilot = pilot;
             sway = GetComponent<CameraSway>();
             playerFaction = SatelliteCommander.Instance.listKocmonaut[kocmonautNumber].Faction;
             HeadUpDisplayManager.Instance.ShowObserver(playerFaction, targetViewpoint.root.name);
 
-            targetKocmonaut.SetActive(false);
+            pilot.SetActive(false);
             Target = null;
             pivot.SetParent(targetViewpoint.parent);
             pivot.localPosition = targetViewpoint.localPosition;
@@ -116,7 +116,7 @@ namespace Kocmoca
 
             if (isCockpitView && targetViewpoint)
             {
-                targetKocmonaut.SetActive(false);
+                targetPilot.SetActive(false);
                 Target = null;
                 pivot.SetParent(targetViewpoint.parent);
                 pivot.localPosition = targetViewpoint.localPosition;
@@ -125,7 +125,7 @@ namespace Kocmoca
             }
             else
             {
-                targetKocmonaut.SetActive(true);
+                targetPilot.SetActive(true);
                 Target = targetViewpoint;
                 pivot.SetParent(null);
                 sway.enabled = false;

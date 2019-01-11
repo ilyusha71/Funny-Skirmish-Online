@@ -40,7 +40,8 @@ namespace Kocmoca
         public int countFCS;
         public int currentFCS;
         private ObjectPoolData[] listAmmoOPD;
-        [Header("Prefab")]
+        [Header("Child Node")]
+        public GameObject pilot;
         public GameObject wreckage;
 
         private void Awake()
@@ -60,7 +61,7 @@ namespace Kocmoca
             // Load Data
             portNumber = photonView.Owner.GetPlayerNumber();
             Faction = (Faction)(portNumber % 2);
-            Type = (Type)(int.Parse(myTransform.name.Split('-')[0].Replace("Kocmocraft ", "")));
+            Type = (Type)(int.Parse(myTransform.name.Split(new char[2] { '(', ')' })[1]));
             Number = photonView.Owner.ActorNumber;
             myTransform.name = photonView.Owner.NickName + "-" +
                 HangarData.Code[(int)Type] + "-" +
@@ -76,7 +77,7 @@ namespace Kocmoca
             Destroy(gameObject.GetComponent<HarmonicMotion>());
             //gameObject.AddComponent<EngineController>().Initialize(Type);
             gameObject.AddComponent<AvionicsSystem>().Initialize((int)Type); // local only
-            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalPlayer, (int)Type, Number, wreckage);
+            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalPlayer, (int)Type, Number, pilot,wreckage);
             gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalPlayer, (int)Faction, (int)Type, Number); // local only
             gameObject.AddComponent<LocalPlayerController>();
             ActiveFCS(true);
@@ -93,7 +94,7 @@ namespace Kocmoca
             // Load Data
             portNumber = photonView.Owner.GetPlayerNumber();
             Faction = (Faction)(portNumber % 2);
-            Type = (Type)(int.Parse(myTransform.name.Split('-')[0].Replace("Kocmocraft ", "")));
+            Type = (Type)(int.Parse(myTransform.name.Split(new char[2] { '(', ')' })[1]));
             Number = photonView.Owner.ActorNumber;
             myTransform.name = photonView.Owner.NickName + "-" +
                 HangarData.Code[(int)Type] + "-" +
@@ -106,14 +107,14 @@ namespace Kocmoca
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
             //gameObject.AddComponent<EngineController>().Initialize(Type);
-            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.RemotePlayer, (int)Type, Number, wreckage);
+            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.RemotePlayer, (int)Type, Number, pilot, wreckage);
             ActiveFCS(false);
         }
         public void InitializeLocalBot(int portNumber)
         {
             // Load Data
             Faction = (Faction)(portNumber % 2);
-            Type = (Type)(int.Parse(myTransform.name.Split('-')[0].Replace("Kocmocraft ", "")));
+            Type = (Type)(int.Parse(myTransform.name.Split(new char[2] { '(', ')' })[1]));
             Number = KocmocraftData.GetKocmonautNumber(portNumber);
             myTransform.name = KocmocraftData.GetBotName(portNumber) + "-" +
                 HangarData.Code[(int)Type] + "-" +
@@ -129,7 +130,7 @@ namespace Kocmoca
             Destroy(gameObject.GetComponent<HarmonicMotion>());
             //gameObject.AddComponent<EngineController>().Initialize(Type);
             gameObject.AddComponent<AvionicsSystem>().Initialize((int)Type); // local only
-            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalBot, (int)Type, Number, wreckage);
+            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalBot, (int)Type, Number, pilot, wreckage);
             gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalBot, (int)Faction, (int)Type, Number); // local only
             gameObject.AddComponent<LocalBotController>();
             ActiveFCS(true);
@@ -140,7 +141,7 @@ namespace Kocmoca
         {
             // Load Data
             Faction = (Faction)(portNumber % 2);
-            Type = (Type)(int.Parse(myTransform.name.Split('-')[0].Replace("Kocmocraft ", "")));
+            Type = (Type)(int.Parse(myTransform.name.Split(new char[2] { '(', ')' })[1]));
             Number = KocmocraftData.GetKocmonautNumber(portNumber);
             myTransform.name = KocmocraftData.GetBotName(portNumber) + "-" +
                 HangarData.Code[(int)Type] + "-" +
@@ -153,7 +154,7 @@ namespace Kocmoca
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
             //gameObject.AddComponent<EngineController>().Initialize(Type);
-            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.RemoteBot, (int)Type, Number, wreckage);
+            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.RemoteBot, (int)Type, Number, pilot, wreckage);
             ActiveFCS(false);
         }
 

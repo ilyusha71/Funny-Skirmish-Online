@@ -1,0 +1,203 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1607885831465976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4741748660442898}
+  m_Layer: 10
+  m_Name: Exhibition (14) - Ancient Fish
+  m_TagString: Kocmocraft
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4741748660442898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607885831465976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.066, z: 0.497}
+  m_LocalScale: {x: 0.24, y: 0.24, z: 0.24}
+  m_Children:
+  - {fileID: 6427014278843174081}
+  - {fileID: 2948466208120569471}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2947362229721176955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2948466208120569471}
+  m_Layer: 11
+  m_Name: Pilot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2948466208120569471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2947362229721176955}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4030877401342521168}
+  m_Father: {fileID: 4741748660442898}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1538851790754279456
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4741748660442898}
+    m_Modifications:
+    - target: {fileID: 8272309618461701603, guid: ef4c2ee132a9f04429f1a396f845f249,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype (14) - Ancient Fish
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506300234452335841, guid: ef4c2ee132a9f04429f1a396f845f249,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506300234452335841, guid: ef4c2ee132a9f04429f1a396f845f249,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506300234452335841, guid: ef4c2ee132a9f04429f1a396f845f249,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506300234452335841, guid: ef4c2ee132a9f04429f1a396f845f249,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506300234452335841, guid: ef4c2ee132a9f04429f1a396f845f249,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506300234452335841, guid: ef4c2ee132a9f04429f1a396f845f249,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506300234452335841, guid: ef4c2ee132a9f04429f1a396f845f249,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506300234452335841, guid: ef4c2ee132a9f04429f1a396f845f249,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506300234452335841, guid: ef4c2ee132a9f04429f1a396f845f249,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506300234452335841, guid: ef4c2ee132a9f04429f1a396f845f249,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506300234452335841, guid: ef4c2ee132a9f04429f1a396f845f249,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ef4c2ee132a9f04429f1a396f845f249, type: 3}
+--- !u!4 &6427014278843174081 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5506300234452335841, guid: ef4c2ee132a9f04429f1a396f845f249,
+    type: 3}
+  m_PrefabInstance: {fileID: 1538851790754279456}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4035147899214401776
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2948466208120569471}
+    m_Modifications:
+    - target: {fileID: 1488312898911950, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8, type: 3}
+      propertyPath: m_Name
+      value: Dubi - SpongeBob
+      objectReference: {fileID: 0}
+    - target: {fileID: 4279304707719072, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4279304707719072, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4279304707719072, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4279304707719072, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4279304707719072, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4279304707719072, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4279304707719072, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4279304707719072, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4279304707719072, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4279304707719072, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4279304707719072, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8, type: 3}
+--- !u!4 &4030877401342521168 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4279304707719072, guid: 5e48d46383ddbbf4c81f2b7f0aa38aa8,
+    type: 3}
+  m_PrefabInstance: {fileID: 4035147899214401776}
+  m_PrefabAsset: {fileID: 0}

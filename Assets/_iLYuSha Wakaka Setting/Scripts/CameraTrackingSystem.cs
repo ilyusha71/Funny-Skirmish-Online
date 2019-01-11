@@ -16,10 +16,10 @@ public class CameraTrackingSystem : MonoBehaviour
     public Transform fixedX; // 避免360~0度产生的错误
     public Transform slider;
     [SerializeField] private float identity = -90; // X 偏转
-    [SerializeField] private float highAngle; // 最高俯仰角
-    [SerializeField] private float lowAngle; // 最低俯仰角
-    [SerializeField] private  float nearView;
-    [SerializeField] private  float farView;
+    [SerializeField] private float highAngle = 0; // 最高俯仰角
+    [SerializeField] private float lowAngle = 0; // 最低俯仰角
+    [SerializeField] private  float nearView = 0;
+    [SerializeField] private  float farView = 0;
     [Header("Realtime Tracking Parameter")]
     [SerializeField] protected float valueRotY;
     [SerializeField] protected float valueRotX;
@@ -28,8 +28,6 @@ public class CameraTrackingSystem : MonoBehaviour
     protected void InitializeTrackingSystem()
     {
         fixedX.localRotation = Quaternion.Euler(identity, 0, 0);
-        //highAngle = -identity + maxAngle;
-        //lowAngle = -identity - maxAngle;
     }
 
     protected void Control()

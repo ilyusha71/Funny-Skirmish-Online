@@ -191,7 +191,7 @@ namespace Kocmoca
         public static readonly string[] Code = {
             "Minion Armor", // 神偷机兵
             "Red Bull Energy", // 红牛能量;
-            "Vladmir Putin", // 普鲸
+            "Vladimir Putin", // 普鲸
             "Paper Aeroplane", // 纸飞机
             "Cuckoo", // 咕咕鸡
             "Bullet Bill", // 炮弹比尔
@@ -830,7 +830,7 @@ namespace Kocmoca
     }
     public static class Turbofan
     {
-        public static readonly float engineMaxVolume = 0.097f;        //The maximum volume of the engine
+        public static readonly float engineMaxVolume = 0.173f;        //The maximum volume of the engine
         public static readonly float engineMinThrottlePitch = 0.8f;      //The minimum pitch of the engine
         public static readonly float engineMaxThrottlePitch = 1.3f;		//The maximum pitch of the engine
     }
@@ -842,26 +842,26 @@ namespace Kocmoca
     }
     public static class Turboshaft
     {
-        public static readonly float engineMaxVolume = 0.93f;        //The maximum volume of the engine
+        public static readonly float engineMaxVolume = 0.55f;        //The maximum volume of the engine
         public static readonly float engineMinThrottlePitch = .7f;      //The minimum pitch of the engine
         public static readonly float engineMaxThrottlePitch = 1.3f;		//The maximum pitch of the engine
     }
 
     public static class IonThruster
     {
-        public static readonly float engineMaxVolume = 0.77f;        //The maximum volume of the engine
+        public static readonly float engineMaxVolume = 0.71f;        //The maximum volume of the engine
         public static readonly float engineMinThrottlePitch = 0.7f;      //The minimum pitch of the engine
         public static readonly float engineMaxThrottlePitch = 1.3f;		//The maximum pitch of the engine
     }
     public static class BiomassEnergy
     {
-        public static readonly float engineMaxVolume = 0.77f;        //The maximum volume of the engine
+        public static readonly float engineMaxVolume = 0.73f;        //The maximum volume of the engine
         public static readonly float engineMinThrottlePitch = 0.8f;      //The minimum pitch of the engine
         public static readonly float engineMaxThrottlePitch = 1.2f;		//The maximum pitch of the engine
     }
     public static class PulsedPlasmaThruster
     {
-        public static readonly float engineMaxVolume = 0.77f;        //The maximum volume of the engine
+        public static readonly float engineMaxVolume = 0.73f;        //The maximum volume of the engine
         public static readonly float engineMinThrottlePitch = .7f;      //The minimum pitch of the engine
         public static readonly float engineMaxThrottlePitch = 1.3f;		//The maximum pitch of the engine
     }

@@ -200,6 +200,7 @@ public class ArduinoController : MonoBehaviour
                 {
                     bool emptyMsg = true;
                     arduinoMsg = connectorArduino.ReadLine();
+                    Debug.LogWarning(arduinoMsg);
                     if (string.IsNullOrEmpty(arduinoMsg)) Debug.LogWarning("empty");
                     string check = arduinoMsg.Split('/')[0];
                     string msg = arduinoMsg.Replace("Wakaka/", "");
@@ -272,6 +273,9 @@ public class ArduinoController : MonoBehaviour
 
     void OnApplicationQuit()
     {
+        connectorArduino.Close();
+        Thread.Sleep(1000);
+        arduinoThread.Abort();
         Quit();
     }
 
