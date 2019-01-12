@@ -1,0 +1,203 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4901040131170280857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4312504429152787913}
+  m_Layer: 0
+  m_Name: Pilot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4312504429152787913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4901040131170280857}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3735983712586331210}
+  m_Father: {fileID: 4721263494604866556}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8475771089515256467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4721263494604866556}
+  m_Layer: 0
+  m_Name: Exhibition (19) - Grand Lisboa
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4721263494604866556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8475771089515256467}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.6965487, y: -7.05301, z: -3.8810875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7681759299551668714}
+  - {fileID: 4312504429152787913}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &636638615068304218
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4721263494604866556}
+    m_Modifications:
+    - target: {fileID: 5993399817167931893, guid: 71ea99ef8601b8742b3a4f907dbff14e,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype (19) - Grand Lisboa
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083841227839621808, guid: 71ea99ef8601b8742b3a4f907dbff14e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083841227839621808, guid: 71ea99ef8601b8742b3a4f907dbff14e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083841227839621808, guid: 71ea99ef8601b8742b3a4f907dbff14e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083841227839621808, guid: 71ea99ef8601b8742b3a4f907dbff14e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083841227839621808, guid: 71ea99ef8601b8742b3a4f907dbff14e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083841227839621808, guid: 71ea99ef8601b8742b3a4f907dbff14e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083841227839621808, guid: 71ea99ef8601b8742b3a4f907dbff14e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083841227839621808, guid: 71ea99ef8601b8742b3a4f907dbff14e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083841227839621808, guid: 71ea99ef8601b8742b3a4f907dbff14e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083841227839621808, guid: 71ea99ef8601b8742b3a4f907dbff14e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083841227839621808, guid: 71ea99ef8601b8742b3a4f907dbff14e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 71ea99ef8601b8742b3a4f907dbff14e, type: 3}
+--- !u!4 &7681759299551668714 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7083841227839621808, guid: 71ea99ef8601b8742b3a4f907dbff14e,
+    type: 3}
+  m_PrefabInstance: {fileID: 636638615068304218}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3731729888741158034
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4312504429152787913}
+    m_Modifications:
+    - target: {fileID: 1430796046561368, guid: 5124daf9f57f3f44ba4ea5642efe2d32, type: 3}
+      propertyPath: m_Name
+      value: Dubi - Angry Man
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826768188217560, guid: 5124daf9f57f3f44ba4ea5642efe2d32, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826768188217560, guid: 5124daf9f57f3f44ba4ea5642efe2d32, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826768188217560, guid: 5124daf9f57f3f44ba4ea5642efe2d32, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.137
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826768188217560, guid: 5124daf9f57f3f44ba4ea5642efe2d32, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826768188217560, guid: 5124daf9f57f3f44ba4ea5642efe2d32, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826768188217560, guid: 5124daf9f57f3f44ba4ea5642efe2d32, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826768188217560, guid: 5124daf9f57f3f44ba4ea5642efe2d32, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826768188217560, guid: 5124daf9f57f3f44ba4ea5642efe2d32, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826768188217560, guid: 5124daf9f57f3f44ba4ea5642efe2d32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826768188217560, guid: 5124daf9f57f3f44ba4ea5642efe2d32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826768188217560, guid: 5124daf9f57f3f44ba4ea5642efe2d32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5124daf9f57f3f44ba4ea5642efe2d32, type: 3}
+--- !u!4 &3735983712586331210 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4826768188217560, guid: 5124daf9f57f3f44ba4ea5642efe2d32,
+    type: 3}
+  m_PrefabInstance: {fileID: 3731729888741158034}
+  m_PrefabAsset: {fileID: 0}

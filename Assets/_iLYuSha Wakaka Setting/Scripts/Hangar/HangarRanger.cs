@@ -77,7 +77,7 @@ namespace Kocmoca
         private BoxCollider[] prototype;
         private HangarState hangarState = HangarState.Portal;
         private int hangarIndex;
-        private int hangarMax = 19;
+        private int hangarMax = 20;
         [Header("Billboard")]
         public Transform billboard;
         private Vector3 billboardPos = new Vector3(-12.972f, 0, 9.289f);
