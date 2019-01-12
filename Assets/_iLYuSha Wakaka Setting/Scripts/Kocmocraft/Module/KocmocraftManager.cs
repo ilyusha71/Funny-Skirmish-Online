@@ -64,8 +64,8 @@ namespace Kocmoca
             Type = (Type)(int.Parse(myTransform.name.Split(new char[2] { '(', ')' })[1]));
             Number = photonView.Owner.ActorNumber;
             myTransform.name = photonView.Owner.NickName + "-" +
-                HangarData.Code[(int)Type] + "-" +
-                HangarData.Kocmocraft[(int)Type];
+                DesignData.Code[(int)Type] + "-" +
+                DesignData.Kocmocraft[(int)Type];
             // Add Search List
             SatelliteCommander.Instance.AddSearchList(myTransform, (int)Faction, Number);
             // Kocmonaut Info ( first time only )
@@ -97,8 +97,8 @@ namespace Kocmoca
             Type = (Type)(int.Parse(myTransform.name.Split(new char[2] { '(', ')' })[1]));
             Number = photonView.Owner.ActorNumber;
             myTransform.name = photonView.Owner.NickName + "-" +
-                HangarData.Code[(int)Type] + "-" +
-                HangarData.Kocmocraft[(int)Type];
+                DesignData.Code[(int)Type] + "-" +
+                DesignData.Kocmocraft[(int)Type];
             // Add Search List
             SatelliteCommander.Instance.AddSearchList(myTransform, (int)Faction, Number);
             // Kocmonaut Info ( first time only )
@@ -117,8 +117,8 @@ namespace Kocmoca
             Type = (Type)(int.Parse(myTransform.name.Split(new char[2] { '(', ')' })[1]));
             Number = KocmocraftData.GetKocmonautNumber(portNumber);
             myTransform.name = KocmocraftData.GetBotName(portNumber) + "-" +
-                HangarData.Code[(int)Type] + "-" +
-                HangarData.Kocmocraft[(int)Type];
+                DesignData.Code[(int)Type] + "-" +
+                DesignData.Kocmocraft[(int)Type];
             // Add Search List
             SatelliteCommander.Instance.AddSearchList(myTransform, (int)Faction, Number);
             // Kocmonaut Info ( first time only )
@@ -144,8 +144,8 @@ namespace Kocmoca
             Type = (Type)(int.Parse(myTransform.name.Split(new char[2] { '(', ')' })[1]));
             Number = KocmocraftData.GetKocmonautNumber(portNumber);
             myTransform.name = KocmocraftData.GetBotName(portNumber) + "-" +
-                HangarData.Code[(int)Type] + "-" +
-                HangarData.Kocmocraft[(int)Type];
+                DesignData.Code[(int)Type] + "-" +
+                DesignData.Kocmocraft[(int)Type];
             // Add Search List
             SatelliteCommander.Instance.AddSearchList(myTransform, (int)Faction, Number);
             // Kocmonaut Info ( first time only )

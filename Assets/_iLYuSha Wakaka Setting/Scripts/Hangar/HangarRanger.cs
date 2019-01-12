@@ -84,8 +84,8 @@ namespace Kocmoca
         private Vector3 billboardHide = new Vector3(0, 1000, 0);
         [Header("Panel")]
         public Transform blockInfo;
-        public Transform blockHangar;
-        public Transform blockKocmocraft;
+        //public Transform blockHangar;
+        //public Transform blockKocmocraft;
         public Transform blockData;
         public Button btnOpen;
         public Button btnHide;
@@ -93,16 +93,39 @@ namespace Kocmoca
         public AudioClip sfxHide;
         private TweenerState panelState = TweenerState.Hide;
         private readonly WaitForSeconds delay = new WaitForSeconds(0.137f);
-        [Header("Info")]
-        public Image imageFrame;
-        public Image imageButton;
+
+
+        [Header("Info Block")]
+        public Image frameMain;
+        public Image frameClose;
+        public Toggle btnKocmocraft;
+        public Toggle btnDubi;
+        public Image frameKocmocraft;
+        public Image frameDubi;
+        public GameObject blockKocmocraft;
+        public GameObject blockDubi;
+        public TextMeshProUGUI textOnKocmocraft;
+        public TextMeshProUGUI textOnDubi;
+        [Header("Info Block - Kocmocraft")]
+        public TextMeshProUGUI textKocmocraftName;
+        public TextMeshProUGUI textInfo;
         public RectTransform scaleWingspan;
         public RectTransform scaleLength;
         public RectTransform scaleHeight;
         public TextMeshProUGUI textWingspan;
         public TextMeshProUGUI textLength;
         public TextMeshProUGUI textHeight;
-        public TextMeshProUGUI textInfo;
+        [Header("Info Block - Dubi")]
+        public TextMeshProUGUI textDubiName;
+        public Button btnTalk;
+        public AudioClip [] sfxTalk;
+        [Header("Data Block")]
+        public Toggle btnDesign;
+        public Toggle btnPerformance;
+        public Toggle btnWeapon;
+        public GameObject blockDesign;
+        public GameObject blockPerformance;
+        public GameObject blockWeapon;
         [Header("Hangar Data")]
         public TextMeshProUGUI textOKB;
         public TextMeshProUGUI textKocmocraft;
@@ -138,11 +161,17 @@ namespace Kocmoca
             hangarIndex = PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
             billboard.localPosition = billboardHide;
             blockInfo.localScale = Vector3.zero;
-            blockHangar.localPosition = new Vector3(blockHangar.localPosition.x, -128,0);
-            blockKocmocraft.localPosition = new Vector3(blockKocmocraft.localPosition.x, -128, 0);
-            blockData.localPosition = new Vector3(blockData.localPosition.x, -128, 0);
+            blockData.localPosition = new Vector3(blockData.localPosition.x, -500, 0);
+            // Button & Toggle Event
             btnOpen.onClick.AddListener(() => OpenPanel());
             btnHide.onClick.AddListener(() => HidePanel());
+            btnKocmocraft.onValueChanged.AddListener(isOn => blockKocmocraft.SetActive(isOn));
+            btnDubi.onValueChanged.AddListener(isOn => blockDubi.SetActive(isOn));
+            btnDesign.onValueChanged.AddListener(isOn => blockDesign.SetActive(isOn));
+            btnPerformance.onValueChanged.AddListener(isOn => blockPerformance.SetActive(isOn));
+            btnWeapon.onValueChanged.AddListener(isOn => blockWeapon.SetActive(isOn));
+            btnTalk.onClick.AddListener(() => { if (!SFX.isPlaying && hangarIndex < hangarMax) SFX.PlayOneShot(sfxTalk[hangarIndex],1.5f); });
+            // Bar
             barHull.Initialize(textMaxHull.transform.parent.GetComponentsInChildren<Image>(), 4000, 25000);
             barShield.Initialize(textMaxShield.transform.parent.GetComponentsInChildren<Image>(), 3000, 24000);
             barEnergy.Initialize(textMaxEnergy.transform.parent.GetComponentsInChildren<Image>(), 500, 3700);
@@ -167,16 +196,6 @@ namespace Kocmoca
                 billboard.localPosition = billboardPos;
                 LoadHangarData();
             });
-            //hangarRailY.DOLocalRotate(hangarIndex < hangarHalfCount ? new Vector3(0, 153, 0) : new Vector3(0, -153, 0), 3.37f);
-            //hangarRailX.DOLocalRotate(new Vector3(71, 0, 0), 3.37f);
-            //hangarCamera.DOLocalMove(new Vector3(0, 0, -13.7f), 3.37f);
-            //hangarRailMain.DORotateQuaternion(prototype[hangarIndex].transform.rotation, 3.37f);
-            //hangarRailMain.DOMove(prototype[hangarIndex].transform.position, 3.37f).OnComplete(() =>
-            //{
-            //    hangarState = HangarState.Ready;
-            //    billboard.localPosition = billboardPos;
-            //    LoadHangarData();
-            //});
         }
 
         void Update()
@@ -218,17 +237,9 @@ namespace Kocmoca
                     else
                         return;
                 }
+                if (Input.GetKey(KeyCode.Mouse1))
+                    hangarCanvas.alpha = 0.0f;
                 Control();
-                   
-                //if (Input.GetKey(KeyCode.Mouse1))
-                //{
-                //    hangarCanvas.alpha = 0;
-                //    hangarRailY.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * 2, 0);
-                //    hangarRailX.rotation *= Quaternion.Euler(-Input.GetAxis("Mouse Y") * 2, 0, 0);
-                //}
-                //hangarRailX.eulerAngles = new Vector3(Mathf.Clamp(hangarRailX.rotation.eulerAngles.x, 60, 120), hangarRailX.rotation.eulerAngles.y, hangarRailX.rotation.eulerAngles.z);
-                //hangarCamera.localPosition = Vector3.Lerp(hangarCamera.localPosition, hangarCamera.localPosition + new Vector3(0, 0, 10 * Input.GetAxis("Mouse ScrollWheel")), 0.5f);
-                //hangarCamera.localPosition = new Vector3(hangarCamera.localPosition.x, hangarCamera.localPosition.y, Mathf.Clamp(hangarCamera.localPosition.z, -20, -5));
             }
         }
 
@@ -251,8 +262,10 @@ namespace Kocmoca
 
         void LoadHangarData()
         {
-            imageFrame.color = HangarData.FrameColor[hangarIndex];
-            imageButton.color = HangarData.ButtonColor[hangarIndex];
+            frameMain.color = HangarData.FrameColor[hangarIndex];
+            frameClose.color = HangarData.ButtonColor[hangarIndex];
+            frameKocmocraft.color = HangarData.FrameColor[hangarIndex];
+            frameDubi.color = HangarData.FrameColor[hangarIndex];
 
             if (hangarIndex < hangarMax)
             {
@@ -272,15 +285,19 @@ namespace Kocmoca
                 textLength.text = length + " m";
                 textHeight.text = height + " m";
             }
-            
+            textKocmocraftName.text = "" + DesignData.Kocmocraft[hangarIndex];
+            textDubiName.text = "" + DesignData.Dubi[hangarIndex];
+
+            textOnKocmocraft.color = HangarData.TextColor[hangarIndex];
+            textOnDubi.color = HangarData.TextColor[hangarIndex];
             textInfo.color = HangarData.TextColor[hangarIndex];
             textInfo.text = HangarData.Info[hangarIndex];
 
-            textOKB.text = "" + HangarData.OKB[hangarIndex];
-            textKocmocraft.text = "" + HangarData.Kocmocraft[hangarIndex];
-            textCode.text = "" + HangarData.Code[hangarIndex];
-            textDubi.text = "" + HangarData.Dubi[hangarIndex];
-            textEngine.text = "" + HangarData.Engine[hangarIndex];
+            textOKB.text = "" + DesignData.OKB[hangarIndex];
+            textKocmocraft.text = "" + DesignData.Kocmocraft[hangarIndex];
+            textCode.text = "" + DesignData.Code[hangarIndex];
+            textDubi.text = "" + DesignData.Dubi[hangarIndex];
+            textEngine.text = "" + DesignData.Engine[hangarIndex];
 
             textMaxHull.text = "" + KocmocraftData.MaxHull[hangarIndex];
             barHull.SetBar(KocmocraftData.MaxHull[hangarIndex]);
@@ -318,38 +335,25 @@ namespace Kocmoca
         public void OpenPanel()
         {
             blockInfo.DOKill();
-            blockHangar.DOKill();
-            blockKocmocraft.DOKill();
+            //blockHangar.DOKill();
+            //blockKocmocraft.DOKill();
             blockData.DOKill();
             panelState = TweenerState.Moving;
             SFX.PlayOneShot(sfxOpen);
             blockInfo.DOScale(Vector3.one,0.37f).OnComplete(() => 
             {
-                StartCoroutine(Animation());
+                blockData.DOLocalMoveY(0, 1.0f).SetEase(Ease.OutElastic).OnComplete(() => { panelState = TweenerState.Open; });
             });
         }
 
         public void HidePanel()
         {
             blockInfo.DOKill();
-            blockHangar.DOKill();
-            blockKocmocraft.DOKill();
             blockData.DOKill();
             panelState = TweenerState.Moving;
             SFX.PlayOneShot(sfxHide);
             blockInfo.DOScale(Vector3.zero, 0.37f);
-            blockHangar.DOLocalMoveY(-128, 0.37f);
-            blockKocmocraft.DOLocalMoveY(-128, 0.37f);
-            blockData.DOLocalMoveY(-128, 0.37f).OnComplete(() => { panelState = TweenerState.Hide; });
-        }
-
-        IEnumerator Animation()
-        {
-            blockKocmocraft.DOLocalMoveY(128, 1.0f).SetEase(Ease.OutElastic);
-            yield return delay;
-            blockHangar.DOLocalMoveY(128, 1.0f).SetEase(Ease.OutElastic);
-            yield return delay;
-            blockData.DOLocalMoveY(128, 1.0f).SetEase(Ease.OutElastic).OnComplete(() => { panelState = TweenerState.Open; });
+            blockData.DOLocalMoveY(-500, 0.37f).OnComplete(() => { panelState = TweenerState.Hide; });
         }
 
         void Loading()

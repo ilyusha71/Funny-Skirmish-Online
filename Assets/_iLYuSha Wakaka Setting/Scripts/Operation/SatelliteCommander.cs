@@ -149,7 +149,7 @@ namespace Kocmoca
             myAudioSource.PlayOneShot(ResourceManager.instance.soundTakeOff, 0.37f);
             int type = PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
             //string typeName = "Kocmocraft(" + type.ToString("00")+ ") - " + KocmocraftData.GetKocmocraftName(type);
-            localPlayer = PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"),HangarData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).transform;
+            localPlayer = PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), DesignData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).transform;
             localPlayer.GetComponent<KocmocraftManager>().InitializeLocalPlayer();
             LocalPlayerRealtimeData.Status = FlyingStatus.Flying;
         }
@@ -159,7 +159,7 @@ namespace Kocmoca
             //int order = portNumber / 2;
             int type = 18;// Random.Range(0,19); // 測試  (int)factionData[faction].Type[order];
             //string typeName = "Kocmocraft " + type.ToString("00") + " - " + KocmocraftData.GetKocmocraftName(type);
-            Transform localAI = PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), HangarData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).transform;
+            Transform localAI = PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), DesignData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).transform;
             localAI.GetComponent<KocmocraftManager>().InitializeLocalBot(portNumber);
         }
         public void PlayerCrash()

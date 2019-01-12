@@ -400,7 +400,7 @@ namespace Kocmoca
             blockType.DOKill();
             blockType.position = display.TransformPoint(readyPosType);
             blockType.DOMove(display.TransformPoint(relativePosType), timeBlockTypeDown).OnComplete(ShowData); ;
-            textType.text = KocmocraftData.GetTypeChineseName(now);
+            textType.text = DesignData.Kocmocraft[now];
         }
         void ShowData()
         {
@@ -470,7 +470,7 @@ namespace Kocmoca
             currentContent = DisplayContent.Kocmocraft;
             if (now > indexAvailable)
             {
-                textKocmocraft[0].text = "" + KocmocraftData.GetKocmocraftName(now);
+                textKocmocraft[0].text = "" + DesignData.Kocmocraft[now];
                 textKocmocraft[1].text = "---";
                 textKocmocraft[2].text = "---";
                 textKocmocraft[3].text = "---";
@@ -481,7 +481,7 @@ namespace Kocmoca
             {
                 switch (index)
                 {
-                    case 0: textKocmocraft[0].text = "" + KocmocraftData.GetKocmocraftName(now); break;
+                    case 0: textKocmocraft[0].text = "" + DesignData.Kocmocraft[now]; break;
                     case 1: textKocmocraft[1].text = "" + KocmocraftData.MaxHull[now]; break;
                     case 2: textKocmocraft[2].text = "" + KocmocraftData.MaxShieldl[now]; break;
                     case 3: textKocmocraft[3].text = "" + KocmocraftData.MaxEnergy[now]; break;
@@ -510,7 +510,7 @@ namespace Kocmoca
             {
                 switch (index)
                 {
-                    case 1: textWeapon[1].text = "" + KocmocraftData.GetTurretCount((Type)now) + "x Assault Laser"; break;
+                    case 1: textWeapon[1].text = "" + WeaponData.TurretCount[now] + "x Assault Laser"; break;
                     case 2: textWeapon[2].text = "" + KocmoLaserCannon.fireRoundPerSecond + " rps"; break;
                     case 3: textWeapon[3].text = "update" + " dmg"; break;
                     case 4: textWeapon[4].text = "update" + " m"; break;

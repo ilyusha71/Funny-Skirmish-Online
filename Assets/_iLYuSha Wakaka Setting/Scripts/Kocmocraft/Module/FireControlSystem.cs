@@ -57,7 +57,7 @@ namespace Kocmoca
             kocmonautNumber = number;
             this.isLocal = isLocal;
             // FCS Data Loading
-            typeFCS = KocmocraftData.GetFCS(myTransform.name);
+            typeFCS = WeaponData.GetFCS(myTransform.name);
             if (typeFCS == FireControlSystemType.Unknown) Debug.LogError("No FCS");
             LoadFireControlSystemData();
             InitializeLauncher();

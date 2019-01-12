@@ -2,6 +2,22 @@
 
 namespace Kocmoca
 {
+    public static class LobbyInfomation
+    {
+        public static readonly string SCENE_LOBBY = "New Galaxy Lobby";
+        public static readonly string SCENE_HANGAR = "New Airport 3";
+        public static readonly string SCENE_OPERATION = "Kocmocarkstan";//"Skirmish in Dusk Lakeside";
+        public static readonly string SCENE_LOADING = "Loading";
+        public static readonly string SCENE_LOADING_ONLINE = "LoadingOnline";
+        public static readonly string PLAYER_READY = "IsPlayerReady";
+        public static readonly string PLAYER_LOADING = "isLoading";
+        public static readonly string PLAYER_LOADED_LEVEL = "PlayerLoadedLevel";
+        public static readonly string PLAYER_DATA_KEY = "PlayerUnknownData"; // 用於PUN設定玩家數據
+        public static readonly int PLAYER_DATA_VALUE = 999; // 用於PUN設定玩家數據之對應值
+        public static readonly string PREFS_TYPE = "Prefs Type";
+        public static readonly string PREFS_LOAD_SCENE = "LoadScene";
+    }
+
     public static class HangarData
     {
         public static readonly Color32[] FrameColor = new Color32[] {
@@ -49,7 +65,7 @@ namespace Kocmoca
             new Color32(255,97,255,232), // 玩具独角兽：粉红97
             new Color32(0,255,0,232), // 南瓜魅影：绿255
             new Color32(255,73,0,232), // 赏金猎人：深橘73
-            new Color32(255,71,71,232), // 鹰纽特：红71
+            new Color32(255,255,255,232), // 鹰纽特：白
             new Color32(255,255,137,232), // 安格瑞：淡黄137
             new Color32(255,255,255,232), // 即将登场
             new Color32(255,255,255,232), // 即将登场
@@ -83,33 +99,6 @@ namespace Kocmoca
             new Color32(255,255,255,255), // 即将登场
         };
 
-        public static readonly float[] TopViewSize = {
-            4.6f, // ★★★★★★☆ 神偷机兵
-            3.1f, // ★★☆☆☆☆☆ 红牛能量
-            3.5f, // ★☆☆☆☆☆☆ 普鲸
-            5.9f, // ★★★★★★★ 纸飞机
-            5.2f, // ★★★☆☆☆☆ 咕咕鸡 
-            3.7f, // ★★★☆☆☆☆ 炮弹比尔
-            2.0f, // ★★☆☆☆☆☆ 时光机
-            2.1f, // ★★★★★★☆ 王牌狗屋
-            2.4f, // ★★★★★★★ 卡比之星
-            6.1f, // ★★☆☆☆☆☆ 蝎红
-            5.0f, // ★★★☆☆☆☆ 恩威迪亚
-            5.1f, // ★★★★☆☆☆ 快餐侠
-            6.0f, // ★★★★★☆☆ 驯鹿空运
-            5.1f, // ★★★★☆☆☆ 北极星特快
-            6.9f, // ★★★★★☆☆ 远古飞鱼
-            40, // ★★★★☆☆☆ 玩具独角兽
-            36, // ★★★☆☆☆☆ 南瓜魅影
-            22, // ★☆☆☆☆☆☆ 赏金猎人
-            45, // ★★★★★☆☆ 鹰纽特
-            34, // ★★★☆☆☆☆ 安格瑞
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-        };
-
         public static readonly string[] Info = {
             "格鲁实验室早期为了称霸逗比界开发了「逗丁勇者」，但随着战场上升至星际空间后，被改良为适用于星战的宇航机，此举开创了宇航机竞技的时代。", // 神偷机兵
             "每年定期举办的宇航机赛事吸引着不少能量饮料厂牌赞助，红牛能量正是红牛为宇航机竞技推出的首款概念机。", // 红牛能量;
@@ -136,6 +125,11 @@ namespace Kocmoca
             "", // 即将登场";
             "", // 即将登场";
         };
+
+    }
+
+    public static class DesignData
+    {
         public static readonly string[] OKB = {
             "格鲁实验室", // 神偷机兵
             "红牛航天", // 红牛能量;
@@ -216,25 +210,25 @@ namespace Kocmoca
         };
         public static readonly string[] Dubi = {
             "小小兵戴夫", // 神偷机兵
-            "王尼玛", // 红牛能量
-            "萌总", // 普鲸
-            "阿楞", // 纸飞机
+            "暴走漫画王尼玛", // 红牛能量
+            "秃子萌总", // 普鲸
+            "纸箱人阿楞", // 纸飞机
             "咕咕鸡", // 咕咕鸡 
             "马里奥", // 炮弹比尔
-            "机器喵", // 时光机
+            "机器喵哆啦A梦", // 时光机
             "史努比", // 王牌狗屋
             "卡比", // 卡比之星
             "无面人", // 蝎红
-            "熊猫人", // 恩威迪亚
+            "熊猫人张学友", // 恩威迪亚
             "阿痞", // 快餐侠
             "地鼠", // 驯鹿空运
-            "滑稽", // 北极星特快
+            "表情帝滑稽", // 北极星特快
             "海绵宝宝", // 远古飞鱼
             "公主阿尼", // 玩具独角兽
             "哆啦啦", // 南瓜魅影
-            "凯子", // 赏金猎人
-            "屎蛋", // 鹰纽特
-            "安格瑞", // 安格瑞
+            "赏金猎人凯子", // 赏金猎人
+            "印第安屎蛋", // 鹰纽特
+            "招募中", // 安格瑞
             "招募中", // 即将登场
             "招募中", // 即将登场
             "招募中", // 即将登场
@@ -259,7 +253,7 @@ namespace Kocmoca
             "火箭推进器 x 4", // 玩具独角兽
             "涡轮轴发动机 x 1", // 南瓜魅影
             "涡轮扇发动机 x 3", // 赏金猎人
-            "研发中", // 鹰纽特
+            "火箭推进器", // 鹰纽特
             "研发中", // 安格瑞
             "最高机密", // 即将登场
             "最高机密", // 即将登场
@@ -267,6 +261,7 @@ namespace Kocmoca
             "最高机密", // 即将登场
         };
     }
+
     public static class GeneralData
     {
         public static Color32 GetBaseColor(int index)
@@ -292,108 +287,13 @@ namespace Kocmoca
             }
         }
     }
-    public static class LobbyInfomation
-    {
-        public static readonly string SCENE_LOBBY = "New Galaxy Lobby";
-        public static readonly string SCENE_HANGAR = "New Airport 3";
-        public static readonly string SCENE_OPERATION = "Kocmocarkstan";//"Skirmish in Dusk Lakeside";
-        public static readonly string SCENE_LOADING = "Loading";
-        public static readonly string SCENE_LOADING_ONLINE = "LoadingOnline";
-        public static readonly string PLAYER_READY = "IsPlayerReady";
-        public static readonly string PLAYER_LOADING = "isLoading";
-        public static readonly string PLAYER_LOADED_LEVEL = "PlayerLoadedLevel";
-        public static readonly string PLAYER_DATA_KEY = "PlayerUnknownData"; // 用於PUN設定玩家數據
-        public static readonly int PLAYER_DATA_VALUE = 999; // 用於PUN設定玩家數據之對應值
-        public static readonly string PREFS_TYPE = "Prefs Type";
-        public static readonly string PREFS_LOAD_SCENE = "LoadScene";
-    }
+
     public static class KocmocraftData
     {
-        public static readonly float[] Collider = {
-            38.3091173f, // 神偷机兵
-            20.21441f, // 红牛能量;
-            18.41935f, //  普鲸;
-             57.69397f, // 纸飞机";
-            95.76454f, // 咕咕鸡 ";
-            31.09758f, // 炮弹比尔";
-            4.496421f, // 时光机";
-            21.234167503f, // 王牌狗屋";
-            6.356274f, // 卡比之星";
-            115.0642f, // 蝎红";
-            136.12f, // 恩威迪亚";
-            60.54652f, // 快餐侠";
-            93.2667f, // 驯鹿空运";
-            152.6686f, // 北极星特快";
-            70.73558282f, // 远古飞鱼";
-            68.74551578f, // 玩具独角兽";
-            122.675175f, // 南瓜魅影";
-            111.4062f, // 赏金猎人";
-            99999, // 鹰纽特";
-            99999, // 安格瑞";
-            99999, // 即将登场";
-            99999, // 即将登场";
-            99999, // 即将登场";
-            99999, // 即将登场";
-        };
-
-        public static readonly float[] Volume = {
-            34.7250337f, // 神偷机兵
-            17.2552f, // 红牛能量;
-            25.10557f, //  普鲸;
-            25.26623f, // 纸飞机";
-            99.89777f, // 咕咕鸡 ";
-            50.93384f, // 炮弹比尔";
-            3.745697f, // 时光机";
-            10.13892941f, // 王牌狗屋";
-            8.762174f, // 卡比之星";
-            65.28907f, // 蝎红";
-            95.869f, // 恩威迪亚";
-            43.4229f, // 快餐侠";
-            89.29118f, // 驯鹿空运";
-            124.7412f, // 北极星特快";
-            50.4355016f, // 远古飞鱼";
-            64.1464130587f, // 玩具独角兽";
-            101.595858f, // 南瓜魅影";
-            64.00921f, // 赏金猎人";
-            99999, // 鹰纽特";
-            99999, // 安格瑞";
-            99999, // 即将登场";
-            99999, // 即将登场";
-            99999, // 即将登场";
-            99999, // 即将登场";
-        };
-
-        public static readonly float[] RCS = {
-            116.450658f, // 神偷机兵
-            78.87015f, // 红牛能量;
-            69.46844f, //  普鲸;
-            205.8228f, // 纸飞机";
-            195.8923f, // 咕咕鸡 ";
-            97.26662f, // 炮弹比尔";
-            39.28357f, // 时光机";
-            45.327086f, // 王牌狗屋";
-            31.72817f, // 卡比之星";
-            263.8345f, // 蝎红";
-            302.3377f, // 恩威迪亚";
-            205.5217f, // 快餐侠";
-            252.9747f, // 驯鹿空运";
-            343.213f, // 北极星特快";
-            246.857114f, // 远古飞鱼";
-            197.10966682f, // 玩具独角兽";
-            302.01148f, // 南瓜魅影";
-            279.8407f, // 赏金猎人";
-            99999, // 鹰纽特";
-            99999, // 安格瑞";
-            99999, // 即将登场";
-            99999, // 即将登场";
-            99999, // 即将登场";
-            99999, // 即将登场";
-        };
-
         // 北极星特快 南瓜魅影 咕咕鸡 恩威迪亚 蝎红 15~20K    6~7星
         // 驯鹿空运 赏金猎人 远古飞鱼 玩具独角兽 10~15K 4~5星
         // 纸飞机  快餐侠 神偷机兵 9K~11K 3~4星
-        // 炮弹比尔 普鲸 红牛能量 6K~8K  2~3星
+        // 炮弹比尔 普鲸 鹰纽特 红牛能量 6K~8K  2~3星
         // 王牌狗屋 卡比之星 时光机 3K~5K 1~2星
         public static readonly int[] MaxHull = {
             16049, // ★★★★★☆☆ 神偷机兵
@@ -414,7 +314,7 @@ namespace Kocmoca
             15851, // ★★★★☆☆☆ 玩具独角兽
             22295, // ★★★★★★★ 南瓜魅影
             18308, // ★★★★★☆☆ 赏金猎人
-            10075, // ★★★☆☆☆☆ 鹰纽特
+            9143, //   ★★☆☆☆☆☆ 鹰纽特
             9724, //   ★★☆☆☆☆☆ 安格瑞
             0, // ★★★★★★★ 即将登场
             0, // ★★★★★★★ 即将登场
@@ -440,7 +340,7 @@ namespace Kocmoca
             22058, // ★★★★★★★ 玩具独角兽
             19242, // ★★★★★★☆ 南瓜魅影
             13749, // ★★★★☆☆☆ 赏金猎人
-            15052, // ★★★★★☆☆ 鹰纽特
+            12934, // ★★★★☆☆☆ 鹰纽特
             8856, //   ★★☆☆☆☆☆ 安格瑞
             0, // ★★★★★★★ 即将登场
             0, // ★★★★★★★ 即将登场
@@ -463,10 +363,10 @@ namespace Kocmoca
             3131, // ★★★★★★☆ 驯鹿空运
             2498, // ★★★★★☆☆ 北极星特快
             1407, // ★★☆☆☆☆☆ 远古飞鱼
-            2707, // ★★★★★☆☆ 玩具独角兽
+            2299, // ★★★★☆☆☆ 玩具独角兽
             1639, // ★★★☆☆☆☆ 南瓜魅影
             1553, // ★★★☆☆☆☆ 赏金猎人
-            2174, // ★★★★☆☆☆ 鹰纽特
+            2444, // ★★★★★☆☆ 鹰纽特
             2990, // ★★★★★★☆ 安格瑞
             0, // ★★★★★★★ 即将登场
             0, // ★★★★★★★ 即将登场
@@ -489,10 +389,10 @@ namespace Kocmoca
             48, // ★★★★★☆☆ 驯鹿空运
             38, // ★★★★☆☆☆ 北极星特快
             44, // ★★★★★☆☆ 远古飞鱼
-            40, // ★★★★☆☆☆ 玩具独角兽
+            37, // ★★★☆☆☆☆ 玩具独角兽
             36, // ★★★☆☆☆☆ 南瓜魅影
             22, // ★☆☆☆☆☆☆ 赏金猎人
-            45, // ★★★★★☆☆ 鹰纽特
+            28, // ★★☆☆☆☆☆ 鹰纽特
             34, // ★★★☆☆☆☆ 安格瑞
             0, // ★★★★★★★ 即将登场
             0, // ★★★★★★★ 即将登场
@@ -518,7 +418,7 @@ namespace Kocmoca
             77, //   ★☆☆☆☆☆☆ 玩具独角兽
             91, //   ★★★☆☆☆☆ 南瓜魅影
             99, //   ★★★★☆☆☆ 赏金猎人
-            95, //   ★★★☆☆☆☆ 鹰纽特
+            123, // ★★★★★★☆ 鹰纽特
             102, // ★★★★☆☆☆ 安格瑞
             0, // ★★★★★★★ 即将登场
             0, // ★★★★★★★ 即将登场
@@ -526,86 +426,10 @@ namespace Kocmoca
             0, // ★★★★★★★ 即将登场
         };
 
-        // Display
-        public static string GetTypeChineseName(int index)
-        {
-            switch (index)
-            {
-                case 0: return "神偷机兵";
-                case 1: return "红牛能量";
-                case 2: return "普鲸";
-                case 3: return "纸飞机";
-                case 4: return "咕咕鸡 ";
-                case 5: return "炮弹比尔";
-                case 6: return "时光机";
-                case 7: return "王牌狗屋";
-                case 8: return "卡比之星";
-                case 9: return "蝎红";
-                case 10: return "恩威迪亚";
-                case 11: return "快餐侠";
-                case 12: return "驯鹿空运";
-                case 13: return "北极星特快";
-                case 14: return "远古飞鱼";
-                case 15: return "玩具独角兽";
-                case 16: return "南瓜魅影";
-                case 17: return "即将登场";
-                default: return "未知宇航机";
-            }
-        }
+
         // Spawn Kocmocraft
         public static int GetPortNumber(int kocmonautNumber) { return (kocmonautNumber - 93000) / 3; }
-        public static string GetKocmocraftResourceName(int index)
-        {
-            switch (index)
-            {
-                case 0: return "Prototype - Minion Armor";
-                case 1: return "Prototype - Red Bull Energy";
-                case 2: return "Prototype - Vladimir Putin";
-                case 3: return "Prototype - Paper Aeroplane";
-                case 4: return "Prototype - Cuckoo";
-                case 5: return "Prototype - Bullet Bill";
-                case 6: return "Prototype - Time Machine";
-                case 7: return "Prototype - Ace Kennel";
-                case 8: return "Prototype - Kirby Star";
-                case 9: return "Prototype - Scorpio Rouge";
-                case 10: return "Prototype - Nwidia";
-                case 11: return "Prototype - Fast Food Man";
-                case 12: return "Prototype - Reindeer Transport";
-                case 13: return "Prototype - Polaris Express";
-                case 14: return "Prototype - Ancient Fish";
-                case 15: return "Prototype - Unknown";
-                case 16: return "Prototype - Unknown";
-                case 17: return "Prototype - Unknown";
-                case 18: return "Prototype - Unknown";
-                case 19: return "Prototype - Unknown";
-                case 20: return "Prototype - Unknown";
-                default: return null;
-            }
-        }
         // Initialize Kocmocraft Data
-        public static Type GetInstanceType(string name)
-        {
-            switch (name)
-            {
-                case "Kocmocraft 00 - Minion Armor(Clone)": return Type.MinionArmor;
-                case "Kocmocraft 01 - Red Bull Energy(Clone)": return Type.RedBullEnergy;
-                case "Kocmocraft 02 - Vladimir Putin(Clone)": return Type.VladimirPutin;
-                case "Kocmocraft 03 - Paper Aeroplane(Clone)": return Type.PaperAeroplane;
-                case "Kocmocraft 04 - Cuckoo(Clone)": return Type.Cuckoo;
-                case "Kocmocraft 05 - Bullet Bill(Clone)": return Type.BulletBill;
-                case "Kocmocraft 06 - Time Machine(Clone)": return Type.TimeMachine;
-                case "Kocmocraft 07 - Ace Kennel(Clone)": return Type.AceKennel;
-                case "Kocmocraft 08 - Kirby Star(Clone)": return Type.KirbyStar;
-                case "Kocmocraft 09 - Scorpio Rouge(Clone)": return Type.ScorpioRouge;
-                case "Kocmocraft 10 - Nwidia(Clone)": return Type.Nwidia;
-                case "Kocmocraft 11 - Fast Food Man(Clone)": return Type.FastFoodMan;
-                case "Kocmocraft 12 - Reindeer Transport(Clone)": return Type.ReindeerTransport;
-                case "Kocmocraft 13 - Polaris Express(Clone)": return Type.PolarisExpress;
-                case "Kocmocraft 14 - Ancient Fish(Clone)": return Type.AncientFish;
-                case "Kocmocraft 15 - Papoy Unicorn(Clone)": return Type.PapoyUnicorn;
-                default: return Type.TimeMachine;
-            }
-        }
         public static int GetKocmonautNumber(int portNumber) { return portNumber * 3 + 93000; }
         public static string GetBotName(int portNumber)
         {
@@ -634,31 +458,7 @@ namespace Kocmoca
                 default: return "[Bot]---";
             }
         }
-        public static string GetKocmocraftName(int indexType)
-        {
-            switch (indexType)
-            {
-                case 0: return "Minion Armor"; // 神偷机兵 - 双管 - 拦截机
-                case 1: return "Red Bull Energy"; // 红牛能量 - 四管 - 拦截机
-                case 2: return "Vladimir Putin"; // 普鲸 - 六管 - 拦截机
-                case 3: return "Paper Aeroplane"; // 纸飞机 - 四管 - 攻击机
-                case 4: return "Cuckoo"; // 咕咕鸡 - 六管 - 攻击机
-                case 5: return "Bullet Bill"; // 炮弹比尔 - 双管 - 攻击机
-                case 6: return "Time Machine"; // 时光机 - 双管 - 特攻机
-                case 7: return "Ace Kennel"; // 王牌狗屋 - 双管 - 特攻机
-                case 8: return "Kirby Star"; // 卡比之星 - 四管 - 特攻机
-                case 9: return "Scorpio Rouge"; // 蝎红 -- 大型双管
-                case 10: return "Nwidia"; // 恩威迪亚 -- 特大型四管
-                case 11: return "Fast Food Man"; // 快餐侠 --- 中型双管
-                case 12: return "Reindeer Transport"; // 驯鹿空运 -- 大型双管
-                case 13: return "Polaris Express"; // 北极星特快 -- 特大型六管
-                case 14: return "Ancient Fish"; // 远古鱼 -- 大型双管
-                case 15: return "Papoy Unicorn";
-                case 16: return "Pumpkin Ghost";
-                case 17: return "Boundy Hunter MK.II";
-                default: return "---";
-            }
-        }
+
 
 
 
@@ -688,16 +488,6 @@ namespace Kocmoca
             }
         }
 
-        public static FireControlSystemType GetFCS(string name)
-        {
-            switch (name)
-            {
-                case "FCS - Laser": return FireControlSystemType.Laser;
-                case "FCS - Rocket": return FireControlSystemType.Rocket;
-                case "FCS - Missile": return FireControlSystemType.Missile;
-                default: return FireControlSystemType.Unknown;
-            }
-        }
         public static Vector3 GetCameraOffset(Type type)
         {
             switch (type)
@@ -718,37 +508,23 @@ namespace Kocmoca
                 default: return new Vector3(0, 3.37f, 7);
             }
         }
-
-        // Display
-        public static int GetTurretCount(Type type)
-        {
-            switch (type)
-            {
-                case Type.MinionArmor: return 2; // 神偷机兵 - 双管 - 拦截机
-                case Type.RedBullEnergy: return 4; // 红牛能量 - 四管 - 拦截机
-                case Type.VladimirPutin: return 6; // 普鲸 - 六管 - 拦截机
-                case Type.PaperAeroplane: return 4; // 纸飞机 - 四管 - 巡航机
-                case Type.Cuckoo: return 6; // 咕咕鸡 - 六管 - 攻击机
-                case Type.BulletBill: return 2; // 炮弹比尔 - 双管 - 攻击机
-                case Type.TimeMachine: return 2; // 时光机 - 双管 - 特攻机
-                case Type.AceKennel: return 2; // 王牌狗屋 - 双管 - 特攻机
-                case Type.KirbyStar: return 4; // 卡比之星 - 四管 - 特攻机
-                case Type.ScorpioRouge: return 2; // 蝎红 - 双管 - 征服舰
-                case Type.Nwidia: return 4; // 恩威迪亚 - 四管 - 征服舰
-                case Type.FastFoodMan: return 2; // 快餐侠 - 双管 - 巡航机
-                case Type.ReindeerTransport: return 2; // 驯鹿空运 - 双管 - 战术舰
-                case Type.PolarisExpress: return 6; // 北极星特快 - 六管 - 征服舰
-                case Type.AncientFish: return 2; // 远古鱼 - 双管 - 战术舰
-                case Type.PapoyUnicorn: return 4; // 玩具独角兽：Medium Speed
-                case Type.PumpkinGhost: return 4; // 南瓜魅影：Large
-                case Type.BoundyHunterMKII: return 6; // 南瓜魅影：Large
-                default: return 2;
-            }
-        }
+        
     }
 
     public static class WeaponData
     {
+        public static FireControlSystemType GetFCS(string name)
+        {
+            switch (name)
+            {
+                case "FCS - Laser": return FireControlSystemType.Laser;
+                case "FCS - Rocket": return FireControlSystemType.Rocket;
+                case "FCS - Missile": return FireControlSystemType.Missile;
+                default: return FireControlSystemType.Unknown;
+            }
+        }
+
+
         public static readonly int[] TurretCount = {
             2, // ★★☆☆☆☆ 神偷机兵
             4, // ★★★★☆☆ 红牛能量
@@ -765,10 +541,10 @@ namespace Kocmoca
             2, // ★★☆☆☆☆ 驯鹿空运
             6, // ★★★★★★ 北极星特快
             2, // ★★☆☆☆☆ 远古飞鱼
-            2, // ★★☆☆☆☆ 玩具独角兽
+            4, // ★★★★☆☆ 玩具独角兽
             4, // ★★★★☆☆ 南瓜魅影
             6, // ★★★★★★ 赏金猎人
-            6, // ★★★★★★ 鹰纽特
+            4, // ★★★★☆☆ 鹰纽特
             4, // ★★★★☆☆ 安格瑞
             2, // ★★☆☆☆☆ 即将登场
             2, // ★★☆☆☆☆ 即将登场
@@ -1223,5 +999,250 @@ namespace Kocmoca
         Rocket = 1,
         Missile = 2,
         Unknown = -999,
+    }
+
+
+    public class QQ
+    {
+        // Display
+        public static int GetTurretCount(Type type)
+        {
+            switch (type)
+            {
+                case Type.MinionArmor: return 2; // 神偷机兵 - 双管 - 拦截机
+                case Type.RedBullEnergy: return 4; // 红牛能量 - 四管 - 拦截机
+                case Type.VladimirPutin: return 6; // 普鲸 - 六管 - 拦截机
+                case Type.PaperAeroplane: return 4; // 纸飞机 - 四管 - 巡航机
+                case Type.Cuckoo: return 6; // 咕咕鸡 - 六管 - 攻击机
+                case Type.BulletBill: return 2; // 炮弹比尔 - 双管 - 攻击机
+                case Type.TimeMachine: return 2; // 时光机 - 双管 - 特攻机
+                case Type.AceKennel: return 2; // 王牌狗屋 - 双管 - 特攻机
+                case Type.KirbyStar: return 4; // 卡比之星 - 四管 - 特攻机
+                case Type.ScorpioRouge: return 2; // 蝎红 - 双管 - 征服舰
+                case Type.Nwidia: return 4; // 恩威迪亚 - 四管 - 征服舰
+                case Type.FastFoodMan: return 2; // 快餐侠 - 双管 - 巡航机
+                case Type.ReindeerTransport: return 2; // 驯鹿空运 - 双管 - 战术舰
+                case Type.PolarisExpress: return 6; // 北极星特快 - 六管 - 征服舰
+                case Type.AncientFish: return 2; // 远古鱼 - 双管 - 战术舰
+                case Type.PapoyUnicorn: return 4; // 玩具独角兽：Medium Speed
+                case Type.PumpkinGhost: return 4; // 南瓜魅影：Large
+                case Type.BoundyHunterMKII: return 6; // 南瓜魅影：Large
+                default: return 2;
+            }
+        }
+        public static Type GetInstanceType(string name)
+        {
+            switch (name)
+            {
+                case "Kocmocraft 00 - Minion Armor(Clone)": return Type.MinionArmor;
+                case "Kocmocraft 01 - Red Bull Energy(Clone)": return Type.RedBullEnergy;
+                case "Kocmocraft 02 - Vladimir Putin(Clone)": return Type.VladimirPutin;
+                case "Kocmocraft 03 - Paper Aeroplane(Clone)": return Type.PaperAeroplane;
+                case "Kocmocraft 04 - Cuckoo(Clone)": return Type.Cuckoo;
+                case "Kocmocraft 05 - Bullet Bill(Clone)": return Type.BulletBill;
+                case "Kocmocraft 06 - Time Machine(Clone)": return Type.TimeMachine;
+                case "Kocmocraft 07 - Ace Kennel(Clone)": return Type.AceKennel;
+                case "Kocmocraft 08 - Kirby Star(Clone)": return Type.KirbyStar;
+                case "Kocmocraft 09 - Scorpio Rouge(Clone)": return Type.ScorpioRouge;
+                case "Kocmocraft 10 - Nwidia(Clone)": return Type.Nwidia;
+                case "Kocmocraft 11 - Fast Food Man(Clone)": return Type.FastFoodMan;
+                case "Kocmocraft 12 - Reindeer Transport(Clone)": return Type.ReindeerTransport;
+                case "Kocmocraft 13 - Polaris Express(Clone)": return Type.PolarisExpress;
+                case "Kocmocraft 14 - Ancient Fish(Clone)": return Type.AncientFish;
+                case "Kocmocraft 15 - Papoy Unicorn(Clone)": return Type.PapoyUnicorn;
+                default: return Type.TimeMachine;
+            }
+        }//
+
+        public static string GetKocmocraftName(int indexType)
+        {
+            switch (indexType)
+            {
+                case 0: return "Minion Armor"; // 神偷机兵 - 双管 - 拦截机
+                case 1: return "Red Bull Energy"; // 红牛能量 - 四管 - 拦截机
+                case 2: return "Vladimir Putin"; // 普鲸 - 六管 - 拦截机
+                case 3: return "Paper Aeroplane"; // 纸飞机 - 四管 - 攻击机
+                case 4: return "Cuckoo"; // 咕咕鸡 - 六管 - 攻击机
+                case 5: return "Bullet Bill"; // 炮弹比尔 - 双管 - 攻击机
+                case 6: return "Time Machine"; // 时光机 - 双管 - 特攻机
+                case 7: return "Ace Kennel"; // 王牌狗屋 - 双管 - 特攻机
+                case 8: return "Kirby Star"; // 卡比之星 - 四管 - 特攻机
+                case 9: return "Scorpio Rouge"; // 蝎红 -- 大型双管
+                case 10: return "Nwidia"; // 恩威迪亚 -- 特大型四管
+                case 11: return "Fast Food Man"; // 快餐侠 --- 中型双管
+                case 12: return "Reindeer Transport"; // 驯鹿空运 -- 大型双管
+                case 13: return "Polaris Express"; // 北极星特快 -- 特大型六管
+                case 14: return "Ancient Fish"; // 远古鱼 -- 大型双管
+                case 15: return "Papoy Unicorn";
+                case 16: return "Pumpkin Ghost";
+                case 17: return "Boundy Hunter MK.II";
+                default: return "---";
+            }
+        }
+
+        public static string GetKocmocraftResourceName(int index)
+        {
+            switch (index)
+            {
+                case 0: return "Prototype - Minion Armor";
+                case 1: return "Prototype - Red Bull Energy";
+                case 2: return "Prototype - Vladimir Putin";
+                case 3: return "Prototype - Paper Aeroplane";
+                case 4: return "Prototype - Cuckoo";
+                case 5: return "Prototype - Bullet Bill";
+                case 6: return "Prototype - Time Machine";
+                case 7: return "Prototype - Ace Kennel";
+                case 8: return "Prototype - Kirby Star";
+                case 9: return "Prototype - Scorpio Rouge";
+                case 10: return "Prototype - Nwidia";
+                case 11: return "Prototype - Fast Food Man";
+                case 12: return "Prototype - Reindeer Transport";
+                case 13: return "Prototype - Polaris Express";
+                case 14: return "Prototype - Ancient Fish";
+                case 15: return "Prototype - Unknown";
+                case 16: return "Prototype - Unknown";
+                case 17: return "Prototype - Unknown";
+                case 18: return "Prototype - Unknown";
+                case 19: return "Prototype - Unknown";
+                case 20: return "Prototype - Unknown";
+                default: return null;
+            }
+        }
+
+        // Display
+        public static string GetTypeChineseName(int index)
+        {
+            switch (index)
+            {
+                case 0: return "神偷机兵";
+                case 1: return "红牛能量";
+                case 2: return "普鲸";
+                case 3: return "纸飞机";
+                case 4: return "咕咕鸡 ";
+                case 5: return "炮弹比尔";
+                case 6: return "时光机";
+                case 7: return "王牌狗屋";
+                case 8: return "卡比之星";
+                case 9: return "蝎红";
+                case 10: return "恩威迪亚";
+                case 11: return "快餐侠";
+                case 12: return "驯鹿空运";
+                case 13: return "北极星特快";
+                case 14: return "远古飞鱼";
+                case 15: return "玩具独角兽";
+                case 16: return "南瓜魅影";
+                case 17: return "即将登场";
+                default: return "未知宇航机";
+            }
+        }
+        public static readonly float[] TopViewSize = {
+            4.6f, // ★★★★★★☆ 神偷机兵
+            3.1f, // ★★☆☆☆☆☆ 红牛能量
+            3.5f, // ★☆☆☆☆☆☆ 普鲸
+            5.9f, // ★★★★★★★ 纸飞机
+            5.2f, // ★★★☆☆☆☆ 咕咕鸡 
+            3.7f, // ★★★☆☆☆☆ 炮弹比尔
+            2.0f, // ★★☆☆☆☆☆ 时光机
+            2.1f, // ★★★★★★☆ 王牌狗屋
+            2.4f, // ★★★★★★★ 卡比之星
+            6.1f, // ★★☆☆☆☆☆ 蝎红
+            5.0f, // ★★★☆☆☆☆ 恩威迪亚
+            5.1f, // ★★★★☆☆☆ 快餐侠
+            6.0f, // ★★★★★☆☆ 驯鹿空运
+            5.1f, // ★★★★☆☆☆ 北极星特快
+            6.9f, // ★★★★★☆☆ 远古飞鱼
+            40, // ★★★★☆☆☆ 玩具独角兽
+            36, // ★★★☆☆☆☆ 南瓜魅影
+            22, // ★☆☆☆☆☆☆ 赏金猎人
+            45, // ★★★★★☆☆ 鹰纽特
+            34, // ★★★☆☆☆☆ 安格瑞
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
+            0, // ★★★★★★★ 即将登场
+        };
+
+
+        public static readonly float[] Collider = {
+            38.3091173f, // 神偷机兵
+            20.21441f, // 红牛能量;
+            18.41935f, //  普鲸;
+             57.69397f, // 纸飞机";
+            95.76454f, // 咕咕鸡 ";
+            31.09758f, // 炮弹比尔";
+            4.496421f, // 时光机";
+            21.234167503f, // 王牌狗屋";
+            6.356274f, // 卡比之星";
+            115.0642f, // 蝎红";
+            136.12f, // 恩威迪亚";
+            60.54652f, // 快餐侠";
+            93.2667f, // 驯鹿空运";
+            152.6686f, // 北极星特快";
+            70.73558282f, // 远古飞鱼";
+            68.74551578f, // 玩具独角兽";
+            122.675175f, // 南瓜魅影";
+            111.4062f, // 赏金猎人";
+            99999, // 鹰纽特";
+            99999, // 安格瑞";
+            99999, // 即将登场";
+            99999, // 即将登场";
+            99999, // 即将登场";
+            99999, // 即将登场";
+        };
+
+        public static readonly float[] Volume = {
+            34.7250337f, // 神偷机兵
+            17.2552f, // 红牛能量;
+            25.10557f, //  普鲸;
+            25.26623f, // 纸飞机";
+            99.89777f, // 咕咕鸡 ";
+            50.93384f, // 炮弹比尔";
+            3.745697f, // 时光机";
+            10.13892941f, // 王牌狗屋";
+            8.762174f, // 卡比之星";
+            65.28907f, // 蝎红";
+            95.869f, // 恩威迪亚";
+            43.4229f, // 快餐侠";
+            89.29118f, // 驯鹿空运";
+            124.7412f, // 北极星特快";
+            50.4355016f, // 远古飞鱼";
+            64.1464130587f, // 玩具独角兽";
+            101.595858f, // 南瓜魅影";
+            64.00921f, // 赏金猎人";
+            99999, // 鹰纽特";
+            99999, // 安格瑞";
+            99999, // 即将登场";
+            99999, // 即将登场";
+            99999, // 即将登场";
+            99999, // 即将登场";
+        };
+
+        public static readonly float[] RCS = {
+            116.450658f, // 神偷机兵
+            78.87015f, // 红牛能量;
+            69.46844f, //  普鲸;
+            205.8228f, // 纸飞机";
+            195.8923f, // 咕咕鸡 ";
+            97.26662f, // 炮弹比尔";
+            39.28357f, // 时光机";
+            45.327086f, // 王牌狗屋";
+            31.72817f, // 卡比之星";
+            263.8345f, // 蝎红";
+            302.3377f, // 恩威迪亚";
+            205.5217f, // 快餐侠";
+            252.9747f, // 驯鹿空运";
+            343.213f, // 北极星特快";
+            246.857114f, // 远古飞鱼";
+            197.10966682f, // 玩具独角兽";
+            302.01148f, // 南瓜魅影";
+            279.8407f, // 赏金猎人";
+            99999, // 鹰纽特";
+            99999, // 安格瑞";
+            99999, // 即将登场";
+            99999, // 即将登场";
+            99999, // 即将登场";
+            99999, // 即将登场";
+        };
+
     }
 }
