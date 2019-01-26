@@ -14,7 +14,9 @@ namespace Kocmoca
         public static readonly string PLAYER_LOADED_LEVEL = "PlayerLoadedLevel";
         public static readonly string PLAYER_DATA_KEY = "PlayerUnknownData"; // 用於PUN設定玩家數據
         public static readonly int PLAYER_DATA_VALUE = 999; // 用於PUN設定玩家數據之對應值
+        public static readonly string PLAYER_SKIN_OPTION = "Player Skin";
         public static readonly string PREFS_TYPE = "Prefs Type";
+        public static readonly string PREFS_SKIN = "Prefs Skin";
         public static readonly string PREFS_LOAD_SCENE = "LoadScene";
     }
 

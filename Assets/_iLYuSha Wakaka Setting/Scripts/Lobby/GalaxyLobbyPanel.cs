@@ -314,6 +314,12 @@ namespace Kocmoca
 
         public override void OnJoinedRoom()
         {
+            Hashtable skin = new Hashtable
+            {
+                { LobbyInfomation.PLAYER_SKIN_OPTION, localSkin }
+            };
+            PhotonNetwork.SetPlayerCustomProperties(skin);
+
             Hashtable propKocmocraft = new Hashtable
             {
                 { "KocmocraftType", 6 }
@@ -346,7 +352,7 @@ namespace Kocmoca
 
             Hashtable props = new Hashtable
             {
-                {Kocmoca.LobbyInfomation.PLAYER_LOADED_LEVEL, false}
+                {LobbyInfomation.PLAYER_LOADED_LEVEL, false}
             };
             PhotonNetwork.LocalPlayer.SetCustomProperties(props);
         }

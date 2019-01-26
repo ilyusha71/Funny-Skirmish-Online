@@ -74,7 +74,8 @@ namespace Kocmoca
         public Camera cameraTop;
         public Camera cameraSide;
         public Camera cameraFront;
-        private BoxCollider[] prototype;
+        private BoxCollider[] prototypeScale;
+        private SkinManager[] prototypeSkin;
         private HangarState hangarState = HangarState.Portal;
         private int hangarIndex;
         private int hangarMax = 20;
@@ -115,6 +116,7 @@ namespace Kocmoca
         public TextMeshProUGUI textWingspan;
         public TextMeshProUGUI textLength;
         public TextMeshProUGUI textHeight;
+        public Button btnSkin;
         [Header("Info Block - Dubi")]
         public TextMeshProUGUI textDubiName;
         public Button btnTalk;
@@ -156,8 +158,18 @@ namespace Kocmoca
             InitializeTrackingSystem();
             Portal.OnShutterPressedUp += EnterHangar;
             SFX = GetComponent<AudioSource>();
-            prototype = new BoxCollider[hangarMaxCount];
-            for (int i = 0; i < hangarMaxCount; i++) { prototype[i] = hangarCenter[i].GetComponentsInChildren<BoxCollider>()[1]; }
+            prototypeScale = new BoxCollider[hangarMaxCount];
+            prototypeSkin = new SkinManager[hangarMaxCount];
+            for (int i = 0; i < hangarMaxCount; i++)
+            {
+                prototypeScale[i] = hangarCenter[i].GetComponentsInChildren<BoxCollider>()[1];
+                try
+                {
+                    prototypeSkin[i] = hangarCenter[i].GetComponentsInChildren<SkinManager>()[1];
+                    prototypeSkin[i].InitializeSkin(PlayerPrefs.GetInt(LobbyInfomation.PREFS_SKIN + i));
+                }
+                catch { }
+            }
             hangarIndex = PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
             billboard.localPosition = billboardHide;
             blockInfo.localScale = Vector3.zero;
@@ -167,6 +179,7 @@ namespace Kocmoca
             btnHide.onClick.AddListener(() => HidePanel());
             btnKocmocraft.onValueChanged.AddListener(isOn => blockKocmocraft.SetActive(isOn));
             btnDubi.onValueChanged.AddListener(isOn => blockDubi.SetActive(isOn));
+            btnSkin.onClick.AddListener(() => ChangeSkin());
             btnDesign.onValueChanged.AddListener(isOn => blockDesign.SetActive(isOn));
             btnPerformance.onValueChanged.AddListener(isOn => blockPerformance.SetActive(isOn));
             btnWeapon.onValueChanged.AddListener(isOn => blockWeapon.SetActive(isOn));
@@ -189,8 +202,8 @@ namespace Kocmoca
             axisY.DOLocalRotate(new Vector3(0, valueRotY, 0), 3.37f);
             axisX.DOLocalRotate(new Vector3(valueRotX, 0, 0), 3.37f);
             slider.DOLocalMove(new Vector3(0, 0, valuePosZ), 3.37f);
-            pivot.DORotateQuaternion(prototype[hangarIndex].transform.rotation, 3.37f);
-            pivot.DOMove(prototype[hangarIndex].transform.position, 3.37f).OnComplete(() =>
+            pivot.DORotateQuaternion(prototypeScale[hangarIndex].transform.rotation, 3.37f);
+            pivot.DOMove(prototypeScale[hangarIndex].transform.position, 3.37f).OnComplete(() =>
             {
                 hangarState = HangarState.Ready;
                 billboard.localPosition = billboardPos;
@@ -245,12 +258,14 @@ namespace Kocmoca
 
         void MoveHangarRail()
         {
+            if(hangarIndex<hangarMax)
+                prototypeSkin[hangarIndex].InitializeSkin(PlayerPrefs.GetInt(LobbyInfomation.PREFS_SKIN + hangarIndex));
             billboard.localPosition = billboardHide;
             hangarCanvas.alpha = 0.0f;
             pivot.DOKill();
             hangarState = HangarState.Moving;
-            pivot.DORotateQuaternion(prototype[hangarIndex].transform.rotation, 0.73f);
-            pivot.DOMove(prototype[hangarIndex].transform.position, 0.73f).OnComplete(() =>
+            pivot.DORotateQuaternion(prototypeScale[hangarIndex].transform.rotation, 0.73f);
+            pivot.DOMove(prototypeScale[hangarIndex].transform.position, 0.73f).OnComplete(() =>
             {
                 hangarState = HangarState.Ready;
                 if (hangarIndex < 20)
@@ -269,9 +284,9 @@ namespace Kocmoca
 
             if (hangarIndex < hangarMax)
             {
-                float wingspan = prototype[hangarIndex].size.x;
-                float length = prototype[hangarIndex].size.z;
-                float height = prototype[hangarIndex].size.y;
+                float wingspan = prototypeScale[hangarIndex].size.x;
+                float length = prototypeScale[hangarIndex].size.z;
+                float height = prototypeScale[hangarIndex].size.y;
                 float max = Mathf.Max(wingspan, length);
                 max = Mathf.Max(max, height);
                 float maxSize = max * 0.5f;
@@ -310,7 +325,7 @@ namespace Kocmoca
             textAfterburneSpeed.text = (KocmocraftData.AfterburnerSpeed[hangarIndex] * 1.9438445f).ToString("0.00") + " knot";
             barAfterburne.SetBar(KocmocraftData.AfterburnerSpeed[hangarIndex]);
 
-            if (hangarIndex < 20)
+            if (hangarIndex < hangarMax)
             {
                 WeaponData.GetWeaponData(hangarIndex);
                 textTurretCount.text = WeaponData.TurretCount[hangarIndex] + "x 突击激光炮";
@@ -329,7 +344,6 @@ namespace Kocmoca
                 textMaxRange.text = "--- m";
                 barMaxRange.SetBar(0);
             }
-
         }
 
         public void OpenPanel()
@@ -359,6 +373,12 @@ namespace Kocmoca
         void Loading()
         {
             SceneManager.LoadScene(LobbyInfomation.SCENE_LOADING);
+        }
+
+        void ChangeSkin()
+        {
+            if(hangarIndex< hangarMax)
+                PlayerPrefs.SetInt(LobbyInfomation.PREFS_SKIN + hangarIndex, prototypeSkin[hangarIndex].ChangeSkin());
         }
     }
 }

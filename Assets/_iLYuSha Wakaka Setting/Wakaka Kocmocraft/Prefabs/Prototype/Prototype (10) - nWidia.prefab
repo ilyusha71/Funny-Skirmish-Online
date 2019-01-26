@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1263290930}
   - component: {fileID: 2326248944033447282}
+  - component: {fileID: 7582778526931866801}
   m_Layer: 9
-  m_Name: Prototype(10) - nWidia
+  m_Name: Prototype (10) - nWidia
   m_TagString: Kocmocraft
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +46,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 11.24, y: 5.65, z: 9.8}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7582778526931866801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4700316991066538017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2debeac66cfd7f4d9739633285e6af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skin: []
+  index: 0
 --- !u!1001 &7472146554759513933
 PrefabInstance:
   m_ObjectHideFlags: 0

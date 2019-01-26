@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4328404823835793377}
   - component: {fileID: 9117787936449311780}
+  - component: {fileID: 898594399486196360}
   m_Layer: 9
-  m_Name: Prototype(15) - Papoy Unicorn
+  m_Name: Prototype (15) - Papoy Unicorn
   m_TagString: Kocmocraft
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +46,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.7, y: 5.79, z: 8.86}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &898594399486196360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692105255668595190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2debeac66cfd7f4d9739633285e6af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skin: []
+  index: 0
 --- !u!1001 &5830265786425764202
 PrefabInstance:
   m_ObjectHideFlags: 0

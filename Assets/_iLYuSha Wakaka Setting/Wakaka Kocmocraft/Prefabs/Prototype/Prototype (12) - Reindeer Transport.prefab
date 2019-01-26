@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5659499168613414548}
   - component: {fileID: 2759387881266946884}
+  - component: {fileID: 2745116226698541863}
   m_Layer: 9
-  m_Name: Prototype(12) - Reindeer Transport
+  m_Name: Prototype (12) - Reindeer Transport
   m_TagString: Kocmocraft
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +46,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.3, y: 4.77, z: 10.8}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2745116226698541863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3322143062568316750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2debeac66cfd7f4d9739633285e6af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skin: []
+  index: 0
 --- !u!1001 &9087011503508474056
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,6 +13,8 @@ namespace Kocmoca
     }
     public partial class GalaxyLobbyPanel
     {
+        private int localType;
+        private int localSkin;
         [Header("Main Camera")]
         public Transform mainCamera;
         public Transform pointLogin;
@@ -143,11 +145,13 @@ namespace Kocmoca
         {
             lobbyState = LobbyState.Moving;
             MouseLock.MouseLocked = false;
-            int type = PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
+            localType = PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
+            localSkin = PlayerPrefs.GetInt(LobbyInfomation.PREFS_SKIN+ localType);
+            model[localType].GetComponentInChildren<SkinManager>().InitializeSkin(localSkin);
             for (int i = 0; i < model.Length; i++)
             {
-                model[i].SetActive(i == type);
-                scan[i].SetActive(i == type);
+                model[i].SetActive(i == localType);
+                scan[i].SetActive(i == localType);
             }
             mainCamera.DOMove(pointLobby.position, timeCameraMoving);
             mainCamera.DOLookAt(pointLobby.TransformPoint(new Vector3(0, 0, 1)), timeCameraMoving);

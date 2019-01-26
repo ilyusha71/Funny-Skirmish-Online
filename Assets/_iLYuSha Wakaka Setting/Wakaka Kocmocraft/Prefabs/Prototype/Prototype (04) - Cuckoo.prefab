@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 197166747328920170}
   - component: {fileID: 8410262070527203065}
+  - component: {fileID: 4299753842538361236}
   m_Layer: 9
-  m_Name: Prototype(04) - Cuckoo
+  m_Name: Prototype (04) - Cuckoo
   m_TagString: Kocmocraft
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +46,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.38, y: 4.85, z: 9.3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4299753842538361236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2469526348072503855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2debeac66cfd7f4d9739633285e6af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skin: []
+  index: 0
 --- !u!1 &8205893063066999225
 GameObject:
   m_ObjectHideFlags: 0
