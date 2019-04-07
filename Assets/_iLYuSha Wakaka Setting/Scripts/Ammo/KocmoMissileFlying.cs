@@ -15,7 +15,7 @@ namespace Kocmoca
         {
             InitializeAmmo();
             initialMinSpeed = KocmoMissileLauncher.flightVelocity;;
-            objPoolData = ObjectPoolManager.Instance.CreatObjectPool(effect, 5,100);
+            objPoolData = ObjectPoolManager.Instance.CreatObjectPool(effect, 5, 100);
         }
 
         private void OnEnable()
@@ -26,6 +26,7 @@ namespace Kocmoca
         }
         public override void InputAmmoData(int numberShooter, int numberTarget, Vector3 initialVelocity, float spread)
         {
+            shooter = numberShooter;
             target = null;
             SatelliteCommander.Instance.listKocmonaut.TryGetValue(numberShooter, out owner);
             SatelliteCommander.Instance.listKocmocraft.TryGetValue(numberTarget, out target);
@@ -39,6 +40,7 @@ namespace Kocmoca
                     SatelliteCommander.Instance.MissileLockOnWarning(true, name);
                 }
             }
+            timeRecovery = Time.time + KocmoMissileLauncher.flightTime;
         }
         void Update()
         {
@@ -82,8 +84,7 @@ namespace Kocmoca
         {
             if (realtimeThrust < KocmoMissileLauncher.maxThrust)
                 realtimeThrust += KocmoMissileLauncher.acceleration * Time.fixedDeltaTime;
-            myRigidbody.velocity = myTransform.forward * realtimeThrust * Time.fixedDeltaTime;
-
+            myRigidbody.velocity = myTransform.forward * (realtimeThrust * Time.fixedDeltaTime);
             CollisionDetection();
         }
 
@@ -92,10 +93,10 @@ namespace Kocmoca
             raycastHits = Physics.RaycastAll(pointStarting, transform.forward, Vector3.Distance(myTransform.position, pointStarting));
             if (raycastHits.Length > 0)
             {
-                objPoolData.Reuse(raycastHits[0].point, Quaternion.identity);
                 KocmocraftMechDroid hull = raycastHits[0].transform.GetComponent<KocmocraftMechDroid>();
                 if (hull)
                 {
+                    if (hull.Number == shooter) return;
                     float basicDamage = myRigidbody.velocity.magnitude * KocmoMissileLauncher.coefficientDamageBasic;
                     hull.Hit(new DamageInfo()
                     {
@@ -104,6 +105,7 @@ namespace Kocmoca
                         Shield = (int)(basicDamage * KocmoMissileLauncher.coefficientDamageShield)
                     });
                 }
+                objPoolData.Reuse(raycastHits[0].point, Quaternion.identity);
                 Recycle(gameObject);
                 return;
             }

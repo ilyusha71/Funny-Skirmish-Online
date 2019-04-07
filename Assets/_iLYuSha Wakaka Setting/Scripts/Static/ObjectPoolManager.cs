@@ -18,6 +18,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     private Dictionary<string, ObjectPoolData> dictionaryOPD = new Dictionary<string, ObjectPoolData>(); // 物件池索引
 
+    // Resource Manager 讀取階段生成
     public ObjectPoolData CreateObjectPool(GameObject prefab, int countBatch, int countMax)
     {
         ObjectPoolData OPD = new ObjectPoolData
@@ -34,7 +35,7 @@ public class ObjectPoolManager : MonoBehaviour
     }
 
 
-    // 建立物件池
+    // 建立物件池（舊版）
     public ObjectPoolData CreatObjectPool(GameObject prefab, int countBatch, int countMax)
     {
         // 查詢物件池索引有無相同物件

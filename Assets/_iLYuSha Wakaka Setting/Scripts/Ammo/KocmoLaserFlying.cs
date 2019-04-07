@@ -18,10 +18,13 @@ namespace Kocmoca
         public ObjectPoolData objPoolData;
         private TrailRenderer vfx;
 
+        // Target param.
+        private Rigidbody targetRigid;
+
         private void Awake()
         {
             InitializeAmmo();
-            objPoolData = ObjectPoolManager.Instance.CreatObjectPool(effect, 40, 800);
+            objPoolData = ObjectPoolManager.Instance.CreatObjectPool(effect, 80, 1600);
             vfx = GetComponent<TrailRenderer>();
         }
 
@@ -35,29 +38,23 @@ namespace Kocmoca
         // 來自FCS的賦值InputAmmoData()會在OnEnable()之後，必須放在等待時間之後，不然owner來不及更新
         IEnumerator FlyingInitialize()
         {
-            yield return new WaitForSeconds(0.0001f);
-            float coefficient = WeaponData.GetCoefficient(owner.Type); 
+            yield return SatelliteCommander.waitShoot;
+            float coefficient = WeaponData.GetCoefficient(owner.Type);
             if (target)
             {
-                float nowDistance = Vector3.Distance(target.transform.position, myTransform.position);
-                float expectedTime = Mathf.Sqrt(nowDistance * nowDistance / (coefficient * coefficient * KocmoLaserCannon.flightVelocity * KocmoLaserCannon.flightVelocity - target.GetComponent<Rigidbody>().velocity.sqrMagnitude));
+                targetRigid = target.GetComponent<Rigidbody>();
+                float expectedTime = Mathf.Sqrt(Vector3.SqrMagnitude(target.position - myTransform.position) / (coefficient * coefficient * KocmoLaserCannon.flightVelocity * KocmoLaserCannon.flightVelocity - targetRigid.velocity.sqrMagnitude));
 
-                Vector3 expectedTargetPosition =
-                    target.transform.position +
-                    target.GetComponent<Rigidbody>().velocity * expectedTime;
+                Vector3 expectedTargetPosition = target.position + targetRigid.velocity * expectedTime;
                 Vector3 expectedTargetDirection = (expectedTargetPosition - myTransform.position).normalized;
                 myTransform.forward = expectedTargetDirection;
             }
             myTransform.localRotation *= Quaternion.Euler(0, projectileSpread, 0);
-            timeRecovery = Time.time + KocmoLaserCannon.flightTime;
-            myRigidbody.AddForce(myTransform.forward * KocmoLaserCannon.propulsion* coefficient);
+            myRigidbody.AddForce(myTransform.forward * (KocmoLaserCannon.propulsion * coefficient));
             vfx.enabled = true;
-        }
 
-        void Update()
-        {
-            if (Time.time > timeRecovery)
-                Recycle(gameObject);
+            yield return SatelliteCommander.waitLaserRecovery;
+            Recycle(gameObject);
         }
 
         private void FixedUpdate()
@@ -74,7 +71,7 @@ namespace Kocmoca
                 KocmocraftMechDroid hull = raycastHits[0].transform.GetComponent<KocmocraftMechDroid>();
                 if (hull)
                 {
-                    float basicDamage = myRigidbody.velocity.sqrMagnitude * 0.000066f; ;
+                    float basicDamage = myRigidbody.velocity.sqrMagnitude * 0.000066f; 
                     hull.Hit(new DamageInfo()
                     {
                         Attacker = owner,

@@ -9,8 +9,8 @@ namespace Kocmoca
         [Header("Beacon")]
         public int number;
         public float energy { get; set; } = 0;
-        private readonly int limitRadius = 300;
-        private readonly int countEmitter = 20;
+        private readonly int limitRadius = 163;
+        private readonly int countEmitter = 80;
         private Faction faction = Faction.Unknown;
         public Queue<EnergyEmitter> queueEmitter = new Queue<EnergyEmitter>();
         [Header("VFX")]

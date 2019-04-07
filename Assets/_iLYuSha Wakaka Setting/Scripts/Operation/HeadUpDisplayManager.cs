@@ -21,6 +21,7 @@ namespace Kocmoca
     public class HeadUpDisplayManager : MonoBehaviour
     {
         public static HeadUpDisplayManager Instance { get; private set; }
+        public static Camera mainCamera;
         private AudioSource myAudioSource;
         private static float barOffset = 1.0f / 12.0f; // 計量條的零點位於逆時針第2格的位置（24等分）
         public struct BarData
@@ -100,20 +101,12 @@ namespace Kocmoca
 
 
 
-        [Header("【機載雷達】")]
-        public Transform onboardRadar;
-        public AudioSource lockOnAudio;
-        public GameObject iconFriend;
-        public GameObject iconFoe;
-        public GameObject iconLock;
-
-        private Transform[] markFriend; // 機載雷達敵我辨識
    //     private int orderFriend = 0;
-        private Transform[] markFoe; // 機載雷達敵我辨識
-     //   private int orderFoe = 0;
-        public Transform[] markFireControl; // 射控雷達掃描
-    //    private int orderFireControl = 0;
-        public Transform markTracking;
+    //    private Transform[] markFoe; // 機載雷達敵我辨識
+    // //   private int orderFoe = 0;
+    //    public Transform[] markFireControl; // 射控雷達掃描
+    ////    private int orderFireControl = 0;
+    //    public Transform markTracking;
         private int markSize;
         private Transform targetLockOn;
         private Transform targetTracking;
@@ -136,9 +129,16 @@ namespace Kocmoca
         private void Awake()
         {
             Instance = this;
+            mainCamera = Camera.main;
             myAudioSource = GetComponent<AudioSource>();
             uiGlobal.alpha = 0;
             uiHUD.alpha = 0;
+        }
+        void Start()
+        {
+            //RadarUI();
+            //InitializeRadar();
+
         }
         public void InitializeHUD(Transform myKocmocraft)
         {
@@ -176,6 +176,7 @@ namespace Kocmoca
             iconWarningAlarm.localPosition = invisiblePos;
             iconRadarAlarm.alpha = 0;
             iconMissileAlarm.alpha = 0;
+
         }
         private void Update()
         {
@@ -318,7 +319,7 @@ namespace Kocmoca
                     markerBeacon[i].transform.position = invisiblePos;
                     continue;
                 } 
-                Vector3 screenPos = Camera.main.WorldToScreenPoint(posBeacon[i]);
+                Vector3 screenPos = mainCamera.WorldToScreenPoint(posBeacon[i]);
                 //screenPos.y += 55;
                 if (screenPos.z <= 0)
                     markerBeacon[i].transform.position = invisiblePos;
@@ -415,7 +416,7 @@ namespace Kocmoca
         // Kocmocraft Mech Droid UI Method
         public void ShowHitDamage(Vector3 posHit, int damage)
         {
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(posHit);
+            Vector3 screenPos = mainCamera.WorldToScreenPoint(posHit);
             screenPos.z = 999;
             textHitDamage.transform.position = (screenPos + new Vector3(97, 0, 0));
             textHitDamage.text = "" + damage;
@@ -433,7 +434,7 @@ namespace Kocmoca
                 myAudioSource.PlayOneShot(ResourceManager.instance.soundLockOn, 3.0f);
             targetLockOn = target;
 
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(target.position);
+            Vector3 screenPos = mainCamera.WorldToScreenPoint(target.position);
             screenPos.z = 999;
 
             markerLock.position = screenPos;
@@ -445,6 +446,242 @@ namespace Kocmoca
             targetHull.fillAmount = targetInfo.dataHull.Percent;
             targetShield.fillAmount = targetInfo.dataShield.Percent;
         }
+
+
+        public Transform markFriendGroup;
+        private Transform[] pointFriend; // 機載雷達敵我辨識
+
+        void RadarUI()
+        {
+            pointFriend = new Transform[39];
+            for (int i = 0; i < countMissionPilot - 1; i++)
+            {
+                pointFriend[i] = Instantiate(iconFriend, markFriendGroup).transform;
+                pointFriend[i].localScale = new Vector3(1, 1, 1);
+                pointFriend[i].localPosition = invisiblePos;
+            }
+        }
+
+        public void NewResetOnboardRadarRadar()
+        {
+            orderFriend = -1;
+            for (int i = 0; i < 39; i++)
+            {
+                pointFriend[i].localPosition = invisiblePos;
+            }
+        }
+        public void NewIdentifyFriend(Transform friend)
+        {
+            Vector3 screenPos = mainCamera.WorldToScreenPoint(friend.position);
+            screenPos.z = 999;
+
+            orderFriend++;
+            pointFriend[orderFriend].position = screenPos;
+        }
+
+
+        const int countMissionPilot = 40;
+        const int countTarget = 40;
+        [Header("【機載雷達】")]
+        public Transform onboardRadar;
+        public AudioSource lockOnAudio;
+        public GameObject iconFriend;
+        public GameObject iconFoe;
+        public GameObject iconLock;
+
+        private Transform[] markFriend; // 機載雷達敵我辨識
+        private int orderFriend = 0;
+        private Transform[] markFoe; // 機載雷達敵我辨識
+        private int orderFoe = 0;
+        public Transform[] markFireControl; // 射控雷達掃描
+        private int orderFireControl = 0;
+        public Transform markLock; // 射控雷達開火提示 only one
+        public Transform markTracking;
+
+        // 主動事件（搜索、鎖定、追蹤）
+        public void InitializeRadar()
+        {
+            lockOnAudio = onboardRadar.GetComponent<AudioSource>();
+            markFriend = new Transform[countMissionPilot - 1];
+            for (int i = 0; i < countMissionPilot - 1; i++)
+            {
+                markFriend[i] = Instantiate(iconFriend).transform;
+                markFriend[i].SetParent(onboardRadar);
+                markFriend[i].localScale = new Vector3(1, 1, 1);
+                markFriend[i].localPosition = invisiblePos;
+            }
+            markFoe = new Transform[countTarget];
+            markFireControl = new Transform[countTarget];
+            for (int i = 0; i < countTarget; i++)
+            {
+                markFoe[i] = Instantiate(iconFoe).transform;
+                markFoe[i].SetParent(onboardRadar);
+                markFoe[i].localScale = new Vector3(1, 1, 1);
+                markFoe[i].localPosition = invisiblePos;
+
+                markFireControl[i] = Instantiate(iconLock).transform;
+                markFireControl[i].SetParent(onboardRadar);
+                markFireControl[i].localScale = new Vector3(1, 1, 1);
+                markFireControl[i].localPosition = invisiblePos;
+            }
+
+            markLock.localPosition = invisiblePos;
+            markTracking.localPosition = invisiblePos;
+            //markSize = -(int)markTracking.GetComponent<RectTransform>().rect.x;
+        }
+        /* Onboard Radar 呼叫 AEW */
+        public void ResetOnboardRadarRadar()
+        {
+            orderFriend = -1;
+            orderFoe = -1;
+            orderFireControl = -1;
+            for (int i = 0; i < countMissionPilot - 1; i++)
+            {
+                markFriend[i].localPosition = invisiblePos;
+            }
+            for (int i = 0; i < countTarget; i++)
+            {
+                markFoe[i].localPosition = invisiblePos;
+                markFireControl[i].localPosition = invisiblePos;
+            }
+            markLock.localPosition = invisiblePos;
+            markTracking.localPosition = invisiblePos;
+        }
+        public void IdentifyFriend(Transform friend)
+        {
+            Vector3 screenPos = HeadUpDisplayManager.mainCamera.WorldToScreenPoint(friend.position);
+            screenPos.z = 999;
+
+            orderFriend++;
+            markFriend[orderFriend].position = screenPos;
+        }
+        public void IdentifyTarget(Transform target)
+        {
+            Vector3 screenPos = HeadUpDisplayManager.mainCamera.WorldToScreenPoint(target.position);
+            screenPos.z = 999;
+
+            orderFoe++;
+            markFoe[orderFoe].position = screenPos;
+        }
+        public void FireControlLookTarget(Transform target)
+        {
+            if (orderFireControl > 1)
+                return;
+            Vector3 screenPos = HeadUpDisplayManager.mainCamera.WorldToScreenPoint(target.position);
+            screenPos.z = 999;
+
+            orderFireControl++;
+            markFireControl[orderFireControl].position = screenPos;
+        }
+        public void MarkTarget()
+        {
+            //if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Joystick1Button5))
+            //{
+            //    if (targetLockOn)
+            //        targetFollow = targetLockOn;
+            //}
+            //if (targetFollow)
+            //{
+            //    Vector3 screenPos = Camera.main.WorldToScreenPoint(targetFollow.position);
+
+            //    if (screenPos.z > 0)
+            //    {
+            //        if (screenPos.x > Screen.width - markSize * 0.5f)
+            //            screenPos.x = Screen.width - markSize * 0.5f;
+            //        else if (screenPos.x < markSize * 0.5f)
+            //            screenPos.x = markSize * 0.5f;
+
+            //        if (screenPos.y > Screen.height - markSize * 0.5f)
+            //            screenPos.y = Screen.height - markSize * 0.5f;
+            //        else if (screenPos.y < markSize * 0.5f)
+            //            screenPos.y = markSize * 0.5f;
+
+            //        screenPos.z = 100;
+            //    }
+            //    else
+            //    {
+            //        screenPos.x = Screen.width - screenPos.x;
+            //        screenPos.y = Screen.height - screenPos.y;
+            //        screenPos.z = -100;
+
+            //        bool xFix = false;
+            //        bool yFix = false;
+
+            //        if (screenPos.x > Screen.width - markSize * 0.5f)
+            //            screenPos.x = Screen.width - markSize * 0.5f;
+            //        else if (screenPos.x < markSize * 0.5f)
+            //            screenPos.x = markSize * 0.5f;
+            //        else
+            //            xFix = true;
+
+            //        if (screenPos.y > Screen.height - markSize * 0.5f)
+            //            screenPos.y = Screen.height - markSize * 0.5f;
+            //        else if (screenPos.y < markSize * 0.5f)
+            //            screenPos.y = markSize * 0.5f;
+            //        else
+            //            yFix = true;
+
+            //        if (xFix && yFix)
+            //        {
+            //            float absX;
+            //            float absY;
+
+            //            if (screenPos.x > Screen.width * 0.5f)
+            //            {
+            //                absX = Screen.width - screenPos.x;
+            //                // 第一象限
+            //                if (screenPos.y > Screen.height * 0.5f)
+            //                {
+            //                    absY = Screen.height - screenPos.y;
+            //                    if (absX < absY)
+            //                        screenPos.x = Screen.width - markSize * 0.5f;
+            //                    else
+            //                        screenPos.y = Screen.height - markSize * 0.5f;
+            //                }
+            //                // 第四象限
+            //                else
+            //                {
+            //                    absY = screenPos.y;
+            //                    if (absX < absY)
+            //                        screenPos.x = Screen.width - markSize * 0.5f;
+            //                    else
+            //                        screenPos.y = markSize * 0.5f;
+            //                }
+            //            }
+            //            else
+            //            {
+            //                absX = screenPos.x;
+            //                // 第二象限
+            //                if (screenPos.y > Screen.height * 0.5f)
+            //                {
+            //                    absY = Screen.height - screenPos.y;
+            //                    if (absX < absY)
+            //                        screenPos.x = markSize * 0.5f;
+            //                    else
+            //                        screenPos.y = Screen.height - markSize * 0.5f;
+            //                }
+            //                // 第三象限
+            //                else
+            //                {
+            //                    absY = screenPos.y;
+            //                    if (absX < absY)
+            //                        screenPos.x = markSize * 0.5f;
+            //                    else
+            //                        screenPos.y = markSize * 0.5f;
+            //                }
+            //            }
+            //        }
+            //    }
+            //    markTracking.localPosition = invisiblePos;
+            //    markTracking.position = screenPos;
+            //}
+        }
+
+
+
+
+
+
 
         // Beacon UI Method
         public void InitializeBeaconUI(int index, Faction faction,Vector3 position )

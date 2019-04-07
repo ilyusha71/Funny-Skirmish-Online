@@ -24,6 +24,23 @@ public class SkinManager : MonoBehaviour
         skin[index].SetActive(true);
     }
 
+    public void Randomkin()
+    {
+        int count = transform.childCount;
+        skin = new GameObject[count];
+        for (int i = 0; i < count; i++)
+        {
+            skin[i] = transform.GetChild(i).gameObject;
+        }
+
+        index = Random.Range(0, count);
+        for (int i = 0; i < skin.Length; i++)
+        {
+            skin[i].SetActive(false);
+        }
+        skin[index].SetActive(true);
+    }
+
     public int ChangeSkin()
     {
         index = (int)Mathf.Repeat(++index, skin.Length);
@@ -35,4 +52,6 @@ public class SkinManager : MonoBehaviour
         Debug.Log(index);
         return index;
     }
+
+
 }

@@ -2,11 +2,19 @@
 
 namespace Kocmoca
 {
+    public static class RadarParameter
+    {
+        public static readonly int maxSearchRadiusSqr = 4000000; // 2000m
+        public static readonly int maxLockDistanceSqr = 739100; // 860m
+        public static readonly float maxSearchAngle = 0.7986355f; // 37
+        public static readonly float maxLockAngle = 0.8910065f; // 27
+    }
+
     public static class LobbyInfomation
     {
         public static readonly string SCENE_LOBBY = "New Galaxy Lobby";
         public static readonly string SCENE_HANGAR = "New Airport 3";
-        public static readonly string SCENE_OPERATION = "Kocmocarkstan";//"Skirmish in Dusk Lakeside";
+        public static readonly string SCENE_OPERATION = "New_Demo_Main";//"Skirmish in Dusk Lakeside";
         public static readonly string SCENE_LOADING = "Loading";
         public static readonly string SCENE_LOADING_ONLINE = "LoadingOnline";
         public static readonly string PLAYER_READY = "IsPlayerReady";
@@ -437,27 +445,27 @@ namespace Kocmoca
         {
             switch (portNumber)
             {
-                case 0: return "[Bot] Magnussen";
-                case 1: return "[Bot] Russell";
-                case 2: return "[Bot] Sainz Jr."; 
-                case 3: return "[Bot] Pérez";
-                case 4: return "[Bot] Norris";
-                case 5: return "[Bot] Kvyat";
-                case 6: return "[Bot] Giovinazzi";
-                case 7: return "[Bot] Gasly"; 
-                case 8: return "[Bot] Hülkenberg";
-                case 9: return "[Bot] Ricciardo";
-                case 10: return "[Bot] Verstappen";
-                case 11: return "[Bot] Grosjean"; 
-                case 12: return "[Bot] Bottas";
-                case 13: return "[Bot] Leclerc";
-                case 14: return "[Bot] Schumacher";
-                case 15: return "[Bot] Alonso"; 
-                case 16: return "[Bot] Rosberg";
-                case 17: return "[Bot] Räikkönen";
-                case 18: return "[Bot] Hamilton";
-                case 19: return "[Bot] Vettel";
-                default: return "[Bot]---";
+                //case 0: return "[Bot] Magnussen";
+                //case 1: return "[Bot] Russell";
+                //case 2: return "[Bot] Sainz Jr."; 
+                //case 3: return "[Bot] Pérez";
+                //case 4: return "[Bot] Norris";
+                //case 5: return "[Bot] Kvyat";
+                //case 6: return "[Bot] Giovinazzi";
+                //case 7: return "[Bot] Gasly"; 
+                //case 8: return "[Bot] Hülkenberg";
+                //case 9: return "[Bot] Ricciardo";
+                //case 10: return "[Bot] Verstappen";
+                //case 11: return "[Bot] Grosjean"; 
+                //case 12: return "[Bot] Bottas";
+                //case 13: return "[Bot] Leclerc";
+                //case 14: return "[Bot] Schumacher";
+                //case 15: return "[Bot] Alonso"; 
+                //case 16: return "[Bot] Rosberg";
+                //case 17: return "[Bot] Räikkönen";
+                //case 18: return "[Bot] Hamilton";
+                //case 19: return "[Bot] Vettel";
+                default: return "[Bot] " + portNumber;
             }
         }
 
@@ -494,20 +502,20 @@ namespace Kocmoca
         {
             switch (type)
             {
-                case Type.RedBullEnergy: return new Vector3(0, 3.0f, 7.0f);
-                case Type.VladimirPutin: return new Vector3(0, 3.0f, 5.0f);
-                case Type.PaperAeroplane: return new Vector3(0, 3.0f, 7.0f);
+                //case Type.RedBullEnergy: return new Vector3(0, 3.0f, 7.0f);
+                //case Type.VladimirPutin: return new Vector3(0, 3.0f, 5.0f);
+                //case Type.PaperAeroplane: return new Vector3(0, 3.0f, 7.0f);
 
-                case Type.BulletBill: return new Vector3(0,3.37f,7);
-                case Type.TimeMachine: return new Vector3(0, 2.97f, 0);
-                case Type.AceKennel: return new Vector3(0, 1.37f, 0);
-                case Type.KirbyStar: return new Vector3(0, 2.37f, 0);
+                //case Type.BulletBill: return new Vector3(0,3.37f,7);
+                //case Type.TimeMachine: return new Vector3(0, 2.97f, 0);
+                //case Type.AceKennel: return new Vector3(0, 1.37f, 0);
+                //case Type.KirbyStar: return new Vector3(0, 2.37f, 0);
 
-                case Type.ScorpioRouge: return new Vector3(0, 5.0f, 10.0f);
+                //case Type.ScorpioRouge: return new Vector3(0, 5.0f, 10.0f);
 
-                case Type.AncientFish: return new Vector3(0, 3.93f, 10.0f);
-                case Type.PumpkinGhost: return new Vector3(0, 7.0f, 10.0f);
-                default: return new Vector3(0, 3.37f, 7);
+                //case Type.AncientFish: return new Vector3(0, 3.93f, 10.0f);
+                //case Type.PumpkinGhost: return new Vector3(0, 7.0f, 10.0f);
+                default: return new Vector3(0, 5.0f, 10.0f);
             }
         }
         
@@ -673,16 +681,16 @@ namespace Kocmoca
 
     public static class KocmoLaserCannon
     {
-        public static readonly int countPerBatch = 5; // 每批生成量
-        public static readonly int maxPoorInventory = 500; // 最大物件池存量
+        public static readonly int countPerBatch = 25; // 每批生成量
+        public static readonly int maxPoorInventory = 2500; // 最大物件池存量
         public static readonly float maxFireAngle = Mathf.Cos(7 * Mathf.Deg2Rad); // 最大開火夾角
         public static readonly int maxAmmoCapacity = 999; // 最大載彈量
         public static readonly float projectileSpread = 0.39f; //彈道散布 degree
         public static readonly int flightVelocity = 1630;//2970; // 飛行速率 m/s
-        public static readonly int propulsion = flightVelocity * 50; // 開火推力
-        public static readonly float flightTime = 0.71f; // 飛行時間 sec
+        public static readonly int propulsion = flightVelocity * 50; // 開火推力 propulsion = flightVelocity / Time.fixedDeltaTime (1/0.02 = 50)
+        public static readonly float flightTime = 0.37f;//0.71f; // 飛行時間 sec
         public static readonly float operationalRange = flightVelocity * flightTime; // 射程 m
-        public static readonly float fireRoundPerSecond = 4.77f; // 射速 rps
+        public static readonly float fireRoundPerSecond = 9.73f; // 射速 rps
         public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec
         public static readonly float coefficientMinDamage = 1.3035f;
         public static readonly float coefficientMaxDamage = 4.1949f;
@@ -693,9 +701,9 @@ namespace Kocmoca
         public static readonly int maxPoorInventory = 100; // 最大物件池存量
         public static readonly float maxFireAngle = Mathf.Cos(13 * Mathf.Deg2Rad); // 最大開火夾角
         public static readonly int maxAmmoCapacity = 12; // 最大載彈量
-        public static readonly int flightVelocity = 703; // 飛行速率 m/s
+        public static readonly int flightVelocity = 555; // 飛行速率 m/s
         public static readonly int thrust = flightVelocity * 50; // 基本推力
-        public static readonly float flightTime = 2.37f; // 飛行時間 sec
+        public static readonly float flightTime = 1.37f;//2.37f; // 飛行時間 sec
         public static readonly float fireRoundPerSecond = 3.37f; // 射速 rps
         public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec
         public static readonly float timeReload = 9.3f;
@@ -713,7 +721,7 @@ namespace Kocmoca
         public static readonly int minThrust = flightVelocity * 50; // 基本推力
         public static readonly float maxThrust = minThrust * 3.97f; // 最大推力
         public static readonly float acceleration = maxThrust * 0.0793f; // 加速度
-        public static readonly float flightTime = 7.0f; // 飛行時間 sec
+        public static readonly float flightTime = 3.73f;//7.0f; // 飛行時間 sec
         public static readonly float fireRoundPerSecond = 1.137f; // 射速 rps
         public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec
         public static readonly float timeReload = 15.0f;

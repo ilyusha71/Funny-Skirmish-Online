@@ -9,10 +9,13 @@ namespace Kocmoca
         public ObjectPoolData objPoolData;
         public ParticleSystem[] vfx;
 
+        // Target param.
+        private Rigidbody targetRigid;
+
         private void Awake()
         {
             InitializeAmmo();
-            objPoolData = ObjectPoolManager.Instance.CreatObjectPool(effect, 7,140);
+            objPoolData = ObjectPoolManager.Instance.CreatObjectPool(effect, 7, 140);
             vfx = GetComponentsInChildren<ParticleSystem>();
         }
 
@@ -28,35 +31,28 @@ namespace Kocmoca
 
         IEnumerator FlyingInitialize()
         {
-            yield return new WaitForSeconds(0.0001f);
+            yield return SatelliteCommander.waitShoot;
             if (target)
             {
-                float nowDistance = Vector3.Distance(target.transform.position, myTransform.position);
-                float expectedTime = Mathf.Sqrt(nowDistance * nowDistance / (KocmoRocketLauncher.flightVelocity * KocmoRocketLauncher.flightVelocity - target.GetComponent<Rigidbody>().velocity.sqrMagnitude));
+                targetRigid = target.GetComponent<Rigidbody>();
+                float expectedTime = Mathf.Sqrt(Vector3.SqrMagnitude(target.position - myTransform.position) / (KocmoRocketLauncher.flightVelocity * KocmoRocketLauncher.flightVelocity - targetRigid.velocity.sqrMagnitude));
 
-                Vector3 expectedTargetPosition =
-                    target.transform.position +
-                    target.GetComponent<Rigidbody>().velocity * expectedTime;
+                Vector3 expectedTargetPosition = target.position + targetRigid.velocity * expectedTime;
                 Vector3 expectedTargetDirection = (expectedTargetPosition - myTransform.position).normalized;
                 myTransform.forward = expectedTargetDirection;
             }
             myTransform.localRotation *= Quaternion.Euler(0, projectileSpread, 0);
-            timeRecovery = Time.time + KocmoRocketLauncher.flightTime;
+            myRigidbody.velocity = myTransform.forward * KocmoRocketLauncher.flightVelocity;
             for (int i = 0; i < vfx.Length; i++)
             {
                 vfx[i].Play();
             }
-        }
-
-        void Update()
-        {
-            if (Time.time > timeRecovery)
-                Recycle(gameObject);
+            yield return SatelliteCommander.waitRocketRecovery;
+            Recycle(gameObject);
         }
 
         private void FixedUpdate()
         {
-            myRigidbody.velocity = myTransform.forward * KocmoRocketLauncher.thrust * Time.fixedDeltaTime;
             CollisionDetection();
         }
 
@@ -65,10 +61,10 @@ namespace Kocmoca
             raycastHits = Physics.RaycastAll(pointStarting, transform.forward, Vector3.Distance(myTransform.position, pointStarting));
             if (raycastHits.Length > 0)
             {
-                objPoolData.Reuse(raycastHits[0].point, Quaternion.identity);
                 KocmocraftMechDroid hull = raycastHits[0].transform.GetComponent<KocmocraftMechDroid>();
                 if (hull)
                 {
+                    if (hull.Number == shooter) return;
                     float basicDamage = myRigidbody.velocity.magnitude * KocmoRocketLauncher.coefficientDamageBasic;
                     hull.Hit(new DamageInfo()
                     {
@@ -77,6 +73,7 @@ namespace Kocmoca
                         Shield = (int)(basicDamage * KocmoRocketLauncher.coefficientDamageShield)
                     });
                 }
+                objPoolData.Reuse(raycastHits[0].point, Quaternion.identity);
                 Recycle(gameObject);
                 return;
             }

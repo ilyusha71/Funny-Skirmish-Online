@@ -251,7 +251,7 @@ namespace Kocmoca
             rigid.velocity = myRigidbody.velocity;
             rigid.AddForce(Random.rotation.eulerAngles * Random.Range(100, 500));
             rigid.AddTorque(Random.rotation.eulerAngles * Random.Range(100, 2000));
-            Destroy(wreckage, 10.0f);
+            Destroy(wreckage, 3.0f);
             //remnant
             //myRigidbody.useGravity = true;
 

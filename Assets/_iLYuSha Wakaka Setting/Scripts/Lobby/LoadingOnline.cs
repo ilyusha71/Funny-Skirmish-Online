@@ -28,7 +28,7 @@ namespace Kocmoca
         private float percent;
 
         private readonly float intervalBatch = 0.05f; // 間隔時間
-        private readonly int countBatch = 50; // 克隆批數
+        private readonly int countBatch = 100; // 克隆批數
         private float orderBatch; // 批次序列
         public float percentBatch { get { return (orderBatch / countBatch); } } // 克隆批次百分比
         bool wait=false;

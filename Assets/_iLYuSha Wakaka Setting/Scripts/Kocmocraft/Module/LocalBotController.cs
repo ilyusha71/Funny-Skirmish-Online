@@ -52,7 +52,8 @@ namespace Kocmoca
         private Vector3 targetpositionTemp;
 
         public float targetFireDistance;
-        public float targetTrackingDistance;
+        public Vector3 targetTrackingDiff;
+        public float targetTrackingDistanceSqr;
         public float targetTrackingDirection;
 
         void Start()
@@ -212,19 +213,20 @@ namespace Kocmoca
             {
                 Vector3 targetTrackingPosition = targetTrack.position;
                 myAvionicsSystem.PositionTarget = targetTrackingPosition;
-                targetTrackingDistance = Vector3.Distance(myTransform.position, targetTrackingPosition);
-                targetTrackingDirection = Vector3.Dot((targetTrackingPosition - myTransform.position).normalized, myTransform.forward);
+                targetTrackingDiff = targetTrackingPosition - myTransform.position;
+                targetTrackingDistanceSqr = Vector3.SqrMagnitude(targetTrackingDiff);
+                targetTrackingDirection = Vector3.Dot(targetTrackingDiff.normalized, myTransform.forward);
 
-                if (targetTrackingDirection < myOnboardRadar.maxLockAngle)
+                if (targetTrackingDirection < RadarParameter.maxLockAngle)
                 {
                     IntoPatrolState();
                     return;
                 }
                 else
                 {
-                    if (targetTrackingDistance < myOnboardRadar.maxLockRadius)
+                    if (targetTrackingDistanceSqr < RadarParameter.maxLockDistanceSqr)
                     {
-                        if (targetTrackingDistance < 71)
+                        if (targetTrackingDistanceSqr < 5000)
                         {
                             IntoLeaveState();
                             return;

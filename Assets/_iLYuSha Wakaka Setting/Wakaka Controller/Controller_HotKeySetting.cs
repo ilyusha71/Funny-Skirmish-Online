@@ -39,11 +39,11 @@ public partial class Controller : MonoBehaviour
     public static readonly KeyCode KEY_PreviousKocmocraft = KeyCode.Keypad4;
     public static readonly KeyCode KEY_NextKocmocraft = KeyCode.Keypad6;
     // Key Setting - Kocmocraft
-    public static KeyCode KEYBOARD_CockpitView; // C
+    public static KeyCode KEYBOARD_CockpitView = KeyCode.C; // C
     public static KeyCode XBOX360_CockpitView; // A Button
-    public static KeyCode KEYBOARD_Afterburner; // Left Shift
+    public static KeyCode KEYBOARD_Afterburner = KeyCode.LeftShift; // Left Shift
     public static KeyCode XBOX360_Afterburner; // X Button
-    public static KeyCode KEYBOARD_LockOn; // R
+    public static KeyCode KEYBOARD_LockOn = KeyCode.R; // R
     public static KeyCode XBOX360_LockOn; // B Button
     // Key Setting - Weapon
     public static readonly KeyCode KEYBOARD_Laser = KeyCode.Mouse0; // Left Mouse Button

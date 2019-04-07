@@ -130,6 +130,7 @@ namespace Kocmoca
             Faction = (Faction)(portNumber % 2);
             Type = (Type)(int.Parse(myTransform.name.Split(new char[2] { '(', ')' })[1]));
             Number = KocmocraftData.GetKocmonautNumber(portNumber);
+            GetComponentInChildren<SkinManager>().Randomkin();
             myTransform.name = KocmocraftData.GetBotName(portNumber) + "-" +
                 DesignData.Code[(int)Type] + "-" +
                 DesignData.Kocmocraft[(int)Type];

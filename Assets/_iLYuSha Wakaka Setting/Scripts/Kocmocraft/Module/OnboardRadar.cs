@@ -28,12 +28,14 @@ namespace Kocmoca
         [Header("Onboard Radar")]
         public Transform[] targetOnboard;
         private const int maxTargetCount = 10;
-        private int maxSearchRadius = 3000; // 最大搜索半徑
-        private float maxSearchAngle = Mathf.Cos(37 * Mathf.Deg2Rad); // 最大搜索夾角
-        [HideInInspector]
-        public int maxLockRadius = 1370; // 最大鎖定半徑
-        [HideInInspector]
-        public float maxLockAngle = Mathf.Cos(27 * Mathf.Deg2Rad); // 最大鎖定夾角
+        // Search
+        private Vector3 scanDiff;
+        private float scanDistanceSqr;
+        private float scanDirection;
+        // Target
+        private Vector3 targetDiff;
+        private float targetDistanceSqr;
+        private float targetDirection;
         [Header("Fire-control Radar")]
         public Transform targetNearest;
         //private float targetNearestDistance;
@@ -45,8 +47,6 @@ namespace Kocmoca
         public Transform targetAutoAim;
         public Transform targetRadarLockOn;
         public Transform targetLocked;
-        private float targetDistance;
-        private float targetDirection;
 
         public void Initialize(Core core, int faction, int type, int number)
         {
@@ -66,13 +66,14 @@ namespace Kocmoca
         {
             myPosition = myTransform.position;
             if (isLocalPlayer) SearchFriend();
-            TargetSearch();
+            //TargetSearch();
             TargetLockOn();
             RadarWarningEmitter();
         }
         void SearchFriend()
         {
             SatelliteCommander.Instance.ResetOnboardRadarRadar();
+            HeadUpDisplayManager.Instance.NewResetOnboardRadarRadar();
             int countFriend = listFriendAircrafts.Count;
             for (int i = 0; i < countFriend; i++)
             {
@@ -80,10 +81,10 @@ namespace Kocmoca
                 {
                     if (listFriendAircrafts[i] != myTransform)
                     {
-                        float distance = Vector3.Distance(listFriendAircrafts[i].position, myPosition);
-                        float direction = Vector3.Dot((listFriendAircrafts[i].position - myPosition).normalized, myTransform.forward);
-                        if (distance <= maxSearchRadius && direction >= maxSearchAngle)
-                            SatelliteCommander.Instance.IdentifyFriend(listFriendAircrafts[i]); // 標記搜索範圍的所有友機
+                        scanDiff = listFriendAircrafts[i].position - myPosition;
+                        if (Vector3.SqrMagnitude(scanDiff) <= RadarParameter.maxSearchRadiusSqr &&
+                            Vector3.Dot(scanDiff.normalized, myTransform.forward) >= RadarParameter.maxSearchAngle)
+                            HeadUpDisplayManager.Instance.NewIdentifyFriend(listFriendAircrafts[i]); // 標記搜索範圍的所有友機
                     }
                 }
             }
@@ -98,24 +99,25 @@ namespace Kocmoca
                 targetOnboard[i] = null;
                 if (i < countFoe && listFoeAircrafts[i])
                 {
-                    float distance = Vector3.Distance(listFoeAircrafts[i].position, myPosition);
-                    float direction = Vector3.Dot((listFoeAircrafts[i].position - myPosition).normalized, myTransform.forward);
-                    if (distance <= maxSearchRadius && direction >= maxSearchAngle)
+                    scanDiff = listFoeAircrafts[i].position - myPosition;
+                    scanDistanceSqr = Vector3.SqrMagnitude(scanDiff);
+                    scanDirection = Vector3.Dot(scanDiff.normalized, myTransform.forward);
+                    if (scanDistanceSqr <= RadarParameter.maxSearchRadiusSqr && scanDirection >= RadarParameter.maxSearchAngle)
                     {
                         targetOnboard[i] = listFoeAircrafts[i];
                         if (isLocalPlayer)
                             SatelliteCommander.Instance.IdentifyTarget(listFoeAircrafts[i]); // 標記搜索範圍的所有敵機
 
-                        if (distance <= maxLockRadius && direction >= maxLockAngle)
+                        if (scanDistanceSqr <= RadarParameter.maxLockDistanceSqr && scanDirection >= RadarParameter.maxLockAngle)
                         {
                             if (isLocalPlayer)
                                 SatelliteCommander.Instance.FireControlLookTarget(listFoeAircrafts[i]);  // 標記鎖定範圍的所有敵機
 
                             // 尋找最接近的目標
-                            if (direction > targetNearestDirection)
+                            if (scanDirection > targetNearestDirection)
                             {
                                 targetNearest = listFoeAircrafts[i];
-                                targetNearestDirection = direction;
+                                targetNearestDirection = scanDirection;
                             }
                         }
                     }
@@ -142,15 +144,16 @@ namespace Kocmoca
             }
             if (targetRadarLockOn)
             {
-                targetDistance = Vector3.Distance(myPosition, targetRadarLockOn.position);
-                targetDirection = Vector3.Dot((targetRadarLockOn.position - myPosition).normalized, myTransform.forward);
+                targetDiff = targetRadarLockOn.position - myPosition;
+                targetDistanceSqr = Vector3.SqrMagnitude(targetDiff);
+                targetDirection = Vector3.Dot(targetDiff.normalized, myTransform.forward);
 
-                if (targetDirection > KocmoMissileLauncher.maxFireAngle && targetDistance < maxLockRadius)
+                if (targetDistanceSqr < RadarParameter.maxLockDistanceSqr && targetDirection > KocmoMissileLauncher.maxFireAngle)
                 {
                     if (targetDirection < KocmoLaserCannon.maxFireAngle)
                         targetAutoAim = null;
                     if (isLocalPlayer)
-                        HeadUpDisplayManager.Instance.MarkTarget(targetRadarLockOn, targetDistance);
+                        HeadUpDisplayManager.Instance.MarkTarget(targetRadarLockOn, targetDistanceSqr);
                 }
                 else
                 {
@@ -169,6 +172,7 @@ namespace Kocmoca
                             targetTrack = targetOnboard[i];
                     }
                 }
+                TargetSearch();
             }
             //if (isLocalPlayer)
             //{

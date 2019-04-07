@@ -14,7 +14,7 @@ namespace Kocmoca
         {
             myTransform = transform;
             myRigidbody = GetComponent<Rigidbody>();
-            myTransform.position = new Vector3(Random.Range(-3000, 3000), Random.Range(-3000, 3000), Random.Range(-3000, 3000));
+            myTransform.position = new Vector3(Random.Range(-2000, 2000), Random.Range(-2000, 2000), Random.Range(50, 300));
             SPD = Random.Range(90, 130);
 
         }

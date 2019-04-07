@@ -51,6 +51,12 @@ namespace Kocmoca
 
     public class SatelliteCommander : MonoBehaviour
     {
+        public static WaitForSeconds waitShoot = new WaitForSeconds(0.0001f);
+        public static WaitForSeconds waitLaserRecovery = new WaitForSeconds(KocmoLaserCannon.flightTime);
+        public static WaitForSeconds waitRocketRecovery = new WaitForSeconds(KocmoRocketLauncher.flightTime);
+        public static WaitForSeconds waitMissileRecovery = new WaitForSeconds(KocmoMissileLauncher.flightTime);
+
+        //
         public static SatelliteCommander Instance { get; private set; }
         private AudioSource myAudioSource;
         [Header("Satellite Components")]
@@ -60,10 +66,10 @@ namespace Kocmoca
         public Dictionary<int, Kocmonaut> listKocmonaut = new Dictionary<int, Kocmonaut>(); // 宇航員列表
         public Dictionary<int, int> listBotNumber = new Dictionary<int, int>(); // 預設宇航機編號索引
         public FactionData[] factionData = new FactionData[2]; // 陣營數據
-        const int countMissionPilot = 10;
-        const int countTarget = 10;
+        const int countMissionPilot = 40;
+        const int countTarget = 40;
         [Header("Hangar Data")]
-        public Transform[] kocmoBase; // Faction 1 & 2
+        public Transform[] kocmoPortal;
         public Transform[] kocmoHangar; // Lead, Wing 1 ~ 8
         [Header("Commander")]
         public AudioClip[] soundTakeOff;
@@ -92,7 +98,7 @@ namespace Kocmoca
             if (PhotonNetwork.IsMasterClient)
             {
                 int countPlayer = PhotonNetwork.CurrentRoom.PlayerCount;
-                for (int portNumber = countPlayer; portNumber < 20; portNumber++) { SpawnBotKocmocraft(portNumber); }
+                for (int portNumber = countPlayer; portNumber < 80; portNumber++) { SpawnBotKocmocraft(portNumber); }
             }
         }
         void InitializeFaction()
@@ -157,7 +163,7 @@ namespace Kocmoca
         {
             //int faction = portNumber % 2;
             //int order = portNumber / 2;
-            int type =  Random.Range(0,19); // 測試  (int)factionData[faction].Type[order];
+            int type = Random.Range(0,20); // 測試  (int)factionData[faction].Type[order];
             //string typeName = "Kocmocraft " + type.ToString("00") + " - " + KocmocraftData.GetKocmocraftName(type);
             Transform localAI = PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), DesignData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).transform;
             localAI.GetComponent<KocmocraftManager>().InitializeLocalBot(portNumber);
@@ -203,8 +209,8 @@ namespace Kocmoca
         // 設定宇航機機庫位置（僅本地端）
         public void SetHangar(Transform kocmocraft, int portNumber)
         {
-            kocmocraft.SetParent(kocmoBase[portNumber%4]);
-            kocmocraft.localPosition = kocmoHangar[portNumber/4].localPosition;
+            kocmocraft.SetParent(kocmoPortal[portNumber%16]);
+            kocmocraft.localPosition = kocmoHangar[portNumber/16].localPosition;
             kocmocraft.localRotation = Quaternion.identity;
             kocmocraft.SetParent(null);
         }
@@ -280,14 +286,14 @@ namespace Kocmoca
         public void InitializeRadar()
         {
             lockOnAudio = onboardRadar.GetComponent<AudioSource>();
-            markFriend = new Transform[countMissionPilot - 1];
-            for (int i = 0; i < countMissionPilot - 1; i++)
-            {
-                markFriend[i] = Instantiate(iconFriend).transform;
-                markFriend[i].SetParent(onboardRadar);
-                markFriend[i].localScale = new Vector3(1, 1, 1);
-                markFriend[i].localPosition = invisiblePos;
-            }
+            //markFriend = new Transform[countMissionPilot - 1];
+            //for (int i = 0; i < countMissionPilot - 1; i++)
+            //{
+            //    markFriend[i] = Instantiate(iconFriend).transform;
+            //    markFriend[i].SetParent(onboardRadar);
+            //    markFriend[i].localScale = new Vector3(1, 1, 1);
+            //    markFriend[i].localPosition = invisiblePos;
+            //}
             markFoe = new Transform[countTarget];
             markFireControl = new Transform[countTarget];
             for (int i = 0; i < countTarget; i++)
@@ -315,7 +321,7 @@ namespace Kocmoca
             orderFireControl = -1;
             for (int i = 0; i < countMissionPilot - 1; i++)
             {
-                markFriend[i].localPosition = invisiblePos;
+                //markFriend[i].localPosition = invisiblePos;
             }
             for (int i = 0; i < countTarget; i++)
             {
@@ -327,15 +333,15 @@ namespace Kocmoca
         }
         public void IdentifyFriend(Transform friend)
         {
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(friend.position);
+            Vector3 screenPos = HeadUpDisplayManager.mainCamera.WorldToScreenPoint(friend.position);
             screenPos.z = 999;
 
             orderFriend++;
-            markFriend[orderFriend].position = screenPos;
+            //markFriend[orderFriend].position = screenPos;
         }
         public void IdentifyTarget(Transform target)
         {
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(target.position);
+            Vector3 screenPos = HeadUpDisplayManager.mainCamera.WorldToScreenPoint(target.position);
             screenPos.z = 999;
 
             orderFoe++;
@@ -345,7 +351,7 @@ namespace Kocmoca
         {
             if (orderFireControl > 1)
                 return;
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(target.position);
+            Vector3 screenPos = HeadUpDisplayManager.mainCamera.WorldToScreenPoint(target.position);
             screenPos.z = 999;
 
             orderFireControl++;

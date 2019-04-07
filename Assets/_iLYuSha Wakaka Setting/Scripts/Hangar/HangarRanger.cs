@@ -268,7 +268,7 @@ namespace Kocmoca
             pivot.DOMove(prototypeScale[hangarIndex].transform.position, 0.73f).OnComplete(() =>
             {
                 hangarState = HangarState.Ready;
-                if (hangarIndex < 20)
+                if (hangarIndex < hangarMax)
                     PlayerPrefs.SetInt(LobbyInfomation.PREFS_TYPE, hangarIndex);
                 billboard.localPosition = billboardPos;
                 LoadHangarData();

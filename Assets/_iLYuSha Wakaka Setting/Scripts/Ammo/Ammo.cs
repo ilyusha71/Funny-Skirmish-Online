@@ -18,6 +18,7 @@ namespace Kocmoca
         [Header("Basic")]
         public Transform target;
         public Kocmonaut owner;
+        protected int shooter;
         // Physics Param
         protected Vector3 pointStarting;
         protected float timeRecovery;
@@ -48,7 +49,8 @@ namespace Kocmoca
         }
 
         public virtual void InputAmmoData(int numberShooter, int numberTarget, Vector3 initialVelocity, float spread)
-        {            
+        {
+            shooter = numberShooter;
             SatelliteCommander.Instance.listKocmonaut.TryGetValue(numberShooter, out owner);
             SatelliteCommander.Instance.listKocmocraft.TryGetValue(numberTarget, out target);
             myRigidbody.velocity = initialVelocity;
