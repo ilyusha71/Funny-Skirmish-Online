@@ -198,7 +198,10 @@ namespace Kocmoca
         public void RadarLockOn(int targetNumber, int radarNumber, bool isLockOn, PhotonMessageInfo info)
         {
             if (targetNumber == PhotonNetwork.LocalPlayer.ActorNumber) // Radar warning receiver RWR 是否為本地端玩家
+            {
+                //Debug.LogWarning(myTransform.name + "/" + radarNumber + "/" + Time.frameCount + "/"+ isLockOn + "/");
                 SatelliteCommander.Instance.RadarLockOnWarning(isLockOn, radarNumber);
+            }
         }
         [PunRPC]
         public void LaserShoot(int muzzle, int numberShooter, int numberTarget, float spread, PhotonMessageInfo info)

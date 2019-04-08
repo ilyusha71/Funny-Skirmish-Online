@@ -24,7 +24,7 @@ namespace Kocmoca
         private void Awake()
         {
             InitializeAmmo();
-            objPoolData = ObjectPoolManager.Instance.CreatObjectPool(effect, 80, 1600);
+            objPoolData = ResourceManager.instance.hitSpark;
             vfx = GetComponent<TrailRenderer>();
         }
 

@@ -230,7 +230,7 @@ namespace Kocmoca
             }
             ShowRemnant();
             if (myPhotonView.IsMine)
-                PhotonNetwork.Destroy(this.gameObject);
+                PhotonNetwork.Destroy(this.gameObject); // 改变PhotoView Fixed
             //StartCoroutine(Crash());
         }
         IEnumerator Crash()
@@ -282,18 +282,20 @@ namespace Kocmoca
 
             // 計算傷害
             DamageInfo damageInfo = new DamageInfo();
-            if (collision.gameObject.CompareTag("Scene"))
+            if (collision.gameObject.CompareTag("Untagged"))
             {
-                damageInfo.Hull = 3000;
-                Vector3 inDirection = -collision.relativeVelocity;
-                Vector3 normal = collision.contacts[0].normal;
-                Vector3 outDirection = Vector3.Reflect(inDirection, normal);
-                transform.forward = outDirection;
-                GetComponent<AvionicsSystem>().mainRot = transform.rotation;
-                myRigidbody.AddForce(outDirection * collision.impulse.magnitude);
+                damageInfo.Hull = 50000;
+                // 下次更新要做的
+                // 入射角越大伤害越大，避免卡住
+                //Vector3 inDirection = -collision.relativeVelocity;
+                //Vector3 normal = collision.contacts[0].normal;
+                //Vector3 outDirection = Vector3.Reflect(inDirection, normal);
+                //transform.forward = outDirection;
+                //GetComponent<AvionicsSystem>().mainRot = transform.rotation;
+                //myRigidbody.AddForce(outDirection * collision.impulse.magnitude);
             }
             else
-                damageInfo.Hull = Mathf.Clamp((int)Mathf.Abs(collision.impulse.magnitude), 0, 1000);
+                damageInfo.Hull = Mathf.Clamp((int)Mathf.Abs(collision.impulse.magnitude), 0, 5000);
             damageInfo.Shield = 0;
 
             // 記錄攻擊者

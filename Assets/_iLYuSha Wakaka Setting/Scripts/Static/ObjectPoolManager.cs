@@ -121,6 +121,7 @@ public class ObjectPoolData
 // 需要回收的物件需繼承此類
 public class ObjectRecycleSystem : MonoBehaviour
 {
+    protected float timeRecovery;
 #if EVENT
     public event RecoverEventHandler RecoverCallee;
 #elif OPD

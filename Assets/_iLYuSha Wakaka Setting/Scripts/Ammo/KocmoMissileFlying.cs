@@ -105,7 +105,7 @@ namespace Kocmoca
                         Shield = (int)(basicDamage * KocmoMissileLauncher.coefficientDamageShield)
                     });
                 }
-                objPoolData.Reuse(raycastHits[0].point, Quaternion.identity);
+                //objPoolData.Reuse(raycastHits[0].point, Quaternion.identity);
                 Recycle(gameObject);
                 return;
             }

@@ -66,8 +66,7 @@ namespace Kocmoca
         {
             myPosition = myTransform.position;
             if (isLocalPlayer) SearchFriend();
-            //TargetSearch();
-            TargetLockOn();
+            SearchFoe();
             RadarWarningEmitter();
         }
         void SearchFriend()
@@ -85,6 +84,47 @@ namespace Kocmoca
                         if (Vector3.SqrMagnitude(scanDiff) <= RadarParameter.maxSearchRadiusSqr &&
                             Vector3.Dot(scanDiff.normalized, myTransform.forward) >= RadarParameter.maxSearchAngle)
                             HeadUpDisplayManager.Instance.NewIdentifyFriend(listFriendAircrafts[i]); // 標記搜索範圍的所有友機
+                    }
+                }
+            }
+        }
+        void SearchFoe()
+        {
+            TargetSearch();
+            if (Time.time > nextLockTime)
+            {
+                targetAutoAim = targetNearest;
+                if (!targetRadarLockOn) targetRadarLockOn = targetNearest;
+                if (!isLocalPlayer) targetTrack = targetNearest;
+            }
+            if (targetRadarLockOn)
+            {
+                targetDiff = targetRadarLockOn.position - myPosition;
+                targetDistanceSqr = Vector3.SqrMagnitude(targetDiff);
+                targetDirection = Vector3.Dot(targetDiff.normalized, myTransform.forward);
+
+                if (targetDistanceSqr < RadarParameter.maxLockDistanceSqr && targetDirection > KocmoMissileLauncher.maxFireAngle)
+                {
+                    if (targetDirection < KocmoLaserCannon.maxFireAngle)
+                        targetAutoAim = null;
+                    if (isLocalPlayer)
+                        HeadUpDisplayManager.Instance.MarkTarget(targetRadarLockOn, targetDistanceSqr);
+                }
+                else
+                {
+                    nextLockTime = Time.time + minLockTime;
+                    targetAutoAim = null;
+                    targetRadarLockOn = null;
+                }
+            }
+            else
+            {
+                if (!isLocalPlayer)
+                {
+                    for (int i = 0; i < maxTargetCount; i++)
+                    {
+                        if (targetOnboard[i])
+                            targetTrack = targetOnboard[i];
                     }
                 }
             }
@@ -124,61 +164,6 @@ namespace Kocmoca
                 }
             }
         }
-        void TargetLockOn()
-        {
-            if (Time.time > nextLockTime)
-            {
-                targetAutoAim = targetNearest;
-                if (!targetRadarLockOn) targetRadarLockOn = targetNearest;
-                if (!isLocalPlayer) targetTrack = targetNearest;
-                //if (isLocalPlayer)
-                //{
-                //    if (!targetRadarLockOn || Input.GetKeyDown(KeyCode.R))
-                //        targetRadarLockOn = targetNearest;
-                //}
-                //else
-                //{
-                //    targetTrack = targetNearest;
-                //    targetRadarLockOn = targetNearest;
-                //}
-            }
-            if (targetRadarLockOn)
-            {
-                targetDiff = targetRadarLockOn.position - myPosition;
-                targetDistanceSqr = Vector3.SqrMagnitude(targetDiff);
-                targetDirection = Vector3.Dot(targetDiff.normalized, myTransform.forward);
-
-                if (targetDistanceSqr < RadarParameter.maxLockDistanceSqr && targetDirection > KocmoMissileLauncher.maxFireAngle)
-                {
-                    if (targetDirection < KocmoLaserCannon.maxFireAngle)
-                        targetAutoAim = null;
-                    if (isLocalPlayer)
-                        HeadUpDisplayManager.Instance.MarkTarget(targetRadarLockOn, targetDistanceSqr);
-                }
-                else
-                {
-                    nextLockTime = Time.time + minLockTime;
-                    targetAutoAim = null;
-                    targetRadarLockOn = null;
-                }
-            }
-            else
-            {
-                if (!isLocalPlayer)
-                {
-                    for (int i = 0; i < maxTargetCount; i++)
-                    {
-                        if (targetOnboard[i])
-                            targetTrack = targetOnboard[i];
-                    }
-                }
-                TargetSearch();
-            }
-            //if (isLocalPlayer)
-            //{
-            //   // SatelliteCommander.Instance.MarkTarget();
-            //}
-        }
         void RadarWarningEmitter()
         {
             if (targetRadarLockOn != targetLocked)
@@ -187,13 +172,19 @@ namespace Kocmoca
                 {
                     KocmocraftMechDroid target = targetRadarLockOn.GetComponent<KocmocraftMechDroid>();
                     if (target.Core == Core.LocalPlayer || target.Core == Core.RemotePlayer)
+                    {
+                        //Debug.Log(myTransform.name+"/"+myPhotonView.ViewID + "/" + kocmonautNumber + "/" + Time.frameCount + "/True/");
                         myPhotonView.RPC("RadarLockOn", RpcTarget.AllViaServer, target.Number, kocmonautNumber, true);
+                    }
                 }
                 if (targetLocked)
                 {
                     KocmocraftMechDroid target = targetLocked.GetComponent<KocmocraftMechDroid>();
                     if (target.Core == Core.LocalPlayer || target.Core == Core.RemotePlayer)
+                    {
+                        //Debug.Log(myTransform.name + "/" + myPhotonView.ViewID + "/" + kocmonautNumber + "/" + Time.frameCount + "/false/");
                         myPhotonView.RPC("RadarLockOn", RpcTarget.AllViaServer, target.Number, kocmonautNumber, false);
+                    }
                 }
                 targetLocked = targetRadarLockOn;
             }

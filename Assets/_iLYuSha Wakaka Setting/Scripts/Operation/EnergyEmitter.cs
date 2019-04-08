@@ -8,8 +8,8 @@ namespace Kocmoca
     {
         private Transform myTransform;
         private EnergyCore core;
-        private int limitRadius;
-        private int tolerance = 37;
+        private int limitRadiusSqr;
+        private int tolerance = 5;
         // Receiver
         public Transform receiver;
         private Faction receiverFaction;
@@ -28,7 +28,7 @@ namespace Kocmoca
             myTransform = transform;
             myTransform.localPosition = Vector3.zero;
             this.core = core;
-            this.limitRadius = limitRadius + tolerance;
+            limitRadiusSqr = (limitRadius + tolerance)* (limitRadius + tolerance);
             lineFriend.enabled = false;
             lineFoe.enabled = false;
             enabled = false;
@@ -43,7 +43,7 @@ namespace Kocmoca
                 line.SetPosition(0, myTransform.position);
                 line.SetPosition(1, receiver.position);
                 core.CountEnergy(receiverFaction, Time.deltaTime*5.0f);
-                if (Vector3.Distance(receiver.position, myTransform.position) > limitRadius+ tolerance)
+                if (Vector3.SqrMagnitude(receiver.position - myTransform.position) > limitRadiusSqr)
                     receiver = null;
             }
             else

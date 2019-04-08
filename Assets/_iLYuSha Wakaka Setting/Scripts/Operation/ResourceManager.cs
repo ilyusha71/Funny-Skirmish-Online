@@ -10,6 +10,9 @@ namespace Kocmoca
         public GameObject prefabKocmoLaser;
         public GameObject prefabKocmoRocket;
         public GameObject prefabKocmoMissile;
+        [Header("FX Prefab")]
+        public GameObject prefabHitSpark;
+
         [Header("Take Off Sound Effects")]
         public AudioClip soundTakeOff;
         [Header("Hit Effects")]
@@ -27,6 +30,7 @@ namespace Kocmoca
         // OPD
         public ObjectPoolData[] listAmmoOPD = new ObjectPoolData[3];
         public ObjectPoolData listAmmoBS = new ObjectPoolData();
+        public ObjectPoolData hitSpark = new ObjectPoolData();
 
         private void Awake()
         {
@@ -44,7 +48,7 @@ namespace Kocmoca
             listAmmoOPD[1] = ObjectPoolManager.Instance.CreateObjectPool(prefabKocmoRocket, KocmoRocketLauncher.countPerBatch, KocmoRocketLauncher.maxPoorInventory);
             listAmmoOPD[2] = ObjectPoolManager.Instance.CreateObjectPool(prefabKocmoMissile, KocmoMissileLauncher.countPerBatch, KocmoMissileLauncher.maxPoorInventory);
             listAmmoBS = ObjectPoolManager.Instance.CreateObjectPool(BigKocmoLaser, 5, 100);
-
+            hitSpark = ObjectPoolManager.Instance.CreateObjectPool(prefabHitSpark, 5, 500);
         }
 
         public void BatchClone()
@@ -53,6 +57,7 @@ namespace Kocmoca
             ObjectPoolManager.Instance.Clone(listAmmoOPD[1]);
             ObjectPoolManager.Instance.Clone(listAmmoOPD[2]);
             ObjectPoolManager.Instance.Clone(listAmmoBS);
+            ObjectPoolManager.Instance.Clone(hitSpark);
 
         }
     }

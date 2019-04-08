@@ -701,7 +701,7 @@ namespace Kocmoca
         public static readonly int maxPoorInventory = 100; // 最大物件池存量
         public static readonly float maxFireAngle = Mathf.Cos(13 * Mathf.Deg2Rad); // 最大開火夾角
         public static readonly int maxAmmoCapacity = 12; // 最大載彈量
-        public static readonly int flightVelocity = 555; // 飛行速率 m/s
+        public static readonly int flightVelocity = 999; // 飛行速率 m/s
         public static readonly int thrust = flightVelocity * 50; // 基本推力
         public static readonly float flightTime = 1.37f;//2.37f; // 飛行時間 sec
         public static readonly float fireRoundPerSecond = 3.37f; // 射速 rps
@@ -721,7 +721,7 @@ namespace Kocmoca
         public static readonly int minThrust = flightVelocity * 50; // 基本推力
         public static readonly float maxThrust = minThrust * 3.97f; // 最大推力
         public static readonly float acceleration = maxThrust * 0.0793f; // 加速度
-        public static readonly float flightTime = 3.73f;//7.0f; // 飛行時間 sec
+        public static readonly float flightTime = 7.0f; // 飛行時間 sec
         public static readonly float fireRoundPerSecond = 1.137f; // 射速 rps
         public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec
         public static readonly float timeReload = 15.0f;

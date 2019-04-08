@@ -469,6 +469,7 @@ namespace Kocmoca
         public List<string> listMissileLocked = new List<string>();
         public void RadarLockOnWarning(bool isLockOn, int sourceRadar)
         {
+            //Debug.LogWarning("AFrame: " + Time.frameCount + "/Radar: " + listRadarLocked.Count);
             if (isCrash == true)
                 return;
             if (isLockOn)
@@ -483,6 +484,7 @@ namespace Kocmoca
                 if (listRadarLocked.Contains(sourceRadar))
                     listRadarLocked.Remove(sourceRadar);
             }
+            //Debug.LogWarning("BFrame: " + Time.frameCount + "/Radar: " + listRadarLocked.Count);
             HeadUpDisplayManager.Instance.CheckRadarLocked(listRadarLocked.Count);
         }
         public void MissileLockOnWarning(bool isLockOn, string sourceMissile)

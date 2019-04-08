@@ -21,7 +21,6 @@ namespace Kocmoca
         protected int shooter;
         // Physics Param
         protected Vector3 pointStarting;
-        protected float timeRecovery;
         protected float projectileSpread;
         // Raycast
         protected RaycastHit[] raycastHits;

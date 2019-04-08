@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 54305538652163942}
   - component: {fileID: 122987784583653376}
   - component: {fileID: 114909389875776082}
-  - component: {fileID: 2665860451610689530}
   m_Layer: 2
   m_Name: Ammo KocmoLaser
   m_TagString: Ammo
@@ -166,7 +165,7 @@ Halo:
   m_Color:
     serializedVersion: 2
     rgba: 4285098495
-  m_Size: 1
+  m_Size: 0.5
 --- !u!114 &114909389875776082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,22 +180,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   effect: {fileID: 100000, guid: 09f0f56befdaeff499732378b2e9a83b, type: 3}
---- !u!205 &2665860451610689530
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1882692740025212}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: -78.28266, y: -72.02117, z: -315.93484}
-  m_Size: 632.8697
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.7595463
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 96756093443846556}
-  m_Enabled: 1
