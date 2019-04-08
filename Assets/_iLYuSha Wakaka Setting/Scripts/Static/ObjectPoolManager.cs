@@ -28,7 +28,7 @@ public class ObjectPoolManager : MonoBehaviour
             prefab = prefab,
             countBatch = countBatch,
         };
-        OPD.container.transform.SetParent(transform);
+        OPD.container.SetParent(transform);
         OPD.container.name = prefab.name;
         dictionaryOPD.Add(prefab.name, OPD);
         return OPD;
@@ -94,8 +94,7 @@ public class ObjectPoolData
         if(pool.Count <= 0)
             ObjectPoolManager.Instance.Clone(this);
         GameObject item = pool.Dequeue();
-        item.transform.position = position;
-        item.transform.rotation = rotation;
+        item.transform.SetPositionAndRotation(position, rotation);
         item.SetActive(true);
         return item;
     }

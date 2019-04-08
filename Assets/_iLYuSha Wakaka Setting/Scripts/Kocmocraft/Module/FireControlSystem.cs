@@ -31,7 +31,7 @@ namespace Kocmoca
         // FSC Realtime Info
         public int countAmmo { get; set; }
         private int countLauncher;
-        private Vector3[] launcher; // 砲口
+        public Vector3[] launcher; // 砲口
         private int turnFire; // 砲管輪射
         private int currentLauncher;
         private float nextTimeShoot;
@@ -127,7 +127,7 @@ namespace Kocmoca
 
         public void Shoot()
         {
-            countAmmo = (maxAmmoCapacity == 999) ? maxAmmoCapacity : countAmmo;
+            countAmmo = maxAmmoCapacity == 999 ? maxAmmoCapacity : countAmmo;
             if (countAmmo > 0 && Time.time > nextTimeShoot)
             {
                 nextTimeShoot = Time.time + rateFire;

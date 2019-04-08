@@ -30,6 +30,7 @@ namespace Kocmoca
     {
         // Dependent Components
         private Transform myTransform;
+        private Rigidbody myRigidbody;
         // Basic Data
         private int portNumber;
         public Faction Faction { get; protected set; }
@@ -47,12 +48,7 @@ namespace Kocmoca
         private void Awake()
         {
             myTransform = transform;
-            //PhotonTransformView PTV = GetComponent<PhotonTransformView>();
-            //PhotonRigidbodyView RTV = GetComponent<PhotonRigidbodyView>();
-            //RTV.m_TeleportEnabled = true;
-            //RTV.m_SynchronizeAngularVelocity = true;
-            //photonView.ObservedComponents.Add(PTV);
-            //photonView.ObservedComponents.Add(RTV);
+            myRigidbody = GetComponent<Rigidbody>();
         }
 
         public void InitializeLocalPlayer()
@@ -173,13 +169,13 @@ namespace Kocmoca
             ActiveFCS(false);
         }
 
-        void ActiveFCS(bool isLocal)
+        private void ActiveFCS(bool isLocal)
         {
             listFCS = GetComponentsInChildren<FireControlSystem>();
             countFCS = listFCS.Length;
             for (int i = 0; i < countFCS; i++)
             {
-                listFCS[i].GetComponent<FireControlSystem>().Initialize((int)Type, Number, isLocal);
+                listFCS[i].Initialize((int)Type, Number, isLocal);
             }
             listAmmoOPD = ResourceManager.instance.listAmmoOPD;
         }
@@ -207,20 +203,17 @@ namespace Kocmoca
         [PunRPC]
         public void LaserShoot(int muzzle, int numberShooter, int numberTarget, float spread, PhotonMessageInfo info)
         {
-            GameObject ammo = listAmmoOPD[0].Reuse(listFCS[0].GetComponent<FireControlSystem>().GetMuzzlePosition(muzzle), myTransform.rotation);
-            ammo.GetComponent<Ammo>().InputAmmoData(numberShooter, numberTarget, GetComponent<Rigidbody>().velocity, spread);
+            listAmmoOPD[0].Reuse(myTransform.TransformPoint(listFCS[0].launcher[muzzle]), myTransform.rotation).GetComponent<Ammo>().InputAmmoData(numberShooter, numberTarget, myRigidbody.velocity, spread);
         }
         [PunRPC]
         public void RockeLaunch(int muzzle, int numberShooter, int numberTarget, PhotonMessageInfo info)
         {
-            GameObject ammo = listAmmoOPD[1].Reuse(listFCS[1].GetComponent<FireControlSystem>().GetMuzzlePosition(muzzle), myTransform.rotation);
-            ammo.GetComponent<Ammo>().InputAmmoData(numberShooter, numberTarget, GetComponent<Rigidbody>().velocity, 0);
+            listAmmoOPD[1].Reuse(myTransform.TransformPoint(listFCS[1].launcher[muzzle]), myTransform.rotation).GetComponent<Ammo>().InputAmmoData(numberShooter, numberTarget, myRigidbody.velocity, 0);
         }
         [PunRPC]
         public void MissileLaunch(int muzzle, int numberShooter, int numberTarget, PhotonMessageInfo info)
         {
-            GameObject ammo = listAmmoOPD[2].Reuse(listFCS[2].GetComponent<FireControlSystem>().GetMuzzlePosition(muzzle), myTransform.rotation);
-            ammo.GetComponent<Ammo>().InputAmmoData(numberShooter, numberTarget, GetComponent<Rigidbody>().velocity, 0);
+            listAmmoOPD[2].Reuse(myTransform.TransformPoint(listFCS[2].launcher[muzzle]), myTransform.rotation).GetComponent<Ammo>().InputAmmoData(numberShooter, numberTarget, myRigidbody.velocity, 0);
         }
     }
 }

@@ -182,10 +182,10 @@ namespace Kocmoca
                 {
                     GetComponent<LocalPlayerController>().enabled = false;
                     SatelliteCommander.Instance.PlayerCrash();
-                    foreach (int key in listAttacker.Keys)
-                    {
-                        HeadUpDisplayManager.Instance.ShowWhoAttackU(key, listAttacker[key]);
-                    }
+                    //foreach (int key in listAttacker.Keys)
+                    //{
+                    //    HeadUpDisplayManager.Instance.ShowWhoAttackU(key, listAttacker[key]);
+                    //}
                     HeadUpDisplayManager.Instance.ShowKillStealer(lastAttacker.Number);
                 }
                 else if (Core == Core.LocalBot)

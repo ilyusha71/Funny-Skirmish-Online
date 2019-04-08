@@ -136,7 +136,7 @@ namespace Kocmoca
         }
         void Start()
         {
-            //RadarUI();
+            RadarUI();
             //InitializeRadar();
 
         }
@@ -180,9 +180,9 @@ namespace Kocmoca
         }
         private void Update()
         {
-            textPING.text = PhotonNetwork.GetPing() + " ms";
+            textPING.text = PhotonNetwork.GetPing().ToString() + " ms";
             deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-            textFPS.text = Mathf.Ceil(1.0f / deltaTime) + " fps"; ;
+            textFPS.text = Mathf.Ceil(1.0f / deltaTime).ToString() + " fps"; ;
             if (Input.GetKeyDown(KeyCode.F9))
             {
                 uiMask.alpha = 1;
@@ -353,13 +353,14 @@ namespace Kocmoca
         {
             textRocketCount.text = "" + myRocketFCS.countAmmo;
             if (myRocketFCS.countAmmo < myRocketFCS.maxAmmoCapacity)
-                textRocketReloadPecentage.text = string.Format("{0:0%}", 1 - myRocketFCS.reloadingProcess);
+                textRocketReloadPecentage.text = (int)(1 - myRocketFCS.reloadingProcess) + "%";
+            // 效能差8~10倍 不要使用string.Format("{0:0%}", 1 - myRocketFCS.reloadingProcess);
             else
                 textRocketReloadPecentage.text = "MAX";
 
             textMissileCount.text = "" + myMissileFCS.countAmmo;
             if (myMissileFCS.countAmmo < myMissileFCS.maxAmmoCapacity)
-                textMissileReloadPecentage.text = string.Format("{0:0%}", 1 - myMissileFCS.reloadingProcess);
+                textMissileReloadPecentage.text = (int)(1 - myMissileFCS.reloadingProcess) + "%";
             else
                 textMissileReloadPecentage.text = "MAX";
         }

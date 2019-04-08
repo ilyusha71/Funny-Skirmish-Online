@@ -58,7 +58,7 @@ namespace Kocmoca
 
         protected override void CollisionDetection()
         {
-            raycastHits = Physics.RaycastAll(pointStarting, transform.forward, Vector3.Distance(myTransform.position, pointStarting));
+            raycastHits = Physics.RaycastAll(pointStarting, myTransform.forward, Vector3.Distance(myTransform.position, pointStarting));
             if (raycastHits.Length > 0)
             {
                 KocmocraftMechDroid hull = raycastHits[0].transform.GetComponent<KocmocraftMechDroid>();

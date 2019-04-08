@@ -70,7 +70,7 @@ namespace Kocmoca
         const int countTarget = 40;
         [Header("Hangar Data")]
         public Transform[] kocmoPortal;
-        public Transform[] kocmoHangar; // Lead, Wing 1 ~ 8
+        public Transform[] kocmoFormation; // Lead, Wing 1 ~ 8
         [Header("Commander")]
         public AudioClip[] soundTakeOff;
 
@@ -209,10 +209,14 @@ namespace Kocmoca
         // 設定宇航機機庫位置（僅本地端）
         public void SetHangar(Transform kocmocraft, int portNumber)
         {
-            kocmocraft.SetParent(kocmoPortal[portNumber%16]);
-            kocmocraft.localPosition = kocmoHangar[portNumber/16].localPosition;
-            kocmocraft.localRotation = Quaternion.identity;
-            kocmocraft.SetParent(null);
+            int index = portNumber % 16;
+            kocmocraft.SetPositionAndRotation(kocmoPortal[index].TransformPoint(kocmoFormation[portNumber / 16].localPosition), kocmoPortal[index].rotation);
+
+            // 效能差異 約8~9倍
+            //kocmocraft.SetParent(kocmoPortal[portNumber%16]);
+            //kocmocraft.localPosition = kocmoFormation[portNumber/16].localPosition;
+            //kocmocraft.localRotation = Quaternion.identity;
+            //kocmocraft.SetParent(null);
         }
         // 初始化宇航員數據（僅第一次生成）
         public void NewKocmonautJoin(Core core, int portNumber, Type type, int number, string name) // 宇航機實例化記錄宇航員資料
