@@ -7,25 +7,25 @@ namespace AirSupremacy
     public class EffectRecovery : ObjectRecycleSystem
     {
         public float maxLifeTime = 0.5f;
-        float timeRecovery;
+        //float timeRecovery;
 
-        //public void Open(ObjectPoolData objPoolData, float lifeTime)
+        ////public void Open(ObjectPoolData objPoolData, float lifeTime)
+        ////{
+        ////    restart = true;
+        ////    this.objPoolData = objPoolData;
+        ////    timer = Time.time + lifeTime;
+        ////}
+
+        //void OnEnable()
         //{
-        //    restart = true;
-        //    this.objPoolData = objPoolData;
-        //    timer = Time.time + lifeTime;
+        //    timeRecovery = Time.time + maxLifeTime;
         //}
 
-        void OnEnable()
-        {
-            timeRecovery = Time.time + maxLifeTime;
-        }
-
-        void Update()
-        {
-            if (Time.time > timeRecovery)
-                Recycle(gameObject);
-        }
+        //void Update()
+        //{
+        //    if (Time.time > timeRecovery)
+        //        Recycle(gameObject);
+        //}
 
         //public void Recovery()
         //{

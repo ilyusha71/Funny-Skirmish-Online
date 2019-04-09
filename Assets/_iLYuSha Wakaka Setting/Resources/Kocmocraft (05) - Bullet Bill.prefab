@@ -628,8 +628,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114878961472029604}
   - {fileID: 114154295836197004}
-  viewIdField: 0
-  InstantiationId: 23
+  viewIdField: 16
+  InstantiationId: 16
   isRuntimeInstantiated: 0
 --- !u!114 &114878961472029604
 MonoBehaviour:
@@ -716,10 +716,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4498412709666434}
     m_Modifications:
-    - target: {fileID: 1267311499308674, guid: fc989c15518deff40aafd5b1afdb2f90, type: 3}
-      propertyPath: m_Name
-      value: Hangar (05) - Bullet Bill
-      objectReference: {fileID: 0}
     - target: {fileID: 4344818207295468, guid: fc989c15518deff40aafd5b1afdb2f90, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -763,6 +759,10 @@ PrefabInstance:
     - target: {fileID: 4344818207295468, guid: fc989c15518deff40aafd5b1afdb2f90, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267311499308674, guid: fc989c15518deff40aafd5b1afdb2f90, type: 3}
+      propertyPath: m_Name
+      value: Hangar (05) - Bullet Bill
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc989c15518deff40aafd5b1afdb2f90, type: 3}

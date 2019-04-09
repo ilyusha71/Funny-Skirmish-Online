@@ -308,8 +308,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114740641719832178}
   - {fileID: 114046079616600618}
-  viewIdField: 0
-  InstantiationId: 25
+  viewIdField: 14
+  InstantiationId: 14
   isRuntimeInstantiated: 0
 --- !u!114 &114740641719832178
 MonoBehaviour:
@@ -776,10 +776,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4195520149341946}
     m_Modifications:
-    - target: {fileID: 1974464333937954, guid: e6dd15b09b894d7448117f2e60805329, type: 3}
-      propertyPath: m_Name
-      value: Hangar (04) - Cuckoo
-      objectReference: {fileID: 0}
     - target: {fileID: 4350908399310892, guid: e6dd15b09b894d7448117f2e60805329, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -823,6 +819,10 @@ PrefabInstance:
     - target: {fileID: 4350908399310892, guid: e6dd15b09b894d7448117f2e60805329, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974464333937954, guid: e6dd15b09b894d7448117f2e60805329, type: 3}
+      propertyPath: m_Name
+      value: Hangar (04) - Cuckoo
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6dd15b09b894d7448117f2e60805329, type: 3}
