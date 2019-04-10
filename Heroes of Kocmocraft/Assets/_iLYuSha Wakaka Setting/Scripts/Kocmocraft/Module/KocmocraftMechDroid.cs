@@ -246,12 +246,15 @@ namespace Kocmoca
                 myRigidbody.velocity = lastHitVelocity;
             wreckage.transform.SetParent(null);
             wreckage.tag = "Untagged";
+
+            ResourceManager.hitDown.Reuse(myRigidbody.position, Quaternion.identity);
+
             Rigidbody rigid = wreckage.AddComponent<Rigidbody>();
             rigid.mass = 100;
             rigid.velocity = myRigidbody.velocity;
             rigid.AddForce(Random.rotation.eulerAngles * Random.Range(100, 500));
             rigid.AddTorque(Random.rotation.eulerAngles * Random.Range(100, 2000));
-            Destroy(wreckage, 3.0f);
+            Destroy(wreckage, 15.0f);
             //remnant
             //myRigidbody.useGravity = true;
 

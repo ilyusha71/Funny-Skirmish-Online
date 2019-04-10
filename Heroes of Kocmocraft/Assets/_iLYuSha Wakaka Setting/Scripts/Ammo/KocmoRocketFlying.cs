@@ -5,8 +5,6 @@ namespace Kocmoca
 {
     public class KocmoRocketFlying : Ammo
     {
-        public GameObject effect;
-        public ObjectPoolData objPoolData;
         public ParticleSystem[] vfx;
 
         // Target param.
@@ -15,7 +13,6 @@ namespace Kocmoca
         private void Awake()
         {
             InitializeAmmo();
-            objPoolData = ObjectPoolManager.Instance.CreatObjectPool(effect, 7, 140);
             vfx = GetComponentsInChildren<ParticleSystem>();
         }
 
@@ -73,7 +70,7 @@ namespace Kocmoca
                         Shield = (int)(basicDamage * KocmoRocketLauncher.coefficientDamageShield)
                     });
                 }
-                objPoolData.Reuse(raycastHits[0].point, Quaternion.identity);
+                ResourceManager.hitFire.Reuse(raycastHits[0].point, Quaternion.identity);
                 Recycle(gameObject);
                 return;
             }

@@ -15,6 +15,8 @@ namespace Kocmoca
         public GameObject prefabHitDown;
         public GameObject prefabHitGround;
         public GameObject prefabHitWater;
+        public GameObject prefabHitFire;
+
 
         [Header("Take Off Sound Effects")]
         public AudioClip soundTakeOff;
@@ -37,6 +39,7 @@ namespace Kocmoca
         public static ObjectPoolData hitDown = new ObjectPoolData();
         public static ObjectPoolData hitGround = new ObjectPoolData();
         public static ObjectPoolData hitWater = new ObjectPoolData();
+        public static ObjectPoolData hitFire = new ObjectPoolData();
 
         private void Awake()
         {
@@ -58,6 +61,7 @@ namespace Kocmoca
             hitDown  = ObjectPoolManager.Instance.CreateObjectPool(prefabHitDown, 1, 50);
             hitGround = ObjectPoolManager.Instance.CreateObjectPool(prefabHitGround, 1, 100);
             hitWater = ObjectPoolManager.Instance.CreateObjectPool(prefabHitWater, 1, 50);
+            hitFire = ObjectPoolManager.Instance.CreateObjectPool(prefabHitFire, 1, 50);
 
         }
 
@@ -71,6 +75,7 @@ namespace Kocmoca
             ObjectPoolManager.Instance.Clone(hitDown);
             ObjectPoolManager.Instance.Clone(hitGround);
             ObjectPoolManager.Instance.Clone(hitWater);
+            ObjectPoolManager.Instance.Clone(hitFire);
 
         }
     }

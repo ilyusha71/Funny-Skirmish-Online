@@ -8,14 +8,11 @@ namespace Kocmoca
         private float realtimeThrust;
         private float initialMinSpeed;
         private float TargetLockDirection = 0.5f;
-        public GameObject effect;
-        public ObjectPoolData objPoolData;
 
         private void Awake()
         {
             InitializeAmmo();
             initialMinSpeed = KocmoMissileLauncher.flightVelocity;;
-            objPoolData = ObjectPoolManager.Instance.CreatObjectPool(effect, 5, 100);
         }
 
         private void OnEnable()
@@ -105,7 +102,7 @@ namespace Kocmoca
                         Shield = (int)(basicDamage * KocmoMissileLauncher.coefficientDamageShield)
                     });
                 }
-                //objPoolData.Reuse(raycastHits[0].point, Quaternion.identity);
+                ResourceManager.hitFire.Reuse(raycastHits[0].point, Quaternion.identity);
                 Recycle(gameObject);
                 return;
             }
