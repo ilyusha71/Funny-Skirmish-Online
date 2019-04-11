@@ -24,6 +24,7 @@ namespace Kocmoca
         protected float projectileSpread;
         // Raycast
         protected RaycastHit[] raycastHits;
+        protected RaycastHit raycastHit;
         protected int countRaycastHits;
 
 
@@ -56,6 +57,10 @@ namespace Kocmoca
             projectileSpread = spread;
         }
 
+        protected virtual void DetectCollisionByLinecast()
+        {
+
+        }
         protected virtual void CollisionDetection()
         {
             raycastHits = Physics.RaycastAll(pointStarting, transform.forward, Vector3.Distance(myTransform.position, pointStarting));

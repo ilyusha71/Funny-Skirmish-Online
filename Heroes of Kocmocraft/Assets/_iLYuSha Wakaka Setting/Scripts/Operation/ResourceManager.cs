@@ -35,7 +35,7 @@ namespace Kocmoca
         // OPD
         public ObjectPoolData[] listAmmoOPD = new ObjectPoolData[3];
         public ObjectPoolData listAmmoBS = new ObjectPoolData();
-        public ObjectPoolData hitSpark = new ObjectPoolData();
+        public static ObjectPoolData hitSpark = new ObjectPoolData();
         public static ObjectPoolData hitDown = new ObjectPoolData();
         public static ObjectPoolData hitGround = new ObjectPoolData();
         public static ObjectPoolData hitWater = new ObjectPoolData();
@@ -62,7 +62,6 @@ namespace Kocmoca
             hitGround = ObjectPoolManager.Instance.CreateObjectPool(prefabHitGround, 1, 100);
             hitWater = ObjectPoolManager.Instance.CreateObjectPool(prefabHitWater, 1, 50);
             hitFire = ObjectPoolManager.Instance.CreateObjectPool(prefabHitFire, 1, 50);
-
         }
 
         public void BatchClone()

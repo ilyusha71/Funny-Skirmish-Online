@@ -82,7 +82,31 @@ namespace Kocmoca
             if (realtimeThrust < KocmoMissileLauncher.maxThrust)
                 realtimeThrust += KocmoMissileLauncher.acceleration * Time.fixedDeltaTime;
             myRigidbody.velocity = myTransform.forward * (realtimeThrust * Time.fixedDeltaTime);
-            CollisionDetection();
+
+            DetectCollisionByLinecast();
+        }
+
+        protected override void DetectCollisionByLinecast()
+        {
+            if (Physics.Linecast(pointStarting, myTransform.position, out raycastHit))
+            {
+                KocmocraftMechDroid hull = raycastHit.transform.GetComponent<KocmocraftMechDroid>();
+                if (hull)
+                {
+                    if (hull.Number == shooter) return;
+                    float basicDamage = myRigidbody.velocity.magnitude * KocmoMissileLauncher.coefficientDamageBasic;
+                    hull.Hit(new DamageInfo()
+                    {
+                        Attacker = owner,
+                        Hull = (int)(basicDamage * KocmoMissileLauncher.coefficientDamageHull),
+                        Shield = (int)(basicDamage * KocmoMissileLauncher.coefficientDamageShield)
+                    });
+                }
+                ResourceManager.hitFire.Reuse(raycastHit.point, Quaternion.identity);
+                Recycle(gameObject);
+                return;
+            }
+            pointStarting = myTransform.position;
         }
 
         protected override void CollisionDetection()

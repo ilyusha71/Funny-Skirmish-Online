@@ -50,7 +50,30 @@ namespace Kocmoca
 
         private void FixedUpdate()
         {
-            CollisionDetection();
+            DetectCollisionByLinecast();
+        }
+
+        protected override void DetectCollisionByLinecast()
+        {
+            if (Physics.Linecast(pointStarting, myTransform.position, out raycastHit))
+            {
+                KocmocraftMechDroid hull = raycastHit.transform.GetComponent<KocmocraftMechDroid>();
+                if (hull)
+                {
+                    if (hull.Number == shooter) return;
+                    float basicDamage = myRigidbody.velocity.magnitude * KocmoRocketLauncher.coefficientDamageBasic;
+                    hull.Hit(new DamageInfo()
+                    {
+                        Attacker = owner,
+                        Hull = (int)(basicDamage * KocmoRocketLauncher.coefficientDamageHull),
+                        Shield = (int)(basicDamage * KocmoRocketLauncher.coefficientDamageShield)
+                    });
+                }
+                ResourceManager.hitFire.Reuse(raycastHit.point, Quaternion.identity);
+                Recycle(gameObject);
+                return;
+            }
+            pointStarting = myTransform.position;
         }
 
         protected override void CollisionDetection()

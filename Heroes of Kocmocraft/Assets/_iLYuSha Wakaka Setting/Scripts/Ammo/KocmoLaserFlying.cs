@@ -14,8 +14,6 @@ namespace Kocmoca
 {
     public class KocmoLaserFlying : Ammo
     {
-        public GameObject effect;
-        public ObjectPoolData objPoolData;
         private TrailRenderer vfx;
 
         // Target param.
@@ -24,7 +22,6 @@ namespace Kocmoca
         private void Awake()
         {
             InitializeAmmo();
-            objPoolData = ResourceManager.instance.hitSpark;
             vfx = GetComponent<TrailRenderer>();
         }
 
@@ -59,7 +56,37 @@ namespace Kocmoca
 
         private void FixedUpdate()
         {
-            CollisionDetection();
+            DetectCollisionByLinecast();
+        }
+
+        protected override void DetectCollisionByLinecast()
+        {
+            if (Physics.Linecast(pointStarting, myTransform.position, out raycastHit))
+            {
+                KocmocraftMechDroid hull = raycastHit.transform.GetComponent<KocmocraftMechDroid>();
+                if (hull)
+                {
+                    float basicDamage = myRigidbody.velocity.sqrMagnitude * 0.000066f;
+                    hull.Hit(new DamageInfo()
+                    {
+                        Attacker = owner,
+                        Hull = (int)(basicDamage * KocmoLaserCannon.coefficientMinDamage),
+                        Shield = (int)(basicDamage * KocmoLaserCannon.coefficientMaxDamage)
+                    });
+                    ResourceManager.hitSpark.Reuse(raycastHit.point, Quaternion.identity);
+                }
+                else
+                {
+                    switch (raycastHit.transform.tag)
+                    {
+                        case "Water": ResourceManager.hitWater.Reuse(raycastHit.point, Quaternion.identity); break;
+                        default: ResourceManager.hitGround.Reuse(raycastHit.point, Quaternion.identity); break;
+                    }
+                }
+                Recycle(gameObject);
+                return;
+            }
+            pointStarting = myTransform.position;
         }
 
         protected override void CollisionDetection()
@@ -77,7 +104,7 @@ namespace Kocmoca
                         Hull = (int)(basicDamage * KocmoLaserCannon.coefficientMinDamage),
                         Shield = (int)(basicDamage * KocmoLaserCannon.coefficientMaxDamage)
                     });
-                    objPoolData.Reuse(raycastHits[0].point, Quaternion.identity);
+                    ResourceManager.hitSpark.Reuse(raycastHits[0].point, Quaternion.identity);
                 }
                 else
                 {
