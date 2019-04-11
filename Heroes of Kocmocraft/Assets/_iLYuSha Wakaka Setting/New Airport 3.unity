@@ -7959,7 +7959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 611f815130322cc41801937ef351c154, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 828f2037610898944858b25f3548b163, type: 2}
   isGlobal: 1
   blendDistance: 341.35
   weight: 1
@@ -34415,7 +34415,6 @@ GameObject:
   - component: {fileID: 2014165808}
   - component: {fileID: 2014165807}
   - component: {fileID: 2014165812}
-  - component: {fileID: 2014165811}
   - component: {fileID: 2014165810}
   m_Layer: 0
   m_Name: Main Camera
@@ -34469,7 +34468,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 0
-  m_AllowDynamicResolution: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -34585,34 +34584,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &2014165811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2014165806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f87e4989c5e703e428df4339d59e2c72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showMainBehavior: 1
-  showInnerGlowBehavior: 1
-  rtFormat: 2
-  blurShader: {fileID: 4800000, guid: 1855d9636fad3914bacc4a543165c974, type: 3}
-  compositeShader: {fileID: 4800000, guid: e384de4389ba527479054baf0ddb1d3e, type: 3}
-  selectiveRenderShader: {fileID: 4800000, guid: c04b7cae8accdfb4e9c2648823ff39d7,
-    type: 3}
-  glowLayer:
-    serializedVersion: 2
-    m_Bits: 40759
-  glowType: 0
-  glowTint: {r: 1, g: 1, b: 1, a: 0}
-  blurSpreadInner: 0.37
-  blurIterations: 5
-  glowIntensityInner: 0.37
-  samples: 2
 --- !u!114 &2014165812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34631,7 +34602,7 @@ MonoBehaviour:
     m_Bits: 4096
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 1
-  antialiasingMode: 1
+  antialiasingMode: 3
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25

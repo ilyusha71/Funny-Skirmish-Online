@@ -120,6 +120,11 @@ namespace Kocmoca
 
         #endregion
 
+        void SimulateHologram()
+        {
+
+        }
+
         void Loading()
         {
             SceneManager.LoadScene(LobbyInfomation.SCENE_LOADING);

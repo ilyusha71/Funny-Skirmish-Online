@@ -320,6 +320,7 @@ Transform:
   - {fileID: 1509514168}
   - {fileID: 5249280369980168533}
   - {fileID: 807876821}
+  - {fileID: 216636976}
   m_Father: {fileID: 108854812}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -49, z: 0}
@@ -13694,6 +13695,101 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215230686}
   m_CullTransparentMesh: 0
+--- !u!1001 &216636975
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4951085}
+    m_Modifications:
+    - target: {fileID: 8475771089515256467, guid: 1054d1e4db292cc4f970fcef89a7a8d1,
+        type: 3}
+      propertyPath: m_Name
+      value: Exhibition (19) - Grand Lisboa
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475771089515256467, guid: 1054d1e4db292cc4f970fcef89a7a8d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721263494604866556, guid: 1054d1e4db292cc4f970fcef89a7a8d1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721263494604866556, guid: 1054d1e4db292cc4f970fcef89a7a8d1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721263494604866556, guid: 1054d1e4db292cc4f970fcef89a7a8d1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721263494604866556, guid: 1054d1e4db292cc4f970fcef89a7a8d1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721263494604866556, guid: 1054d1e4db292cc4f970fcef89a7a8d1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721263494604866556, guid: 1054d1e4db292cc4f970fcef89a7a8d1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721263494604866556, guid: 1054d1e4db292cc4f970fcef89a7a8d1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721263494604866556, guid: 1054d1e4db292cc4f970fcef89a7a8d1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721263494604866556, guid: 1054d1e4db292cc4f970fcef89a7a8d1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721263494604866556, guid: 1054d1e4db292cc4f970fcef89a7a8d1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721263494604866556, guid: 1054d1e4db292cc4f970fcef89a7a8d1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721263494604866556, guid: 1054d1e4db292cc4f970fcef89a7a8d1,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721263494604866556, guid: 1054d1e4db292cc4f970fcef89a7a8d1,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721263494604866556, guid: 1054d1e4db292cc4f970fcef89a7a8d1,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.23
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1054d1e4db292cc4f970fcef89a7a8d1, type: 3}
+--- !u!4 &216636976 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4721263494604866556, guid: 1054d1e4db292cc4f970fcef89a7a8d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 216636975}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &217463936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31738,7 +31834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 611f815130322cc41801937ef351c154, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 828f2037610898944858b25f3548b163, type: 2}
   isGlobal: 1
   blendDistance: 341.35
   weight: 1
@@ -43388,7 +43484,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &743163527
 Transform:
   m_ObjectHideFlags: 0
@@ -46202,7 +46298,7 @@ PrefabInstance:
     - target: {fileID: 8443886868578782338, guid: e370b38a6a94e9149a772e373d942a94,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2116716362603366715, guid: e370b38a6a94e9149a772e373d942a94,
         type: 3}
@@ -84252,7 +84348,6 @@ GameObject:
   - component: {fileID: 1548422849}
   - component: {fileID: 1548422848}
   - component: {fileID: 1548422847}
-  - component: {fileID: 1548422852}
   - component: {fileID: 1548422854}
   m_Layer: 0
   m_Name: Main Camera
@@ -84395,34 +84490,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 77, z: 0}
---- !u!114 &1548422852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548422846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f87e4989c5e703e428df4339d59e2c72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showMainBehavior: 1
-  showInnerGlowBehavior: 1
-  rtFormat: 2
-  blurShader: {fileID: 4800000, guid: 1855d9636fad3914bacc4a543165c974, type: 3}
-  compositeShader: {fileID: 4800000, guid: e384de4389ba527479054baf0ddb1d3e, type: 3}
-  selectiveRenderShader: {fileID: 4800000, guid: c04b7cae8accdfb4e9c2648823ff39d7,
-    type: 3}
-  glowLayer:
-    serializedVersion: 2
-    m_Bits: 40759
-  glowType: 0
-  glowTint: {r: 1, g: 1, b: 1, a: 0}
-  blurSpreadInner: 0.37
-  blurIterations: 5
-  glowIntensityInner: 0.37
-  samples: 2
 --- !u!82 &1548422854
 AudioSource:
   m_ObjectHideFlags: 0

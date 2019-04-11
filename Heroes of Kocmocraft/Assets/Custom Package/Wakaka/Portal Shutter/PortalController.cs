@@ -40,7 +40,7 @@ public class PortalController : MonoBehaviour
     public Animation SecondaryRing;
     private string clipName;
     // AddOn
-    private MKGlowFree mkVFX;
+    //private MKGlowFree mkVFX;
     private float glowIntensity;
     void Awake()
     {
@@ -53,9 +53,9 @@ public class PortalController : MonoBehaviour
         Portal[clipName].speed = 0.7f;
         PrimaryRing[clipName].speed = 0.1f;
         SecondaryRing[clipName].speed = -0.3f;
-        mkVFX = transform.parent.GetComponent<MKGlowFree>();
-        glowIntensity = mkVFX.GlowIntensityInner;
-        mkVFX.GlowIntensityInner = 0;
+        //mkVFX = transform.parent.GetComponent<MKGlowFree>();
+        //glowIntensity = mkVFX.GlowIntensityInner;
+        //mkVFX.GlowIntensityInner = 0;
     }
 
     private void Start()
@@ -90,13 +90,13 @@ public class PortalController : MonoBehaviour
             PrimaryRing.transform.localRotation = Quaternion.identity;
             SecondaryRing.transform.localRotation = Quaternion.identity;
             OnShutterPressedUp();
-            mkVFX.GlowIntensityInner = glowIntensity;
+            //mkVFX.GlowIntensityInner = glowIntensity;
         });
     }
 
     public void Ending()
     {
-        mkVFX.GlowIntensityInner = 0;
+        //mkVFX.GlowIntensityInner = 0;
         viewPlane.DOLocalMoveZ(0, 1.0f).OnComplete(() =>
         {
             sfx.PlayOneShot(sfxClose);
