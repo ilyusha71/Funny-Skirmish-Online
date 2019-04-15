@@ -94,16 +94,12 @@ namespace Kocmoca
             portalRot = new Quaternion[100];
             for (int i = 0; i < 100; i++)
             {
-                // squadron = i%20;
-                // group = (i/2)%10;
-                // wing = i%2;
-                portalPos[i] = kocmoGroup[(int)(i * 0.05f) % 10].TransformPoint(kocmoSquadron[i / 20].localPosition);
-                portalPos[i] = kocmoWing[i % 2].TransformPoint(portalPos[i]);
-                //GameObject go = new GameObject();
-                //go.transform.SetPositionAndRotation( portalPos[i], portalRot[i] );
-                //go.name = "Wakaka " + i;
-                Debug.Log(portalPos[i]);
-                portalRot[i] = kocmoWing[i % 2].rotation;
+                int indexSquadron = i / 20;
+                int indexGroup = (int)(i * 0.5f) % 10;
+                int indexWing = i % 2;
+                portalPos[i] = kocmoGroup[indexGroup].InverseTransformPoint(kocmoSquadron[indexSquadron].position)+ kocmoGroup[indexGroup].localPosition * 2;
+                portalPos[i] = kocmoWing[indexWing].TransformPoint(portalPos[i]);
+                portalRot[i] = kocmoWing[indexWing].rotation;
             }
         }
 
@@ -117,7 +113,7 @@ namespace Kocmoca
             if (PhotonNetwork.IsMasterClient)
             {
                 int countPlayer = PhotonNetwork.CurrentRoom.PlayerCount;
-                for (int portNumber = countPlayer; portNumber < 80; portNumber++) { SpawnBotKocmocraft(portNumber); }
+                for (int portNumber = countPlayer; portNumber < 100; portNumber++) { SpawnBotKocmocraft(portNumber); }
             }
         }
         void InitializeFaction()
