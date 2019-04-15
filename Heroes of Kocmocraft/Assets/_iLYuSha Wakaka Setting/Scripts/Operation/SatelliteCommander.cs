@@ -66,11 +66,15 @@ namespace Kocmoca
         public Dictionary<int, Kocmonaut> listKocmonaut = new Dictionary<int, Kocmonaut>(); // 宇航員列表
         public Dictionary<int, int> listBotNumber = new Dictionary<int, int>(); // 預設宇航機編號索引
         public FactionData[] factionData = new FactionData[2]; // 陣營數據
-        const int countMissionPilot = 40;
-        const int countTarget = 40;
-        [Header("Hangar Data")]
-        public Transform[] kocmoPortal;
-        public Transform[] kocmoFormation; // Lead, Wing 1 ~ 8
+        const int countMissionPilot = 50;
+        const int countTarget = 50;
+        [Header("Formation Data")]
+        public Transform[] kocmoWing; // 宇航聯隊 = 10 宇航團（10名玩家）
+        public Transform[] kocmoGroup; // 宇航團 = 5 宇航中隊（玩家為長機，其餘僚機為Bot）
+        public Transform[] kocmoSquadron; // 宇航中隊 = 1架主力宇航機 + 4架迷你特攻機
+        private Vector3[] portalPos; // 中隊傳送點
+        private Quaternion[] portalRot;
+
         [Header("Commander")]
         public AudioClip[] soundTakeOff;
 
@@ -86,6 +90,21 @@ namespace Kocmoca
             LocalPlayerRealtimeData.Status = FlyingStatus.Waiting;
             InitializeRadar();
 
+            portalPos = new Vector3[100];
+            portalRot = new Quaternion[100];
+            for (int i = 0; i < 100; i++)
+            {
+                // squadron = i%20;
+                // group = (i/2)%10;
+                // wing = i%2;
+                portalPos[i] = kocmoGroup[(int)(i * 0.05f) % 10].TransformPoint(kocmoSquadron[i / 20].localPosition);
+                portalPos[i] = kocmoWing[i % 2].TransformPoint(portalPos[i]);
+                //GameObject go = new GameObject();
+                //go.transform.SetPositionAndRotation( portalPos[i], portalRot[i] );
+                //go.name = "Wakaka " + i;
+                Debug.Log(portalPos[i]);
+                portalRot[i] = kocmoWing[i % 2].rotation;
+            }
         }
 
         public void InitializeSatellite()
@@ -209,8 +228,11 @@ namespace Kocmoca
         // 設定宇航機機庫位置（僅本地端）
         public void SetHangar(Transform kocmocraft, int portNumber)
         {
-            int index = portNumber % 16;
-            kocmocraft.SetPositionAndRotation(kocmoPortal[index].TransformPoint(kocmoFormation[portNumber / 16].localPosition), kocmoPortal[index].rotation);
+            kocmocraft.SetPositionAndRotation(portalPos[portNumber], portalRot[portNumber]);
+
+            // 重生位置提前計算
+            //int index = portNumber % 16;
+            //kocmocraft.SetPositionAndRotation(kocmoPortal[index].TransformPoint(kocmoFormation[portNumber / 16].localPosition), kocmoPortal[index].rotation);
 
             // 效能差異 約8~9倍
             //kocmocraft.SetParent(kocmoPortal[portNumber%16]);

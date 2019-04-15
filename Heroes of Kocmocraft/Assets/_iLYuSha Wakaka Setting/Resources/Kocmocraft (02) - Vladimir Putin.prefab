@@ -721,8 +721,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114974362452681464}
   - {fileID: 114447317496087724}
-  viewIdField: 0
-  InstantiationId: 19
+  viewIdField: 21
+  InstantiationId: 21
   isRuntimeInstantiated: 0
 --- !u!114 &114974362452681464
 MonoBehaviour:
@@ -779,10 +779,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4710839933446896}
     m_Modifications:
-    - target: {fileID: 1638409085743542, guid: e5bc3f4d47d13b341b38e396d259cb22, type: 3}
-      propertyPath: m_Name
-      value: Hangar (02) - Vladimir Putin
-      objectReference: {fileID: 0}
     - target: {fileID: 4725810067923350, guid: e5bc3f4d47d13b341b38e396d259cb22, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -826,6 +822,10 @@ PrefabInstance:
     - target: {fileID: 4725810067923350, guid: e5bc3f4d47d13b341b38e396d259cb22, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1638409085743542, guid: e5bc3f4d47d13b341b38e396d259cb22, type: 3}
+      propertyPath: m_Name
+      value: Hangar (02) - Vladimir Putin
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5bc3f4d47d13b341b38e396d259cb22, type: 3}
