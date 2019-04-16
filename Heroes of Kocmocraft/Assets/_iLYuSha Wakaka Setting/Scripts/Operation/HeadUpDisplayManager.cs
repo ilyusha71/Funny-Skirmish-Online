@@ -454,7 +454,7 @@ namespace Kocmoca
 
         void RadarUI()
         {
-            pointFriend = new Transform[39];
+            pointFriend = new Transform[49];
             for (int i = 0; i < countMissionPilot - 1; i++)
             {
                 pointFriend[i] = Instantiate(iconFriend, markFriendGroup).transform;

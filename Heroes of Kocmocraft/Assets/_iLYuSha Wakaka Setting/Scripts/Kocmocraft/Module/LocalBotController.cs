@@ -39,6 +39,9 @@ namespace Kocmoca
         private int targetNumber;
         [Header("Target Onboard")]
         public Transform targetTrack;
+        public float distanceTarget;
+        public float directionTarget;
+
         public Transform targetAutoAim;
         public Transform targetRadarLockOn;
         public float targetRadarDistance;
@@ -56,6 +59,9 @@ namespace Kocmoca
         public float targetTrackingDistanceSqr;
         public float targetTrackingDirection;
 
+
+        // 
+
         void Start()
         {
             beacons = FindObjectsOfType<EnergyCore>();
@@ -71,7 +77,8 @@ namespace Kocmoca
             myMissileFCS = GetComponentsInChildren<FireControlSystem>()[2];
             // Modular Parameter
             coordinateSpawn = myTransform.position;
-            coordinateDestination = beacons[Random.Range(0, beacons.Length)].transform.position;
+            targetTrack = beacons[Random.Range(0, beacons.Length)].transform;
+            coordinateDestination = targetTrack.position;
             timestatetemp = 0;
         }
 
@@ -90,7 +97,8 @@ namespace Kocmoca
                     nearestDistance = distance;
                 }
             }
-            coordinateDestination = beacons[nearestBeacon].transform.position;
+            targetTrack = beacons[nearestBeacon].transform;
+            coordinateDestination = targetTrack.position;
             myAvionicsSystem.PositionTarget = coordinateDestination;
         }
 
@@ -107,7 +115,8 @@ namespace Kocmoca
                     farthestDistance = distance;
                 }
             }
-            coordinateDestination = beacons[farthestBeacon].transform.position;
+            targetTrack = beacons[farthestBeacon].transform;
+            coordinateDestination = targetTrack.position;
             myAvionicsSystem.PositionTarget = coordinateDestination;
         }
 
@@ -116,6 +125,8 @@ namespace Kocmoca
             if (!myAvionicsSystem)
                 return;
 
+            //distanceTarget = Vector3.Distance(coordinateDestination, myTransform.position);
+            //directionTarget = Vector3.SignedAngle(coordinateDestination - myTransform.position, myTransform.forward, myTransform.up);
             distanceDestination = Vector3.Distance(coordinateDestination, myTransform.position);
             switch (AIstate)
             {

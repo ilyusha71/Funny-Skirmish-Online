@@ -140,7 +140,7 @@ namespace Kocmoca
             currentLauncher++;
             currentLauncher = (int)Mathf.Repeat(currentLauncher, countLauncher);
 
-            target = typeFCS == FireControlSystemType.Laser? myOnboardRadar.targetAutoAim: myOnboardRadar.targetRadarLockOn;
+            target = typeFCS == FireControlSystemType.Missile ? myOnboardRadar.targetRadarLockOn : myOnboardRadar.targetAutoAim;
             targetNumber = target ? target.GetComponent<KocmocraftManager>().Number : 0;
 
             for (int t = 0; t < turnFire; t++)

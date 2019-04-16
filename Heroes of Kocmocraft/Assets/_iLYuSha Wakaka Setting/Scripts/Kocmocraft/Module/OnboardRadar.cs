@@ -6,6 +6,22 @@
  * 1. Radar System -> Onboard Radar
  * 2. 尋找與標示敵我航機
  * 3. 輔助FCS鎖定目標
+ * 
+ * Level 1：短程雷達（適合新手）（人機配置：低速宇航機）
+ *      a. 機炮最大開火角度：7°
+ *      b. 投射武器最大釋放角度：9°
+ *      c. 追蹤武器最大釋放角度：21°
+ *      d. 最遠自動瞄準距離：700m
+ * Level 2：中程雷達（適合進階玩家）（人機配置：中速宇航機配置）
+ *      a. 機炮最大開火角度：5°
+ *      b. 投射武器最大釋放角度：7°
+ *      c. 追蹤武器最大釋放角度：16°
+ *      d. 最遠自動瞄準距離：1600m
+ * Level 3：長程雷達系統（適合資深老手）（人機配置：高速宇航機配置）
+ *      a. 機炮最大開火角度：3°
+ *      b. 投射武器最大釋放角度：5°
+ *      c. 追蹤武器最大釋放角度：11°
+ *      d. 最遠自動瞄準距離：3000m
  ***************************************************************************/
 using Photon.Pun;
 using System.Collections.Generic;
@@ -44,9 +60,15 @@ namespace Kocmoca
         private float nextLockTime;
         [Header("Target")]
         public Transform targetTrack;
-        public Transform targetAutoAim;
-        public Transform targetRadarLockOn;
         public Transform targetLocked;
+
+        [Header("Auto Aim")] // 自動瞄準系統（適用Player與Bot）
+        public Transform targetAutoAim; // 自動瞄準在機炮範圍內最接近中心的目標
+        // 機炮範圍根據宇航機的KocmoLaser決定
+        // 開火時機炮只會射擊Auto Aim目標，不會射擊RadarLockOn目標，除非兩者目標相同
+
+        [Header("Radar Lock On")] // 雷達鎖定系統（適用Player與Bot）
+        public Transform targetRadarLockOn; // 符合機載
 
         public void Initialize(Core core, int faction, int type, int number)
         {
@@ -93,7 +115,6 @@ namespace Kocmoca
             TargetSearch();
             if (Time.time > nextLockTime)
             {
-                targetAutoAim = targetNearest;
                 if (!targetRadarLockOn) targetRadarLockOn = targetNearest;
                 if (!isLocalPlayer) targetTrack = targetNearest;
             }
@@ -105,15 +126,12 @@ namespace Kocmoca
 
                 if (targetDistanceSqr < RadarParameter.maxLockDistanceSqr && targetDirection > KocmoMissileLauncher.maxFireAngle)
                 {
-                    if (targetDirection < KocmoLaserCannon.maxFireAngle)
-                        targetAutoAim = null;
                     if (isLocalPlayer)
                         HeadUpDisplayManager.Instance.MarkTarget(targetRadarLockOn, targetDistanceSqr);
                 }
                 else
                 {
                     nextLockTime = Time.time + minLockTime;
-                    targetAutoAim = null;
                     targetRadarLockOn = null;
                 }
             }
@@ -131,6 +149,7 @@ namespace Kocmoca
         }
         void TargetSearch()
         {
+            targetAutoAim = null;
             targetNearest = null;
             targetNearestDirection = 0;
             int countFoe = listFoeAircrafts.Count;
@@ -158,6 +177,9 @@ namespace Kocmoca
                             {
                                 targetNearest = listFoeAircrafts[i];
                                 targetNearestDirection = scanDirection;
+
+                                if (scanDirection > KocmoLaserCannon.maxFireAngle)
+                                    targetAutoAim = targetNearest;
                             }
                         }
                     }
