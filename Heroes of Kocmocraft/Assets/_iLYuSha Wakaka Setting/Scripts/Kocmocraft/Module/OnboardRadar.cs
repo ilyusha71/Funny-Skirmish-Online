@@ -31,6 +31,8 @@ namespace Kocmoca
 {
     public class OnboardRadar : MonoBehaviour
     {
+        public Transform[] LISTallFoe;
+        public Transform[] LISTallMark;
         [Header("Dependent Components")]
         private Transform myTransform;
         private PhotonView myPhotonView;
@@ -42,8 +44,8 @@ namespace Kocmoca
         public List<Transform> listFoeAircrafts = new List<Transform>();
         private Vector3 myPosition;
         [Header("Onboard Radar")]
-        public Transform[] targetOnboard;
-        private const int maxTargetCount = 10;
+        //public Transform[] targetOnboard;
+        //private const int maxTargetCount = 10;
         // Search
         private Vector3 scanDiff;
         private float scanDistanceSqr;
@@ -70,7 +72,14 @@ namespace Kocmoca
         [Header("Radar Lock On")] // 雷達鎖定系統（適用Player與Bot）
         public Transform targetRadarLockOn; // 符合機載
 
-        public void Initialize(Core core, int faction, int type, int number)
+
+        public int MaxSearchRadiusSqr;
+        public int MaxLockDistanceSqr;
+        public float MaxSearchAngle;
+        public float MaxLockAngle;
+        public float MaxAutoAim;
+
+        public void Initialize(Core core, int faction, Type type, int number)
         {
             // Dependent Components
             myTransform = transform;
@@ -81,8 +90,36 @@ namespace Kocmoca
             listFriendAircrafts = SatelliteCommander.Instance.factionData[faction].listFriend;
             listFoeAircrafts = SatelliteCommander.Instance.factionData[faction].listFoe;
 
-            targetOnboard = new Transform[maxTargetCount];
+            //targetOnboard = new Transform[10];
             minLockTime = 0.73f;
+
+            if (isLocalPlayer)
+            {
+                switch (type)
+                {
+                    case Type.FastFoodMan:
+                        MaxSearchRadiusSqr = UltraWideRangeRadar.MaxSearchRadiusSqr;
+                        MaxLockDistanceSqr = UltraWideRangeRadar.MaxLockDistanceSqr;
+                        MaxSearchAngle = UltraWideRangeRadar.MaxSearchAngle;
+                        MaxLockAngle = UltraWideRangeRadar.MaxLockAngle;
+                        MaxAutoAim = UltraWideRangeRadar.MaxAutoAim;
+                        break;
+                    default:
+                        MaxSearchRadiusSqr = 25000000;// RadarParameter.MaxSearchRadiusSqr[type];
+                        MaxLockDistanceSqr = 12250000;// RadarParameter.MaxLockDistanceSqr[type];
+                        MaxSearchAngle = RadarParameter.maxSearchAngle;
+                        MaxLockAngle = RadarParameter.maxLockAngle;
+                        MaxAutoAim = Mathf.Cos(1 * Mathf.Deg2Rad);// RadarParameter.MaxAutoAim[type];
+                        break;
+                }
+            }
+            else
+            {
+                MaxSearchRadiusSqr = RadarParameter.maxSearchRadiusSqr;
+                MaxLockDistanceSqr = RadarParameter.maxLockDistanceSqr;
+                MaxAutoAim = KocmoLaserCannon.maxFireAngle;
+            }
+
         }
         private void Update()
         {
@@ -103,8 +140,8 @@ namespace Kocmoca
                     if (listFriendAircrafts[i] != myTransform)
                     {
                         scanDiff = listFriendAircrafts[i].position - myPosition;
-                        if (Vector3.SqrMagnitude(scanDiff) <= RadarParameter.maxSearchRadiusSqr &&
-                            Vector3.Dot(scanDiff.normalized, myTransform.forward) >= RadarParameter.maxSearchAngle)
+                        if (Vector3.SqrMagnitude(scanDiff) <= MaxSearchRadiusSqr &&
+                            Vector3.Dot(scanDiff.normalized, myTransform.forward) >= MaxSearchAngle)
                             HeadUpDisplayManager.Instance.NewIdentifyFriend(listFriendAircrafts[i]); // 標記搜索範圍的所有友機
                     }
                 }
@@ -124,7 +161,7 @@ namespace Kocmoca
                 targetDistanceSqr = Vector3.SqrMagnitude(targetDiff);
                 targetDirection = Vector3.Dot(targetDiff.normalized, myTransform.forward);
 
-                if (targetDistanceSqr < RadarParameter.maxLockDistanceSqr && targetDirection > KocmoMissileLauncher.maxFireAngle)
+                if (targetDistanceSqr < MaxLockDistanceSqr && targetDirection > KocmoMissileLauncher.maxFireAngle)
                 {
                     if (isLocalPlayer)
                         HeadUpDisplayManager.Instance.MarkTarget(targetRadarLockOn, targetDistanceSqr);
@@ -137,14 +174,14 @@ namespace Kocmoca
             }
             else
             {
-                if (!isLocalPlayer)
-                {
-                    for (int i = 0; i < maxTargetCount; i++)
-                    {
-                        if (targetOnboard[i])
-                            targetTrack = targetOnboard[i];
-                    }
-                }
+                //if (!isLocalPlayer)
+                //{
+                //    for (int i = 0; i < 10; i++)
+                //    {
+                //        if (targetOnboard[i])
+                //            targetTrack = targetOnboard[i];
+                //    }
+                //}
             }
         }
         void TargetSearch()
@@ -153,21 +190,21 @@ namespace Kocmoca
             targetNearest = null;
             targetNearestDirection = 0;
             int countFoe = listFoeAircrafts.Count;
-            for (int i = 0; i < maxTargetCount; i++)
+            for (int i = 0; i < countFoe; i++)
             {
-                targetOnboard[i] = null;
+                //targetOnboard[i] = null;
                 if (i < countFoe && listFoeAircrafts[i])
                 {
                     scanDiff = listFoeAircrafts[i].position - myPosition;
                     scanDistanceSqr = Vector3.SqrMagnitude(scanDiff);
                     scanDirection = Vector3.Dot(scanDiff.normalized, myTransform.forward);
-                    if (scanDistanceSqr <= RadarParameter.maxSearchRadiusSqr && scanDirection >= RadarParameter.maxSearchAngle)
+                    if (scanDistanceSqr <= MaxSearchRadiusSqr && scanDirection >= MaxSearchAngle)
                     {
-                        targetOnboard[i] = listFoeAircrafts[i];
+                        //targetOnboard[i] = listFoeAircrafts[i];
                         if (isLocalPlayer)
                             SatelliteCommander.Instance.IdentifyTarget(listFoeAircrafts[i]); // 標記搜索範圍的所有敵機
 
-                        if (scanDistanceSqr <= RadarParameter.maxLockDistanceSqr && scanDirection >= RadarParameter.maxLockAngle)
+                        if (scanDistanceSqr <= MaxLockDistanceSqr && scanDirection >= MaxLockAngle)
                         {
                             if (isLocalPlayer)
                                 SatelliteCommander.Instance.FireControlLookTarget(listFoeAircrafts[i]);  // 標記鎖定範圍的所有敵機
@@ -178,7 +215,7 @@ namespace Kocmoca
                                 targetNearest = listFoeAircrafts[i];
                                 targetNearestDirection = scanDirection;
 
-                                if (scanDirection > KocmoLaserCannon.maxFireAngle)
+                                if (scanDirection > MaxAutoAim)
                                     targetAutoAim = targetNearest;
                             }
                         }

@@ -200,8 +200,8 @@ namespace Kocmoca
             targetAutoAim = myOnboardRadar.targetAutoAim;
             targetRadarLockOn = myOnboardRadar.targetRadarLockOn;
 
-            if (targetAutoAim)
-                myLaserFCS.Shoot();
+            //if (targetAutoAim)
+            //    myLaserFCS.Shoot();
             if (targetRadarLockOn)
             {
                 if (myMissileFCS.countAmmo > 0)

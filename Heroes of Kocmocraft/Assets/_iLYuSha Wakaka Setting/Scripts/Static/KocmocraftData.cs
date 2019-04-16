@@ -2,6 +2,9 @@
 
 namespace Kocmoca
 {
+
+
+
     public static class RadarParameter
     {
         // ★☆☆☆☆☆☆ 1000 ~ 1500 m
@@ -626,7 +629,7 @@ namespace Kocmoca
                 case Type.AceKennel: return EngineType.Turboprop;
                 case Type.KirbyStar: return EngineType.Turbojet;
                 case Type.ScorpioRouge: return EngineType.Turbofan;
-                case Type.Nwidia: return EngineType.IonThruster;
+                case Type.nWidia: return EngineType.IonThruster;
                 case Type.FastFoodMan: return EngineType.Turbofan;
                 case Type.ReindeerTransport: return EngineType.BiomassEnergy;
                 case Type.PolarisExpress: return EngineType.Turbofan;
@@ -819,18 +822,19 @@ namespace Kocmoca
         public static readonly float coefficientMaxDamage = 4.1949f;
     }
 
+
     public static class KocmoLaserCannon
     {
         public static readonly int countPerBatch = 25; // 每批生成量
         public static readonly int maxPoorInventory = 2500; // 最大物件池存量
-        public static readonly float maxFireAngle = Mathf.Cos(3 * Mathf.Deg2Rad); // 最大開火夾角
+        public static readonly float maxFireAngle = Mathf.Cos(1 * Mathf.Deg2Rad); // 最大開火夾角
         public static readonly int maxAmmoCapacity = 999; // 最大載彈量
-        public static readonly float projectileSpread = 0.39f; //彈道散布 degree
-        public static readonly int flightVelocity = 3790; // 飛行速率 m/s
+        public static readonly float projectileSpread = 0.07f;//0.39f; //彈道散布 degree
+        public static readonly int flightVelocity = 7000; // 飛行速率 m/s
         public static readonly int propulsion = flightVelocity * 50; // 開火推力 propulsion = flightVelocity / Time.fixedDeltaTime (1/0.02 = 50)
-        public static readonly float flightTime = 0.71f; // 飛行時間 sec
+        public static readonly float flightTime = 0.5f; // 飛行時間 sec
         public static readonly float operationalRange = flightVelocity * flightTime; // 射程 m
-        public static readonly float fireRoundPerSecond = 7.31f; // 射速 rps
+        public static readonly float fireRoundPerSecond = 0.7f; // 射速 rps
         public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec
         public static readonly float coefficientMinDamage = 1.3035f;
         public static readonly float coefficientMaxDamage = 4.1949f;
@@ -1133,7 +1137,7 @@ namespace Kocmoca
         AceKennel = 7,
         KirbyStar = 8,
         ScorpioRouge = 9,
-        Nwidia = 10,
+        nWidia = 10,
         FastFoodMan = 11,
         ReindeerTransport = 12,
         PolarisExpress = 13,
@@ -1141,6 +1145,8 @@ namespace Kocmoca
         PapoyUnicorn = 15,
         PumpkinGhost = 16,
         BoundyHunterMKII = 17,
+        InuitEagle = 18,
+        GrandLisboa=19,
         Unknown = -999,
     }
     public enum FireControlSystemType
@@ -1169,7 +1175,7 @@ namespace Kocmoca
                 case Type.AceKennel: return 2; // 王牌狗屋 - 双管 - 特攻机
                 case Type.KirbyStar: return 4; // 卡比之星 - 四管 - 特攻机
                 case Type.ScorpioRouge: return 2; // 蝎红 - 双管 - 征服舰
-                case Type.Nwidia: return 4; // 恩威迪亚 - 四管 - 征服舰
+                case Type.nWidia: return 4; // 恩威迪亚 - 四管 - 征服舰
                 case Type.FastFoodMan: return 2; // 快餐侠 - 双管 - 巡航机
                 case Type.ReindeerTransport: return 2; // 驯鹿空运 - 双管 - 战术舰
                 case Type.PolarisExpress: return 6; // 北极星特快 - 六管 - 征服舰
@@ -1194,7 +1200,7 @@ namespace Kocmoca
                 case "Kocmocraft 07 - Ace Kennel(Clone)": return Type.AceKennel;
                 case "Kocmocraft 08 - Kirby Star(Clone)": return Type.KirbyStar;
                 case "Kocmocraft 09 - Scorpio Rouge(Clone)": return Type.ScorpioRouge;
-                case "Kocmocraft 10 - Nwidia(Clone)": return Type.Nwidia;
+                case "Kocmocraft 10 - nWidia(Clone)": return Type.nWidia;
                 case "Kocmocraft 11 - Fast Food Man(Clone)": return Type.FastFoodMan;
                 case "Kocmocraft 12 - Reindeer Transport(Clone)": return Type.ReindeerTransport;
                 case "Kocmocraft 13 - Polaris Express(Clone)": return Type.PolarisExpress;
@@ -1218,7 +1224,7 @@ namespace Kocmoca
                 case 7: return "Ace Kennel"; // 王牌狗屋 - 双管 - 特攻机
                 case 8: return "Kirby Star"; // 卡比之星 - 四管 - 特攻机
                 case 9: return "Scorpio Rouge"; // 蝎红 -- 大型双管
-                case 10: return "Nwidia"; // 恩威迪亚 -- 特大型四管
+                case 10: return "nWidia"; // 恩威迪亚 -- 特大型四管
                 case 11: return "Fast Food Man"; // 快餐侠 --- 中型双管
                 case 12: return "Reindeer Transport"; // 驯鹿空运 -- 大型双管
                 case 13: return "Polaris Express"; // 北极星特快 -- 特大型六管
@@ -1244,7 +1250,7 @@ namespace Kocmoca
                 case 7: return "Prototype - Ace Kennel";
                 case 8: return "Prototype - Kirby Star";
                 case 9: return "Prototype - Scorpio Rouge";
-                case 10: return "Prototype - Nwidia";
+                case 10: return "Prototype - nWidia";
                 case 11: return "Prototype - Fast Food Man";
                 case 12: return "Prototype - Reindeer Transport";
                 case 13: return "Prototype - Polaris Express";

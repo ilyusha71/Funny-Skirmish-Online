@@ -441,7 +441,7 @@ namespace Kocmoca
             markerLock.position = screenPos;
             textTargetName.text = target.name.Split('-')[0];
             textTargetType.text = target.name.Split('-')[2];
-            textTargetDistance.text = Mathf.Floor(distance) + " m";
+            textTargetDistance.text = Mathf.Floor(Mathf.Sqrt(distance)) + " m";
 
             KocmocraftMechDroid targetInfo = target.GetComponent<KocmocraftMechDroid>();
             targetHull.fillAmount = targetInfo.dataHull.Percent;
@@ -454,7 +454,7 @@ namespace Kocmoca
 
         void RadarUI()
         {
-            pointFriend = new Transform[49];
+            pointFriend = new Transform[countMissionPilot-1];
             for (int i = 0; i < countMissionPilot - 1; i++)
             {
                 pointFriend[i] = Instantiate(iconFriend, markFriendGroup).transform;
@@ -466,7 +466,7 @@ namespace Kocmoca
         public void NewResetOnboardRadarRadar()
         {
             orderFriend = -1;
-            for (int i = 0; i < 39; i++)
+            for (int i = 0; i < countMissionPilot-1; i++)
             {
                 pointFriend[i].localPosition = invisiblePos;
             }
@@ -481,8 +481,8 @@ namespace Kocmoca
         }
 
 
-        const int countMissionPilot = 40;
-        const int countTarget = 40;
+        const int countMissionPilot = 50;
+        const int countTarget = 50;
         [Header("【機載雷達】")]
         public Transform onboardRadar;
         public AudioSource lockOnAudio;

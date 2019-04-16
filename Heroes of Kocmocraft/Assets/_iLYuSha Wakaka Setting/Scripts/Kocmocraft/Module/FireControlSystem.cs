@@ -27,6 +27,7 @@ namespace Kocmoca
         private float timeReload; // 飛彈重載耗時
         public int maxAmmoCapacity { get; set; } // 最大載彈量
         private float rateFire; // 開火速率
+        private float projectileSpread;
         private AudioClip shootingSound;
         // FSC Realtime Info
         public int countAmmo { get; set; }
@@ -46,7 +47,7 @@ namespace Kocmoca
         private Vector3 expectedTargetPosition;
         private Vector3 expectedTargetDirection;
 
-        public void Initialize(int type, int number,bool isLocal)
+        public void Initialize(Type type, int number,bool isLocal)
         {
             // Dependent Components
             myTransform = transform;
@@ -61,6 +62,20 @@ namespace Kocmoca
             if (typeFCS == FireControlSystemType.Unknown) Debug.LogError("No FCS");
             LoadFireControlSystemData();
             InitializeLauncher();
+            if (typeFCS == FireControlSystemType.Laser)
+            {
+                switch (type)
+                {
+                    case Type.FastFoodMan:
+                        rateFire = KocmoUltraPowerPlasma.rateFire;
+                        projectileSpread = KocmoUltraPowerPlasma.projectileSpread;
+                        break;
+                    default:
+                        rateFire = KocmoLaserCannon.rateFire;
+                        projectileSpread = KocmoLaserCannon.projectileSpread;
+                        break;
+                }
+            }
         }
         void LoadFireControlSystemData()
         {
@@ -148,7 +163,7 @@ namespace Kocmoca
                 switch (typeFCS)
                 {
                     case FireControlSystemType.Laser:
-                        myPhotonView.RPC("LaserShoot", RpcTarget.AllViaServer, currentLauncher, kocmonautNumber, targetNumber, Random.Range(-KocmoLaserCannon.projectileSpread, KocmoLaserCannon.projectileSpread));
+                        myPhotonView.RPC("LaserShoot", RpcTarget.AllViaServer, currentLauncher, kocmonautNumber, targetNumber, Random.Range(-projectileSpread, projectileSpread));
                         break;
                     case FireControlSystemType.Rocket:
                         myPhotonView.RPC("RockeLaunch", RpcTarget.AllViaServer, currentLauncher, kocmonautNumber, targetNumber);

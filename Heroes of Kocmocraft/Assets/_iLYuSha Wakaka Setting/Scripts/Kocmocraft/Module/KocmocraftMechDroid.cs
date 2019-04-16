@@ -140,7 +140,7 @@ namespace Kocmoca
             //    }
             //}
 
-            if (dataShield.Value > 300 && damageInfo.Shield != 0)
+            if (dataShield.Value > damageInfo.Shield && damageInfo.Shield != 0)
             {
                 // 損傷記錄
                 if (listAttacker.ContainsKey(damageSourceNumber))

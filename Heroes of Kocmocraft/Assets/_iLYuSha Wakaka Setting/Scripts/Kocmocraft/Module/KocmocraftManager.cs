@@ -81,7 +81,7 @@ namespace Kocmoca
             //gameObject.AddComponent<EngineController>().Initialize(Type);
             gameObject.AddComponent<AvionicsSystem>().Initialize((int)Type); // local only
             gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalPlayer, (int)Type, Number, pilot,wreckage);
-            gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalPlayer, (int)Faction, (int)Type, Number); // local only
+            gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalPlayer, (int)Faction, Type, Number); // local only
             gameObject.AddComponent<LocalPlayerController>();
             ActiveFCS(true);
             // Synchronize
@@ -142,7 +142,7 @@ namespace Kocmoca
             //gameObject.AddComponent<EngineController>().Initialize(Type);
             gameObject.AddComponent<AvionicsSystem>().Initialize((int)Type); // local only
             gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalBot, (int)Type, Number, pilot, wreckage);
-            gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalBot, (int)Faction, (int)Type, Number); // local only
+            gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalBot, (int)Faction, Type, Number); // local only
             gameObject.AddComponent<LocalBotController>();
             ActiveFCS(true);
             photonView.RPC("SynchronizeBotKocmocraft", RpcTarget.Others, portNumber);
@@ -175,7 +175,7 @@ namespace Kocmoca
             countFCS = listFCS.Length;
             for (int i = 0; i < countFCS; i++)
             {
-                listFCS[i].Initialize((int)Type, Number, isLocal);
+                listFCS[i].Initialize(Type, Number, isLocal);
             }
             listAmmoOPD = ResourceManager.instance.listAmmoOPD;
         }

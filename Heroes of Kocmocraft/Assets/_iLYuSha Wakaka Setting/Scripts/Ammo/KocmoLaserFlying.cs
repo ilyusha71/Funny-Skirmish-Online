@@ -19,6 +19,12 @@ namespace Kocmoca
         // Target param.
         private Rigidbody targetRigid;
 
+        // Ammo Parameter
+        private int ammoVelocity;
+        private int propulsion;
+        private float hullPenetration;
+        private float shieldPenetration;
+
         private void Awake()
         {
             InitializeAmmo();
@@ -36,18 +42,36 @@ namespace Kocmoca
         IEnumerator FlyingInitialize()
         {
             yield return SatelliteCommander.waitShoot;
-            float coefficient = WeaponData.GetCoefficient(owner.Type);
+
+            Type type = owner.Type;
+            switch (type)
+            {
+                case Type.FastFoodMan:
+                    ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
+                    propulsion = KocmoUltraPowerPlasma.propulsion;                    
+                    hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
+                    shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
+                    break;
+                default:
+                    ammoVelocity = KocmoLaserCannon.flightVelocity;
+                    propulsion = KocmoLaserCannon.propulsion;
+                    hullPenetration = KocmoLaserCannon.coefficientMinDamage;
+                    shieldPenetration = KocmoLaserCannon.coefficientMaxDamage;
+                    break;
+            }
+
+            float coefficient = WeaponData.GetCoefficient(type);
             if (target)
             {
                 targetRigid = target.GetComponent<Rigidbody>();
-                float expectedTime = Mathf.Sqrt(Vector3.SqrMagnitude(target.position - myTransform.position) / (coefficient * coefficient * KocmoLaserCannon.flightVelocity * KocmoLaserCannon.flightVelocity - targetRigid.velocity.sqrMagnitude));
+                float expectedTime = Mathf.Sqrt(Vector3.SqrMagnitude(target.position - myTransform.position) / (coefficient * coefficient * ammoVelocity * ammoVelocity - targetRigid.velocity.sqrMagnitude));
 
                 Vector3 expectedTargetPosition = target.position + targetRigid.velocity * expectedTime;
                 Vector3 expectedTargetDirection = (expectedTargetPosition - myTransform.position).normalized;
                 myTransform.forward = expectedTargetDirection;
             }
             myTransform.localRotation *= Quaternion.Euler(0, projectileSpread, 0);
-            myRigidbody.AddForce(myTransform.forward * (KocmoLaserCannon.propulsion * coefficient));
+            myRigidbody.AddForce(myTransform.forward * (propulsion * coefficient));
             vfx.enabled = true;
 
             yield return SatelliteCommander.waitLaserRecovery;
@@ -70,8 +94,8 @@ namespace Kocmoca
                     hull.Hit(new DamageInfo()
                     {
                         Attacker = owner,
-                        Hull = (int)(basicDamage * KocmoLaserCannon.coefficientMinDamage),
-                        Shield = (int)(basicDamage * KocmoLaserCannon.coefficientMaxDamage)
+                        Hull = (int)(basicDamage * hullPenetration),
+                        Shield = (int)(basicDamage * shieldPenetration)
                     });
                     ResourceManager.hitSpark.Reuse(raycastHit.point, Quaternion.identity);
                 }
@@ -89,6 +113,7 @@ namespace Kocmoca
             pointStarting = myTransform.position;
         }
 
+        // Raycast 已棄用
         protected override void CollisionDetection()
         {
             raycastHits = Physics.RaycastAll(pointStarting, myTransform.forward, Vector3.Distance(myTransform.position, pointStarting));
@@ -101,8 +126,8 @@ namespace Kocmoca
                     hull.Hit(new DamageInfo()
                     {
                         Attacker = owner,
-                        Hull = (int)(basicDamage * KocmoLaserCannon.coefficientMinDamage),
-                        Shield = (int)(basicDamage * KocmoLaserCannon.coefficientMaxDamage)
+                        Hull = (int)(basicDamage * hullPenetration),
+                        Shield = (int)(basicDamage * shieldPenetration)
                     });
                     ResourceManager.hitSpark.Reuse(raycastHits[0].point, Quaternion.identity);
                 }

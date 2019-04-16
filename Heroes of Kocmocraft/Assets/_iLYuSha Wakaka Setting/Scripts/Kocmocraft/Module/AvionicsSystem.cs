@@ -162,7 +162,7 @@ namespace Kocmoca
         // Input function ( yaw) 
         public void TurnControl(float turn)
         {
-            yaw += turn * Time.deltaTime * SpeedYaw;
+            yaw += turn * Time.deltaTime * 0.2f;
         }
         public void SpeedControl(float throttle, bool useAfterBurner)
         {
@@ -173,7 +173,7 @@ namespace Kocmoca
                 if (useAfterBurner)
                 {
                     dataSpeed.Value = Mathf.Lerp(dataSpeed.Value, dataSpeed.Max, Time.deltaTime * (0.73f * throttle));
-                    dataEnergy.Value = Mathf.Clamp(dataEnergy.Value - Time.deltaTime * 163, 0, dataEnergy.Max);
+                    dataEnergy.Value = Mathf.Clamp(dataEnergy.Value - Time.deltaTime * 0.163f, 0, dataEnergy.Max);
                 }
                 else
                     dataSpeed.Value = Mathf.Lerp(dataSpeed.Value, valueSpeedHigh, Time.deltaTime * (0.73f * throttle));
