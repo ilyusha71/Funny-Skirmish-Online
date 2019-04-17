@@ -2,6 +2,23 @@
 
 namespace Kocmoca
 {
+
+    public static class RadarParameter
+    {
+        public static readonly int maxSearchRadiusSqr = 4000000; // 2000m
+        public static readonly int maxLockDistanceSqr = 739100; // 860m
+        public static readonly float maxSearchAngle = Mathf.Cos(37 * Mathf.Deg2Rad);
+        public static readonly float maxLockAngle = Mathf.Cos(27 * Mathf.Deg2Rad);
+
+        // ★☆☆☆☆☆☆ 1000 ~ 1500 m
+        // ★★☆☆☆☆☆ 1500 ~ 2000 m
+        // ★★★☆☆☆☆ 2000 ~ 2500 m
+        // ★★★★☆☆☆ 2500 ~ 3000 m
+        // ★★★★★☆☆ 3000 ~ 3500 m
+        // ★★★★★★☆ 3500 ~ 4000 m
+        // ★★★★★★★ 4000 ~ 4500 m
+    }
+
     // ELRR 極遠距雷達
     public static class ExtremelyLongRangeRadar
     {

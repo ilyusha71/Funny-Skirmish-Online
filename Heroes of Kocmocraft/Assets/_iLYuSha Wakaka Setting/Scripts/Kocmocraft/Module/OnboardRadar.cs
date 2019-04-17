@@ -6,22 +6,6 @@
  * 1. Radar System -> Onboard Radar
  * 2. 尋找與標示敵我航機
  * 3. 輔助FCS鎖定目標
- * 
- * Level 1：短程雷達（適合新手）（人機配置：低速宇航機）
- *      a. 機炮最大開火角度：7°
- *      b. 投射武器最大釋放角度：9°
- *      c. 追蹤武器最大釋放角度：21°
- *      d. 最遠自動瞄準距離：700m
- * Level 2：中程雷達（適合進階玩家）（人機配置：中速宇航機配置）
- *      a. 機炮最大開火角度：5°
- *      b. 投射武器最大釋放角度：7°
- *      c. 追蹤武器最大釋放角度：16°
- *      d. 最遠自動瞄準距離：1600m
- * Level 3：長程雷達系統（適合資深老手）（人機配置：高速宇航機配置）
- *      a. 機炮最大開火角度：3°
- *      b. 投射武器最大釋放角度：5°
- *      c. 追蹤武器最大釋放角度：11°
- *      d. 最遠自動瞄準距離：3000m
  ***************************************************************************/
 using Photon.Pun;
 using System.Collections.Generic;
@@ -31,8 +15,6 @@ namespace Kocmoca
 {
     public class OnboardRadar : MonoBehaviour
     {
-        public Transform[] LISTallFoe;
-        public Transform[] LISTallMark;
         [Header("Dependent Components")]
         private Transform myTransform;
         private PhotonView myPhotonView;
@@ -44,8 +26,9 @@ namespace Kocmoca
         public List<Transform> listFoeAircrafts = new List<Transform>();
         private Vector3 myPosition;
         [Header("Onboard Radar")]
-        //public Transform[] targetOnboard;
-        //private const int maxTargetCount = 10;
+        public Transform[] targetOnboard;
+        private const int maxtOnboardCount = 10;
+        private int countOnboard = 0;
         // Search
         private Vector3 scanDiff;
         private float scanDistanceSqr;
@@ -61,7 +44,7 @@ namespace Kocmoca
         private float minLockTime;
         private float nextLockTime;
         [Header("Target")]
-        public Transform targetTrack;
+        public Transform targetTrack; // 僅用於Bot跟隨目標使用
         public Transform targetLocked;
 
         [Header("Auto Aim")] // 自動瞄準系統（適用Player與Bot）
@@ -71,7 +54,6 @@ namespace Kocmoca
 
         [Header("Radar Lock On")] // 雷達鎖定系統（適用Player與Bot）
         public Transform targetRadarLockOn; // 符合機載
-
 
         public int MaxSearchRadiusSqr;
         public int MaxLockDistanceSqr;
@@ -90,36 +72,89 @@ namespace Kocmoca
             listFriendAircrafts = SatelliteCommander.Instance.factionData[faction].listFriend;
             listFoeAircrafts = SatelliteCommander.Instance.factionData[faction].listFoe;
 
-            //targetOnboard = new Transform[10];
+            targetOnboard = new Transform[maxtOnboardCount];
             minLockTime = 0.73f;
 
-            if (isLocalPlayer)
+            switch (type)
             {
-                switch (type)
-                {
-                    case Type.FastFoodMan:
-                        MaxSearchRadiusSqr = UltraWideRangeRadar.MaxSearchRadiusSqr;
-                        MaxLockDistanceSqr = UltraWideRangeRadar.MaxLockDistanceSqr;
-                        MaxSearchAngle = UltraWideRangeRadar.MaxSearchAngle;
-                        MaxLockAngle = UltraWideRangeRadar.MaxLockAngle;
-                        MaxAutoAim = UltraWideRangeRadar.MaxAutoAim;
-                        break;
-                    default:
-                        MaxSearchRadiusSqr = 25000000;// RadarParameter.MaxSearchRadiusSqr[type];
-                        MaxLockDistanceSqr = 12250000;// RadarParameter.MaxLockDistanceSqr[type];
-                        MaxSearchAngle = RadarParameter.maxSearchAngle;
-                        MaxLockAngle = RadarParameter.maxLockAngle;
-                        MaxAutoAim = Mathf.Cos(1 * Mathf.Deg2Rad);// RadarParameter.MaxAutoAim[type];
-                        break;
-                }
+                case Type.MinionArmor:
+                    MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
+                    MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
+                    MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
+                    MaxLockAngle = ShortRangeRadar.MaxLockAngle;
+                    MaxAutoAim = ShortRangeRadar.MaxAutoAim;
+                    break;
+                case Type.RedBullEnergy:
+                    MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
+                    MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
+                    MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
+                    MaxLockAngle = ShortRangeRadar.MaxLockAngle;
+                    MaxAutoAim = ShortRangeRadar.MaxAutoAim;
+                    break;
+                case Type.VladimirPutin:
+                    MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
+                    MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
+                    MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
+                    MaxLockAngle = ShortRangeRadar.MaxLockAngle;
+                    MaxAutoAim = ShortRangeRadar.MaxAutoAim;
+                    break;
+                case Type.PaperAeroplane:
+                    MaxSearchRadiusSqr = ExtremelyLongRangeRadar.MaxSearchRadiusSqr;
+                    MaxLockDistanceSqr = ExtremelyLongRangeRadar.MaxLockDistanceSqr;
+                    MaxSearchAngle = ExtremelyLongRangeRadar.MaxSearchAngle;
+                    MaxLockAngle = ExtremelyLongRangeRadar.MaxLockAngle;
+                    MaxAutoAim = ExtremelyLongRangeRadar.MaxAutoAim;
+                    break;
+                case Type.BulletBill:
+                    MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
+                    MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
+                    MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
+                    MaxLockAngle = ShortRangeRadar.MaxLockAngle;
+                    MaxAutoAim = ShortRangeRadar.MaxAutoAim;
+                    break;
+                case Type.TimeMachine:
+                    MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
+                    MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
+                    MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
+                    MaxLockAngle = ShortRangeRadar.MaxLockAngle;
+                    MaxAutoAim = ShortRangeRadar.MaxAutoAim;
+                    break;
+                case Type.AceKennel:
+                    MaxSearchRadiusSqr = UltraWideRangeRadar.MaxSearchRadiusSqr;
+                    MaxLockDistanceSqr = UltraWideRangeRadar.MaxLockDistanceSqr;
+                    MaxSearchAngle = UltraWideRangeRadar.MaxSearchAngle;
+                    MaxLockAngle = UltraWideRangeRadar.MaxLockAngle;
+                    MaxAutoAim = UltraWideRangeRadar.MaxAutoAim;
+                    break;
+                case Type.KirbyStar:
+                    MaxSearchRadiusSqr = UltraWideRangeRadar.MaxSearchRadiusSqr;
+                    MaxLockDistanceSqr = UltraWideRangeRadar.MaxLockDistanceSqr;
+                    MaxSearchAngle = UltraWideRangeRadar.MaxSearchAngle;
+                    MaxLockAngle = UltraWideRangeRadar.MaxLockAngle;
+                    MaxAutoAim = UltraWideRangeRadar.MaxAutoAim;
+                    break;
+                //case Type.FastFoodMan:
+                //    MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
+                //    MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
+                //    MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
+                //    MaxLockAngle = ShortRangeRadar.MaxLockAngle;
+                //    MaxAutoAim = ShortRangeRadar.MaxAutoAim;
+                //    break;
+                case Type.PumpkinGhost:
+                    MaxSearchRadiusSqr = ExtremelyLongRangeRadar.MaxSearchRadiusSqr;
+                    MaxLockDistanceSqr = ExtremelyLongRangeRadar.MaxLockDistanceSqr;
+                    MaxSearchAngle = ExtremelyLongRangeRadar.MaxSearchAngle;
+                    MaxLockAngle = ExtremelyLongRangeRadar.MaxLockAngle;
+                    MaxAutoAim = ExtremelyLongRangeRadar.MaxAutoAim;
+                    break;
+                default:
+                    MaxSearchRadiusSqr = RadarParameter.maxSearchRadiusSqr;
+                    MaxLockDistanceSqr = RadarParameter.maxLockDistanceSqr;
+                    MaxSearchAngle = RadarParameter.maxSearchAngle;
+                    MaxLockAngle = RadarParameter.maxLockAngle;
+                    MaxAutoAim = KocmoLaserCannon.maxFireAngle;
+                    break;
             }
-            else
-            {
-                MaxSearchRadiusSqr = RadarParameter.maxSearchRadiusSqr;
-                MaxLockDistanceSqr = RadarParameter.maxLockDistanceSqr;
-                MaxAutoAim = KocmoLaserCannon.maxFireAngle;
-            }
-
         }
         private void Update()
         {
@@ -155,13 +190,15 @@ namespace Kocmoca
                 if (!targetRadarLockOn) targetRadarLockOn = targetNearest;
                 if (!isLocalPlayer) targetTrack = targetNearest;
             }
+
+
             if (targetRadarLockOn)
             {
                 targetDiff = targetRadarLockOn.position - myPosition;
                 targetDistanceSqr = Vector3.SqrMagnitude(targetDiff);
                 targetDirection = Vector3.Dot(targetDiff.normalized, myTransform.forward);
 
-                if (targetDistanceSqr < MaxLockDistanceSqr && targetDirection > KocmoMissileLauncher.maxFireAngle)
+                if (targetDistanceSqr < MaxLockDistanceSqr && targetDirection > MaxLockAngle)
                 {
                     if (isLocalPlayer)
                         HeadUpDisplayManager.Instance.MarkTarget(targetRadarLockOn, targetDistanceSqr);
@@ -169,6 +206,7 @@ namespace Kocmoca
                 else
                 {
                     nextLockTime = Time.time + minLockTime;
+                    targetTrack = null;
                     targetRadarLockOn = null;
                 }
             }
@@ -176,7 +214,7 @@ namespace Kocmoca
             {
                 //if (!isLocalPlayer)
                 //{
-                //    for (int i = 0; i < 10; i++)
+                //    for (int i = 0; i < maxtOnboardCount; i++)
                 //    {
                 //        if (targetOnboard[i])
                 //            targetTrack = targetOnboard[i];
@@ -186,13 +224,17 @@ namespace Kocmoca
         }
         void TargetSearch()
         {
+            countOnboard = 0;
+            for (int k = 0; k < maxtOnboardCount; k++)
+            {
+                targetOnboard[k] = null;
+            }
             targetAutoAim = null;
             targetNearest = null;
             targetNearestDirection = 0;
             int countFoe = listFoeAircrafts.Count;
             for (int i = 0; i < countFoe; i++)
             {
-                //targetOnboard[i] = null;
                 if (i < countFoe && listFoeAircrafts[i])
                 {
                     scanDiff = listFoeAircrafts[i].position - myPosition;
@@ -200,9 +242,16 @@ namespace Kocmoca
                     scanDirection = Vector3.Dot(scanDiff.normalized, myTransform.forward);
                     if (scanDistanceSqr <= MaxSearchRadiusSqr && scanDirection >= MaxSearchAngle)
                     {
-                        //targetOnboard[i] = listFoeAircrafts[i];
                         if (isLocalPlayer)
                             SatelliteCommander.Instance.IdentifyTarget(listFoeAircrafts[i]); // 標記搜索範圍的所有敵機
+                        else
+                        {
+                            if (countOnboard < 10)
+                            {
+                                targetOnboard[countOnboard] = listFoeAircrafts[i];
+                                countOnboard++;
+                            }
+                        }
 
                         if (scanDistanceSqr <= MaxLockDistanceSqr && scanDirection >= MaxLockAngle)
                         {
@@ -217,6 +266,7 @@ namespace Kocmoca
 
                                 if (scanDirection > MaxAutoAim)
                                     targetAutoAim = targetNearest;
+
                             }
                         }
                     }

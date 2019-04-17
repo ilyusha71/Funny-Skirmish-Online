@@ -39,9 +39,6 @@ namespace Kocmoca
         private int targetNumber;
         [Header("Target Onboard")]
         public Transform targetTrack;
-        public float distanceTarget;
-        public float directionTarget;
-
         public Transform targetAutoAim;
         public Transform targetRadarLockOn;
         public float targetRadarDistance;
@@ -59,9 +56,6 @@ namespace Kocmoca
         public float targetTrackingDistanceSqr;
         public float targetTrackingDirection;
 
-
-        // 
-
         void Start()
         {
             beacons = FindObjectsOfType<EnergyCore>();
@@ -77,8 +71,7 @@ namespace Kocmoca
             myMissileFCS = GetComponentsInChildren<FireControlSystem>()[2];
             // Modular Parameter
             coordinateSpawn = myTransform.position;
-            targetTrack = beacons[Random.Range(0, beacons.Length)].transform;
-            coordinateDestination = targetTrack.position;
+            coordinateDestination = beacons[Random.Range(0, beacons.Length)].transform.position;
             timestatetemp = 0;
         }
 
@@ -97,8 +90,7 @@ namespace Kocmoca
                     nearestDistance = distance;
                 }
             }
-            targetTrack = beacons[nearestBeacon].transform;
-            coordinateDestination = targetTrack.position;
+            coordinateDestination = beacons[nearestBeacon].transform.position;
             myAvionicsSystem.PositionTarget = coordinateDestination;
         }
 
@@ -115,8 +107,7 @@ namespace Kocmoca
                     farthestDistance = distance;
                 }
             }
-            targetTrack = beacons[farthestBeacon].transform;
-            coordinateDestination = targetTrack.position;
+            coordinateDestination = beacons[farthestBeacon].transform.position;
             myAvionicsSystem.PositionTarget = coordinateDestination;
         }
 
@@ -125,8 +116,6 @@ namespace Kocmoca
             if (!myAvionicsSystem)
                 return;
 
-            //distanceTarget = Vector3.Distance(coordinateDestination, myTransform.position);
-            //directionTarget = Vector3.SignedAngle(coordinateDestination - myTransform.position, myTransform.forward, myTransform.up);
             distanceDestination = Vector3.Distance(coordinateDestination, myTransform.position);
             switch (AIstate)
             {
@@ -186,7 +175,7 @@ namespace Kocmoca
         }
         void Attack()
         {
-            if (myTransform.position.y > limitElevation || Time.time > timestatetemp+9)
+            if (myTransform.position.y > limitElevation || Time.time > timestatetemp + 60)
             {
                 IntoLeaveState();
                 return;
@@ -200,26 +189,26 @@ namespace Kocmoca
             targetAutoAim = myOnboardRadar.targetAutoAim;
             targetRadarLockOn = myOnboardRadar.targetRadarLockOn;
 
-            //if (targetAutoAim)
-            //    myLaserFCS.Shoot();
-            if (targetRadarLockOn)
-            {
-                if (myMissileFCS.countAmmo > 0)
-                {
-                    myMissileFCS.target = targetRadarLockOn;
-                    myMissileFCS.Shoot();
-                }
+            if (targetAutoAim)
+                myLaserFCS.Shoot();
+            //if (targetRadarLockOn)
+            //{
+            //    if (myMissileFCS.countAmmo > 0)
+            //    {
+            //        myMissileFCS.target = targetRadarLockOn;
+            //        myMissileFCS.Shoot();
+            //    }
 
-                float distanceTarget = Vector3.Distance(myTransform.position, targetRadarLockOn.position);
-                if (distanceTarget < 300)
-                {
-                    if (myRocketFCS.countAmmo > 0)
-                    {
-                        myRocketFCS.target = targetRadarLockOn;
-                        myRocketFCS.Shoot();
-                    }
-                }
-            }
+            //    float distanceTarget = Vector3.Distance(myTransform.position, targetRadarLockOn.position);
+            //    if (distanceTarget < 300)
+            //    {
+            //        if (myRocketFCS.countAmmo > 0)
+            //        {
+            //            myRocketFCS.target = targetRadarLockOn;
+            //            myRocketFCS.Shoot();
+            //        }
+            //    }
+            //}
             if (targetTrack)
             {
                 Vector3 targetTrackingPosition = targetTrack.position;

@@ -27,6 +27,7 @@ namespace Kocmoca
         private float timeReload; // 飛彈重載耗時
         public int maxAmmoCapacity { get; set; } // 最大載彈量
         private float rateFire; // 開火速率
+        private int repeating = 1;
         private float projectileSpread;
         private AudioClip shootingSound;
         // FSC Realtime Info
@@ -47,7 +48,7 @@ namespace Kocmoca
         private Vector3 expectedTargetPosition;
         private Vector3 expectedTargetDirection;
 
-        public void Initialize(Type type, int number,bool isLocal)
+        public void Initialize(Type type, int number, bool isLocal)
         {
             // Dependent Components
             myTransform = transform;
@@ -62,16 +63,69 @@ namespace Kocmoca
             if (typeFCS == FireControlSystemType.Unknown) Debug.LogError("No FCS");
             LoadFireControlSystemData();
             InitializeLauncher();
+
             if (typeFCS == FireControlSystemType.Laser)
             {
                 switch (type)
                 {
-                    case Type.FastFoodMan:
+                    case Type.MinionArmor:
+                        rateFire = KocmoArmorPiercing.rateFire;
+                        repeating = KocmoArmorPiercing.repeating;
+                        projectileSpread = KocmoArmorPiercing.projectileSpread;
+                        break;
+                    case Type.RedBullEnergy:
                         rateFire = KocmoUltraPowerPlasma.rateFire;
+                        repeating = KocmoUltraPowerPlasma.repeating;
                         projectileSpread = KocmoUltraPowerPlasma.projectileSpread;
+                        break;
+                    case Type.VladimirPutin:
+                        rateFire = KocmoUltraPowerPlasma.rateFire;
+                        repeating = KocmoUltraPowerPlasma.repeating;
+                        projectileSpread = KocmoUltraPowerPlasma.projectileSpread;
+                        break;
+                    case Type.PaperAeroplane:
+                        rateFire = KocmoHyperAlphaRay.rateFire;
+                        repeating = KocmoUltraPowerPlasma.repeating;
+                        projectileSpread = KocmoHyperAlphaRay.projectileSpread;
+                        break;
+                    case Type.BulletBill:
+                        rateFire = KocmoUltraPowerPlasma.rateFire;
+                        repeating = KocmoUltraPowerPlasma.repeating;
+                        projectileSpread = KocmoUltraPowerPlasma.projectileSpread;
+                        break;
+                    case Type.TimeMachine:
+                        rateFire = KocmoLaser.rateFire;
+                        repeating = KocmoLaser.repeating;
+                        projectileSpread = KocmoLaser.projectileSpread;
+                        break;
+                    case Type.AceKennel:
+                        rateFire = KocmoArmorPiercing.rateFire;
+                        repeating = KocmoArmorPiercing.repeating;
+                        projectileSpread = KocmoArmorPiercing.projectileSpread;
+                        break;
+                    case Type.KirbyStar:
+                        rateFire = KocmoUltraPowerPlasma.rateFire;
+                        repeating = KocmoUltraPowerPlasma.repeating;
+                        projectileSpread = KocmoUltraPowerPlasma.projectileSpread;
+                        break;
+                    case Type.nWidia:
+                        rateFire = KocmoHeavyLaser.rateFire;
+                        repeating = KocmoHeavyLaser.repeating;
+                        projectileSpread = KocmoHeavyLaser.projectileSpread;
+                        break;
+                    case Type.FastFoodMan:
+                        rateFire = KocmoLaser.rateFire;
+                        repeating = KocmoLaser.repeating;
+                        projectileSpread = KocmoLaser.projectileSpread;
+                        break;
+                    case Type.PumpkinGhost:
+                        rateFire = KocmoMegaRailgun.rateFire;
+                        repeating = KocmoMegaRailgun.repeating;
+                        projectileSpread = KocmoMegaRailgun.projectileSpread;
                         break;
                     default:
                         rateFire = KocmoLaserCannon.rateFire;
+                        repeating = KocmoUltraPowerPlasma.repeating;
                         projectileSpread = KocmoLaserCannon.projectileSpread;
                         break;
                 }
@@ -148,6 +202,15 @@ namespace Kocmoca
                 nextTimeShoot = Time.time + rateFire;
                 countAmmo--;
                 LauncherControl();
+
+                if (repeating == 2)
+                    Invoke("LauncherControl",0.3f);
+                else if (repeating == 3)
+                {
+                    Invoke("LauncherControl", 0.23f);
+                    Invoke("LauncherControl", 0.46f);
+                }
+
             }
         }
         void LauncherControl()
@@ -155,7 +218,7 @@ namespace Kocmoca
             currentLauncher++;
             currentLauncher = (int)Mathf.Repeat(currentLauncher, countLauncher);
 
-            target = typeFCS == FireControlSystemType.Missile ? myOnboardRadar.targetRadarLockOn : myOnboardRadar.targetAutoAim;
+            target = typeFCS == FireControlSystemType.Laser ? myOnboardRadar.targetAutoAim : myOnboardRadar.targetRadarLockOn;
             targetNumber = target ? target.GetComponent<KocmocraftManager>().Number : 0;
 
             for (int t = 0; t < turnFire; t++)

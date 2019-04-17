@@ -92,7 +92,7 @@ namespace Kocmoca
                     Vector3 relativePoint = this.transform.InverseTransformPoint(positionTarget).normalized;
                     mainRot = Quaternion.LookRotation(positionTarget - this.transform.position);
                     myRigidbody.rotation = Quaternion.Lerp(myRigidbody.rotation, mainRot, Time.fixedDeltaTime * (RotationSpeed * 0.005f) * SpeedYaw);
-                    myRigidbody.rotation *= Quaternion.Euler(-relativePoint.y * SpeedPitch * 0.3f, 0, -relativePoint.x * SpeedRoll * 0.5f);
+                    myRigidbody.rotation *= Quaternion.Euler(-relativePoint.y * SpeedPitch * 0.5f, 0, -relativePoint.x * SpeedRoll * 0.5f);
 
                 }
                 velocityTarget = (myRigidbody.rotation * Vector3.forward) * (dataSpeed.Value);

@@ -46,11 +46,65 @@ namespace Kocmoca
             Type type = owner.Type;
             switch (type)
             {
-                case Type.FastFoodMan:
+                case Type.MinionArmor:
                     ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
-                    propulsion = KocmoUltraPowerPlasma.propulsion;                    
+                    propulsion = KocmoUltraPowerPlasma.propulsion;
                     hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
                     shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
+                    break;
+                case Type.RedBullEnergy:
+                    ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
+                    propulsion = KocmoUltraPowerPlasma.propulsion;
+                    hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
+                    shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
+                    break;
+                case Type.VladimirPutin:
+                    ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
+                    propulsion = KocmoUltraPowerPlasma.propulsion;
+                    hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
+                    shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
+                    break;
+                case Type.PaperAeroplane:
+                    ammoVelocity = KocmoHyperAlphaRay.ammoVelocity;
+                    propulsion = KocmoHyperAlphaRay.propulsion;
+                    hullPenetration = KocmoHyperAlphaRay.hullPenetration;
+                    shieldPenetration = KocmoHyperAlphaRay.shieldPenetration;
+                    break;
+                case Type.BulletBill:
+                    ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
+                    propulsion = KocmoUltraPowerPlasma.propulsion;
+                    hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
+                    shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
+                    break;
+                case Type.TimeMachine:
+                    ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
+                    propulsion = KocmoUltraPowerPlasma.propulsion;
+                    hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
+                    shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
+                    break;
+                case Type.AceKennel:
+                    ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
+                    propulsion = KocmoUltraPowerPlasma.propulsion;
+                    hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
+                    shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
+                    break;
+                case Type.KirbyStar:
+                    ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
+                    propulsion = KocmoUltraPowerPlasma.propulsion;
+                    hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
+                    shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
+                    break;
+                case Type.FastFoodMan:
+                    ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
+                    propulsion = KocmoUltraPowerPlasma.propulsion;
+                    hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
+                    shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
+                    break;
+                case Type.PumpkinGhost:
+                    ammoVelocity = KocmoHyperAlphaRay.ammoVelocity;
+                    propulsion = KocmoHyperAlphaRay.propulsion;
+                    hullPenetration = KocmoHyperAlphaRay.hullPenetration;
+                    shieldPenetration = KocmoHyperAlphaRay.shieldPenetration;
                     break;
                 default:
                     ammoVelocity = KocmoLaserCannon.flightVelocity;
