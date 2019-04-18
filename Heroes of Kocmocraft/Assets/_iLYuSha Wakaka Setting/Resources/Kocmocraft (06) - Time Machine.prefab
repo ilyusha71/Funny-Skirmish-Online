@@ -754,7 +754,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114785314439724286}
   - {fileID: 114904454429539992}
-  viewIdField: 21
+  viewIdField: 0
   InstantiationId: 21
   isRuntimeInstantiated: 0
 --- !u!114 &114785314439724286
@@ -812,10 +812,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4684453883842506}
     m_Modifications:
-    - target: {fileID: 1243008839029272, guid: 4f708efe013eeb04c9d2e745f542ac95, type: 3}
-      propertyPath: m_Name
-      value: Hangar (06) - Time Machine
-      objectReference: {fileID: 0}
     - target: {fileID: 4200221936029446, guid: 4f708efe013eeb04c9d2e745f542ac95, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -859,6 +855,10 @@ PrefabInstance:
     - target: {fileID: 4200221936029446, guid: 4f708efe013eeb04c9d2e745f542ac95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243008839029272, guid: 4f708efe013eeb04c9d2e745f542ac95, type: 3}
+      propertyPath: m_Name
+      value: Hangar (06) - Time Machine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f708efe013eeb04c9d2e745f542ac95, type: 3}

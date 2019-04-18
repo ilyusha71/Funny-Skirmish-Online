@@ -482,7 +482,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114689225960648162}
   - {fileID: 114664347253659984}
-  viewIdField: 16
+  viewIdField: 0
   InstantiationId: 16
   isRuntimeInstantiated: 0
 --- !u!114 &114689225960648162
@@ -746,10 +746,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4042654986625390}
     m_Modifications:
-    - target: {fileID: 1011593021132322, guid: d60f161fafa6d344b98f82e5fac82855, type: 3}
-      propertyPath: m_Name
-      value: Hangar (08) - Kirby Star
-      objectReference: {fileID: 0}
     - target: {fileID: 4784808489038146, guid: d60f161fafa6d344b98f82e5fac82855, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -793,6 +789,10 @@ PrefabInstance:
     - target: {fileID: 4784808489038146, guid: d60f161fafa6d344b98f82e5fac82855, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011593021132322, guid: d60f161fafa6d344b98f82e5fac82855, type: 3}
+      propertyPath: m_Name
+      value: Hangar (08) - Kirby Star
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d60f161fafa6d344b98f82e5fac82855, type: 3}

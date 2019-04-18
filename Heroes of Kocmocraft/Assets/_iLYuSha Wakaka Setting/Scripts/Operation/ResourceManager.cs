@@ -32,6 +32,9 @@ namespace Kocmoca
         public AudioClip soundRocket;
         public AudioClip soundMissile;
 
+        public AudioClip soundAlphaRay;
+        public AudioClip soundRailgun;
+
         // OPD
         public ObjectPoolData[] listAmmoOPD = new ObjectPoolData[3];
         public ObjectPoolData listAmmoBS = new ObjectPoolData();

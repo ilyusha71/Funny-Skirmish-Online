@@ -614,7 +614,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114285769961990424}
   - {fileID: 114515906280689516}
-  viewIdField: 23
+  viewIdField: 0
   InstantiationId: 23
   isRuntimeInstantiated: 0
 --- !u!114 &114285769961990424
@@ -762,10 +762,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4456871611565948}
     m_Modifications:
-    - target: {fileID: 1595220853927336, guid: cd9c38d10a8f8e44999992f8a4470b0f, type: 3}
-      propertyPath: m_Name
-      value: Hangar (15) - Papoy Unicorn
-      objectReference: {fileID: 0}
     - target: {fileID: 4711253631322490, guid: cd9c38d10a8f8e44999992f8a4470b0f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -809,6 +805,10 @@ PrefabInstance:
     - target: {fileID: 4711253631322490, guid: cd9c38d10a8f8e44999992f8a4470b0f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595220853927336, guid: cd9c38d10a8f8e44999992f8a4470b0f, type: 3}
+      propertyPath: m_Name
+      value: Hangar (15) - Papoy Unicorn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd9c38d10a8f8e44999992f8a4470b0f, type: 3}

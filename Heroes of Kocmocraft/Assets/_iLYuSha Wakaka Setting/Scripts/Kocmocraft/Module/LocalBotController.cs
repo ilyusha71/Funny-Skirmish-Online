@@ -10,11 +10,20 @@ namespace Kocmoca
         Patrol,
         Attack,
         Leave,
+
+        WP,
+        Observe,
+    }
+    public enum Mission
+    {
+        Default,
+        Snipper,
     }
 
     public class LocalBotController : MonoBehaviour
     {
         public EnergyCore[] beacons;
+        private int countBeacon;
         // Dependent Components
         private Transform myTransform;
         private Rigidbody myRigidbody;
@@ -56,9 +65,15 @@ namespace Kocmoca
         public float targetTrackingDistanceSqr;
         public float targetTrackingDirection;
 
+        [Header("Mission")]
+        public Mission mission;
+        public Transform nearestBeacon;
+        public Vector3 observationPost;
+
         void Start()
         {
             beacons = FindObjectsOfType<EnergyCore>();
+            countBeacon = beacons.Length;
             // Dependent Components
             myTransform = transform;
             myRigidbody = GetComponent<Rigidbody>();
@@ -73,24 +88,51 @@ namespace Kocmoca
             coordinateSpawn = myTransform.position;
             coordinateDestination = beacons[Random.Range(0, beacons.Length)].transform.position;
             timestatetemp = 0;
+
+
+
+
+            // 尋找最近的Beacon
+            int nearest = -1;
+            float distanceNearest = int.MaxValue;
+            for (int i = 0; i < countBeacon; i++)
+            {
+                float distanceSqr = Vector3.SqrMagnitude(beacons[i].transform.position - myTransform.position);
+                if (distanceSqr < distanceNearest)
+                {
+                    nearest = i;
+                    distanceNearest = distanceSqr;
+                }
+            }
+            nearestBeacon = beacons[nearest].transform;
+
+            switch (mission)
+            {
+                case Mission.Snipper:
+                    AIstate = AIState.WP;
+                    observationPost = Vector3.Lerp(nearestBeacon.position, myTransform.position, 1370.0f / distanceNearest);
+                    myAvionicsSystem.PositionTarget = observationPost;
+                    break;
+                default:break;
+            }
         }
 
         private float dot;
 
         void FlyToNearestBeacon()
         {
-            int nearestBeacon = -1;
+            int indexNearest = -1;
             float nearestDistance = int.MaxValue;
             for (int i = 0; i < beacons.Length; i++)
             {
                 float distance = Vector3.Distance(myTransform.position, beacons[i].transform.position);
                 if (distance < nearestDistance)
                 {
-                    nearestBeacon = i;
+                    indexNearest = i;
                     nearestDistance = distance;
                 }
             }
-            coordinateDestination = beacons[nearestBeacon].transform.position;
+            coordinateDestination = beacons[indexNearest].transform.position;
             myAvionicsSystem.PositionTarget = coordinateDestination;
         }
 
@@ -117,18 +159,56 @@ namespace Kocmoca
                 return;
 
             distanceDestination = Vector3.Distance(coordinateDestination, myTransform.position);
-            switch (AIstate)
+            if (mission == Mission.Default)
             {
-                case AIState.Idle:
-                    Idle(); break;
-                case AIState.Patrol:
-                    Patrol(); break;
-                case AIState.Attack:
-                    Attack(); break;
-                case AIState.Leave:
-                    Leave(); break;
+                switch (AIstate)
+                {
+                    case AIState.Idle:
+                        Idle(); break;
+                    case AIState.Patrol:
+                        Patrol(); break;
+                    case AIState.Attack:
+                        Attack(); break;
+                    case AIState.Leave:
+                        Leave(); break;
+                }
+            }
+            else
+            {
+                switch (AIstate)
+                {
+                    case AIState.WP:
+                        GotoObservationPost(); break;
+                    case AIState.Observe:
+                        Observe(); break;
+                }
             }
         }
+
+
+        
+        void GotoObservationPost()
+        {
+            myAvionicsSystem.SpeedControl(1.0f, true);
+            targetTrack = myOnboardRadar.targetTrack;
+            if (targetTrack)
+                AIstate = AIState.Observe;
+        }
+
+        void Observe()
+        {
+            targetTrack = myOnboardRadar.targetTrack;
+            if (targetTrack)
+                myAvionicsSystem.PositionTarget = targetTrack.position;
+            else
+                AIstate = AIState.WP;
+
+            myAvionicsSystem.SpeedControl(-1.0f, false);
+            targetAutoAim = myOnboardRadar.targetAutoAim;
+            if (targetAutoAim)
+                myLaserFCS.Shoot();
+        }
+
 
         void Idle()
         {

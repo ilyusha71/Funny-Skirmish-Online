@@ -24,7 +24,7 @@ namespace Kocmoca
         private int propulsion;
         private float hullPenetration;
         private float shieldPenetration;
-
+        Type type;
         private void Awake()
         {
             InitializeAmmo();
@@ -42,8 +42,9 @@ namespace Kocmoca
         IEnumerator FlyingInitialize()
         {
             yield return SatelliteCommander.waitShoot;
-
-            Type type = owner.Type;
+            vfx.startWidth = 0.5f;
+            vfx.endWidth = 0.5f;
+             type = owner.Type;
             switch (type)
             {
                 case Type.MinionArmor:
@@ -69,6 +70,8 @@ namespace Kocmoca
                     propulsion = KocmoHyperAlphaRay.propulsion;
                     hullPenetration = KocmoHyperAlphaRay.hullPenetration;
                     shieldPenetration = KocmoHyperAlphaRay.shieldPenetration;
+                    vfx.startWidth = 10;
+                    vfx.endWidth = 10;
                     break;
                 case Type.BulletBill:
                     ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
@@ -101,10 +104,12 @@ namespace Kocmoca
                     shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
                     break;
                 case Type.PumpkinGhost:
-                    ammoVelocity = KocmoHyperAlphaRay.ammoVelocity;
-                    propulsion = KocmoHyperAlphaRay.propulsion;
-                    hullPenetration = KocmoHyperAlphaRay.hullPenetration;
-                    shieldPenetration = KocmoHyperAlphaRay.shieldPenetration;
+                    ammoVelocity = KocmoMegaRailgun.ammoVelocity;
+                    propulsion = KocmoMegaRailgun.propulsion;
+                    hullPenetration = KocmoMegaRailgun.hullPenetration;
+                    shieldPenetration = KocmoMegaRailgun.shieldPenetration;
+                    vfx.startWidth = 10;
+                    vfx.endWidth = 10;
                     break;
                 default:
                     ammoVelocity = KocmoLaserCannon.flightVelocity;
@@ -151,6 +156,10 @@ namespace Kocmoca
                         Hull = (int)(basicDamage * hullPenetration),
                         Shield = (int)(basicDamage * shieldPenetration)
                     });
+                    if (type == Type.PaperAeroplane || type == Type.PumpkinGhost)
+                    {
+                        Debug.Log(owner.Name + " / " + (int)(basicDamage * hullPenetration) + " / " + (int)(basicDamage * shieldPenetration));
+                    }
                     ResourceManager.hitSpark.Reuse(raycastHit.point, Quaternion.identity);
                 }
                 else

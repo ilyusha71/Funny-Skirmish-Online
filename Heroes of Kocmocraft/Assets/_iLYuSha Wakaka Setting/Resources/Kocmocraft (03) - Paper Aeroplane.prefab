@@ -248,7 +248,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114169283681577278}
   - {fileID: 114014918623496050}
-  viewIdField: 22
+  viewIdField: 0
   InstantiationId: 22
   isRuntimeInstantiated: 0
 --- !u!114 &114169283681577278
@@ -747,10 +747,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4918607554303262}
     m_Modifications:
-    - target: {fileID: 1266597087661034, guid: 9491f6521ba4705429be9b0a1d23c85e, type: 3}
-      propertyPath: m_Name
-      value: Hangar (03) - Paper Aeroplane
-      objectReference: {fileID: 0}
     - target: {fileID: 4214695905297212, guid: 9491f6521ba4705429be9b0a1d23c85e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -794,6 +790,10 @@ PrefabInstance:
     - target: {fileID: 4214695905297212, guid: 9491f6521ba4705429be9b0a1d23c85e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266597087661034, guid: 9491f6521ba4705429be9b0a1d23c85e, type: 3}
+      propertyPath: m_Name
+      value: Hangar (03) - Paper Aeroplane
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9491f6521ba4705429be9b0a1d23c85e, type: 3}

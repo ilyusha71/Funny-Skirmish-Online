@@ -144,6 +144,8 @@ namespace Kocmoca
             gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalBot, (int)Type, Number, pilot, wreckage);
             gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalBot, (int)Faction, Type, Number); // local only
             gameObject.AddComponent<LocalBotController>();
+            if (Type == Type.PaperAeroplane || Type == Type.PumpkinGhost)
+                GetComponent<LocalBotController>().mission = Mission.Snipper;
             ActiveFCS(true);
             photonView.RPC("SynchronizeBotKocmocraft", RpcTarget.Others, portNumber);
         }

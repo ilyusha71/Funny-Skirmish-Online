@@ -87,6 +87,8 @@ namespace Kocmoca
                         rateFire = KocmoHyperAlphaRay.rateFire;
                         repeating = KocmoUltraPowerPlasma.repeating;
                         projectileSpread = KocmoHyperAlphaRay.projectileSpread;
+                        shootingSound = ResourceManager.instance.soundAlphaRay;
+                        myAudioSource.maxDistance = 500;
                         break;
                     case Type.BulletBill:
                         rateFire = KocmoUltraPowerPlasma.rateFire;
@@ -122,6 +124,8 @@ namespace Kocmoca
                         rateFire = KocmoMegaRailgun.rateFire;
                         repeating = KocmoMegaRailgun.repeating;
                         projectileSpread = KocmoMegaRailgun.projectileSpread;
+                        shootingSound = ResourceManager.instance.soundRailgun;
+                        myAudioSource.maxDistance = 300;
                         break;
                     default:
                         rateFire = KocmoLaserCannon.rateFire;
