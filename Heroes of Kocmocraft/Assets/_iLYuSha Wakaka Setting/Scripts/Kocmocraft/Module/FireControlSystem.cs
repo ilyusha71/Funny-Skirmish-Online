@@ -26,10 +26,10 @@ namespace Kocmoca
         private FireControlSystemType typeFCS = FireControlSystemType.Unknown;
         private float timeReload; // 飛彈重載耗時
         public int maxAmmoCapacity { get; set; } // 最大載彈量
-        private float rateFire; // 開火速率
-        private int repeating = 1;
-        private float projectileSpread;
-        private AudioClip shootingSound;
+        private float FireRate; // 開火速率
+        private int RepeatingCount = 1;
+        private float MaxProjectileSpread;
+        private AudioClip FireSound;
         // FSC Realtime Info
         public int countAmmo { get; set; }
         private int countLauncher;
@@ -69,73 +69,96 @@ namespace Kocmoca
                 switch (type)
                 {
                     case Type.MinionArmor:
-                        rateFire = KocmoArmorPiercing.rateFire;
-                        repeating = KocmoArmorPiercing.repeating;
-                        projectileSpread = KocmoArmorPiercing.projectileSpread;
+                        FireRate = KocmoArmorPiercing.FireRate;
+                        RepeatingCount = KocmoArmorPiercing.RepeatingCount;
+                        MaxProjectileSpread = KocmoArmorPiercing.MaxProjectileSpread;
                         break;
                     case Type.RedBullEnergy:
-                        rateFire = KocmoUltraPowerPlasma.rateFire;
-                        repeating = KocmoUltraPowerPlasma.repeating;
-                        projectileSpread = KocmoUltraPowerPlasma.projectileSpread;
+                        FireRate = KocmoUltraPowerPlasma.FireRate;
+                        RepeatingCount = KocmoUltraPowerPlasma.RepeatingCount;
+                        MaxProjectileSpread = KocmoUltraPowerPlasma.MaxProjectileSpread;
                         break;
                     case Type.VladimirPutin:
-                        rateFire = KocmoUltraPowerPlasma.rateFire;
-                        repeating = KocmoUltraPowerPlasma.repeating;
-                        projectileSpread = KocmoUltraPowerPlasma.projectileSpread;
+                        FireRate = KocmoMegaRailgun.FireRate;
+                        RepeatingCount = KocmoMegaRailgun.RepeatingCount;
+                        MaxProjectileSpread = KocmoMegaRailgun.MaxProjectileSpread;
+                        FireSound = ResourceManager.instance.soundRailgun;
+                        myAudioSource.maxDistance = 500;
                         break;
-                    case Type.PaperAeroplane:
-                        rateFire = KocmoHyperAlphaRay.rateFire;
-                        repeating = KocmoHyperAlphaRay.repeating;
-                        projectileSpread = KocmoHyperAlphaRay.projectileSpread;
-                        shootingSound = ResourceManager.instance.soundAlphaRay;
+                    //case Type.PaperAeroplane:
+                    //    FireRate = DevilTenderGazer.FireRate;
+                    //    RepeatingCount = DevilTenderGazer.RepeatingCount;
+                    //    MaxProjectileSpread = DevilTenderGazer.MaxProjectileSpread;
+                    //    FireSound = ResourceManager.instance.soundAlphaRay;
+                    //    myAudioSource.maxDistance = 700;
+                    //    break;
+                    case Type.Cuckoo:
+                        FireRate = DevilTenderGazer.FireRate;
+                        RepeatingCount = DevilTenderGazer.RepeatingCount;
+                        MaxProjectileSpread = DevilTenderGazer.MaxProjectileSpread;
+                        FireSound = ResourceManager.instance.soundAlphaRay;
                         myAudioSource.maxDistance = 700;
                         break;
                     case Type.BulletBill:
-                        rateFire = KocmoUltraPowerPlasma.rateFire;
-                        repeating = KocmoUltraPowerPlasma.repeating;
-                        projectileSpread = KocmoUltraPowerPlasma.projectileSpread;
+                        FireRate = KocmoUltraPowerPlasma.FireRate;
+                        RepeatingCount = KocmoUltraPowerPlasma.RepeatingCount;
+                        MaxProjectileSpread = KocmoUltraPowerPlasma.MaxProjectileSpread;
                         break;
                     case Type.TimeMachine:
-                        rateFire = KocmoHighspeedIonBlaster.rateFire;
-                        repeating = KocmoHighspeedIonBlaster.repeating;
-                        projectileSpread = KocmoHighspeedIonBlaster.projectileSpread;
+                        FireRate = KocmoHighspeedIonBlaster.FireRate;
+                        RepeatingCount = KocmoHighspeedIonBlaster.RepeatingCount;
+                        MaxProjectileSpread = KocmoHighspeedIonBlaster.MaxProjectileSpread;
                         break;
                     case Type.AceKennel:
-                        rateFire = KocmoArmorPiercing.rateFire;
-                        repeating = KocmoArmorPiercing.repeating;
-                        projectileSpread = KocmoArmorPiercing.projectileSpread;
+                        FireRate = KocmoArmorPiercing.FireRate;
+                        RepeatingCount = KocmoArmorPiercing.RepeatingCount;
+                        MaxProjectileSpread = KocmoArmorPiercing.MaxProjectileSpread;
                         break;
                     case Type.KirbyStar:
-                        rateFire = KocmoUltraPowerPlasma.rateFire;
-                        repeating = KocmoUltraPowerPlasma.repeating;
-                        projectileSpread = KocmoUltraPowerPlasma.projectileSpread;
+                        FireRate = KocmoUltraPowerPlasma.FireRate;
+                        RepeatingCount = KocmoUltraPowerPlasma.RepeatingCount;
+                        MaxProjectileSpread = KocmoUltraPowerPlasma.MaxProjectileSpread;
                         break;
                     case Type.nWidia:
-                        rateFire = KocmoHighspeedIonBlaster.rateFire;
-                        repeating = KocmoHighspeedIonBlaster.repeating;
-                        projectileSpread = KocmoHighspeedIonBlaster.projectileSpread;
+                        FireRate = KocmoHighspeedIonBlaster.FireRate;
+                        RepeatingCount = KocmoHighspeedIonBlaster.RepeatingCount;
+                        MaxProjectileSpread = KocmoHighspeedIonBlaster.MaxProjectileSpread;
                         break;
                     case Type.FastFoodMan:
-                        rateFire = KocmoLaser.rateFire;
-                        repeating = KocmoLaser.repeating;
-                        projectileSpread = KocmoLaser.projectileSpread;
+                        FireRate = KocmoLaser.FireRate;
+                        RepeatingCount = KocmoLaser.RepeatingCount;
+                        MaxProjectileSpread = KocmoLaser.MaxProjectileSpread;
+                        break;
+                    //case Type.PolarisExpress:
+                    //    FireRate = KocmoMegaRailgun.FireRate;
+                    //    RepeatingCount = KocmoMegaRailgun.RepeatingCount;
+                    //    MaxProjectileSpread = KocmoMegaRailgun.MaxProjectileSpread;
+                    //    FireSound = ResourceManager.instance.soundRailgun;
+                    //    myAudioSource.maxDistance = 300;
+                    //    break;
+                    case Type.PapoyUnicorn:
+                        FireRate = DevilTenderGazer.FireRate;
+                        RepeatingCount = DevilTenderGazer.RepeatingCount;
+                        MaxProjectileSpread = DevilTenderGazer.MaxProjectileSpread;
+                        FireSound = ResourceManager.instance.soundAlphaRay;
+                        myAudioSource.maxDistance = 700;
                         break;
                     case Type.PumpkinGhost:
-                        rateFire = KocmoMegaRailgun.rateFire;
-                        repeating = KocmoMegaRailgun.repeating;
-                        projectileSpread = KocmoMegaRailgun.projectileSpread;
-                        shootingSound = ResourceManager.instance.soundRailgun;
-                        myAudioSource.maxDistance = 300;
+                        FireRate = KocmoMegaRailgun.FireRate;
+                        RepeatingCount = KocmoMegaRailgun.RepeatingCount;
+                        MaxProjectileSpread = KocmoMegaRailgun.MaxProjectileSpread;
+                        FireSound = ResourceManager.instance.soundRailgun;
+                        myAudioSource.maxDistance = 500;
                         break;
                     case Type.GrandLisboa:
-                        rateFire = KocmoHighspeedIonBlaster.rateFire;
-                        repeating = KocmoHighspeedIonBlaster.repeating;
-                        projectileSpread = KocmoHighspeedIonBlaster.projectileSpread;
+                        FireRate = KocmoHighspeedIonBlaster.FireRate;
+                        RepeatingCount = KocmoHighspeedIonBlaster.RepeatingCount;
+                        MaxProjectileSpread = KocmoHighspeedIonBlaster.MaxProjectileSpread;
                         break;
                     default:
-                        rateFire = KocmoLaserCannon.rateFire;
-                        repeating = KocmoUltraPowerPlasma.repeating;
-                        projectileSpread = KocmoLaserCannon.projectileSpread;
+                        FireRate = KocmoLaserCannon.FireRate;
+                        RepeatingCount = KocmoUltraPowerPlasma.RepeatingCount;
+                        MaxProjectileSpread = KocmoLaserCannon.MaxProjectileSpread;
                         break;
                 }
             }
@@ -146,22 +169,22 @@ namespace Kocmoca
             {
                 case FireControlSystemType.Laser:
                     maxAmmoCapacity = 999;
-                    rateFire = KocmoLaserCannon.rateFire;
-                    shootingSound = ResourceManager.instance.soundLaser;
+                    FireRate = KocmoLaserCannon.FireRate;
+                    FireSound = ResourceManager.instance.soundLaser;
                     break;
                 case FireControlSystemType.Rocket:
                     timeReload = KocmoRocketLauncher.timeReload;
                     maxAmmoCapacity = KocmoRocketLauncher.maxAmmoCapacity;
-                    rateFire = KocmoRocketLauncher.rateFire;
+                    FireRate = KocmoRocketLauncher.FireRate;
                     countAmmo = 2;
-                    shootingSound = ResourceManager.instance.soundRocket;
+                    FireSound = ResourceManager.instance.soundRocket;
                     break;
                 case FireControlSystemType.Missile:
                     timeReload = KocmoMissileLauncher.timeReload;
                     maxAmmoCapacity = KocmoMissileLauncher.maxAmmoCapacity;
-                    rateFire = KocmoMissileLauncher.rateFire;
+                    FireRate = KocmoMissileLauncher.FireRate;
                     countAmmo = 1;
-                    shootingSound = ResourceManager.instance.soundMissile;
+                    FireSound = ResourceManager.instance.soundMissile;
                     break;
             }
         }
@@ -208,13 +231,13 @@ namespace Kocmoca
             countAmmo = maxAmmoCapacity == 999 ? maxAmmoCapacity : countAmmo;
             if (countAmmo > 0 && Time.time > nextTimeShoot)
             {
-                nextTimeShoot = Time.time + rateFire;
+                nextTimeShoot = Time.time + FireRate;
                 countAmmo--;
                 LauncherControl();
 
-                if (repeating == 2)
+                if (RepeatingCount == 2)
                     Invoke("LauncherControl",0.3f);
-                else if (repeating == 3)
+                else if (RepeatingCount == 3)
                 {
                     Invoke("LauncherControl", 0.12f);
                     Invoke("LauncherControl", 0.24f);
@@ -235,7 +258,7 @@ namespace Kocmoca
                 switch (typeFCS)
                 {
                     case FireControlSystemType.Laser:
-                        myPhotonView.RPC("LaserShoot", RpcTarget.AllViaServer, currentLauncher, kocmonautNumber, targetNumber, Random.Range(-projectileSpread, projectileSpread));
+                        myPhotonView.RPC("LaserShoot", RpcTarget.AllViaServer, currentLauncher, kocmonautNumber, targetNumber, Random.Range(-MaxProjectileSpread, MaxProjectileSpread));
                         break;
                     case FireControlSystemType.Rocket:
                         myPhotonView.RPC("RockeLaunch", RpcTarget.AllViaServer, currentLauncher, kocmonautNumber, targetNumber);
@@ -246,7 +269,7 @@ namespace Kocmoca
                 }
 
                 if (t == 0)
-                    myAudioSource.PlayOneShot(shootingSound, 0.73f);
+                    myAudioSource.PlayOneShot(FireSound, 0.73f);
 
                 currentLauncher += 2;
                 currentLauncher = (int)Mathf.Repeat(currentLauncher, countLauncher);

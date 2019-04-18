@@ -113,7 +113,12 @@ namespace Kocmoca
             if (PhotonNetwork.IsMasterClient)
             {
                 int countPlayer = PhotonNetwork.CurrentRoom.PlayerCount;
-                for (int portNumber = countPlayer; portNumber < 100; portNumber++) { SpawnBotKocmocraft(portNumber); }
+                for (int portNumber = countPlayer; portNumber < 100; portNumber++)
+                {
+                    int type = Random.Range(0,20);
+                    Transform localAI = PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), DesignData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).transform;
+                    localAI.GetComponent<KocmocraftManager>().InitializeLocalBot(portNumber);
+                }
             }
         }
         void InitializeFaction()
@@ -168,17 +173,17 @@ namespace Kocmoca
             HeadUpDisplayManager.Instance.ClearData();
             isCrash = false;
             myAudioSource.PlayOneShot(ResourceManager.instance.soundTakeOff, 0.37f);
-            int type = 6;// PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
+            int type =4;// PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
             //string typeName = "Kocmocraft(" + type.ToString("00")+ ") - " + KocmocraftData.GetKocmocraftName(type);
             localPlayer = PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), DesignData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).transform;
             localPlayer.GetComponent<KocmocraftManager>().InitializeLocalPlayer();
             LocalPlayerRealtimeData.Status = FlyingStatus.Flying;
         }
-        void SpawnBotKocmocraft(int portNumber)
+        void SpawnBotKocmocraft(int kocmonautNumber,int portNumber)
         {
             //int faction = portNumber % 2;
             //int order = portNumber / 2;
-            int type = Random.Range(0,20); // 測試  (int)factionData[faction].Type[order];
+            int type = (int)listKocmonaut[kocmonautNumber].Type;//Random.Range(0,20); // 測試  (int)factionData[faction].Type[order];
             //string typeName = "Kocmocraft " + type.ToString("00") + " - " + KocmocraftData.GetKocmocraftName(type);
             Transform localAI = PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), DesignData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).transform;
             localAI.GetComponent<KocmocraftManager>().InitializeLocalBot(portNumber);
@@ -206,7 +211,7 @@ namespace Kocmoca
         public IEnumerator BotRespawn(int kocmonautNumber)
         {
             yield return new WaitForSeconds(7.0f);
-            SpawnBotKocmocraft(KocmocraftData.GetPortNumber(kocmonautNumber));
+            SpawnBotKocmocraft(kocmonautNumber,KocmocraftData.GetPortNumber(kocmonautNumber));
         }
 
         // 新生成宇航機加入搜索列表
@@ -241,7 +246,8 @@ namespace Kocmoca
         {
             Kocmonaut kocmonaut = new Kocmonaut(
                 (Faction)(portNumber%2),
-                (Order)(portNumber/2),
+                (Order)(portNumber/
+                2),
                 type,
                 number,
                 name,

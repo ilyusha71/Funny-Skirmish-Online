@@ -13,11 +13,14 @@ namespace Kocmoca
 
         WP,
         Observe,
+
+        Crossfire,
     }
     public enum Mission
     {
         Default,
         Snipper,
+        Battle,
     }
 
     public class LocalBotController : MonoBehaviour
@@ -113,6 +116,10 @@ namespace Kocmoca
                     observationPost = Vector3.Lerp(nearestBeacon.position, myTransform.position, 1370.0f / distanceNearest);
                     myAvionicsSystem.PositionTarget = observationPost;
                     break;
+                case Mission.Battle:
+                    AIstate = AIState.Crossfire;
+                    myAvionicsSystem.SpeedControl(1.0f, true);
+                    break;
                 default:break;
             }
         }
@@ -181,12 +188,27 @@ namespace Kocmoca
                         GotoObservationPost(); break;
                     case AIState.Observe:
                         Observe(); break;
+
+                    case AIState.Crossfire:
+                        Crossfire(); break;
                 }
             }
         }
 
+        void Crossfire()
+        {
+            myAvionicsSystem.SpeedControl(1.0f, true);
 
-        
+            targetTrack = myOnboardRadar.targetTrack;
+            if (targetTrack)
+                myAvionicsSystem.PositionTarget = targetTrack.position;
+
+            targetAutoAim = myOnboardRadar.targetAutoAim;
+            if (targetAutoAim)
+                myLaserFCS.Shoot();
+        }
+
+
         void GotoObservationPost()
         {
             myAvionicsSystem.SpeedControl(1.0f, true);

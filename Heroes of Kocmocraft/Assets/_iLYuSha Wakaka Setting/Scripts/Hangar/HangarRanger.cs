@@ -329,7 +329,7 @@ namespace Kocmoca
             {
                 WeaponData.GetWeaponData(hangarIndex);
                 textTurretCount.text = WeaponData.TurretCount[hangarIndex] + "x 突击激光炮";
-                textFireRPS.text = KocmoLaserCannon.fireRoundPerSecond + " rps";
+                textFireRPS.text = KocmoLaserCannon.FireRoundPerSecond + " rps";
                 textDamage.text = string.Format("{0} ~ {1} dmg", WeaponData.MinDamage, WeaponData.MaxDamage);
                 barDamage.SetBar(WeaponData.MaxDamage);
                 textMaxRange.text = WeaponData.MaxRange + " m";

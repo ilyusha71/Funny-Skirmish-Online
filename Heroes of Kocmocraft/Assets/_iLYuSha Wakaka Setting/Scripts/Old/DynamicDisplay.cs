@@ -511,7 +511,7 @@ namespace Kocmoca
                 switch (index)
                 {
                     case 1: textWeapon[1].text = "" + WeaponData.TurretCount[now] + "x Assault Laser"; break;
-                    case 2: textWeapon[2].text = "" + KocmoLaserCannon.fireRoundPerSecond + " rps"; break;
+                    case 2: textWeapon[2].text = "" + KocmoLaserCannon.FireRoundPerSecond + " rps"; break;
                     case 3: textWeapon[3].text = "update" + " dmg"; break;
                     case 4: textWeapon[4].text = "update" + " m"; break;
                 }

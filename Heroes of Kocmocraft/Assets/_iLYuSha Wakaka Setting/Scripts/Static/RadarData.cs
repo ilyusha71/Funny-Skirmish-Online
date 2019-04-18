@@ -28,7 +28,7 @@ namespace Kocmoca
         public static readonly int MaxLockDistanceSqr = MaxLockDistance * MaxLockDistance;
         public static readonly float MaxSearchAngle = Mathf.Cos(22 * Mathf.Deg2Rad);
         public static readonly float MaxLockAngle = Mathf.Cos(7 * Mathf.Deg2Rad);
-        public static readonly float MaxAutoAim = Mathf.Cos(0.7f * Mathf.Deg2Rad);
+        public static readonly float MaxAutoAim = Mathf.Cos(0.5f * Mathf.Deg2Rad); // 0.1~0.7 
     }
     // 超遠距雷達
     public static class VeryLongRangeRadar
@@ -39,7 +39,7 @@ namespace Kocmoca
         public static readonly int MaxLockDistanceSqr = MaxLockDistance * MaxLockDistance;
         public static readonly float MaxSearchAngle = Mathf.Cos(24 * Mathf.Deg2Rad);
         public static readonly float MaxLockAngle = Mathf.Cos(9 * Mathf.Deg2Rad);
-        public static readonly float MaxAutoAim = Mathf.Cos(2 * Mathf.Deg2Rad);
+        public static readonly float MaxAutoAim = Mathf.Cos(0.7f * Mathf.Deg2Rad); // 0.9~1.5
     }
     // 遠距雷達
     public static class LongRangeRadar

@@ -92,18 +92,25 @@ namespace Kocmoca
                     MaxAutoAim = ShortRangeRadar.MaxAutoAim;
                     break;
                 case Type.VladimirPutin:
-                    MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
-                    MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
-                    MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = ShortRangeRadar.MaxLockAngle;
-                    MaxAutoAim = ShortRangeRadar.MaxAutoAim;
+                    MaxSearchRadiusSqr = LongRangeRadar.MaxSearchRadiusSqr;
+                    MaxLockDistanceSqr = LongRangeRadar.MaxLockDistanceSqr;
+                    MaxSearchAngle = LongRangeRadar.MaxSearchAngle;
+                    MaxLockAngle = LongRangeRadar.MaxLockAngle;
+                    MaxAutoAim = KocmoMegaRailgun.MaxAutoAimRange;
                     break;
-                case Type.PaperAeroplane:
-                    MaxSearchRadiusSqr = ExtremelyLongRangeRadar.MaxSearchRadiusSqr;
-                    MaxLockDistanceSqr = ExtremelyLongRangeRadar.MaxLockDistanceSqr;
-                    MaxSearchAngle = ExtremelyLongRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = ExtremelyLongRangeRadar.MaxLockAngle;
-                    MaxAutoAim = ExtremelyLongRangeRadar.MaxAutoAim;
+                //case Type.PaperAeroplane:
+                //    MaxSearchRadiusSqr = ExtremelyLongRangeRadar.MaxSearchRadiusSqr;
+                //    MaxLockDistanceSqr = ExtremelyLongRangeRadar.MaxLockDistanceSqr;
+                //    MaxSearchAngle = ExtremelyLongRangeRadar.MaxSearchAngle;
+                //    MaxLockAngle = ExtremelyLongRangeRadar.MaxLockAngle;
+                //    MaxAutoAim = DevilTenderGazer.MaxAutoAimRange;
+                //    break;
+                case Type.Cuckoo:
+                    MaxSearchRadiusSqr = VeryLongRangeRadar.MaxSearchRadiusSqr;
+                    MaxLockDistanceSqr = VeryLongRangeRadar.MaxLockDistanceSqr;
+                    MaxSearchAngle = VeryLongRangeRadar.MaxSearchAngle;
+                    MaxLockAngle = VeryLongRangeRadar.MaxLockAngle;
+                    MaxAutoAim = DevilTenderGazer.MaxAutoAimRange;
                     break;
                 case Type.BulletBill:
                     MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
@@ -147,12 +154,26 @@ namespace Kocmoca
                 //    MaxLockAngle = ShortRangeRadar.MaxLockAngle;
                 //    MaxAutoAim = ShortRangeRadar.MaxAutoAim;
                 //    break;
+                //case Type.PolarisExpress:
+                //    MaxSearchRadiusSqr = LongRangeRadar.MaxSearchRadiusSqr;
+                //    MaxLockDistanceSqr = LongRangeRadar.MaxLockDistanceSqr;
+                //    MaxSearchAngle = LongRangeRadar.MaxSearchAngle;
+                //    MaxLockAngle = LongRangeRadar.MaxLockAngle;
+                //    MaxAutoAim = KocmoMegaRailgun.MaxAutoAimRange;
+                //    break;
+                case Type.PapoyUnicorn:
+                    MaxSearchRadiusSqr = ExtremelyLongRangeRadar.MaxSearchRadiusSqr;
+                    MaxLockDistanceSqr = ExtremelyLongRangeRadar.MaxLockDistanceSqr;
+                    MaxSearchAngle = ExtremelyLongRangeRadar.MaxSearchAngle;
+                    MaxLockAngle = ExtremelyLongRangeRadar.MaxLockAngle;
+                    MaxAutoAim = DevilTenderGazer.MaxAutoAimRange;
+                    break;
                 case Type.PumpkinGhost:
                     MaxSearchRadiusSqr = VeryLongRangeRadar.MaxSearchRadiusSqr;
                     MaxLockDistanceSqr = VeryLongRangeRadar.MaxLockDistanceSqr;
                     MaxSearchAngle = VeryLongRangeRadar.MaxSearchAngle;
                     MaxLockAngle = VeryLongRangeRadar.MaxLockAngle;
-                    MaxAutoAim = VeryLongRangeRadar.MaxAutoAim;
+                    MaxAutoAim = KocmoMegaRailgun.MaxAutoAimRange;
                     break;
                 case Type.GrandLisboa:
                     MaxSearchRadiusSqr = MediumRangeRadar.MaxSearchRadiusSqr;

@@ -144,8 +144,10 @@ namespace Kocmoca
             gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalBot, (int)Type, Number, pilot, wreckage);
             gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalBot, (int)Faction, Type, Number); // local only
             gameObject.AddComponent<LocalBotController>();
-            if (Type == Type.PaperAeroplane || Type == Type.PumpkinGhost)
+            if (Type == Type.VladimirPutin || Type == Type.Cuckoo || Type == Type.PapoyUnicorn || Type == Type.PumpkinGhost)
                 GetComponent<LocalBotController>().mission = Mission.Snipper;
+            else if (Type == Type.MinionArmor || Type == Type.PaperAeroplane || Type == Type.BulletBill || Type == Type.TimeMachine || Type == Type.nWidia)
+                GetComponent<LocalBotController>().mission = Mission.Battle;
             ActiveFCS(true);
             photonView.RPC("SynchronizeBotKocmocraft", RpcTarget.Others, portNumber);
         }
@@ -208,7 +210,7 @@ namespace Kocmoca
         [PunRPC]
         public void LaserShoot(int muzzle, int numberShooter, int numberTarget, float spread, PhotonMessageInfo info)
         {
-            listAmmoOPD[0].Reuse(myTransform.TransformPoint(listFCS[0].launcher[muzzle]), myTransform.rotation).GetComponent<Ammo>().InputAmmoData(numberShooter, numberTarget, myRigidbody.velocity, spread);
+            listAmmoOPD[0].ReuseAmmo(myTransform.TransformPoint(listFCS[0].launcher[muzzle]), myTransform.rotation).GetComponent<Ammo>().InputAmmoData(numberShooter, numberTarget, myRigidbody.velocity, spread);
         }
         [PunRPC]
         public void RockeLaunch(int muzzle, int numberShooter, int numberTarget, PhotonMessageInfo info)

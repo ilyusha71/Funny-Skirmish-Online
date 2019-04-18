@@ -98,6 +98,17 @@ public class ObjectPoolData
         item.SetActive(true);
         return item;
     }
+    internal GameObject ReuseAmmo(Vector3 position, Quaternion rotation)
+    {
+        if (pool.Count <= 0)
+            ObjectPoolManager.Instance.Clone(this);
+        GameObject item = pool.Dequeue();
+        item.transform.SetPositionAndRotation(position, rotation);
+
+
+        //item.SetActive(true);
+        return item;
+    }
 #if EVENT
     public void Recycle(object sender, RecoverEventArgs e)
     {

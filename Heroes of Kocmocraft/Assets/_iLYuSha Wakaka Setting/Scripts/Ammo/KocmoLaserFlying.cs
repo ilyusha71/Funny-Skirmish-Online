@@ -28,7 +28,6 @@ namespace Kocmoca
 
         private Vector3 testOri;
 
-        Type type;
         private void Awake()
         {
             InitializeAmmo();
@@ -37,31 +36,50 @@ namespace Kocmoca
 
         private void OnEnable()
         {
-            vfx.enabled = false;
-            //ResetAmmo();
-            //StartCoroutine(FlyingInitialize());
-        }
+            StartCoroutine(FlyingInitialize());
 
+        }
+        public Type type = Type.Unknown;
+        public bool test;
+        public string lastOwner;
+        public string nowOwner;
         public override void InputAmmoData(int numberShooter, int numberTarget, Vector3 initialVelocity, float spread)
         {
+            lastOwner = owner.Name;
             // ResetAmmo
+            vfx.enabled = false;
             target = null;
             myRigidbody.Sleep();
+            //ResetAmmo();
+            //StartCoroutine(FlyingInitialize());
+            //test = false;
+            //if (type != Type.Unknown)
+            //{
+            //    if (owner.Type == Type.PaperAeroplane)
+            //    {
+            //        Debug.Log("Frame: " + Time.frameCount + " / " + owner.Name);
+            //        test = true;
+            //        lastType = owner.Name;
+            //    }
+            //}
             pointStarting = Vector3.zero;
-            timeRecovery = Time.time + 100;
+            //timeRecovery = Time.time + 100;
             pointStarting = myTransform.position;
 
             // InputAmmoData
             shooter = numberShooter;
             SatelliteCommander.Instance.listKocmonaut.TryGetValue(numberShooter, out owner);
+            nowOwner = owner.Name;
+
             SatelliteCommander.Instance.listKocmocraft.TryGetValue(numberTarget, out target);
             myRigidbody.velocity = initialVelocity;
             projectileSpread = spread;
 
             // Shoot
             vfx.startWidth = 0.5f;
-            vfx.endWidth = 0.5f;
             type = owner.Type;
+            //if(test)
+            //    Debug.Log("Frame: " + Time.frameCount + " / " + owner.Name + "/LAST/" + lastType);
             switch (type)
             {
                 case Type.MinionArmor:
@@ -79,20 +97,28 @@ namespace Kocmoca
                     shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
                     break;
                 case Type.VladimirPutin:
-                    ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
-                    propulsion = KocmoUltraPowerPlasma.propulsion;
-                    waitRecovery = KocmoUltraPowerPlasma.waitRecovery;
-                    hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
-                    shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
+                    ammoVelocity = KocmoMegaRailgun.ammoVelocity;
+                    propulsion = KocmoMegaRailgun.propulsion;
+                    waitRecovery = KocmoMegaRailgun.waitRecovery;
+                    hullPenetration = KocmoMegaRailgun.hullPenetration;
+                    shieldPenetration = KocmoMegaRailgun.shieldPenetration;
+                    vfx.startWidth = 5;
                     break;
-                case Type.PaperAeroplane:
-                    ammoVelocity = KocmoHyperAlphaRay.ammoVelocity;
-                    propulsion = KocmoHyperAlphaRay.propulsion;
-                    waitRecovery = KocmoHyperAlphaRay.waitRecovery;
-                    hullPenetration = KocmoHyperAlphaRay.hullPenetration;
-                    shieldPenetration = KocmoHyperAlphaRay.shieldPenetration;
+                //case Type.PaperAeroplane:
+                //    ammoVelocity = DevilTenderGazer.ammoVelocity;
+                //    propulsion = DevilTenderGazer.propulsion;
+                //    waitRecovery = DevilTenderGazer.waitRecovery;
+                //    hullPenetration = DevilTenderGazer.hullPenetration;
+                //    shieldPenetration = DevilTenderGazer.shieldPenetration;
+                //    vfx.startWidth = 7;
+                //    break;
+                case Type.Cuckoo:
+                    ammoVelocity = DevilTenderGazer.ammoVelocity;
+                    propulsion = DevilTenderGazer.propulsion;
+                    waitRecovery = DevilTenderGazer.waitRecovery;
+                    hullPenetration = DevilTenderGazer.hullPenetration;
+                    shieldPenetration = DevilTenderGazer.shieldPenetration;
                     vfx.startWidth = 7;
-                    vfx.endWidth = 7;
                     break;
                 case Type.BulletBill:
                     ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
@@ -136,6 +162,22 @@ namespace Kocmoca
                     hullPenetration = KocmoHighspeedIonBlaster.hullPenetration;
                     shieldPenetration = KocmoHighspeedIonBlaster.shieldPenetration;
                     break;
+                case Type.PolarisExpress:
+                    ammoVelocity = KocmoMegaRailgun.ammoVelocity;
+                    propulsion = KocmoMegaRailgun.propulsion;
+                    waitRecovery = KocmoMegaRailgun.waitRecovery;
+                    hullPenetration = KocmoMegaRailgun.hullPenetration;
+                    shieldPenetration = KocmoMegaRailgun.shieldPenetration;
+                    vfx.startWidth = 5;
+                    break;
+                case Type.PapoyUnicorn:
+                    ammoVelocity = DevilTenderGazer.ammoVelocity;
+                    propulsion = DevilTenderGazer.propulsion;
+                    waitRecovery = DevilTenderGazer.waitRecovery;
+                    hullPenetration = DevilTenderGazer.hullPenetration;
+                    shieldPenetration = DevilTenderGazer.shieldPenetration;
+                    vfx.startWidth = 7;
+                    break;
                 case Type.PumpkinGhost:
                     ammoVelocity = KocmoMegaRailgun.ammoVelocity;
                     propulsion = KocmoMegaRailgun.propulsion;
@@ -143,7 +185,6 @@ namespace Kocmoca
                     hullPenetration = KocmoMegaRailgun.hullPenetration;
                     shieldPenetration = KocmoMegaRailgun.shieldPenetration;
                     vfx.startWidth = 5;
-                    vfx.endWidth = 5;
                     break;
                 case Type.GrandLisboa:
                     ammoVelocity = KocmoHighspeedIonBlaster.ammoVelocity;
@@ -160,7 +201,7 @@ namespace Kocmoca
                     shieldPenetration = KocmoLaserCannon.coefficientMaxDamage;
                     break;
             }
-            StartCoroutine(FlyingInitialize());
+      gameObject.SetActive(true);
         }
 
         // 使用協程是因為在PRC呼叫Ammo生成之後，AddForce的力道大於一定值會產生向前的位移偏差
@@ -184,6 +225,8 @@ namespace Kocmoca
             vfx.enabled = true;
 
             yield return waitRecovery;
+            if (type == Type.Cuckoo || type == Type.PapoyUnicorn)
+                Debug.Log(owner.Name + " / MISS");
             Recycle(gameObject);
         }
 
@@ -206,11 +249,10 @@ namespace Kocmoca
                         Hull = basicDamage * hullPenetration,
                         Shield = basicDamage * shieldPenetration
                     });
-                    if (type == Type.PaperAeroplane || type == Type.PumpkinGhost)
+                    if (type == Type.Cuckoo || type == Type.PapoyUnicorn)
                     {
-                        //Debug.Log(owner.Name + " / " + (int)(basicDamage * hullPenetration) + " / " + (int)(basicDamage * shieldPenetration));
+                        Debug.LogWarning(owner.Name + " / " + (int)(basicDamage * hullPenetration) + " / " + (int)(basicDamage * shieldPenetration));
                         ResourceManager.hitFire.Reuse(raycastHit.point, Quaternion.identity);
-
                     }
                     else
                         ResourceManager.hitSpark.Reuse(raycastHit.point, Quaternion.identity);
