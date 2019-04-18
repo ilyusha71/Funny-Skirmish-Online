@@ -1,11 +1,11 @@
-﻿/***************************************************************************
+﻿/*****************************************************************************
  * Kocmocraft Mech Droid
  * 宇航技工機器人
  * Last Updated: 2018/09/22
  * Description:
  * 1. Damage Manager -> Hull Manager -> Kocmocraft Mech Droid
  * 2. 管理能量、機甲、護盾與傷害
- ***************************************************************************/
+ *****************************************************************************/
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,17 +13,18 @@ using UnityEngine;
 
 namespace Kocmoca
 {
+    [System.Serializable]
     public struct Data
     {
         public float Max;
         public float Value;
         public float Percent { get { return (Value / Max); } }
     }
-    public struct DamageInfo
+    public struct DamagePower
     {
         public Kocmonaut Attacker;
-        public int Hull;
-        public int Shield;
+        public float Hull;
+        public float Shield;
     }
     public class KocmocraftMechDroid : MonoBehaviour, IPunObservable
     {
@@ -40,6 +41,12 @@ namespace Kocmoca
         [Header("Modular Parameter")]
         public Data dataHull;
         public Data dataShield;
+
+        // Damage calculation
+        private float coefficientPenetration;
+        private float damageShield;
+        private float damageHull;
+        private int damage;
         [Header("Crash Info")]
         public Dictionary<int, int> listAttacker = new Dictionary<int, int>(); // 損傷記錄索引
         private Kocmonaut lastAttacker = new Kocmonaut { Number = -1 };
@@ -98,11 +105,11 @@ namespace Kocmoca
                 dataShield.Value = (float)stream.ReceiveNext();
             }
         }
-        public void Hit(DamageInfo damageInfo)
+        public void Hit(DamagePower damagePower)
         {
             if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
             if (dataHull.Value <= 0) return;
-            int damageSourceNumber = damageInfo.Attacker.Number;
+            int damageSourceNumber = damagePower.Attacker.Number;
             // 狀況1
             // 第一次造成傷害來源：自己 123
             // 最後造成傷害來源：自己 123
@@ -118,63 +125,75 @@ namespace Kocmoca
 
             // 第一次受到損傷
             if (lastAttacker.Number == -1)
-                lastAttacker = damageInfo.Attacker;
+                lastAttacker = damagePower.Attacker;
             else
             {
-                if (damageInfo.Attacker.Number != Number)
-                    lastAttacker = damageInfo.Attacker;
+                if (damagePower.Attacker.Number != Number)
+                    lastAttacker = damagePower.Attacker;
             }
-            //if (lastHitKocmonaut.Number == -1)
-            //{
-            //    if (damageInfo.pilot.Number == Number)
-            //        damageInfo.pilot.Number = -777;
-            //    lastHitKocmonaut = damageInfo.pilot;
-            //}
-            //else
-            //{
-            //    // 刷新
-            //    if (damageInfo.pilot.Number != -777)
-            //    {
-            //        if (damageInfo.pilot.Number != Number)
-            //            lastHitKocmonaut = damageInfo.pilot;
-            //    }
-            //}
 
-            if (dataShield.Value > damageInfo.Shield && damageInfo.Shield != 0)
+
+
+            /*****************************************************************************
+             * 傷害計算方法
+             * Last Updated: 2019-04-18
+             * 
+             * 護盾值 dataShield.Value
+             * 機甲值 dataHull.Value
+             * 護盾傷害威力值 damagePower.Shield
+             * 機甲傷害威力值 damagePower.Hull
+             * 穿透係數 coefficientPenetration
+             * 護盾傷害值 damageShield
+             * 機甲傷害值 damageHull
+             * 總傷害值 damageTotal
+             * 
+             * 1. 計算護盾傷害與穿透係數
+             *      剩餘護盾值 = 原始護盾值 - 護盾傷害威力值
+             *      護盾值足夠
+             *          => 護盾傷害值 = 護盾傷害威力值
+             *          => 護盾穿透係數 = 0
+             *      護盾值不足
+             *          => 護盾傷害值 = 原始護盾值 = 剩餘護盾值 + 護盾傷害威力值
+             *          => 護盾穿透係數 = -1 * 剩餘護盾值 / 護盾傷害威力值
+             *          => 剩餘護盾值 = 0
+             *          
+             * 2. 計算機甲傷害
+             *      機甲傷害值 = 機甲傷害威力值 * 穿透係數
+             *      剩餘機甲值 = 原始機甲值 - 機甲傷害值
+             *      
+             *****************************************************************************/
+            dataShield.Value -= damagePower.Shield;
+            if (dataShield.Value >= 0) 
             {
-                // 損傷記錄
-                if (listAttacker.ContainsKey(damageSourceNumber))
-                    listAttacker[damageSourceNumber] += damageInfo.Shield;
-                else
-                    listAttacker.Add(damageInfo.Attacker.Number, damageInfo.Shield);
-                dataShield.Value = Mathf.Clamp(dataShield.Value - damageInfo.Shield, 0, dataShield.Max);
-
-                // 本地玩家擊中本地AI
-                if (damageInfo.Attacker.Core == Core.LocalPlayer)
-                    HeadUpDisplayManager.Instance.ShowHitDamage(myRigidbody.position, damageInfo.Shield);
-                // 遠端玩家擊中本地玩家或本地AI
-                else if (damageInfo.Attacker.Core == Core.RemotePlayer)
-                    myPhotonView.RPC("ShowHitDamage", RpcTarget.AllViaServer, damageInfo.Attacker.Number, damageInfo.Shield);
+                damageShield = damagePower.Shield;
+                coefficientPenetration = 0;
             }
             else
             {
-                // 損傷記錄
-                if (listAttacker.ContainsKey(damageSourceNumber))
-                    listAttacker[damageSourceNumber] += damageInfo.Hull;
-                else
-                    listAttacker.Add(damageInfo.Attacker.Number, damageInfo.Hull);
-                dataHull.Value = Mathf.Clamp(dataHull.Value - damageInfo.Hull, 0, dataHull.Max);
-
-                // 本地玩家擊中本地AI
-                if (damageInfo.Attacker.Core == Core.LocalPlayer)
-                    HeadUpDisplayManager.Instance.ShowHitDamage(myRigidbody.position, damageInfo.Hull);
-                // 遠端玩家擊中本地玩家或本地AI
-                else if (damageInfo.Attacker.Core == Core.RemotePlayer)
-                    myPhotonView.RPC("ShowHitDamage", RpcTarget.AllViaServer, damageInfo.Attacker.Number, damageInfo.Hull);
-
-                //if (Core == Core.LocalPlayer)
-                //    myAudioSource.PlayOneShot(ResourceManager.instance.soundHitSelf, 1.0f);
+                damageShield = dataShield.Value + damagePower.Shield;
+                coefficientPenetration = -dataShield.Value / damagePower.Shield;
+                dataShield.Value = 0;
             }
+            damageHull = damagePower.Hull * coefficientPenetration;
+            dataHull.Value = Mathf.Clamp(dataHull.Value - damageHull, 0, dataHull.Max);
+
+            /*****************************************************************************
+             * 損傷記錄
+             *****************************************************************************/
+            damage = (int)(damageShield + damageHull);
+            if (listAttacker.ContainsKey(damageSourceNumber))
+                listAttacker[damageSourceNumber] += damage;
+            else
+                listAttacker.Add(damagePower.Attacker.Number, damage);
+
+            // 本地玩家擊中本地AI
+            if (damagePower.Attacker.Core == Core.LocalPlayer)
+                HeadUpDisplayManager.Instance.ShowHitDamage(myRigidbody.position, damage);
+            // 遠端玩家擊中本地玩家或本地AI
+            else if (damagePower.Attacker.Core == Core.RemotePlayer)
+                myPhotonView.RPC("ShowHitDamage", RpcTarget.AllViaServer, damagePower.Attacker.Number, damage);
+
+            /************************************* Crash *************************************/
 
             if (dataHull.Value <= 0)
             {
@@ -196,12 +215,14 @@ namespace Kocmoca
                 myPhotonView.RPC("Crash", RpcTarget.AllViaServer, lastAttacker.Number);
             }
         }
+
         [PunRPC]
         public void ShowHitDamage(int numberShooter, int damage, PhotonMessageInfo info)
         {
             if (PhotonNetwork.LocalPlayer.ActorNumber == numberShooter)
                 HeadUpDisplayManager.Instance.ShowHitDamage(myRigidbody.position, damage);
         }
+
         [PunRPC]
         public void Crash(int stealerNumber, PhotonMessageInfo info)
         {
@@ -284,10 +305,10 @@ namespace Kocmoca
             lastHitVelocity = myRigidbody.velocity;
 
             // 計算傷害
-            DamageInfo damageInfo = new DamageInfo();
+            DamagePower damagePower = new DamagePower();
             if (collision.gameObject.CompareTag("Untagged"))
             {
-                damageInfo.Hull = 50000;
+                damagePower.Hull = 50000;
                 // 下次更新要做的
                 // 入射角越大伤害越大，避免卡住
                 //Vector3 inDirection = -collision.relativeVelocity;
@@ -298,23 +319,23 @@ namespace Kocmoca
                 //myRigidbody.AddForce(outDirection * collision.impulse.magnitude);
             }
             else
-                damageInfo.Hull = Mathf.Clamp((int)Mathf.Abs(collision.impulse.magnitude), 0, 5000);
-            damageInfo.Shield = 0;
+                damagePower.Hull = Mathf.Clamp((int)Mathf.Abs(collision.impulse.magnitude), 0, 5000);
+            damagePower.Shield = 0;
 
             // 記錄攻擊者
-            damageInfo.Attacker = new Kocmonaut { Number = -1 };
+            damagePower.Attacker = new Kocmonaut { Number = -1 };
             KocmocraftMechDroid collisionKocmocraft = collision.gameObject.GetComponent<KocmocraftMechDroid>();
             if (collisionKocmocraft)
             {
-                damageInfo.Attacker.Core = collisionKocmocraft.Core;
-                damageInfo.Attacker.Number = collisionKocmocraft.Number;
+                damagePower.Attacker.Core = collisionKocmocraft.Core;
+                damagePower.Attacker.Number = collisionKocmocraft.Number;
             }
             else
             {
-                damageInfo.Attacker.Core = Core;
-                damageInfo.Attacker.Number = Number;
+                damagePower.Attacker.Core = Core;
+                damagePower.Attacker.Number = Number;
             }
-            Hit(damageInfo);
+            Hit(damagePower);
         }
 
         private void OnCollisionExit(Collision collision)

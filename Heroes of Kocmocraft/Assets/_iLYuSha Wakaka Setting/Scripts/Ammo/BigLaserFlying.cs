@@ -75,7 +75,7 @@ namespace Kocmoca
                 if (hull)
                 {
                     float basicDamage = myRigidbody.velocity.sqrMagnitude * 0.000066f; ;
-                    hull.Hit(new DamageInfo()
+                    hull.Hit(new DamagePower()
                     {
                         Attacker = owner,
                         Hull = (int)(basicDamage * BigLaserCannon.coefficientMinDamage),

@@ -85,10 +85,10 @@ namespace Kocmoca
                         break;
                     case Type.PaperAeroplane:
                         rateFire = KocmoHyperAlphaRay.rateFire;
-                        repeating = KocmoUltraPowerPlasma.repeating;
+                        repeating = KocmoHyperAlphaRay.repeating;
                         projectileSpread = KocmoHyperAlphaRay.projectileSpread;
                         shootingSound = ResourceManager.instance.soundAlphaRay;
-                        myAudioSource.maxDistance = 500;
+                        myAudioSource.maxDistance = 700;
                         break;
                     case Type.BulletBill:
                         rateFire = KocmoUltraPowerPlasma.rateFire;
@@ -96,9 +96,9 @@ namespace Kocmoca
                         projectileSpread = KocmoUltraPowerPlasma.projectileSpread;
                         break;
                     case Type.TimeMachine:
-                        rateFire = KocmoLaser.rateFire;
-                        repeating = KocmoLaser.repeating;
-                        projectileSpread = KocmoLaser.projectileSpread;
+                        rateFire = KocmoHighspeedIonBlaster.rateFire;
+                        repeating = KocmoHighspeedIonBlaster.repeating;
+                        projectileSpread = KocmoHighspeedIonBlaster.projectileSpread;
                         break;
                     case Type.AceKennel:
                         rateFire = KocmoArmorPiercing.rateFire;
@@ -111,9 +111,9 @@ namespace Kocmoca
                         projectileSpread = KocmoUltraPowerPlasma.projectileSpread;
                         break;
                     case Type.nWidia:
-                        rateFire = KocmoHeavyLaser.rateFire;
-                        repeating = KocmoHeavyLaser.repeating;
-                        projectileSpread = KocmoHeavyLaser.projectileSpread;
+                        rateFire = KocmoHighspeedIonBlaster.rateFire;
+                        repeating = KocmoHighspeedIonBlaster.repeating;
+                        projectileSpread = KocmoHighspeedIonBlaster.projectileSpread;
                         break;
                     case Type.FastFoodMan:
                         rateFire = KocmoLaser.rateFire;
@@ -126,6 +126,11 @@ namespace Kocmoca
                         projectileSpread = KocmoMegaRailgun.projectileSpread;
                         shootingSound = ResourceManager.instance.soundRailgun;
                         myAudioSource.maxDistance = 300;
+                        break;
+                    case Type.GrandLisboa:
+                        rateFire = KocmoHighspeedIonBlaster.rateFire;
+                        repeating = KocmoHighspeedIonBlaster.repeating;
+                        projectileSpread = KocmoHighspeedIonBlaster.projectileSpread;
                         break;
                     default:
                         rateFire = KocmoLaserCannon.rateFire;
@@ -211,8 +216,8 @@ namespace Kocmoca
                     Invoke("LauncherControl",0.3f);
                 else if (repeating == 3)
                 {
-                    Invoke("LauncherControl", 0.23f);
-                    Invoke("LauncherControl", 0.46f);
+                    Invoke("LauncherControl", 0.12f);
+                    Invoke("LauncherControl", 0.24f);
                 }
 
             }

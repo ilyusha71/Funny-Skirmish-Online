@@ -17,8 +17,9 @@ using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
-namespace Photon.Pun.Demo.Asteroids
+namespace Kocmoca
 {
     public class SatelliteGameManager : MonoBehaviourPunCallbacks
     {
@@ -51,7 +52,7 @@ namespace Photon.Pun.Demo.Asteroids
 
             Hashtable props = new Hashtable
             {
-                {Kocmoca.LobbyInfomation.PLAYER_LOADED_LEVEL, true}
+                {LobbyInfomation.PLAYER_LOADED_LEVEL, true}
             };
             PhotonNetwork.LocalPlayer.SetCustomProperties(props);
         }
@@ -96,7 +97,7 @@ namespace Photon.Pun.Demo.Asteroids
         {
             //PhotonNetwork.Disconnect();
             PhotonNetwork.LocalPlayer.CustomProperties.Remove(PlayerNumbering.RoomPlayerIndexedProp);
-            SceneManager.LoadScene(Kocmoca.LobbyInfomation.SCENE_LOBBY);
+            SceneManager.LoadScene(LobbyInfomation.SCENE_LOBBY);
         }
 
         public override void OnMasterClientSwitched(Player newMasterClient)
@@ -109,23 +110,23 @@ namespace Photon.Pun.Demo.Asteroids
 
         public override void OnPlayerLeftRoom(Player otherPlayer)
         {
-            CheckEndOfGame();
+            //CheckEndOfGame();
         }
 
         public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
         {
-            if (changedProps.ContainsKey(AsteroidsGame.PLAYER_LIVES))
-            {
-                CheckEndOfGame();
-                return;
-            }
+            //if (changedProps.ContainsKey(AsteroidsGame.PLAYER_LIVES))
+            //{
+            //    CheckEndOfGame();
+            //    return;
+            //}
 
             if (!PhotonNetwork.IsMasterClient)
             {
                 return;
             }
 
-            if (changedProps.ContainsKey(Kocmoca.LobbyInfomation.PLAYER_LOADED_LEVEL))
+            if (changedProps.ContainsKey(LobbyInfomation.PLAYER_LOADED_LEVEL))
             {
                 if (CheckAllPlayerLoadedLevel())
                 {
@@ -142,7 +143,7 @@ namespace Photon.Pun.Demo.Asteroids
 
         private void StartGame()
         {
-            Kocmoca.SatelliteCommander.Instance.InitializeSatellite();
+            SatelliteCommander.Instance.InitializeSatellite();
 
             if (PhotonNetwork.IsMasterClient)
             {
@@ -156,7 +157,7 @@ namespace Photon.Pun.Demo.Asteroids
             {
                 object playerLoadedLevel;
 
-                if (p.CustomProperties.TryGetValue(Kocmoca.LobbyInfomation.PLAYER_LOADED_LEVEL, out playerLoadedLevel))
+                if (p.CustomProperties.TryGetValue(LobbyInfomation.PLAYER_LOADED_LEVEL, out playerLoadedLevel))
                 {
                     if ((bool)playerLoadedLevel)
                     {
@@ -170,45 +171,45 @@ namespace Photon.Pun.Demo.Asteroids
             return true;
         }
 
-        private void CheckEndOfGame()
-        {
-            bool allDestroyed = true;
+        //private void CheckEndOfGame()
+        //{
+        //    bool allDestroyed = true;
 
-            foreach (Player p in PhotonNetwork.PlayerList)
-            {
-                object lives;
-                if (p.CustomProperties.TryGetValue(AsteroidsGame.PLAYER_LIVES, out lives))
-                {
-                    if ((int)lives > 0)
-                    {
-                        allDestroyed = false;
-                        break;
-                    }
-                }
-            }
+        //    foreach (Player p in PhotonNetwork.PlayerList)
+        //    {
+        //        object lives;
+        //        if (p.CustomProperties.TryGetValue(AsteroidsGame.PLAYER_LIVES, out lives))
+        //        {
+        //            if ((int)lives > 0)
+        //            {
+        //                allDestroyed = false;
+        //                break;
+        //            }
+        //        }
+        //    }
 
-            if (allDestroyed)
-            {
-                if (PhotonNetwork.IsMasterClient)
-                {
-                    StopAllCoroutines();
-                }
+        //    if (allDestroyed)
+        //    {
+        //        if (PhotonNetwork.IsMasterClient)
+        //        {
+        //            StopAllCoroutines();
+        //        }
 
-                string winner = "";
-                int score = -1;
+        //        string winner = "";
+        //        int score = -1;
 
-                foreach (Player p in PhotonNetwork.PlayerList)
-                {
-                    if (p.GetScore() > score)
-                    {
-                        winner = p.NickName;
-                        score = p.GetScore();
-                    }
-                }
+        //        foreach (Player p in PhotonNetwork.PlayerList)
+        //        {
+        //            if (p.GetScore() > score)
+        //            {
+        //                winner = p.NickName;
+        //                score = p.GetScore();
+        //            }
+        //        }
 
-                StartCoroutine(EndOfGame(winner, score));
-            }
-        }
+        //        StartCoroutine(EndOfGame(winner, score));
+        //    }
+        //}
 
         private void OnCountdownTimerIsExpired()
         {

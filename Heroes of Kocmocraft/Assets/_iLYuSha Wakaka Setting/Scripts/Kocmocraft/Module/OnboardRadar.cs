@@ -113,11 +113,11 @@ namespace Kocmoca
                     MaxAutoAim = ShortRangeRadar.MaxAutoAim;
                     break;
                 case Type.TimeMachine:
-                    MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
-                    MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
-                    MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = ShortRangeRadar.MaxLockAngle;
-                    MaxAutoAim = ShortRangeRadar.MaxAutoAim;
+                    MaxSearchRadiusSqr = VeryLongRangeRadar.MaxSearchRadiusSqr;
+                    MaxLockDistanceSqr = VeryLongRangeRadar.MaxLockDistanceSqr;
+                    MaxSearchAngle = VeryLongRangeRadar.MaxSearchAngle;
+                    MaxLockAngle = VeryLongRangeRadar.MaxLockAngle;
+                    MaxAutoAim = VeryLongRangeRadar.MaxAutoAim;
                     break;
                 case Type.AceKennel:
                     MaxSearchRadiusSqr = UltraWideRangeRadar.MaxSearchRadiusSqr;
@@ -133,6 +133,13 @@ namespace Kocmoca
                     MaxLockAngle = UltraWideRangeRadar.MaxLockAngle;
                     MaxAutoAim = UltraWideRangeRadar.MaxAutoAim;
                     break;
+                case Type.nWidia:
+                    MaxSearchRadiusSqr = LongRangeRadar.MaxSearchRadiusSqr;
+                    MaxLockDistanceSqr = LongRangeRadar.MaxLockDistanceSqr;
+                    MaxSearchAngle = LongRangeRadar.MaxSearchAngle;
+                    MaxLockAngle = LongRangeRadar.MaxLockAngle;
+                    MaxAutoAim = LongRangeRadar.MaxAutoAim;
+                    break;
                 //case Type.FastFoodMan:
                 //    MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
                 //    MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
@@ -141,11 +148,18 @@ namespace Kocmoca
                 //    MaxAutoAim = ShortRangeRadar.MaxAutoAim;
                 //    break;
                 case Type.PumpkinGhost:
-                    MaxSearchRadiusSqr = ExtremelyLongRangeRadar.MaxSearchRadiusSqr;
-                    MaxLockDistanceSqr = ExtremelyLongRangeRadar.MaxLockDistanceSqr;
-                    MaxSearchAngle = ExtremelyLongRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = ExtremelyLongRangeRadar.MaxLockAngle;
-                    MaxAutoAim = ExtremelyLongRangeRadar.MaxAutoAim;
+                    MaxSearchRadiusSqr = VeryLongRangeRadar.MaxSearchRadiusSqr;
+                    MaxLockDistanceSqr = VeryLongRangeRadar.MaxLockDistanceSqr;
+                    MaxSearchAngle = VeryLongRangeRadar.MaxSearchAngle;
+                    MaxLockAngle = VeryLongRangeRadar.MaxLockAngle;
+                    MaxAutoAim = VeryLongRangeRadar.MaxAutoAim;
+                    break;
+                case Type.GrandLisboa:
+                    MaxSearchRadiusSqr = MediumRangeRadar.MaxSearchRadiusSqr;
+                    MaxLockDistanceSqr = MediumRangeRadar.MaxLockDistanceSqr;
+                    MaxSearchAngle = MediumRangeRadar.MaxSearchAngle;
+                    MaxLockAngle = MediumRangeRadar.MaxLockAngle;
+                    MaxAutoAim = MediumRangeRadar.MaxAutoAim;
                     break;
                 default:
                     MaxSearchRadiusSqr = RadarParameter.maxSearchRadiusSqr;

@@ -24,6 +24,7 @@ namespace Kocmoca
         public static readonly float operationalRange = flightVelocity * flightTime; // 射程 m
         public static readonly float fireRoundPerSecond = 9.73f; // 射速 rps
         public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec
+        public static WaitForSeconds waitRecovery = new WaitForSeconds(flightTime);
         public static readonly float coefficientMinDamage = 1.3035f;
         public static readonly float coefficientMaxDamage = 4.1949f;
     }
@@ -39,6 +40,7 @@ namespace Kocmoca
         public static readonly float fireRoundPerSecond = 3.37f; // 射速 rps
         public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec
         public static readonly float timeReload = 9.3f;
+        public static WaitForSeconds waitRecovery = new WaitForSeconds(flightTime);
         public static readonly float coefficientDamageBasic = 2.97f;
         public static readonly float coefficientDamageHull = 1.73f;
         public static readonly float coefficientDamageShield = 0.47f;
@@ -57,6 +59,7 @@ namespace Kocmoca
         public static readonly float fireRoundPerSecond = 1.137f; // 射速 rps
         public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec
         public static readonly float timeReload = 15.0f;
+        public static WaitForSeconds waitRecovery = new WaitForSeconds(flightTime);
         public static readonly float coefficientDamageBasic = 7.0f;
         public static readonly float coefficientDamageHull = 1.37f;
         public static readonly float coefficientDamageShield = 2.37f;
@@ -65,60 +68,85 @@ namespace Kocmoca
 
 
 
-    // KHAR 特快α射線炮（4管限定 / 6管限定） + 極遠距雷達/遠距雷達
+    // KHAR 特快α射線炮 + 極遠距雷達/遠距雷達
     public static class KocmoHyperAlphaRay
     {
-        public static readonly float projectileSpread = 0.07f; //彈道散布 degree
-        public static readonly int ammoVelocity = 7730; // 飛行速率 m/s
+        public static readonly float projectileSpread = 0.03f; //彈道散布 degree
+        public static readonly int ammoVelocity = 7990; // 飛行速率 m/s
         public static readonly int propulsion = ammoVelocity * 50; // 開火推力 propulsion = ammoVelocity / Time.fixedDeltaTime (1/0.02 = 50)
         public static readonly float flightTime = 0.5f; // 飛行時間 sec
-        public static readonly float operationalRange = ammoVelocity * flightTime; // 射程 m
+        public static readonly float operationalRange = ammoVelocity * flightTime; // 射程 m（2管3995 / 4管3355 / 6管3076）
         public static readonly float fireRoundPerSecond = 0.7f; // 射速 rps
         public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec
         public static readonly int repeating = 1; // 連發次數
+        public static WaitForSeconds waitRecovery = new WaitForSeconds(flightTime);
         public static readonly float hullPenetration = 3.7f; // 機甲穿透
-        public static readonly float shieldPenetration = 0.5f; // 護盾穿透
-        public static readonly int hullDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration); // 14592
-        public static readonly int shieldDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration); // 1972
-        public static readonly int hullDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration * fireRoundPerSecond * repeating); // 10214
-        public static readonly int shieldDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration * fireRoundPerSecond * repeating); // 1380
+        public static readonly float shieldPenetration = 0.77f; // 護盾穿透
+        public static readonly int hullDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration); // 15590
+        public static readonly int shieldDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration); // 3244
+        public static readonly int hullDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration * fireRoundPerSecond * repeating); // 10913
+        public static readonly int shieldDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration * fireRoundPerSecond * repeating); // 2271
     }
-    // KRG 極大磁軌炮 + 遠距雷達/中距雷達
+    // KRG 極大磁軌炮 + 極遠距雷達/遠距雷達/中距雷達
     public static class KocmoMegaRailgun
     {
-        public static readonly float projectileSpread = 0.16f; //彈道散布 degree
-        public static readonly int ammoVelocity = 5050; // 飛行速率 m/s
+        public static readonly float projectileSpread = 0.11f; //彈道散布 degree
+        public static readonly int ammoVelocity = 6670; // 飛行速率 m/s
         public static readonly int propulsion = ammoVelocity * 50; // 開火推力 propulsion = ammoVelocity / Time.fixedDeltaTime (1/0.02 = 50)
         public static readonly float flightTime = 0.5f; // 飛行時間 sec
-        public static readonly float operationalRange = ammoVelocity * flightTime; // 射程 m
-        public static readonly float fireRoundPerSecond = 0.7f; // 射速 rps
+        public static readonly float operationalRange = ammoVelocity * flightTime; // 射程 m（2管3335 /  4管2801 / 6管2568）
+        public static readonly float fireRoundPerSecond = 0.6f; // 射速 rps
         public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec
         public static readonly int repeating = 2; // 連發次數
+        public static WaitForSeconds waitRecovery = new WaitForSeconds(flightTime);
         public static readonly float hullPenetration = 2.4f; // 機甲穿透
-        public static readonly float shieldPenetration = 3.3f; // 護盾穿透
-        public static readonly int hullDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration); // 4040
-        public static readonly int shieldDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration); // 5554
-        public static readonly int hullDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration * fireRoundPerSecond * repeating); // DPS 5655
-        public static readonly int shieldDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration * fireRoundPerSecond * repeating); // DPS 7776
+        public static readonly float shieldPenetration = 1.7f; // 護盾穿透
+        public static readonly int hullDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration); // 7047
+        public static readonly int shieldDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration); // 4992
+        public static readonly int hullDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration * fireRoundPerSecond * repeating); // 8456
+        public static readonly int shieldDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration * fireRoundPerSecond * repeating); // 5990
     }
-    // KL 重型激光炮 + 中距雷達/短距雷達
-    public static class KocmoHeavyLaser
+
+    // KHIB 高速離子炮 + 遠距雷達/中距雷達/短距雷達
+    // 適合機甲不高、雙管機炮具速度優勢機種
+    public static class KocmoHighspeedIonBlaster
     {
-        public static readonly float projectileSpread = 0.21f; //彈道散布 degree
-        public static readonly int ammoVelocity = 3950; // 飛行速率 m/s
+        public static readonly float projectileSpread = 0.93f; //彈道散布 degree
+        public static readonly int ammoVelocity = 5710; // 飛行速率 m/s
+        public static readonly int propulsion = ammoVelocity * 50; // 開火推力 propulsion = ammoVelocity / Time.fixedDeltaTime (1/0.02 = 50)
+        public static readonly float flightTime = 0.5f; // 飛行時間 sec
+        public static readonly float operationalRange = ammoVelocity * flightTime; // 射程 m（2管2820 /  4管2368 / 6管2198）
+        public static readonly float fireRoundPerSecond = 1.3f; // 射速 rps
+        public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec
+        public static readonly int repeating = 3; // 連發次數
+        public static WaitForSeconds waitRecovery = new WaitForSeconds(flightTime);
+        public static readonly float hullPenetration = 0.49f; // 機甲穿透
+        public static readonly float shieldPenetration = 5.9f; // 護盾穿透
+        public static readonly int hullDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration); // 839
+        public static readonly int shieldDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration); // 12696
+        public static readonly int hullDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration * fireRoundPerSecond * repeating); // 3273
+        public static readonly int shieldDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration * fireRoundPerSecond * repeating); // 49515
+    }
+    // KR 磁軌砲 + 中距雷達
+    public static class KocmoRailgun
+    {
+        public static readonly float projectileSpread = 0.36f; //彈道散布 degree
+        public static readonly int ammoVelocity = 4550; // 飛行速率 m/s
         public static readonly int propulsion = ammoVelocity * 50; // 開火推力 propulsion = ammoVelocity / Time.fixedDeltaTime (1/0.02 = 50)
         public static readonly float flightTime = 0.37f; // 飛行時間 sec
         public static readonly float operationalRange = ammoVelocity * flightTime; // 射程 m
-        public static readonly float fireRoundPerSecond = 1.0f; // 射速 rps
+        public static readonly float fireRoundPerSecond = 3.0f; // 射速 rps
         public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec
-        public static readonly int repeating = 3; // 連發次數
-        public static readonly float hullPenetration = 0.72f; // 機甲穿透
-        public static readonly float shieldPenetration = 2.2f; // 護盾穿透
-        public static readonly int hullDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration); // 741
-        public static readonly int shieldDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration); // 2265
-        public static readonly int hullDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration * fireRoundPerSecond * repeating); // 2224
-        public static readonly int shieldDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration * fireRoundPerSecond * repeating); // 6796
+        public static readonly int repeating = 1; // 連發次數
+        public static WaitForSeconds waitRecovery = new WaitForSeconds(flightTime);
+        public static readonly float hullPenetration = 1.7f; // 機甲穿透
+        public static readonly float shieldPenetration = 0.73f; // 護盾穿透
+        public static readonly int hullDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration); // 2323
+        public static readonly int shieldDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration); // 997
+        public static readonly int hullDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration * fireRoundPerSecond * repeating); // 6968
+        public static readonly int shieldDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration * fireRoundPerSecond * repeating); // 2992
     }
+
     // KL 激光炮 + 短距雷達/超廣角雷達
     public static class KocmoLaser
     {
@@ -130,12 +158,13 @@ namespace Kocmoca
         public static readonly float fireRoundPerSecond = 7.1f; // 射速 rps
         public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec
         public static readonly int repeating = 1; // 連發次數
-        public static readonly float hullPenetration = 1.3f; // 機甲穿透 DPS 3422
-        public static readonly float shieldPenetration = 4.3f; // 護盾穿透 DPS 11318
-        public static readonly int hullDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration);
-        public static readonly int shieldDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration);
-        public static readonly int hullDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration * fireRoundPerSecond * repeating);
-        public static readonly int shieldDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration * fireRoundPerSecond * repeating);
+        public static WaitForSeconds waitRecovery = new WaitForSeconds(flightTime);
+        public static readonly float hullPenetration = 1.3f; // 機甲穿透
+        public static readonly float shieldPenetration = 4.3f; // 護盾穿透
+        public static readonly int hullDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration); // 482
+        public static readonly int shieldDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration); // 1594
+        public static readonly int hullDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration * fireRoundPerSecond * repeating); // 3422
+        public static readonly int shieldDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration * fireRoundPerSecond * repeating); // 11318
     }
     // KUPP 超高功率電漿炮 + 短距雷達/超廣角雷達
     public static class KocmoUltraPowerPlasma
@@ -148,6 +177,7 @@ namespace Kocmoca
         public static readonly float fireRoundPerSecond = 10.0f; // 射速 rps
         public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec
         public static readonly int repeating = 1; // 連發次數
+        public static WaitForSeconds waitRecovery = new WaitForSeconds(flightTime);
         public static readonly float hullPenetration = 0.37f; // 機甲穿透
         public static readonly float shieldPenetration = 5.2f; // 護盾穿透
         public static readonly int hullDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration); // 277
@@ -166,11 +196,12 @@ namespace Kocmoca
         public static readonly float fireRoundPerSecond = 9.3f; // 射速 rps
         public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec
         public static readonly int repeating = 1; // 連發次數
+        public static WaitForSeconds waitRecovery = new WaitForSeconds(flightTime);
         public static readonly float hullPenetration = 3.7f; // 機甲穿透 DPS 20233
         public static readonly float shieldPenetration = 0.66f; // 護盾穿透  DPS 3573
-        public static readonly int hullDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration);
-        public static readonly int shieldDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration);
-        public static readonly int hullDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration * fireRoundPerSecond * repeating);
-        public static readonly int shieldDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration * fireRoundPerSecond * repeating);
+        public static readonly int hullDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration); // 2154
+        public static readonly int shieldDamage = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration); // 384
+        public static readonly int hullDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * hullPenetration * fireRoundPerSecond * repeating); // 21541
+        public static readonly int shieldDPS = (int)(ammoVelocity * ammoVelocity * KocmoCannon.fixDamage * shieldPenetration * fireRoundPerSecond * repeating); // 3842
     }
 }

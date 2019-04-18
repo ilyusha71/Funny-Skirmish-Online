@@ -62,7 +62,7 @@ namespace Kocmoca
                 {
                     if (hull.Number == shooter) return;
                     float basicDamage = myRigidbody.velocity.magnitude * KocmoRocketLauncher.coefficientDamageBasic;
-                    hull.Hit(new DamageInfo()
+                    hull.Hit(new DamagePower()
                     {
                         Attacker = owner,
                         Hull = (int)(basicDamage * KocmoRocketLauncher.coefficientDamageHull),
@@ -86,7 +86,7 @@ namespace Kocmoca
                 {
                     if (hull.Number == shooter) return;
                     float basicDamage = myRigidbody.velocity.magnitude * KocmoRocketLauncher.coefficientDamageBasic;
-                    hull.Hit(new DamageInfo()
+                    hull.Hit(new DamagePower()
                     {
                         Attacker = owner,
                         Hull = (int)(basicDamage * KocmoRocketLauncher.coefficientDamageHull),

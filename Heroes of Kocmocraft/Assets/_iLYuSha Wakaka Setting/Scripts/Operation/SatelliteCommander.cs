@@ -51,7 +51,7 @@ namespace Kocmoca
 
     public class SatelliteCommander : MonoBehaviour
     {
-        public static WaitForSeconds waitShoot = new WaitForSeconds(0.0001f);
+        public static WaitForSeconds waitShoot = new WaitForSeconds(0.0f);
         public static WaitForSeconds waitLaserRecovery = new WaitForSeconds(KocmoLaserCannon.flightTime);
         public static WaitForSeconds waitRocketRecovery = new WaitForSeconds(KocmoRocketLauncher.flightTime);
         public static WaitForSeconds waitMissileRecovery = new WaitForSeconds(KocmoMissileLauncher.flightTime);
@@ -168,7 +168,7 @@ namespace Kocmoca
             HeadUpDisplayManager.Instance.ClearData();
             isCrash = false;
             myAudioSource.PlayOneShot(ResourceManager.instance.soundTakeOff, 0.37f);
-            int type = 3;// PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
+            int type = 6;// PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
             //string typeName = "Kocmocraft(" + type.ToString("00")+ ") - " + KocmocraftData.GetKocmocraftName(type);
             localPlayer = PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), DesignData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).transform;
             localPlayer.GetComponent<KocmocraftManager>().InitializeLocalPlayer();
