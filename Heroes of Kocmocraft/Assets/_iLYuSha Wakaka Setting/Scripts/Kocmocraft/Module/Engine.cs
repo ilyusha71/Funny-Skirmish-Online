@@ -34,9 +34,9 @@ namespace Kocmoca
         [Range(0,1)]public float enginePower = 0.5f;
         private AudioSource engineSound;
         [SerializeField]private EngineType engineType= EngineType.IonThruster;
-        private float engineMaxVolume;
-        private float engineMinThrottlePitch;
-        private float engineMaxThrottlePitch;
+        private float MaxVolume;
+        private float MinPitch;
+        private float MaxPitch;
         [Header("VFX")]
         ParticleSystem.MainModule mainModule;
         public ParticleSystem[] engineThruster;
@@ -53,39 +53,39 @@ namespace Kocmoca
             switch (engineType)
             {
                 case EngineType.Turbojet:
-                    engineMaxVolume = Turbojet.engineMaxVolume;
-                    engineMinThrottlePitch = Turbojet.engineMinThrottlePitch;
-                    engineMaxThrottlePitch = Turbojet.engineMaxThrottlePitch;
+                    MaxVolume = Turbojet.MaxVolume;
+                    MinPitch = Turbojet.MinPitch;
+                    MaxPitch = Turbojet.MaxPitch;
                     break;
                 case EngineType.Turbofan:
-                    engineMaxVolume = Turbofan.engineMaxVolume;
-                    engineMinThrottlePitch = Turbofan.engineMinThrottlePitch;
-                    engineMaxThrottlePitch = Turbofan.engineMaxThrottlePitch;
+                    MaxVolume = Turbofan.MaxVolume;
+                    MinPitch = Turbofan.MinPitch;
+                    MaxPitch = Turbofan.MaxPitch;
                     break;
                 case EngineType.Turboprop:
-                    engineMaxVolume = Turboprop.engineMaxVolume;
-                    engineMinThrottlePitch = Turboprop.engineMinThrottlePitch;
-                    engineMaxThrottlePitch = Turboprop.engineMaxThrottlePitch;
+                    MaxVolume = Turboprop.MaxVolume;
+                    MinPitch = Turboprop.MinPitch;
+                    MaxPitch = Turboprop.MaxPitch;
                     break;
                 case EngineType.Turboshaft:
-                    engineMaxVolume = Turboshaft.engineMaxVolume;
-                    engineMinThrottlePitch = Turboshaft.engineMinThrottlePitch;
-                    engineMaxThrottlePitch = Turboshaft.engineMaxThrottlePitch;
+                    MaxVolume = Turboshaft.MaxVolume;
+                    MinPitch = Turboshaft.MinPitch;
+                    MaxPitch = Turboshaft.MaxPitch;
                     break;
                 case EngineType.IonThruster:
-                    engineMaxVolume = IonThruster.engineMaxVolume;
-                    engineMinThrottlePitch = IonThruster.engineMinThrottlePitch;
-                    engineMaxThrottlePitch = IonThruster.engineMaxThrottlePitch;
+                    MaxVolume = IonThruster.MaxVolume;
+                    MinPitch = IonThruster.MinPitch;
+                    MaxPitch = IonThruster.MaxPitch;
                     break;
                 case EngineType.BiomassEnergy:
-                    engineMaxVolume = BiomassEnergy.engineMaxVolume;
-                    engineMinThrottlePitch = BiomassEnergy.engineMinThrottlePitch;
-                    engineMaxThrottlePitch = BiomassEnergy.engineMaxThrottlePitch;
+                    MaxVolume = BiomassEnergy.MaxVolume;
+                    MinPitch = BiomassEnergy.MinPitch;
+                    MaxPitch = BiomassEnergy.MaxPitch;
                     break;
                 case EngineType.PulsedPlasmaThruster:
-                    engineMaxVolume = PulsedPlasmaThruster.engineMaxVolume;
-                    engineMinThrottlePitch = PulsedPlasmaThruster.engineMinThrottlePitch;
-                    engineMaxThrottlePitch = PulsedPlasmaThruster.engineMaxThrottlePitch;
+                    MaxVolume = PulsedPlasmaThruster.MaxVolume;
+                    MinPitch = PulsedPlasmaThruster.MinPitch;
+                    MaxPitch = PulsedPlasmaThruster.MaxPitch;
                     break;
             }
             engineThruster = GetComponentsInChildren<ParticleSystem>();
@@ -127,8 +127,8 @@ namespace Kocmoca
         public void Power(float power)
         {
             enginePower = power;
-            engineSound.volume = Mathf.Lerp(0, engineMaxVolume, enginePower);
-            engineSound.pitch = Mathf.Lerp(engineMinThrottlePitch, engineMaxThrottlePitch, enginePower);
+            engineSound.volume = Mathf.Lerp(0, MaxVolume, enginePower);
+            engineSound.pitch = Mathf.Lerp(MinPitch, MaxPitch, enginePower);
 
             if (countVFX > 0)
             {

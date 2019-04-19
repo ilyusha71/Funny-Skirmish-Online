@@ -1,11 +1,12 @@
-﻿/***************************************************************************
+﻿/*****************************************************************************
  * Fire Control System
  * 射控系統
- * Last Updated: 2018/10/12
+ * Last Updated: 2019/04/20
  * Description:
  * 1. Weapon Launcher -> Weapon System -> Fire Control System
  * 2. 進行發射器的初始化與彈藥管理
- ***************************************************************************/
+ * 3. 使用ModuleData进行快速初始化
+*****************************************************************************/
 using Photon.Pun;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ namespace Kocmoca
         private OnboardRadar myOnboardRadar;
         private AudioSource myAudioSource;
         // Kocmonaut Data
+        private ModuleData moduleData;
         private int kocmonautNumber;
         [SerializeField]
         private bool isLocal; // Local Player or Local Bot
@@ -26,10 +28,8 @@ namespace Kocmoca
         private FireControlSystemType typeFCS = FireControlSystemType.Unknown;
         private float timeReload; // 飛彈重載耗時
         public int maxAmmoCapacity { get; set; } // 最大載彈量
-        private float FireRate; // 開火速率
-        private int RepeatingCount = 1;
-        private float MaxProjectileSpread;
-        private AudioClip FireSound;
+        private float fireRate;
+        private AudioClip fireSound;
         // FSC Realtime Info
         public int countAmmo { get; set; }
         private int countLauncher;
@@ -41,14 +41,11 @@ namespace Kocmoca
         private bool isReloading;
         public float reloadingProcess { get; set; } // 剩餘百分比
         private float nextTimeAmmoLoaded;
-        // Target Info
-        [Header("Target Info")]
-        public Transform target;
-        public int targetNumber;
-        private Vector3 expectedTargetPosition;
-        private Vector3 expectedTargetDirection;
+        [SerializeField]
+        private Transform target;
+        private int targetNumber;
 
-        public void Initialize(Type type, int number, bool isLocal)
+        public void Initialize(int type, int number, bool isLocal)
         {
             // Dependent Components
             myTransform = transform;
@@ -61,135 +58,32 @@ namespace Kocmoca
             // FCS Data Loading
             typeFCS = WeaponData.GetFCS(myTransform.name);
             if (typeFCS == FireControlSystemType.Unknown) Debug.LogError("No FCS");
-            LoadFireControlSystemData();
-            InitializeLauncher();
-
-            if (typeFCS == FireControlSystemType.Laser)
-            {
-                //switch (type)
-                //{
-                //    case Type.MinionArmor:
-                //        FireRate = KocmoArmorPiercing.FireRate;
-                //        RepeatingCount = KocmoArmorPiercing.RepeatingCount;
-                //        MaxProjectileSpread = KocmoArmorPiercing.MaxProjectileSpread;
-                //        break;
-                //    case Type.RedBullEnergy:
-                //        FireRate = KocmoUltraPowerPlasma.FireRate;
-                //        RepeatingCount = KocmoUltraPowerPlasma.RepeatingCount;
-                //        MaxProjectileSpread = KocmoUltraPowerPlasma.MaxProjectileSpread;
-                //        break;
-                //    case Type.VladimirPutin:
-                //        FireRate = KocmoMegaRailgun.FireRate;
-                //        RepeatingCount = KocmoMegaRailgun.RepeatingCount;
-                //        MaxProjectileSpread = KocmoMegaRailgun.MaxProjectileSpread;
-                //        FireSound = ResourceManager.instance.soundRailgun;
-                //        myAudioSource.maxDistance = 500;
-                //        break;
-                //    //case Type.PaperAeroplane:
-                //    //    FireRate = DevilTenderGazer.FireRate;
-                //    //    RepeatingCount = DevilTenderGazer.RepeatingCount;
-                //    //    MaxProjectileSpread = DevilTenderGazer.MaxProjectileSpread;
-                //    //    FireSound = ResourceManager.instance.soundAlphaRay;
-                //    //    myAudioSource.maxDistance = 700;
-                //    //    break;
-                //    case Type.Cuckoo:
-                //        FireRate = DevilTenderGazer.FireRate;
-                //        RepeatingCount = DevilTenderGazer.RepeatingCount;
-                //        MaxProjectileSpread = DevilTenderGazer.MaxProjectileSpread;
-                //        FireSound = ResourceManager.instance.soundAlphaRay;
-                //        myAudioSource.maxDistance = 700;
-                //        break;
-                //    case Type.BulletBill:
-                //        FireRate = KocmoUltraPowerPlasma.FireRate;
-                //        RepeatingCount = KocmoUltraPowerPlasma.RepeatingCount;
-                //        MaxProjectileSpread = KocmoUltraPowerPlasma.MaxProjectileSpread;
-                //        break;
-                //    case Type.TimeMachine:
-                //        FireRate = KocmoHighspeedIonBlaster.FireRate;
-                //        RepeatingCount = KocmoHighspeedIonBlaster.RepeatingCount;
-                //        MaxProjectileSpread = KocmoHighspeedIonBlaster.MaxProjectileSpread;
-                //        break;
-                //    case Type.AceKennel:
-                //        FireRate = KocmoArmorPiercing.FireRate;
-                //        RepeatingCount = KocmoArmorPiercing.RepeatingCount;
-                //        MaxProjectileSpread = KocmoArmorPiercing.MaxProjectileSpread;
-                //        break;
-                //    case Type.KirbyStar:
-                //        FireRate = KocmoUltraPowerPlasma.FireRate;
-                //        RepeatingCount = KocmoUltraPowerPlasma.RepeatingCount;
-                //        MaxProjectileSpread = KocmoUltraPowerPlasma.MaxProjectileSpread;
-                //        break;
-                //    case Type.nWidia:
-                //        FireRate = KocmoHighspeedIonBlaster.FireRate;
-                //        RepeatingCount = KocmoHighspeedIonBlaster.RepeatingCount;
-                //        MaxProjectileSpread = KocmoHighspeedIonBlaster.MaxProjectileSpread;
-                //        break;
-                //    case Type.FastFoodMan:
-                //        FireRate = KocmoLaser.FireRate;
-                //        RepeatingCount = KocmoLaser.RepeatingCount;
-                //        MaxProjectileSpread = KocmoLaser.MaxProjectileSpread;
-                //        break;
-                //    //case Type.PolarisExpress:
-                //    //    FireRate = KocmoMegaRailgun.FireRate;
-                //    //    RepeatingCount = KocmoMegaRailgun.RepeatingCount;
-                //    //    MaxProjectileSpread = KocmoMegaRailgun.MaxProjectileSpread;
-                //    //    FireSound = ResourceManager.instance.soundRailgun;
-                //    //    myAudioSource.maxDistance = 300;
-                //    //    break;
-                //    case Type.PapoyUnicorn:
-                //        FireRate = DevilTenderGazer.FireRate;
-                //        RepeatingCount = DevilTenderGazer.RepeatingCount;
-                //        MaxProjectileSpread = DevilTenderGazer.MaxProjectileSpread;
-                //        FireSound = ResourceManager.instance.soundAlphaRay;
-                //        myAudioSource.maxDistance = 700;
-                //        break;
-                //    case Type.PumpkinGhost:
-                //        FireRate = KocmoMegaRailgun.FireRate;
-                //        RepeatingCount = KocmoMegaRailgun.RepeatingCount;
-                //        MaxProjectileSpread = KocmoMegaRailgun.MaxProjectileSpread;
-                //        FireSound = ResourceManager.instance.soundRailgun;
-                //        myAudioSource.maxDistance = 500;
-                //        break;
-                //    case Type.GrandLisboa:
-                //        FireRate = KocmoHighspeedIonBlaster.FireRate;
-                //        RepeatingCount = KocmoHighspeedIonBlaster.RepeatingCount;
-                //        MaxProjectileSpread = KocmoHighspeedIonBlaster.MaxProjectileSpread;
-                //        break;
-                //    default:
-                //        FireRate = KocmoLaserCannon.FireRate;
-                //        RepeatingCount = KocmoUltraPowerPlasma.RepeatingCount;
-                //        MaxProjectileSpread = KocmoLaserCannon.MaxProjectileSpread;
-                //        break;
-                //}
-            }
-        }
-        void LoadFireControlSystemData()
-        {
             switch (typeFCS)
             {
                 case FireControlSystemType.Laser:
+                    moduleData = KocmocaData.KocmocraftData[type];
                     maxAmmoCapacity = 999;
-                    FireRate = KocmoLaserCannon.FireRate;
-                    FireSound = ResourceManager.instance.soundLaser;
+                    fireRate = moduleData.FireRate;
+                    fireSound = moduleData.FireSound;
+                    myAudioSource.maxDistance = moduleData.ShockwaveDistance;
                     break;
                 case FireControlSystemType.Rocket:
                     timeReload = KocmoRocketLauncher.timeReload;
                     maxAmmoCapacity = KocmoRocketLauncher.maxAmmoCapacity;
-                    FireRate = KocmoRocketLauncher.FireRate;
-                    countAmmo = 2;
-                    FireSound = ResourceManager.instance.soundRocket;
+                    fireRate = KocmoRocketLauncher.FireRate;
+                    fireSound = ResourceManager.instance.soundRocket;
+                    countAmmo = 0;
                     break;
                 case FireControlSystemType.Missile:
                     timeReload = KocmoMissileLauncher.timeReload;
                     maxAmmoCapacity = KocmoMissileLauncher.maxAmmoCapacity;
-                    FireRate = KocmoMissileLauncher.FireRate;
-                    countAmmo = 1;
-                    FireSound = ResourceManager.instance.soundMissile;
+                    fireRate = KocmoMissileLauncher.FireRate;
+                    fireSound = ResourceManager.instance.soundMissile;
+                    countAmmo = 0;
                     break;
             }
-        }
-        public void InitializeLauncher()
-        {
+
+            //Initialize Launcher
             Transform[] obj = GetComponentsInChildren<Transform>();
             countLauncher = (obj.Length - 1) * 2; // GetComponentsInChildren取得陣列數量包含父物件
             launcher = new Vector3[countLauncher];
@@ -231,13 +125,13 @@ namespace Kocmoca
             countAmmo = maxAmmoCapacity == 999 ? maxAmmoCapacity : countAmmo;
             if (countAmmo > 0 && Time.time > nextTimeShoot)
             {
-                nextTimeShoot = Time.time + FireRate;
+                nextTimeShoot = Time.time + fireRate;
                 countAmmo--;
                 LauncherControl();
 
-                if (RepeatingCount == 2)
+                if (moduleData.RepeatingCount == 2)
                     Invoke("LauncherControl",0.3f);
-                else if (RepeatingCount == 3)
+                else if (moduleData.RepeatingCount == 3)
                 {
                     Invoke("LauncherControl", 0.12f);
                     Invoke("LauncherControl", 0.24f);
@@ -258,7 +152,7 @@ namespace Kocmoca
                 switch (typeFCS)
                 {
                     case FireControlSystemType.Laser:
-                        myPhotonView.RPC("LaserShoot", RpcTarget.AllViaServer, currentLauncher, kocmonautNumber, targetNumber, Random.Range(-MaxProjectileSpread, MaxProjectileSpread));
+                        myPhotonView.RPC("LaserShoot", RpcTarget.AllViaServer, currentLauncher, kocmonautNumber, targetNumber, Random.Range(-moduleData.MaxProjectileSpread, moduleData.MaxProjectileSpread));
                         break;
                     case FireControlSystemType.Rocket:
                         myPhotonView.RPC("RockeLaunch", RpcTarget.AllViaServer, currentLauncher, kocmonautNumber, targetNumber);
@@ -269,7 +163,7 @@ namespace Kocmoca
                 }
 
                 if (t == 0)
-                    myAudioSource.PlayOneShot(FireSound, 0.73f);
+                    myAudioSource.PlayOneShot(fireSound, 0.73f);
 
                 currentLauncher += 2;
                 currentLauncher = (int)Mathf.Repeat(currentLauncher, countLauncher);

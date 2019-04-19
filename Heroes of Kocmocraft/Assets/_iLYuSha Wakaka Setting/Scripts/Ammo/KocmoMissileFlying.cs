@@ -37,7 +37,7 @@ namespace Kocmoca
                     SatelliteCommander.Instance.MissileLockOnWarning(true, name);
                 }
             }
-            timeRecovery = Time.time + KocmoMissileLauncher.flightTime;
+            timeRecovery = Time.time + KocmoMissileLauncher.FlightTime;
         }
         void Update()
         {

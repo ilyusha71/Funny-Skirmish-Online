@@ -4,6 +4,7 @@ using TMPro;
 using DG.Tweening;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
 
 namespace Kocmoca
 {
@@ -168,6 +169,71 @@ namespace Kocmoca
         public TextMeshProUGUI textMaxRange;
         private SciFiBar barMaxRange;
 
+
+
+        public class DataBlock
+        {
+            internal ModuleData moduleData;
+        }
+        [Serializable]
+        public class Turret : DataBlock
+        {
+            public TextMeshProUGUI[] item;
+            public TextMeshProUGUI textTurretCount;
+            public TextMeshProUGUI textMaxAutoAimAngle;
+            public TextMeshProUGUI textRoundsPerMinute;
+            public TextMeshProUGUI textRepeatingCount;
+            public TextMeshProUGUI textMaxProjectileSpread;
+            public TextMeshProUGUI textAmmoVelocity;
+            public TextMeshProUGUI textOperationalRange;
+            public TextMeshProUGUI textPenetrationShield;
+            public TextMeshProUGUI textPenetrationHull;
+            public TextMeshProUGUI textDamageShield;
+            public TextMeshProUGUI textDamageHull;
+            public TextMeshProUGUI textDpsShield;
+            public TextMeshProUGUI textDpsHull;
+
+            public void SetData(int index)
+            {
+                moduleData = KocmocaData.KocmocraftData[index];
+
+                textTurretCount.text = moduleData.TurretCount.ToString() + "管"+ moduleData.DecayVelocity; ;
+                textMaxAutoAimAngle.text = moduleData.MaxAutoAimAngle.ToString() + " 度";
+                textRoundsPerMinute.text = moduleData.RoundsPerMinute.ToString() + " rpm";
+                textRepeatingCount.text = moduleData.RepeatingCount == 1?"单发" : moduleData.RepeatingCount.ToString() + "连发";
+                textMaxProjectileSpread.text = moduleData.MaxProjectileSpread.ToString() + " 度";
+                textAmmoVelocity.text = Mathf.RoundToInt(moduleData.AmmoVelocity).ToString() + " mps" + moduleData.DecayVelocity;
+                textOperationalRange.text = Mathf.RoundToInt(moduleData.operationalRange).ToString() + " m" + moduleData.DecayVelocity;
+                textPenetrationShield.text = (moduleData.PenetrationShield * 100).ToString() + " %";
+                textPenetrationHull.text = (moduleData.PenetrationHull * 100).ToString() + " %";
+                textDamageShield.text = moduleData.DamageShield;
+                textDamageHull.text = moduleData.DamageHull;
+                textDpsShield.text = moduleData.DpsShield;
+                textDpsHull.text = moduleData.DpsHull;
+
+                textTurretCount.color = HangarData.TextColor[index];
+                textMaxAutoAimAngle.color = HangarData.TextColor[index];
+                textRoundsPerMinute.color = HangarData.TextColor[index];
+                textRepeatingCount.color = HangarData.TextColor[index];
+                textMaxProjectileSpread.color = HangarData.TextColor[index];
+                textAmmoVelocity.color = HangarData.TextColor[index];
+                textOperationalRange.color = HangarData.TextColor[index];
+                textPenetrationShield.color = HangarData.TextColor[index];
+                textPenetrationHull.color = HangarData.TextColor[index];
+                textDamageShield.color = HangarData.TextColor[index];
+                textDamageHull.color = HangarData.TextColor[index];
+                textDpsShield.color = HangarData.TextColor[index];
+                textDpsHull.color = HangarData.TextColor[index];
+
+                for (int i = 0; i < item.Length; i++)
+                {
+                    item[i].color = HangarData.TextColor[index];
+                }
+            }
+        }
+        [Header("Turret Data")]
+        public Turret turret;
+
         void Awake()
         {
             InitializeTrackingSystem();
@@ -293,6 +359,12 @@ namespace Kocmoca
 
         void LoadHangarData()
         {
+            turret.SetData(hangarIndex);
+
+
+
+
+
             frameMain.color = HangarData.FrameColor[hangarIndex];
             frameClose.color = HangarData.ButtonColor[hangarIndex];
 
@@ -352,22 +424,22 @@ namespace Kocmoca
 
             if (hangarIndex < hangarMax)
             {
-                WeaponData.GetWeaponData(hangarIndex);
-                textTurretCount.text = WeaponData.TurretCount[hangarIndex] + "x 突击激光炮";
-                textFireRPS.text = KocmoLaserCannon.FireRoundPerSecond + " rps";
-                textDamage.text = string.Format("{0} ~ {1} dmg", WeaponData.MinDamage, WeaponData.MaxDamage);
-                barDamage.SetBar(WeaponData.MaxDamage);
-                textMaxRange.text = WeaponData.MaxRange + " m";
-                barMaxRange.SetBar(WeaponData.MaxRange);
+                //WeaponData.GetWeaponData(hangarIndex);
+                //textTurretCount.text = WeaponData.TurretCount[hangarIndex] + "x 突击激光炮";
+                //textFireRPS.text = KocmoLaserCannon.FireRoundPerSecond + " rps";
+                //textDamage.text = string.Format("{0} ~ {1} dmg", WeaponData.MinDamage, WeaponData.MaxDamage);
+                //barDamage.SetBar(WeaponData.MaxDamage);
+                //textMaxRange.text = WeaponData.MaxRange + " m";
+                //barMaxRange.SetBar(WeaponData.MaxRange);
             }
             else
             {
-                textTurretCount.text = "---";
-                textFireRPS.text = "---";
-                textDamage.text = "---";
-                barDamage.SetBar(0);
-                textMaxRange.text = "--- m";
-                barMaxRange.SetBar(0);
+                //textTurretCount.text = "---";
+                //textFireRPS.text = "---";
+                //textDamage.text = "---";
+                //barDamage.SetBar(0);
+                //textMaxRange.text = "--- m";
+                //barMaxRange.SetBar(0);
             }
         }
 

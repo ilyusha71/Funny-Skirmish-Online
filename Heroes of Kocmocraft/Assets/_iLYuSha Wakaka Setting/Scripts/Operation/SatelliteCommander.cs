@@ -52,9 +52,9 @@ namespace Kocmoca
     public class SatelliteCommander : MonoBehaviour
     {
         public static WaitForSeconds waitShoot = new WaitForSeconds(0.0f);
-        public static WaitForSeconds waitLaserRecovery = new WaitForSeconds(KocmoLaserCannon.flightTime);
-        public static WaitForSeconds waitRocketRecovery = new WaitForSeconds(KocmoRocketLauncher.flightTime);
-        public static WaitForSeconds waitMissileRecovery = new WaitForSeconds(KocmoMissileLauncher.flightTime);
+        public static WaitForSeconds waitLaserRecovery = new WaitForSeconds(KocmoLaserCannon.FlightTime);
+        public static WaitForSeconds waitRocketRecovery = new WaitForSeconds(KocmoRocketLauncher.FlightTime);
+        public static WaitForSeconds waitMissileRecovery = new WaitForSeconds(KocmoMissileLauncher.FlightTime);
 
         //
         public static SatelliteCommander Instance { get; private set; }

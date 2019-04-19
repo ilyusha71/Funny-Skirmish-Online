@@ -7,7 +7,7 @@ using System.Text;
 
 public class TestText : MonoBehaviour
 {
-    ModuleData data = TempClass.Cuckoo;
+    ModuleData data = KocmocaData.Cuckoo;
     private string test;
     public TextMeshProUGUI wak;
     public int sdsdsd;
@@ -47,7 +47,7 @@ public class TestText : MonoBehaviour
         s.Append("\n");
 
 
-        s.Append(Mathf.RoundToInt(data.ammoVelocity));
+        s.Append(Mathf.RoundToInt(data.AmmoVelocity));
         s.Append(" mps");
         s.Append(data.DecayVelocity);
         s.Append("\n");
@@ -82,7 +82,7 @@ public class TestText : MonoBehaviour
             test + "\n" +
             test + "\n" +
             test + "\n" +
-            Mathf.RoundToInt(data.ammoVelocity).ToString() + " mps" + data.DecayVelocity + "\n" +
+            Mathf.RoundToInt(data.AmmoVelocity).ToString() + " mps" + data.DecayVelocity + "\n" +
             Mathf.RoundToInt(data.operationalRange).ToString() + " m" + data.DecayVelocity + "\n" +
             (data.PenetrationShield * 100).ToString() + " %\n" +
             (data.PenetrationHull * 100).ToString() + " %\n" +
@@ -116,7 +116,7 @@ public class TestText : MonoBehaviour
         Awak[4].text = test;
 
 
-        Awak[5].text = Mathf.RoundToInt(data.ammoVelocity).ToString() + " mps" + data.DecayVelocity;
+        Awak[5].text = Mathf.RoundToInt(data.AmmoVelocity).ToString() + " mps" + data.DecayVelocity;
         Awak[6].text = Mathf.RoundToInt(data.operationalRange).ToString() + " m" + data.DecayVelocity;
         Awak[7].text = (data.PenetrationShield * 100).ToString() + " %";
         Awak[8].text = (data.PenetrationHull * 100).ToString() + " %";

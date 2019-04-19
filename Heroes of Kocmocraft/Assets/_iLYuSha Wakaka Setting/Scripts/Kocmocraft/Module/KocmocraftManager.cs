@@ -59,7 +59,6 @@ namespace Kocmoca
             Faction = (Faction)(portNumber % 2);
             Type = (Type)(int.Parse(myTransform.name.Split(new char[2] { '(', ')' })[1]));
             Number = photonView.Owner.ActorNumber;
-
             object indexSkin;
             if (photonView.Owner.CustomProperties.TryGetValue(LobbyInfomation.PLAYER_SKIN_OPTION, out indexSkin))
             {
@@ -78,10 +77,9 @@ namespace Kocmoca
             SatelliteCommander.Instance.SetHangar(myTransform, portNumber);
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
-            //gameObject.AddComponent<EngineController>().Initialize(Type);
             gameObject.AddComponent<AvionicsSystem>().Initialize((int)Type); // local only
             gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalPlayer, (int)Type, Number, pilot,wreckage);
-            gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalPlayer, (int)Faction, Type, Number); // local only
+            gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalPlayer, (int)Faction, (int)Type, Number); // local only
             gameObject.AddComponent<LocalPlayerController>();
             ActiveFCS(true);
             // Synchronize
@@ -116,7 +114,6 @@ namespace Kocmoca
                 SatelliteCommander.Instance.NewKocmonautJoin(Core.RemotePlayer, portNumber, Type, Number, myTransform.name);
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
-            //gameObject.AddComponent<EngineController>().Initialize(Type);
             gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.RemotePlayer, (int)Type, Number, pilot, wreckage);
             ActiveFCS(false);
         }
@@ -139,10 +136,9 @@ namespace Kocmoca
             SatelliteCommander.Instance.SetHangar(myTransform, portNumber);
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
-            //gameObject.AddComponent<EngineController>().Initialize(Type);
             gameObject.AddComponent<AvionicsSystem>().Initialize((int)Type); // local only
             gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalBot, (int)Type, Number, pilot, wreckage);
-            gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalBot, (int)Faction, Type, Number); // local only
+            gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalBot, (int)Faction, (int)Type, Number); // local only
             gameObject.AddComponent<LocalBotController>();
             if (Type == Type.VladimirPutin || Type == Type.Cuckoo || Type == Type.PapoyUnicorn || Type == Type.PumpkinGhost)
                 GetComponent<LocalBotController>().mission = Mission.Snipper;
@@ -168,7 +164,6 @@ namespace Kocmoca
                 SatelliteCommander.Instance.NewKocmonautJoin(Core.RemoteBot, portNumber, Type, Number, myTransform.name);
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
-            //gameObject.AddComponent<EngineController>().Initialize(Type);
             gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.RemoteBot, (int)Type, Number, pilot, wreckage);
             ActiveFCS(false);
         }
@@ -179,7 +174,7 @@ namespace Kocmoca
             countFCS = listFCS.Length;
             for (int i = 0; i < countFCS; i++)
             {
-                listFCS[i].Initialize(Type, Number, isLocal);
+                listFCS[i].Initialize((int)Type, Number, isLocal);
             }
             listAmmoOPD = ResourceManager.instance.listAmmoOPD;
         }

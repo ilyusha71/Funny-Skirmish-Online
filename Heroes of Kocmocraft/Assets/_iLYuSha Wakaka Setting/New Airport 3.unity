@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 1063356}
   - component: {fileID: 1063355}
   m_Layer: 5
-  m_Name: Toggle - Weapon
+  m_Name: Toggle - Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1860,11 +1860,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -2512,10 +2512,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1056516843}
     m_Modifications:
-    - target: {fileID: 1595220853927336, guid: cd9c38d10a8f8e44999992f8a4470b0f, type: 3}
-      propertyPath: m_Name
-      value: Hangar(15) - Papoy Unicorn
-      objectReference: {fileID: 0}
     - target: {fileID: 4711253631322490, guid: cd9c38d10a8f8e44999992f8a4470b0f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2559,6 +2555,10 @@ PrefabInstance:
     - target: {fileID: 4711253631322490, guid: cd9c38d10a8f8e44999992f8a4470b0f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595220853927336, guid: cd9c38d10a8f8e44999992f8a4470b0f, type: 3}
+      propertyPath: m_Name
+      value: Hangar(15) - Papoy Unicorn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd9c38d10a8f8e44999992f8a4470b0f, type: 3}
@@ -2750,12 +2750,12 @@ GameObject:
   m_Component:
   - component: {fileID: 106879797}
   m_Layer: 5
-  m_Name: Block - Weapon
+  m_Name: Block - Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &106879797
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3945,11 +3945,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -4533,11 +4533,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -4995,10 +4995,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1627880382}
     m_Modifications:
-    - target: {fileID: 1681112131345880, guid: 0f01c52222b80d247a442bd35d6e7301, type: 3}
-      propertyPath: m_Name
-      value: Hangar(09) - Scorpio Rouge
-      objectReference: {fileID: 0}
     - target: {fileID: 4862236061290434, guid: 0f01c52222b80d247a442bd35d6e7301, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5042,6 +5038,10 @@ PrefabInstance:
     - target: {fileID: 4862236061290434, guid: 0f01c52222b80d247a442bd35d6e7301, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681112131345880, guid: 0f01c52222b80d247a442bd35d6e7301, type: 3}
+      propertyPath: m_Name
+      value: Hangar(09) - Scorpio Rouge
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f01c52222b80d247a442bd35d6e7301, type: 3}
@@ -5225,9 +5225,9 @@ RectTransform:
   m_Father: {fileID: 1144988489}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -594}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &270899537
@@ -6316,9 +6316,9 @@ RectTransform:
   m_Father: {fileID: 1144988489}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -648}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &305742523
@@ -6896,8 +6896,8 @@ RectTransform:
   m_Father: {fileID: 1144988489}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
@@ -6921,7 +6921,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "\u70AE\u7BA1\u6570\u91CF"
+  m_text: "\u673A\u70AE\u6570\u91CF"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3abe7be1ac2895c4e818467df3659ef6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: ade04f5a3083b974081e3f65fe654757, type: 2}
@@ -6998,11 +6998,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -7300,9 +7300,9 @@ RectTransform:
   m_Father: {fileID: 1144988489}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -162}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &329693139
@@ -7435,10 +7435,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1013173793}
     m_Modifications:
-    - target: {fileID: 1266597087661034, guid: 9491f6521ba4705429be9b0a1d23c85e, type: 3}
-      propertyPath: m_Name
-      value: Hangar(03) - Paper Aeroplane
-      objectReference: {fileID: 0}
     - target: {fileID: 4214695905297212, guid: 9491f6521ba4705429be9b0a1d23c85e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7482,6 +7478,10 @@ PrefabInstance:
     - target: {fileID: 4214695905297212, guid: 9491f6521ba4705429be9b0a1d23c85e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266597087661034, guid: 9491f6521ba4705429be9b0a1d23c85e, type: 3}
+      propertyPath: m_Name
+      value: Hangar(03) - Paper Aeroplane
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9491f6521ba4705429be9b0a1d23c85e, type: 3}
@@ -8573,9 +8573,9 @@ RectTransform:
   m_Father: {fileID: 1444630039}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -486}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &382011105
@@ -8651,7 +8651,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 0
+  m_isRichText: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -9132,9 +9132,9 @@ RectTransform:
   m_Father: {fileID: 1144988489}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -324}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &412755127
@@ -9525,9 +9525,9 @@ RectTransform:
   m_Father: {fileID: 1444630039}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -108}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &444485291
@@ -9603,7 +9603,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 0
+  m_isRichText: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -10995,10 +10995,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 471982686}
     m_Modifications:
-    - target: {fileID: 1057709863474104, guid: 172671efd248a5c4c85a019ebe042dea, type: 3}
-      propertyPath: m_Name
-      value: Hangar(16) - Pumpkin Ghost
-      objectReference: {fileID: 0}
     - target: {fileID: 4148994515626186, guid: 172671efd248a5c4c85a019ebe042dea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -11042,6 +11038,10 @@ PrefabInstance:
     - target: {fileID: 4148994515626186, guid: 172671efd248a5c4c85a019ebe042dea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057709863474104, guid: 172671efd248a5c4c85a019ebe042dea, type: 3}
+      propertyPath: m_Name
+      value: Hangar(16) - Pumpkin Ghost
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 172671efd248a5c4c85a019ebe042dea, type: 3}
@@ -14237,7 +14237,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0
+  m_padding: 5.071429
   m_canvasRenderer: {fileID: 677106464}
   m_TextComponent: {fileID: 1816593518}
   m_materialReferenceIndex: 1
@@ -15081,11 +15081,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -15513,10 +15513,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1985302717}
     m_Modifications:
-    - target: {fileID: 1413480944677018, guid: b7cdbfc1e51478647a91dbc79c05a4ed, type: 3}
-      propertyPath: m_Name
-      value: Hangar(07) - Ace Kennel
-      objectReference: {fileID: 0}
     - target: {fileID: 4096866639541554, guid: b7cdbfc1e51478647a91dbc79c05a4ed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -15560,6 +15556,10 @@ PrefabInstance:
     - target: {fileID: 4096866639541554, guid: b7cdbfc1e51478647a91dbc79c05a4ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413480944677018, guid: b7cdbfc1e51478647a91dbc79c05a4ed, type: 3}
+      propertyPath: m_Name
+      value: Hangar(07) - Ace Kennel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7cdbfc1e51478647a91dbc79c05a4ed, type: 3}
@@ -16488,9 +16488,9 @@ RectTransform:
   m_Father: {fileID: 1144988489}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -486}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &814096232
@@ -17095,11 +17095,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -17544,10 +17544,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 728650796}
     m_Modifications:
-    - target: {fileID: 1638409085743542, guid: e5bc3f4d47d13b341b38e396d259cb22, type: 3}
-      propertyPath: m_Name
-      value: Hangar(02) - Vladimir Putin
-      objectReference: {fileID: 0}
     - target: {fileID: 4725810067923350, guid: e5bc3f4d47d13b341b38e396d259cb22, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -17591,6 +17587,10 @@ PrefabInstance:
     - target: {fileID: 4725810067923350, guid: e5bc3f4d47d13b341b38e396d259cb22, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1638409085743542, guid: e5bc3f4d47d13b341b38e396d259cb22, type: 3}
+      propertyPath: m_Name
+      value: Hangar(02) - Vladimir Putin
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5bc3f4d47d13b341b38e396d259cb22, type: 3}
@@ -18227,11 +18227,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -18653,6 +18653,7 @@ GameObject:
   - component: {fileID: 937960343}
   - component: {fileID: 937960344}
   - component: {fileID: 937960345}
+  - component: {fileID: 937960346}
   m_Layer: 0
   m_Name: Hangar Rail Main
   m_TagString: Untagged
@@ -18811,6 +18812,34 @@ MonoBehaviour:
   textFireRPS: {fileID: 1723500255}
   textDamage: {fileID: 1693969784}
   textMaxRange: {fileID: 997453135}
+  turret:
+    item:
+    - {fileID: 321321820}
+    - {fileID: 1768936606}
+    - {fileID: 1797502565}
+    - {fileID: 329693139}
+    - {fileID: 1534674609}
+    - {fileID: 1920401269}
+    - {fileID: 412755127}
+    - {fileID: 1773837615}
+    - {fileID: 1295289530}
+    - {fileID: 814096232}
+    - {fileID: 1386092235}
+    - {fileID: 270899537}
+    - {fileID: 305742523}
+    textTurretCount: {fileID: 1002394965}
+    textMaxAutoAimAngle: {fileID: 2026459750}
+    textRoundsPerMinute: {fileID: 444485291}
+    textRepeatingCount: {fileID: 1672683887}
+    textMaxProjectileSpread: {fileID: 1131036244}
+    textAmmoVelocity: {fileID: 950977725}
+    textOperationalRange: {fileID: 1854273657}
+    textPenetrationShield: {fileID: 1738127958}
+    textPenetrationHull: {fileID: 1511587133}
+    textDamageShield: {fileID: 382011105}
+    textDamageHull: {fileID: 1366623820}
+    textDpsShield: {fileID: 2025825188}
+    textDpsHull: {fileID: 1909947827}
 --- !u!82 &937960345
 AudioSource:
   m_ObjectHideFlags: 0
@@ -18907,6 +18936,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &937960346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937960342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enginePower: 0.5
+  engineType: 104
+  engineThruster: []
+  thrusterStartLife: 0
+  currentLifeTime: 0
+  countVFX: 0
+  propeller: []
 --- !u!1 &942364391
 GameObject:
   m_ObjectHideFlags: 0
@@ -19006,9 +19054,9 @@ RectTransform:
   m_Father: {fileID: 1444630039}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -270}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &950977725
@@ -19084,7 +19132,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 0
+  m_isRichText: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -19343,10 +19391,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1617932834}
     m_Modifications:
-    - target: {fileID: 1974464333937954, guid: e6dd15b09b894d7448117f2e60805329, type: 3}
-      propertyPath: m_Name
-      value: Hangar(04) - Cuckoo
-      objectReference: {fileID: 0}
     - target: {fileID: 4350908399310892, guid: e6dd15b09b894d7448117f2e60805329, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -19390,6 +19434,10 @@ PrefabInstance:
     - target: {fileID: 4350908399310892, guid: e6dd15b09b894d7448117f2e60805329, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974464333937954, guid: e6dd15b09b894d7448117f2e60805329, type: 3}
+      propertyPath: m_Name
+      value: Hangar(04) - Cuckoo
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6dd15b09b894d7448117f2e60805329, type: 3}
@@ -19881,11 +19929,11 @@ MonoBehaviour:
     lineCount: 3
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -20420,9 +20468,9 @@ RectTransform:
   m_Father: {fileID: 1444630039}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: 0}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1002394965
@@ -20498,7 +20546,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 0
+  m_isRichText: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -22035,7 +22083,7 @@ GameObject:
   - component: {fileID: 1074427002}
   - component: {fileID: 1074427001}
   m_Layer: 5
-  m_Name: Toggle Text - Weapon
+  m_Name: Toggle Text - Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22080,7 +22128,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "\u6B66\u88C5"
+  m_text: "\u673A\u70AE"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3abe7be1ac2895c4e818467df3659ef6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 3488a7266cf6c1b47a7c18eac02f724c, type: 2}
@@ -22903,9 +22951,9 @@ RectTransform:
   m_Father: {fileID: 1444630039}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -216}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1131036244
@@ -22981,7 +23029,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 0
+  m_isRichText: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -25643,9 +25691,9 @@ RectTransform:
   m_Father: {fileID: 1144988489}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -432}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1295289530
@@ -26451,9 +26499,9 @@ RectTransform:
   m_Father: {fileID: 1444630039}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -540}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1366623820
@@ -26529,7 +26577,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 0
+  m_isRichText: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -26729,10 +26777,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1122663471}
     m_Modifications:
-    - target: {fileID: 1461499889539346, guid: 474bd353fd68fec458b4bd8951ab6b59, type: 3}
-      propertyPath: m_Name
-      value: Hangar(11) - Fast Food Man
-      objectReference: {fileID: 0}
     - target: {fileID: 4835592628145312, guid: 474bd353fd68fec458b4bd8951ab6b59, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -26776,6 +26820,10 @@ PrefabInstance:
     - target: {fileID: 4835592628145312, guid: 474bd353fd68fec458b4bd8951ab6b59, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461499889539346, guid: 474bd353fd68fec458b4bd8951ab6b59, type: 3}
+      propertyPath: m_Name
+      value: Hangar(11) - Fast Food Man
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 474bd353fd68fec458b4bd8951ab6b59, type: 3}
@@ -26832,9 +26880,9 @@ RectTransform:
   m_Father: {fileID: 1144988489}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -540}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1386092235
@@ -27747,7 +27795,7 @@ GameObject:
   - component: {fileID: 1438220408}
   - component: {fileID: 1438220407}
   m_Layer: 5
-  m_Name: Tab Text - Weapon
+  m_Name: Tab Text - Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27792,7 +27840,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "\u6B66\u88C5"
+  m_text: "\u673A\u70AE"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3abe7be1ac2895c4e818467df3659ef6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: ade04f5a3083b974081e3f65fe654757, type: 2}
@@ -27869,11 +27917,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -28073,7 +28121,7 @@ GameObject:
   - component: {fileID: 1450216687}
   - component: {fileID: 1450216686}
   m_Layer: 5
-  m_Name: Tab - Weapon
+  m_Name: Tab - Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29191,9 +29239,9 @@ RectTransform:
   m_Father: {fileID: 1444630039}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -432}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1511587133
@@ -29269,7 +29317,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 0
+  m_isRichText: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -29927,9 +29975,9 @@ RectTransform:
   m_Father: {fileID: 1144988489}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -216}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1534674609
@@ -32998,9 +33046,9 @@ RectTransform:
   m_Father: {fileID: 1444630039}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -162}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1672683887
@@ -33076,7 +33124,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 0
+  m_isRichText: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -34293,7 +34341,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1709752760
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35109,9 +35157,9 @@ RectTransform:
   m_Father: {fileID: 1444630039}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -378}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1738127958
@@ -35187,7 +35235,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 0
+  m_isRichText: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -35592,9 +35640,9 @@ RectTransform:
   m_Father: {fileID: 1144988489}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -54}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1768936606
@@ -35794,10 +35842,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2108054107}
     m_Modifications:
-    - target: {fileID: 1267311499308674, guid: fc989c15518deff40aafd5b1afdb2f90, type: 3}
-      propertyPath: m_Name
-      value: Hangar(05) - Bullet Bill
-      objectReference: {fileID: 0}
     - target: {fileID: 4344818207295468, guid: fc989c15518deff40aafd5b1afdb2f90, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -35841,6 +35885,10 @@ PrefabInstance:
     - target: {fileID: 4344818207295468, guid: fc989c15518deff40aafd5b1afdb2f90, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267311499308674, guid: fc989c15518deff40aafd5b1afdb2f90, type: 3}
+      propertyPath: m_Name
+      value: Hangar(05) - Bullet Bill
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc989c15518deff40aafd5b1afdb2f90, type: 3}
@@ -36117,9 +36165,9 @@ RectTransform:
   m_Father: {fileID: 1144988489}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -378}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1773837615
@@ -36797,9 +36845,9 @@ RectTransform:
   m_Father: {fileID: 1144988489}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -108}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1797502565
@@ -37494,7 +37542,7 @@ MonoBehaviour:
     lineCount: 13
     pageCount: 1
     materialCount: 2
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -38056,9 +38104,9 @@ RectTransform:
   m_Father: {fileID: 1444630039}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -324}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1854273657
@@ -38134,7 +38182,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 0
+  m_isRichText: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -39069,9 +39117,9 @@ RectTransform:
   m_Father: {fileID: 1444630039}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -648}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1909947827
@@ -39147,7 +39195,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 0
+  m_isRichText: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -39457,9 +39505,9 @@ RectTransform:
   m_Father: {fileID: 1144988489}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -270}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1920401269
@@ -40983,11 +41031,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -41831,10 +41879,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1860015647}
     m_Modifications:
-    - target: {fileID: 1121321475336444, guid: 5e51636823cf4464d84a1ceb957a7efc, type: 3}
-      propertyPath: m_Name
-      value: Hangar(14) - Ancient Fish
-      objectReference: {fileID: 0}
     - target: {fileID: 4277830745315218, guid: 5e51636823cf4464d84a1ceb957a7efc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -41878,6 +41922,10 @@ PrefabInstance:
     - target: {fileID: 4277830745315218, guid: 5e51636823cf4464d84a1ceb957a7efc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1121321475336444, guid: 5e51636823cf4464d84a1ceb957a7efc, type: 3}
+      propertyPath: m_Name
+      value: Hangar(14) - Ancient Fish
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e51636823cf4464d84a1ceb957a7efc, type: 3}
@@ -42456,9 +42504,9 @@ RectTransform:
   m_Father: {fileID: 1444630039}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -594}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &2025825188
@@ -42534,7 +42582,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 0
+  m_isRichText: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -42616,9 +42664,9 @@ RectTransform:
   m_Father: {fileID: 1444630039}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -54}
   m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &2026459750
@@ -42694,7 +42742,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 0
+  m_isRichText: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -42847,10 +42895,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 665192321}
     m_Modifications:
-    - target: {fileID: 1243008839029272, guid: 4f708efe013eeb04c9d2e745f542ac95, type: 3}
-      propertyPath: m_Name
-      value: Hangar(06) - Time Machine
-      objectReference: {fileID: 0}
     - target: {fileID: 4200221936029446, guid: 4f708efe013eeb04c9d2e745f542ac95, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -42894,6 +42938,10 @@ PrefabInstance:
     - target: {fileID: 4200221936029446, guid: 4f708efe013eeb04c9d2e745f542ac95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243008839029272, guid: 4f708efe013eeb04c9d2e745f542ac95, type: 3}
+      propertyPath: m_Name
+      value: Hangar(06) - Time Machine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f708efe013eeb04c9d2e745f542ac95, type: 3}
@@ -43901,11 +43949,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -44061,11 +44109,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

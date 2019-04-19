@@ -55,13 +55,8 @@ namespace Kocmoca
         [Header("Radar Lock On")] // 雷達鎖定系統（適用Player與Bot）
         public Transform targetRadarLockOn; // 符合機載
 
-        public int MaxSearchRadiusSqr;
-        public int MaxLockDistanceSqr;
-        public float MaxSearchAngle;
-        public float MaxLockAngle;
-        public float MaxAutoAim;
-
-        public void Initialize(Core core, int faction, Type type, int number)
+        ModuleData moduleData;
+        public void Initialize(Core core, int faction, int type, int number)
         {
             // Dependent Components
             myTransform = transform;
@@ -75,121 +70,7 @@ namespace Kocmoca
             targetOnboard = new Transform[maxtOnboardCount];
             minLockTime = 0.73f;
 
-            //switch (type)
-            //{
-            //    case Type.MinionArmor:
-            //        MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
-            //        MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
-            //        MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
-            //        MaxLockAngle = ShortRangeRadar.MaxLockAngle;
-            //        MaxAutoAim = ShortRangeRadar.MaxAutoAim;
-            //        break;
-            //    case Type.RedBullEnergy:
-            //        MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
-            //        MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
-            //        MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
-            //        MaxLockAngle = ShortRangeRadar.MaxLockAngle;
-            //        MaxAutoAim = ShortRangeRadar.MaxAutoAim;
-            //        break;
-            //    case Type.VladimirPutin:
-            //        MaxSearchRadiusSqr = LongRangeRadar.MaxSearchRadiusSqr;
-            //        MaxLockDistanceSqr = LongRangeRadar.MaxLockDistanceSqr;
-            //        MaxSearchAngle = LongRangeRadar.MaxSearchAngle;
-            //        MaxLockAngle = LongRangeRadar.MaxLockAngle;
-            //        MaxAutoAim = KocmoMegaRailgun.MaxAutoAimRange;
-            //        break;
-            //    //case Type.PaperAeroplane:
-            //    //    MaxSearchRadiusSqr = ExtremelyLongRangeRadar.MaxSearchRadiusSqr;
-            //    //    MaxLockDistanceSqr = ExtremelyLongRangeRadar.MaxLockDistanceSqr;
-            //    //    MaxSearchAngle = ExtremelyLongRangeRadar.MaxSearchAngle;
-            //    //    MaxLockAngle = ExtremelyLongRangeRadar.MaxLockAngle;
-            //    //    MaxAutoAim = DevilTenderGazer.MaxAutoAimRange;
-            //    //    break;
-            //    case Type.Cuckoo:
-            //        MaxSearchRadiusSqr = VeryLongRangeRadar.MaxSearchRadiusSqr;
-            //        MaxLockDistanceSqr = VeryLongRangeRadar.MaxLockDistanceSqr;
-            //        MaxSearchAngle = VeryLongRangeRadar.MaxSearchAngle;
-            //        MaxLockAngle = VeryLongRangeRadar.MaxLockAngle;
-            //        MaxAutoAim = DevilTenderGazer.MaxAutoAimRange;
-            //        break;
-            //    case Type.BulletBill:
-            //        MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
-            //        MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
-            //        MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
-            //        MaxLockAngle = ShortRangeRadar.MaxLockAngle;
-            //        MaxAutoAim = ShortRangeRadar.MaxAutoAim;
-            //        break;
-            //    case Type.TimeMachine:
-            //        MaxSearchRadiusSqr = VeryLongRangeRadar.MaxSearchRadiusSqr;
-            //        MaxLockDistanceSqr = VeryLongRangeRadar.MaxLockDistanceSqr;
-            //        MaxSearchAngle = VeryLongRangeRadar.MaxSearchAngle;
-            //        MaxLockAngle = VeryLongRangeRadar.MaxLockAngle;
-            //        MaxAutoAim = VeryLongRangeRadar.MaxAutoAim;
-            //        break;
-            //    case Type.AceKennel:
-            //        MaxSearchRadiusSqr = UltraWideRangeRadar.MaxSearchRadiusSqr;
-            //        MaxLockDistanceSqr = UltraWideRangeRadar.MaxLockDistanceSqr;
-            //        MaxSearchAngle = UltraWideRangeRadar.MaxSearchAngle;
-            //        MaxLockAngle = UltraWideRangeRadar.MaxLockAngle;
-            //        MaxAutoAim = UltraWideRangeRadar.MaxAutoAim;
-            //        break;
-            //    case Type.KirbyStar:
-            //        MaxSearchRadiusSqr = UltraWideRangeRadar.MaxSearchRadiusSqr;
-            //        MaxLockDistanceSqr = UltraWideRangeRadar.MaxLockDistanceSqr;
-            //        MaxSearchAngle = UltraWideRangeRadar.MaxSearchAngle;
-            //        MaxLockAngle = UltraWideRangeRadar.MaxLockAngle;
-            //        MaxAutoAim = UltraWideRangeRadar.MaxAutoAim;
-            //        break;
-            //    case Type.nWidia:
-            //        MaxSearchRadiusSqr = LongRangeRadar.MaxSearchRadiusSqr;
-            //        MaxLockDistanceSqr = LongRangeRadar.MaxLockDistanceSqr;
-            //        MaxSearchAngle = LongRangeRadar.MaxSearchAngle;
-            //        MaxLockAngle = LongRangeRadar.MaxLockAngle;
-            //        MaxAutoAim = LongRangeRadar.MaxAutoAim;
-            //        break;
-            //    //case Type.FastFoodMan:
-            //    //    MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
-            //    //    MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
-            //    //    MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
-            //    //    MaxLockAngle = ShortRangeRadar.MaxLockAngle;
-            //    //    MaxAutoAim = ShortRangeRadar.MaxAutoAim;
-            //    //    break;
-            //    //case Type.PolarisExpress:
-            //    //    MaxSearchRadiusSqr = LongRangeRadar.MaxSearchRadiusSqr;
-            //    //    MaxLockDistanceSqr = LongRangeRadar.MaxLockDistanceSqr;
-            //    //    MaxSearchAngle = LongRangeRadar.MaxSearchAngle;
-            //    //    MaxLockAngle = LongRangeRadar.MaxLockAngle;
-            //    //    MaxAutoAim = KocmoMegaRailgun.MaxAutoAimRange;
-            //    //    break;
-            //    case Type.PapoyUnicorn:
-            //        MaxSearchRadiusSqr = ExtremelyLongRangeRadar.MaxSearchRadiusSqr;
-            //        MaxLockDistanceSqr = ExtremelyLongRangeRadar.MaxLockDistanceSqr;
-            //        MaxSearchAngle = ExtremelyLongRangeRadar.MaxSearchAngle;
-            //        MaxLockAngle = ExtremelyLongRangeRadar.MaxLockAngle;
-            //        MaxAutoAim = DevilTenderGazer.MaxAutoAimRange;
-            //        break;
-            //    case Type.PumpkinGhost:
-            //        MaxSearchRadiusSqr = VeryLongRangeRadar.MaxSearchRadiusSqr;
-            //        MaxLockDistanceSqr = VeryLongRangeRadar.MaxLockDistanceSqr;
-            //        MaxSearchAngle = VeryLongRangeRadar.MaxSearchAngle;
-            //        MaxLockAngle = VeryLongRangeRadar.MaxLockAngle;
-            //        MaxAutoAim = KocmoMegaRailgun.MaxAutoAimRange;
-            //        break;
-            //    case Type.GrandLisboa:
-            //        MaxSearchRadiusSqr = MediumRangeRadar.MaxSearchRadiusSqr;
-            //        MaxLockDistanceSqr = MediumRangeRadar.MaxLockDistanceSqr;
-            //        MaxSearchAngle = MediumRangeRadar.MaxSearchAngle;
-            //        MaxLockAngle = MediumRangeRadar.MaxLockAngle;
-            //        MaxAutoAim = MediumRangeRadar.MaxAutoAim;
-            //        break;
-            //    default:
-            //        MaxSearchRadiusSqr = RadarParameter.maxSearchRadiusSqr;
-            //        MaxLockDistanceSqr = RadarParameter.maxLockDistanceSqr;
-            //        MaxSearchAngle = RadarParameter.maxSearchAngle;
-            //        MaxLockAngle = RadarParameter.maxLockAngle;
-            //        MaxAutoAim = KocmoLaserCannon.maxFireAngle;
-            //        break;
-            //}
+            moduleData = KocmocaData.KocmocraftData[type];
         }
         private void Update()
         {
@@ -210,8 +91,8 @@ namespace Kocmoca
                     if (listFriendAircrafts[i] != myTransform)
                     {
                         scanDiff = listFriendAircrafts[i].position - myPosition;
-                        if (Vector3.SqrMagnitude(scanDiff) <= MaxSearchRadiusSqr &&
-                            Vector3.Dot(scanDiff.normalized, myTransform.forward) >= MaxSearchAngle)
+                        if (Vector3.SqrMagnitude(scanDiff) <= moduleData.MaxSearchRadiusSqr &&
+                            Vector3.Dot(scanDiff.normalized, myTransform.forward) >= moduleData.MaxSearchRange)
                             HeadUpDisplayManager.Instance.NewIdentifyFriend(listFriendAircrafts[i]); // 標記搜索範圍的所有友機
                     }
                 }
@@ -233,7 +114,7 @@ namespace Kocmoca
                 targetDistanceSqr = Vector3.SqrMagnitude(targetDiff);
                 targetDirection = Vector3.Dot(targetDiff.normalized, myTransform.forward);
 
-                if (targetDistanceSqr < MaxLockDistanceSqr && targetDirection > MaxLockAngle)
+                if (targetDistanceSqr < moduleData.MaxLockDistanceSqr && targetDirection > moduleData.MaxLockRange)
                 {
                     if (isLocalPlayer)
                         HeadUpDisplayManager.Instance.MarkTarget(targetRadarLockOn, targetDistanceSqr);
@@ -275,7 +156,7 @@ namespace Kocmoca
                     scanDiff = listFoeAircrafts[i].position - myPosition;
                     scanDistanceSqr = Vector3.SqrMagnitude(scanDiff);
                     scanDirection = Vector3.Dot(scanDiff.normalized, myTransform.forward);
-                    if (scanDistanceSqr <= MaxSearchRadiusSqr && scanDirection >= MaxSearchAngle)
+                    if (scanDistanceSqr <= moduleData.MaxSearchRadiusSqr && scanDirection >= moduleData.MaxSearchRange)
                     {
                         if (isLocalPlayer)
                             SatelliteCommander.Instance.IdentifyTarget(listFoeAircrafts[i]); // 標記搜索範圍的所有敵機
@@ -288,7 +169,7 @@ namespace Kocmoca
                             }
                         }
 
-                        if (scanDistanceSqr <= MaxLockDistanceSqr && scanDirection >= MaxLockAngle)
+                        if (scanDistanceSqr <= moduleData.MaxLockDistanceSqr && scanDirection >= moduleData.MaxLockRange)
                         {
                             if (isLocalPlayer)
                                 SatelliteCommander.Instance.FireControlLookTarget(listFoeAircrafts[i]);  // 標記鎖定範圍的所有敵機
@@ -299,7 +180,7 @@ namespace Kocmoca
                                 targetNearest = listFoeAircrafts[i];
                                 targetNearestDirection = scanDirection;
 
-                                if (scanDirection > MaxAutoAim)
+                                if (scanDirection > moduleData.MaxAutoAimRange)
                                     targetAutoAim = targetNearest;
 
                             }

@@ -49,7 +49,7 @@ namespace Kocmoca
                 myTransform.forward = expectedTargetDirection;
             }
             myTransform.localRotation *= Quaternion.Euler(0, projectileSpread, 0);
-            timeRecovery = Time.time + BigLaserCannon.flightTime;
+            timeRecovery = Time.time + BigLaserCannon.FlightTime;
             myRigidbody.AddForce(myTransform.forward * BigLaserCannon.propulsion* coefficient);
             vfx.enabled = true;
         }
