@@ -66,101 +66,101 @@ namespace Kocmoca
 
             if (typeFCS == FireControlSystemType.Laser)
             {
-                switch (type)
-                {
-                    case Type.MinionArmor:
-                        FireRate = KocmoArmorPiercing.FireRate;
-                        RepeatingCount = KocmoArmorPiercing.RepeatingCount;
-                        MaxProjectileSpread = KocmoArmorPiercing.MaxProjectileSpread;
-                        break;
-                    case Type.RedBullEnergy:
-                        FireRate = KocmoUltraPowerPlasma.FireRate;
-                        RepeatingCount = KocmoUltraPowerPlasma.RepeatingCount;
-                        MaxProjectileSpread = KocmoUltraPowerPlasma.MaxProjectileSpread;
-                        break;
-                    case Type.VladimirPutin:
-                        FireRate = KocmoMegaRailgun.FireRate;
-                        RepeatingCount = KocmoMegaRailgun.RepeatingCount;
-                        MaxProjectileSpread = KocmoMegaRailgun.MaxProjectileSpread;
-                        FireSound = ResourceManager.instance.soundRailgun;
-                        myAudioSource.maxDistance = 500;
-                        break;
-                    //case Type.PaperAeroplane:
-                    //    FireRate = DevilTenderGazer.FireRate;
-                    //    RepeatingCount = DevilTenderGazer.RepeatingCount;
-                    //    MaxProjectileSpread = DevilTenderGazer.MaxProjectileSpread;
-                    //    FireSound = ResourceManager.instance.soundAlphaRay;
-                    //    myAudioSource.maxDistance = 700;
-                    //    break;
-                    case Type.Cuckoo:
-                        FireRate = DevilTenderGazer.FireRate;
-                        RepeatingCount = DevilTenderGazer.RepeatingCount;
-                        MaxProjectileSpread = DevilTenderGazer.MaxProjectileSpread;
-                        FireSound = ResourceManager.instance.soundAlphaRay;
-                        myAudioSource.maxDistance = 700;
-                        break;
-                    case Type.BulletBill:
-                        FireRate = KocmoUltraPowerPlasma.FireRate;
-                        RepeatingCount = KocmoUltraPowerPlasma.RepeatingCount;
-                        MaxProjectileSpread = KocmoUltraPowerPlasma.MaxProjectileSpread;
-                        break;
-                    case Type.TimeMachine:
-                        FireRate = KocmoHighspeedIonBlaster.FireRate;
-                        RepeatingCount = KocmoHighspeedIonBlaster.RepeatingCount;
-                        MaxProjectileSpread = KocmoHighspeedIonBlaster.MaxProjectileSpread;
-                        break;
-                    case Type.AceKennel:
-                        FireRate = KocmoArmorPiercing.FireRate;
-                        RepeatingCount = KocmoArmorPiercing.RepeatingCount;
-                        MaxProjectileSpread = KocmoArmorPiercing.MaxProjectileSpread;
-                        break;
-                    case Type.KirbyStar:
-                        FireRate = KocmoUltraPowerPlasma.FireRate;
-                        RepeatingCount = KocmoUltraPowerPlasma.RepeatingCount;
-                        MaxProjectileSpread = KocmoUltraPowerPlasma.MaxProjectileSpread;
-                        break;
-                    case Type.nWidia:
-                        FireRate = KocmoHighspeedIonBlaster.FireRate;
-                        RepeatingCount = KocmoHighspeedIonBlaster.RepeatingCount;
-                        MaxProjectileSpread = KocmoHighspeedIonBlaster.MaxProjectileSpread;
-                        break;
-                    case Type.FastFoodMan:
-                        FireRate = KocmoLaser.FireRate;
-                        RepeatingCount = KocmoLaser.RepeatingCount;
-                        MaxProjectileSpread = KocmoLaser.MaxProjectileSpread;
-                        break;
-                    //case Type.PolarisExpress:
-                    //    FireRate = KocmoMegaRailgun.FireRate;
-                    //    RepeatingCount = KocmoMegaRailgun.RepeatingCount;
-                    //    MaxProjectileSpread = KocmoMegaRailgun.MaxProjectileSpread;
-                    //    FireSound = ResourceManager.instance.soundRailgun;
-                    //    myAudioSource.maxDistance = 300;
-                    //    break;
-                    case Type.PapoyUnicorn:
-                        FireRate = DevilTenderGazer.FireRate;
-                        RepeatingCount = DevilTenderGazer.RepeatingCount;
-                        MaxProjectileSpread = DevilTenderGazer.MaxProjectileSpread;
-                        FireSound = ResourceManager.instance.soundAlphaRay;
-                        myAudioSource.maxDistance = 700;
-                        break;
-                    case Type.PumpkinGhost:
-                        FireRate = KocmoMegaRailgun.FireRate;
-                        RepeatingCount = KocmoMegaRailgun.RepeatingCount;
-                        MaxProjectileSpread = KocmoMegaRailgun.MaxProjectileSpread;
-                        FireSound = ResourceManager.instance.soundRailgun;
-                        myAudioSource.maxDistance = 500;
-                        break;
-                    case Type.GrandLisboa:
-                        FireRate = KocmoHighspeedIonBlaster.FireRate;
-                        RepeatingCount = KocmoHighspeedIonBlaster.RepeatingCount;
-                        MaxProjectileSpread = KocmoHighspeedIonBlaster.MaxProjectileSpread;
-                        break;
-                    default:
-                        FireRate = KocmoLaserCannon.FireRate;
-                        RepeatingCount = KocmoUltraPowerPlasma.RepeatingCount;
-                        MaxProjectileSpread = KocmoLaserCannon.MaxProjectileSpread;
-                        break;
-                }
+                //switch (type)
+                //{
+                //    case Type.MinionArmor:
+                //        FireRate = KocmoArmorPiercing.FireRate;
+                //        RepeatingCount = KocmoArmorPiercing.RepeatingCount;
+                //        MaxProjectileSpread = KocmoArmorPiercing.MaxProjectileSpread;
+                //        break;
+                //    case Type.RedBullEnergy:
+                //        FireRate = KocmoUltraPowerPlasma.FireRate;
+                //        RepeatingCount = KocmoUltraPowerPlasma.RepeatingCount;
+                //        MaxProjectileSpread = KocmoUltraPowerPlasma.MaxProjectileSpread;
+                //        break;
+                //    case Type.VladimirPutin:
+                //        FireRate = KocmoMegaRailgun.FireRate;
+                //        RepeatingCount = KocmoMegaRailgun.RepeatingCount;
+                //        MaxProjectileSpread = KocmoMegaRailgun.MaxProjectileSpread;
+                //        FireSound = ResourceManager.instance.soundRailgun;
+                //        myAudioSource.maxDistance = 500;
+                //        break;
+                //    //case Type.PaperAeroplane:
+                //    //    FireRate = DevilTenderGazer.FireRate;
+                //    //    RepeatingCount = DevilTenderGazer.RepeatingCount;
+                //    //    MaxProjectileSpread = DevilTenderGazer.MaxProjectileSpread;
+                //    //    FireSound = ResourceManager.instance.soundAlphaRay;
+                //    //    myAudioSource.maxDistance = 700;
+                //    //    break;
+                //    case Type.Cuckoo:
+                //        FireRate = DevilTenderGazer.FireRate;
+                //        RepeatingCount = DevilTenderGazer.RepeatingCount;
+                //        MaxProjectileSpread = DevilTenderGazer.MaxProjectileSpread;
+                //        FireSound = ResourceManager.instance.soundAlphaRay;
+                //        myAudioSource.maxDistance = 700;
+                //        break;
+                //    case Type.BulletBill:
+                //        FireRate = KocmoUltraPowerPlasma.FireRate;
+                //        RepeatingCount = KocmoUltraPowerPlasma.RepeatingCount;
+                //        MaxProjectileSpread = KocmoUltraPowerPlasma.MaxProjectileSpread;
+                //        break;
+                //    case Type.TimeMachine:
+                //        FireRate = KocmoHighspeedIonBlaster.FireRate;
+                //        RepeatingCount = KocmoHighspeedIonBlaster.RepeatingCount;
+                //        MaxProjectileSpread = KocmoHighspeedIonBlaster.MaxProjectileSpread;
+                //        break;
+                //    case Type.AceKennel:
+                //        FireRate = KocmoArmorPiercing.FireRate;
+                //        RepeatingCount = KocmoArmorPiercing.RepeatingCount;
+                //        MaxProjectileSpread = KocmoArmorPiercing.MaxProjectileSpread;
+                //        break;
+                //    case Type.KirbyStar:
+                //        FireRate = KocmoUltraPowerPlasma.FireRate;
+                //        RepeatingCount = KocmoUltraPowerPlasma.RepeatingCount;
+                //        MaxProjectileSpread = KocmoUltraPowerPlasma.MaxProjectileSpread;
+                //        break;
+                //    case Type.nWidia:
+                //        FireRate = KocmoHighspeedIonBlaster.FireRate;
+                //        RepeatingCount = KocmoHighspeedIonBlaster.RepeatingCount;
+                //        MaxProjectileSpread = KocmoHighspeedIonBlaster.MaxProjectileSpread;
+                //        break;
+                //    case Type.FastFoodMan:
+                //        FireRate = KocmoLaser.FireRate;
+                //        RepeatingCount = KocmoLaser.RepeatingCount;
+                //        MaxProjectileSpread = KocmoLaser.MaxProjectileSpread;
+                //        break;
+                //    //case Type.PolarisExpress:
+                //    //    FireRate = KocmoMegaRailgun.FireRate;
+                //    //    RepeatingCount = KocmoMegaRailgun.RepeatingCount;
+                //    //    MaxProjectileSpread = KocmoMegaRailgun.MaxProjectileSpread;
+                //    //    FireSound = ResourceManager.instance.soundRailgun;
+                //    //    myAudioSource.maxDistance = 300;
+                //    //    break;
+                //    case Type.PapoyUnicorn:
+                //        FireRate = DevilTenderGazer.FireRate;
+                //        RepeatingCount = DevilTenderGazer.RepeatingCount;
+                //        MaxProjectileSpread = DevilTenderGazer.MaxProjectileSpread;
+                //        FireSound = ResourceManager.instance.soundAlphaRay;
+                //        myAudioSource.maxDistance = 700;
+                //        break;
+                //    case Type.PumpkinGhost:
+                //        FireRate = KocmoMegaRailgun.FireRate;
+                //        RepeatingCount = KocmoMegaRailgun.RepeatingCount;
+                //        MaxProjectileSpread = KocmoMegaRailgun.MaxProjectileSpread;
+                //        FireSound = ResourceManager.instance.soundRailgun;
+                //        myAudioSource.maxDistance = 500;
+                //        break;
+                //    case Type.GrandLisboa:
+                //        FireRate = KocmoHighspeedIonBlaster.FireRate;
+                //        RepeatingCount = KocmoHighspeedIonBlaster.RepeatingCount;
+                //        MaxProjectileSpread = KocmoHighspeedIonBlaster.MaxProjectileSpread;
+                //        break;
+                //    default:
+                //        FireRate = KocmoLaserCannon.FireRate;
+                //        RepeatingCount = KocmoUltraPowerPlasma.RepeatingCount;
+                //        MaxProjectileSpread = KocmoLaserCannon.MaxProjectileSpread;
+                //        break;
+                //}
             }
         }
         void LoadFireControlSystemData()

@@ -96,19 +96,35 @@ namespace Kocmoca
         private readonly WaitForSeconds delay = new WaitForSeconds(0.137f);
 
 
-        [Header("Info Block")]
+        [Header("UI - Info Block")]
         public Image frameMain;
         public Image frameClose;
+        // Title
+        public TextMeshProUGUI textKocmocraftName;
+        public TextMeshProUGUI textDubiName;
+        // Tab
         public Toggle btnKocmocraft;
         public Toggle btnDubi;
-        public Image frameKocmocraft;
-        public Image frameDubi;
+        public Toggle btnPerformance;
+        public Toggle btnRadar;
+        public Toggle btnWeapon;
+        public Image tabFrameKocmocraft;
+        public Image tabFrameDubi;
+        public Image tabFramePerformance;
+        public Image tabFrameRadar;
+        public Image tabFrameWeapon;
+        public TextMeshProUGUI tabTextKocmocraft;
+        public TextMeshProUGUI tabTextDubi;
+        public TextMeshProUGUI tabTextPerformance;
+        public TextMeshProUGUI tabTextRadar;
+        public TextMeshProUGUI tabTextWeapon;
+        // Block
         public GameObject blockKocmocraft;
         public GameObject blockDubi;
-        public TextMeshProUGUI textOnKocmocraft;
-        public TextMeshProUGUI textOnDubi;
+        public GameObject blockPerformance;
+        public GameObject blockRadar;
+        public GameObject blockWeapon;
         [Header("Info Block - Kocmocraft")]
-        public TextMeshProUGUI textKocmocraftName;
         public TextMeshProUGUI textInfo;
         public RectTransform scaleWingspan;
         public RectTransform scaleLength;
@@ -118,16 +134,15 @@ namespace Kocmoca
         public TextMeshProUGUI textHeight;
         public Button btnSkin;
         [Header("Info Block - Dubi")]
-        public TextMeshProUGUI textDubiName;
         public Button btnTalk;
         public AudioClip [] sfxTalk;
         [Header("Data Block")]
         public Toggle btnDesign;
-        public Toggle btnPerformance;
-        public Toggle btnWeapon;
+        //public Toggle btnPerformance;
+        //public Toggle btnWeapon;
         public GameObject blockDesign;
-        public GameObject blockPerformance;
-        public GameObject blockWeapon;
+        //public GameObject blockPerformance;
+        //public GameObject blockWeapon;
         [Header("Hangar Data")]
         public TextMeshProUGUI textOKB;
         public TextMeshProUGUI textKocmocraft;
@@ -179,10 +194,11 @@ namespace Kocmoca
             btnHide.onClick.AddListener(() => HidePanel());
             btnKocmocraft.onValueChanged.AddListener(isOn => blockKocmocraft.SetActive(isOn));
             btnDubi.onValueChanged.AddListener(isOn => blockDubi.SetActive(isOn));
-            btnSkin.onClick.AddListener(() => ChangeSkin());
-            btnDesign.onValueChanged.AddListener(isOn => blockDesign.SetActive(isOn));
             btnPerformance.onValueChanged.AddListener(isOn => blockPerformance.SetActive(isOn));
+            btnRadar.onValueChanged.AddListener(isOn => blockRadar.SetActive(isOn));
             btnWeapon.onValueChanged.AddListener(isOn => blockWeapon.SetActive(isOn));
+            btnSkin.onClick.AddListener(() => ChangeSkin());
+            //btnDesign.onValueChanged.AddListener(isOn => blockDesign.SetActive(isOn));   
             btnTalk.onClick.AddListener(() => { if (!SFX.isPlaying && hangarIndex < hangarMax) SFX.PlayOneShot(sfxTalk[hangarIndex],1.5f); });
             // Bar
             barHull.Initialize(textMaxHull.transform.parent.GetComponentsInChildren<Image>(), 4000, 25000);
@@ -279,8 +295,18 @@ namespace Kocmoca
         {
             frameMain.color = HangarData.FrameColor[hangarIndex];
             frameClose.color = HangarData.ButtonColor[hangarIndex];
-            frameKocmocraft.color = HangarData.FrameColor[hangarIndex];
-            frameDubi.color = HangarData.FrameColor[hangarIndex];
+
+            // Tab
+            tabFrameKocmocraft.color = HangarData.FrameColor[hangarIndex];
+            tabFrameDubi.color = HangarData.FrameColor[hangarIndex];
+            tabFramePerformance.color = HangarData.FrameColor[hangarIndex];
+            tabFrameRadar.color = HangarData.FrameColor[hangarIndex];
+            tabFrameWeapon.color = HangarData.FrameColor[hangarIndex];
+            tabTextKocmocraft.color = HangarData.TextColor[hangarIndex];
+            tabTextDubi.color = HangarData.TextColor[hangarIndex];
+            tabTextPerformance.color = HangarData.TextColor[hangarIndex];
+            tabTextRadar.color = HangarData.TextColor[hangarIndex];
+            tabTextWeapon.color = HangarData.TextColor[hangarIndex];
 
             if (hangarIndex < hangarMax)
             {
@@ -303,8 +329,7 @@ namespace Kocmoca
             textKocmocraftName.text = "" + DesignData.Kocmocraft[hangarIndex];
             textDubiName.text = "" + DesignData.Dubi[hangarIndex];
 
-            textOnKocmocraft.color = HangarData.TextColor[hangarIndex];
-            textOnDubi.color = HangarData.TextColor[hangarIndex];
+
             textInfo.color = HangarData.TextColor[hangarIndex];
             textInfo.text = HangarData.Info[hangarIndex];
 

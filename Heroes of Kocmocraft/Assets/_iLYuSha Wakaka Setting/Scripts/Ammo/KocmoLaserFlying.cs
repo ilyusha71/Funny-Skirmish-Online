@@ -80,127 +80,127 @@ namespace Kocmoca
             type = owner.Type;
             //if(test)
             //    Debug.Log("Frame: " + Time.frameCount + " / " + owner.Name + "/LAST/" + lastType);
-            switch (type)
-            {
-                case Type.MinionArmor:
-                    ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
-                    propulsion = KocmoUltraPowerPlasma.propulsion;
-                    waitRecovery = KocmoUltraPowerPlasma.waitRecovery;
-                    hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
-                    shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
-                    break;
-                case Type.RedBullEnergy:
-                    ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
-                    propulsion = KocmoUltraPowerPlasma.propulsion;
-                    waitRecovery = KocmoUltraPowerPlasma.waitRecovery;
-                    hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
-                    shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
-                    break;
-                case Type.VladimirPutin:
-                    ammoVelocity = KocmoMegaRailgun.ammoVelocity;
-                    propulsion = KocmoMegaRailgun.propulsion;
-                    waitRecovery = KocmoMegaRailgun.waitRecovery;
-                    hullPenetration = KocmoMegaRailgun.hullPenetration;
-                    shieldPenetration = KocmoMegaRailgun.shieldPenetration;
-                    vfx.startWidth = 5;
-                    break;
-                //case Type.PaperAeroplane:
-                //    ammoVelocity = DevilTenderGazer.ammoVelocity;
-                //    propulsion = DevilTenderGazer.propulsion;
-                //    waitRecovery = DevilTenderGazer.waitRecovery;
-                //    hullPenetration = DevilTenderGazer.hullPenetration;
-                //    shieldPenetration = DevilTenderGazer.shieldPenetration;
-                //    vfx.startWidth = 7;
-                //    break;
-                case Type.Cuckoo:
-                    ammoVelocity = DevilTenderGazer.ammoVelocity;
-                    propulsion = DevilTenderGazer.propulsion;
-                    waitRecovery = DevilTenderGazer.waitRecovery;
-                    hullPenetration = DevilTenderGazer.hullPenetration;
-                    shieldPenetration = DevilTenderGazer.shieldPenetration;
-                    vfx.startWidth = 7;
-                    break;
-                case Type.BulletBill:
-                    ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
-                    propulsion = KocmoUltraPowerPlasma.propulsion;
-                    waitRecovery = KocmoUltraPowerPlasma.waitRecovery;
-                    hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
-                    shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
-                    break;
-                case Type.TimeMachine:
-                    ammoVelocity = KocmoHighspeedIonBlaster.ammoVelocity;
-                    propulsion = KocmoHighspeedIonBlaster.propulsion;
-                    waitRecovery = KocmoHighspeedIonBlaster.waitRecovery;
-                    hullPenetration = KocmoHighspeedIonBlaster.hullPenetration;
-                    shieldPenetration = KocmoHighspeedIonBlaster.shieldPenetration;
-                    break;
-                case Type.AceKennel:
-                    ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
-                    propulsion = KocmoUltraPowerPlasma.propulsion;
-                    waitRecovery = KocmoUltraPowerPlasma.waitRecovery;
-                    hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
-                    shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
-                    break;
-                case Type.KirbyStar:
-                    ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
-                    propulsion = KocmoUltraPowerPlasma.propulsion;
-                    waitRecovery = KocmoUltraPowerPlasma.waitRecovery;
-                    hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
-                    shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
-                    break;
-                case Type.FastFoodMan:
-                    ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
-                    propulsion = KocmoUltraPowerPlasma.propulsion;
-                    waitRecovery = KocmoUltraPowerPlasma.waitRecovery;
-                    hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
-                    shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
-                    break;
-                case Type.nWidia:
-                    ammoVelocity = KocmoHighspeedIonBlaster.ammoVelocity;
-                    propulsion = KocmoHighspeedIonBlaster.propulsion;
-                    waitRecovery = KocmoHighspeedIonBlaster.waitRecovery;
-                    hullPenetration = KocmoHighspeedIonBlaster.hullPenetration;
-                    shieldPenetration = KocmoHighspeedIonBlaster.shieldPenetration;
-                    break;
-                case Type.PolarisExpress:
-                    ammoVelocity = KocmoMegaRailgun.ammoVelocity;
-                    propulsion = KocmoMegaRailgun.propulsion;
-                    waitRecovery = KocmoMegaRailgun.waitRecovery;
-                    hullPenetration = KocmoMegaRailgun.hullPenetration;
-                    shieldPenetration = KocmoMegaRailgun.shieldPenetration;
-                    vfx.startWidth = 5;
-                    break;
-                case Type.PapoyUnicorn:
-                    ammoVelocity = DevilTenderGazer.ammoVelocity;
-                    propulsion = DevilTenderGazer.propulsion;
-                    waitRecovery = DevilTenderGazer.waitRecovery;
-                    hullPenetration = DevilTenderGazer.hullPenetration;
-                    shieldPenetration = DevilTenderGazer.shieldPenetration;
-                    vfx.startWidth = 7;
-                    break;
-                case Type.PumpkinGhost:
-                    ammoVelocity = KocmoMegaRailgun.ammoVelocity;
-                    propulsion = KocmoMegaRailgun.propulsion;
-                    waitRecovery = KocmoMegaRailgun.waitRecovery;
-                    hullPenetration = KocmoMegaRailgun.hullPenetration;
-                    shieldPenetration = KocmoMegaRailgun.shieldPenetration;
-                    vfx.startWidth = 5;
-                    break;
-                case Type.GrandLisboa:
-                    ammoVelocity = KocmoHighspeedIonBlaster.ammoVelocity;
-                    propulsion = KocmoHighspeedIonBlaster.propulsion;
-                    waitRecovery = KocmoHighspeedIonBlaster.waitRecovery;
-                    hullPenetration = KocmoHighspeedIonBlaster.hullPenetration;
-                    shieldPenetration = KocmoHighspeedIonBlaster.shieldPenetration;
-                    break;
-                default:
-                    ammoVelocity = KocmoLaserCannon.flightVelocity;
-                    propulsion = KocmoLaserCannon.propulsion;
-                    waitRecovery = KocmoLaserCannon.waitRecovery;
-                    hullPenetration = KocmoLaserCannon.coefficientMinDamage;
-                    shieldPenetration = KocmoLaserCannon.coefficientMaxDamage;
-                    break;
-            }
+            //switch (type)
+            //{
+            //    case Type.MinionArmor:
+            //        ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
+            //        propulsion = KocmoUltraPowerPlasma.propulsion;
+            //        waitRecovery = KocmoUltraPowerPlasma.waitRecovery;
+            //        hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
+            //        shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
+            //        break;
+            //    case Type.RedBullEnergy:
+            //        ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
+            //        propulsion = KocmoUltraPowerPlasma.propulsion;
+            //        waitRecovery = KocmoUltraPowerPlasma.waitRecovery;
+            //        hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
+            //        shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
+            //        break;
+            //    case Type.VladimirPutin:
+            //        ammoVelocity = KocmoMegaRailgun.ammoVelocity;
+            //        propulsion = KocmoMegaRailgun.propulsion;
+            //        waitRecovery = KocmoMegaRailgun.waitRecovery;
+            //        hullPenetration = KocmoMegaRailgun.hullPenetration;
+            //        shieldPenetration = KocmoMegaRailgun.shieldPenetration;
+            //        vfx.startWidth = 5;
+            //        break;
+            //    //case Type.PaperAeroplane:
+            //    //    ammoVelocity = DevilTenderGazer.ammoVelocity;
+            //    //    propulsion = DevilTenderGazer.propulsion;
+            //    //    waitRecovery = DevilTenderGazer.waitRecovery;
+            //    //    hullPenetration = DevilTenderGazer.hullPenetration;
+            //    //    shieldPenetration = DevilTenderGazer.shieldPenetration;
+            //    //    vfx.startWidth = 7;
+            //    //    break;
+            //    case Type.Cuckoo:
+            //        ammoVelocity = DevilTenderGazer.ammoVelocity;
+            //        propulsion = DevilTenderGazer.propulsion;
+            //        waitRecovery = DevilTenderGazer.waitRecovery;
+            //        hullPenetration = DevilTenderGazer.hullPenetration;
+            //        shieldPenetration = DevilTenderGazer.shieldPenetration;
+            //        vfx.startWidth = 7;
+            //        break;
+            //    case Type.BulletBill:
+            //        ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
+            //        propulsion = KocmoUltraPowerPlasma.propulsion;
+            //        waitRecovery = KocmoUltraPowerPlasma.waitRecovery;
+            //        hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
+            //        shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
+            //        break;
+            //    case Type.TimeMachine:
+            //        ammoVelocity = KocmoHighspeedIonBlaster.ammoVelocity;
+            //        propulsion = KocmoHighspeedIonBlaster.propulsion;
+            //        waitRecovery = KocmoHighspeedIonBlaster.waitRecovery;
+            //        hullPenetration = KocmoHighspeedIonBlaster.hullPenetration;
+            //        shieldPenetration = KocmoHighspeedIonBlaster.shieldPenetration;
+            //        break;
+            //    case Type.AceKennel:
+            //        ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
+            //        propulsion = KocmoUltraPowerPlasma.propulsion;
+            //        waitRecovery = KocmoUltraPowerPlasma.waitRecovery;
+            //        hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
+            //        shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
+            //        break;
+            //    case Type.KirbyStar:
+            //        ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
+            //        propulsion = KocmoUltraPowerPlasma.propulsion;
+            //        waitRecovery = KocmoUltraPowerPlasma.waitRecovery;
+            //        hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
+            //        shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
+            //        break;
+            //    case Type.FastFoodMan:
+            //        ammoVelocity = KocmoUltraPowerPlasma.ammoVelocity;
+            //        propulsion = KocmoUltraPowerPlasma.propulsion;
+            //        waitRecovery = KocmoUltraPowerPlasma.waitRecovery;
+            //        hullPenetration = KocmoUltraPowerPlasma.hullPenetration;
+            //        shieldPenetration = KocmoUltraPowerPlasma.shieldPenetration;
+            //        break;
+            //    case Type.nWidia:
+            //        ammoVelocity = KocmoHighspeedIonBlaster.ammoVelocity;
+            //        propulsion = KocmoHighspeedIonBlaster.propulsion;
+            //        waitRecovery = KocmoHighspeedIonBlaster.waitRecovery;
+            //        hullPenetration = KocmoHighspeedIonBlaster.hullPenetration;
+            //        shieldPenetration = KocmoHighspeedIonBlaster.shieldPenetration;
+            //        break;
+            //    case Type.PolarisExpress:
+            //        ammoVelocity = KocmoMegaRailgun.ammoVelocity;
+            //        propulsion = KocmoMegaRailgun.propulsion;
+            //        waitRecovery = KocmoMegaRailgun.waitRecovery;
+            //        hullPenetration = KocmoMegaRailgun.hullPenetration;
+            //        shieldPenetration = KocmoMegaRailgun.shieldPenetration;
+            //        vfx.startWidth = 5;
+            //        break;
+            //    case Type.PapoyUnicorn:
+            //        ammoVelocity = DevilTenderGazer.ammoVelocity;
+            //        propulsion = DevilTenderGazer.propulsion;
+            //        waitRecovery = DevilTenderGazer.waitRecovery;
+            //        hullPenetration = DevilTenderGazer.hullPenetration;
+            //        shieldPenetration = DevilTenderGazer.shieldPenetration;
+            //        vfx.startWidth = 7;
+            //        break;
+            //    case Type.PumpkinGhost:
+            //        ammoVelocity = KocmoMegaRailgun.ammoVelocity;
+            //        propulsion = KocmoMegaRailgun.propulsion;
+            //        waitRecovery = KocmoMegaRailgun.waitRecovery;
+            //        hullPenetration = KocmoMegaRailgun.hullPenetration;
+            //        shieldPenetration = KocmoMegaRailgun.shieldPenetration;
+            //        vfx.startWidth = 5;
+            //        break;
+            //    case Type.GrandLisboa:
+            //        ammoVelocity = KocmoHighspeedIonBlaster.ammoVelocity;
+            //        propulsion = KocmoHighspeedIonBlaster.propulsion;
+            //        waitRecovery = KocmoHighspeedIonBlaster.waitRecovery;
+            //        hullPenetration = KocmoHighspeedIonBlaster.hullPenetration;
+            //        shieldPenetration = KocmoHighspeedIonBlaster.shieldPenetration;
+            //        break;
+            //    default:
+            //        ammoVelocity = KocmoLaserCannon.flightVelocity;
+            //        propulsion = KocmoLaserCannon.propulsion;
+            //        waitRecovery = KocmoLaserCannon.waitRecovery;
+            //        hullPenetration = KocmoLaserCannon.coefficientMinDamage;
+            //        shieldPenetration = KocmoLaserCannon.coefficientMaxDamage;
+            //        break;
+            //}
       gameObject.SetActive(true);
         }
 

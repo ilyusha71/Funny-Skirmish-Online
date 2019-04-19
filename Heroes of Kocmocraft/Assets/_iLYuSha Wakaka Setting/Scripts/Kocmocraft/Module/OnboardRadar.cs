@@ -75,121 +75,121 @@ namespace Kocmoca
             targetOnboard = new Transform[maxtOnboardCount];
             minLockTime = 0.73f;
 
-            switch (type)
-            {
-                case Type.MinionArmor:
-                    MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
-                    MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
-                    MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = ShortRangeRadar.MaxLockAngle;
-                    MaxAutoAim = ShortRangeRadar.MaxAutoAim;
-                    break;
-                case Type.RedBullEnergy:
-                    MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
-                    MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
-                    MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = ShortRangeRadar.MaxLockAngle;
-                    MaxAutoAim = ShortRangeRadar.MaxAutoAim;
-                    break;
-                case Type.VladimirPutin:
-                    MaxSearchRadiusSqr = LongRangeRadar.MaxSearchRadiusSqr;
-                    MaxLockDistanceSqr = LongRangeRadar.MaxLockDistanceSqr;
-                    MaxSearchAngle = LongRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = LongRangeRadar.MaxLockAngle;
-                    MaxAutoAim = KocmoMegaRailgun.MaxAutoAimRange;
-                    break;
-                //case Type.PaperAeroplane:
-                //    MaxSearchRadiusSqr = ExtremelyLongRangeRadar.MaxSearchRadiusSqr;
-                //    MaxLockDistanceSqr = ExtremelyLongRangeRadar.MaxLockDistanceSqr;
-                //    MaxSearchAngle = ExtremelyLongRangeRadar.MaxSearchAngle;
-                //    MaxLockAngle = ExtremelyLongRangeRadar.MaxLockAngle;
-                //    MaxAutoAim = DevilTenderGazer.MaxAutoAimRange;
-                //    break;
-                case Type.Cuckoo:
-                    MaxSearchRadiusSqr = VeryLongRangeRadar.MaxSearchRadiusSqr;
-                    MaxLockDistanceSqr = VeryLongRangeRadar.MaxLockDistanceSqr;
-                    MaxSearchAngle = VeryLongRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = VeryLongRangeRadar.MaxLockAngle;
-                    MaxAutoAim = DevilTenderGazer.MaxAutoAimRange;
-                    break;
-                case Type.BulletBill:
-                    MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
-                    MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
-                    MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = ShortRangeRadar.MaxLockAngle;
-                    MaxAutoAim = ShortRangeRadar.MaxAutoAim;
-                    break;
-                case Type.TimeMachine:
-                    MaxSearchRadiusSqr = VeryLongRangeRadar.MaxSearchRadiusSqr;
-                    MaxLockDistanceSqr = VeryLongRangeRadar.MaxLockDistanceSqr;
-                    MaxSearchAngle = VeryLongRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = VeryLongRangeRadar.MaxLockAngle;
-                    MaxAutoAim = VeryLongRangeRadar.MaxAutoAim;
-                    break;
-                case Type.AceKennel:
-                    MaxSearchRadiusSqr = UltraWideRangeRadar.MaxSearchRadiusSqr;
-                    MaxLockDistanceSqr = UltraWideRangeRadar.MaxLockDistanceSqr;
-                    MaxSearchAngle = UltraWideRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = UltraWideRangeRadar.MaxLockAngle;
-                    MaxAutoAim = UltraWideRangeRadar.MaxAutoAim;
-                    break;
-                case Type.KirbyStar:
-                    MaxSearchRadiusSqr = UltraWideRangeRadar.MaxSearchRadiusSqr;
-                    MaxLockDistanceSqr = UltraWideRangeRadar.MaxLockDistanceSqr;
-                    MaxSearchAngle = UltraWideRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = UltraWideRangeRadar.MaxLockAngle;
-                    MaxAutoAim = UltraWideRangeRadar.MaxAutoAim;
-                    break;
-                case Type.nWidia:
-                    MaxSearchRadiusSqr = LongRangeRadar.MaxSearchRadiusSqr;
-                    MaxLockDistanceSqr = LongRangeRadar.MaxLockDistanceSqr;
-                    MaxSearchAngle = LongRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = LongRangeRadar.MaxLockAngle;
-                    MaxAutoAim = LongRangeRadar.MaxAutoAim;
-                    break;
-                //case Type.FastFoodMan:
-                //    MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
-                //    MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
-                //    MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
-                //    MaxLockAngle = ShortRangeRadar.MaxLockAngle;
-                //    MaxAutoAim = ShortRangeRadar.MaxAutoAim;
-                //    break;
-                //case Type.PolarisExpress:
-                //    MaxSearchRadiusSqr = LongRangeRadar.MaxSearchRadiusSqr;
-                //    MaxLockDistanceSqr = LongRangeRadar.MaxLockDistanceSqr;
-                //    MaxSearchAngle = LongRangeRadar.MaxSearchAngle;
-                //    MaxLockAngle = LongRangeRadar.MaxLockAngle;
-                //    MaxAutoAim = KocmoMegaRailgun.MaxAutoAimRange;
-                //    break;
-                case Type.PapoyUnicorn:
-                    MaxSearchRadiusSqr = ExtremelyLongRangeRadar.MaxSearchRadiusSqr;
-                    MaxLockDistanceSqr = ExtremelyLongRangeRadar.MaxLockDistanceSqr;
-                    MaxSearchAngle = ExtremelyLongRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = ExtremelyLongRangeRadar.MaxLockAngle;
-                    MaxAutoAim = DevilTenderGazer.MaxAutoAimRange;
-                    break;
-                case Type.PumpkinGhost:
-                    MaxSearchRadiusSqr = VeryLongRangeRadar.MaxSearchRadiusSqr;
-                    MaxLockDistanceSqr = VeryLongRangeRadar.MaxLockDistanceSqr;
-                    MaxSearchAngle = VeryLongRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = VeryLongRangeRadar.MaxLockAngle;
-                    MaxAutoAim = KocmoMegaRailgun.MaxAutoAimRange;
-                    break;
-                case Type.GrandLisboa:
-                    MaxSearchRadiusSqr = MediumRangeRadar.MaxSearchRadiusSqr;
-                    MaxLockDistanceSqr = MediumRangeRadar.MaxLockDistanceSqr;
-                    MaxSearchAngle = MediumRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = MediumRangeRadar.MaxLockAngle;
-                    MaxAutoAim = MediumRangeRadar.MaxAutoAim;
-                    break;
-                default:
-                    MaxSearchRadiusSqr = RadarParameter.maxSearchRadiusSqr;
-                    MaxLockDistanceSqr = RadarParameter.maxLockDistanceSqr;
-                    MaxSearchAngle = RadarParameter.maxSearchAngle;
-                    MaxLockAngle = RadarParameter.maxLockAngle;
-                    MaxAutoAim = KocmoLaserCannon.maxFireAngle;
-                    break;
-            }
+            //switch (type)
+            //{
+            //    case Type.MinionArmor:
+            //        MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
+            //        MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
+            //        MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
+            //        MaxLockAngle = ShortRangeRadar.MaxLockAngle;
+            //        MaxAutoAim = ShortRangeRadar.MaxAutoAim;
+            //        break;
+            //    case Type.RedBullEnergy:
+            //        MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
+            //        MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
+            //        MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
+            //        MaxLockAngle = ShortRangeRadar.MaxLockAngle;
+            //        MaxAutoAim = ShortRangeRadar.MaxAutoAim;
+            //        break;
+            //    case Type.VladimirPutin:
+            //        MaxSearchRadiusSqr = LongRangeRadar.MaxSearchRadiusSqr;
+            //        MaxLockDistanceSqr = LongRangeRadar.MaxLockDistanceSqr;
+            //        MaxSearchAngle = LongRangeRadar.MaxSearchAngle;
+            //        MaxLockAngle = LongRangeRadar.MaxLockAngle;
+            //        MaxAutoAim = KocmoMegaRailgun.MaxAutoAimRange;
+            //        break;
+            //    //case Type.PaperAeroplane:
+            //    //    MaxSearchRadiusSqr = ExtremelyLongRangeRadar.MaxSearchRadiusSqr;
+            //    //    MaxLockDistanceSqr = ExtremelyLongRangeRadar.MaxLockDistanceSqr;
+            //    //    MaxSearchAngle = ExtremelyLongRangeRadar.MaxSearchAngle;
+            //    //    MaxLockAngle = ExtremelyLongRangeRadar.MaxLockAngle;
+            //    //    MaxAutoAim = DevilTenderGazer.MaxAutoAimRange;
+            //    //    break;
+            //    case Type.Cuckoo:
+            //        MaxSearchRadiusSqr = VeryLongRangeRadar.MaxSearchRadiusSqr;
+            //        MaxLockDistanceSqr = VeryLongRangeRadar.MaxLockDistanceSqr;
+            //        MaxSearchAngle = VeryLongRangeRadar.MaxSearchAngle;
+            //        MaxLockAngle = VeryLongRangeRadar.MaxLockAngle;
+            //        MaxAutoAim = DevilTenderGazer.MaxAutoAimRange;
+            //        break;
+            //    case Type.BulletBill:
+            //        MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
+            //        MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
+            //        MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
+            //        MaxLockAngle = ShortRangeRadar.MaxLockAngle;
+            //        MaxAutoAim = ShortRangeRadar.MaxAutoAim;
+            //        break;
+            //    case Type.TimeMachine:
+            //        MaxSearchRadiusSqr = VeryLongRangeRadar.MaxSearchRadiusSqr;
+            //        MaxLockDistanceSqr = VeryLongRangeRadar.MaxLockDistanceSqr;
+            //        MaxSearchAngle = VeryLongRangeRadar.MaxSearchAngle;
+            //        MaxLockAngle = VeryLongRangeRadar.MaxLockAngle;
+            //        MaxAutoAim = VeryLongRangeRadar.MaxAutoAim;
+            //        break;
+            //    case Type.AceKennel:
+            //        MaxSearchRadiusSqr = UltraWideRangeRadar.MaxSearchRadiusSqr;
+            //        MaxLockDistanceSqr = UltraWideRangeRadar.MaxLockDistanceSqr;
+            //        MaxSearchAngle = UltraWideRangeRadar.MaxSearchAngle;
+            //        MaxLockAngle = UltraWideRangeRadar.MaxLockAngle;
+            //        MaxAutoAim = UltraWideRangeRadar.MaxAutoAim;
+            //        break;
+            //    case Type.KirbyStar:
+            //        MaxSearchRadiusSqr = UltraWideRangeRadar.MaxSearchRadiusSqr;
+            //        MaxLockDistanceSqr = UltraWideRangeRadar.MaxLockDistanceSqr;
+            //        MaxSearchAngle = UltraWideRangeRadar.MaxSearchAngle;
+            //        MaxLockAngle = UltraWideRangeRadar.MaxLockAngle;
+            //        MaxAutoAim = UltraWideRangeRadar.MaxAutoAim;
+            //        break;
+            //    case Type.nWidia:
+            //        MaxSearchRadiusSqr = LongRangeRadar.MaxSearchRadiusSqr;
+            //        MaxLockDistanceSqr = LongRangeRadar.MaxLockDistanceSqr;
+            //        MaxSearchAngle = LongRangeRadar.MaxSearchAngle;
+            //        MaxLockAngle = LongRangeRadar.MaxLockAngle;
+            //        MaxAutoAim = LongRangeRadar.MaxAutoAim;
+            //        break;
+            //    //case Type.FastFoodMan:
+            //    //    MaxSearchRadiusSqr = ShortRangeRadar.MaxSearchRadiusSqr;
+            //    //    MaxLockDistanceSqr = ShortRangeRadar.MaxLockDistanceSqr;
+            //    //    MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
+            //    //    MaxLockAngle = ShortRangeRadar.MaxLockAngle;
+            //    //    MaxAutoAim = ShortRangeRadar.MaxAutoAim;
+            //    //    break;
+            //    //case Type.PolarisExpress:
+            //    //    MaxSearchRadiusSqr = LongRangeRadar.MaxSearchRadiusSqr;
+            //    //    MaxLockDistanceSqr = LongRangeRadar.MaxLockDistanceSqr;
+            //    //    MaxSearchAngle = LongRangeRadar.MaxSearchAngle;
+            //    //    MaxLockAngle = LongRangeRadar.MaxLockAngle;
+            //    //    MaxAutoAim = KocmoMegaRailgun.MaxAutoAimRange;
+            //    //    break;
+            //    case Type.PapoyUnicorn:
+            //        MaxSearchRadiusSqr = ExtremelyLongRangeRadar.MaxSearchRadiusSqr;
+            //        MaxLockDistanceSqr = ExtremelyLongRangeRadar.MaxLockDistanceSqr;
+            //        MaxSearchAngle = ExtremelyLongRangeRadar.MaxSearchAngle;
+            //        MaxLockAngle = ExtremelyLongRangeRadar.MaxLockAngle;
+            //        MaxAutoAim = DevilTenderGazer.MaxAutoAimRange;
+            //        break;
+            //    case Type.PumpkinGhost:
+            //        MaxSearchRadiusSqr = VeryLongRangeRadar.MaxSearchRadiusSqr;
+            //        MaxLockDistanceSqr = VeryLongRangeRadar.MaxLockDistanceSqr;
+            //        MaxSearchAngle = VeryLongRangeRadar.MaxSearchAngle;
+            //        MaxLockAngle = VeryLongRangeRadar.MaxLockAngle;
+            //        MaxAutoAim = KocmoMegaRailgun.MaxAutoAimRange;
+            //        break;
+            //    case Type.GrandLisboa:
+            //        MaxSearchRadiusSqr = MediumRangeRadar.MaxSearchRadiusSqr;
+            //        MaxLockDistanceSqr = MediumRangeRadar.MaxLockDistanceSqr;
+            //        MaxSearchAngle = MediumRangeRadar.MaxSearchAngle;
+            //        MaxLockAngle = MediumRangeRadar.MaxLockAngle;
+            //        MaxAutoAim = MediumRangeRadar.MaxAutoAim;
+            //        break;
+            //    default:
+            //        MaxSearchRadiusSqr = RadarParameter.maxSearchRadiusSqr;
+            //        MaxLockDistanceSqr = RadarParameter.maxLockDistanceSqr;
+            //        MaxSearchAngle = RadarParameter.maxSearchAngle;
+            //        MaxLockAngle = RadarParameter.maxLockAngle;
+            //        MaxAutoAim = KocmoLaserCannon.maxFireAngle;
+            //        break;
+            //}
         }
         private void Update()
         {

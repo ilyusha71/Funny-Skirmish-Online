@@ -26,9 +26,10 @@ namespace Kocmoca
         public static readonly int MaxLockDistance = 3200;
         public static readonly int MaxSearchRadiusSqr = MaxSearchRadius * MaxSearchRadius;
         public static readonly int MaxLockDistanceSqr = MaxLockDistance * MaxLockDistance;
-        public static readonly float MaxSearchAngle = Mathf.Cos(22 * Mathf.Deg2Rad);
-        public static readonly float MaxLockAngle = Mathf.Cos(7 * Mathf.Deg2Rad);
-        public static readonly float MaxAutoAim = Mathf.Cos(0.5f * Mathf.Deg2Rad); // 0.1~0.7 
+        public static readonly int MaxSearchAngle = 22;
+        public static readonly int MaxLockAngle = 7;
+        public static readonly float MaxSearchRange = Mathf.Cos(MaxSearchAngle * Mathf.Deg2Rad);
+        public static readonly float MaxLockRange = Mathf.Cos(MaxLockAngle * Mathf.Deg2Rad);
     }
     // 超遠距雷達
     public static class VeryLongRangeRadar
@@ -37,9 +38,10 @@ namespace Kocmoca
         public static readonly int MaxLockDistance = 2700;
         public static readonly int MaxSearchRadiusSqr = MaxSearchRadius * MaxSearchRadius;
         public static readonly int MaxLockDistanceSqr = MaxLockDistance * MaxLockDistance;
-        public static readonly float MaxSearchAngle = Mathf.Cos(24 * Mathf.Deg2Rad);
-        public static readonly float MaxLockAngle = Mathf.Cos(9 * Mathf.Deg2Rad);
-        public static readonly float MaxAutoAim = Mathf.Cos(0.7f * Mathf.Deg2Rad); // 0.9~1.5
+        public static readonly int MaxSearchAngle = 24;
+        public static readonly int MaxLockAngle = 9;
+        public static readonly float MaxSearchRange = Mathf.Cos(MaxSearchAngle * Mathf.Deg2Rad);
+        public static readonly float MaxLockRange = Mathf.Cos(MaxLockAngle * Mathf.Deg2Rad);
     }
     // 遠距雷達
     public static class LongRangeRadar
@@ -48,9 +50,10 @@ namespace Kocmoca
         public static readonly int MaxLockDistance = 2300;
         public static readonly int MaxSearchRadiusSqr = MaxSearchRadius * MaxSearchRadius;
         public static readonly int MaxLockDistanceSqr = MaxLockDistance * MaxLockDistance;
-        public static readonly float MaxSearchAngle = Mathf.Cos(27 * Mathf.Deg2Rad);
-        public static readonly float MaxLockAngle = Mathf.Cos(13 * Mathf.Deg2Rad);
-        public static readonly float MaxAutoAim = Mathf.Cos(3 * Mathf.Deg2Rad);
+        public static readonly int MaxSearchAngle = 27;
+        public static readonly int MaxLockAngle = 13;
+        public static readonly float MaxSearchRange = Mathf.Cos(MaxSearchAngle * Mathf.Deg2Rad);
+        public static readonly float MaxLockRange = Mathf.Cos(MaxLockAngle * Mathf.Deg2Rad);
     }
     // 中距雷達
     public static class MediumRangeRadar
