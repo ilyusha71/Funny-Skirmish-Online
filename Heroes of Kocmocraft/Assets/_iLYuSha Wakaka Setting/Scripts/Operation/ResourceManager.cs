@@ -31,7 +31,6 @@ namespace Kocmoca
         public AudioClip soundLaser;
         public AudioClip soundRocket;
         public AudioClip soundMissile;
-
         public AudioClip soundAlphaRay;
         public AudioClip soundRailgun;
 
@@ -51,6 +50,26 @@ namespace Kocmoca
 
         private void Start()
         {
+            KocmocaData.MinionArmor.FireSound = soundLaser;
+            KocmocaData.RedBullEnergy.FireSound = soundLaser;
+            KocmocaData.VladimirPutin.FireSound = soundRailgun;
+            KocmocaData.PaperAeroplane.FireSound = soundLaser;
+            KocmocaData.Cuckoo.FireSound = soundAlphaRay;
+            KocmocaData.BulletBill.FireSound = soundLaser;
+            KocmocaData.TimeMachine.FireSound = soundLaser;
+            KocmocaData.KirbyStar.FireSound = soundLaser;
+            KocmocaData.AceKennel.FireSound = soundLaser;
+            KocmocaData.ScorpioRouge.FireSound = soundLaser;
+            KocmocaData.nWidia.FireSound = soundLaser;
+            KocmocaData.FastFoodMan.FireSound = soundLaser;
+            KocmocaData.ReindeerTransport.FireSound = soundLaser;
+            KocmocaData.PolarisExpress.FireSound = soundLaser;
+            KocmocaData.AncientFish.FireSound = soundLaser;
+            KocmocaData.PapoyUnicorn.FireSound = soundAlphaRay;
+            KocmocaData.PumpkinGhost.FireSound = soundRailgun;
+            KocmocaData.BoundyHunterMKII.FireSound = soundLaser;
+            KocmocaData.InuitEagle.FireSound = soundLaser;
+            KocmocaData.GrandLisboa.FireSound = soundLaser;
             LoadAmmo();
         }
 

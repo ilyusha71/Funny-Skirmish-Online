@@ -129,6 +129,7 @@ namespace Kocmoca
                 countAmmo--;
                 LauncherControl();
 
+                // 這邊還沒處理飛彈的判斷
                 if (moduleData.RepeatingCount == 2)
                     Invoke("LauncherControl",0.3f);
                 else if (moduleData.RepeatingCount == 3)

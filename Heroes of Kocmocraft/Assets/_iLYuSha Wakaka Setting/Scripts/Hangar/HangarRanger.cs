@@ -57,10 +57,12 @@ namespace Kocmoca
             if (level < 0.0100001f) bar[0].enabled = false;
         }
     }
-    public class HangarRanger : CameraTrackingSystem
+    public partial class HangarRanger : CameraTrackingSystem
     {
-        private readonly int hangarMaxCount = 24;
-        private readonly int hangarHalfCount = 12;
+
+
+
+
         [Header("External Scripts")]
         public PortalController Portal;
         [Header("UI")]
@@ -75,11 +77,9 @@ namespace Kocmoca
         public Camera cameraTop;
         public Camera cameraSide;
         public Camera cameraFront;
-        private BoxCollider[] prototypeScale;
-        private SkinManager[] prototypeSkin;
+
         private HangarState hangarState = HangarState.Portal;
-        private int hangarIndex;
-        private int hangarMax = 20;
+
         [Header("Billboard")]
         public Transform billboard;
         private Vector3 billboardPos = new Vector3(-12.972f, 0, 9.289f);
@@ -97,34 +97,44 @@ namespace Kocmoca
         private readonly WaitForSeconds delay = new WaitForSeconds(0.137f);
 
 
+        private AudioSource panelSFX;
         [Header("UI - Info Block")]
         public Image frameMain;
         public Image frameClose;
-        // Title
-        public TextMeshProUGUI textKocmocraftName;
-        public TextMeshProUGUI textDubiName;
-        // Tab
-        public Toggle btnKocmocraft;
-        public Toggle btnDubi;
-        public Toggle btnPerformance;
-        public Toggle btnRadar;
-        public Toggle btnWeapon;
-        public Image tabFrameKocmocraft;
-        public Image tabFrameDubi;
-        public Image tabFramePerformance;
-        public Image tabFrameRadar;
-        public Image tabFrameWeapon;
-        public TextMeshProUGUI tabTextKocmocraft;
+        [Header("UI - Tab")]
+        public AudioClip sfxTabDown;
+        public Toggle toggleDesign;
+        public Toggle toggleDubi;
+        public Toggle togglePerformance;
+        public Toggle toggleAstromech;
+        public Toggle toggleRadar;
+        public Toggle toggleTurret;
+        public Toggle toggleMissile;
+        public Image tabDesign;
+        public Image tabDubi;
+        public Image tabPerformance;
+        public Image tabAstromech;
+        public Image tabRadar;
+        public Image tabTurret;
+        public Image tabMissile;
+        public TextMeshProUGUI tabTextDesign;
         public TextMeshProUGUI tabTextDubi;
         public TextMeshProUGUI tabTextPerformance;
+        public TextMeshProUGUI tabTextAstromech;
         public TextMeshProUGUI tabTextRadar;
-        public TextMeshProUGUI tabTextWeapon;
+        public TextMeshProUGUI tabTextTurret;
+        public TextMeshProUGUI tabTextMissile;
         // Block
-        public GameObject blockKocmocraft;
+        public GameObject blockDesign;
         public GameObject blockDubi;
         public GameObject blockPerformance;
+        public GameObject blockAstromech;
         public GameObject blockRadar;
-        public GameObject blockWeapon;
+        public GameObject blockTurret;
+        public GameObject blockMissile;
+        public TextMeshProUGUI textKocmocraftName;
+        public TextMeshProUGUI textDubiName;
+
         [Header("Info Block - Kocmocraft")]
         public TextMeshProUGUI textInfo;
         public RectTransform scaleWingspan;
@@ -133,15 +143,18 @@ namespace Kocmoca
         public TextMeshProUGUI textWingspan;
         public TextMeshProUGUI textLength;
         public TextMeshProUGUI textHeight;
+        [Header("Skin")]
+        public AudioClip sfxSkin;
         public Button btnSkin;
+        public Button btnWireframe;
         [Header("Info Block - Dubi")]
         public Button btnTalk;
         public AudioClip [] sfxTalk;
         [Header("Data Block")]
-        public Toggle btnDesign;
+        //public Toggle btnDesign;
         //public Toggle btnPerformance;
         //public Toggle btnWeapon;
-        public GameObject blockDesign;
+        //public GameObject blockDesign;
         //public GameObject blockPerformance;
         //public GameObject blockWeapon;
         [Header("Hangar Data")]
@@ -174,56 +187,34 @@ namespace Kocmoca
         public class DataBlock
         {
             internal ModuleData moduleData;
+            public TextMeshProUGUI textTitle;
         }
+
         [Serializable]
-        public class Turret : DataBlock
+        public class AstromechDroid : DataBlock
         {
+            public TextMeshProUGUI textInfomation;
             public TextMeshProUGUI[] item;
-            public TextMeshProUGUI textTurretCount;
-            public TextMeshProUGUI textMaxAutoAimAngle;
-            public TextMeshProUGUI textRoundsPerMinute;
-            public TextMeshProUGUI textRepeatingCount;
-            public TextMeshProUGUI textMaxProjectileSpread;
-            public TextMeshProUGUI textAmmoVelocity;
-            public TextMeshProUGUI textOperationalRange;
-            public TextMeshProUGUI textPenetrationShield;
-            public TextMeshProUGUI textPenetrationHull;
-            public TextMeshProUGUI textDamageShield;
-            public TextMeshProUGUI textDamageHull;
-            public TextMeshProUGUI textDpsShield;
-            public TextMeshProUGUI textDpsHull;
+            public TextMeshProUGUI textShieldRecharge;
+            public TextMeshProUGUI textCollisionResistance;
+            public TextMeshProUGUI textEnginePower;
+            public TextMeshProUGUI textLockTime;
 
             public void SetData(int index)
             {
                 moduleData = KocmocaData.KocmocraftData[index];
+                textTitle.text = moduleData.DroidName;
+                textInfomation.text = moduleData.DroidDetail;
+                textShieldRecharge.text = moduleData.ShieldRecharge.ToString();
+                textCollisionResistance.text = moduleData.CollisionResistance.ToString();
+                textEnginePower.text = moduleData.EnginePower.ToString();
+                textLockTime.text = moduleData.LockTime.ToString() + " sec";
 
-                textTurretCount.text = moduleData.TurretCount.ToString() + "管"+ moduleData.DecayVelocity; ;
-                textMaxAutoAimAngle.text = moduleData.MaxAutoAimAngle.ToString() + " 度";
-                textRoundsPerMinute.text = moduleData.RoundsPerMinute.ToString() + " rpm";
-                textRepeatingCount.text = moduleData.RepeatingCount == 1?"单发" : moduleData.RepeatingCount.ToString() + "连发";
-                textMaxProjectileSpread.text = moduleData.MaxProjectileSpread.ToString() + " 度";
-                textAmmoVelocity.text = Mathf.RoundToInt(moduleData.AmmoVelocity).ToString() + " mps" + moduleData.DecayVelocity;
-                textOperationalRange.text = Mathf.RoundToInt(moduleData.operationalRange).ToString() + " m" + moduleData.DecayVelocity;
-                textPenetrationShield.text = (moduleData.PenetrationShield * 100).ToString() + " %";
-                textPenetrationHull.text = (moduleData.PenetrationHull * 100).ToString() + " %";
-                textDamageShield.text = moduleData.DamageShield;
-                textDamageHull.text = moduleData.DamageHull;
-                textDpsShield.text = moduleData.DpsShield;
-                textDpsHull.text = moduleData.DpsHull;
-
-                textTurretCount.color = HangarData.TextColor[index];
-                textMaxAutoAimAngle.color = HangarData.TextColor[index];
-                textRoundsPerMinute.color = HangarData.TextColor[index];
-                textRepeatingCount.color = HangarData.TextColor[index];
-                textMaxProjectileSpread.color = HangarData.TextColor[index];
-                textAmmoVelocity.color = HangarData.TextColor[index];
-                textOperationalRange.color = HangarData.TextColor[index];
-                textPenetrationShield.color = HangarData.TextColor[index];
-                textPenetrationHull.color = HangarData.TextColor[index];
-                textDamageShield.color = HangarData.TextColor[index];
-                textDamageHull.color = HangarData.TextColor[index];
-                textDpsShield.color = HangarData.TextColor[index];
-                textDpsHull.color = HangarData.TextColor[index];
+                textInfomation.color = HangarData.TextColor[index];
+                textShieldRecharge.color = HangarData.TextColor[index];
+                textCollisionResistance.color = HangarData.TextColor[index];
+                textEnginePower.color = HangarData.TextColor[index];
+                textLockTime.color = HangarData.TextColor[index];
 
                 for (int i = 0; i < item.Length; i++)
                 {
@@ -231,41 +222,122 @@ namespace Kocmoca
                 }
             }
         }
+        [Serializable]
+        public class Radar : DataBlock
+        {
+            public TextMeshProUGUI textInfomation;
+            public TextMeshProUGUI[] item;
+            public TextMeshProUGUI textMaxSearchRadius;
+            public TextMeshProUGUI textMinSearchRadius;
+            public TextMeshProUGUI textMaxSearchAngle;
+            public TextMeshProUGUI textLockDistance;
+            public TextMeshProUGUI textLockAngle;
+
+            public void SetData(int index)
+            {
+                moduleData = KocmocaData.KocmocraftData[index];
+                textTitle.text = moduleData.RadarName;
+                textInfomation.text = moduleData.RadarDetail;
+                textMaxSearchRadius.text = moduleData.MaxSearchRadius.ToString() + " m";
+                textMinSearchRadius.text = moduleData.MinSearchRadius.ToString() + " m";
+                textMaxSearchAngle.text = moduleData.MaxSearchAngle.ToString() + " 度";
+                textLockDistance.text = moduleData.MaxLockDistance.ToString() + " m";
+                textLockAngle.text = moduleData.MaxLockAngle.ToString() + " 度";
+
+                textInfomation.color = HangarData.TextColor[index];
+                textMaxSearchRadius.color = HangarData.TextColor[index];
+                textMinSearchRadius.color = HangarData.TextColor[index];
+                textMaxSearchAngle.color = HangarData.TextColor[index];
+                textLockDistance.color = HangarData.TextColor[index];
+                textLockAngle.color = HangarData.TextColor[index];
+
+                for (int i = 0; i < item.Length; i++)
+                {
+                    item[i].color = HangarData.TextColor[index];
+                }
+            }
+        }
+
+        [Header("Astromech Droid Data")]
+        public AstromechDroid astromechDroid;
+        [Header("Radar Data")]
+        public Radar radar;
         [Header("Turret Data")]
         public Turret turret;
 
         void Awake()
         {
             InitializeTrackingSystem();
-            Portal.OnShutterPressedUp += EnterHangar;
+            //Portal.OnShutterPressedUp += EnterHangar;
             SFX = GetComponent<AudioSource>();
-            prototypeScale = new BoxCollider[hangarMaxCount];
-            prototypeSkin = new SkinManager[hangarMaxCount];
-            for (int i = 0; i < hangarMaxCount; i++)
-            {
-                prototypeScale[i] = hangarCenter[i].GetComponentsInChildren<BoxCollider>()[1];
-                try
-                {
-                    prototypeSkin[i] = hangarCenter[i].GetComponentsInChildren<SkinManager>()[1];
-                    prototypeSkin[i].InitializeSkin(PlayerPrefs.GetInt(LobbyInfomation.PREFS_SKIN + i));
-                }
-                catch { }
-            }
+
+
+            ViewSetting();
             hangarIndex = PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
             billboard.localPosition = billboardHide;
             blockInfo.localScale = Vector3.zero;
             blockData.localPosition = new Vector3(blockData.localPosition.x, -500, 0);
             // Button & Toggle Event
+            panelSFX = frameMain.GetComponent<AudioSource>();
+
+
             btnOpen.onClick.AddListener(() => OpenPanel());
+
+
+            // Tab Toggle
+            toggleDesign.onValueChanged.AddListener(isOn =>
+            {
+                panelSFX.PlayOneShot(sfxTabDown, 0.73f);
+                blockDesign.SetActive(isOn);
+            });
+            toggleDubi.onValueChanged.AddListener(isOn =>
+            {
+                panelSFX.PlayOneShot(sfxTabDown, 0.73f);
+                blockDubi.SetActive(isOn);
+            });
+            togglePerformance.onValueChanged.AddListener(isOn =>
+            {
+                panelSFX.PlayOneShot(sfxTabDown, 0.73f);
+                blockPerformance.SetActive(isOn);
+            });
+            toggleAstromech.onValueChanged.AddListener(isOn =>
+            {
+                panelSFX.PlayOneShot(sfxTabDown, 0.73f);
+                blockAstromech.SetActive(isOn);
+            });
+            toggleRadar.onValueChanged.AddListener(isOn =>
+            {
+                panelSFX.PlayOneShot(sfxTabDown, 0.73f);
+                blockRadar.SetActive(isOn);
+            });
+            toggleTurret.onValueChanged.AddListener(isOn =>
+            {
+                panelSFX.PlayOneShot(sfxTabDown, 0.73f);
+                blockTurret.SetActive(isOn);
+            });
+            toggleMissile.onValueChanged.AddListener(isOn =>
+            {
+                panelSFX.PlayOneShot(sfxTabDown, 0.73f);
+                blockMissile.SetActive(isOn);
+            });
             btnHide.onClick.AddListener(() => HidePanel());
-            btnKocmocraft.onValueChanged.AddListener(isOn => blockKocmocraft.SetActive(isOn));
-            btnDubi.onValueChanged.AddListener(isOn => blockDubi.SetActive(isOn));
-            btnPerformance.onValueChanged.AddListener(isOn => blockPerformance.SetActive(isOn));
-            btnRadar.onValueChanged.AddListener(isOn => blockRadar.SetActive(isOn));
-            btnWeapon.onValueChanged.AddListener(isOn => blockWeapon.SetActive(isOn));
-            btnSkin.onClick.AddListener(() => ChangeSkin());
+
+
+            // Switch Skin
+            btnSkin.onClick.AddListener(() =>
+            {
+                panelSFX.PlayOneShot(sfxSkin);
+                ChangeSkin();
+            });
+            btnWireframe.onClick.AddListener(() =>
+            {
+                panelSFX.PlayOneShot(sfxSkin);
+                kocmocraftSkin[hangarIndex].SwitchWireframe();
+            });
+
+
             //btnDesign.onValueChanged.AddListener(isOn => blockDesign.SetActive(isOn));   
-            btnTalk.onClick.AddListener(() => { if (!SFX.isPlaying && hangarIndex < hangarMax) SFX.PlayOneShot(sfxTalk[hangarIndex],1.5f); });
+            btnTalk.onClick.AddListener(() => { if (!panelSFX.isPlaying && hangarIndex < hangarCount) panelSFX.PlayOneShot(sfxTalk[hangarIndex],1.5f); });
             // Bar
             barHull.Initialize(textMaxHull.transform.parent.GetComponentsInChildren<Image>(), 4000, 25000);
             barShield.Initialize(textMaxShield.transform.parent.GetComponentsInChildren<Image>(), 3000, 24000);
@@ -274,6 +346,10 @@ namespace Kocmoca
             barAfterburne.Initialize(textAfterburneSpeed.transform.parent.GetComponentsInChildren<Image>(), 70, 133);
             barDamage.Initialize(textDamage.transform.parent.GetComponentsInChildren<Image>(), 1092, 2842);
             barMaxRange.Initialize(textMaxRange.transform.parent.GetComponentsInChildren<Image>(), 955, 1270);
+
+            hangarState = HangarState.Ready;
+            //billboard.localPosition = billboardPos;
+            //MoveHangarRail();
         }
 
         private void EnterHangar()
@@ -284,8 +360,8 @@ namespace Kocmoca
             axisY.DOLocalRotate(new Vector3(0, valueRotY, 0), 3.37f);
             axisX.DOLocalRotate(new Vector3(valueRotX, 0, 0), 3.37f);
             slider.DOLocalMove(new Vector3(0, 0, valuePosZ), 3.37f);
-            pivot.DORotateQuaternion(prototypeScale[hangarIndex].transform.rotation, 3.37f);
-            pivot.DOMove(prototypeScale[hangarIndex].transform.position, 3.37f).OnComplete(() =>
+            pivot.DORotateQuaternion(kocmocraftSize[hangarIndex].transform.rotation, 3.37f);
+            pivot.DOMove(kocmocraftSize[hangarIndex].transform.position, 3.37f).OnComplete(() =>
             {
                 hangarState = HangarState.Ready;
                 billboard.localPosition = billboardPos;
@@ -293,155 +369,8 @@ namespace Kocmoca
             });
         }
 
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                hangarState = HangarState.Portal;
-                hangarCanvas.alpha = 0;
-                PlayerPrefs.SetString(LobbyInfomation.PREFS_LOAD_SCENE, LobbyInfomation.SCENE_LOBBY);
-                Portal.Ending();
-                Invoke("Loading", 2.0f);
-            }
-
-            if (hangarState == HangarState.Portal) return;
-
-            if (Input.GetKeyDown(Controller.KEY_NextHangar))
-            {
-                hangarIndex = (int)Mathf.Repeat(++hangarIndex, hangarCenter.Length);
-                MoveHangarRail();
-            }
-            else if (Input.GetKeyDown(Controller.KEY_PreviousHangar))
-            {
-                hangarIndex = (int)Mathf.Repeat(--hangarIndex, hangarCenter.Length);
-                MoveHangarRail();
-            }
-
-            billboard.LookAt(slider);
-            billboard.eulerAngles = new Vector3(0, billboard.eulerAngles.y, 0);
-
-            if (hangarState == HangarState.Ready)
-            {
-                hangarCanvas.alpha = 1.0f;
-                if (Input.GetKeyDown(Controller.KEYBOARD_Panel) || Input.GetKeyDown(Controller.XBOX360_Panel))
-                {
-                    if (panelState == TweenerState.Hide)
-                        OpenPanel();
-                    else if (panelState == TweenerState.Open)
-                        HidePanel();
-                    else
-                        return;
-                }
-                if (Input.GetKey(KeyCode.Mouse1))
-                    hangarCanvas.alpha = 0.0f;
-                Control();
-            }
-        }
-
-        void MoveHangarRail()
-        {
-            if(hangarIndex<hangarMax)
-                prototypeSkin[hangarIndex].InitializeSkin(PlayerPrefs.GetInt(LobbyInfomation.PREFS_SKIN + hangarIndex));
-            billboard.localPosition = billboardHide;
-            hangarCanvas.alpha = 0.0f;
-            pivot.DOKill();
-            hangarState = HangarState.Moving;
-            pivot.DORotateQuaternion(prototypeScale[hangarIndex].transform.rotation, 0.73f);
-            pivot.DOMove(prototypeScale[hangarIndex].transform.position, 0.73f).OnComplete(() =>
-            {
-                hangarState = HangarState.Ready;
-                if (hangarIndex < hangarMax)
-                    PlayerPrefs.SetInt(LobbyInfomation.PREFS_TYPE, hangarIndex);
-                billboard.localPosition = billboardPos;
-                LoadHangarData();
-            });
-        }
-
-        void LoadHangarData()
-        {
-            turret.SetData(hangarIndex);
 
 
-
-
-
-            frameMain.color = HangarData.FrameColor[hangarIndex];
-            frameClose.color = HangarData.ButtonColor[hangarIndex];
-
-            // Tab
-            tabFrameKocmocraft.color = HangarData.FrameColor[hangarIndex];
-            tabFrameDubi.color = HangarData.FrameColor[hangarIndex];
-            tabFramePerformance.color = HangarData.FrameColor[hangarIndex];
-            tabFrameRadar.color = HangarData.FrameColor[hangarIndex];
-            tabFrameWeapon.color = HangarData.FrameColor[hangarIndex];
-            tabTextKocmocraft.color = HangarData.TextColor[hangarIndex];
-            tabTextDubi.color = HangarData.TextColor[hangarIndex];
-            tabTextPerformance.color = HangarData.TextColor[hangarIndex];
-            tabTextRadar.color = HangarData.TextColor[hangarIndex];
-            tabTextWeapon.color = HangarData.TextColor[hangarIndex];
-
-            if (hangarIndex < hangarMax)
-            {
-                float wingspan = prototypeScale[hangarIndex].size.x;
-                float length = prototypeScale[hangarIndex].size.z;
-                float height = prototypeScale[hangarIndex].size.y;
-                float max = Mathf.Max(wingspan, length);
-                max = Mathf.Max(max, height);
-                float maxSize = max * 0.5f;
-                cameraTop.orthographicSize = maxSize;
-                cameraSide.orthographicSize = maxSize;
-                cameraFront.orthographicSize = maxSize;
-                scaleWingspan.localScale = new Vector3(wingspan / max,1,1);
-                scaleLength.localScale = new Vector3(length / max, 1, 1);
-                scaleHeight.localScale = new Vector3(height / max, 1, 1);
-                textWingspan.text = wingspan + " m";
-                textLength.text = length + " m";
-                textHeight.text = height + " m";
-            }
-            textKocmocraftName.text = "" + DesignData.Kocmocraft[hangarIndex];
-            textDubiName.text = "" + DesignData.Dubi[hangarIndex];
-
-
-            textInfo.color = HangarData.TextColor[hangarIndex];
-            textInfo.text = HangarData.Info[hangarIndex];
-
-            textOKB.text = "" + DesignData.OKB[hangarIndex];
-            textKocmocraft.text = "" + DesignData.Kocmocraft[hangarIndex];
-            textCode.text = "" + DesignData.Code[hangarIndex];
-            textDubi.text = "" + DesignData.Dubi[hangarIndex];
-            textEngine.text = "" + DesignData.Engine[hangarIndex];
-
-            textMaxHull.text = "" + KocmocraftData.MaxHull[hangarIndex];
-            barHull.SetBar(KocmocraftData.MaxHull[hangarIndex]);
-            textMaxShield.text = "" + KocmocraftData.MaxShieldl[hangarIndex];
-            barShield.SetBar(KocmocraftData.MaxShieldl[hangarIndex]);
-            textMaxEnergy.text = "" + KocmocraftData.MaxEnergy[hangarIndex];
-            barEnergy.SetBar(KocmocraftData.MaxEnergy[hangarIndex]);
-            textCruiseSpeed.text = (KocmocraftData.CruiseSpeed[hangarIndex] * 1.9438445f).ToString("0.00") + " knot";
-            barCruise.SetBar(KocmocraftData.CruiseSpeed[hangarIndex]);
-            textAfterburneSpeed.text = (KocmocraftData.AfterburnerSpeed[hangarIndex] * 1.9438445f).ToString("0.00") + " knot";
-            barAfterburne.SetBar(KocmocraftData.AfterburnerSpeed[hangarIndex]);
-
-            if (hangarIndex < hangarMax)
-            {
-                //WeaponData.GetWeaponData(hangarIndex);
-                //textTurretCount.text = WeaponData.TurretCount[hangarIndex] + "x 突击激光炮";
-                //textFireRPS.text = KocmoLaserCannon.FireRoundPerSecond + " rps";
-                //textDamage.text = string.Format("{0} ~ {1} dmg", WeaponData.MinDamage, WeaponData.MaxDamage);
-                //barDamage.SetBar(WeaponData.MaxDamage);
-                //textMaxRange.text = WeaponData.MaxRange + " m";
-                //barMaxRange.SetBar(WeaponData.MaxRange);
-            }
-            else
-            {
-                //textTurretCount.text = "---";
-                //textFireRPS.text = "---";
-                //textDamage.text = "---";
-                //barDamage.SetBar(0);
-                //textMaxRange.text = "--- m";
-                //barMaxRange.SetBar(0);
-            }
-        }
 
         public void OpenPanel()
         {
@@ -474,8 +403,8 @@ namespace Kocmoca
 
         void ChangeSkin()
         {
-            if(hangarIndex< hangarMax)
-                PlayerPrefs.SetInt(LobbyInfomation.PREFS_SKIN + hangarIndex, prototypeSkin[hangarIndex].ChangeSkin());
+            if(hangarIndex< hangarCount)
+                PlayerPrefs.SetInt(LobbyInfomation.PREFS_SKIN + hangarIndex, kocmocraftSkin[hangarIndex].ChangeSkin());
         }
     }
 }

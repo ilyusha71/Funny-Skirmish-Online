@@ -482,9 +482,9 @@ namespace Kocmoca
                 switch (index)
                 {
                     case 0: textKocmocraft[0].text = "" + DesignData.Kocmocraft[now]; break;
-                    case 1: textKocmocraft[1].text = "" + KocmocraftData.MaxHull[now]; break;
-                    case 2: textKocmocraft[2].text = "" + KocmocraftData.MaxShieldl[now]; break;
-                    case 3: textKocmocraft[3].text = "" + KocmocraftData.MaxEnergy[now]; break;
+                    case 1: textKocmocraft[1].text = "" + KocmocraftData.Hull[now]; break;
+                    case 2: textKocmocraft[2].text = "" + KocmocraftData.Shield[now]; break;
+                    case 3: textKocmocraft[3].text = "" + KocmocraftData.Energy[now]; break;
                     case 4: textKocmocraft[4].text = "" + KocmocraftData.CruiseSpeed[now] * 3.6f + " km/h"; break;
                     case 5: textKocmocraft[5].text = "" + KocmocraftData.AfterburnerSpeed[now] * 3.6f + " km/h"; break;
                 }
@@ -510,7 +510,7 @@ namespace Kocmoca
             {
                 switch (index)
                 {
-                    case 1: textWeapon[1].text = "" + WeaponData.TurretCount[now] + "x Assault Laser"; break;
+                    //case 1: textWeapon[1].text = "" + WeaponData.TurretCount[now] + "x Assault Laser"; break;
                     //case 2: textWeapon[2].text = "" + KocmoLaserCannon.FireRoundPerSecond + " rps"; break;
                     case 3: textWeapon[3].text = "update" + " dmg"; break;
                     case 4: textWeapon[4].text = "update" + " m"; break;

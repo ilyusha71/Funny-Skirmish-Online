@@ -21,8 +21,12 @@ namespace Kocmoca
         public float valueAirSupremacy;
         public float valueAirSupremacyPercentage;
         public int countPilot;
-        public List<Transform> listFriend; // 友機列表
-        public List<Transform> listFoe; // 敵機列表
+        //public List<Transform> listFriend; // 友機列表
+        //public List<Transform> listFoe; // 敵機列表
+
+        // 用於for迴圈取值，Array效能優於List約2~10%
+        public Transform[] arrayFriend; // 友機列表
+        public Transform[] arrayFoe; // 敵機列表
         public float nextTimeTakeOff; // 下一架次起飛時間
         // 成員數據
         public bool[] isPlayer;
@@ -51,8 +55,6 @@ namespace Kocmoca
 
     public class SatelliteCommander : MonoBehaviour
     {
-        public static WaitForSeconds waitShoot = new WaitForSeconds(0.0f);
-        public static WaitForSeconds waitLaserRecovery = new WaitForSeconds(KocmoLaserCannon.FlightTime);
         public static WaitForSeconds waitRocketRecovery = new WaitForSeconds(KocmoRocketLauncher.FlightTime);
         public static WaitForSeconds waitMissileRecovery = new WaitForSeconds(KocmoMissileLauncher.FlightTime);
 
@@ -64,10 +66,14 @@ namespace Kocmoca
         [Header("Satellite Data")]
         public Dictionary<int,Transform> listKocmocraft = new Dictionary<int, Transform>(); // 宇航機列表
         public Dictionary<int, Kocmonaut> listKocmonaut = new Dictionary<int, Kocmonaut>(); // 宇航員列表
-        public Dictionary<int, int> listBotNumber = new Dictionary<int, int>(); // 預設宇航機編號索引
-        public FactionData[] factionData = new FactionData[2]; // 陣營數據
+
+        //Onboard常用資訊使用static比透過instance呼叫高效
+        // 效能與放在全域Static 差不多
+        public static FactionData[] factionData = new FactionData[2]; // 陣營數據
+        private readonly int ountFactionKocmocraftCounter = 50;
+
         const int countMissionPilot = 50;
-        const int countTarget = 50;
+        const int countTarget = 100;
         [Header("Formation Data")]
         public Transform[] kocmoWing; // 宇航聯隊 = 10 宇航團（10名玩家）
         public Transform[] kocmoGroup; // 宇航團 = 5 宇航中隊（玩家為長機，其餘僚機為Bot）
@@ -103,69 +109,38 @@ namespace Kocmoca
             }
         }
 
+        public static OnboardRadar[] radarManager = new OnboardRadar[100];
+        //private void Update()
+        //{
+        //    Radar();
+        //}
+        void Radar()
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                if (radarManager[i])
+                radarManager[i].UpdateMe();
+            }
+        }
+
         public void InitializeSatellite()
         {
             PhotonNetwork.SendRate = 60;
             PhotonNetwork.SerializationRate = 60;
-            InitializeFaction();
-            //InitializeKocmonaut();
+            factionData[0].arrayFriend = new Transform[ountFactionKocmocraftCounter];
+            factionData[0].arrayFoe = new Transform[ountFactionKocmocraftCounter];
+            factionData[1].arrayFriend = new Transform[ountFactionKocmocraftCounter];
+            factionData[1].arrayFoe = new Transform[ountFactionKocmocraftCounter];
             SpawnPlayerKocmocraft();
             if (PhotonNetwork.IsMasterClient)
             {
                 int countPlayer = PhotonNetwork.CurrentRoom.PlayerCount;
-                for (int portNumber = countPlayer; portNumber < 100; portNumber++)
+                for (int portNumber = countPlayer; portNumber <100; portNumber++)
                 {
                     int type = Random.Range(0,20);
-                    Transform localAI = PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), DesignData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).transform;
-                    localAI.GetComponent<KocmocraftManager>().InitializeLocalBot(portNumber);
+                    PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), DesignData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).GetComponent<KocmocraftManager>().InitializeLocalBot(portNumber);
                 }
             }
-        }
-        void InitializeFaction()
-        {
-            // Bot 固定值： 代號
-            // Bot 宇航機：隨機 Master
-
-
-            //countFaction = airport.Length;
-            //countMissionPilot = formationFlying.Length;
-            //countAircraftType = aircraftType.Length;
-            //countTarget = (countFaction - 1) * countMissionPilot;
-
-            //BFM = new BattlefieldFactionManager[countFaction];
-            for (int i = 0; i < 2; i++)
-            {
-                // 陣營通用數據
-                //factionData[i].valueAirSupremacy = 1;
-                //totalAirSupremacy += BFM[i].valueAirSupremacy;
-                //factionData[i].countPilot = countReadyPilot;
-                factionData[i].listFriend = new List<Transform>(); // 陣營友機索引（機載雷達專用）
-                factionData[i].listFoe = new List<Transform>(); // 陣營敵機索引（機載雷達專用）
-
-
-                factionData[i].Type = new Type[10];
-                factionData[i].Number = new int[10];
-                factionData[i].TypeName = new string[10];
-                factionData[i].Scheme = new string[10];
-                //factionData[i].AirPower = new float[countMissionPilot];
-                //factionData[i].ShootDown = new int[countMissionPilot];
-                //factionData[i].TakeOff = new int[countMissionPilot];
-                //factionData[i].Damage = new int[countMissionPilot];
-                //factionData[i].Rank = new int[countMissionPilot];
-
-                // 陣營各單位數據
-                //for (int j = 0; j < 10; j++)
-                //{
-    
-                //    //BFM[i].IconAircraft[j].sprite = spriteMiniAircraft[(int)aiAircraftType];
-                //    //BFM[i].textAircraftScheme[j].text = "" + BFM[i].AircraftScheme[j];
-                //    //BFM[i].textAirPower[j].text = "" + BFM[i].AirPower[j];
-                //    //BFM[i].textDamage[j].text = "" + BFM[i].Damage[j];
-                //    //BFM[i].textShootDown[j].text = "" + BFM[i].ShootDown[j];
-                //    //BFM[i].textTakeOff[j].text = "" + BFM[i].TakeOff[j];
-                //}
-            }
-            Debug.LogWarning("InitializeBattlefieldFaction Completed");
         }
         public void SpawnPlayerKocmocraft()
         {
@@ -173,10 +148,9 @@ namespace Kocmoca
             HeadUpDisplayManager.Instance.ClearData();
             isCrash = false;
             myAudioSource.PlayOneShot(ResourceManager.instance.soundTakeOff, 0.37f);
-            int type =4;// PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
-            //string typeName = "Kocmocraft(" + type.ToString("00")+ ") - " + KocmocraftData.GetKocmocraftName(type);
-            localPlayer = PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), DesignData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).transform;
-            localPlayer.GetComponent<KocmocraftManager>().InitializeLocalPlayer();
+            int type =5;// PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
+                        //string typeName = "Kocmocraft(" + type.ToString("00")+ ") - " + KocmocraftData.GetKocmocraftName(type);
+            PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), DesignData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).GetComponent<KocmocraftManager>().InitializeLocalPlayer();
             LocalPlayerRealtimeData.Status = FlyingStatus.Flying;
         }
         void SpawnBotKocmocraft(int kocmonautNumber,int portNumber)
@@ -185,8 +159,7 @@ namespace Kocmoca
             //int order = portNumber / 2;
             int type = (int)listKocmonaut[kocmonautNumber].Type;//Random.Range(0,20); // 測試  (int)factionData[faction].Type[order];
             //string typeName = "Kocmocraft " + type.ToString("00") + " - " + KocmocraftData.GetKocmocraftName(type);
-            Transform localAI = PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), DesignData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).transform;
-            localAI.GetComponent<KocmocraftManager>().InitializeLocalBot(portNumber);
+            PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), DesignData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).GetComponent<KocmocraftManager>().InitializeLocalBot(portNumber);
         }
         public void PlayerCrash()
         {
@@ -215,17 +188,18 @@ namespace Kocmoca
         }
 
         // 新生成宇航機加入搜索列表
-        public void AddSearchList(Transform kocmocraft, int faction, int number)
+        public void AddSearchArray(Transform kocmocraft, int order, int faction, int number)
         {
             listKocmocraft.Add(number, kocmocraft);
             for (int i = 0; i < 2; i++)
             {
                 if (i == faction)
-                    factionData[i].listFriend.Add(kocmocraft);
+                    factionData[i].arrayFriend[order] = kocmocraft;
                 else
-                    factionData[i].listFoe.Add(kocmocraft);
+                    factionData[i].arrayFoe[order] = kocmocraft;
             }
         }
+
         // 設定宇航機機庫位置（僅本地端）
         public void SetHangar(Transform kocmocraft, int portNumber)
         {
@@ -241,6 +215,7 @@ namespace Kocmoca
             //kocmocraft.localRotation = Quaternion.identity;
             //kocmocraft.SetParent(null);
         }
+
         // 初始化宇航員數據（僅第一次生成）
         public void NewKocmonautJoin(Core core, int portNumber, Type type, int number, string name) // 宇航機實例化記錄宇航員資料
         {
@@ -301,8 +276,8 @@ namespace Kocmoca
             Transform kocmocraft = listKocmocraft[flight];
             for (int i = 0; i < 2; i++)
             {
-                factionData[i].listFriend.Remove(kocmocraft);
-                factionData[i].listFoe.Remove(kocmocraft);
+                //factionData[i].listFriend.Remove(kocmocraft);
+                //factionData[i].listFoe.Remove(kocmocraft);
             }
             listKocmocraft.Remove(flight);
           //  listKocmonaut.Remove(flight);
@@ -535,5 +510,57 @@ namespace Kocmoca
             listRadarLocked.Clear();
             listMissileLocked.Clear();
         }
+
+
+
+        //void InitializeFaction()
+        //{
+        //    //// Bot 固定值： 代號
+        //    //// Bot 宇航機：隨機 Master
+
+
+        //    ////countFaction = airport.Length;
+        //    ////countMissionPilot = formationFlying.Length;
+        //    ////countAircraftType = aircraftType.Length;
+        //    ////countTarget = (countFaction - 1) * countMissionPilot;
+
+        //    ////BFM = new BattlefieldFactionManager[countFaction];
+        //    //for (int i = 0; i < 2; i++)
+        //    //{
+        //    //    // 陣營通用數據
+        //    //    //factionData[i].valueAirSupremacy = 1;
+        //    //    //totalAirSupremacy += BFM[i].valueAirSupremacy;
+        //    //    //factionData[i].countPilot = countReadyPilot;
+        //    //    //factionData[i].listFriend = new List<Transform>(); // 陣營友機索引（機載雷達專用）
+        //    //    //factionData[i].listFoe = new List<Transform>(); // 陣營敵機索引（機載雷達專用）
+        //    //    factionData[i].arrayFriend = new Transform[50]; // 陣營友機索引（機載雷達專用）
+        //    //    factionData[i].arrayFoe = new Transform[50];  // 陣營敵機索引（機載雷達專用）
+        //    //    KocmocaData.factionData[i].arrayFriend = new Transform[50]; // 陣營友機索引（機載雷達專用）
+        //    //    KocmocaData.factionData[i].arrayFoe = new Transform[50];  // 陣營敵機索引（機載雷達專用）
+
+        //    //    //factionData[i].Type = new Type[10];
+        //    //    //factionData[i].Number = new int[10];
+        //    //    //factionData[i].TypeName = new string[10];
+        //    //    //factionData[i].Scheme = new string[10];
+        //    //    //factionData[i].AirPower = new float[countMissionPilot];
+        //    //    //factionData[i].ShootDown = new int[countMissionPilot];
+        //    //    //factionData[i].TakeOff = new int[countMissionPilot];
+        //    //    //factionData[i].Damage = new int[countMissionPilot];
+        //    //    //factionData[i].Rank = new int[countMissionPilot];
+
+        //    //    // 陣營各單位數據
+        //    //    //for (int j = 0; j < 10; j++)
+        //    //    //{
+
+        //    //    //    //BFM[i].IconAircraft[j].sprite = spriteMiniAircraft[(int)aiAircraftType];
+        //    //    //    //BFM[i].textAircraftScheme[j].text = "" + BFM[i].AircraftScheme[j];
+        //    //    //    //BFM[i].textAirPower[j].text = "" + BFM[i].AirPower[j];
+        //    //    //    //BFM[i].textDamage[j].text = "" + BFM[i].Damage[j];
+        //    //    //    //BFM[i].textShootDown[j].text = "" + BFM[i].ShootDown[j];
+        //    //    //    //BFM[i].textTakeOff[j].text = "" + BFM[i].TakeOff[j];
+        //    //    //}
+        //    //}
+        //    //Debug.LogWarning("InitializeBattlefieldFaction Completed");
+        //}
     }
 }

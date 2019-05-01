@@ -62,14 +62,14 @@ namespace Kocmoca
             object indexSkin;
             if (photonView.Owner.CustomProperties.TryGetValue(LobbyInfomation.PLAYER_SKIN_OPTION, out indexSkin))
             {
-                GetComponentInChildren<SkinManager>().InitializeSkin((int)indexSkin);
+                GetComponentInChildren<SkinManager>().LoadSkin((int)indexSkin);
             }
 
             myTransform.name = photonView.Owner.NickName + "-" +
                 DesignData.Code[(int)Type] + "-" +
                 DesignData.Kocmocraft[(int)Type];
             // Add Search List
-            SatelliteCommander.Instance.AddSearchList(myTransform, (int)Faction, Number);
+            SatelliteCommander.Instance.AddSearchArray(myTransform, portNumber / 2, (int)Faction, Number);
             // Kocmonaut Info ( first time only )
             if (!SatelliteCommander.Instance.listKocmonaut.ContainsKey(Number))
                 SatelliteCommander.Instance.NewKocmonautJoin(Core.LocalPlayer, portNumber, Type, Number, myTransform.name);
@@ -79,7 +79,8 @@ namespace Kocmoca
             Destroy(gameObject.GetComponent<HarmonicMotion>());
             gameObject.AddComponent<AvionicsSystem>().Initialize((int)Type); // local only
             gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalPlayer, (int)Type, Number, pilot,wreckage);
-            gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalPlayer, (int)Faction, (int)Type, Number); // local only
+            SatelliteCommander.radarManager[portNumber] = gameObject.AddComponent<OnboardRadar>();
+            SatelliteCommander.radarManager[portNumber].Initialize(Core.LocalPlayer, (int)Faction, (int)Type, Number); // local only
             gameObject.AddComponent<LocalPlayerController>();
             ActiveFCS(true);
             // Synchronize
@@ -101,14 +102,14 @@ namespace Kocmoca
             object indexSkin;
             if (photonView.Owner.CustomProperties.TryGetValue(LobbyInfomation.PLAYER_SKIN_OPTION, out indexSkin))
             {
-                GetComponentInChildren<SkinManager>().InitializeSkin((int)indexSkin);
+                GetComponentInChildren<SkinManager>().LoadSkin((int)indexSkin);
             }
 
             myTransform.name = photonView.Owner.NickName + "-" +
                 DesignData.Code[(int)Type] + "-" +
                 DesignData.Kocmocraft[(int)Type];
             // Add Search List
-            SatelliteCommander.Instance.AddSearchList(myTransform, (int)Faction, Number);
+            SatelliteCommander.Instance.AddSearchArray(myTransform, portNumber / 2, (int)Faction, Number);
             // Kocmonaut Info ( first time only )
             if (!SatelliteCommander.Instance.listKocmonaut.ContainsKey(Number))
                 SatelliteCommander.Instance.NewKocmonautJoin(Core.RemotePlayer, portNumber, Type, Number, myTransform.name);
@@ -123,12 +124,12 @@ namespace Kocmoca
             Faction = (Faction)(portNumber % 2);
             Type = (Type)(int.Parse(myTransform.name.Split(new char[2] { '(', ')' })[1]));
             Number = KocmocraftData.GetKocmonautNumber(portNumber);
-            GetComponentInChildren<SkinManager>().Randomkin();
+            GetComponentInChildren<SkinManager>().RandomSkin();
             myTransform.name = KocmocraftData.GetBotName(portNumber) + "-" +
                 DesignData.Code[(int)Type] + "-" +
                 DesignData.Kocmocraft[(int)Type];
             // Add Search List
-            SatelliteCommander.Instance.AddSearchList(myTransform, (int)Faction, Number);
+            SatelliteCommander.Instance.AddSearchArray(myTransform, portNumber / 2, (int)Faction, Number);
             // Kocmonaut Info ( first time only )
             if (!SatelliteCommander.Instance.listKocmonaut.ContainsKey(Number))
                 SatelliteCommander.Instance.NewKocmonautJoin(Core.LocalBot, portNumber, Type, Number, myTransform.name);
@@ -138,7 +139,8 @@ namespace Kocmoca
             Destroy(gameObject.GetComponent<HarmonicMotion>());
             gameObject.AddComponent<AvionicsSystem>().Initialize((int)Type); // local only
             gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalBot, (int)Type, Number, pilot, wreckage);
-            gameObject.AddComponent<OnboardRadar>().Initialize(Core.LocalBot, (int)Faction, (int)Type, Number); // local only
+            SatelliteCommander.radarManager[portNumber] = gameObject.AddComponent<OnboardRadar>();
+            SatelliteCommander.radarManager[portNumber].Initialize(Core.LocalBot, (int)Faction, (int)Type, Number); // local only
             gameObject.AddComponent<LocalBotController>();
             if (Type == Type.VladimirPutin || Type == Type.Cuckoo || Type == Type.PapoyUnicorn || Type == Type.PumpkinGhost)
                 GetComponent<LocalBotController>().mission = Mission.Snipper;
@@ -158,7 +160,7 @@ namespace Kocmoca
                 DesignData.Code[(int)Type] + "-" +
                 DesignData.Kocmocraft[(int)Type];
             // Add Search List
-            SatelliteCommander.Instance.AddSearchList(myTransform, (int)Faction, Number);
+            SatelliteCommander.Instance.AddSearchArray(myTransform, portNumber / 2, (int)Faction, Number);
             // Kocmonaut Info ( first time only )
             if (!SatelliteCommander.Instance.listKocmonaut.ContainsKey(Number))
                 SatelliteCommander.Instance.NewKocmonautJoin(Core.RemoteBot, portNumber, Type, Number, myTransform.name);

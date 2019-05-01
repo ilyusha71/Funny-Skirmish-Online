@@ -5,8 +5,6 @@
  * Description:
  * 1. 
  ***************************************************************************/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Kocmoca
@@ -26,11 +24,6 @@ namespace Kocmoca
         protected RaycastHit[] raycastHits;
         protected RaycastHit raycastHit;
         protected int countRaycastHits;
-
-
-        //protected float distanceRay;
-        //[Header("Damage")]
-        ////public int ammoDamage;
 
         protected void InitializeAmmo()
         {
@@ -57,26 +50,6 @@ namespace Kocmoca
             projectileSpread = spread;
         }
 
-        protected virtual void DetectCollisionByLinecast()
-        {
-
-        }
-        protected virtual void CollisionDetection()
-        {
-            raycastHits = Physics.RaycastAll(pointStarting, transform.forward, Vector3.Distance(myTransform.position, pointStarting));
-            countRaycastHits = raycastHits.Length;
-            for (int i = 0; i < countRaycastHits; i++)
-            {
-                if (pointStarting != Vector3.zero &&
-                    raycastHits[i].transform.name != owner.Name &&
-                    raycastHits[i].transform.tag != myTransform.tag &&
-                    raycastHits[i].transform.tag != "Particle")
-                {
-                    Recycle(gameObject);
-                    return;
-                }
-            }
-            pointStarting = myTransform.position;
-        }
+        protected virtual void DetectCollisionByLinecast() { }
     }
 }

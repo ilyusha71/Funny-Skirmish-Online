@@ -57,18 +57,18 @@ public class TestText : MonoBehaviour
         s.Append(data.DecayVelocity);
         s.Append("\n");
 
-        s.Append(data.PenetrationShield * 100);
-        s.Append(" %\n");
-        s.Append(data.PenetrationHull * 100);
-        s.Append(" %\n");
+        //s.Append(data.PenetrationShield * 100);
+        //s.Append(" %\n");
+        //s.Append(data.PenetrationHull * 100);
+        //s.Append(" %\n");
 
-        s.Append(data.DamageShield);
-        s.Append("\n");
-        s.Append(data.DamageHull);
-        s.Append("\n");
-        s.Append(data.DpsShield);
-        s.Append("\n");
-        s.Append(data.DpsHull);
+        //s.Append(data.DamageShield);
+        //s.Append("\n");
+        //s.Append(data.DamageHull);
+        //s.Append("\n");
+        //s.Append(data.DpsShield);
+        //s.Append("\n");
+        //s.Append(data.DpsHull);
 
         wak.text = s.ToString();
     }
@@ -76,20 +76,20 @@ public class TestText : MonoBehaviour
     void TEET()
     {
         wak.color = HangarData.TextColor[5];
-        wak.text =
-            test + "\n" +
-            test + "\n" +
-            test + "\n" +
-            test + "\n" +
-            test + "\n" +
-            Mathf.RoundToInt(data.AmmoVelocity).ToString() + " mps" + data.DecayVelocity + "\n" +
-            Mathf.RoundToInt(data.operationalRange).ToString() + " m" + data.DecayVelocity + "\n" +
-            (data.PenetrationShield * 100).ToString() + " %\n" +
-            (data.PenetrationHull * 100).ToString() + " %\n" +
-            data.DamageShield + "\n" +
-            data.DamageHull + "\n" +
-            data.DpsShield + "\n" +
-            data.DpsHull;
+        //wak.text =
+        //    test + "\n" +
+        //    test + "\n" +
+        //    test + "\n" +
+        //    test + "\n" +
+        //    test + "\n" +
+        //    Mathf.RoundToInt(data.AmmoVelocity).ToString() + " mps" + data.DecayVelocity + "\n" +
+        //    Mathf.RoundToInt(data.operationalRange).ToString() + " m" + data.DecayVelocity + "\n" +
+        //    (data.PenetrationShield * 100).ToString() + " %\n" +
+        //    (data.PenetrationHull * 100).ToString() + " %\n" +
+        //    data.DamageShield + "\n" +
+        //    data.DamageHull + "\n" +
+        //    data.DpsShield + "\n" +
+        //    data.DpsHull;
     }
 
     void Arraa()
@@ -116,13 +116,13 @@ public class TestText : MonoBehaviour
         Awak[4].text = test;
 
 
-        Awak[5].text = Mathf.RoundToInt(data.AmmoVelocity).ToString() + " mps" + data.DecayVelocity;
-        Awak[6].text = Mathf.RoundToInt(data.operationalRange).ToString() + " m" + data.DecayVelocity;
-        Awak[7].text = (data.PenetrationShield * 100).ToString() + " %";
-        Awak[8].text = (data.PenetrationHull * 100).ToString() + " %";
-        Awak[9].text = data.DamageShield;
-        Awak[10].text = data.DamageHull;
-        Awak[11].text = data.DpsShield;
-        Awak[12].text = data.DpsHull;
+        //Awak[5].text = Mathf.RoundToInt(data.AmmoVelocity).ToString() + " mps" + data.DecayVelocity;
+        //Awak[6].text = Mathf.RoundToInt(data.operationalRange).ToString() + " m" + data.DecayVelocity;
+        //Awak[7].text = (data.PenetrationShield * 100).ToString() + " %";
+        //Awak[8].text = (data.PenetrationHull * 100).ToString() + " %";
+        //Awak[9].text = data.DamageShield;
+        //Awak[10].text = data.DamageHull;
+        //Awak[11].text = data.DpsShield;
+        //Awak[12].text = data.DpsHull;
     }
 }

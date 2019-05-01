@@ -40,7 +40,7 @@ namespace Kocmoca
             StartCoroutine(FlyingInitialize());
 
         }
-        public Type type = Type.Unknown;
+        public Type type;
         public bool test;
         public string lastOwner;
         public string nowOwner;
@@ -101,8 +101,8 @@ namespace Kocmoca
             vfx.enabled = true;
 
             yield return moduleData.waitRecovery;
-            if (type == Type.Cuckoo || type == Type.PapoyUnicorn)
-                Debug.Log(owner.Name + " / MISS");
+            //if (type == Type.Cuckoo || type == Type.PapoyUnicorn)
+            //    Debug.Log(owner.Name + " / MISS");
             Recycle(gameObject);
         }
 
@@ -113,21 +113,24 @@ namespace Kocmoca
 
         protected override void DetectCollisionByLinecast()
         {
-            if (Physics.Linecast(pointStarting, myTransform.position, out raycastHit))
+            if (Physics.Linecast(pointStarting, myTransform.position, out raycastHit, ~(1 << 10)))
             {
                 KocmocraftMechDroid hull = raycastHit.transform.GetComponent<KocmocraftMechDroid>();
                 if (hull)
                 {
-                    float basicDamage = myRigidbody.velocity.sqrMagnitude * KocmoCannon.fixDamage;
+                    float basicDamage = myRigidbody.velocity.sqrMagnitude * WeaponData.fixDamage;
                     hull.Hit(new DamagePower()
                     {
                         Attacker = owner,
-                        Hull = (int)(basicDamage * moduleData.PenetrationHull),
-                        Shield = (int)(basicDamage * moduleData.PenetrationShield)
+                        Hull = (int)(basicDamage),
+                        Shield = (int)(basicDamage),
+                        Absorb = basicDamage * (100 - moduleData.ShieldPenetration) * 0.01f,
+                        Penetration = basicDamage * moduleData.ShieldPenetration * 0.01f,
+                        Damage = Random.Range(0, 100) < moduleData.HullPenetration ? basicDamage * 3 : basicDamage
                     });
-                    if (type == Type.Cuckoo || type == Type.PapoyUnicorn)
+                    if (type == Type.Cuckoo || type == Type.PapoyUnicorn || type == Type.VladimirPutin || type == Type.PumpkinGhost)
                     {
-                        Debug.LogWarning(owner.Name + " / " + (int)(basicDamage * moduleData.PenetrationHull) + " / " + (int)(basicDamage * moduleData.PenetrationShield));
+                        //Debug.LogWarning(owner.Name + " / " + (int)(basicDamage * moduleData.PenetrationHull) + " / " + (int)(basicDamage * moduleData.PenetrationShield));
                         ResourceManager.hitFire.Reuse(raycastHit.point, Quaternion.identity);
                     }
                     else
@@ -139,38 +142,6 @@ namespace Kocmoca
                     {
                         case "Water": ResourceManager.hitWater.Reuse(raycastHit.point, Quaternion.identity); break;
                         default: ResourceManager.hitGround.Reuse(raycastHit.point, Quaternion.identity); break;
-                    }
-                }
-                Recycle(gameObject);
-                return;
-            }
-            pointStarting = myTransform.position;
-        }
-
-        // Raycast 已棄用
-        protected override void CollisionDetection()
-        {
-            raycastHits = Physics.RaycastAll(pointStarting, myTransform.forward, Vector3.Distance(myTransform.position, pointStarting));
-            if (raycastHits.Length > 0)
-            {
-                KocmocraftMechDroid hull = raycastHits[0].transform.GetComponent<KocmocraftMechDroid>();
-                if (hull)
-                {
-                    float basicDamage = myRigidbody.velocity.sqrMagnitude * 0.000066f;
-                    hull.Hit(new DamagePower()
-                    {
-                        Attacker = owner,
-                        Hull = (int)(basicDamage * moduleData.PenetrationHull),
-                        Shield = (int)(basicDamage * moduleData.PenetrationShield)
-                    });
-                    ResourceManager.hitSpark.Reuse(raycastHits[0].point, Quaternion.identity);
-                }
-                else
-                {
-                    switch (raycastHits[0].transform.tag)
-                    {
-                        case "Water": ResourceManager.hitWater.Reuse(raycastHits[0].point, Quaternion.identity); break;
-                        default: ResourceManager.hitGround.Reuse(raycastHits[0].point, Quaternion.identity); break;
                     }
                 }
                 Recycle(gameObject);

@@ -4,40 +4,109 @@ namespace Kocmoca
 {
     /*****************************************************************************
      * 全域類
-     * Last Updated: 2019-04-18
+     * Last Updated: 2019-04-20
      * 透過靜態類別KocmocaData初始化一系列宇航機的ModuleData類別
      * 減少實例化新物件時重新透過Switch-Case逐一關聯
      * 
      * 但Component的變數仍需在實例物件時重新設定
+     * ModuleData 直接赋值速度最快
+     * ModuleData[] 慢一倍
+     * List<ModuleData> 极慢
      *****************************************************************************/
     public static class KocmocaData
     {
-        public static readonly ModuleData MinionArmor = new ModuleData(Type.MinionArmor);
-        public static readonly ModuleData RedBullEnergy = new ModuleData(Type.RedBullEnergy);
-        public static readonly ModuleData VladimirPutin = new ModuleData(Type.VladimirPutin);
-        public static readonly ModuleData PaperAeroplane = new ModuleData(Type.PaperAeroplane);
-        public static readonly ModuleData Cuckoo = new ModuleData(Type.Cuckoo);
-        public static readonly ModuleData BulletBill = new ModuleData(Type.BulletBill);
-        public static readonly ModuleData TimeMachine = new ModuleData(Type.TimeMachine);
-        public static readonly ModuleData AceKennel = new ModuleData(Type.AceKennel);
-        public static readonly ModuleData KirbyStar = new ModuleData(Type.KirbyStar);
-        public static readonly ModuleData ScorpioRouge = new ModuleData(Type.ScorpioRouge);
-        public static readonly ModuleData nWidia = new ModuleData(Type.nWidia);
-        public static readonly ModuleData FastFoodMan = new ModuleData(Type.FastFoodMan);
-        public static readonly ModuleData ReindeerTransport = new ModuleData(Type.ReindeerTransport);
-        public static readonly ModuleData PolarisExpress = new ModuleData(Type.PolarisExpress);
-        public static readonly ModuleData AncientFish = new ModuleData(Type.AncientFish);
-        public static readonly ModuleData PapoyUnicorn = new ModuleData(Type.PapoyUnicorn);
-        public static readonly ModuleData PumpkinGhost = new ModuleData(Type.PumpkinGhost);
-        public static readonly ModuleData BoundyHunterMKII = new ModuleData(Type.BoundyHunterMKII);
-        public static readonly ModuleData InuitEagle = new ModuleData(Type.InuitEagle);
-        public static readonly ModuleData GrandLisboa = new ModuleData(Type.GrandLisboa);
-        public static readonly ModuleData[] KocmocraftData = new ModuleData[20]{
+        // 神偷机兵
+        public static readonly ModuleData MinionArmor = new ModuleData(
+            Type.MinionArmor,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+
+        // 红牛能量
+        public static readonly ModuleData RedBullEnergy = new ModuleData(
+            Type.RedBullEnergy,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+
+        // 普鲸
+        public static readonly ModuleData VladimirPutin = new ModuleData(
+            Type.VladimirPutin,AstromechDroid.StarDestroyerX,Radar.MagicMirrorLongRangeRadar,Turret.SanctionerMegaRailgun);
+
+        // 纸飞机
+        public static readonly ModuleData PaperAeroplane = new ModuleData(
+            Type.PaperAeroplane,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+
+        // 咕咕鸡
+        public static readonly ModuleData Cuckoo = new ModuleData(
+            Type.Cuckoo,AstromechDroid.ZvezdarkDeluxe,Radar.MagicMirrorLongRangeRadar,Turret.DevilTenderGazer);
+
+        // 炮弹比尔
+        public static readonly ModuleData BulletBill = new ModuleData(
+            Type.BulletBill,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+
+        // 时光机
+        public static readonly ModuleData TimeMachine = new ModuleData(
+            Type.TimeMachine,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+
+        // 王牌狗屋
+        public static readonly ModuleData AceKennel = new ModuleData(
+            Type.AceKennel,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+
+        // 卡比之星
+        public static readonly ModuleData KirbyStar = new ModuleData(
+            Type.KirbyStar,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+
+        // 蝎红
+        public static readonly ModuleData ScorpioRouge = new ModuleData(
+            Type.ScorpioRouge,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+
+        // 恩威迪亚
+        public static readonly ModuleData nWidia = new ModuleData(
+            Type.nWidia,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+
+        // 快餐侠
+        public static readonly ModuleData FastFoodMan = new ModuleData(
+            Type.FastFoodMan,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+
+        // 驯鹿空运
+        public static readonly ModuleData ReindeerTransport = new ModuleData(
+            Type.ReindeerTransport,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+
+        // 北极星特快
+        public static readonly ModuleData PolarisExpress = new ModuleData(
+            Type.PolarisExpress,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+
+        // 远古飞鱼
+        public static readonly ModuleData AncientFish = new ModuleData(
+            Type.AncientFish,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, Turret.KocmoLaserCannon);
+
+        // 玩具独角兽
+        public static readonly ModuleData PapoyUnicorn = new ModuleData(
+            Type.PapoyUnicorn,AstromechDroid.ZvezdarkGaming,Radar.FantasticMirrorLongRangeRadar,Turret.DevilTenderGazer);
+
+        // 南瓜魅影
+        public static readonly ModuleData PumpkinGhost = new ModuleData(
+            Type.PumpkinGhost,AstromechDroid.StarDestroyerV,Radar.MarksmanRangeRadar,Turret.SanctionerMegaRailgun);
+
+        // 赏金猎人
+        public static readonly ModuleData BoundyHunterMKII = new ModuleData(
+            Type.BoundyHunterMKII,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+
+        // 鹰纽特
+        public static readonly ModuleData InuitEagle = new ModuleData(
+            Type.InuitEagle,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+
+        // 新葡鲸
+        public static readonly ModuleData GrandLisboa = new ModuleData(
+            Type.GrandLisboa,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+
+        // 原型机
+        public static readonly ModuleData Prototype = new ModuleData(
+            Type.Prototype,AstromechDroid.Prototype,Radar.Prototype,Turret.Prototype);
+
+
+        public static readonly ModuleData[] KocmocraftData = new ModuleData[24]{
             MinionArmor,RedBullEnergy,VladimirPutin,PaperAeroplane,Cuckoo,
             BulletBill,TimeMachine,AceKennel,KirbyStar,ScorpioRouge,
             nWidia,FastFoodMan,ReindeerTransport,PolarisExpress,AncientFish,
-            PapoyUnicorn,PumpkinGhost,BoundyHunterMKII,InuitEagle,GrandLisboa};
-
+            PapoyUnicorn,PumpkinGhost,BoundyHunterMKII,InuitEagle,GrandLisboa,
+            Prototype,Prototype,Prototype,Prototype};
+        #region Engine
         public static readonly EngineData Turbojet = new EngineData(EngineType.Turbojet);
         public static readonly EngineData Turbofan = new EngineData(EngineType.Turbofan);
         public static readonly EngineData Turboprop = new EngineData(EngineType.Turboprop);
@@ -48,180 +117,361 @@ namespace Kocmoca
         public static readonly EngineData[] EngineData = new EngineData[7] {
             Turbojet,Turbofan,Turboprop,Turboshaft,
             IonThruster,BiomassEnergy,PulsedPlasmaThruster};
+        #endregion
     }
     public class ModuleData
     {
-        // Kocmocraft
-        public int TurretCount;
-        public float Decay;
-        public string DecayVelocity;
-        public string DecayDamage;
-
+        public Type Type;
+        // Performance
+        public readonly int Shield;
+        public readonly int Hull;
+        public readonly int CruiseSpeed;
+        public readonly int AfterburnerSpeed;
+        public readonly int Energy;
+        // Astromech Droid
+        public readonly string DroidName;
+        public readonly string DroidDetail;
+        public readonly int ShieldRecharge;
+        public readonly int CollisionResistance;
+        public readonly float EnginePower;
+        public readonly float LockTime;
         // Radar
-        public int MaxSearchRadius;
-        public int MaxLockDistance;
-        public int MaxSearchRadiusSqr;
-        public int MaxLockDistanceSqr;
-        public int MaxSearchAngle;
-        public int MaxLockAngle;
-        public float MaxSearchRange;
-        public float MaxLockRange;
-        public float MaxAutoAimAngle;
-        public float MaxAutoAimRange;
-
-        // FCS
-        public float RoundsPerMinute;
-        public float FireRate;
-        public int RepeatingCount;
-        public float MaxProjectileSpread;
+        public readonly string RadarName;
+        public readonly string RadarDetail;
+        public readonly int MaxSearchRadius;
+        public readonly int MaxSearchRadiusSqr;
+        public readonly int MinSearchRadius;
+        public readonly int MinSearchRadiusSqr;
+        public readonly int MaxSearchAngle;
+        public readonly float MaxSearchRange;
+        public readonly int MaxLockDistance;
+        public readonly int MaxLockDistanceSqr;
+        public readonly int MaxLockAngle;
+        public readonly float MaxLockRange;
+        // Turret
+        public readonly string TurretName;
+        public readonly int TurretCount;
+        public readonly float Decay;
+        public readonly string DecayVelocity;
+        public readonly string DecayDamage;
+        public readonly float MaxAutoAimAngle;
+        public readonly float MaxAutoAimRange;
+        // Turret - FCS
+        public readonly float RoundsPerMinute;
+        public readonly float FireRate;
+        public readonly int RepeatingCount;
+        public readonly float MaxProjectileSpread;
         public AudioClip FireSound;
-        public int ShockwaveDistance;
+        public readonly int ShockwaveDistance;
+        // Turret - Ammo
+        public readonly float AmmoVelocity;
+        public readonly float propulsion;
+        public readonly float FlightTime;
+        public readonly float operationalRange;
+        public readonly float RaySize;
+        public readonly WaitForSeconds waitRecovery;
+        // Turret - Damage
+        public readonly float Damage;
+        public readonly float DPS;
+        public readonly int ShieldPenetration;
+        public readonly int HullPenetration;
 
-        // Ammo
-        public float AmmoVelocity;
-        public float propulsion;
-        public float FlightTime;
-        public float operationalRange;
-        public float RaySize;
-        public WaitForSeconds waitRecovery;
-
-        // Damage
-        public float PenetrationShield;
-        public float PenetrationHull;
-        public string DamageShield;
-        public string DamageHull;
-        public string DpsShield;
-        public string DpsHull;
-
-        public ModuleData(Type type)
+        public ModuleData(Type type, AstromechDroid droidType, Radar radarType, Turret turretType)
         {
-            switch (type)
+            Type = type;
+            switch (droidType)
             {
-                case Type.VladimirPutin:
-                    MaxSearchRadius = VeryLongRangeRadar.MaxSearchRadius;
-                    MaxLockDistance = VeryLongRangeRadar.MaxLockDistance;
-                    MaxSearchAngle = VeryLongRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = VeryLongRangeRadar.MaxLockAngle;
-                    MaxAutoAimAngle = SanctionerMegaRailgun.MaxAutoAimAngle;
-                    RoundsPerMinute = SanctionerMegaRailgun.RoundsPerMinute;
-                    RepeatingCount = SanctionerMegaRailgun.RepeatingCount;
-                    MaxProjectileSpread = SanctionerMegaRailgun.MaxProjectileSpread;
-                    FireSound = ResourceManager.instance.soundRailgun;
-                    ShockwaveDistance = SanctionerMegaRailgun.ShockwaveDistance;
-                    AmmoVelocity = SanctionerMegaRailgun.AmmoVelocity;
-                    FlightTime = SanctionerMegaRailgun.FlightTime;
-                    RaySize = SanctionerMegaRailgun.RaySize;
-                    PenetrationShield = SanctionerMegaRailgun.PenetrationShield;
-                    PenetrationHull = SanctionerMegaRailgun.PenetrationHull;
+                case AstromechDroid.ZvezdarkDeluxe:
+                    DroidName = "御星者修复机器喵 Deluxe";
+                    DroidDetail = "";
+                    ShieldRecharge = 309;
+                    CollisionResistance = 93;
+                    EnginePower = 7.9f;
+                    LockTime = 1.23f;
                     break;
-                case Type.Cuckoo:
-                    MaxSearchRadius = VeryLongRangeRadar.MaxSearchRadius;
-                    MaxLockDistance = VeryLongRangeRadar.MaxLockDistance;
-                    MaxSearchAngle = VeryLongRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = VeryLongRangeRadar.MaxLockAngle;
-                    MaxAutoAimAngle = DevilTenderGazer.MaxAutoAimAngle;
-                    RoundsPerMinute = DevilTenderGazer.RoundsPerMinute;
-                    RepeatingCount = DevilTenderGazer.RepeatingCount;
-                    MaxProjectileSpread = DevilTenderGazer.MaxProjectileSpread;
-                    FireSound = ResourceManager.instance.soundAlphaRay;
-                    ShockwaveDistance = DevilTenderGazer.ShockwaveDistance;
-                    AmmoVelocity = DevilTenderGazer.AmmoVelocity;
-                    FlightTime = DevilTenderGazer.FlightTime;
-                    RaySize = DevilTenderGazer.RaySize;
-                    PenetrationShield = DevilTenderGazer.PenetrationShield;
-                    PenetrationHull = DevilTenderGazer.PenetrationHull;
+                case AstromechDroid.ZvezdarkGaming:
+                    DroidName = "御星者修复机器喵 Gaming";
+                    DroidDetail = "";
+                    ShieldRecharge = 274;
+                    CollisionResistance = 84;
+                    EnginePower = 8.4f;
+                    LockTime = 1.27f;
                     break;
-                case Type.PapoyUnicorn:
-                    MaxSearchRadius = ExtremelyLongRangeRadar.MaxSearchRadius;
-                    MaxLockDistance = ExtremelyLongRangeRadar.MaxLockDistance;
-                    MaxSearchAngle = ExtremelyLongRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = ExtremelyLongRangeRadar.MaxLockAngle;
-                    MaxAutoAimAngle = DevilTenderGazer.MaxAutoAimAngle;
-                    RoundsPerMinute = DevilTenderGazer.RoundsPerMinute;
-                    RepeatingCount = DevilTenderGazer.RepeatingCount;
-                    MaxProjectileSpread = DevilTenderGazer.MaxProjectileSpread;
-                    FireSound = ResourceManager.instance.soundAlphaRay;
-                    ShockwaveDistance = DevilTenderGazer.ShockwaveDistance;
-                    AmmoVelocity = DevilTenderGazer.AmmoVelocity;
-                    FlightTime = DevilTenderGazer.FlightTime;
-                    RaySize = DevilTenderGazer.RaySize;
-                    PenetrationShield = DevilTenderGazer.PenetrationShield;
-                    PenetrationHull = DevilTenderGazer.PenetrationHull;
+                case AstromechDroid.ZvezdarkSouvenir:
+                    DroidName = "御星者初代纪念款机器喵";
+                    DroidDetail = "";
+                    ShieldRecharge = 255;
+                    CollisionResistance = 71;
+                    EnginePower = 9.9f;
+                    LockTime = 1.33f;
                     break;
-                case Type.PumpkinGhost:
-                    MaxSearchRadius = VeryLongRangeRadar.MaxSearchRadius;
-                    MaxLockDistance = VeryLongRangeRadar.MaxLockDistance;
-                    MaxSearchAngle = VeryLongRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = VeryLongRangeRadar.MaxLockAngle;
-                    MaxAutoAimAngle = SanctionerMegaRailgun.MaxAutoAimAngle;
-                    RoundsPerMinute = SanctionerMegaRailgun.RoundsPerMinute;
-                    RepeatingCount = SanctionerMegaRailgun.RepeatingCount;
-                    MaxProjectileSpread = SanctionerMegaRailgun.MaxProjectileSpread;
-                    FireSound = ResourceManager.instance.soundRailgun;
-                    ShockwaveDistance = SanctionerMegaRailgun.ShockwaveDistance;
-                    AmmoVelocity = SanctionerMegaRailgun.AmmoVelocity;
-                    FlightTime = SanctionerMegaRailgun.FlightTime;
-                    RaySize = SanctionerMegaRailgun.RaySize;
-                    PenetrationShield = SanctionerMegaRailgun.PenetrationShield;
-                    PenetrationHull = SanctionerMegaRailgun.PenetrationHull;
+                case AstromechDroid.StarDestroyerX:
+                    DroidName = "歼星者X型战争技工";
+                    DroidDetail = "";
+                    ShieldRecharge = 93;
+                    CollisionResistance = 22;
+                    EnginePower = 10f;
+                    LockTime = 0.16f;
                     break;
-                default:
-                    MaxSearchRadius = ShortRangeRadar.MaxSearchRadius;
-                    MaxLockDistance = ShortRangeRadar.MaxLockDistance;
-                    MaxSearchAngle = ShortRangeRadar.MaxSearchAngle;
-                    MaxLockAngle = ShortRangeRadar.MaxLockAngle;
-                    MaxAutoAimAngle = KocmoLaserCannon.MaxAutoAimAngle;
-                    RoundsPerMinute = KocmoLaserCannon.RoundsPerMinute;
-                    RepeatingCount = KocmoLaserCannon.RepeatingCount;
-                    MaxProjectileSpread = KocmoLaserCannon.MaxProjectileSpread;
-                    FireSound = ResourceManager.instance.soundLaser;
-                    ShockwaveDistance = KocmoLaserCannon.ShockwaveDistance;
-                    AmmoVelocity = KocmoLaserCannon.AmmoVelocity;
-                    FlightTime = KocmoLaserCannon.FlightTime;
+                case AstromechDroid.StarDestroyerV:
+                    DroidName = "歼星者V型战争技工";
+                    DroidDetail = "";
+                    ShieldRecharge = 127;
+                    CollisionResistance = 39;
+                    EnginePower = 9f;
+                    LockTime = 0.27f;
+                    break;
+                case AstromechDroid.Anonymous:
+                    DroidName = "不愿具名的知情人士";
+                    DroidDetail = "";
+                    ShieldRecharge = 140;
+                    CollisionResistance = 100;
+                    EnginePower = 5.2f;
+                    LockTime = 0.93f;
+                    break;
+                case AstromechDroid.AlphaZero:
+                    DroidName = "Alpha Zero蓝星炒鸡计算机";
+                    DroidDetail = "";
+                    ShieldRecharge = 190;
+                    CollisionResistance = 97;
+                    EnginePower = 4.8f;
+                    LockTime = 0.76f;
+                    break;
+                case AstromechDroid.Prototype:
+                    DroidName = "未装配宇航技工";
+                    DroidDetail = "";
+                    ShieldRecharge = 0;
+                    CollisionResistance = 0;
+                    EnginePower = 0;
+                    LockTime = 0;
+                    break;
+            }
+            switch (radarType)
+            {
+                case Radar.FantasticMirrorLongRangeRadar:
+                    RadarName = "幻镜远距雷达";
+                    RadarDetail = "基于魔镜雷达所发展的梦幻版本，专注于极远距离的威慑能力，但相对会在中距离与侧翼产生很大的盲区。";
+                    MaxSearchRadius = 5000;
+                    MinSearchRadius = 1900;
+                    MaxSearchAngle = 16;
+                    MaxLockDistance = 3200;
+                    MaxLockAngle = 7;
+                    break;
+                case Radar.MarksmanRangeRadar:
+                    RadarName = "神射手远距雷达";
+                    RadarDetail = "神射手是一套专门用于狙击系统武装的标配雷达。";
+                    MaxSearchRadius = 4400;
+                    MinSearchRadius = 1700;
+                    MaxSearchAngle = 24;
+                    MaxLockDistance = 2700;
+                    MaxLockAngle = 11;
+                    break;
+                case Radar.MagicMirrorLongRangeRadar:
+                    RadarName = "魔镜远距雷达";
+                    RadarDetail = "兼顾远距离打击的全方位雷达，也可用於狙击任务。";
+                    MaxSearchRadius = 4200;
+                    MinSearchRadius = 1100;
+                    MaxSearchAngle = 27;
+                    MaxLockDistance = 2500;
+                    MaxLockAngle = 13;
+                    break;
+                case Radar.BrokenLongRangeRadar:
+                    RadarName = "破晓远距雷达";
+                    RadarDetail = "破晓是针对指挥所掌控战场的多用途雷达，适合战术位置在大后方的宇航机配置。";
+                    MaxSearchRadius = 3700;
+                    MinSearchRadius = 700;
+                    MaxSearchAngle = 29;
+                    MaxLockDistance = 2300;
+                    MaxLockAngle = 16;
+                    break;
+                case Radar.KocmoStrategyRadar:
+                    RadarName = "卡斯摩战术雷达";
+                    RadarDetail = "多装配于警戒哨的制式雷达，同时也是一款通用于各项任务的战术雷达。";
+                    MaxSearchRadius = 3300;
+                    MinSearchRadius = 500;
+                    MaxSearchAngle = 31;
+                    MaxLockDistance = 2000;
+                    MaxLockAngle = 19;
+                    break;
+                case Radar.KaleidoscopeRadar:
+                    RadarName = "万花筒短距雷达";
+                    RadarDetail = "万花筒被研发用于近距离的护卫任务，适合僚机在任务中胜任狗逗技术的雷达。";
+                    MaxSearchRadius = 2900;
+                    MinSearchRadius = 300;
+                    MaxSearchAngle = 37;
+                    MaxLockDistance = 1600;
+                    MaxLockAngle = 27;
+                    break;
+                case Radar.NightWatcherRadar:
+                    RadarName = "守夜人全方位雷达";
+                    RadarDetail = "以据点防卫为主要任务的特化雷达，适合巨型宇航机取得制空权使用。";
+                    MaxSearchRadius = 2200;
+                    MinSearchRadius = 120;
+                    MaxSearchAngle = 45;
+                    MaxLockDistance = 1200;
+                    MaxLockAngle = 37;
+                    break;
+                case Radar.SkynetRadar:
+                    RadarName = "天网超广角雷达";
+                    RadarDetail = "近距离缠斗的首选雷达，主要用于占据与战术打击任务，适合机动性优良的宇航机配置。";
+                    MaxSearchRadius = 1600;
+                    MinSearchRadius = 10;
+                    MaxSearchAngle = 60;
+                    MaxLockDistance = 700;
+                    MaxLockAngle = 45;
+                    break;
+                case Radar.Prototype:
+                    RadarName = "未装配雷达";
+                    RadarDetail = "";
+                    MaxSearchRadius = 0;
+                    MinSearchRadius = 0;
+                    MaxSearchAngle = 0;
+                    MaxLockDistance = 0;
+                    MaxLockAngle = 0;
+                    break;
+            }
+            switch (turretType)
+            {
+                case Turret.DevilTenderGazer:
+                    TurretName = "恶魔的温情目光";
+                    MaxAutoAimAngle = 0.5f; // 自动瞄准极限
+                    RoundsPerMinute = 23; // 开火射速 rpm
+                    RepeatingCount = 1; //连发模式
+                    MaxProjectileSpread = 0.09f; // 发射散布
+                    ShockwaveDistance = 700; // 震波距离
+                    AmmoVelocity = 7990; // 飞行速率 mps
+                    FlightTime = 0.5f; // 飛行時間 sec
+                    RaySize = 7.0f;
+                    ShieldPenetration = 23; // 護盾穿透
+                    HullPenetration = 7; // 機甲穿透
+                    break;
+                case Turret.SanctionerMegaRailgun:
+                    TurretName = "制裁者的极大磁轨炮";
+                    MaxAutoAimAngle = 0.7f; // 自动瞄准极限
+                    RoundsPerMinute = 20; // 开火射速 rpm
+                    RepeatingCount = 2; // 连发模式
+                    MaxProjectileSpread = 0.13f; // 发射散布
+                    ShockwaveDistance = 500; // 震波距离
+                    AmmoVelocity = 6670; // 飞行速率 mps
+                    FlightTime = 0.5f; // 飛行時間 sec
+                    RaySize = 5.0f;
+                    ShieldPenetration = 16; // 護盾穿透
+                    HullPenetration = 3; // 機甲穿透
+                    break;
+                case Turret.KocmoIonPulsar:
+                    TurretName = "卡斯摩的离子脉冲";
+                    MaxAutoAimAngle = 1.6f; // 自动瞄准极限
+                    RoundsPerMinute = 77; // 开火射速 rpm
+                    RepeatingCount = 3; // 连发模式
+                    MaxProjectileSpread = 0.93f; // 发射散布
+                    ShockwaveDistance = 100; // 震波距离
+                    AmmoVelocity = 5710; // 飞行速率 mps
+                    FlightTime = 0.5f; // 飛行時間 sec
                     RaySize = 0.5f;
-                    PenetrationShield = KocmoLaserCannon.PenetrationShield;
-                    PenetrationHull = KocmoLaserCannon.PenetrationHull;
+                    ShieldPenetration = 3; // 護盾穿透
+                    HullPenetration = 1; // 機甲穿透
+                    break;
+                case Turret.KocmoLaserCannon:
+                    TurretName = "卡斯摩的离子脉冲";
+                    MaxAutoAimAngle = 3.0f; // 自动瞄准极限
+                    RoundsPerMinute = 584; // 开火射速 rpm
+                    RepeatingCount = 1; //连发模式
+                    MaxProjectileSpread = 0.39f; //彈道散布 degree
+                    ShockwaveDistance = 100; // 震波距离
+                    AmmoVelocity = 2970; // 飛行速率 m/s
+                    FlightTime = 0.37f;//0.71f; // 飛行時間 sec
+                    RaySize = 0.5f;
+                    ShieldPenetration = 7;
+                    HullPenetration = 2;
+                    break;
+                case Turret.KocmoRailgun:
+                    TurretName = "卡斯摩的离子脉冲";
+                    MaxProjectileSpread = 0.36f; //彈道散布 degree
+                    ShockwaveDistance = 100; // 震波距离
+                    AmmoVelocity = 4550; // 飛行速率 m/s
+                    FlightTime = 0.37f; // 飛行時間 sec
+                    RaySize = 0.5f;
+                    RoundsPerMinute = 3.0f; // 開火射速（每秒X發）RPS
+                    RepeatingCount = 1; // 每輪連發射擊次數
+                    ShieldPenetration = 5; // 護盾穿透
+                    HullPenetration = 5; // 機甲穿透
+                    break;
+                case Turret.KocmoUltraPowerPlasma:
+                    TurretName = "卡斯摩的离子脉冲";
+                    MaxProjectileSpread = 1.0f; //彈道散布 degree
+                    ShockwaveDistance = 100; // 震波距离
+                    AmmoVelocity = 3370; // 飛行速率 m/s
+                    FlightTime = 0.37f; // 飛行時間 sec
+                    RaySize = 0.5f;
+                    RoundsPerMinute = 10.0f; // 開火射速（每秒X發）RPS
+                    RepeatingCount = 1; // 每輪連發射擊次數
+                    ShieldPenetration = 5; // 護盾穿透
+                    HullPenetration = 5; // 機甲穿透
+                    break;
+                case Turret.KocmoArmorPiercing:
+                    TurretName = "卡斯摩的离子脉冲";
+                    MaxProjectileSpread = 2.37f; //彈道散布 degree
+                    ShockwaveDistance = 100; // 震波距离
+                    AmmoVelocity = 2970; // 飛行速率 m/s
+                    FlightTime = 0.37f; // 飛行時間 sec
+                    RaySize = 0.5f;
+                    RoundsPerMinute = 9.3f; // 開火射速（每秒X發）RPS
+                    RepeatingCount = 1; // 每輪連發射擊次數
+                    ShieldPenetration = 5; // 護盾穿透
+                    HullPenetration = 5; // 機甲穿透
+                    break;
+                case Turret.Prototype:
+                    TurretName = "未装配机炮";
+                    MaxAutoAimAngle = 0;
+                    RoundsPerMinute = 0;
+                    RepeatingCount = 0;
+                    MaxProjectileSpread = 0;
+                    ShockwaveDistance = 0;
+                    AmmoVelocity = 0;
+                    FlightTime = 0;
+                    RaySize = 0;
+                    ShieldPenetration = 0;
+                    HullPenetration = 0;
                     break;
             }
 
-            // Kocmocraft.
+            //Kocmocraft Mech Droid
+            Shield = KocmocraftData.Shield[(int)type];
+            Hull = KocmocraftData.Hull[(int)type];
+            Energy = KocmocraftData.Energy[(int)type];
+
+            // Onboard Radar
+            MaxSearchRadiusSqr = MaxSearchRadius * MaxSearchRadius;
+            MinSearchRadiusSqr = MinSearchRadius * MinSearchRadius;
+            MaxSearchRange = Mathf.Cos(MaxSearchAngle * Mathf.Deg2Rad);
+            MaxLockDistanceSqr = MaxLockDistance * MaxLockDistance;
+            MaxLockRange = Mathf.Cos(MaxLockAngle * Mathf.Deg2Rad);
+            MaxAutoAimRange = Mathf.Cos(MaxAutoAimAngle * Mathf.Deg2Rad);
+            // Turret.
             TurretCount = KocmocraftData.TurretCount[(int)type];
             Decay = GetDecay(TurretCount);
             DecayVelocity = "<size=29><color=green> >>> " + Mathf.RoundToInt(100 - Decay * 100) + "%衰减</color></size>";
             DecayDamage = "<size=29><color=green> >>> " + Mathf.RoundToInt(100 - Decay * Decay * 100) + "%衰减</color></size>";
-
-            // Onboard Radar
-            MaxSearchRadiusSqr = MaxSearchRadius * MaxSearchRadius;
-            MaxLockDistanceSqr = MaxLockDistance * MaxLockDistance;
-            MaxSearchRange = Mathf.Cos(MaxSearchAngle * Mathf.Deg2Rad);
-            MaxLockRange = Mathf.Cos(MaxLockAngle * Mathf.Deg2Rad);
-            MaxAutoAimRange = Mathf.Cos(MaxAutoAimAngle * Mathf.Deg2Rad);
-
             //FCS
             FireRate = 60 / RoundsPerMinute;
-            //Debug.Log(FireRate);
-
             // Ammo
             AmmoVelocity *= Decay;
             propulsion = AmmoVelocity * 50; // propulsion = AmmoVelocity / Time.fixedDeltaTime (1/0.02 = 50)
             operationalRange = AmmoVelocity * FlightTime;
             waitRecovery = new WaitForSeconds(FlightTime);
-
             // Damage
-            DamageShield = ((int)(AmmoVelocity * AmmoVelocity * KocmoCannon.fixDamage * PenetrationShield)).ToString() + DecayDamage;
-            DamageHull = ((int)(AmmoVelocity * AmmoVelocity * KocmoCannon.fixDamage * PenetrationHull)).ToString() + DecayDamage;
-            DpsShield = ((int)(AmmoVelocity * AmmoVelocity * KocmoCannon.fixDamage * PenetrationShield * RepeatingCount * RoundsPerMinute * TurretCount / 60)).ToString();
-            DpsHull = ((int)(AmmoVelocity * AmmoVelocity * KocmoCannon.fixDamage * PenetrationHull * RepeatingCount * RoundsPerMinute * TurretCount / 60)).ToString();
+            Damage = (int)(AmmoVelocity * AmmoVelocity * WeaponData.fixDamage);
+            DPS = (int)(AmmoVelocity * AmmoVelocity * WeaponData.fixDamage * RepeatingCount * RoundsPerMinute * TurretCount / 60);
         }
-
-        float GetDecay(int count)
+        private float GetDecay(int count)
         {
             switch (count)
             {
-                case 2: return KocmoCannon.fix2Tube;
-                case 4: return KocmoCannon.fix4Tube;
-                case 6: return KocmoCannon.fix6Tube;
-                default: return KocmoCannon.fix8Tube;
+                case 0: return WeaponData.fix2Tube;
+                case 2: return WeaponData.fix2Tube;
+                case 4: return WeaponData.fix4Tube;
+                case 6: return WeaponData.fix6Tube;
+                default: return WeaponData.fix8Tube;
             }
         }
     }
@@ -298,59 +548,59 @@ namespace Kocmoca
     public static class HangarData
     {
         public static readonly Color32[] FrameColor = new Color32[] {
-            new Color32(255,255,123,237), // 神偷机兵：黄123
-            new Color32(255,255,255,237), // 红牛能量：白255
-            new Color32(117,185,255,237), // 普鲸：蓝
-            new Color32(255,255,255,237), // 纸飞机：白255
-            new Color32(255,223,83,237), // 咕咕鸡：橘黄
-            new Color32(163,163,163,237), // 炮弹比尔：黑163
-            new Color32(161,213,255,237), // 时光机：淡蓝
-            new Color32(255,71,71,237), // 王牌狗屋：红71
-            new Color32(255,255,163,237), // 卡比之星：淡黄137
-            new Color32(255,71,71,237), // 蝎红：红71
-            new Color32(255,255,255,237), // 恩威迪亚：白255
-            new Color32(255,207,155,237), // 快餐侠：淡棕
-            new Color32(227,171,103,237), // 驯鹿空运：棕
-            new Color32(163,163,163,237), // 北极星特快：黑163
-            new Color32(163,147,255,237), // 远古飞鱼：紫
-            new Color32(255,255,255,237), // 玩具独角兽：白255
-            new Color32(255,127,0,237), // 南瓜魅影：橘127
-            new Color32(127,255,127,237), // 赏金猎人：：绿127
-            new Color32(227,171,103,237), // 鹰纽特：棕
-            new Color32(163,147,255,237), // 安格瑞：紫
-            new Color32(255,255,255,237), // 即将登场
-            new Color32(255,255,255,237), // 即将登场
-            new Color32(255,255,255,237), // 即将登场
-            new Color32(255,255,255,237), // 即将登场
+            new Color32(237,237,237,251),  // 神偷机兵：银237
+            new Color32(255,255,255,251), // 红牛能量：白255
+            new Color32(117,185,255,251), // 普鲸：蓝
+            new Color32(255,255,255,251), // 纸飞机：白255
+            new Color32(255,255,191,251), // 咕咕鸡：淡黄
+            new Color32(163,163,163,251), // 炮弹比尔：黑163
+            new Color32(137,179,255,251), // 时光机：淡蓝偏紫
+            new Color32(255,71,71,251), // 王牌狗屋：红71
+            new Color32(255,255,163,251), // 卡比之星：淡黄137
+            new Color32(255,71,71,251), // 蝎红：红71
+            new Color32(255,255,255,251), // 恩威迪亚：白255
+            new Color32(255,207,155,251), // 快餐侠：淡棕
+            new Color32(255,71,71,251),  // 驯鹿空运：红71
+            new Color32(163,163,163,251), // 北极星特快：黑163
+            new Color32(163,147,255,251), // 远古飞鱼：紫
+            new Color32(255,255,255,251), // 玩具独角兽：白255
+            new Color32(255,127,0,251), // 南瓜魅影：橘127
+            new Color32(97,255,37,251), // 赏金猎人：：绿127
+            new Color32(227,171,103,251), // 鹰纽特：棕
+            new Color32(163,147,255,251), // 安格瑞：紫
+            new Color32(255,255,255,251), // 即将登场
+            new Color32(255,255,255,251), // 即将登场
+            new Color32(255,255,255,251), // 即将登场
+            new Color32(255,255,255,251), // 即将登场
         };
         public static readonly Color32[] ButtonColor = new Color32[] {
-            new Color32(0,163,255,232), // 神偷机兵：蓝
-            new Color32(255,0,127,232), // 红牛能量：桃红
-            new Color32(255,255,255,232), // 普鲸：白
-            new Color32(0,255,0,232), // 纸飞机：绿255
-            new Color32(255,71,71,232), // 咕咕鸡：红71
-            new Color32(255,71,71,232), // 炮弹比尔：红71
-            new Color32(255,255,137,232), // 时光机：淡黄137
-            new Color32(0,255,0,232), // 王牌狗屋：绿255
-            new Color32(255,97,255,232), // 卡比之星：粉红97
-            new Color32(255,255,137,232), // 蝎红：淡黄137
-            new Color32(137,255,0,232), // 恩威迪亚：黄绿
-            new Color32(255,127,123,232), // 快餐侠：淡红
-            new Color32(255,71,71,232), // 驯鹿空运：红71
-            new Color32(255,193,117,232), // 北极星特快：淡橘
-            new Color32(255,127,0,232), // 远古飞鱼：橘127
-            new Color32(255,97,255,232), // 玩具独角兽：粉红97
-            new Color32(0,255,0,232), // 南瓜魅影：绿255
-            new Color32(255,73,0,232), // 赏金猎人：深橘73
-            new Color32(255,255,255,232), // 鹰纽特：白
-             new Color32(255,71,71,232), // 安格瑞：淡黄137
-            new Color32(255,255,255,232), // 即将登场
-            new Color32(255,255,255,232), // 即将登场
-            new Color32(255,255,255,232), // 即将登场
-            new Color32(255,255,255,232), // 即将登场
+            new Color32(255,71,71,247), // 神偷机兵：红71     //new Color32(0,163,255,232), // 神偷机兵：蓝
+            new Color32(0,97,255,247), // 红牛能量：蓝97       //   new Color32(255,0,127,232), // 红牛能量：桃红
+            new Color32(255,255,255,247), // 普鲸：白
+            new Color32(0,255,0,247), // 纸飞机：绿255
+            new Color32(255,71,71,247), // 咕咕鸡：红71
+            new Color32(255,255,255,247), // 炮弹比尔：白
+            new Color32(255,237,137,247), // 时光机：淡黄137偏橘
+            new Color32(0,255,0,247), // 王牌狗屋：绿255
+            new Color32(163,237,255,247), // 卡比之星：粉红97
+            new Color32(255,255,137,247), // 蝎红：淡黄137
+            new Color32(137,255,0,247), // 恩威迪亚：黄绿
+            new Color32(255,127,123,247), // 快餐侠：淡红
+          new Color32(255,255,255,247), // 驯鹿空运：白
+            new Color32(255,227,127,247), // 北极星特快：淡橘
+            new Color32(255,127,0,247), // 远古飞鱼：橘127
+            new Color32(255,97,255,247), // 玩具独角兽：粉红97
+            new Color32(0,255,0,247), // 南瓜魅影：绿255
+            new Color32(255,73,0,247), // 赏金猎人：深橘73
+            new Color32(255,255,255,247), // 鹰纽特：白
+             new Color32(255,71,71,247), // 安格瑞：淡黄137
+            new Color32(255,255,255,247), // 即将登场
+            new Color32(255,255,255,247), // 即将登场
+            new Color32(255,255,255,247), // 即将登场
+            new Color32(255,255,255,247), // 即将登场
         };
         public static readonly Color32[] TextColor = new Color32[] {
-            new Color32(255,255,123,255), // 神偷机兵：黄123
+            new Color32(237,237,237,255), // 神偷机兵：黄123
             new Color32(255,255,255,255), // 红牛能量
             new Color32(117,185,255,255), // 普鲸
             new Color32(255,255,255,255), // 纸飞机：白255
@@ -362,14 +612,40 @@ namespace Kocmoca
             new Color32(255,137,137,255), // 蝎红：淡红137
             new Color32(255,255,255,255), // 恩威迪亚：白255
             new Color32(255,207,155,255), // 快餐侠
-            new Color32(227,171,103,255), // 驯鹿空运
+            new Color32(255,137,137,255), // 驯鹿空运：淡红137
             new Color32(193,193,193,255), // 北极星特快：黑193
             new Color32(163,147,255,255), // 远古飞鱼
             new Color32(255,255,255,255), // 玩具独角兽：白255
             new Color32(255,127,0,255), // 南瓜魅影：橘127
-            new Color32(127,255,127,255), // 赏金猎人：绿127
+            new Color32(97,255,37,255), // 赏金猎人：绿127
             new Color32(227,171,103,255), // 鹰纽特
             new Color32(163,147,255,255), // 安格瑞
+            new Color32(255,255,255,255), // 即将登场
+            new Color32(255,255,255,255), // 即将登场
+            new Color32(255,255,255,255), // 即将登场
+            new Color32(255,255,255,255), // 即将登场
+        };
+        public static readonly Color32[] TabColor = new Color32[] {
+            new Color32(255,255,71,255), // 神偷机兵：蓝
+            new Color32(255,91,91,255), // 红牛能量：红91     //new Color32(255,107,177,255), // 红牛能量：深粉红
+            new Color32(163,255,0,255), // 普鲸：草绿色
+            new Color32(255,237,193,255), // 纸飞机：米
+            new Color32(255,223,83,251), // 咕咕鸡：黄
+            new Color32(255,91,91,255), // 炮弹比尔：红91
+            new Color32(93,179,255,255), // 时光机：淡黄137
+            new Color32(255,91,91,255), // 王牌狗屋：绿255
+            new Color32(255,173,237,255), // 卡比之星：粉红137
+            new Color32(255,91,91,255),  // 蝎红：淡黄137
+            new Color32(137,255,0,255), // 恩威迪亚：黄绿
+            new Color32(255,127,123,255), // 快餐侠：淡红
+            new Color32(227,171,103,255), // 驯鹿空运：红71
+            new Color32(255,207,91,255), // 北极星特快：淡橘
+            new Color32(255,237,91,255), // 远古飞鱼：橘127
+            new Color32(255,127,37,255), // 玩具独角兽：粉红97
+            new Color32(93,179,255,255), // 南瓜魅影：绿255
+            new Color32(137,255,37,255), // 赏金猎人：深橘73
+            new Color32(255,113,93,255), // 鹰纽特：白
+            new Color32(255,113,37,255), // 安格瑞：淡黄137
             new Color32(255,255,255,255), // 即将登场
             new Color32(255,255,255,255), // 即将登场
             new Color32(255,255,255,255), // 即将登场
@@ -565,330 +841,7 @@ namespace Kocmoca
         }
     }
 
-    public static class KocmocraftData
-    {
-        // 北极星特快 南瓜魅影 咕咕鸡 恩威迪亚 蝎红 15~20K    6~7星
-        // 驯鹿空运 赏金猎人 远古飞鱼 玩具独角兽 10~15K 4~5星
-        // 纸飞机  快餐侠 神偷机兵 9K~11K 3~4星
-        // 炮弹比尔 普鲸 鹰纽特 红牛能量 6K~8K  2~3星
-        // 王牌狗屋 卡比之星 时光机 3K~5K 1~2星
-        public static readonly int[] MaxHull = {
-            16049, // ★★★★★☆☆ 神偷机兵
-            7831, //   ★★☆☆☆☆☆ 红牛能量
-            10848, // ★★★☆☆☆☆ 普鲸
-            12656, // ★★★☆☆☆☆ 纸飞机
-            19439, // ★★★★★★☆ 咕咕鸡 
-            15339, // ★★★★☆☆☆ 炮弹比尔
-            5350, //   ★☆☆☆☆☆☆ 时光机
-            11315, // ★★★☆☆☆☆ 王牌狗屋
-            7476, //   ★★☆☆☆☆☆ 卡比之星
-            17649, // ★★★★★☆☆ 蝎红
-            21059, // ★★★★★★☆ 恩威迪亚
-            12650, // ★★★☆☆☆☆ 快餐侠
-            16326, // ★★★★★☆☆ 驯鹿空运
-            20680, // ★★★★★★☆ 北极星特快
-            15475, // ★★★★☆☆☆ 远古飞鱼
-            15851, // ★★★★☆☆☆ 玩具独角兽
-            22295, // ★★★★★★★ 南瓜魅影
-            18308, // ★★★★★☆☆ 赏金猎人
-            9143, //   ★★☆☆☆☆☆ 鹰纽特
-            15789, // ★★★★☆☆☆ 新葡鲸
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-        };
-        public static readonly int[] MaxShieldl = {
-            11754, // ★★★☆☆☆☆ 神偷机兵
-            12934, // ★★★★☆☆☆ 红牛能量
-            16450, // ★★★★★☆☆ 普鲸
-            20741, // ★★★★★★☆ 纸飞机
-            17801, // ★★★★★☆☆ 咕咕鸡 
-            5229, //   ★☆☆☆☆☆☆ 炮弹比尔
-            23740, // ★★★★★★★ 时光机
-            14859, // ★★★★☆☆☆ 王牌狗屋
-            10721, // ★★★☆☆☆☆ 卡比之星
-            13915, // ★★★★☆☆☆ 蝎红
-            10773, // ★★★☆☆☆☆ 恩威迪亚
-            7945, //   ★★☆☆☆☆☆ 快餐侠
-            8409, //   ★★☆☆☆☆☆ 驯鹿空运
-            3999, //   ★☆☆☆☆☆☆ 北极星特快
-            20884, // ★★★★★★☆ 远古飞鱼
-            22058, // ★★★★★★★ 玩具独角兽
-            19242, // ★★★★★★☆ 南瓜魅影
-            13749, // ★★★★☆☆☆ 赏金猎人
-            12934, // ★★★★☆☆☆ 鹰纽特
-            24000, // ★★★★★★★ 新葡鲸
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-        };
-        public static readonly int[] MaxEnergy = {
-            1192, // ★★☆☆☆☆☆ 神偷机兵
-            3690, // ★★★★★★★ 红牛能量
-            1263, // ★★☆☆☆☆ 普鲸
-            1597, // ★★★☆☆☆☆ 纸飞机
-            2311, // ★★★★☆☆☆ 咕咕鸡 
-            2075, // ★★★★☆☆☆ 炮弹比尔
-            2773, // ★★★★★☆☆ 时光机
-            2237, // ★★★★☆☆☆ 王牌狗屋
-            888, //   ★☆☆☆☆☆☆ 卡比之星
-            3392, // ★★★★★★★ 蝎红
-            1398, // ★★☆☆☆☆☆ 恩威迪亚
-            3154, // ★★★★★★☆ 快餐侠
-            3131, // ★★★★★★☆ 驯鹿空运
-            2498, // ★★★★★☆☆ 北极星特快
-            1407, // ★★☆☆☆☆☆ 远古飞鱼
-            2299, // ★★★★☆☆☆ 玩具独角兽
-            1639, // ★★★☆☆☆☆ 南瓜魅影
-            1553, // ★★★☆☆☆☆ 赏金猎人
-            2444, // ★★★★★☆☆ 鹰纽特
-            1774, // ★★★☆☆☆☆ 新葡鲸
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-        };
-        public static readonly int[] CruiseSpeed = {
-            53, // ★★★★★★☆ 神偷机兵
-            28, // ★★☆☆☆☆☆ 红牛能量
-            23, // ★☆☆☆☆☆☆ 普鲸
-            59, // ★★★★★★★ 纸飞机
-            37, // ★★★☆☆☆☆ 咕咕鸡 
-            35, // ★★★☆☆☆☆ 炮弹比尔
-            27, // ★★☆☆☆☆☆ 时光机
-            54, // ★★★★★★☆ 王牌狗屋
-            60, // ★★★★★★★ 卡比之星
-            29, // ★★☆☆☆☆☆ 蝎红
-            47, // ★★★☆☆☆☆ 恩威迪亚
-            39, // ★★★★☆☆☆ 快餐侠
-            48, // ★★★★★☆☆ 驯鹿空运
-            38, // ★★★★☆☆☆ 北极星特快
-            44, // ★★★★★☆☆ 远古飞鱼
-            37, // ★★★☆☆☆☆ 玩具独角兽
-            36, // ★★★☆☆☆☆ 南瓜魅影
-            22, // ★☆☆☆☆☆☆ 赏金猎人
-            28, // ★★☆☆☆☆☆ 鹰纽特
-            30, // ★★☆☆☆☆☆ 新葡鲸
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-        };
-        public static readonly int[] AfterburnerSpeed = {
-            97, //   ★★★★☆☆☆ 神偷机兵
-            114, // ★★★★★☆☆ 红牛能量
-            116, // ★★★★★★☆ 普鲸
-            75, //   ★☆☆☆☆☆☆ 纸飞机
-            87, //   ★★☆☆☆☆☆ 咕咕鸡 
-            133, // ★★★★★★★ 炮弹比尔
-            127, // ★★★★★★★ 时光机
-            85, //   ★★☆☆☆☆☆ 王牌狗屋
-            120, // ★★★★★★☆ 卡比之星
-            119, // ★★★★★★☆ 蝎红
-            100, // ★★★★☆☆☆ 恩威迪亚
-            129, // ★★★★★★★ 快餐侠
-            117, // ★★★★★★☆ 驯鹿空运
-            107, // ★★★★★☆☆ 北极星特快
-            113, // ★★★★★☆☆ 远古飞鱼
-            77, //   ★☆☆☆☆☆☆ 玩具独角兽
-            91, //   ★★★☆☆☆☆ 南瓜魅影
-            99, //   ★★★★☆☆☆ 赏金猎人
-            123, // ★★★★★★☆ 鹰纽特
-            105, // ★★★★☆☆☆ 新葡鲸
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-            0, // ★★★★★★★ 即将登场
-        };
 
-
-        // Spawn Kocmocraft
-        public static int GetPortNumber(int kocmonautNumber) { return (kocmonautNumber - 93000) / 3; }
-        // Initialize Kocmocraft Data
-        public static int GetKocmonautNumber(int portNumber) { return portNumber * 3 + 93000; }
-        public static string GetBotName(int portNumber)
-        {
-            switch (portNumber)
-            {
-                //case 0: return "[Bot] Magnussen";
-                //case 1: return "[Bot] Russell";
-                //case 2: return "[Bot] Sainz Jr."; 
-                //case 3: return "[Bot] Pérez";
-                //case 4: return "[Bot] Norris";
-                //case 5: return "[Bot] Kvyat";
-                //case 6: return "[Bot] Giovinazzi";
-                //case 7: return "[Bot] Gasly"; 
-                //case 8: return "[Bot] Hülkenberg";
-                //case 9: return "[Bot] Ricciardo";
-                //case 10: return "[Bot] Verstappen";
-                //case 11: return "[Bot] Grosjean"; 
-                //case 12: return "[Bot] Bottas";
-                //case 13: return "[Bot] Leclerc";
-                //case 14: return "[Bot] Schumacher";
-                //case 15: return "[Bot] Alonso"; 
-                //case 16: return "[Bot] Rosberg";
-                //case 17: return "[Bot] Räikkönen";
-                //case 18: return "[Bot] Hamilton";
-                //case 19: return "[Bot] Vettel";
-                default: return "[Bot] " + portNumber;
-            }
-        }
-
-
-
-
-        public static EngineType GetEngineType(Type type)
-        {
-            switch (type)
-            {
-                case Type.MinionArmor: return EngineType.Turbofan;
-                case Type.RedBullEnergy: return EngineType.Turbojet;
-                case Type.VladimirPutin: return EngineType.PulsedPlasmaThruster;
-                case Type.PaperAeroplane: return EngineType.IonThruster;
-                case Type.Cuckoo: return EngineType.BiomassEnergy;
-                case Type.BulletBill: return EngineType.Turbofan;
-                case Type.TimeMachine: return EngineType.IonThruster;
-                case Type.AceKennel: return EngineType.Turboprop;
-                case Type.KirbyStar: return EngineType.Turbojet;
-                case Type.ScorpioRouge: return EngineType.Turbofan;
-                case Type.nWidia: return EngineType.IonThruster;
-                case Type.FastFoodMan: return EngineType.Turbofan;
-                case Type.ReindeerTransport: return EngineType.BiomassEnergy;
-                case Type.PolarisExpress: return EngineType.Turbofan;
-                case Type.AncientFish: return EngineType.Turboshaft;
-                case Type.PapoyUnicorn: return EngineType.PulsedPlasmaThruster;
-                case Type.PumpkinGhost: return EngineType.Turboshaft;
-                case Type.BoundyHunterMKII: return EngineType.IonThruster;
-                default: return EngineType.Turbofan;
-            }
-        }
-
-        public static Vector3 GetCameraOffset(Type type)
-        {
-            switch (type)
-            {
-                //case Type.RedBullEnergy: return new Vector3(0, 3.0f, 7.0f);
-                //case Type.VladimirPutin: return new Vector3(0, 3.0f, 5.0f);
-                //case Type.PaperAeroplane: return new Vector3(0, 3.0f, 7.0f);
-
-                //case Type.BulletBill: return new Vector3(0,3.37f,7);
-                //case Type.TimeMachine: return new Vector3(0, 2.97f, 0);
-                //case Type.AceKennel: return new Vector3(0, 1.37f, 0);
-                //case Type.KirbyStar: return new Vector3(0, 2.37f, 0);
-
-                //case Type.ScorpioRouge: return new Vector3(0, 5.0f, 10.0f);
-
-                //case Type.AncientFish: return new Vector3(0, 3.93f, 10.0f);
-                //case Type.PumpkinGhost: return new Vector3(0, 7.0f, 10.0f);
-                default: return new Vector3(0, 5.0f, 10.0f);
-            }
-        }
-
-        public static readonly int[] TurretCount = {
-            2, // ★★☆☆☆☆ 神偷机兵
-            4, // ★★★★☆☆ 红牛能量
-            6, // ★★★★★★ 普鲸
-            4, // ★★★★☆☆ 纸飞机
-            6, // ★★★★★★ 咕咕鸡 
-            2, // ★★☆☆☆☆ 炮弹比尔
-            2, // ★★☆☆☆☆ 时光机
-            2, // ★★☆☆☆☆ 王牌狗屋
-            4, // ★★★★☆☆ 卡比之星
-            2, // ★★☆☆☆☆ 蝎红
-            4, // ★★★★☆☆ 恩威迪亚
-            4, // ★★☆☆☆☆ 快餐侠
-            2, // ★★☆☆☆☆ 驯鹿空运
-            6, // ★★★★★★ 北极星特快
-            2, // ★★☆☆☆☆ 远古飞鱼
-            4, // ★★★★☆☆ 玩具独角兽
-            4, // ★★★★☆☆ 南瓜魅影
-            6, // ★★★★★★ 赏金猎人
-            4, // ★★★★☆☆ 鹰纽特
-            6, // ★★★★☆☆ 新葡鲸
-            2, // ★★☆☆☆☆ 即将登场
-            2, // ★★☆☆☆☆ 即将登场
-            2, // ★★☆☆☆☆ 即将登场
-            2, // ★★☆☆☆☆ 即将登场
-        };
-    }
-
-    public static class WeaponData
-    {
-        public static FireControlSystemType GetFCS(string name)
-        {
-            switch (name)
-            {
-                case "FCS - Laser": return FireControlSystemType.Laser;
-                case "FCS - Rocket": return FireControlSystemType.Rocket;
-                case "FCS - Missile": return FireControlSystemType.Missile;
-                default: return FireControlSystemType.Unknown;
-            }
-        }
-
-
-        public static readonly int[] TurretCount = {
-            2, // ★★☆☆☆☆ 神偷机兵
-            4, // ★★★★☆☆ 红牛能量
-            6, // ★★★★★★ 普鲸
-            4, // ★★★★☆☆ 纸飞机
-            6, // ★★★★★★ 咕咕鸡 
-            2, // ★★☆☆☆☆ 炮弹比尔
-            2, // ★★☆☆☆☆ 时光机
-            2, // ★★☆☆☆☆ 王牌狗屋
-            4, // ★★★★☆☆ 卡比之星
-            2, // ★★☆☆☆☆ 蝎红
-            4, // ★★★★☆☆ 恩威迪亚
-            2, // ★★☆☆☆☆ 快餐侠
-            2, // ★★☆☆☆☆ 驯鹿空运
-            6, // ★★★★★★ 北极星特快
-            2, // ★★☆☆☆☆ 远古飞鱼
-            4, // ★★★★☆☆ 玩具独角兽
-            4, // ★★★★☆☆ 南瓜魅影
-            6, // ★★★★★★ 赏金猎人
-            4, // ★★★★☆☆ 鹰纽特
-            6, // ★★★★☆☆ 新葡鲸
-            2, // ★★☆☆☆☆ 即将登场
-            2, // ★★☆☆☆☆ 即将登场
-            2, // ★★☆☆☆☆ 即将登场
-            2, // ★★☆☆☆☆ 即将登场
-        };
-        private static float TurretDamageCoefficient;
-        private static float AmmoVelocity;
-        public static int MinDamage;
-        public static int MaxDamage;
-        public static int MaxRange;
-
-        // For hangar data using
-        public static void GetWeaponData(int type)
-        {
-            switch (TurretCount[type])
-            {
-                case 2: TurretDamageCoefficient = 1.0f;break;
-                case 4: TurretDamageCoefficient = 0.843f; break;
-                case 6: TurretDamageCoefficient = 0.779f; break;
-            }
-            //AmmoVelocity = KocmoLaserCannon.flightVelocity * TurretDamageCoefficient;
-            //MinDamage = (int)((AmmoVelocity + KocmocraftData.CruiseSpeed[type]*5) * (AmmoVelocity + KocmocraftData.CruiseSpeed[type]*5) * 
-            //    TurretCount[type] * KocmoLaserCannon.coefficientMinDamage * 0.000033f);
-            //MaxDamage = (int)((AmmoVelocity + KocmocraftData.AfterburnerSpeed[type]*5) * (AmmoVelocity + KocmocraftData.AfterburnerSpeed[type]*5) *
-            //    TurretCount[type] * KocmoLaserCannon.coefficientMaxDamage * 0.000033f);
-            //MaxRange = (int)((KocmoLaserCannon.flightVelocity * TurretDamageCoefficient + KocmocraftData.AfterburnerSpeed[type]) * KocmoLaserCannon.FlightTime);
-        }
-
-        // For KocmoLaserFlying.cs using
-        public static float GetCoefficient(Type type)
-        {
-            switch (TurretCount[(int)type])
-            {
-                case 2: return 1.0f; 
-                case 4: return 0.843f; 
-                case 6: return 0.779f;
-                default: return 1.0f;
-            }
-        }
-    }
 
     public enum EngineType
     {
@@ -955,22 +908,7 @@ namespace Kocmoca
         public static readonly float engineMaxPitch = .8f;      //The maximum pitch of the engine
     }
 
-    public static class BigLaserCannon
-    {
-        public static readonly int countPerBatch = 5; // 每批生成量
-        public static readonly int maxPoorInventory = 500; // 最大物件池存量
-        public static readonly float maxFireAngle = Mathf.Cos(7 * Mathf.Deg2Rad); // 最大開火夾角
-        public static readonly int maxAmmoCapacity = 999; // 最大載彈量
-        public static readonly float projectileSpread = 0.39f; //彈道散布 degree
-        public static readonly int flightVelocity = 16300;//2970; // 飛行速率 m/s
-        public static readonly int propulsion = flightVelocity * 50; // 開火推力
-        public static readonly float FlightTime = 0.71f; // 飛行時間 sec
-        public static readonly float operationalRange = flightVelocity * FlightTime; // 射程 m
-        public static readonly float fireRoundPerSecond = 4.77f; // 射速 rps
-        public static readonly float rateFire = 1 / fireRoundPerSecond; // 開火速率 sec
-        public static readonly float coefficientMinDamage = 1.3035f;
-        public static readonly float coefficientMaxDamage = 4.1949f;
-    }
+
 
 
 
@@ -1242,21 +1180,15 @@ namespace Kocmoca
         FastFoodMan = 11,
         ReindeerTransport = 12,
         PolarisExpress = 13,
-        AncientFish=14,
+        AncientFish = 14,
         PapoyUnicorn = 15,
         PumpkinGhost = 16,
         BoundyHunterMKII = 17,
         InuitEagle = 18,
-        GrandLisboa=19,
-        Unknown = -999,
+        GrandLisboa = 19,
+        Prototype = 20,
     }
-    public enum FireControlSystemType
-    {
-        Laser = 0,
-        Rocket = 1,
-        Missile = 2,
-        Unknown = -999,
-    }
+
 
 
     //public class QQ

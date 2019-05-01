@@ -58,7 +58,7 @@ namespace Kocmoca
             myRigidbody = GetComponent<Rigidbody>();
             myEngine = GetComponentInChildren<Engine>();
             // Modular Parameter
-            dataEnergy = new Data { Max = KocmocraftData.MaxEnergy[type], Value = KocmocraftData.MaxEnergy[type] };
+            dataEnergy = new Data { Max = KocmocraftData.Energy[type], Value = KocmocraftData.Energy[type] };
             dataSpeed = new Data { Max = KocmocraftData.AfterburnerSpeed[type], Value = 0 };
             valueSpeedCruise = KocmocraftData.CruiseSpeed[type];
             valueSpeedHigh = valueSpeedCruise * 1.1f;        

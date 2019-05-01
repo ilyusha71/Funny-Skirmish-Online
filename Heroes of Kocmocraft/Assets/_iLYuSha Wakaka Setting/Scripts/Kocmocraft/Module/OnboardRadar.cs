@@ -22,8 +22,9 @@ namespace Kocmoca
         private bool isLocalPlayer;
         public int kocmonautNumber;
         [Header("Modular Parameter")]
-        public List<Transform> listFriendAircrafts = new List<Transform>();
-        public List<Transform> listFoeAircrafts = new List<Transform>();
+        public Transform[] FriendAircraftsArray;
+        public Transform[] FoeAircraftsArray;
+        int faction;
         private Vector3 myPosition;
         [Header("Onboard Radar")]
         public Transform[] targetOnboard;
@@ -64,8 +65,11 @@ namespace Kocmoca
             // Modular Parameter
             isLocalPlayer = core == Core.LocalPlayer ? true : false;
             kocmonautNumber = number;
-            listFriendAircrafts = SatelliteCommander.Instance.factionData[faction].listFriend;
-            listFoeAircrafts = SatelliteCommander.Instance.factionData[faction].listFoe;
+            //listFriendAircrafts = KocmocaData.factionData[faction].listFriend;
+            //listFoeAircrafts = KocmocaData.factionData[faction].listFoe;
+            FriendAircraftsArray = SatelliteCommander.factionData[faction].arrayFriend;
+            FoeAircraftsArray = SatelliteCommander.factionData[faction].arrayFoe;
+            this.faction = faction;
 
             targetOnboard = new Transform[maxtOnboardCount];
             minLockTime = 0.73f;
@@ -74,33 +78,52 @@ namespace Kocmoca
         }
         private void Update()
         {
+            //myPosition = myTransform.position;
+            //if (isLocalPlayer) SearchFriend();
+            //SearchFoe();
+            //RadarWarningEmitter();
+            UpdateDefault();
+        }
+        void UpdateDefault()
+        {
             myPosition = myTransform.position;
             if (isLocalPlayer) SearchFriend();
             SearchFoe();
             RadarWarningEmitter();
         }
+        public void UpdateMe()
+        {
+            myPosition = myTransform.position;
+            if (isLocalPlayer) SearchFriend();
+            SearchFoe();
+            RadarWarningEmitter();
+        }
+
+
+
         void SearchFriend()
         {
             SatelliteCommander.Instance.ResetOnboardRadarRadar();
             HeadUpDisplayManager.Instance.NewResetOnboardRadarRadar();
-            int countFriend = listFriendAircrafts.Count;
+            int countFriend = FriendAircraftsArray.Length;
             for (int i = 0; i < countFriend; i++)
             {
-                if (listFriendAircrafts[i])
+                if (FriendAircraftsArray[i])
                 {
-                    if (listFriendAircrafts[i] != myTransform)
+                    if (FriendAircraftsArray[i] != myTransform)
                     {
-                        scanDiff = listFriendAircrafts[i].position - myPosition;
+                        scanDiff = FriendAircraftsArray[i].position - myPosition;
                         if (Vector3.SqrMagnitude(scanDiff) <= moduleData.MaxSearchRadiusSqr &&
                             Vector3.Dot(scanDiff.normalized, myTransform.forward) >= moduleData.MaxSearchRange)
-                            HeadUpDisplayManager.Instance.NewIdentifyFriend(listFriendAircrafts[i]); // 標記搜索範圍的所有友機
+                            HeadUpDisplayManager.Instance.NewIdentifyFriend(FriendAircraftsArray[i]); // 標記搜索範圍的所有友機
                     }
                 }
             }
         }
-        void SearchFoe()
+        public void SearchFoe()
         {
-            TargetSearch();
+            //TargetSearch();
+            TargetSearch2();
             if (Time.time > nextLockTime)
             {
                 if (!targetRadarLockOn) targetRadarLockOn = targetNearest;
@@ -138,6 +161,59 @@ namespace Kocmoca
                 //}
             }
         }
+
+        void TargetSearch2()
+        {
+            countOnboard = 0;
+            for (int k = 0; k < maxtOnboardCount; k++)
+            {
+                targetOnboard[k] = null;
+            }
+            targetAutoAim = null;
+            targetNearest = null;
+            targetNearestDirection = 0;
+            int countFoe = FoeAircraftsArray.Length;
+            for (int i = 0; i < countFoe; i++)
+            {
+                if (i < countFoe && FoeAircraftsArray[i])
+                {
+                    scanDiff = FoeAircraftsArray[i].position - myPosition;
+                    scanDistanceSqr = Vector3.SqrMagnitude(scanDiff);
+                    scanDirection = Vector3.Dot(scanDiff.normalized, myTransform.forward);
+                    if (scanDistanceSqr <= moduleData.MaxSearchRadiusSqr && scanDirection >= moduleData.MaxSearchRange)
+                    {
+                        if (isLocalPlayer)
+                            SatelliteCommander.Instance.IdentifyTarget(FoeAircraftsArray[i]); // 標記搜索範圍的所有敵機
+                        else
+                        {
+                            if (countOnboard < 10)
+                            {
+                                targetOnboard[countOnboard] = FoeAircraftsArray[i];
+                                countOnboard++;
+                            }
+                        }
+
+                        if (scanDistanceSqr <= moduleData.MaxLockDistanceSqr && scanDirection >= moduleData.MaxLockRange)
+                        {
+                            if (isLocalPlayer)
+                                SatelliteCommander.Instance.FireControlLookTarget(FoeAircraftsArray[i]);  // 標記鎖定範圍的所有敵機
+
+                            // 尋找最接近的目標
+                            if (scanDirection > targetNearestDirection)
+                            {
+                                targetNearest = FoeAircraftsArray[i];
+                                targetNearestDirection = scanDirection;
+
+                                if (scanDirection > moduleData.MaxAutoAimRange)
+                                    targetAutoAim = targetNearest;
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         void TargetSearch()
         {
             countOnboard = 0;
@@ -148,23 +224,23 @@ namespace Kocmoca
             targetAutoAim = null;
             targetNearest = null;
             targetNearestDirection = 0;
-            int countFoe = listFoeAircrafts.Count;
+            int countFoe = SatelliteCommander.factionData[faction].arrayFoe.Length;
             for (int i = 0; i < countFoe; i++)
             {
-                if (i < countFoe && listFoeAircrafts[i])
+                if (i < countFoe && SatelliteCommander.factionData[faction].arrayFoe[i])
                 {
-                    scanDiff = listFoeAircrafts[i].position - myPosition;
+                    scanDiff = SatelliteCommander.factionData[faction].arrayFoe[i].position - myPosition;
                     scanDistanceSqr = Vector3.SqrMagnitude(scanDiff);
                     scanDirection = Vector3.Dot(scanDiff.normalized, myTransform.forward);
                     if (scanDistanceSqr <= moduleData.MaxSearchRadiusSqr && scanDirection >= moduleData.MaxSearchRange)
                     {
                         if (isLocalPlayer)
-                            SatelliteCommander.Instance.IdentifyTarget(listFoeAircrafts[i]); // 標記搜索範圍的所有敵機
+                            SatelliteCommander.Instance.IdentifyTarget(SatelliteCommander.factionData[faction].arrayFoe[i]); // 標記搜索範圍的所有敵機
                         else
                         {
                             if (countOnboard < 10)
                             {
-                                targetOnboard[countOnboard] = listFoeAircrafts[i];
+                                targetOnboard[countOnboard] = SatelliteCommander.factionData[faction].arrayFoe[i];
                                 countOnboard++;
                             }
                         }
@@ -172,12 +248,12 @@ namespace Kocmoca
                         if (scanDistanceSqr <= moduleData.MaxLockDistanceSqr && scanDirection >= moduleData.MaxLockRange)
                         {
                             if (isLocalPlayer)
-                                SatelliteCommander.Instance.FireControlLookTarget(listFoeAircrafts[i]);  // 標記鎖定範圍的所有敵機
+                                SatelliteCommander.Instance.FireControlLookTarget(SatelliteCommander.factionData[faction].arrayFoe[i]);  // 標記鎖定範圍的所有敵機
 
                             // 尋找最接近的目標
                             if (scanDirection > targetNearestDirection)
                             {
-                                targetNearest = listFoeAircrafts[i];
+                                targetNearest = SatelliteCommander.factionData[faction].arrayFoe[i];
                                 targetNearestDirection = scanDirection;
 
                                 if (scanDirection > moduleData.MaxAutoAimRange)

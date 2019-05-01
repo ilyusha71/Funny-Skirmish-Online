@@ -109,30 +109,6 @@ namespace Kocmoca
             pointStarting = myTransform.position;
         }
 
-        protected override void CollisionDetection()
-        {
-            raycastHits = Physics.RaycastAll(pointStarting, myTransform.forward, Vector3.Distance(myTransform.position, pointStarting));
-            if (raycastHits.Length > 0)
-            {
-                KocmocraftMechDroid hull = raycastHits[0].transform.GetComponent<KocmocraftMechDroid>();
-                if (hull)
-                {
-                    if (hull.Number == shooter) return;
-                    float basicDamage = myRigidbody.velocity.magnitude * KocmoMissileLauncher.coefficientDamageBasic;
-                    hull.Hit(new DamagePower()
-                    {
-                        Attacker = owner,
-                        Hull = (int)(basicDamage * KocmoMissileLauncher.coefficientDamageHull),
-                        Shield = (int)(basicDamage * KocmoMissileLauncher.coefficientDamageShield)
-                    });
-                }
-                ResourceManager.hitFire.Reuse(raycastHits[0].point, Quaternion.identity);
-                Recycle(gameObject);
-                return;
-            }
-            pointStarting = myTransform.position;
-        }
-
         private void OnDisable()
         {
             if (SatelliteCommander.Instance)

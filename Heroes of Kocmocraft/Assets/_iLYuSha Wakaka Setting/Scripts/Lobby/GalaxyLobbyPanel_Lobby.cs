@@ -152,7 +152,7 @@ namespace Kocmoca
             MouseLock.MouseLocked = false;
             localType = PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
             localSkin = PlayerPrefs.GetInt(LobbyInfomation.PREFS_SKIN+ localType);
-            model[localType].GetComponentInChildren<SkinManager>().InitializeSkin(localSkin);
+            model[localType].GetComponentInChildren<SkinManager>().LoadSkin(localSkin);
             for (int i = 0; i < model.Length; i++)
             {
                 model[i].SetActive(i == localType);

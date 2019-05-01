@@ -25,6 +25,10 @@ namespace Kocmoca
         public Kocmonaut Attacker;
         public float Hull;
         public float Shield;
+
+        public float Absorb;
+        public float Penetration;
+        public float Damage;
     }
     public class KocmocraftMechDroid : MonoBehaviour, IPunObservable
     {
@@ -43,9 +47,6 @@ namespace Kocmoca
         public Data dataShield;
 
         // Damage calculation
-        private float coefficientPenetration;
-        private float damageShield;
-        private float damageHull;
         private int damage;
         [Header("Crash Info")]
         public Dictionary<int, int> listAttacker = new Dictionary<int, int>(); // 損傷記錄索引
@@ -73,8 +74,8 @@ namespace Kocmoca
             else
                 SatelliteCommander.Instance.Observer.listOthers.Add(Number);
             // Modular Parameter
-            dataHull = new Data { Max = KocmocraftData.MaxHull[type] ,Value = KocmocraftData.MaxHull[type] };
-            dataShield = new Data { Max = KocmocraftData.MaxShieldl[type], Value = KocmocraftData.MaxShieldl[type] };
+            dataHull = new Data { Max = KocmocraftData.Hull[type] ,Value = KocmocraftData.Hull[type] };
+            dataShield = new Data { Max = KocmocraftData.Shield[type], Value = KocmocraftData.Shield[type] };
             // Crash
             //ammoRemnantOPD = ObjectPoolManager.Instance.CreatObjectPool(remnant, 1,5);
             this.wreckage = wreckage;
@@ -162,25 +163,76 @@ namespace Kocmoca
              *      剩餘機甲值 = 原始機甲值 - 機甲傷害值
              *      
              *****************************************************************************/
-            dataShield.Value -= damagePower.Shield;
-            if (dataShield.Value >= 0) 
+            //if (damagePower.Shield == -999)
+            //    coefficientPenetration = 1;
+            //else
+            //{
+            //    dataShield.Value -= damagePower.Shield;
+            //    if (dataShield.Value >= 0)
+            //    {
+            //        damageShield = damagePower.Shield;
+            //        coefficientPenetration = 0;
+            //    }
+            //    else
+            //    {
+            //        damageShield = dataShield.Value + damagePower.Shield;
+            //        coefficientPenetration = -dataShield.Value / damagePower.Shield;
+            //        dataShield.Value = 0;
+            //    }
+            //}
+            //damageHull = damagePower.Hull * coefficientPenetration;
+            //dataHull.Value = Mathf.Clamp(dataHull.Value - damageHull, 0, dataHull.Max);
+
+            /*****************************************************************************
+             * 傷害計算方法
+             * Last Updated: 2019-04-18
+             * 
+             * 護盾值 dataShield.Value
+             * 機甲值 dataHull.Value
+             * 護盾傷害威力值 damagePower.Shield
+             * 機甲傷害威力值 damagePower.Hull
+             * 穿透係數 coefficientPenetration
+             * 護盾傷害值 damageShield
+             * 機甲傷害值 damageHull
+             * 總傷害值 damageTotal
+             * 
+             * 吸收伤害值 Absorb
+             * 穿透伤害值 Penetration
+             * 
+             * 1. 計算護盾傷害與穿透係數
+             *      剩餘護盾值 = 原始護盾值 - 吸收伤害值
+             *      護盾值足夠
+             *          => 剩餘機甲值 = 原始機甲值 - 穿透伤害值
+             *      護盾值不足
+             *          => 剩餘機甲值 = 原始機甲值 + 剩餘護盾值（负的不足护盾值） - 穿透伤害值
+             *          => 剩餘護盾值 = 0
+             *          
+             * 2. 計算機甲傷害
+             *      機甲傷害值 = 機甲傷害威力值 * 穿透係數
+             *      剩餘機甲值 = 原始機甲值 - 機甲傷害值
+             *      
+             *****************************************************************************/
+            if (dataShield.Value > 0)
             {
-                damageShield = damagePower.Shield;
-                coefficientPenetration = 0;
+                dataShield.Value -= damagePower.Absorb;
+                if (dataShield.Value >= 0)
+                    dataHull.Value = Mathf.Clamp(dataHull.Value - damagePower.Penetration, 0, dataHull.Max);
+                else
+                {
+                    dataHull.Value = Mathf.Clamp(dataHull.Value + dataShield.Value - damagePower.Penetration, 0, dataHull.Max);
+                    dataShield.Value = 0;
+                }
+                damage = (int)(damagePower.Absorb + damagePower.Penetration);
             }
             else
             {
-                damageShield = dataShield.Value + damagePower.Shield;
-                coefficientPenetration = -dataShield.Value / damagePower.Shield;
-                dataShield.Value = 0;
+                dataHull.Value = Mathf.Clamp(dataHull.Value - damagePower.Damage, 0, dataHull.Max);
+                damage = (int)damagePower.Damage;
             }
-            damageHull = damagePower.Hull * coefficientPenetration;
-            dataHull.Value = Mathf.Clamp(dataHull.Value - damageHull, 0, dataHull.Max);
-
             /*****************************************************************************
              * 損傷記錄
              *****************************************************************************/
-            damage = (int)(damageShield + damageHull);
+            //damage = (int)(damageShield + damageHull);
             if (listAttacker.ContainsKey(damageSourceNumber))
                 listAttacker[damageSourceNumber] += damage;
             else
@@ -306,9 +358,9 @@ namespace Kocmoca
 
             // 計算傷害
             DamagePower damagePower = new DamagePower();
-            if (collision.gameObject.CompareTag("Untagged"))
+            if (collision.gameObject.CompareTag("Untagged")|| collision.gameObject.CompareTag("Water"))
             {
-                damagePower.Hull = 50000;
+                damagePower.Penetration = 50000;
                 // 下次更新要做的
                 // 入射角越大伤害越大，避免卡住
                 //Vector3 inDirection = -collision.relativeVelocity;
@@ -319,8 +371,8 @@ namespace Kocmoca
                 //myRigidbody.AddForce(outDirection * collision.impulse.magnitude);
             }
             else
-                damagePower.Hull = Mathf.Clamp((int)Mathf.Abs(collision.impulse.magnitude), 0, 5000);
-            damagePower.Shield = 0;
+                damagePower.Penetration = Mathf.Clamp((int)Mathf.Abs(collision.impulse.magnitude), 0, 5000);
+            //damagePower.Shield = -999;
 
             // 記錄攻擊者
             damagePower.Attacker = new Kocmonaut { Number = -1 };
