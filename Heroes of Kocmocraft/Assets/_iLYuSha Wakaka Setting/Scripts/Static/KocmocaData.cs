@@ -118,6 +118,8 @@ namespace Kocmoca
             Turbojet,Turbofan,Turboprop,Turboshaft,
             IonThruster,BiomassEnergy,PulsedPlasmaThruster};
         #endregion
+
+        public static readonly Vector3 invisible = new Vector3(0, 9999, -1);
     }
     public class ModuleData
     {
@@ -766,10 +768,10 @@ namespace Kocmoca
             "暴走漫画王尼玛", // 红牛能量
             "秃子萌总", // 普鲸
             "纸箱人阿楞", // 纸飞机
-            "咕咕鸡", // 咕咕鸡 
+            "咕咕蛋", // 咕咕鸡 
             "马里奥", // 炮弹比尔
             "机器喵哆啦A梦", // 时光机
-            "史努比", // 王牌狗屋
+            "王牌飞行员史努比", // 王牌狗屋
             "卡比", // 卡比之星
             "无面人", // 蝎红
             "熊猫人张学友", // 恩威迪亚

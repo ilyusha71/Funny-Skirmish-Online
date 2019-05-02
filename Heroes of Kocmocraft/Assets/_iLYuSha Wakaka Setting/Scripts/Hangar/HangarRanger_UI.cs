@@ -1,16 +1,123 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Kocmoca
 {
     public partial class HangarRanger : CameraTrackingSystem
     {
+        [Header("UI - Main")]
+        public Button btnOption; // Hotkey: ESC
+        public Button btnOpenPanel; // Hotkey: P
+        [Header("UI - Panel")]
+        public AudioClip sfxOpenPanel;
+        public AudioClip sfxHidePanel;
+        public Transform panel;
+        public Button btnHidePanel;
+        private Image imgPanel;
+        private Image imgHideButton;
+        private AudioSource panelAudio;
+        private TweenerState panelState = TweenerState.Hide;
+        [Header("UI - Tab")]
+        public AudioClip sfxTabDown;
+        public Toggle togDesign;
+        public Toggle togDubi;
+        public Toggle togPerformance;
+        public Toggle togAstromech;
+        public Toggle togRadar;
+        public Toggle togTurret;
+        public Toggle togMissile;
+        public Image imgDesignTab;
+        public Image imgDubiTab;
+        public Image imgPerformanceTab;
+        public Image imgAstromechTab;
+        public Image imgRadarTab;
+        public Image imgTurretTab;
+        public Image imgMissileTab;
+        private TextMeshProUGUI textDesignTab;
+        private TextMeshProUGUI textDubiTab;
+        private TextMeshProUGUI textPerformanceTab;
+        private TextMeshProUGUI textAstromechTab;
+        private TextMeshProUGUI textRadarTab;
+        private TextMeshProUGUI textTurretTab;
+        private TextMeshProUGUI textMissileTab;
+        // Block
+        public GameObject blockDesign;
+        public GameObject blockDubi;
+        public GameObject blockPerformance;
+        public GameObject blockAstromech;
+        public GameObject blockRadar;
+        public GameObject blockTurret;
+        public GameObject blockMissile;
+        public TextMeshProUGUI textKocmocraftName;
+        public TextMeshProUGUI textDubiName;
+
+        [System.Serializable]
+        public class DesignBlock: PanelBlock
+        {            
+            public TextMeshProUGUI textOKB;
+            public TextMeshProUGUI textCode;
+            public TextMeshProUGUI textDescription;
+
+            public void SetData(int index)
+            {
+                textTitle.text = DesignData.Kocmocraft[index];
+                textOKB.text = DesignData.OKB[index];
+                textCode.text = DesignData.Code[index];
+                textDescription.text = HangarData.Info[index];
+
+                textOKB.color = HangarData.TextColor[index];
+                textCode.color = HangarData.TextColor[index];
+                textDescription.color = HangarData.TextColor[index];
+
+                for (int i = 0; i < item.Length; i++)
+                {
+                    item[i].color = HangarData.TextColor[index];
+                }
+            }
+        }
+        [Header("UI - Hangar Panel - Design")]
+        public DesignBlock design;
+        public AudioClip sfxSwitchSkin;
+        public Button btnChangeSkin; // Hotkey: C
+        public Button btnSwitchWireframe;
+        public RectTransform scaleWingspan;
+        public RectTransform scaleLength;
+        public RectTransform scaleHeight;
+        public TextMeshProUGUI textWingspan;
+        public TextMeshProUGUI textLength;
+        public TextMeshProUGUI textHeight;
+        [System.Serializable]
+        public class DubiBlock : PanelBlock
+        {
+            public TextMeshProUGUI textLocation;
+            public TextMeshProUGUI textDescription;
+
+            public void SetData(int index)
+            {
+                textTitle.text = DesignData.Dubi[index];
+                //textDescription.text = HangarData.Info[index];
+
+                //textLocation.color = HangarData.TextColor[index];
+                //textDescription.color = HangarData.TextColor[index];
+
+                for (int i = 0; i < item.Length; i++)
+                {
+                    item[i].color = HangarData.TextColor[index];
+                }
+            }
+        }
+        [Header("UI - Hangar Panel - Dubi")]
+        public DubiBlock dubi;
+        public AudioClip[] sfxTalk; // Hotkey: T
+        public Button btnTalk;
+
         [System.Serializable]
         public class Turret : DataBlock
         {
-            public TextMeshProUGUI[] item;
             public TextMeshProUGUI textTurretCount;
             public TextMeshProUGUI textMaxAutoAimAngle;
             public TextMeshProUGUI textRoundsPerMinute;
@@ -53,11 +160,102 @@ namespace Kocmoca
             }
         }
 
+        void InitializePanel()
+        {
+            //btnOption.onClick.AddListener(() => OpenPanel());
+            btnOpenPanel.onClick.AddListener(() => OpenPanel());
+            panel.localScale = Vector3.zero;
+            btnHidePanel.onClick.AddListener(() => HidePanel());
+            imgPanel = panel.GetComponent<Image>();
+            imgHideButton = btnHidePanel.image;
+            panelAudio = panel.GetComponent<AudioSource>();
+
+
+            // Tab
+            togDesign.onValueChanged.AddListener(isOn =>
+            {
+                panelAudio.PlayOneShot(sfxTabDown, 0.73f);
+                blockDesign.SetActive(isOn);
+            });
+            togDubi.onValueChanged.AddListener(isOn =>
+            {
+                panelAudio.PlayOneShot(sfxTabDown, 0.73f);
+                blockDubi.SetActive(isOn);
+            });
+            togPerformance.onValueChanged.AddListener(isOn =>
+            {
+                panelAudio.PlayOneShot(sfxTabDown, 0.73f);
+                blockPerformance.SetActive(isOn);
+            });
+            togAstromech.onValueChanged.AddListener(isOn =>
+            {
+                panelAudio.PlayOneShot(sfxTabDown, 0.73f);
+                blockAstromech.SetActive(isOn);
+            });
+            togRadar.onValueChanged.AddListener(isOn =>
+            {
+                panelAudio.PlayOneShot(sfxTabDown, 0.73f);
+                blockRadar.SetActive(isOn);
+            });
+            togTurret.onValueChanged.AddListener(isOn =>
+            {
+                panelAudio.PlayOneShot(sfxTabDown, 0.73f);
+                blockTurret.SetActive(isOn);
+            });
+            togMissile.onValueChanged.AddListener(isOn =>
+            {
+                panelAudio.PlayOneShot(sfxTabDown, 0.73f);
+                blockMissile.SetActive(isOn);
+            });
+            textDesignTab = imgDesignTab.GetComponentInChildren<TextMeshProUGUI>();
+            textDubiTab = imgDubiTab.GetComponentInChildren<TextMeshProUGUI>();
+            textPerformanceTab = imgPerformanceTab.GetComponentInChildren<TextMeshProUGUI>();
+            textAstromechTab = imgAstromechTab.GetComponentInChildren<TextMeshProUGUI>();
+            textRadarTab = imgRadarTab.GetComponentInChildren<TextMeshProUGUI>();
+            textTurretTab = imgTurretTab.GetComponentInChildren<TextMeshProUGUI>();
+            textMissileTab = imgMissileTab.GetComponentInChildren<TextMeshProUGUI>();
+
+            // Switch Skin
+            btnChangeSkin.onClick.AddListener(() =>
+            {
+                panelAudio.PlayOneShot(sfxSwitchSkin);
+                PlayerPrefs.SetInt(LobbyInfomation.PREFS_SKIN + hangarIndex, kocmocraftSkin[hangarIndex].ChangeSkin());
+            });
+            btnSwitchWireframe.onClick.AddListener(() =>
+            {
+                panelAudio.PlayOneShot(sfxSwitchSkin);
+                kocmocraftSkin[hangarIndex].SwitchWireframe();
+            });
+            // Talk
+            btnTalk.onClick.AddListener(() => { if (!panelAudio.isPlaying && hangarIndex < hangarCount) panelAudio.PlayOneShot(sfxTalk[hangarIndex], 1.5f); });
+        }
+
+        public void OpenPanel()
+        {
+            panel.DOKill();
+            panel.DOScale(Vector3.one, 0.37f);
+            panelAudio.PlayOneShot(sfxOpenPanel);
+            panelState = TweenerState.Open;
+            //panelState = TweenerState.Moving;
+            //.OnComplete(() => { panelState = TweenerState.Open; });
+        }
+
+        public void HidePanel()
+        {
+            panel.DOKill();
+            panel.DOScale(Vector3.zero, 0.37f);
+            panelAudio.PlayOneShot(sfxHidePanel);
+            panelState = TweenerState.Hide;
+            //panelState = TweenerState.Moving;
+        }
+
 
 
 
         void LoadHangarData()
         {
+            design.SetData(hangarIndex);
+            dubi.SetData(hangarIndex);
             astromechDroid.SetData(hangarIndex);
             radar.SetData(hangarIndex);
             turret.SetData(hangarIndex);
@@ -65,37 +263,28 @@ namespace Kocmoca
 
 
 
+            // Panel
+            imgPanel.color = HangarData.FrameColor[hangarIndex];
+            imgHideButton.color = HangarData.ButtonColor[hangarIndex];
 
-            frameMain.color = HangarData.FrameColor[hangarIndex];
-            frameClose.color = HangarData.ButtonColor[hangarIndex];
             // Tab
-            tabDesign.color = HangarData.TabColor[hangarIndex];
-            tabDubi.color = HangarData.TabColor[hangarIndex];
-            tabPerformance.color = HangarData.TabColor[hangarIndex];
-            tabAstromech.color = HangarData.TabColor[hangarIndex];
-            tabRadar.color = HangarData.TabColor[hangarIndex];
-            tabTurret.color = HangarData.TabColor[hangarIndex];
-            tabMissile.color = HangarData.TabColor[hangarIndex];
-            tabTextDesign.color = HangarData.TabColor[hangarIndex];
-            tabTextDubi.color = HangarData.TabColor[hangarIndex];
-            tabTextPerformance.color = HangarData.TabColor[hangarIndex];
-            tabTextAstromech.color = HangarData.TabColor[hangarIndex];
-            tabTextRadar.color = HangarData.TabColor[hangarIndex];
-            tabTextTurret.color = HangarData.TabColor[hangarIndex];
-            tabTextMissile.color = HangarData.TabColor[hangarIndex];
+            imgDesignTab.color = HangarData.TabColor[hangarIndex];
+            imgDubiTab.color = HangarData.TabColor[hangarIndex];
+            imgPerformanceTab.color = HangarData.TabColor[hangarIndex];
+            imgAstromechTab.color = HangarData.TabColor[hangarIndex];
+            imgRadarTab.color = HangarData.TabColor[hangarIndex];
+            imgTurretTab.color = HangarData.TabColor[hangarIndex];
+            imgMissileTab.color = HangarData.TabColor[hangarIndex];
+            textDesignTab.color = HangarData.TabColor[hangarIndex];
+            textDubiTab.color = HangarData.TabColor[hangarIndex];
+            textPerformanceTab.color = HangarData.TabColor[hangarIndex];
+            textAstromechTab.color = HangarData.TabColor[hangarIndex];
+            textRadarTab.color = HangarData.TabColor[hangarIndex];
+            textTurretTab.color = HangarData.TabColor[hangarIndex];
+            textMissileTab.color = HangarData.TabColor[hangarIndex];
 
 
 
-            textKocmocraftName.text = "" + DesignData.Kocmocraft[hangarIndex];
-            textDubiName.text = "" + DesignData.Dubi[hangarIndex];
-
-            textInfo.color = HangarData.TextColor[hangarIndex];
-            textInfo.text = HangarData.Info[hangarIndex];
-
-            textOKB.text = "" + DesignData.OKB[hangarIndex];
-            textKocmocraft.text = "" + DesignData.Kocmocraft[hangarIndex];
-            textCode.text = "" + DesignData.Code[hangarIndex];
-            textDubi.text = "" + DesignData.Dubi[hangarIndex];
             textEngine.text = "" + DesignData.Engine[hangarIndex];
 
             textMaxHull.text = "" + KocmocraftData.Hull[hangarIndex];

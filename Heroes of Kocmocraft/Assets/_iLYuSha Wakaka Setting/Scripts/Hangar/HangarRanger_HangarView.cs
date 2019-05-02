@@ -12,6 +12,9 @@ namespace Kocmoca
 
         [Header("Hangar")]
         public Transform viewCamera;
+        public Camera cameraTop;
+        public Camera cameraSide;
+        public Camera cameraFront;
         public Transform hangar;
         private BoxCollider[] kocmocraftSize;
         private CinemachineFreeLook[] kocmocraftCamera;
@@ -23,6 +26,7 @@ namespace Kocmoca
         private int hangarIndex;
         private readonly int hangarMaxCount = 24;
         private readonly int hangarHalfCount = 12;
+
 
 
 
@@ -38,9 +42,13 @@ namespace Kocmoca
 
             for (int i = 0; i < hangarCount; i++)
             {
+                kocmocraftSkin[i].LoadSkin(PlayerPrefs.GetInt(LobbyInfomation.PREFS_SKIN + i));
+                for (int k = 0; k < 3; k++)
+                {
+                    kocmocraftCamera[i].m_Orbits[k].m_Radius = 11;
+                }
                 hangarApron[i] = kocmocraftSize[i].transform;
                 viewData[i] = kocmocraftSkin[i].viewData;
-                kocmocraftSkin[i].LoadSkin(PlayerPrefs.GetInt(LobbyInfomation.PREFS_SKIN + i));
             }
         }
 
@@ -55,7 +63,7 @@ namespace Kocmoca
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 hangarState = HangarState.Portal;
-                hangarCanvas.alpha = 0;
+                //hangarCanvas.alpha = 0;
                 PlayerPrefs.SetString(LobbyInfomation.PREFS_LOAD_SCENE, LobbyInfomation.SCENE_LOBBY);
                 Portal.Ending();
                 Invoke("Loading", 2.0f);
@@ -79,7 +87,7 @@ namespace Kocmoca
 
             if (hangarState == HangarState.Ready)
             {
-                hangarCanvas.alpha = 1.0f;
+                panel.localPosition = new Vector3(0, -120, 0);
                 if (Input.GetKeyDown(Controller.KEYBOARD_Panel) || Input.GetKeyDown(Controller.XBOX360_Panel))
                 {
                     if (panelState == TweenerState.Hide)
@@ -90,7 +98,7 @@ namespace Kocmoca
                         return;
                 }
                 if (Input.GetKey(KeyCode.Mouse1))
-                    hangarCanvas.alpha = 0.0f;
+                    panel.localPosition = KocmocaData.invisible;
 
                 if (Input.GetKey(KeyCode.Mouse1))
                 {
@@ -126,7 +134,7 @@ namespace Kocmoca
             if (hangarIndex < hangarCount)
                 kocmocraftSkin[hangarIndex].LoadSkin(PlayerPrefs.GetInt(LobbyInfomation.PREFS_SKIN + hangarIndex));
             billboard.localPosition = billboardHide;
-            hangarCanvas.alpha = 0.0f;
+            panel.localPosition = KocmocaData.invisible;
             axisX.DOKill();
             hangarState = HangarState.Moving;
             axisX.DORotateQuaternion(kocmocraftSize[hangarIndex].transform.rotation, 0.73f);

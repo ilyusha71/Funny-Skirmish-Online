@@ -66,102 +66,17 @@ namespace Kocmoca
         [Header("External Scripts")]
         public PortalController Portal;
         [Header("UI")]
-        public CanvasGroup hangarCanvas;
         private AudioSource SFX;
         [Header("Hangar Rail & Camera")]
-        //public Transform hangarRailMain;
-        //public Transform hangarRailY;
-        //public Transform hangarRailX;
-        //public Transform hangarCamera;
         public Transform[] hangarCenter;
-        public Camera cameraTop;
-        public Camera cameraSide;
-        public Camera cameraFront;
-
         private HangarState hangarState = HangarState.Portal;
 
         [Header("Billboard")]
         public Transform billboard;
         private Vector3 billboardPos = new Vector3(-12.972f, 0, 9.289f);
         private Vector3 billboardHide = new Vector3(0, 1000, 0);
-        [Header("Panel")]
-        public Transform blockInfo;
-        //public Transform blockHangar;
-        //public Transform blockKocmocraft;
-        public Transform blockData;
-        public Button btnOpen;
-        public Button btnHide;
-        public AudioClip sfxOpen;
-        public AudioClip sfxHide;
-        private TweenerState panelState = TweenerState.Hide;
-        private readonly WaitForSeconds delay = new WaitForSeconds(0.137f);
 
-
-        private AudioSource panelSFX;
-        [Header("UI - Info Block")]
-        public Image frameMain;
-        public Image frameClose;
-        [Header("UI - Tab")]
-        public AudioClip sfxTabDown;
-        public Toggle toggleDesign;
-        public Toggle toggleDubi;
-        public Toggle togglePerformance;
-        public Toggle toggleAstromech;
-        public Toggle toggleRadar;
-        public Toggle toggleTurret;
-        public Toggle toggleMissile;
-        public Image tabDesign;
-        public Image tabDubi;
-        public Image tabPerformance;
-        public Image tabAstromech;
-        public Image tabRadar;
-        public Image tabTurret;
-        public Image tabMissile;
-        public TextMeshProUGUI tabTextDesign;
-        public TextMeshProUGUI tabTextDubi;
-        public TextMeshProUGUI tabTextPerformance;
-        public TextMeshProUGUI tabTextAstromech;
-        public TextMeshProUGUI tabTextRadar;
-        public TextMeshProUGUI tabTextTurret;
-        public TextMeshProUGUI tabTextMissile;
-        // Block
-        public GameObject blockDesign;
-        public GameObject blockDubi;
-        public GameObject blockPerformance;
-        public GameObject blockAstromech;
-        public GameObject blockRadar;
-        public GameObject blockTurret;
-        public GameObject blockMissile;
-        public TextMeshProUGUI textKocmocraftName;
-        public TextMeshProUGUI textDubiName;
-
-        [Header("Info Block - Kocmocraft")]
-        public TextMeshProUGUI textInfo;
-        public RectTransform scaleWingspan;
-        public RectTransform scaleLength;
-        public RectTransform scaleHeight;
-        public TextMeshProUGUI textWingspan;
-        public TextMeshProUGUI textLength;
-        public TextMeshProUGUI textHeight;
-        [Header("Skin")]
-        public AudioClip sfxSkin;
-        public Button btnSkin;
-        public Button btnWireframe;
-        [Header("Info Block - Dubi")]
-        public Button btnTalk;
-        public AudioClip [] sfxTalk;
-        [Header("Data Block")]
-        //public Toggle btnDesign;
-        //public Toggle btnPerformance;
-        //public Toggle btnWeapon;
-        //public GameObject blockDesign;
-        //public GameObject blockPerformance;
-        //public GameObject blockWeapon;
         [Header("Hangar Data")]
-        public TextMeshProUGUI textOKB;
-        public TextMeshProUGUI textKocmocraft;
-        public TextMeshProUGUI textCode;
-        public TextMeshProUGUI textDubi;
         public TextMeshProUGUI textEngine;
         [Header("Kocmocraft Data")]
         public TextMeshProUGUI textMaxHull;
@@ -183,18 +98,20 @@ namespace Kocmoca
         private SciFiBar barMaxRange;
 
 
-
-        public class DataBlock
+        public class PanelBlock
+        {
+            public TextMeshProUGUI textTitle;
+            public TextMeshProUGUI[] item;
+        }
+        public class DataBlock: PanelBlock
         {
             internal ModuleData moduleData;
-            public TextMeshProUGUI textTitle;
         }
 
         [Serializable]
         public class AstromechDroid : DataBlock
         {
             public TextMeshProUGUI textInfomation;
-            public TextMeshProUGUI[] item;
             public TextMeshProUGUI textShieldRecharge;
             public TextMeshProUGUI textCollisionResistance;
             public TextMeshProUGUI textEnginePower;
@@ -226,7 +143,6 @@ namespace Kocmoca
         public class Radar : DataBlock
         {
             public TextMeshProUGUI textInfomation;
-            public TextMeshProUGUI[] item;
             public TextMeshProUGUI textMaxSearchRadius;
             public TextMeshProUGUI textMinSearchRadius;
             public TextMeshProUGUI textMaxSearchAngle;
@@ -275,69 +191,11 @@ namespace Kocmoca
             ViewSetting();
             hangarIndex = PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
             billboard.localPosition = billboardHide;
-            blockInfo.localScale = Vector3.zero;
-            blockData.localPosition = new Vector3(blockData.localPosition.x, -500, 0);
+            InitializePanel();
+            //blockData.localPosition = new Vector3(blockData.localPosition.x, -500, 0);
             // Button & Toggle Event
-            panelSFX = frameMain.GetComponent<AudioSource>();
 
 
-            btnOpen.onClick.AddListener(() => OpenPanel());
-
-
-            // Tab Toggle
-            toggleDesign.onValueChanged.AddListener(isOn =>
-            {
-                panelSFX.PlayOneShot(sfxTabDown, 0.73f);
-                blockDesign.SetActive(isOn);
-            });
-            toggleDubi.onValueChanged.AddListener(isOn =>
-            {
-                panelSFX.PlayOneShot(sfxTabDown, 0.73f);
-                blockDubi.SetActive(isOn);
-            });
-            togglePerformance.onValueChanged.AddListener(isOn =>
-            {
-                panelSFX.PlayOneShot(sfxTabDown, 0.73f);
-                blockPerformance.SetActive(isOn);
-            });
-            toggleAstromech.onValueChanged.AddListener(isOn =>
-            {
-                panelSFX.PlayOneShot(sfxTabDown, 0.73f);
-                blockAstromech.SetActive(isOn);
-            });
-            toggleRadar.onValueChanged.AddListener(isOn =>
-            {
-                panelSFX.PlayOneShot(sfxTabDown, 0.73f);
-                blockRadar.SetActive(isOn);
-            });
-            toggleTurret.onValueChanged.AddListener(isOn =>
-            {
-                panelSFX.PlayOneShot(sfxTabDown, 0.73f);
-                blockTurret.SetActive(isOn);
-            });
-            toggleMissile.onValueChanged.AddListener(isOn =>
-            {
-                panelSFX.PlayOneShot(sfxTabDown, 0.73f);
-                blockMissile.SetActive(isOn);
-            });
-            btnHide.onClick.AddListener(() => HidePanel());
-
-
-            // Switch Skin
-            btnSkin.onClick.AddListener(() =>
-            {
-                panelSFX.PlayOneShot(sfxSkin);
-                ChangeSkin();
-            });
-            btnWireframe.onClick.AddListener(() =>
-            {
-                panelSFX.PlayOneShot(sfxSkin);
-                kocmocraftSkin[hangarIndex].SwitchWireframe();
-            });
-
-
-            //btnDesign.onValueChanged.AddListener(isOn => blockDesign.SetActive(isOn));   
-            btnTalk.onClick.AddListener(() => { if (!panelSFX.isPlaying && hangarIndex < hangarCount) panelSFX.PlayOneShot(sfxTalk[hangarIndex],1.5f); });
             // Bar
             barHull.Initialize(textMaxHull.transform.parent.GetComponentsInChildren<Image>(), 4000, 25000);
             barShield.Initialize(textMaxShield.transform.parent.GetComponentsInChildren<Image>(), 3000, 24000);
@@ -372,29 +230,6 @@ namespace Kocmoca
 
 
 
-        public void OpenPanel()
-        {
-            blockInfo.DOKill();
-            //blockHangar.DOKill();
-            //blockKocmocraft.DOKill();
-            blockData.DOKill();
-            panelState = TweenerState.Moving;
-            SFX.PlayOneShot(sfxOpen);
-            blockInfo.DOScale(Vector3.one,0.37f).OnComplete(() => 
-            {
-                blockData.DOLocalMoveY(0, 1.0f).SetEase(Ease.OutElastic).OnComplete(() => { panelState = TweenerState.Open; });
-            });
-        }
-
-        public void HidePanel()
-        {
-            blockInfo.DOKill();
-            blockData.DOKill();
-            panelState = TweenerState.Moving;
-            SFX.PlayOneShot(sfxHide);
-            blockInfo.DOScale(Vector3.zero, 0.37f);
-            blockData.DOLocalMoveY(-500, 0.37f).OnComplete(() => { panelState = TweenerState.Hide; });
-        }
 
         void Loading()
         {
