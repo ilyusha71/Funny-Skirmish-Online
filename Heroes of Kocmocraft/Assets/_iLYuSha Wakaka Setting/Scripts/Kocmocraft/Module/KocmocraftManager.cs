@@ -62,7 +62,7 @@ namespace Kocmoca
             object indexSkin;
             if (photonView.Owner.CustomProperties.TryGetValue(LobbyInfomation.PLAYER_SKIN_OPTION, out indexSkin))
             {
-                GetComponentInChildren<SkinManager>().LoadSkin((int)indexSkin);
+                GetComponentInChildren<Prototype>().LoadSkin((int)indexSkin);
             }
 
             myTransform.name = photonView.Owner.NickName + "-" +
@@ -102,7 +102,7 @@ namespace Kocmoca
             object indexSkin;
             if (photonView.Owner.CustomProperties.TryGetValue(LobbyInfomation.PLAYER_SKIN_OPTION, out indexSkin))
             {
-                GetComponentInChildren<SkinManager>().LoadSkin((int)indexSkin);
+                GetComponentInChildren<Prototype>().LoadSkin((int)indexSkin);
             }
 
             myTransform.name = photonView.Owner.NickName + "-" +
@@ -124,7 +124,7 @@ namespace Kocmoca
             Faction = (Faction)(portNumber % 2);
             Type = (Type)(int.Parse(myTransform.name.Split(new char[2] { '(', ')' })[1]));
             Number = KocmocraftData.GetKocmonautNumber(portNumber);
-            GetComponentInChildren<SkinManager>().RandomSkin();
+            GetComponentInChildren<Prototype>().RandomSkin();
             myTransform.name = KocmocraftData.GetBotName(portNumber) + "-" +
                 DesignData.Code[(int)Type] + "-" +
                 DesignData.Kocmocraft[(int)Type];

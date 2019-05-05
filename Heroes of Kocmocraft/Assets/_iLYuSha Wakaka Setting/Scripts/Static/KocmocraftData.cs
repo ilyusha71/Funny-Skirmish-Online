@@ -2,7 +2,8 @@
 
 namespace Kocmoca
 {
-    public class ViewData
+    [System.Serializable]
+    public class PrototypeSize
     {
         public float Wingspan;
         public float Length;
@@ -15,7 +16,37 @@ namespace Kocmoca
         public Vector3 LengthScale;
         public Vector3 HeightScale;
 
-        public ViewData(Vector3 size)
+        public PrototypeSize(Vector3 size)
+        {
+            Wingspan = size.x;
+            Length = size.z;
+            Height = size.y;
+            MaxSize = Mathf.Max(Wingspan, Length);
+            MaxSize = Mathf.Max(MaxSize, Height);
+            HalfSize = MaxSize * 0.5f;
+            NearView = HalfSize + 2.7f;
+            FarView = HalfSize + 19.3f;
+            WingspanScale = new Vector3(Wingspan / MaxSize, 1, 1);
+            LengthScale = new Vector3(Length / MaxSize, 1, 1);
+            HeightScale = new Vector3(Height / MaxSize, 1, 1);
+        }
+    }
+
+    [System.Serializable]
+    public class SizeView
+    {
+        public float Wingspan;
+        public float Length;
+        public float Height;
+        public float MaxSize;
+        public float HalfSize; // 用于三视图摄影机正交尺寸
+        public float NearView;
+        public float FarView;
+        public Vector3 WingspanScale;
+        public Vector3 LengthScale;
+        public Vector3 HeightScale;
+
+        public SizeView(Vector3 size)
         {
             Wingspan = size.x;
             Length = size.z;
