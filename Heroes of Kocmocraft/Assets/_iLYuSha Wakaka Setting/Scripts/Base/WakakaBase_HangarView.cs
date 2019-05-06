@@ -11,10 +11,7 @@ namespace Kocmoca
         public HangarState hangarState = HangarState.Portal;
         public Transform axisX;
         [Header("Hangar")]
-        public Transform viewCamera;
-        public Camera cameraTop;
-        public Camera cameraSide;
-        public Camera cameraFront;
+
         //public Transform hangar;
 
 
@@ -100,18 +97,20 @@ namespace Kocmoca
                 }
                 if (Input.GetAxis("Mouse ScrollWheel") != 0)
                 {
-                    radius = Mathf.Clamp(radius -= Input.GetAxis("Mouse ScrollWheel") * 20, prototype[hangarIndex].near, 20.0f);
+                    radius = Mathf.Clamp(radius -= Input.GetAxis("Mouse ScrollWheel") * 37, prototype[hangarIndex].near, 18.2f);
                 }
                 for (int i = 0; i < 2; i++)
                 {
-                    cmFreeLook[hangarIndex].m_Orbits[i].m_Radius = Mathf.Lerp(cmFreeLook[hangarIndex].m_Orbits[i].m_Radius,radius, 0.37f);
+                    cmFreeLook[hangarIndex].m_Orbits[i].m_Radius = Mathf.Lerp(cmFreeLook[hangarIndex].m_Orbits[i].m_Radius,radius, 0.073f);
                 }
             }
         }
 
         void MoveHangarRail()
         {
-            viewCamera.SetPositionAndRotation(hangars[hangarIndex].position, hangars[hangarIndex].rotation);
+            apronView.SetPositionAndRotation(apron[hangarIndex].position, apron[hangarIndex].rotation);
+            hangarView.SetPositionAndRotation(hangar[hangarIndex].position, hangar[hangarIndex].rotation);
+
             radius = cmFreeLook[hangarIndex].m_Orbits[0].m_Radius;
             for (int i = 0; i < hangarCount; i++)
             {
@@ -125,8 +124,8 @@ namespace Kocmoca
             panel.localPosition = KocmocaData.invisible;
             axisX.DOKill();
             hangarState = HangarState.Moving;
-            axisX.DORotateQuaternion(hangars[hangarIndex].rotation, 0.73f);
-            axisX.DOMove(hangars[hangarIndex].position, 0.73f).OnComplete(() =>
+            axisX.DORotateQuaternion(hangar[hangarIndex].rotation, 0.73f);
+            axisX.DOMove(hangar[hangarIndex].position, 0.73f).OnComplete(() =>
             {
                 hangarState = HangarState.Ready;
                 if (hangarIndex < hangarCount)

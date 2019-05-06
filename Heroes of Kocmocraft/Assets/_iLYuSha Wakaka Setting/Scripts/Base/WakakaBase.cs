@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Linq;
 using Cinemachine;
 
@@ -14,54 +12,29 @@ namespace Kocmoca
     //[ExecuteInEditMode]
     public partial class WakakaBase : MonoBehaviour
     {
+        [Header("Scene - Airport")]
+        public Transform airport;
+        public Transform[] apron,hangar;
+        public Transform apronView, hangarView;
+        public Camera topCamera, sideCamera, frontCamera;
+        public int hangarCount;
         [Header("Scene - kocmocraft Parameter")]
         public Prototype[] prototype;
         public CinemachineFreeLook[] cmFreeLook;
-
-        //public BoxCollider[] kocmocraftSize;
-
-        //public ViewData[] viewData;
-        [Header("Scene - Hangar")]
-        public Transform hangar;
-        public int hangarCount;
-        public Transform[] hangars;
-        [Header("Scene - Apron")]
-        public Transform westSide;
-        public Transform EastSide;
-        public Transform[] apron;
-        public GameObject[] signboards;
-        public GameObject[] stickers;
         [Header("Resources - Signboard")]
         public GameObject Signboard;
         public Material[] OKB;
+        public GameObject[] signboards;
         [Header("Resources - Sticker")]
         public GameObject Sticker;
         public Texture2D StickerHangarNumber;
         public Texture2D StickerKocmocraftName;
         private Sprite[] spritesHangarNumber;
         private Sprite[] spritesKocmocraftName;
-
+        public GameObject[] stickers;
 
         public void Create()
         {
-            prototype = hangar.GetComponentsInChildren<Prototype>();
-            cmFreeLook = hangar.GetComponentsInChildren<CinemachineFreeLook>();
-            hangarCount = prototype.Length;
-            hangars = new Transform[hangarCount];
-
-            for (int i = 0; i < hangarCount; i++)
-            {
-                prototype[i].Initialize();
-                cmFreeLook[i].m_Orbits[2].m_Height = -prototype[i].height * 0.3f;
-                cmFreeLook[i].m_Orbits[0].m_Radius = prototype[i].near;
-                cmFreeLook[i].m_Orbits[1].m_Radius = 11;
-                cmFreeLook[i].m_Orbits[2].m_Radius = prototype[i].near;
-                hangars[i] = prototype[i].transform.parent.transform;
-                hangars[i].localPosition = new Vector3(630 - (i % 12 / 3) * 360 - i % 3 * 90, hangars[i].GetComponentInChildren<BoxCollider>().size.y * 0.5f + 2, 0);
-            }
-
-
-
             cutSprites(StickerHangarNumber, out spritesHangarNumber);
             cutSprites(StickerKocmocraftName, out spritesKocmocraftName);
 
@@ -75,11 +48,21 @@ namespace Kocmoca
             int countApron = apron.Length;
             signboards = new GameObject[countApron];
             stickers = new GameObject[countApron];
+            hangarCount = hangar.Length;
+            prototype = new Prototype[hangarCount];
+            cmFreeLook = new CinemachineFreeLook[hangarCount];
             for (int i = 0; i < countApron; i++)
             {
-                //int baseM = i / 12 == 0 ? -630 + (i / 3) * 360 + i % 3 * 90 : 630 - (i / 3) * 360 - i % 3 * 90;
-                apron[i].SetParent(i < 12 ? westSide : EastSide);
-                apron[i].localPosition = new Vector3(-630 + (i % 12 / 3) * 360 + i % 3 * 90, 0, 0);
+                apron[i].localPosition = new Vector3(630 - (i % 12 / 3) * 360 - i % 3 * 90, 0, 0);
+
+                //Transform ccc = new GameObject().transform;
+                //ccc.SetParent(apron[i]);
+                //ccc.name = "Crew";
+                //ccc.localPosition = new Vector3(0, 0, 15);
+
+                //Transform ddd = new GameObject().transform;
+                //ddd.SetParent(apron[i]);
+                //ddd.name = "Marshal";
 
                 signboards[i] = Instantiate(Signboard, apron[i]);
                 signboards[i].GetComponentsInChildren<MeshRenderer>()[0].material = OKB[i];
@@ -91,7 +74,25 @@ namespace Kocmoca
                 stickers[i].GetComponentsInChildren<SpriteRenderer>()[1].sprite = spritesHangarNumber[i];
                 stickers[i].GetComponentsInChildren<SpriteRenderer>()[2].sprite = spritesKocmocraftName[i];
 
+                if (i < hangarCount)
+                {
+                    hangar[i].localPosition = new Vector3(630 - (i % 12 / 3) * 360 - i % 3 * 90, hangar[i].GetComponentInChildren<BoxCollider>().size.y * 0.5f + 2, 0);
+                    prototype[i] = hangar[i].GetComponentInChildren<Prototype>();
+                    cmFreeLook[i] = prototype[i].cmFreeLook;
+                    if (!cmFreeLook[i]) prototype[i].Create();
+                    cmFreeLook[i].enabled = true;
+                    cmFreeLook[i].m_Orbits[0].m_Height = prototype[i].orthoSize+3;
+                    cmFreeLook[i].m_Orbits[2].m_Height = -prototype[i].orthoSize;
+                    cmFreeLook[i].m_Orbits[0].m_Radius = prototype[i].near;
+                    cmFreeLook[i].m_Orbits[1].m_Radius = 11;
+                    cmFreeLook[i].m_Orbits[2].m_Radius = prototype[i].near;
+                    cmFreeLook[i].enabled = false;
+                }
             }
+
+            topCamera = hangarView.GetComponentsInChildren<Camera>()[0];
+            sideCamera = hangarView.GetComponentsInChildren<Camera>()[1];
+            frontCamera = hangarView.GetComponentsInChildren<Camera>()[2];
         }
 
 
@@ -130,8 +131,6 @@ namespace Kocmoca
     [CustomEditor(typeof(WakakaBase))]
     public class ApronCreaterEditor : Editor
     {
-
-
         public override void OnInspectorGUI()
         {
             

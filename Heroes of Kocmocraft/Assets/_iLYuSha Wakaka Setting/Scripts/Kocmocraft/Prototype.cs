@@ -102,16 +102,17 @@ namespace Kocmoca
             near = orthoSize + 2.7f;
             far = orthoSize + 19.3f;
             cmFreeLook = GetComponentInChildren<CinemachineFreeLook>();
+            cmFreeLook.enabled = true;
             cmFreeLook.Follow = transform;
             cmFreeLook.LookAt = transform;
             cmFreeLook.m_Lens.FieldOfView = 60;
             cmFreeLook.m_BindingMode = CinemachineTransposer.BindingMode.LockToTarget;
-            cmFreeLook.m_Orbits[0].m_Height = orthoSize; //sizeView.Height * 0.5f + 5;
+            cmFreeLook.m_Orbits[0].m_Height = orthoSize+3; //sizeView.Height * 0.5f + 5;
             cmFreeLook.m_Orbits[1].m_Height = 0;
-            cmFreeLook.m_Orbits[2].m_Height = -orthoSize; //-sizeView.Height;
-            cmFreeLook.m_Orbits[0].m_Radius = far; //sizeView.NearView + 2;
-            cmFreeLook.m_Orbits[1].m_Radius = far; //sizeView.HalfSize + 15;
-            cmFreeLook.m_Orbits[2].m_Radius = far; //sizeView.NearView + 1;
+            cmFreeLook.m_Orbits[2].m_Height = -orthoSize-3; //-sizeView.Height;
+            cmFreeLook.m_Orbits[0].m_Radius = 11; //sizeView.NearView + 2;
+            cmFreeLook.m_Orbits[1].m_Radius = 11; //sizeView.HalfSize + 15;
+            cmFreeLook.m_Orbits[2].m_Radius = 11; //sizeView.NearView + 1;
             cmFreeLook.m_Heading.m_Bias = Random.Range(-180, 180);
             cmFreeLook.m_YAxis.Value = 1.0f;
             cmFreeLook.m_XAxis.m_InputAxisName = string.Empty;
@@ -121,31 +122,5 @@ namespace Kocmoca
             cmFreeLook.enabled = false;
         }
         #endregion
-
-        public void Initialize()
-        {
-
-
-            //sizeView = new SizeView(GetComponent<BoxCollider>().size);
-            //cmFreeLook = GetComponentInChildren<CinemachineFreeLook>();
-            //cmFreeLook.Follow = transform;
-            //cmFreeLook.LookAt = transform;
-            //cmFreeLook.m_Lens.FieldOfView = 60;
-            //cmFreeLook.m_BindingMode = CinemachineTransposer.BindingMode.LockToTarget;
-            //cmFreeLook.m_Orbits[0].m_Height = sizeView.Height * 0.5f + 5;
-            //cmFreeLook.m_Orbits[1].m_Height = 0;
-            //cmFreeLook.m_Orbits[2].m_Height = -sizeView.Height;
-            //cmFreeLook.m_Orbits[0].m_Radius = sizeView.NearView + 2;
-            //cmFreeLook.m_Orbits[1].m_Radius = sizeView.HalfSize + 15;
-            //cmFreeLook.m_Orbits[2].m_Radius = sizeView.NearView + 1;
-            //cmFreeLook.m_Heading.m_Bias = Random.Range(-180, 180);
-            //cmFreeLook.m_YAxis.Value = 1.0f;
-            //cmFreeLook.m_XAxis.m_InputAxisName = string.Empty;
-            //cmFreeLook.m_YAxis.m_InputAxisName = string.Empty;
-            //cmFreeLook.m_XAxis.m_InvertInput = false;
-            //cmFreeLook.m_YAxis.m_InvertInput = true;
-            //cmFreeLook.enabled = false;
-        }
-
     }
 }

@@ -434,9 +434,9 @@ namespace Kocmoca
             }
 
             // 三视图
-            cameraTop.orthographicSize = prototype[hangarIndex].orthoSize;
-            cameraSide.orthographicSize = prototype[hangarIndex].orthoSize;
-            cameraFront.orthographicSize = prototype[hangarIndex].orthoSize;
+            topCamera.orthographicSize = prototype[hangarIndex].orthoSize;
+            sideCamera.orthographicSize = prototype[hangarIndex].orthoSize;
+            frontCamera.orthographicSize = prototype[hangarIndex].orthoSize;
             scaleWingspan.localScale = prototype[hangarIndex].wingspanScale;
             scaleLength.localScale = prototype[hangarIndex].lengthScale;
             scaleHeight.localScale = prototype[hangarIndex].heightScale;
