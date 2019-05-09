@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Linq;
 using Cinemachine;
+using UnityEngine.UI;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -93,6 +94,14 @@ namespace Kocmoca
             topCamera = hangarView.GetComponentsInChildren<Camera>()[0];
             sideCamera = hangarView.GetComponentsInChildren<Camera>()[1];
             frontCamera = hangarView.GetComponentsInChildren<Camera>()[2];
+
+            Image[] tab = imgTab;
+            imgTab = new Image[14];
+            for (int i = 0; i < 7; i++)
+            {
+                imgTab[i] = tab[i];
+                imgTab[i +7] = imgTab[i].GetComponentsInChildren<Image>()[1];
+            }
         }
 
 

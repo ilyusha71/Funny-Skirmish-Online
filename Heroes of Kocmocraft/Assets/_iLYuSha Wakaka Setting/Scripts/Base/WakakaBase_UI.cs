@@ -30,20 +30,7 @@ namespace Kocmoca
         public Toggle togRadar;
         public Toggle togTurret;
         public Toggle togMissile;
-        public Image imgDesignTab;
-        public Image imgDubiTab;
-        public Image imgPerformanceTab;
-        public Image imgAstromechTab;
-        public Image imgRadarTab;
-        public Image imgTurretTab;
-        public Image imgMissileTab;
-        private TextMeshProUGUI textDesignTab;
-        private TextMeshProUGUI textDubiTab;
-        private TextMeshProUGUI textPerformanceTab;
-        private TextMeshProUGUI textAstromechTab;
-        private TextMeshProUGUI textRadarTab;
-        private TextMeshProUGUI textTurretTab;
-        private TextMeshProUGUI textMissileTab;
+        public Image[] imgTab;
         // Block
         public GameObject blockDesign;
         public GameObject blockDubi;
@@ -322,13 +309,7 @@ namespace Kocmoca
                 panelAudio.PlayOneShot(sfxTabDown, 0.73f);
                 blockMissile.SetActive(isOn);
             });
-            textDesignTab = imgDesignTab.GetComponentInChildren<TextMeshProUGUI>();
-            textDubiTab = imgDubiTab.GetComponentInChildren<TextMeshProUGUI>();
-            textPerformanceTab = imgPerformanceTab.GetComponentInChildren<TextMeshProUGUI>();
-            textAstromechTab = imgAstromechTab.GetComponentInChildren<TextMeshProUGUI>();
-            textRadarTab = imgRadarTab.GetComponentInChildren<TextMeshProUGUI>();
-            textTurretTab = imgTurretTab.GetComponentInChildren<TextMeshProUGUI>();
-            textMissileTab = imgMissileTab.GetComponentInChildren<TextMeshProUGUI>();
+
 
             // Switch Skin
             btnChangeSkin.onClick.AddListener(() =>
@@ -383,20 +364,11 @@ namespace Kocmoca
             imgHideButton.color = HangarData.ButtonColor[hangarIndex];
 
             // Tab
-            imgDesignTab.color = HangarData.TabColor[hangarIndex];
-            imgDubiTab.color = HangarData.TabColor[hangarIndex];
-            imgPerformanceTab.color = HangarData.TabColor[hangarIndex];
-            imgAstromechTab.color = HangarData.TabColor[hangarIndex];
-            imgRadarTab.color = HangarData.TabColor[hangarIndex];
-            imgTurretTab.color = HangarData.TabColor[hangarIndex];
-            imgMissileTab.color = HangarData.TabColor[hangarIndex];
-            textDesignTab.color = HangarData.TabColor[hangarIndex];
-            textDubiTab.color = HangarData.TabColor[hangarIndex];
-            textPerformanceTab.color = HangarData.TabColor[hangarIndex];
-            textAstromechTab.color = HangarData.TabColor[hangarIndex];
-            textRadarTab.color = HangarData.TabColor[hangarIndex];
-            textTurretTab.color = HangarData.TabColor[hangarIndex];
-            textMissileTab.color = HangarData.TabColor[hangarIndex];
+            for (int i = 0; i < imgTab.Length; i++)
+            {
+                imgTab[i].color = HangarData.TabColor[hangarIndex];
+            }
+
 
 
 
