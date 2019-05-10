@@ -195,16 +195,26 @@ namespace Kocmoca
         [System.Serializable]
         public class DubiBlock : PanelBlock
         {
-            public TextMeshProUGUI textLocation;
-            public TextMeshProUGUI textDescription;
+            public TextMeshProUGUI textChiefName;
+            public TextMeshProUGUI textChiefResume;
+            public TextMeshProUGUI textSecondName;
+            public TextMeshProUGUI textSecondResume;
+            public RectTransform scaleHeight;
+            public TextMeshProUGUI textHeight;
 
             public void SetData(int index)
             {
                 textTitle.text = DubiData.Dubi[index];
-                //textDescription.text = HangarData.Info[index];
 
-                //textLocation.color = HangarData.TextColor[index];
-                //textDescription.color = HangarData.TextColor[index];
+                textChiefName.text = DubiData.Chief[index];
+                textChiefResume.text = DubiData.ChiefResume[index];
+                textSecondName.text = DubiData.Second[index];
+                textSecondResume.text = DubiData.SecondResume[index];
+
+                textChiefName.color = HangarData.TextColor[index];
+                textChiefResume.color = HangarData.TextColor[index];
+                textSecondName.color = HangarData.TextColor[index];
+                textSecondResume.color = HangarData.TextColor[index];
 
                 for (int i = 0; i < item.Length; i++)
                 {
@@ -409,9 +419,9 @@ namespace Kocmoca
             topCamera.orthographicSize = prototype[hangarIndex].orthoSize;
             sideCamera.orthographicSize = prototype[hangarIndex].orthoSize;
             frontCamera.orthographicSize = prototype[hangarIndex].orthoSize;
-            scaleWingspan.localScale = prototype[hangarIndex].wingspanScale;
-            scaleLength.localScale = prototype[hangarIndex].lengthScale;
-            scaleHeight.localScale = prototype[hangarIndex].heightScale;
+            scaleWingspan.sizeDelta = new Vector2(274 * prototype[hangarIndex].wingspanScale, 37);
+            scaleLength.localScale = new Vector2(274 * prototype[hangarIndex].lengthScale, 37);
+            scaleHeight.localScale = new Vector2(37, 274 * prototype[hangarIndex].heightScale);
             textWingspan.text = prototype[hangarIndex].wingspan.ToString() + " m";
             textLength.text = prototype[hangarIndex].length.ToString() + " m";
             textHeight.text = prototype[hangarIndex].height.ToString() + " m";

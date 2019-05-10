@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dubi - Evil Minion
       objectReference: {fileID: 0}
+    - target: {fileID: 1463272351902332, guid: 8f5268ff74d58234bbf4acff4b144f60, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4764632262635756, guid: 8f5268ff74d58234bbf4acff4b144f60, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -55,15 +59,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 23779548753201130, guid: 8f5268ff74d58234bbf4acff4b144f60,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 95a7f644960edfc4d986f9bd8823c1ee, type: 2}
     - target: {fileID: 5689745596567466107, guid: 8f5268ff74d58234bbf4acff4b144f60,
         type: 3}
-      propertyPath: m_Name
-      value: Minion
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5667570057641401837, guid: 8f5268ff74d58234bbf4acff4b144f60,
         type: 3}

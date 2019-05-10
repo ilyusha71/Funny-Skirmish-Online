@@ -14,8 +14,7 @@ namespace Kocmoca
 
         [Header("Size View")]
         public CinemachineFreeLook cmFreeLook;
-        public float wingspan, length,height;
-        public Vector3 wingspanScale, lengthScale, heightScale;
+        public float wingspan, length, height, wingspanScale, lengthScale, heightScale;
         public float orthoSize; // 用于三视图摄影机正交尺寸
         public float near, far;
 
@@ -95,9 +94,9 @@ namespace Kocmoca
             length = size.z;
             height = size.y;
             float max = wingspan > length ? (wingspan > height ? wingspan : height) : (length > height ? length : height);
-            wingspanScale = new Vector3(wingspan / max, 1, 1);
-            lengthScale = new Vector3(length / max, 1, 1);
-            heightScale = new Vector3(height / max, 1, 1);
+            wingspanScale = wingspan / max;
+            lengthScale = length / max;
+            heightScale = height / max;
             orthoSize = max * 0.5f;
             near = orthoSize + 2.7f;
             far = orthoSize + 19.3f;
