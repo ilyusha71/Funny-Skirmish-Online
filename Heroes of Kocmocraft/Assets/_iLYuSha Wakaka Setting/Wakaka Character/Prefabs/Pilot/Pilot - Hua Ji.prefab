@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8838311290669947806}
+  - component: {fileID: 2061253613570982401}
   m_Layer: 11
   m_Name: Pilot - Hua Ji
   m_TagString: Untagged
@@ -27,10 +28,24 @@ Transform:
   m_LocalPosition: {x: -4.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2701959974176580738}
+  - {fileID: 245343575332378446}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2061253613570982401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860229090473335844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d39a67e1e208b4caff907c4e848ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skin:
+  - {fileID: 2172628765606650204}
 --- !u!1001 &2697526113492962514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100,9 +115,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30187720a2a784a4682f9c77a8e586c5, type: 3}
---- !u!4 &2701959974176580738 stripped
+--- !u!1 &2172628765606650204 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4272002813159091598, guid: 30187720a2a784a4682f9c77a8e586c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2697526113492962514}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &245343575332378446 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4719046679914576, guid: 30187720a2a784a4682f9c77a8e586c5,
+  m_CorrespondingSourceObject: {fileID: 2740487771583601564, guid: 30187720a2a784a4682f9c77a8e586c5,
     type: 3}
   m_PrefabInstance: {fileID: 2697526113492962514}
   m_PrefabAsset: {fileID: 0}

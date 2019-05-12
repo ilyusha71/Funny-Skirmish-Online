@@ -183,9 +183,10 @@ namespace Kocmoca
         }
         [Header("UI - Hangar Panel - Design")]
         public DesignBlock design;
-        public AudioClip sfxSwitchSkin;
+        public AudioClip sfxChangeSkin;
+        public AudioClip sfxSwitchWireframe;
         public Button btnChangeSkin; // Hotkey: C
-        public Button btnSwitchWireframe;
+        public Button btnSwitchWireframe; // Hotkey: W
         public RectTransform scaleWingspan;
         public RectTransform scaleLength;
         public RectTransform scaleHeight;
@@ -197,19 +198,26 @@ namespace Kocmoca
         {
             public TextMeshProUGUI textChiefName;
             public TextMeshProUGUI textChiefResume;
+            public RectTransform scaleChiefHeight;
+            public TextMeshProUGUI textChiefHeight;
             public TextMeshProUGUI textSecondName;
             public TextMeshProUGUI textSecondResume;
-            public RectTransform scaleHeight;
-            public TextMeshProUGUI textHeight;
+            public RectTransform scaleSecondHeight;
+            public TextMeshProUGUI textSecondHeight;
 
             public void SetData(int index)
             {
                 textTitle.text = DubiData.Dubi[index];
 
-                textChiefName.text = DubiData.Chief[index];
+                textChiefName.text = DubiData.ChiefPilot[index];
                 textChiefResume.text = DubiData.ChiefResume[index];
-                textSecondName.text = DubiData.Second[index];
+                scaleChiefHeight.sizeDelta = new Vector2(274 * DubiData.ChiefHeight[index] / 200, 37);
+                textChiefHeight.text = DubiData.ChiefHeight[index].ToString() + " cm";
+
+                textSecondName.text = DubiData.SecondPilot[index];
                 textSecondResume.text = DubiData.SecondResume[index];
+                scaleSecondHeight.sizeDelta = new Vector2(274 * DubiData.SecondHeight[index] / 200, 37);
+                textSecondHeight.text = DubiData.SecondHeight[index].ToString() + " cm";
 
                 textChiefName.color = HangarData.TextColor[index];
                 textChiefResume.color = HangarData.TextColor[index];
@@ -224,9 +232,11 @@ namespace Kocmoca
         }
         [Header("UI - Hangar Panel - Dubi")]
         public DubiBlock dubi;
+        public AudioClip sfxChangePilot; // Hotkey: K
         public AudioClip[] sfxTalk; // Hotkey: T
+        public Button btnChangePilot;
         public Button btnTalk;
-
+        private AudioSource speech;
         [System.Serializable]
         public class Turret : DataBlock
         {
@@ -320,20 +330,27 @@ namespace Kocmoca
                 blockMissile.SetActive(isOn);
             });
 
-
-            // Switch Skin
             btnChangeSkin.onClick.AddListener(() =>
             {
-                panelAudio.PlayOneShot(sfxSwitchSkin);
+                panelAudio.PlayOneShot(sfxChangeSkin);
                 PlayerPrefs.SetInt(LobbyInfomation.PREFS_SKIN + hangarIndex, prototype[hangarIndex].ChangeSkin());
             });
             btnSwitchWireframe.onClick.AddListener(() =>
             {
-                panelAudio.PlayOneShot(sfxSwitchSkin);
+                panelAudio.PlayOneShot(sfxSwitchWireframe);
                 prototype[hangarIndex].SwitchWireframe();
             });
-            // Talk
-            btnTalk.onClick.AddListener(() => { if (!panelAudio.isPlaying && hangarIndex < hangarCount) panelAudio.PlayOneShot(sfxTalk[hangarIndex], 1.5f); });
+            btnChangePilot.onClick.AddListener(() =>
+            {
+                panelAudio.PlayOneShot(sfxChangePilot);
+                pilot[hangarIndex].ChangeSkin();
+            });
+            speech = btnTalk.GetComponent<AudioSource>();
+            btnTalk.onClick.AddListener(() => 
+            {
+                if (!speech.isPlaying && hangarIndex < hangarCount)
+                    speech.PlayOneShot(sfxTalk[hangarIndex], 1.5f);
+            });
         }
 
         public void OpenPanel()
@@ -420,8 +437,8 @@ namespace Kocmoca
             sideCamera.orthographicSize = prototype[hangarIndex].orthoSize;
             frontCamera.orthographicSize = prototype[hangarIndex].orthoSize;
             scaleWingspan.sizeDelta = new Vector2(274 * prototype[hangarIndex].wingspanScale, 37);
-            scaleLength.localScale = new Vector2(274 * prototype[hangarIndex].lengthScale, 37);
-            scaleHeight.localScale = new Vector2(37, 274 * prototype[hangarIndex].heightScale);
+            scaleLength.sizeDelta = new Vector2(274 * prototype[hangarIndex].lengthScale, 37);
+            scaleHeight.sizeDelta = new Vector2(274 * prototype[hangarIndex].heightScale, 37);
             textWingspan.text = prototype[hangarIndex].wingspan.ToString() + " m";
             textLength.text = prototype[hangarIndex].length.ToString() + " m";
             textHeight.text = prototype[hangarIndex].height.ToString() + " m";

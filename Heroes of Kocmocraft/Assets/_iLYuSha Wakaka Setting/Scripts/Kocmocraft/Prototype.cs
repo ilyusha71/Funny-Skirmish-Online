@@ -18,7 +18,7 @@ namespace Kocmoca
         public float orthoSize; // 用于三视图摄影机正交尺寸
         public float near, far;
 
-        public void Create()
+        void Reset()
         {
             Transform[] objects = GetComponentsInChildren<Transform>();
             for (int i = 0; i < objects.Length; i++)

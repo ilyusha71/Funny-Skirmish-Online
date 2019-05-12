@@ -19,8 +19,9 @@ namespace Kocmoca
         public Transform apronView, hangarView;
         public Camera topCamera, sideCamera, frontCamera;
         public int hangarCount;
-        [Header("Scene - kocmocraft Parameter")]
+        [Header("Scene - Hangar Parameter")]
         public Prototype[] prototype;
+        public OptionController[] pilot;
         public CinemachineFreeLook[] cmFreeLook;
         [Header("Resources - Signboard")]
         public GameObject Signboard;
@@ -51,6 +52,7 @@ namespace Kocmoca
             stickers = new GameObject[countApron];
             hangarCount = hangar.Length;
             prototype = new Prototype[hangarCount];
+            pilot = new OptionController[hangarCount];
             cmFreeLook = new CinemachineFreeLook[hangarCount];
             for (int i = 0; i < countApron; i++)
             {
@@ -79,8 +81,8 @@ namespace Kocmoca
                 {
                     hangar[i].localPosition = new Vector3(630 - (i % 12 / 3) * 360 - i % 3 * 90, hangar[i].GetComponentInChildren<BoxCollider>().size.y * 0.5f + 2, 0);
                     prototype[i] = hangar[i].GetComponentInChildren<Prototype>();
+                    pilot[i] = hangar[i].GetComponentInChildren<OptionController>();
                     cmFreeLook[i] = prototype[i].cmFreeLook;
-                    if (!cmFreeLook[i]) prototype[i].Create();
                     cmFreeLook[i].enabled = true;
                     cmFreeLook[i].m_Orbits[0].m_Height = prototype[i].orthoSize+3;
                     cmFreeLook[i].m_Orbits[2].m_Height = -prototype[i].orthoSize;

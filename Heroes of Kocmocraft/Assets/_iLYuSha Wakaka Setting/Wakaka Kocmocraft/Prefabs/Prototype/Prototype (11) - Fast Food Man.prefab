@@ -304,9 +304,9 @@ MonoBehaviour:
   wingspan: 6.8
   length: 8.35
   height: 4.58
-  wingspanScale: {x: 0.8143712, y: 1, z: 1}
-  lengthScale: {x: 1, y: 1, z: 1}
-  heightScale: {x: 0.548503, y: 1, z: 1}
+  wingspanScale: 0.8143712
+  lengthScale: 1
+  heightScale: 0.548503
   orthoSize: 4.175
   near: 6.875
   far: 23.474998
@@ -848,7 +848,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: -132
+    m_Bias: -106
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1

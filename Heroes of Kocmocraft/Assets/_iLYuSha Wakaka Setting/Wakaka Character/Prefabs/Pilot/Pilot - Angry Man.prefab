@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8632262064536444325}
+  - component: {fileID: 1413564372207080067}
   m_Layer: 11
   m_Name: Pilot - Angry Man
   m_TagString: Untagged
@@ -27,10 +28,24 @@ Transform:
   m_LocalPosition: {x: -3.3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8075990902879931454}
+  - {fileID: 5297423123760892292}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1413564372207080067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6562244118934979955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d39a67e1e208b4caff907c4e848ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skin:
+  - {fileID: 6108326630280576918}
 --- !u!1001 &8071166432499750118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100,9 +115,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5124daf9f57f3f44ba4ea5642efe2d32, type: 3}
---- !u!4 &8075990902879931454 stripped
+--- !u!1 &6108326630280576918 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2650273476926696304, guid: 5124daf9f57f3f44ba4ea5642efe2d32,
+    type: 3}
+  m_PrefabInstance: {fileID: 8071166432499750118}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5297423123760892292 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4826768188217560, guid: 5124daf9f57f3f44ba4ea5642efe2d32,
+  m_CorrespondingSourceObject: {fileID: 4145195498967473506, guid: 5124daf9f57f3f44ba4ea5642efe2d32,
     type: 3}
   m_PrefabInstance: {fileID: 8071166432499750118}
   m_PrefabAsset: {fileID: 0}
