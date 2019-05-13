@@ -21,17 +21,27 @@ namespace Kocmoca
         private Image imgHideButton;
         private AudioSource panelAudio;
         private TweenerState panelState = TweenerState.Hide;
-        [Header("UI - Tab")]
-        public AudioClip sfxTabDown;
-        public Toggle togDesign;
-        public Toggle togDubi;
-        public Toggle togPerformance;
-        public Toggle togAstromech;
-        public Toggle togRadar;
-        public Toggle togTurret;
-        public Toggle togMissile;
-        public Image[] imgTab;
-        // Block
+        [Header("UI - Navigation Bar - Toggle")]
+        public TextMeshProUGUI textMain;
+        public AudioClip sfxTabPress;
+        public Toggle togDesign; // Hotkey: F1
+        public Toggle togDubi; // Hotkey: F2
+        public Toggle togPerformance; // Hotkey: F3
+        public Toggle togAstromech; // Hotkey: F4
+        public Toggle togRadar; // Hotkey: F5
+        public Toggle togTurret; // Hotkey: F6
+        public Toggle togMissile; // Hotkey: F7
+        [Header("UI - Navigation Bar - Button")]
+        public AudioClip sfxChangeSkin;
+        public AudioClip sfxSwitchWireframe;
+        public AudioClip sfxChangePilot; // Hotkey: K
+        public AudioClip[] sfxTalk; // Hotkey: T
+        public Button btnChangeSkin; // Hotkey: C
+        public Button btnSwitchWireframe; // Hotkey: W
+        public Button btnChangePilot;
+        public Button btnTalk;
+        private AudioSource speech;
+        [Header("UI - Block")]
         public GameObject blockDesign;
         public GameObject blockDubi;
         public GameObject blockPerformance;
@@ -39,8 +49,6 @@ namespace Kocmoca
         public GameObject blockRadar;
         public GameObject blockTurret;
         public GameObject blockMissile;
-        public TextMeshProUGUI textKocmocraftName;
-        public TextMeshProUGUI textDubiName;
 
         public class PanelBlock
         {
@@ -155,7 +163,7 @@ namespace Kocmoca
         }
 
         [System.Serializable]
-        public class DesignBlock: PanelBlock
+        public class DesignBlock
         {
             public TextMeshProUGUI textSeason;
             public TextMeshProUGUI textOKB;
@@ -164,29 +172,15 @@ namespace Kocmoca
 
             public void SetData(int index)
             {
-                textTitle.text = DesignData.Kocmocraft[index];
                 textSeason.text = DesignData.Season[index];
                 textOKB.text = DesignData.OKB[index];
                 textCode.text = DesignData.Code[index];
                 textDescription.text = DesignData.Design[index];
-
-                textSeason.color = HangarData.TextColor[index];
-                textOKB.color = HangarData.TextColor[index];
-                textCode.color = HangarData.TextColor[index];
-                textDescription.color = HangarData.TextColor[index];
-
-                for (int i = 0; i < item.Length; i++)
-                {
-                    item[i].color = HangarData.TextColor[index];
-                }
             }
         }
         [Header("UI - Hangar Panel - Design")]
         public DesignBlock design;
-        public AudioClip sfxChangeSkin;
-        public AudioClip sfxSwitchWireframe;
-        public Button btnChangeSkin; // Hotkey: C
-        public Button btnSwitchWireframe; // Hotkey: W
+
         public RectTransform scaleWingspan;
         public RectTransform scaleLength;
         public RectTransform scaleHeight;
@@ -194,7 +188,7 @@ namespace Kocmoca
         public TextMeshProUGUI textLength;
         public TextMeshProUGUI textHeight;
         [System.Serializable]
-        public class DubiBlock : PanelBlock
+        public class DubiBlock
         {
             public TextMeshProUGUI textChiefName;
             public TextMeshProUGUI textChiefResume;
@@ -207,7 +201,7 @@ namespace Kocmoca
 
             public void SetData(int index)
             {
-                textTitle.text = DubiData.Dubi[index];
+                //textTitle.text = DubiData.Dubi[index];
 
                 textChiefName.text = DubiData.ChiefPilot[index];
                 textChiefResume.text = DubiData.ChiefResume[index];
@@ -219,24 +213,11 @@ namespace Kocmoca
                 scaleSecondHeight.sizeDelta = new Vector2(274 * DubiData.SecondHeight[index] / 200, 37);
                 textSecondHeight.text = DubiData.SecondHeight[index].ToString() + " cm";
 
-                textChiefName.color = HangarData.TextColor[index];
-                textChiefResume.color = HangarData.TextColor[index];
-                textSecondName.color = HangarData.TextColor[index];
-                textSecondResume.color = HangarData.TextColor[index];
-
-                for (int i = 0; i < item.Length; i++)
-                {
-                    item[i].color = HangarData.TextColor[index];
-                }
             }
         }
         [Header("UI - Hangar Panel - Dubi")]
         public DubiBlock dubi;
-        public AudioClip sfxChangePilot; // Hotkey: K
-        public AudioClip[] sfxTalk; // Hotkey: T
-        public Button btnChangePilot;
-        public Button btnTalk;
-        private AudioSource speech;
+
         [System.Serializable]
         public class Turret : DataBlock
         {
@@ -287,7 +268,7 @@ namespace Kocmoca
             //btnOption.onClick.AddListener(() => OpenPanel());
             btnOpenPanel.onClick.AddListener(() => OpenPanel());
             panel.localScale = Vector3.zero;
-            btnHidePanel.onClick.AddListener(() => HidePanel());
+            btnHidePanel.onClick.AddListener(() => ClosePanel());
             imgPanel = panel.GetComponent<Image>();
             imgHideButton = btnHidePanel.image;
             panelAudio = panel.GetComponent<AudioSource>();
@@ -296,45 +277,44 @@ namespace Kocmoca
             // Tab
             togDesign.onValueChanged.AddListener(isOn =>
             {
-                panelAudio.PlayOneShot(sfxTabDown, 0.73f);
+                panelAudio.PlayOneShot(sfxTabPress, 0.73f);
                 blockDesign.SetActive(isOn);
                 if (isOn) OpenPanel(); else HidePanel();
             });
             togDubi.onValueChanged.AddListener(isOn =>
             {
-                panelAudio.PlayOneShot(sfxTabDown, 0.73f);
+                panelAudio.PlayOneShot(sfxTabPress, 0.73f);
                 blockDubi.SetActive(isOn);
                 if (isOn) OpenPanel(); else HidePanel();
-
             });
             togPerformance.onValueChanged.AddListener(isOn =>
             {
-                panelAudio.PlayOneShot(sfxTabDown, 0.73f);
+                panelAudio.PlayOneShot(sfxTabPress, 0.73f);
                 blockPerformance.SetActive(isOn);
                 if (isOn) OpenPanel(); else HidePanel();
 
             });
             togAstromech.onValueChanged.AddListener(isOn =>
             {
-                panelAudio.PlayOneShot(sfxTabDown, 0.73f);
+                panelAudio.PlayOneShot(sfxTabPress, 0.73f);
                 blockAstromech.SetActive(isOn);
                 if (isOn) OpenPanel(); else HidePanel();
             });
             togRadar.onValueChanged.AddListener(isOn =>
             {
-                panelAudio.PlayOneShot(sfxTabDown, 0.73f);
+                panelAudio.PlayOneShot(sfxTabPress, 0.73f);
                 blockRadar.SetActive(isOn);
                 if (isOn) OpenPanel(); else HidePanel();
             });
             togTurret.onValueChanged.AddListener(isOn =>
             {
-                panelAudio.PlayOneShot(sfxTabDown, 0.73f);
+                panelAudio.PlayOneShot(sfxTabPress, 0.73f);
                 blockTurret.SetActive(isOn);
                 if (isOn) OpenPanel(); else HidePanel();
             });
             togMissile.onValueChanged.AddListener(isOn =>
             {
-                panelAudio.PlayOneShot(sfxTabDown, 0.73f);
+                panelAudio.PlayOneShot(sfxTabPress, 0.73f);
                 blockMissile.SetActive(isOn);
                 if (isOn) OpenPanel(); else HidePanel();
             });
@@ -366,19 +346,21 @@ namespace Kocmoca
         {
             panel.DOKill();
             panel.DOScale(Vector3.one, 0.37f);
-            //panelAudio.PlayOneShot(sfxOpenPanel);
             panelState = TweenerState.Open;
-            //panelState = TweenerState.Moving;
-            //.OnComplete(() => { panelState = TweenerState.Open; });
         }
 
         public void HidePanel()
         {
             panel.DOKill();
             panel.DOScale(Vector3.zero, 0.37f);
-            //panelAudio.PlayOneShot(sfxHidePanel);
             panelState = TweenerState.Hide;
-            //panelState = TweenerState.Moving;
+        }
+
+        public void ClosePanel()
+        {
+            panel.DOKill();
+            panel.DOScale(Vector3.zero, 0.37f);
+            panelState = TweenerState.Hide;
 
             togDesign.isOn = false;
             togDubi.isOn = false;
@@ -391,9 +373,9 @@ namespace Kocmoca
 
 
 
-
         void LoadHangarData()
         {
+            textMain.text = DesignData.Kocmocraft[hangarIndex];
             design.SetData(hangarIndex);
             dubi.SetData(hangarIndex);
             astromechDroid.SetData(hangarIndex);
@@ -404,14 +386,14 @@ namespace Kocmoca
 
 
             // Panel
-            imgPanel.color = HangarData.FrameColor[hangarIndex];
-            imgHideButton.color = HangarData.ButtonColor[hangarIndex];
+            //imgPanel.color = HangarData.FrameColor[hangarIndex];
+            //imgHideButton.color = HangarData.ButtonColor[hangarIndex];
 
             // Tab
-            for (int i = 0; i < imgTab.Length; i++)
-            {
-                imgTab[i].color = HangarData.TabColor[hangarIndex];
-            }
+            //for (int i = 0; i < imgTab.Length; i++)
+            //{
+            //    imgTab[i].color = HangarData.TabColor[hangarIndex];
+            //}
 
 
 

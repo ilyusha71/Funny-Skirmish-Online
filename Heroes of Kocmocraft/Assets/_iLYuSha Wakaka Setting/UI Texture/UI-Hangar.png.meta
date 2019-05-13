@@ -12,6 +12,8 @@ TextureImporter:
     21300014: UI-Hangar_7
     21300016: UI-Hangar_8
     21300018: UI-Hangar_9
+    21300020: UI-Hangar_10
+    21300022: UI-Hangar_11
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -41,17 +43,17 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 1
     aniso: -1
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -259,13 +261,13 @@ TextureImporter:
       name: UI-Hangar_7
       rect:
         serializedVersion: 2
-        x: 512
-        y: 896
-        width: 512
-        height: 128
+        x: 768
+        y: 864
+        width: 256
+        height: 160
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 247, y: 0, z: 247, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -281,8 +283,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 960
-        height: 138
+        width: 912
+        height: 135
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,9 +302,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 138
-        width: 960
-        height: 96
+        y: 135
+        width: 912
+        height: 103
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -311,6 +313,46 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 4d71e832b2d822741b7359c5ef1f0b5f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-Hangar_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38f429a2365643c4789dcdafffa8a105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI-Hangar_11
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 726
+        width: 74
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8285817953a5e854db9ef25339de505b
       vertices: []
       indices: 
       edges: []
