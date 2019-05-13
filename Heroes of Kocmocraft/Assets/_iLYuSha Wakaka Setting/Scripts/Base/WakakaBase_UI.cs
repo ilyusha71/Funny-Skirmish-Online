@@ -298,36 +298,45 @@ namespace Kocmoca
             {
                 panelAudio.PlayOneShot(sfxTabDown, 0.73f);
                 blockDesign.SetActive(isOn);
+                if (isOn) OpenPanel(); else HidePanel();
             });
             togDubi.onValueChanged.AddListener(isOn =>
             {
                 panelAudio.PlayOneShot(sfxTabDown, 0.73f);
                 blockDubi.SetActive(isOn);
+                if (isOn) OpenPanel(); else HidePanel();
+
             });
             togPerformance.onValueChanged.AddListener(isOn =>
             {
                 panelAudio.PlayOneShot(sfxTabDown, 0.73f);
                 blockPerformance.SetActive(isOn);
+                if (isOn) OpenPanel(); else HidePanel();
+
             });
             togAstromech.onValueChanged.AddListener(isOn =>
             {
                 panelAudio.PlayOneShot(sfxTabDown, 0.73f);
                 blockAstromech.SetActive(isOn);
+                if (isOn) OpenPanel(); else HidePanel();
             });
             togRadar.onValueChanged.AddListener(isOn =>
             {
                 panelAudio.PlayOneShot(sfxTabDown, 0.73f);
                 blockRadar.SetActive(isOn);
+                if (isOn) OpenPanel(); else HidePanel();
             });
             togTurret.onValueChanged.AddListener(isOn =>
             {
                 panelAudio.PlayOneShot(sfxTabDown, 0.73f);
                 blockTurret.SetActive(isOn);
+                if (isOn) OpenPanel(); else HidePanel();
             });
             togMissile.onValueChanged.AddListener(isOn =>
             {
                 panelAudio.PlayOneShot(sfxTabDown, 0.73f);
                 blockMissile.SetActive(isOn);
+                if (isOn) OpenPanel(); else HidePanel();
             });
 
             btnChangeSkin.onClick.AddListener(() =>
@@ -357,7 +366,7 @@ namespace Kocmoca
         {
             panel.DOKill();
             panel.DOScale(Vector3.one, 0.37f);
-            panelAudio.PlayOneShot(sfxOpenPanel);
+            //panelAudio.PlayOneShot(sfxOpenPanel);
             panelState = TweenerState.Open;
             //panelState = TweenerState.Moving;
             //.OnComplete(() => { panelState = TweenerState.Open; });
@@ -367,9 +376,17 @@ namespace Kocmoca
         {
             panel.DOKill();
             panel.DOScale(Vector3.zero, 0.37f);
-            panelAudio.PlayOneShot(sfxHidePanel);
+            //panelAudio.PlayOneShot(sfxHidePanel);
             panelState = TweenerState.Hide;
             //panelState = TweenerState.Moving;
+
+            togDesign.isOn = false;
+            togDubi.isOn = false;
+            togPerformance.isOn = false;
+            togAstromech.isOn = false;
+            togRadar.isOn = false;
+            togTurret.isOn = false;
+            togMissile.isOn = false;
         }
 
 

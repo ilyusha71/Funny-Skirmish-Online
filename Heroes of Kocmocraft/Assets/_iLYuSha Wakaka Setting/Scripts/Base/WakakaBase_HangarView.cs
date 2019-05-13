@@ -72,7 +72,7 @@ namespace Kocmoca
 
             if (hangarState == HangarState.Ready)
             {
-                panel.localPosition = new Vector3(0, -120, 0);
+                panel.localPosition = Vector3.zero;
                 if (Input.GetKeyDown(Controller.KEYBOARD_Panel) || Input.GetKeyDown(Controller.XBOX360_Panel))
                 {
                     if (panelState == TweenerState.Hide)
