@@ -396,7 +396,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 136
+    m_Bias: 127
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -707,6 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2debeac66cfd7f4d9739633285e6af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   skin:
   - {fileID: 4999683262232514227}
   - {fileID: 3317457641420399131}
@@ -722,6 +723,10 @@ MonoBehaviour:
   orthoSize: 4.48
   near: 7.1800003
   far: 23.779999
+  m_Shield: 5439
+  m_ShieldLevel: 2
+  m_Hull: 22886
+  m_HullLevel: 7
 --- !u!205 &4951760053608793988
 LODGroup:
   m_ObjectHideFlags: 0

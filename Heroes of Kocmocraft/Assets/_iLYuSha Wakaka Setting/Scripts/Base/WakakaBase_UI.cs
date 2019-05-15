@@ -262,7 +262,7 @@ namespace Kocmoca
             textMain.text = DesignData.Kocmocraft[hangarIndex];
             design.SetData(hangarIndex);
             dubi.SetData(hangarIndex);
-            performance.SetData(hangarIndex);
+            performance.SetData(hangarIndex,prototype[hangarIndex]);
             astromechDroid.SetData(hangarIndex);
             radar.SetData(hangarIndex);
             turret.SetData(hangarIndex);
@@ -379,14 +379,14 @@ namespace Kocmoca
             public Image[] shieldBar, hullBar, speedBar;
             private int shieldLevel, hullLevel, speedLevel;
 
-            public void SetData(int index)
+            public void SetData(int index,  Prototype prototype)
             {
                 raw.texture = textures[index];
-                textShield.text = KocmocraftData.Shield[index].ToString();
-                textHull.text = KocmocraftData.Hull[index].ToString();
+                textShield.text = prototype.m_Shield.ToString();
+                textHull.text = prototype.m_Hull.ToString();
                 textSpeed.text = KocmocraftData.AfterburnerSpeed[index].ToString();
-                shieldLevel = KocmocraftData.GetShieldLevel(index);
-                hullLevel = KocmocraftData.GetHullLevel(index);
+                shieldLevel = prototype.m_ShieldLevel;
+                hullLevel = prototype.m_HullLevel;
                 speedLevel = KocmocraftData.GetSpeedLevel(index);
 
                 for (int i = 0; i < 7; i++)

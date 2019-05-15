@@ -63,6 +63,117 @@ namespace Kocmoca
     }
     public static class KocmocraftData
     {
+        public static int testValue;
+
+        public static readonly int BaseShield = 1100, DiffShield = 1800;
+        public static readonly int BaseHull = 1650, DiffHull = 2700;
+
+        public static int GetShieldProficiency(int index)
+        {
+            return BaseShield + DiffShield * (ShieldProficiency[index]);
+        }
+        public static int GetShieldLevel(int value)
+        {
+            for (int i = 7; i > 0; i--)
+            {
+                if (value >= (BaseShield + DiffShield * i))
+                    return i;
+            }
+            return 0;
+        }
+        public static readonly int[] ShieldProficiency = {
+            1, // ★☆☆☆☆☆☆ 神偷机兵
+            2, // ★★☆☆☆☆☆ 红牛能量
+            4, // ★★★☆☆☆☆ 普鲸
+            2, // ★★★☆☆☆☆ 纸飞机
+            5, // ★★★★★★☆ 咕咕鸡 
+            1, // ★☆☆☆☆☆☆ 炮弹比尔
+            3, // ★☆☆☆☆☆☆ 时光机
+            1, // ★☆☆☆☆☆☆ 王牌狗屋
+            1, // ★☆☆☆☆☆☆ 卡比之星
+            4, // ★★★★★☆☆ 蝎红
+            5, // ★★★★★★☆ 恩威迪亚
+            1, // ★★★☆☆☆☆ 快餐侠
+            3, // ★★★★★☆☆ 驯鹿空运
+            3, // ★★★★★★☆ 北极星特快
+            6, // ★★★★☆☆☆ 远古飞鱼
+            7, // ★★★★☆☆☆ 玩具独角兽
+            2, // ★★★★★★★ 南瓜魅影
+            2, // ★★★★★☆☆ 赏金猎人
+            3, // ★★☆☆☆☆☆ 鹰纽特
+            3, // ★★★★☆☆☆ 新葡鲸
+        };
+        public static int GetHullProficiency(int index)
+        {
+            return BaseHull + DiffHull * (HullProficiency[index]);
+        }
+        public static int GetHullLevel(int value)
+        {
+            for (int i = 7; i > 0; i--)
+            {
+                if (value >= BaseHull + DiffHull * i)
+                    return i;
+            }
+            return 0;
+        }
+        public static readonly int[] HullProficiency = {
+            7, // ★☆☆☆☆☆☆ 神偷机兵
+            1, // ★★☆☆☆☆☆ 红牛能量
+            5, // ★★★☆☆☆☆ 普鲸
+            3, // ★★★☆☆☆☆ 纸飞机
+            4, // ★★★★★★☆ 咕咕鸡 
+            2, // ★☆☆☆☆☆☆ 炮弹比尔
+            1, // ★☆☆☆☆☆☆ 时光机
+            4, // ★☆☆☆☆☆☆ 王牌狗屋
+            2, // ★☆☆☆☆☆☆ 卡比之星
+            3, // ★★★★★☆☆ 蝎红
+            1, // ★★★★★★☆ 恩威迪亚
+            3, // ★★★☆☆☆☆ 快餐侠
+            2, // ★★★★★☆☆ 驯鹿空运
+            3, // ★★★★★★☆ 北极星特快
+            1, // ★★★★☆☆☆ 远古飞鱼
+            2, // ★★★★☆☆☆ 玩具独角兽
+            7, // ★★★★★★★ 南瓜魅影
+            6, // ★★★★★☆☆ 赏金猎人
+            4, // ★★☆☆☆☆☆ 鹰纽特
+            4, // ★★★★☆☆☆ 新葡鲸
+        };
+        public static readonly int[] SpeedProficiency = {
+            2, // ★☆☆☆☆☆☆ 神偷机兵
+            7, // ★★☆☆☆☆☆ 红牛能量
+            1, // ★★★☆☆☆☆ 普鲸
+            5, // ★★★☆☆☆☆ 纸飞机
+            1, // ★★★★★★☆ 咕咕鸡 
+            7, // ★☆☆☆☆☆☆ 炮弹比尔
+            6, // ★☆☆☆☆☆☆ 时光机
+            5, // ★☆☆☆☆☆☆ 王牌狗屋
+            7, // ★☆☆☆☆☆☆ 卡比之星
+            3, // ★★★★★☆☆ 蝎红
+            4, // ★★★★★★☆ 恩威迪亚
+            6, // ★★★☆☆☆☆ 快餐侠
+            4, // ★★★★★☆☆ 驯鹿空运
+            4, // ★★★★★★☆ 北极星特快
+            3, // ★★★★☆☆☆ 远古飞鱼
+            1, // ★★★★☆☆☆ 玩具独角兽
+            1, // ★★★★★★★ 南瓜魅影
+            2, // ★★★★★☆☆ 赏金猎人
+            3, // ★★☆☆☆☆☆ 鹰纽特
+            3, // ★★★★☆☆☆ 新葡鲸
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // 北极星特快 南瓜魅影 咕咕鸡 恩威迪亚 蝎红 15~20K    6~7星
         // 驯鹿空运 赏金猎人 远古飞鱼 玩具独角兽 10~15K 4~5星
         // 纸飞机  快餐侠 神偷机兵 9K~11K 3~4星
@@ -94,24 +205,7 @@ namespace Kocmoca
             0, // ★★★★★★★ 即将登场
             0, // ★★★★★★★ 即将登场
         };
-        public static int GetHullLevel(int index)
-        {
-            float per = (float)(Hull[index] - 4000) / 21000;
-            if (per > 0.857142f)
-                return 7;
-            else if (per > 0.714285f)
-                return 6;
-            else if (per > 0.571428f)
-                return 5;
-            else if (per > 0.428571f)
-                return 4;
-            else if (per > 0.285714f)
-                return 3;
-            else if (per > 0.142857f)
-                return 2;
-            else
-                return 1;
-        }
+
         public static readonly int[] Shield = {
             11754, // ★★★☆☆☆☆ 神偷机兵
             12934, // ★★★★☆☆☆ 红牛能量
@@ -138,24 +232,6 @@ namespace Kocmoca
             0, // ★★★★★★★ 即将登场
             0, // ★★★★★★★ 即将登场
         };
-        public static int GetShieldLevel(int index)
-        {
-            float per = (float)(Shield[index] - 3000) / 21000;
-            if (per > 0.857142f)
-                return 7;
-            else if (per > 0.714285f)
-                return 6;
-            else if (per > 0.571428f)
-                return 5;
-            else if (per > 0.428571f)
-                return 4;
-            else if (per > 0.285714f)
-                return 3;
-            else if (per > 0.142857f)
-                return 2;
-            else
-                return 1;
-        }
         public static readonly int[] Energy = {
             1192, // ★★☆☆☆☆☆ 神偷机兵
             3690, // ★★★★★★★ 红牛能量

@@ -5,6 +5,7 @@ namespace Kocmoca
 {
     public class Prototype : MonoBehaviour
     {
+        public int type;
         [Header("Skin")]
         public GameObject[] skin; // skin[0] 留给 Blueprint
         [SerializeField]
@@ -18,6 +19,13 @@ namespace Kocmoca
         public float orthoSize; // 用于三视图摄影机正交尺寸
         public float near, far;
 
+        [Header("Shield")]
+        public int m_Shield;
+        public int m_ShieldLevel;
+        [Header("Hull")]
+        public int m_Hull;
+        public int m_HullLevel;
+
         void Reset()
         {
             Transform[] objects = GetComponentsInChildren<Transform>();
@@ -28,6 +36,7 @@ namespace Kocmoca
 
             CheckSkin();
             InitializeCinemachineFreeLook();
+            Calculate();
         }
 
         #region Skin
@@ -119,6 +128,17 @@ namespace Kocmoca
             cmFreeLook.m_XAxis.m_InvertInput = false;
             cmFreeLook.m_YAxis.m_InvertInput = true;
             cmFreeLook.enabled = false;
+        }
+        #endregion
+
+        #region Shield & Hull
+        void Calculate()
+        {
+            type = int.Parse(name.Split(new char[2] { '(', ')' })[1]);
+            m_Shield = (int)((wingspan * length + length * height + height * wingspan) * 20 + KocmocraftData.GetShieldProficiency(type));
+            m_ShieldLevel = KocmocraftData.GetShieldLevel(m_Shield);
+            m_Hull = (int)(wingspan * length * height * 10 + KocmocraftData.GetHullProficiency(type));
+            m_HullLevel = KocmocraftData.GetHullLevel(m_Hull);
         }
         #endregion
     }
