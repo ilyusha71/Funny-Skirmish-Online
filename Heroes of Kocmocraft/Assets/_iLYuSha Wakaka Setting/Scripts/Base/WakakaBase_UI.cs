@@ -49,82 +49,19 @@ namespace Kocmoca
         public GameObject blockRadar;
         public GameObject blockTurret;
         public GameObject blockMissile;
+        [Header("UI - Block - Design")]
+        public DesignBlock design;
+        public RectTransform scaleWingspan;
+        public RectTransform scaleLength;
+        public RectTransform scaleHeight;
+        public TextMeshProUGUI textWingspan;
+        public TextMeshProUGUI textLength;
+        public TextMeshProUGUI textHeight;
+        [Header("UI - Block - Dubi")]
+        public DubiBlock dubi;
+        [Header("UI - Block - Performance")]
+        public PerformanceBlock performance;
 
-        public class PanelBlock
-        {
-            public TextMeshProUGUI textTitle;
-            public TextMeshProUGUI[] item;
-        }
-        public class DataBlock : PanelBlock
-        {
-            internal ModuleData moduleData;
-        }
-
-        [System.Serializable]
-        public class AstromechDroid : DataBlock
-        {
-            public TextMeshProUGUI textInfomation;
-            public TextMeshProUGUI textShieldRecharge;
-            public TextMeshProUGUI textCollisionResistance;
-            public TextMeshProUGUI textEnginePower;
-            public TextMeshProUGUI textLockTime;
-
-            public void SetData(int index)
-            {
-                //moduleData = KocmocaData.KocmocraftData[index];
-                //textTitle.text = moduleData.DroidName;
-                //textInfomation.text = moduleData.DroidDetail;
-                //textShieldRecharge.text = moduleData.ShieldRecharge.ToString();
-                //textCollisionResistance.text = moduleData.CollisionResistance.ToString();
-                //textEnginePower.text = moduleData.EnginePower.ToString();
-                //textLockTime.text = moduleData.LockTime.ToString() + " sec";
-
-                //textInfomation.color = HangarData.TextColor[index];
-                //textShieldRecharge.color = HangarData.TextColor[index];
-                //textCollisionResistance.color = HangarData.TextColor[index];
-                //textEnginePower.color = HangarData.TextColor[index];
-                //textLockTime.color = HangarData.TextColor[index];
-
-                //for (int i = 0; i < item.Length; i++)
-                //{
-                //    item[i].color = HangarData.TextColor[index];
-                //}
-            }
-        }
-        [System.Serializable]
-        public class Radar : DataBlock
-        {
-            public TextMeshProUGUI textInfomation;
-            public TextMeshProUGUI textMaxSearchRadius;
-            public TextMeshProUGUI textMinSearchRadius;
-            public TextMeshProUGUI textMaxSearchAngle;
-            public TextMeshProUGUI textLockDistance;
-            public TextMeshProUGUI textLockAngle;
-
-            public void SetData(int index)
-            {
-                //moduleData = KocmocaData.KocmocraftData[index];
-                //textTitle.text = moduleData.RadarName;
-                //textInfomation.text = moduleData.RadarDetail;
-                //textMaxSearchRadius.text = moduleData.MaxSearchRadius.ToString() + " m";
-                //textMinSearchRadius.text = moduleData.MinSearchRadius.ToString() + " m";
-                //textMaxSearchAngle.text = moduleData.MaxSearchAngle.ToString() + " 度";
-                //textLockDistance.text = moduleData.MaxLockDistance.ToString() + " m";
-                //textLockAngle.text = moduleData.MaxLockAngle.ToString() + " 度";
-
-                //textInfomation.color = HangarData.TextColor[index];
-                //textMaxSearchRadius.color = HangarData.TextColor[index];
-                //textMinSearchRadius.color = HangarData.TextColor[index];
-                //textMaxSearchAngle.color = HangarData.TextColor[index];
-                //textLockDistance.color = HangarData.TextColor[index];
-                //textLockAngle.color = HangarData.TextColor[index];
-
-                //for (int i = 0; i < item.Length; i++)
-                //{
-                //    item[i].color = HangarData.TextColor[index];
-                //}
-            }
-        }
 
         [Header("Astromech Droid Data")]
         public AstromechDroid astromechDroid;
@@ -162,61 +99,8 @@ namespace Kocmoca
             //MoveHangarRail();
         }
 
-        [System.Serializable]
-        public class DesignBlock
-        {
-            public TextMeshProUGUI textSeason;
-            public TextMeshProUGUI textOKB;
-            public TextMeshProUGUI textCode;
-            public TextMeshProUGUI textDescription;
 
-            public void SetData(int index)
-            {
-                textSeason.text = DesignData.Season[index];
-                textOKB.text = DesignData.OKB[index];
-                textCode.text = DesignData.Code[index];
-                textDescription.text = DesignData.Design[index];
-            }
-        }
-        [Header("UI - Hangar Panel - Design")]
-        public DesignBlock design;
-
-        public RectTransform scaleWingspan;
-        public RectTransform scaleLength;
-        public RectTransform scaleHeight;
-        public TextMeshProUGUI textWingspan;
-        public TextMeshProUGUI textLength;
-        public TextMeshProUGUI textHeight;
-        [System.Serializable]
-        public class DubiBlock
-        {
-            public TextMeshProUGUI textChiefName;
-            public TextMeshProUGUI textChiefResume;
-            public RectTransform scaleChiefHeight;
-            public TextMeshProUGUI textChiefHeight;
-            public TextMeshProUGUI textSecondName;
-            public TextMeshProUGUI textSecondResume;
-            public RectTransform scaleSecondHeight;
-            public TextMeshProUGUI textSecondHeight;
-
-            public void SetData(int index)
-            {
-                //textTitle.text = DubiData.Dubi[index];
-
-                textChiefName.text = DubiData.ChiefPilot[index];
-                textChiefResume.text = DubiData.ChiefResume[index];
-                scaleChiefHeight.sizeDelta = new Vector2(274 * DubiData.ChiefHeight[index] / 200, 37);
-                textChiefHeight.text = DubiData.ChiefHeight[index].ToString() + " cm";
-
-                textSecondName.text = DubiData.SecondPilot[index];
-                textSecondResume.text = DubiData.SecondResume[index];
-                scaleSecondHeight.sizeDelta = new Vector2(274 * DubiData.SecondHeight[index] / 200, 37);
-                textSecondHeight.text = DubiData.SecondHeight[index].ToString() + " cm";
-
-            }
-        }
-        [Header("UI - Hangar Panel - Dubi")]
-        public DubiBlock dubi;
+      
 
         [System.Serializable]
         public class Turret : DataBlock
@@ -378,6 +262,7 @@ namespace Kocmoca
             textMain.text = DesignData.Kocmocraft[hangarIndex];
             design.SetData(hangarIndex);
             dubi.SetData(hangarIndex);
+            performance.SetData(hangarIndex);
             astromechDroid.SetData(hangarIndex);
             radar.SetData(hangarIndex);
             turret.SetData(hangarIndex);
@@ -443,5 +328,150 @@ namespace Kocmoca
             textHeight.text = prototype[hangarIndex].height.ToString() + " m";
         }
 
+
+        [System.Serializable]
+        public class DesignBlock
+        {
+            public TextMeshProUGUI textSeason;
+            public TextMeshProUGUI textOKB;
+            public TextMeshProUGUI textCode;
+            public TextMeshProUGUI textDescription;
+
+            public void SetData(int index)
+            {
+                textSeason.text = DesignData.Season[index];
+                textOKB.text = DesignData.OKB[index];
+                textCode.text = DesignData.Code[index];
+                textDescription.text = DesignData.Design[index];
+            }
+        }
+        [System.Serializable]
+        public class DubiBlock
+        {
+            public TextMeshProUGUI textChiefName;
+            public TextMeshProUGUI textChiefResume;
+            public RectTransform scaleChiefHeight;
+            public TextMeshProUGUI textChiefHeight;
+            public TextMeshProUGUI textSecondName;
+            public TextMeshProUGUI textSecondResume;
+            public RectTransform scaleSecondHeight;
+            public TextMeshProUGUI textSecondHeight;
+
+            public void SetData(int index)
+            {
+                textChiefName.text = DubiData.ChiefPilot[index];
+                textChiefResume.text = DubiData.ChiefResume[index];
+                scaleChiefHeight.sizeDelta = new Vector2(274 * DubiData.ChiefHeight[index] / 200, 37);
+                textChiefHeight.text = DubiData.ChiefHeight[index].ToString() + " cm";
+
+                textSecondName.text = DubiData.SecondPilot[index];
+                textSecondResume.text = DubiData.SecondResume[index];
+                scaleSecondHeight.sizeDelta = new Vector2(274 * DubiData.SecondHeight[index] / 200, 37);
+                textSecondHeight.text = DubiData.SecondHeight[index].ToString() + " cm";
+            }
+        }
+        [System.Serializable]
+        public class PerformanceBlock
+        {
+            public RawImage raw;
+            public Texture2D[] textures;
+            public TextMeshProUGUI textShield, textHull, textSpeed;
+            public Image[] shieldBar, hullBar, speedBar;
+            private int shieldLevel, hullLevel, speedLevel;
+
+            public void SetData(int index)
+            {
+                raw.texture = textures[index];
+                textShield.text = KocmocraftData.Shield[index].ToString();
+                textHull.text = KocmocraftData.Hull[index].ToString();
+                textSpeed.text = KocmocraftData.AfterburnerSpeed[index].ToString();
+                shieldLevel = KocmocraftData.GetShieldLevel(index);
+                hullLevel = KocmocraftData.GetHullLevel(index);
+                speedLevel = KocmocraftData.GetSpeedLevel(index);
+
+                for (int i = 0; i < 7; i++)
+                {
+                    shieldBar[i].enabled = i < shieldLevel ? true : false;
+                    hullBar[i].enabled = i < hullLevel ? true : false;
+                    speedBar[i].enabled = i < speedLevel ? true : false;
+                }
+            }
+        }
+
+        public class PanelBlock
+        {
+            public TextMeshProUGUI textTitle;
+            public TextMeshProUGUI[] item;
+        }
+        public class DataBlock : PanelBlock
+        {
+            internal ModuleData moduleData;
+        }
+
+        [System.Serializable]
+        public class AstromechDroid : DataBlock
+        {
+            public TextMeshProUGUI textInfomation;
+            public TextMeshProUGUI textShieldRecharge;
+            public TextMeshProUGUI textCollisionResistance;
+            public TextMeshProUGUI textEnginePower;
+            public TextMeshProUGUI textLockTime;
+
+            public void SetData(int index)
+            {
+                //moduleData = KocmocaData.KocmocraftData[index];
+                //textTitle.text = moduleData.DroidName;
+                //textInfomation.text = moduleData.DroidDetail;
+                //textShieldRecharge.text = moduleData.ShieldRecharge.ToString();
+                //textCollisionResistance.text = moduleData.CollisionResistance.ToString();
+                //textEnginePower.text = moduleData.EnginePower.ToString();
+                //textLockTime.text = moduleData.LockTime.ToString() + " sec";
+
+                //textInfomation.color = HangarData.TextColor[index];
+                //textShieldRecharge.color = HangarData.TextColor[index];
+                //textCollisionResistance.color = HangarData.TextColor[index];
+                //textEnginePower.color = HangarData.TextColor[index];
+                //textLockTime.color = HangarData.TextColor[index];
+
+                //for (int i = 0; i < item.Length; i++)
+                //{
+                //    item[i].color = HangarData.TextColor[index];
+                //}
+            }
+        }
+        [System.Serializable]
+        public class Radar : DataBlock
+        {
+            public TextMeshProUGUI textInfomation;
+            public TextMeshProUGUI textMaxSearchRadius;
+            public TextMeshProUGUI textMinSearchRadius;
+            public TextMeshProUGUI textMaxSearchAngle;
+            public TextMeshProUGUI textLockDistance;
+            public TextMeshProUGUI textLockAngle;
+
+            public void SetData(int index)
+            {
+                //moduleData = KocmocaData.KocmocraftData[index];
+                //textTitle.text = moduleData.RadarName;
+                //textInfomation.text = moduleData.RadarDetail;
+                //textMaxSearchRadius.text = moduleData.MaxSearchRadius.ToString() + " m";
+                //textMinSearchRadius.text = moduleData.MinSearchRadius.ToString() + " m";
+                //textMaxSearchAngle.text = moduleData.MaxSearchAngle.ToString() + " 度";
+                //textLockDistance.text = moduleData.MaxLockDistance.ToString() + " m";
+                //textLockAngle.text = moduleData.MaxLockAngle.ToString() + " 度";
+
+                //textInfomation.color = HangarData.TextColor[index];
+                //textMaxSearchRadius.color = HangarData.TextColor[index];
+                //textMinSearchRadius.color = HangarData.TextColor[index];
+                //textMaxSearchAngle.color = HangarData.TextColor[index];
+                //textLockDistance.color = HangarData.TextColor[index];
+                //textLockAngle.color = HangarData.TextColor[index];
+
+                //for (int i = 0; i < item.Length; i++)
+                //{
+                //    item[i].color = HangarData.TextColor[index];
+                //}
+            }
+        }
     }
 }

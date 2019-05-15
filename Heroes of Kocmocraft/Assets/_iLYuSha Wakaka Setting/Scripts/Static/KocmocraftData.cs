@@ -94,6 +94,24 @@ namespace Kocmoca
             0, // ★★★★★★★ 即将登场
             0, // ★★★★★★★ 即将登场
         };
+        public static int GetHullLevel(int index)
+        {
+            float per = (float)(Hull[index] - 4000) / 21000;
+            if (per > 0.857142f)
+                return 7;
+            else if (per > 0.714285f)
+                return 6;
+            else if (per > 0.571428f)
+                return 5;
+            else if (per > 0.428571f)
+                return 4;
+            else if (per > 0.285714f)
+                return 3;
+            else if (per > 0.142857f)
+                return 2;
+            else
+                return 1;
+        }
         public static readonly int[] Shield = {
             11754, // ★★★☆☆☆☆ 神偷机兵
             12934, // ★★★★☆☆☆ 红牛能量
@@ -120,6 +138,24 @@ namespace Kocmoca
             0, // ★★★★★★★ 即将登场
             0, // ★★★★★★★ 即将登场
         };
+        public static int GetShieldLevel(int index)
+        {
+            float per = (float)(Shield[index] - 3000) / 21000;
+            if (per > 0.857142f)
+                return 7;
+            else if (per > 0.714285f)
+                return 6;
+            else if (per > 0.571428f)
+                return 5;
+            else if (per > 0.428571f)
+                return 4;
+            else if (per > 0.285714f)
+                return 3;
+            else if (per > 0.142857f)
+                return 2;
+            else
+                return 1;
+        }
         public static readonly int[] Energy = {
             1192, // ★★☆☆☆☆☆ 神偷机兵
             3690, // ★★★★★★★ 红牛能量
@@ -198,6 +234,24 @@ namespace Kocmoca
             0, // ★★★★★★★ 即将登场
             0, // ★★★★★★★ 即将登场
         };
+        public static int GetSpeedLevel(int index)
+        {
+            float per = (float)(AfterburnerSpeed[index] - 70) / 63;
+            if (per > 0.857142f)
+                return 7;
+            else if (per > 0.714285f)
+                return 6;
+            else if (per > 0.571428f)
+                return 5;
+            else if (per > 0.428571f)
+                return 4;
+            else if (per > 0.285714f)
+                return 3;
+            else if (per > 0.142857f)
+                return 2;
+            else
+                return 1;
+        }
 
 
         // Spawn Kocmocraft
