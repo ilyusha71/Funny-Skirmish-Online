@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
+  m_Name: 15 Papoy Unicorn
+  m_EditorClassIdentifier: 
+  size:
+    wingspan: 5.7
+    length: 8.86
+    height: 5.79
+    wingspanScale: 0.6433409
+    lengthScale: 1
+    heightScale: 0.6534989
+  view:
+    orthoSize: 4.43
+    near: 7.13
+    far: 23.73
+  talk: {fileID: 8300000, guid: 46d7756c3900cfd43872fa833ad4823a, type: 3}
+  chief: {fileID: 11400000, guid: 2be8a662cacd97e42a32d9b4e936256b, type: 2}
+  reserve: {fileID: 11400000, guid: 5e592ef959b550d4496f6567510d03ac, type: 2}
+  shield:
+    value: 16496
+    level: 7
+    proficiency: {fileID: 11400000, guid: 9185ff53d965d6d48b2bbad3e527203c, type: 2}
+  hull:
+    value: 8724
+    level: 2
+    proficiency: {fileID: 11400000, guid: 960649fe14f6f5f4096aef6310467f94, type: 2}
+  speed:
+    value: 79
+    level: 2
+    proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}

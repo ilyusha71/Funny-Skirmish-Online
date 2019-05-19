@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080616060989656200}
-  m_LocalRotation: {x: -0.13579914, y: 0.7588368, z: -0.16769798, w: -0.6144939}
+  m_LocalRotation: {x: -0.13579914, y: 0.7588368, z: -0.167698, w: -0.6144939}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -225,7 +225,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3637010476205767571}
-  m_LocalRotation: {x: -0.1534595, y: 0.7536863, z: -0.18950666, w: -0.61032325}
+  m_LocalRotation: {x: -0.15345949, y: 0.75368637, z: -0.18950668, w: -0.6103232}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -445,8 +445,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5210396775716177860}
-  m_LocalRotation: {x: 0.000000010531866, y: 0.952017, z: -0.30604526, w: 0.000000032761537}
-  m_LocalPosition: {x: -10.759624, y: -3.4049995, z: 0.7129712}
+  m_LocalRotation: {x: -0.11814371, y: 0.76332855, z: -0.14589529, w: -0.6181313}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2019263014201807339}
@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: -63
+    m_Bias: -98
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -838,26 +838,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2debeac66cfd7f4d9739633285e6af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
   skin:
   - {fileID: 9213453101126171132}
   - {fileID: 3645686811382214470}
   - {fileID: 7907485790796545906}
   countSkin: 2
   cmFreeLook: {fileID: 2761876482691409242}
-  wingspan: 5.62
-  length: 5.81
-  height: 3.7
-  wingspanScale: 0.96729773
-  lengthScale: 1
-  heightScale: 0.6368331
-  orthoSize: 2.905
-  near: 5.605
-  far: 22.205
-  m_Shield: 6198
-  m_ShieldLevel: 2
-  m_Hull: 5558
-  m_HullLevel: 1
 --- !u!205 &1453594227382311980
 LODGroup:
   m_ObjectHideFlags: 0

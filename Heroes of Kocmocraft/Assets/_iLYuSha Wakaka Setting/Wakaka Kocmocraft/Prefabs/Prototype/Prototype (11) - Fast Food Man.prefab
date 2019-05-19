@@ -24,8 +24,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33490589387888923}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.9949996, z: 58.411705}
+  m_LocalRotation: {x: 0.000000003129495, y: 0.9402717, z: -0.34042525, w: 0.0000000086438225}
+  m_LocalPosition: {x: 0, y: 2.5050004, z: 3.0017052}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1900974512754391768}
@@ -295,26 +295,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2debeac66cfd7f4d9739633285e6af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 11
   skin:
   - {fileID: 2833997370067652205}
   - {fileID: 4676517015024927261}
   - {fileID: 7231100936145245302}
   countSkin: 2
   cmFreeLook: {fileID: 1129111882789763553}
-  wingspan: 6.8
-  length: 8.35
-  height: 4.58
-  wingspanScale: 0.8143712
-  lengthScale: 1
-  heightScale: 0.548503
-  orthoSize: 4.175
-  near: 6.875
-  far: 23.474998
-  m_Shield: 5423
-  m_ShieldLevel: 2
-  m_Hull: 12350
-  m_HullLevel: 3
 --- !u!205 &2412181367059147509
 LODGroup:
   m_ObjectHideFlags: 0
@@ -361,8 +347,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4533608787440073939}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.9949996, z: 58.411705}
+  m_LocalRotation: {x: -0.000000010973213, y: 0.94630826, z: -0.32326585, w: -0.000000032122298}
+  m_LocalPosition: {x: 0, y: 2.5050004, z: 3.0017052}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2608995075937898595}
@@ -687,8 +673,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6164208481505582261}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.9949996, z: 58.411705}
+  m_LocalRotation: {x: -0.000000013377664, y: 0.95201695, z: -0.3060453, w: -0.000000041613983}
+  m_LocalPosition: {x: 0, y: 2.5050004, z: 3.0017052}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1182712104030488791}
@@ -853,7 +839,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 9
+    m_Bias: -55
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1

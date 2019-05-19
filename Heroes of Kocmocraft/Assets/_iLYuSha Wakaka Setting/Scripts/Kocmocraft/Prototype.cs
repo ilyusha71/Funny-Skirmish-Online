@@ -5,26 +5,14 @@ namespace Kocmoca
 {
     public class Prototype : MonoBehaviour
     {
-        public int type;
         [Header("Skin")]
         public GameObject[] skin; // skin[0] 留给 Blueprint
         [SerializeField]
         private int countSkin;
         private int nowSkin = 1;
         private int lastSkin = 1;
-
-        [Header("Size View")]
+        [Header("FreeLook")]
         public CinemachineFreeLook cmFreeLook;
-        public float wingspan, length, height, wingspanScale, lengthScale, heightScale;
-        public float orthoSize; // 用于三视图摄影机正交尺寸
-        public float near, far;
-
-        [Header("Shield")]
-        public int m_Shield;
-        public int m_ShieldLevel;
-        [Header("Hull")]
-        public int m_Hull;
-        public int m_HullLevel;
 
         void Reset()
         {
@@ -35,8 +23,7 @@ namespace Kocmoca
             }
 
             CheckSkin();
-            InitializeCinemachineFreeLook();
-            Calculate();
+            CreatePrototypeDatabase();
         }
 
         #region Skin
@@ -96,28 +83,28 @@ namespace Kocmoca
         #endregion
 
         #region Free Look
-        void InitializeCinemachineFreeLook()
+        void CreatePrototypeDatabase()
         {
             Vector3 size = GetComponent<BoxCollider>().size;
-            wingspan = size.x;
-            length = size.z;
-            height = size.y;
+            float wingspan = size.x;
+            float length = size.z;
+            float height = size.y;
             float max = wingspan > length ? (wingspan > height ? wingspan : height) : (length > height ? length : height);
-            wingspanScale = wingspan / max;
-            lengthScale = length / max;
-            heightScale = height / max;
-            orthoSize = max * 0.5f;
-            near = orthoSize + 2.7f;
-            far = orthoSize + 19.3f;
+            float wingspanScale = wingspan / max;
+            float lengthScale = length / max;
+            float heightScale = height / max;
+            float orthoSize = max * 0.5f;
+            float near = orthoSize + 2.7f;
+            float far = orthoSize + 19.3f;
             cmFreeLook = GetComponentInChildren<CinemachineFreeLook>();
             cmFreeLook.enabled = true;
             cmFreeLook.Follow = transform;
             cmFreeLook.LookAt = transform;
             cmFreeLook.m_Lens.FieldOfView = 60;
             cmFreeLook.m_BindingMode = CinemachineTransposer.BindingMode.LockToTarget;
-            cmFreeLook.m_Orbits[0].m_Height = orthoSize+3; //sizeView.Height * 0.5f + 5;
+            cmFreeLook.m_Orbits[0].m_Height = orthoSize + 3; //sizeView.Height * 0.5f + 5;
             cmFreeLook.m_Orbits[1].m_Height = 0;
-            cmFreeLook.m_Orbits[2].m_Height = -orthoSize-3; //-sizeView.Height;
+            cmFreeLook.m_Orbits[2].m_Height = -orthoSize - 3; //-sizeView.Height;
             cmFreeLook.m_Orbits[0].m_Radius = 11; //sizeView.NearView + 2;
             cmFreeLook.m_Orbits[1].m_Radius = 11; //sizeView.HalfSize + 15;
             cmFreeLook.m_Orbits[2].m_Radius = 11; //sizeView.NearView + 1;
@@ -128,17 +115,30 @@ namespace Kocmoca
             cmFreeLook.m_XAxis.m_InvertInput = false;
             cmFreeLook.m_YAxis.m_InvertInput = true;
             cmFreeLook.enabled = false;
-        }
-        #endregion
 
-        #region Shield & Hull
-        void Calculate()
-        {
-            type = int.Parse(name.Split(new char[2] { '(', ')' })[1]);
-            m_Shield = (int)((wingspan * length + length * height + height * wingspan) * 20 + KocmocraftData.GetShieldProficiency(type));
-            m_ShieldLevel = KocmocraftData.GetShieldLevel(m_Shield);
-            m_Hull = (int)(wingspan * length * height * 10 + KocmocraftData.GetHullProficiency(type));
-            m_HullLevel = KocmocraftData.GetHullLevel(m_Hull);
+            // Saving
+#if UNITY_EDITOR
+            int type = int.Parse(name.Split(new char[2] { '(', ')' })[1]);
+            KocmocraftDatabase index = UnityEditor.AssetDatabase.LoadAssetAtPath<KocmocraftDatabase>("Assets/_iLYuSha Wakaka Setting/ScriptableObject/Kocmocraft Database.asset");
+            index.kocmocraft[type].X = type * 10 + 63;
+            index.kocmocraft[type].Y = type * 200 + 37;
+            index.kocmocraft[type].Z = type * 50 + 99;
+            index.kocmocraft[type].size.wingspan = wingspan;
+            index.kocmocraft[type].size.length = length;
+            index.kocmocraft[type].size.height = height;
+            index.kocmocraft[type].size.wingspanScale = wingspanScale;
+            index.kocmocraft[type].size.lengthScale = lengthScale;
+            index.kocmocraft[type].size.heightScale = heightScale;
+            index.kocmocraft[type].view.orthoSize = orthoSize;
+            index.kocmocraft[type].view.near = near;
+            index.kocmocraft[type].view.far = far;
+            index.kocmocraft[type].shield.Calculate((wingspan * length + length * height + height * wingspan) * 20, type);
+            index.kocmocraft[type].hull.Calculate(wingspan * length * height * 10, type);
+            index.kocmocraft[type].speed.Calculate(PerformanceData.EngineSpeed[type], type);
+            index.kocmocraft[type].name = string.Format("{0:00}", type);
+            UnityEditor.AssetDatabase.SaveAssets();
+            Debug.Log("<color=lime>" + name + " data has been preset.</color>");
+#endif
         }
         #endregion
     }

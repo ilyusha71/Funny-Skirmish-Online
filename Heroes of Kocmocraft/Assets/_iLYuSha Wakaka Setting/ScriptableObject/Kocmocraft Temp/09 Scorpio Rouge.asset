@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
+  m_Name: 09 Scorpio Rouge
+  m_EditorClassIdentifier: 
+  size:
+    wingspan: 9.65
+    length: 10.9
+    height: 5.46
+    wingspanScale: 0.8853211
+    lengthScale: 1
+    heightScale: 0.50091743
+  view:
+    orthoSize: 5.45
+    near: 8.15
+    far: 24.75
+  talk: {fileID: 8300000, guid: 965fad436d644844da138d3f8a91a6d8, type: 3}
+  chief: {fileID: 11400000, guid: 46f52eaaff5018d45a2b842a693d81b3, type: 2}
+  reserve: {fileID: 11400000, guid: f9053e5e9f7260d46868fb57081b1990, type: 2}
+  shield:
+    value: 12747
+    level: 5
+    proficiency: {fileID: 11400000, guid: 9185ff53d965d6d48b2bbad3e527203c, type: 2}
+  hull:
+    value: 13743
+    level: 4
+    proficiency: {fileID: 11400000, guid: 960649fe14f6f5f4096aef6310467f94, type: 2}
+  speed:
+    value: 90
+    level: 3
+    proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}

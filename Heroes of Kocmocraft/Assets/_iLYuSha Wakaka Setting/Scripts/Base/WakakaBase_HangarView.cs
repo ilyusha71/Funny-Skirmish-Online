@@ -97,7 +97,7 @@ namespace Kocmoca
                 }
                 if (Input.GetAxis("Mouse ScrollWheel") != 0)
                 {
-                    radius = Mathf.Clamp(radius -= Input.GetAxis("Mouse ScrollWheel") * 37, prototype[hangarIndex].near, 18.2f);
+                    radius = Mathf.Clamp(radius -= Input.GetAxis("Mouse ScrollWheel") * 37, database.kocmocraft[hangarIndex].view.near, 18.2f);
                 }
                 for (int i = 0; i < 2; i++)
                 {

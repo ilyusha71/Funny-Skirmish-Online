@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: -89
+    m_Bias: 50
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -229,8 +229,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4277605351618260097}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00000011920929, y: 0.0009498596, z: 58.410797}
+  m_LocalRotation: {x: 0.000000003129495, y: 0.9402717, z: -0.34042525, w: 0.0000000086438225}
+  m_LocalPosition: {x: -0.00000011920929, y: 3.5009499, z: 3.0007973}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4811595184265095961}
@@ -468,26 +468,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2debeac66cfd7f4d9739633285e6af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 18
   skin:
   - {fileID: 2844487746983197785}
   - {fileID: 260562102406167107}
   - {fileID: 1378994521992014918}
   countSkin: 2
   cmFreeLook: {fileID: 9082921458514662665}
-  wingspan: 8.4
-  length: 4.68
-  height: 3.79
-  wingspanScale: 1
-  lengthScale: 0.55714285
-  heightScale: 0.4511905
-  orthoSize: 4.2
-  near: 6.8999996
-  far: 23.5
-  m_Shield: 8277
-  m_ShieldLevel: 3
-  m_Hull: 13939
-  m_HullLevel: 4
 --- !u!205 &8607175436511114431
 LODGroup:
   m_ObjectHideFlags: 0
@@ -804,8 +790,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6615314487319616757}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00000011920929, y: 0.0009498596, z: 58.410797}
+  m_LocalRotation: {x: 0.000000002971751, y: 0.94630826, z: -0.32326585, w: 0.000000008699316}
+  m_LocalPosition: {x: -0.00000011920929, y: 3.5009499, z: 3.0007973}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 379241246928127608}
@@ -880,8 +866,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7400728681541453446}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00000011920929, y: 0.0009498596, z: 58.410797}
+  m_LocalRotation: {x: 0.0000000052057207, y: 0.952017, z: -0.3060453, w: 0.000000016193466}
+  m_LocalPosition: {x: -0.00000011920929, y: 3.5009499, z: 3.0007973}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4763554284135976478}

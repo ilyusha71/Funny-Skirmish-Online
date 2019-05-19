@@ -24,8 +24,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305792603789187964}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.004692, z: 58.415573}
+  m_LocalRotation: {x: 0.000000013698826, y: 0.952017, z: -0.30604526, w: 0.000000042613024}
+  m_LocalPosition: {x: 0, y: 2.495308, z: 3.0055733}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7794438341660689590}
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 95
+    m_Bias: -133
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -235,8 +235,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1418706606901870773}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.004692, z: 58.415573}
+  m_LocalRotation: {x: -0.000000010973213, y: 0.94630826, z: -0.32326585, w: -0.000000032122298}
+  m_LocalPosition: {x: 0, y: 2.495308, z: 3.0055733}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6626543234763172049}
@@ -311,8 +311,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098693031550584669}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.004692, z: 58.415573}
+  m_LocalRotation: {x: -0.000000014880464, y: 0.9402716, z: -0.34042534, w: -0.000000041100577}
+  m_LocalPosition: {x: 0, y: 2.495308, z: 3.0055733}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1194482666432995723}
@@ -457,26 +457,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2debeac66cfd7f4d9739633285e6af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 12
   skin:
   - {fileID: 2417517756378457377}
   - {fileID: 9087011503508508264}
   - {fileID: 6170864153455683316}
   countSkin: 2
   cmFreeLook: {fileID: 9103679950146316416}
-  wingspan: 6.3
-  length: 10.8
-  height: 4.77
-  wingspanScale: 0.5833333
-  lengthScale: 1
-  heightScale: 0.44166666
-  orthoSize: 5.4
-  near: 8.1
-  far: 24.699999
-  m_Shield: 9492
-  m_ShieldLevel: 4
-  m_Hull: 10295
-  m_HullLevel: 3
 --- !u!205 &7329475684135518594
 LODGroup:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ namespace Kocmoca
 {
     public enum FireControlSystemType
     {
-        Laser = 0,
+        Turret = 0,
         Rocket = 1,
         Missile = 2,
         Unknown = -999,
@@ -23,7 +23,7 @@ namespace Kocmoca
         {
             switch (name)
             {
-                case "FCS - Laser": return FireControlSystemType.Laser;
+                case "FCS - Turret": return FireControlSystemType.Turret;
                 case "FCS - Rocket": return FireControlSystemType.Rocket;
                 case "FCS - Missile": return FireControlSystemType.Missile;
                 default: return FireControlSystemType.Unknown;

@@ -45,7 +45,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 706924293}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6.28, y: 3.9, z: 6.12}
@@ -62,26 +62,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2debeac66cfd7f4d9739633285e6af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 5
   skin:
   - {fileID: 6643841386134177297}
   - {fileID: 5582870016709355686}
   - {fileID: 841183892877480728}
   countSkin: 2
   cmFreeLook: {fileID: 1322357959527230499}
-  wingspan: 6.28
-  length: 6.12
-  height: 3.9
-  wingspanScale: 1
-  lengthScale: 0.97452223
-  heightScale: 0.6210191
-  orthoSize: 3.14
-  near: 5.84
-  far: 22.439999
-  m_Shield: 4635
-  m_ShieldLevel: 1
-  m_Hull: 8548
-  m_HullLevel: 2
 --- !u!205 &1963271741294732483
 LODGroup:
   m_ObjectHideFlags: 0
@@ -128,8 +114,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 73091856606186854}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.0022173, z: 58.40709}
+  m_LocalRotation: {x: 0.000000003129495, y: 0.9402717, z: -0.34042525, w: 0.0000000086438225}
+  m_LocalPosition: {x: 0, y: 2.4977827, z: 2.9970894}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2965708932936912202}
@@ -204,8 +190,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2489660456321332717}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.0022173, z: 58.40709}
+  m_LocalRotation: {x: 0.000000002971751, y: 0.94630826, z: -0.32326585, w: 0.000000008699316}
+  m_LocalPosition: {x: 0, y: 2.4977827, z: 2.9970894}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3081862107488723192}
@@ -853,7 +839,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 43
+    m_Bias: -14
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1

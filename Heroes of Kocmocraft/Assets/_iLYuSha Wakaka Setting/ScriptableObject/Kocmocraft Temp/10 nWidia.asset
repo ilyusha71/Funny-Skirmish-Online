@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
+  m_Name: 10 nWidia
+  m_EditorClassIdentifier: 
+  size:
+    wingspan: 11.24
+    length: 9.8
+    height: 5.65
+    wingspanScale: 1
+    lengthScale: 0.87188613
+    heightScale: 0.50266904
+  view:
+    orthoSize: 5.62
+    near: 0
+    far: 0
+  talk: {fileID: 8300000, guid: f76fb0c7eab68b1468946a26869d7dd7, type: 3}
+  chief: {fileID: 11400000, guid: dc63383007779684a8512a58ca7d0003, type: 2}
+  reserve: {fileID: 11400000, guid: 7fca45a720a4bf449b211960556923d8, type: 2}
+  a: {fileID: 0}
+  b: {fileID: 0}
+  shield:
+    value: 0
+    level: 0
+    proficiency: {fileID: 11400000, guid: 9185ff53d965d6d48b2bbad3e527203c, type: 2}
+  hull:
+    value: 0
+    level: 0
+    proficiency: {fileID: 11400000, guid: 960649fe14f6f5f4096aef6310467f94, type: 2}
+  speed:
+    value: 0
+    level: 0
+    proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}

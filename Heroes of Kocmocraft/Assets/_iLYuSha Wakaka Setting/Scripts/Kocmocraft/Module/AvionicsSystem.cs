@@ -14,7 +14,7 @@ namespace Kocmoca
     {
         [Header("Dependent Components")]
         private Rigidbody myRigidbody;
-        private Engine myEngine;
+        private EngineController myEngine;
         [Header("Modular Parameter")]
         public Data dataEnergy;
         public Data dataSpeed;
@@ -56,7 +56,7 @@ namespace Kocmoca
         {
             // Dependent Components
             myRigidbody = GetComponent<Rigidbody>();
-            myEngine = GetComponentInChildren<Engine>();
+            myEngine = GetComponentInChildren<EngineController>();
             // Modular Parameter
             dataEnergy = new Data { Max = KocmocraftData.Energy[type], Value = KocmocraftData.Energy[type] };
             dataSpeed = new Data { Max = KocmocraftData.AfterburnerSpeed[type], Value = 0 };

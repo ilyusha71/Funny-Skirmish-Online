@@ -62,26 +62,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2debeac66cfd7f4d9739633285e6af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
   skin:
   - {fileID: 1895235595148277231}
   - {fileID: 8912368049859580224}
   - {fileID: 8317566617599245059}
   countSkin: 2
   cmFreeLook: {fileID: 3003935237082986994}
-  wingspan: 8.23
-  length: 10.98
-  height: 3.63
-  wingspanScale: 0.7495446
-  lengthScale: 1
-  heightScale: 0.33060113
-  orthoSize: 5.49
-  near: 8.19
-  far: 24.789999
-  m_Shield: 7901
-  m_ShieldLevel: 3
-  m_Hull: 13030
-  m_HullLevel: 4
 --- !u!205 &2865786700597443187
 LODGroup:
   m_ObjectHideFlags: 0
@@ -250,7 +236,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: -166
+    m_Bias: 56
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -295,8 +281,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3035708092148321976}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.0049071, z: 58.407566}
+  m_LocalRotation: {x: 0.000000003129495, y: 0.9402717, z: -0.34042525, w: 0.0000000086438225}
+  m_LocalPosition: {x: 0, y: 2.4950929, z: 2.9975662}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6217772325513645551}
@@ -496,8 +482,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5438623077832075387}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.0049071, z: 58.407566}
+  m_LocalRotation: {x: 0.000000002971751, y: 0.94630826, z: -0.32326585, w: 0.000000008699316}
+  m_LocalPosition: {x: 0, y: 2.4950929, z: 2.9975662}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2133579188361345251}

@@ -9,10 +9,10 @@ using UnityEditor;
 
 namespace Kocmoca
 {
-
-    //[ExecuteInEditMode]
     public partial class WakakaBase : MonoBehaviour
     {
+        [Header("Database")]
+        public KocmocraftDatabase database;
         [Header("Scene - Airport")]
         public Transform airport;
         public Transform[] apron,hangar;
@@ -23,6 +23,8 @@ namespace Kocmoca
         public Prototype[] prototype;
         public OptionController[] pilot;
         public CinemachineFreeLook[] cmFreeLook;
+        public CinemachineVirtualCamera[] cmVirtualCam;
+
         [Header("Resources - Signboard")]
         public GameObject Signboard;
         public Material[] OKB;
@@ -54,19 +56,10 @@ namespace Kocmoca
             prototype = new Prototype[hangarCount];
             pilot = new OptionController[hangarCount];
             cmFreeLook = new CinemachineFreeLook[hangarCount];
+            cmVirtualCam = new CinemachineVirtualCamera[hangarCount];
             for (int i = 0; i < countApron; i++)
             {
                 apron[i].localPosition = new Vector3(630 - (i % 12 / 3) * 360 - i % 3 * 90, 0, 0);
-
-                //Transform ccc = new GameObject().transform;
-                //ccc.SetParent(apron[i]);
-                //ccc.name = "Crew";
-                //ccc.localPosition = new Vector3(0, 0, 15);
-
-                //Transform ddd = new GameObject().transform;
-                //ddd.SetParent(apron[i]);
-                //ddd.name = "Marshal";
-
                 signboards[i] = Instantiate(Signboard, apron[i]);
                 signboards[i].GetComponentsInChildren<MeshRenderer>()[0].material = OKB[i];
                 signboards[i].GetComponentsInChildren<MeshRenderer>()[1].material = OKB[i];
@@ -84,12 +77,14 @@ namespace Kocmoca
                     pilot[i] = hangar[i].GetComponentInChildren<OptionController>();
                     cmFreeLook[i] = prototype[i].cmFreeLook;
                     cmFreeLook[i].enabled = true;
-                    cmFreeLook[i].m_Orbits[0].m_Height = prototype[i].orthoSize+3;
-                    cmFreeLook[i].m_Orbits[2].m_Height = -prototype[i].orthoSize;
-                    cmFreeLook[i].m_Orbits[0].m_Radius = prototype[i].near;
+                    cmFreeLook[i].m_Orbits[0].m_Height = database.kocmocraft[i].view.orthoSize+3;
+                    cmFreeLook[i].m_Orbits[2].m_Height = -database.kocmocraft[i].view.orthoSize;
+                    cmFreeLook[i].m_Orbits[0].m_Radius = database.kocmocraft[i].view.near;
                     cmFreeLook[i].m_Orbits[1].m_Radius = 11;
-                    cmFreeLook[i].m_Orbits[2].m_Radius = prototype[i].near;
+                    cmFreeLook[i].m_Orbits[2].m_Radius = database.kocmocraft[i].view.near;
                     cmFreeLook[i].enabled = false;
+
+         
                 }
             }
 
@@ -97,13 +92,21 @@ namespace Kocmoca
             sideCamera = hangarView.GetComponentsInChildren<Camera>()[1];
             frontCamera = hangarView.GetComponentsInChildren<Camera>()[2];
 
-            //Image[] tab = imgTab;
-            //imgTab = new Image[14];
-            //for (int i = 0; i < 7; i++)
-            //{
-            //    imgTab[i] = tab[i];
-            //    imgTab[i +7] = imgTab[i].GetComponentsInChildren<Image>()[1];
-            //}
+            // UI
+
+            panel.gameObject.SetActive(true);
+            panelDesign = panel.GetChild(1).gameObject;
+            design.Initialize(panelDesign);
+            panelDubi = panel.GetChild(2).gameObject;
+            dubi.Initialize(panelDubi);
+            panelPerformance = panel.GetChild(3).gameObject;
+            performance.Initialize(panelPerformance);
+            panelAstromech = panel.GetChild(4).gameObject;
+            panelRadar = panel.GetChild(5).gameObject;
+            panelTurret = panel.GetChild(6).gameObject;
+            panelMissile = panel.GetChild(7).gameObject;
+
+            //panel.gameObject.SetActive(false);
         }
 
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Kocmoca
@@ -19,7 +20,7 @@ namespace Kocmoca
         public Button btnHidePanel;
         private Image imgPanel;
         private Image imgHideButton;
-        private AudioSource panelAudio;
+        private AudioSource audioSource;
         private TweenerState panelState = TweenerState.Hide;
         [Header("UI - Navigation Bar - Toggle")]
         public TextMeshProUGUI textMain;
@@ -41,26 +42,20 @@ namespace Kocmoca
         public Button btnChangePilot;
         public Button btnTalk;
         private AudioSource speech;
-        [Header("UI - Block")]
-        public GameObject blockDesign;
-        public GameObject blockDubi;
-        public GameObject blockPerformance;
-        public GameObject blockAstromech;
-        public GameObject blockRadar;
-        public GameObject blockTurret;
-        public GameObject blockMissile;
-        [Header("UI - Block - Design")]
-        public DesignBlock design;
-        public RectTransform scaleWingspan;
-        public RectTransform scaleLength;
-        public RectTransform scaleHeight;
-        public TextMeshProUGUI textWingspan;
-        public TextMeshProUGUI textLength;
-        public TextMeshProUGUI textHeight;
+        [Header("UI - Panel")]
+        public GameObject panelDesign;
+        public GameObject panelDubi;
+        public GameObject panelPerformance;
+        public GameObject panelAstromech;
+        public GameObject panelRadar;
+        public GameObject panelTurret;
+        public GameObject panelMissile;
+        [Header("UI - Panel - Design")]
+        public DesignPanel design;
         [Header("UI - Block - Dubi")]
-        public DubiBlock dubi;
+        public DubiPanel dubi;
         [Header("UI - Block - Performance")]
-        public PerformanceBlock performance;
+        public PerformancePanel performance;
 
 
         [Header("Astromech Droid Data")]
@@ -150,79 +145,78 @@ namespace Kocmoca
         void InitializePanel()
         {
             //btnOption.onClick.AddListener(() => OpenPanel());
-            btnOpenPanel.onClick.AddListener(() => OpenPanel());
+            //btnOpenPanel.onClick.AddListener(() => OpenPanel());
             panel.localScale = Vector3.zero;
             btnHidePanel.onClick.AddListener(() => ClosePanel());
             imgPanel = panel.GetComponent<Image>();
             imgHideButton = btnHidePanel.image;
-            panelAudio = panel.GetComponent<AudioSource>();
-
+            audioSource = panel.GetComponent<AudioSource>();
 
             // Tab
             togDesign.onValueChanged.AddListener(isOn =>
             {
-                panelAudio.PlayOneShot(sfxTabPress, 0.73f);
-                blockDesign.SetActive(isOn);
+                audioSource.PlayOneShot(sfxTabPress, 0.73f);
+                panelDesign.SetActive(isOn);
                 if (isOn) OpenPanel(); else HidePanel();
             });
             togDubi.onValueChanged.AddListener(isOn =>
             {
-                panelAudio.PlayOneShot(sfxTabPress, 0.73f);
-                blockDubi.SetActive(isOn);
+                audioSource.PlayOneShot(sfxTabPress, 0.73f);
+                panelDubi.SetActive(isOn);
                 if (isOn) OpenPanel(); else HidePanel();
             });
             togPerformance.onValueChanged.AddListener(isOn =>
             {
-                panelAudio.PlayOneShot(sfxTabPress, 0.73f);
-                blockPerformance.SetActive(isOn);
+                audioSource.PlayOneShot(sfxTabPress, 0.73f);
+                panelPerformance.SetActive(isOn);
                 if (isOn) OpenPanel(); else HidePanel();
 
             });
             togAstromech.onValueChanged.AddListener(isOn =>
             {
-                panelAudio.PlayOneShot(sfxTabPress, 0.73f);
-                blockAstromech.SetActive(isOn);
+                audioSource.PlayOneShot(sfxTabPress, 0.73f);
+                panelAstromech.SetActive(isOn);
                 if (isOn) OpenPanel(); else HidePanel();
             });
             togRadar.onValueChanged.AddListener(isOn =>
             {
-                panelAudio.PlayOneShot(sfxTabPress, 0.73f);
-                blockRadar.SetActive(isOn);
+                audioSource.PlayOneShot(sfxTabPress, 0.73f);
+                panelRadar.SetActive(isOn);
                 if (isOn) OpenPanel(); else HidePanel();
             });
             togTurret.onValueChanged.AddListener(isOn =>
             {
-                panelAudio.PlayOneShot(sfxTabPress, 0.73f);
-                blockTurret.SetActive(isOn);
+                audioSource.PlayOneShot(sfxTabPress, 0.73f);
+                panelTurret.SetActive(isOn);
                 if (isOn) OpenPanel(); else HidePanel();
             });
             togMissile.onValueChanged.AddListener(isOn =>
             {
-                panelAudio.PlayOneShot(sfxTabPress, 0.73f);
-                blockMissile.SetActive(isOn);
+                audioSource.PlayOneShot(sfxTabPress, 0.73f);
+                panelMissile.SetActive(isOn);
                 if (isOn) OpenPanel(); else HidePanel();
             });
 
             btnChangeSkin.onClick.AddListener(() =>
             {
-                panelAudio.PlayOneShot(sfxChangeSkin);
+                audioSource.PlayOneShot(sfxChangeSkin);
                 PlayerPrefs.SetInt(LobbyInfomation.PREFS_SKIN + hangarIndex, prototype[hangarIndex].ChangeSkin());
             });
             btnSwitchWireframe.onClick.AddListener(() =>
             {
-                panelAudio.PlayOneShot(sfxSwitchWireframe);
+                audioSource.PlayOneShot(sfxSwitchWireframe);
                 prototype[hangarIndex].SwitchWireframe();
             });
             btnChangePilot.onClick.AddListener(() =>
             {
-                panelAudio.PlayOneShot(sfxChangePilot);
+                audioSource.PlayOneShot(sfxChangePilot);
                 pilot[hangarIndex].ChangeSkin();
             });
             speech = btnTalk.GetComponent<AudioSource>();
             btnTalk.onClick.AddListener(() => 
             {
                 if (!speech.isPlaying && hangarIndex < hangarCount)
-                    speech.PlayOneShot(sfxTalk[hangarIndex], 1.5f);
+                    speech.PlayOneShot(sfxTalk[hangarIndex], 3.7f);
             });
         }
 
@@ -259,141 +253,170 @@ namespace Kocmoca
 
         void LoadHangarData()
         {
-            textMain.text = DesignData.Kocmocraft[hangarIndex];
-            design.SetData(hangarIndex);
-            dubi.SetData(hangarIndex);
-            performance.SetData(hangarIndex,prototype[hangarIndex]);
+            textMain.text = DesignData.Code[hangarIndex];
+            design.SetData(hangarIndex, database.kocmocraft[hangarIndex].size);
+            dubi.SetData(hangarIndex, database.kocmocraft[hangarIndex]);
+            performance.SetData(hangarIndex, database.kocmocraft[hangarIndex]);
             astromechDroid.SetData(hangarIndex);
             radar.SetData(hangarIndex);
             turret.SetData(hangarIndex);
-
-
-
-
-            // Panel
-            //imgPanel.color = HangarData.FrameColor[hangarIndex];
-            //imgHideButton.color = HangarData.ButtonColor[hangarIndex];
-
-            // Tab
-            //for (int i = 0; i < imgTab.Length; i++)
-            //{
-            //    imgTab[i].color = HangarData.TabColor[hangarIndex];
-            //}
-
-
-
-
-            //textEngine.text = "" + DesignData.Engine[hangarIndex];
-
-            //textMaxHull.text = "" + KocmocraftData.Hull[hangarIndex];
-            //barHull.SetBar(KocmocraftData.Hull[hangarIndex]);
-            //textMaxShield.text = "" + KocmocraftData.Shield[hangarIndex];
-            //barShield.SetBar(KocmocraftData.Shield[hangarIndex]);
-            //textMaxEnergy.text = "" + KocmocraftData.Energy[hangarIndex];
-            //barEnergy.SetBar(KocmocraftData.Energy[hangarIndex]);
-            //textCruiseSpeed.text = (KocmocraftData.CruiseSpeed[hangarIndex] * 1.9438445f).ToString("0.00") + " knot";
-            //barCruise.SetBar(KocmocraftData.CruiseSpeed[hangarIndex]);
-            //textAfterburneSpeed.text = (KocmocraftData.AfterburnerSpeed[hangarIndex] * 1.9438445f).ToString("0.00") + " knot";
-            //barAfterburne.SetBar(KocmocraftData.AfterburnerSpeed[hangarIndex]);
-
-            if (hangarIndex < hangarCount)
-            {
-                //WeaponData.GetWeaponData(hangarIndex);
-                //textTurretCount.text = WeaponData.TurretCount[hangarIndex] + "x 突击激光炮";
-                //textFireRPS.text = KocmoLaserCannon.FireRoundPerSecond + " rps";
-                //textDamage.text = string.Format("{0} ~ {1} dmg", WeaponData.MinDamage, WeaponData.MaxDamage);
-                //barDamage.SetBar(WeaponData.MaxDamage);
-                //textMaxRange.text = WeaponData.MaxRange + " m";
-                //barMaxRange.SetBar(WeaponData.MaxRange);
-            }
-            else
-            {
-                //textTurretCount.text = "---";
-                //textFireRPS.text = "---";
-                //textDamage.text = "---";
-                //barDamage.SetBar(0);
-                //textMaxRange.text = "--- m";
-                //barMaxRange.SetBar(0);
-            }
-
             // 三视图
-            topCamera.orthographicSize = prototype[hangarIndex].orthoSize;
-            sideCamera.orthographicSize = prototype[hangarIndex].orthoSize;
-            frontCamera.orthographicSize = prototype[hangarIndex].orthoSize;
-            scaleWingspan.sizeDelta = new Vector2(274 * prototype[hangarIndex].wingspanScale, 37);
-            scaleLength.sizeDelta = new Vector2(274 * prototype[hangarIndex].lengthScale, 37);
-            scaleHeight.sizeDelta = new Vector2(274 * prototype[hangarIndex].heightScale, 37);
-            textWingspan.text = prototype[hangarIndex].wingspan.ToString() + " m";
-            textLength.text = prototype[hangarIndex].length.ToString() + " m";
-            textHeight.text = prototype[hangarIndex].height.ToString() + " m";
+            topCamera.orthographicSize = database.kocmocraft[hangarIndex].view.orthoSize;
+            sideCamera.orthographicSize = database.kocmocraft[hangarIndex].view.orthoSize;
+            frontCamera.orthographicSize = database.kocmocraft[hangarIndex].view.orthoSize;
         }
 
 
         [System.Serializable]
-        public class DesignBlock
+        public class DesignPanel
         {
             public TextMeshProUGUI textSeason;
+            public TextMeshProUGUI textMission;
             public TextMeshProUGUI textOKB;
+            public TextMeshProUGUI textProject;
             public TextMeshProUGUI textCode;
             public TextMeshProUGUI textDescription;
+            public RectTransform scaleWingspan;
+            public RectTransform scaleLength;
+            public RectTransform scaleHeight;
+            public TextMeshProUGUI textWingspan;
+            public TextMeshProUGUI textLength;
+            public TextMeshProUGUI textHeight;
 
-            public void SetData(int index)
+            public void Initialize(GameObject panel)
+            {
+                panel.SetActive(true);
+                Transform[] obj = panel.GetComponentsInChildren<Transform>();
+                foreach (Transform child in obj)
+                {
+                    switch (child.name)
+                    {
+                        case "Design - Season": textSeason = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Design - Mission": textMission = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Design - OKB": textOKB = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Design - Project": textProject = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Design - Code": textCode = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Design - Description": textDescription = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "View Scale - Wingspan": scaleWingspan = child.GetComponent<RectTransform>(); break;
+                        case "View Text - Wingspan": textWingspan = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "View Scale - Length": scaleLength = child.GetComponent<RectTransform>(); break;
+                        case "View Text - Length": textLength = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "View Scale - Height": scaleHeight = child.GetComponent<RectTransform>(); break;
+                        case "View Text - Height": textHeight = child.GetComponent<TextMeshProUGUI>(); break;
+                    }
+                }
+                panel.SetActive(false);
+            }
+            public void SetData(int index, Size size)
             {
                 textSeason.text = DesignData.Season[index];
+                textMission.text = DesignData.Mission[index];
                 textOKB.text = DesignData.OKB[index];
+                textProject.text = DesignData.Project[index];
                 textCode.text = DesignData.Code[index];
-                textDescription.text = DesignData.Design[index];
+                textDescription.text = DesignData.Description[index];
+                scaleWingspan.sizeDelta = new Vector2(274 * size.wingspanScale, 37);
+                scaleLength.sizeDelta = new Vector2(274 * size.lengthScale, 37);
+                scaleHeight.sizeDelta = new Vector2(274 * size.heightScale, 37);
+                textWingspan.text = size.wingspan.ToString() + " m";
+                textLength.text = size.length.ToString() + " m";
+                textHeight.text = size.height.ToString() + " m";
             }
         }
         [System.Serializable]
-        public class DubiBlock
+        public class DubiPanel
         {
-            public TextMeshProUGUI textChiefName;
-            public TextMeshProUGUI textChiefResume;
             public RectTransform scaleChiefHeight;
             public TextMeshProUGUI textChiefHeight;
-            public TextMeshProUGUI textSecondName;
-            public TextMeshProUGUI textSecondResume;
+            public TextMeshProUGUI textChiefName;
+            public TextMeshProUGUI textChiefResume;
             public RectTransform scaleSecondHeight;
             public TextMeshProUGUI textSecondHeight;
+            public TextMeshProUGUI textSecondName;
+            public TextMeshProUGUI textSecondResume;
 
-            public void SetData(int index)
+            public void Initialize(GameObject panel)
             {
-                textChiefName.text = DubiData.ChiefPilot[index];
-                textChiefResume.text = DubiData.ChiefResume[index];
-                scaleChiefHeight.sizeDelta = new Vector2(274 * DubiData.ChiefHeight[index] / 200, 37);
-                textChiefHeight.text = DubiData.ChiefHeight[index].ToString() + " cm";
+                panel.SetActive(true);
+                Transform[] obj = panel.GetComponentsInChildren<Transform>();
+                foreach (Transform child in obj)
+                {
+                    switch (child.name)
+                    {
+                        case "View Scale - Chief Height": scaleChiefHeight = child.GetComponent<RectTransform>(); break;
+                        case "View Text - Chief Height": textChiefHeight = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Dubi - Chief Name": textChiefName = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Dubi - Chief Resume": textChiefResume = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "View Scale - Second Height": scaleSecondHeight = child.GetComponent<RectTransform>(); break;
+                        case "View Text - Second Height": textSecondHeight = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Dubi - Second Name": textSecondName = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Dubi - Second Resume": textSecondResume = child.GetComponent<TextMeshProUGUI>(); break;
+                    }
+                }
+                panel.SetActive(false);
+            }
+            public void SetData(int index, KocmocraftModule dubi)
+            {
+                dubi.X = 1007;
+                dubi.Z = 2950;
+                textChiefName.text = dubi.chief.pilot;
+                textChiefResume.text = dubi.chief.resume;
+                scaleChiefHeight.sizeDelta = new Vector2(274 * dubi.chief.height / 200, 37);
+                textChiefHeight.text = dubi.chief.height.ToString() + " cm";
 
-                textSecondName.text = DubiData.SecondPilot[index];
-                textSecondResume.text = DubiData.SecondResume[index];
-                scaleSecondHeight.sizeDelta = new Vector2(274 * DubiData.SecondHeight[index] / 200, 37);
-                textSecondHeight.text = DubiData.SecondHeight[index].ToString() + " cm";
+                textSecondName.text = dubi.reserve.pilot;
+                textSecondResume.text = dubi.reserve.resume;
+                scaleSecondHeight.sizeDelta = new Vector2(274 * dubi.reserve.height / 200, 37);
+                textSecondHeight.text = dubi.reserve.height.ToString() + " cm";
             }
         }
         [System.Serializable]
-        public class PerformanceBlock
+        public class PerformancePanel
         {
             public RawImage raw;
             public Texture2D[] textures;
-            public TextMeshProUGUI textShield, textHull, textSpeed;
-            public Image[] shieldBar, hullBar, speedBar;
-            private int shieldLevel, hullLevel, speedLevel;
+            public TextMeshProUGUI textShield, textHull, textSpeed, textLicense, textShieldLevel, textHullLevel, textSpeedLevel;
+            public Image[] imgShieldBar, imgHullBar, imgSpeedBar;
+            private int m_ShieldLevel, m_HullLevel, m_SpeedLevel;
 
-            public void SetData(int index,  Prototype prototype)
+            public void Initialize(GameObject panel)
+            {
+                panel.SetActive(true);
+                Transform[] obj = panel.GetComponentsInChildren<Transform>();
+                foreach (Transform child in obj)
+                {
+                    switch (child.name)
+                    {
+                        case "Performance - Shield": textShield = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - Hull": textHull = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - Speed": textSpeed = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Pilot Tier": textLicense = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Block - Shield": textShieldLevel = child.GetComponentInChildren<TextMeshProUGUI>(); imgShieldBar = child.GetComponentsInChildren<Image>(); break;
+                        case "Block - Hull": textHullLevel = child.GetComponentInChildren<TextMeshProUGUI>(); imgHullBar = child.GetComponentsInChildren<Image>(); break;
+                        case "Block - Speed": textSpeedLevel = child.GetComponentInChildren<TextMeshProUGUI>(); imgSpeedBar = child.GetComponentsInChildren<Image>(); break;
+                    }
+                }
+                panel.SetActive(false);
+            }
+            public void SetData(int index,  KocmocraftModule performance)
             {
                 raw.texture = textures[index];
-                textShield.text = prototype.m_Shield.ToString();
-                textHull.text = prototype.m_Hull.ToString();
-                textSpeed.text = KocmocraftData.AfterburnerSpeed[index].ToString();
-                shieldLevel = prototype.m_ShieldLevel;
-                hullLevel = prototype.m_HullLevel;
-                speedLevel = KocmocraftData.GetSpeedLevel(index);
+                textShield.text = performance.shield.value.ToString();
+                textHull.text = performance.hull.value.ToString();
+                textSpeed.text = ((int)(performance.speed.value * 3.6f)).ToString();
+                textLicense.text = "T" + PerformanceData.PilotTier[index].ToString();
+                m_ShieldLevel = performance.shield.level;
+                m_HullLevel = performance.hull.level;
+                m_SpeedLevel = performance.speed.level;
+                textShieldLevel.text = "Lv." + m_ShieldLevel + " Shield";
+                textHullLevel.text = "Lv." + m_HullLevel + " Hull";
+                textSpeedLevel.text = "Lv." + m_SpeedLevel + " Speed";
 
-                for (int i = 0; i < 7; i++)
+                for (int i = 1; i < 8; i++)
                 {
-                    shieldBar[i].enabled = i < shieldLevel ? true : false;
-                    hullBar[i].enabled = i < hullLevel ? true : false;
-                    speedBar[i].enabled = i < speedLevel ? true : false;
+                    imgShieldBar[i].enabled = i <= m_ShieldLevel ? true : false;
+                    imgHullBar[i].enabled = i <= m_HullLevel ? true : false;
+                    imgSpeedBar[i].enabled = i <= m_SpeedLevel ? true : false;
                 }
             }
         }

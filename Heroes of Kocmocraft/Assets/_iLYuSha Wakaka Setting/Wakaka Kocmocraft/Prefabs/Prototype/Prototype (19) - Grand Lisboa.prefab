@@ -257,8 +257,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3167044329111185788}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.7543287, y: 7.4495792, z: 4.093837}
+  m_LocalRotation: {x: 0.123427264, y: -0.87629306, z: 0.3172619, w: 0.3409122}
+  m_LocalPosition: {x: 2.0273871, y: 2.5, z: 2.2102647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5168682479871034630}
@@ -548,7 +548,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 21
+    m_Bias: -85
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -632,7 +632,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2debeac66cfd7f4d9739633285e6af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 19
   skin:
   - {fileID: 2061064083320054266}
   - {fileID: 3200579730059148224}
@@ -640,19 +639,6 @@ MonoBehaviour:
   - {fileID: 5357390061060530423}
   countSkin: 3
   cmFreeLook: {fileID: 1920524507018268266}
-  wingspan: 7.3
-  length: 10.96
-  height: 5.03
-  wingspanScale: 0.6660584
-  lengthScale: 1
-  heightScale: 0.4589416
-  orthoSize: 5.48
-  near: 8.18
-  far: 24.779999
-  m_Shield: 9937
-  m_ShieldLevel: 4
-  m_Hull: 16474
-  m_HullLevel: 5
 --- !u!205 &775590862
 LODGroup:
   m_ObjectHideFlags: 0
@@ -825,8 +811,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6607059212513797811}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.7543287, y: 7.4495792, z: 4.093837}
+  m_LocalRotation: {x: 0.11096223, y: -0.8872392, z: 0.2852211, w: 0.345171}
+  m_LocalPosition: {x: 2.0273876, y: 2.5, z: 2.2102642}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6563212426214961249}

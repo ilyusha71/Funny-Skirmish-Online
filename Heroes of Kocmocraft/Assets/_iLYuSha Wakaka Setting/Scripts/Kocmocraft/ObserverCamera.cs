@@ -130,7 +130,7 @@ namespace Kocmoca
                 pivot.SetParent(null);
                 sway.enabled = false;
                 ReturnToZero();
-                Offset = KocmocraftData.GetCameraOffset(Target.root.GetComponent<KocmocraftManager>().Type);
+                Offset = KocmocraftData.GetCameraOffset(Target.root.GetComponent<KocmocraftCommander>().Type);
             }
         }
 

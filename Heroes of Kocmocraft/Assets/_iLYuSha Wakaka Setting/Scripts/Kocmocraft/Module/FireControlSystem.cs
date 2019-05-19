@@ -8,33 +8,41 @@
  * 3. 使用ModuleData进行快速初始化
 *****************************************************************************/
 using Photon.Pun;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Kocmoca
 {
     public class FireControlSystem : MonoBehaviour
     {
+        [Header("Presetting")]
+        public FireControlSystemType m_FireControlSystemType; // 未来用ScriptableObject取代
+        public AudioSource m_AudioSource; // 未来用物件池取代
+        public AudioClip fireSound; // 未来用物件池取代
+        public ModuleData moduleData;
+
+        public int maxAmmoCapacity; // 最大載彈量
+        public float fireRate;
+
+        public int countLauncher;
+        public Vector3[] launcher; // 砲口
+        public int turnFire; // 砲管輪射
+
         // Dependent Components
         private Transform myTransform;
         private PhotonView myPhotonView;
         private OnboardRadar myOnboardRadar;
-        private AudioSource myAudioSource;
         // Kocmonaut Data
-        private ModuleData moduleData;
         private int kocmonautNumber;
         [SerializeField]
         private bool isLocal; // Local Player or Local Bot
         // FCS Data Loading
-        private FireControlSystemType typeFCS = FireControlSystemType.Unknown;
-        private float timeReload; // 飛彈重載耗時
-        public int maxAmmoCapacity { get; set; } // 最大載彈量
-        private float fireRate;
-        private AudioClip fireSound;
+        public float timeReload; // 飛彈重載耗時
+
         // FSC Realtime Info
         public int countAmmo { get; set; }
-        private int countLauncher;
-        public Vector3[] launcher; // 砲口
-        private int turnFire; // 砲管輪射
+
         private int currentLauncher;
         private float nextTimeShoot;
         // Ammo Loading State
@@ -45,40 +53,35 @@ namespace Kocmoca
         private Transform target;
         private int targetNumber;
 
-        public void Initialize(int type, int number, bool isLocal)
+#if UNITY_EDITOR
+        public void Preset(int type)
         {
+            FCSAudioClip fcsAC = UnityEditor.AssetDatabase.LoadAssetAtPath<FCSAudioClip>("Assets/_iLYuSha Wakaka Setting/ScriptableObject/MyAudioClip.asset");
             // Dependent Components
-            myTransform = transform;
-            myPhotonView = myTransform.root.GetComponent<PhotonView>();
-            myOnboardRadar = myTransform.root.GetComponent<OnboardRadar>();
-            myAudioSource = GetComponent<AudioSource>();
-            // Kocmonaut Data
-            kocmonautNumber = number;
-            this.isLocal = isLocal;
+            m_AudioSource = GetComponent<AudioSource>();
             // FCS Data Loading
-            typeFCS = WeaponData.GetFCS(myTransform.name);
-            if (typeFCS == FireControlSystemType.Unknown) Debug.LogError("No FCS");
-            switch (typeFCS)
+            m_FireControlSystemType = WeaponData.GetFCS(name);
+            switch (m_FireControlSystemType)
             {
-                case FireControlSystemType.Laser:
+                case FireControlSystemType.Turret:
                     moduleData = KocmocaData.KocmocraftData[type];
                     maxAmmoCapacity = 999;
                     fireRate = moduleData.FireRate;
                     fireSound = moduleData.FireSound;
-                    myAudioSource.maxDistance = moduleData.ShockwaveDistance;
+                    m_AudioSource.maxDistance = moduleData.ShockwaveDistance;
                     break;
                 case FireControlSystemType.Rocket:
                     timeReload = KocmoRocketLauncher.timeReload;
                     maxAmmoCapacity = KocmoRocketLauncher.maxAmmoCapacity;
                     fireRate = KocmoRocketLauncher.FireRate;
-                    fireSound = ResourceManager.instance.soundRocket;
+                    fireSound = fcsAC.Rocket;
                     countAmmo = 0;
                     break;
                 case FireControlSystemType.Missile:
                     timeReload = KocmoMissileLauncher.timeReload;
                     maxAmmoCapacity = KocmoMissileLauncher.maxAmmoCapacity;
                     fireRate = KocmoMissileLauncher.FireRate;
-                    fireSound = ResourceManager.instance.soundMissile;
+                    fireSound = fcsAC.Missile;
                     countAmmo = 0;
                     break;
             }
@@ -94,6 +97,19 @@ namespace Kocmoca
                     launcher[i].x = -launcher[i].x;
             }
             turnFire = Mathf.RoundToInt(countLauncher * 0.5f);
+        }
+#endif
+
+        public void Active(int type, int number, bool isLocal)
+        {
+            // Dependent Components
+            myTransform = transform;
+            myPhotonView = myTransform.root.GetComponent<PhotonView>();
+            myOnboardRadar = myTransform.root.GetComponent<OnboardRadar>();
+            m_AudioSource = GetComponent<AudioSource>();
+            // Kocmonaut Data
+            kocmonautNumber = number;
+            this.isLocal = isLocal;
         }
 
         private void Update()
@@ -145,14 +161,14 @@ namespace Kocmoca
             currentLauncher++;
             currentLauncher = (int)Mathf.Repeat(currentLauncher, countLauncher);
 
-            target = typeFCS == FireControlSystemType.Laser ? myOnboardRadar.targetAutoAim : myOnboardRadar.targetRadarLockOn;
-            targetNumber = target ? target.GetComponent<KocmocraftManager>().Number : 0;
+            target = m_FireControlSystemType == FireControlSystemType.Turret ? myOnboardRadar.targetAutoAim : myOnboardRadar.targetRadarLockOn;
+            targetNumber = target ? target.GetComponent<KocmocraftCommander>().Number : 0;
 
             for (int t = 0; t < turnFire; t++)
             {
-                switch (typeFCS)
+                switch (m_FireControlSystemType)
                 {
-                    case FireControlSystemType.Laser:
+                    case FireControlSystemType.Turret:
                         myPhotonView.RPC("LaserShoot", RpcTarget.AllViaServer, currentLauncher, kocmonautNumber, targetNumber, Random.Range(-moduleData.MaxProjectileSpread, moduleData.MaxProjectileSpread));
                         break;
                     case FireControlSystemType.Rocket:
@@ -164,7 +180,7 @@ namespace Kocmoca
                 }
 
                 if (t == 0)
-                    myAudioSource.PlayOneShot(fireSound, 0.73f);
+                    m_AudioSource.PlayOneShot(fireSound, 0.73f);
 
                 currentLauncher += 2;
                 currentLauncher = (int)Mathf.Repeat(currentLauncher, countLauncher);

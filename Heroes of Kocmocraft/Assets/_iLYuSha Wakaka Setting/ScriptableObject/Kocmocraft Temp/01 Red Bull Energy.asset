@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
+  m_Name: 01 Red Bull Energy
+  m_EditorClassIdentifier: 
+  size:
+    wingspan: 5.62
+    length: 5.81
+    height: 3.7
+    wingspanScale: 0.96729773
+    lengthScale: 1
+    heightScale: 0.6368331
+  view:
+    orthoSize: 2.905
+    near: 5.605
+    far: 22.205
+  talk: {fileID: 8300000, guid: 2eb6524149e1bf24298c0f54483ec49d, type: 3}
+  chief: {fileID: 11400000, guid: 96a15a2172cf73a43bd53316bf39da09, type: 2}
+  reserve: {fileID: 11400000, guid: fa590946fbf422448a0f135f921887d8, type: 2}
+  a: {fileID: 0}
+  b: {fileID: 0}
+  shield:
+    value: 6298
+    level: 2
+    proficiency: {fileID: 11400000, guid: 9185ff53d965d6d48b2bbad3e527203c, type: 2}
+  hull:
+    value: 4808
+    level: 1
+    proficiency: {fileID: 11400000, guid: 960649fe14f6f5f4096aef6310467f94, type: 2}
+  speed:
+    value: 137
+    level: 7
+    proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}

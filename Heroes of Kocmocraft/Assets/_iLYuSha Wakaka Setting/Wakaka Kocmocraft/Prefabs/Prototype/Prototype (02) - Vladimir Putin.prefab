@@ -464,26 +464,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2debeac66cfd7f4d9739633285e6af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
   skin:
   - {fileID: 8595304455783618622}
   - {fileID: 8911737830787045253}
   - {fileID: 7819848204068676064}
   countSkin: 2
   cmFreeLook: {fileID: 1637353561210213063}
-  wingspan: 4.85
-  length: 6.41
-  height: 2.96
-  wingspanScale: 0.75663024
-  lengthScale: 1
-  heightScale: 0.4617785
-  orthoSize: 3.205
-  near: 5.9049997
-  far: 22.505
-  m_Shield: 9588
-  m_ShieldLevel: 4
-  m_Hull: 16070
-  m_HullLevel: 5
 --- !u!205 &5306314083028217807
 LODGroup:
   m_ObjectHideFlags: 0
@@ -620,7 +606,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 132
+    m_Bias: -88
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1

@@ -400,7 +400,7 @@ namespace Kocmoca
             blockType.DOKill();
             blockType.position = display.TransformPoint(readyPosType);
             blockType.DOMove(display.TransformPoint(relativePosType), timeBlockTypeDown).OnComplete(ShowData); ;
-            textType.text = DesignData.Kocmocraft[now];
+            textType.text = DesignData.Project[now];
         }
         void ShowData()
         {
@@ -470,7 +470,7 @@ namespace Kocmoca
             currentContent = DisplayContent.Kocmocraft;
             if (now > indexAvailable)
             {
-                textKocmocraft[0].text = "" + DesignData.Kocmocraft[now];
+                textKocmocraft[0].text = "" + DesignData.Project[now];
                 textKocmocraft[1].text = "---";
                 textKocmocraft[2].text = "---";
                 textKocmocraft[3].text = "---";
@@ -481,7 +481,7 @@ namespace Kocmoca
             {
                 switch (index)
                 {
-                    case 0: textKocmocraft[0].text = "" + DesignData.Kocmocraft[now]; break;
+                    case 0: textKocmocraft[0].text = "" + DesignData.Project[now]; break;
                     case 1: textKocmocraft[1].text = "" + KocmocraftData.Hull[now]; break;
                     case 2: textKocmocraft[2].text = "" + KocmocraftData.Shield[now]; break;
                     case 3: textKocmocraft[3].text = "" + KocmocraftData.Energy[now]; break;

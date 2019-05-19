@@ -24,8 +24,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133500537390807211}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.0053267, z: 58.4078}
+  m_LocalRotation: {x: -0.0000000052961666, y: 0.952017, z: -0.30604526, w: -0.000000016474822}
+  m_LocalPosition: {x: 0, y: 2.4946733, z: 2.997799}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2135802467960966213}
@@ -427,8 +427,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109168054232894051}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.0053267, z: 58.4078}
+  m_LocalRotation: {x: -0.00000000858386, y: 0.94630826, z: -0.32326585, w: -0.000000025127857}
+  m_LocalPosition: {x: 0, y: 2.4946733, z: 2.997799}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4748093517797890749}
@@ -503,8 +503,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789611168641530907}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.0053267, z: 58.4078}
+  m_LocalRotation: {x: -0.000000007487668, y: 0.9402717, z: -0.34042522, w: -0.000000020681318}
+  m_LocalPosition: {x: 0, y: 2.4946733, z: 2.997799}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7176557170469570404}
@@ -694,26 +694,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2debeac66cfd7f4d9739633285e6af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
   skin:
   - {fileID: 8382155315441483848}
   - {fileID: 8205893063066999225}
   - {fileID: 6642684796362883326}
   countSkin: 2
   cmFreeLook: {fileID: 18456379435234251}
-  wingspan: 10.38
-  length: 9.3
-  height: 4.85
-  wingspanScale: 1
-  lengthScale: 0.8959538
-  heightScale: 0.46724468
-  orthoSize: 5.19
-  near: 7.8900003
-  far: 24.49
-  m_Shield: 13939
-  m_ShieldLevel: 7
-  m_Hull: 17131
-  m_HullLevel: 5
 --- !u!205 &1602739649607193288
 LODGroup:
   m_ObjectHideFlags: 0
@@ -975,7 +961,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: -69
+    m_Bias: -89
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1

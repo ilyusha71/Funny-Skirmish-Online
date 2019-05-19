@@ -1,108 +1,176 @@
 ﻿using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Kocmoca
 {
-    //public class EngineController : MonoBehaviour, IPunObservable
-    //{
-    //    [Header("Dependent Components")]
-    //    private AudioSource myAudioSource;
-    //    private PropellerController myPropeller;
-    //    [Header("Engine Data")]
-    //    public float enginePower;
-    //    public float engineMinVol;
-    //    public float engineMaxVolume;
-    //    public float engineMinThrottlePitch;
-    //    public float engineMaxThrottlePitch;
-    //    ParticleSystem.MainModule mainModule;
-    //    public ParticleSystem[] engineThruster;
-    //    float thrusterStartLife;                //The start life that the thrusters normally have
+    [RequireComponent(typeof(AudioSource))]
+    public class EngineController : MonoBehaviour, IPunObservable
+    {
+        [Header("Presetting")]
+        public EngineType engineType; // 未来用ScriptableObject取代
+        public AudioSource engineSound;
+        public ParticleSystem[] airflow;
+        public int countAirflow;
 
-    //    public void Initialize(Type type)
-    //    {
-    //        // Dependent Components
-    //        myAudioSource = GetComponent<AudioSource>();
-    //        myPropeller = GetComponentInChildren<PropellerController>();
-    //        GetComponent<PhotonView>().ObservedComponents.Add(this);
-    //        // Engine Data
-    //        switch (KocmocraftData.GetEngineType(type))
-    //        {
-    //            case EngineType.Turbojet:
-    //                engineMaxVolume = Turbojet.engineMaxVolume;
-    //                engineMinThrottlePitch = Turbojet.engineMinThrottlePitch;
-    //                engineMaxThrottlePitch = Turbojet.engineMaxThrottlePitch;
-    //                break;
-    //            case EngineType.Turbofan:
-    //                engineMaxVolume = Turbofan.engineMaxVolume;
-    //                engineMinThrottlePitch = Turbofan.engineMinThrottlePitch;
-    //                engineMaxThrottlePitch = Turbofan.engineMaxThrottlePitch;
-    //                break;
-    //            case EngineType.Turboprop:
-    //                engineMaxVolume = Turboprop.engineMaxVolume;
-    //                engineMinThrottlePitch = Turboprop.engineMinThrottlePitch;
-    //                engineMaxThrottlePitch = Turboprop.engineMaxThrottlePitch;
-    //                break;
-    //        }
-    //        engineThruster = GetComponentsInChildren<ParticleSystem>();
+        [Serializable]
+        public class Propeller // A class for storing the advanced options.
+        {
+            public GameObject Hopter;
+            public AnimationClip Clip;
+            public float Omega;
+            public bool Reverse;
+            private Animation Animation;
 
-    //        //Record the thruster's particle start life property
-    //        if (engineThruster.Length > 1)
-    //        {
-    //            mainModule = engineThruster[1].main;
-    //            thrusterStartLife = mainModule.startLifetime.constant;
-    //        }
-    //    }
-    //    private void Update()
-    //    {
-    //        EngineControl();
-    //    }
-    //    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //    {
-    //        if (stream.IsWriting)
-    //        {
-    //            stream.SendNext(enginePower);
-    //        }
-    //        else
-    //        {
-    //            enginePower = (float)stream.ReceiveNext();                
-    //        }
-    //    }
-    //    void EngineControl()
-    //    {
-    //        myAudioSource.volume = Mathf.Lerp(0, engineMaxVolume, enginePower);
-    //        myAudioSource.pitch = Mathf.Lerp(engineMinThrottlePitch, engineMaxThrottlePitch, enginePower);
-    //        if (myPropeller) myPropeller.SetAnimationSpeed(enginePower);
+            public void InitializePropeller()
+            {
+                Animation = Hopter.AddComponent<Animation>();
+                Animation.clip = Clip;
+                Animation.AddClip(Clip, Clip.name);
+                Animation[Clip.name].speed = Reverse ? -Omega : Omega;
+                Animation.Play();
+            }
+            public void Power(float power)
+            {
+                Animation[Clip.name].speed = Reverse ? -Omega* power : Omega* power;
+            }
+        }
+        [Range(0,1)]public float enginePower = 0.5f;
+        private float MaxVolume;
+        private float MinPitch;
+        private float MaxPitch;
+        [Header("VFX")]
+        ParticleSystem.MainModule mainModule;
+        public float thrusterStartLife;                //The start life that the thrusters normally have
+        public float currentLifeTime;
+        [Header("Propeller")]
+        public Propeller[] propeller;
+        private int countPropeller;
 
-    //        if (engineThruster.Length > 1)
-    //        {
-    //            float currentLifeTime = thrusterStartLife * enginePower;
+#if UNITY_EDITOR
+     public   void Preset(Engine engine)
+        {
+            engineSound = GetComponent<AudioSource>();
+            airflow = GetComponentsInChildren<ParticleSystem>();
+            countAirflow = airflow.Length;
+        }
+#endif
 
-    //            //If the thrusters are powered on at all...
-    //            if (currentLifeTime > 0f)
-    //            {
-    //                for (int i = 1; i < engineThruster.Length; i++)
-    //                {
-    //                    //...play the particle systems...
-    //                    engineThruster[i].Play();
+        void Awake()
+        {
+            switch (engineType)
+            {
+                case EngineType.Turbojet:
+                    MaxVolume = Turbojet.MaxVolume;
+                    MinPitch = Turbojet.MinPitch;
+                    MaxPitch = Turbojet.MaxPitch;
+                    break;
+                case EngineType.Turbofan:
+                    MaxVolume = Turbofan.MaxVolume;
+                    MinPitch = Turbofan.MinPitch;
+                    MaxPitch = Turbofan.MaxPitch;
+                    break;
+                case EngineType.Turboprop:
+                    MaxVolume = Turboprop.MaxVolume;
+                    MinPitch = Turboprop.MinPitch;
+                    MaxPitch = Turboprop.MaxPitch;
+                    break;
+                case EngineType.Turboshaft:
+                    MaxVolume = Turboshaft.MaxVolume;
+                    MinPitch = Turboshaft.MinPitch;
+                    MaxPitch = Turboshaft.MaxPitch;
+                    break;
+                case EngineType.IonThruster:
+                    MaxVolume = IonThruster.MaxVolume;
+                    MinPitch = IonThruster.MinPitch;
+                    MaxPitch = IonThruster.MaxPitch;
+                    break;
+                case EngineType.BiomassEnergy:
+                    MaxVolume = BiomassEnergy.MaxVolume;
+                    MinPitch = BiomassEnergy.MinPitch;
+                    MaxPitch = BiomassEnergy.MaxPitch;
+                    break;
+                case EngineType.PulsedPlasmaThruster:
+                    MaxVolume = PulsedPlasmaThruster.MaxVolume;
+                    MinPitch = PulsedPlasmaThruster.MinPitch;
+                    MaxPitch = PulsedPlasmaThruster.MaxPitch;
+                    break;
+            }
+            countAirflow = airflow.Length;
+            //Record the thruster's particle start life property
+            if (countAirflow > 0)
+            {
+                mainModule = airflow[0].main;
+                thrusterStartLife = mainModule.startLifetime.constant;
+            }
 
-    //                    //...update the particle life for the left thruster...
-    //                    mainModule = engineThruster[i].main;
-    //                    mainModule.startLifetime = currentLifeTime;
-    //                }
-    //            }
-    //            //...Otherwise stop the particle effects
-    //            else
-    //            {
-    //                for (int i = 1; i < engineThruster.Length; i++)
-    //                {
-    //                    //...play the particle systems...
-    //                    engineThruster[i].Stop();
-    //                }
-    //            }
-    //        }
-    //    }
+            countPropeller = propeller.Length;
+            for (int i = 0; i < countPropeller; i++)
+            {
+                propeller[i].InitializePropeller();
+            }
+        }
 
-    //}
+        void Start()
+        {
+            Power(0.3f);
+            PhotonView view = transform.root.GetComponent<PhotonView>();
+            if (view)
+                view.ObservedComponents.Add(this);
+        }
+
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if (stream.IsWriting)
+            {
+                stream.SendNext(enginePower);
+            }
+            else
+            {
+                enginePower = (float)stream.ReceiveNext();
+            }
+        }
+
+        public void Power(float power)
+        {
+            enginePower = power;
+            engineSound.volume = Mathf.Lerp(0, MaxVolume, enginePower);
+            engineSound.pitch = Mathf.Lerp(MinPitch, MaxPitch, enginePower);
+
+            if (countAirflow > 0)
+            {
+                 currentLifeTime = thrusterStartLife * enginePower;
+
+                //If the thrusters are powered on at all...
+                if (currentLifeTime > 0f)
+                {
+                    for (int i = 0; i < countAirflow; i++)
+                    {
+                        //...play the particle systems...
+                        airflow[i].Play();
+
+                        //...update the particle life for the left thruster...
+                        mainModule = airflow[i].main;
+                        mainModule.startLifetime = currentLifeTime;
+                    }
+                }
+                //...Otherwise stop the particle effects
+                else
+                {
+                    for (int i = 0; i < countAirflow; i++)
+                    {
+                        //...play the particle systems...
+                        airflow[i].Stop();
+                    }
+                }
+            }
+
+            for (int i = 0; i < countPropeller; i++)
+            {
+                propeller[i].Power(enginePower);
+            }
+        }
+    }
 }

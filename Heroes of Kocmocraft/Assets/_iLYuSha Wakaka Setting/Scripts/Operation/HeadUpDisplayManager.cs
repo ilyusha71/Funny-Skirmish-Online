@@ -114,7 +114,7 @@ namespace Kocmoca
         [Header("Player Kocmocraft Module")]
         public Transform myKocmocraft;
         public Rigidbody myRigidbody;
-        //private KocmocraftManager myKocmocraftManager;
+        //private KocmocraftCommander myKocmocraftManager;
         private AvionicsSystem myAvionicsSystem;
         private KocmocraftMechDroid myMechDroid;
         private FireControlSystem myRocketFCS;
@@ -144,7 +144,7 @@ namespace Kocmoca
         {
             this.myKocmocraft = myKocmocraft;
             myRigidbody = myKocmocraft.GetComponent<Rigidbody>();
-            //myKocmocraftManager = myKocmocraft.GetComponent<KocmocraftManager>();
+            //myKocmocraftManager = myKocmocraft.GetComponent<KocmocraftCommander>();
             myAvionicsSystem = myKocmocraft.GetComponent<AvionicsSystem>();
             myMechDroid = myKocmocraft.GetComponent<KocmocraftMechDroid>();
             myRocketFCS = myKocmocraft.GetComponentsInChildren<FireControlSystem>()[1];

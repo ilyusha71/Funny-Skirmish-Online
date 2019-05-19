@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
+  m_Name: 18 Inuit Eagle
+  m_EditorClassIdentifier: 
+  size:
+    wingspan: 8.4
+    length: 4.68
+    height: 3.79
+    wingspanScale: 1
+    lengthScale: 0.55714285
+    heightScale: 0.4511905
+  view:
+    orthoSize: 4.2
+    near: 6.8999996
+    far: 23.5
+  talk: {fileID: 8300000, guid: 052625d9a0ac4a64d89b14811e2e98e1, type: 3}
+  chief: {fileID: 11400000, guid: eae1145052b43054e8a0af4066eba50e, type: 2}
+  reserve: {fileID: 11400000, guid: 5e592ef959b550d4496f6567510d03ac, type: 2}
+  shield:
+    value: 8377
+    level: 3
+    proficiency: {fileID: 11400000, guid: 9185ff53d965d6d48b2bbad3e527203c, type: 2}
+  hull:
+    value: 11689
+    level: 4
+    proficiency: {fileID: 11400000, guid: 960649fe14f6f5f4096aef6310467f94, type: 2}
+  speed:
+    value: 100
+    level: 4
+    proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}
