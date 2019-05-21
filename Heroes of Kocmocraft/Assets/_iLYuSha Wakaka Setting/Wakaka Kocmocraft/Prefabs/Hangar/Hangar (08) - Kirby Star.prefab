@@ -4756,12 +4756,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enginePower: 0.5
   engineType: 100
-  engineThruster: []
+  engineSound: {fileID: 3603594673830610449}
+  airflow:
+  - {fileID: 198377311515413784}
+  countAirflow: 1
+  enginePower: 0.5
   thrusterStartLife: 0
   currentLifeTime: 0
-  countVFX: 0
   propeller: []
 --- !u!82 &3603594673830610449
 AudioSource:
@@ -5434,7 +5436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a811e5889a18cc34088852b63eaf8fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FireControlSystemType: -999
+  m_FireControlSystemType: 0
   m_AudioSource: {fileID: 4458899126530791441}
   fireSound: {fileID: 0}
   moduleData:
@@ -5579,85 +5581,80 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.0005947798
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9463065
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.32326552
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.0017421839
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.011108398
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.005291
-      objectReference: {fileID: 0}
     - target: {fileID: 5339566074417564222, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0006058514
+      value: 0.00041213626
       objectReference: {fileID: 0}
     - target: {fileID: 5339566074417564222, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9402702
+      value: 0.9402709
       objectReference: {fileID: 0}
     - target: {fileID: 5339566074417564222, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.34042436
+      value: -0.34042493
       objectReference: {fileID: 0}
     - target: {fileID: 5339566074417564222, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0016736684
+      value: 0.00113824
       objectReference: {fileID: 0}
     - target: {fileID: 5339566074417564222, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0107421875
+      value: -0.0073242188
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0003973543
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.94630754
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.3232655
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0011644958
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.007446289
       objectReference: {fileID: 0}
     - target: {fileID: 2007675037830995817, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00052952766
+      value: 0.0003647208
       objectReference: {fileID: 0}
     - target: {fileID: 2007675037830995817, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9520157
+      value: 0.95201635
       objectReference: {fileID: 0}
     - target: {fileID: 2007675037830995817, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.30604455
+      value: -0.30604497
       objectReference: {fileID: 0}
     - target: {fileID: 2007675037830995817, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0016463399
+      value: 0.0011331736
       objectReference: {fileID: 0}
     - target: {fileID: 2007675037830995817, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.010437012
+      value: -0.0072021484
       objectReference: {fileID: 0}
     - target: {fileID: 1937128777926401891, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
         type: 3}
@@ -5689,11 +5686,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2048928806260530071}
     m_Modifications:
-    - target: {fileID: 7549505861571388140, guid: 9035784c89261954fb1d1b3854f5d225,
-        type: 3}
-      propertyPath: m_Name
-      value: Dubi - Kirby
-      objectReference: {fileID: 0}
     - target: {fileID: 8490791040180974827, guid: 9035784c89261954fb1d1b3854f5d225,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5748,6 +5740,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549505861571388140, guid: 9035784c89261954fb1d1b3854f5d225,
+        type: 3}
+      propertyPath: m_Name
+      value: Dubi - Kirby
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9035784c89261954fb1d1b3854f5d225, type: 3}

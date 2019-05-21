@@ -21,6 +21,8 @@ public class KocmocraftModule : ScriptableObject
     public Speed speed;
     [Header("Engine")]
     public Engine engine;
+    [Header("Turret")]
+    public Turret turret;
 
 #if UNITY_EDITOR
     public void SaveDatabase()

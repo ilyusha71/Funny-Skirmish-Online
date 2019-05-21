@@ -4711,12 +4711,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enginePower: 0.5
   engineType: 101
-  engineThruster: []
+  engineSound: {fileID: 4347310043413019053}
+  airflow:
+  - {fileID: 8299991467713038388}
+  - {fileID: 1576423836865630061}
+  - {fileID: 244737853570001850}
+  - {fileID: 6020143934325713270}
+  - {fileID: 185476076241203663}
+  countAirflow: 5
+  enginePower: 0.5
   thrusterStartLife: 0
   currentLifeTime: 0
-  countVFX: 0
   propeller: []
 --- !u!82 &4347310043413019053
 AudioSource:
@@ -5063,7 +5069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a811e5889a18cc34088852b63eaf8fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FireControlSystemType: -999
+  m_FireControlSystemType: 0
   m_AudioSource: {fileID: 2076168840041219895}
   fireSound: {fileID: 0}
   moduleData:
@@ -10185,11 +10191,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7304894868114583025}
     m_Modifications:
-    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
-        type: 3}
-      propertyPath: m_Name
-      value: Candle Fire
-      objectReference: {fileID: 0}
     - target: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10245,6 +10246,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
+        type: 3}
+      propertyPath: m_Name
+      value: Candle Fire
+      objectReference: {fileID: 0}
     - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
@@ -10268,6 +10274,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3079275016307664448}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &244737853570001850 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3079275016307664448}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3119941303166696501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10275,11 +10287,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7304894868114583025}
     m_Modifications:
-    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
-        type: 3}
-      propertyPath: m_Name
-      value: Candle Fire (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10335,6 +10342,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
+        type: 3}
+      propertyPath: m_Name
+      value: Candle Fire (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
@@ -10362,6 +10374,12 @@ PrefabInstance:
       objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61f9c91edeb866647b6ece4e2ede719d, type: 3}
+--- !u!198 &185476076241203663 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3119941303166696501}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &185476076256492077 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
@@ -10501,7 +10519,7 @@ PrefabInstance:
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00014641881
+      value: -0.000111714005
       objectReference: {fileID: 0}
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
@@ -10511,22 +10529,22 @@ PrefabInstance:
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.3404251
+      value: 0.34042513
       objectReference: {fileID: 0}
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0004042685
+      value: -0.00030851364
       objectReference: {fileID: 0}
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0025941133
+      value: -0.0019837618
       objectReference: {fileID: 0}
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00013191997
+      value: -0.00009948014
       objectReference: {fileID: 0}
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
@@ -10536,42 +10554,42 @@ PrefabInstance:
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.30604514
+      value: 0.30604517
       objectReference: {fileID: 0}
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0004115402
+      value: -0.00030997393
       objectReference: {fileID: 0}
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0026093721
+      value: -0.001968503
       objectReference: {fileID: 0}
     - target: {fileID: 4606776318176691689, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00014334916
+      value: -0.000105366096
       objectReference: {fileID: 0}
     - target: {fileID: 4606776318176691689, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.94630814
+      value: -0.94630826
       objectReference: {fileID: 0}
     - target: {fileID: 4606776318176691689, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.32326573
+      value: 0.3232657
       objectReference: {fileID: 0}
     - target: {fileID: 4606776318176691689, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.000418961
+      value: -0.0003082454
       objectReference: {fileID: 0}
     - target: {fileID: 4606776318176691689, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0026704073
+      value: -0.001968503
       objectReference: {fileID: 0}
     - target: {fileID: 9082921458514662665, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
@@ -10603,11 +10621,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7304894868114583025}
     m_Modifications:
-    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
-        type: 3}
-      propertyPath: m_Name
-      value: Candle Fire (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10663,6 +10676,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
+        type: 3}
+      propertyPath: m_Name
+      value: Candle Fire (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
@@ -10680,6 +10698,12 @@ PrefabInstance:
       objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61f9c91edeb866647b6ece4e2ede719d, type: 3}
+--- !u!198 &6020143934325713270 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8815069033559073932}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6020143934340965012 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,

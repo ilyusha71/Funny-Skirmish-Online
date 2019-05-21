@@ -23,7 +23,7 @@
         NightWatcherRadar,
         SkynetRadar,        
     }
-    public enum Turret
+    public enum TurretF
     {
         Prototype,
         KocmoLaserCannon,

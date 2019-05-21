@@ -48,12 +48,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enginePower: 0.5
   engineType: 106
-  engineThruster: []
+  engineSound: {fileID: 145913918658260434}
+  airflow:
+  - {fileID: 198444661888449868}
+  - {fileID: 198123284868508248}
+  - {fileID: 198024796462259618}
+  - {fileID: 198116434466401110}
+  countAirflow: 4
+  enginePower: 0.5
   thrusterStartLife: 0
   currentLifeTime: 0
-  countVFX: 0
   propeller: []
 --- !u!82 &145913918658260434
 AudioSource:
@@ -19017,7 +19022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a811e5889a18cc34088852b63eaf8fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FireControlSystemType: -999
+  m_FireControlSystemType: 0
   m_AudioSource: {fileID: 8558740919889391326}
   fireSound: {fileID: 0}
   moduleData:
@@ -19444,11 +19449,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4790882186273152}
     m_Modifications:
-    - target: {fileID: 3322143062568316750, guid: 5db0b5139d0a1244998ef6a68ef32984,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype (12) - Reindeer Transport
-      objectReference: {fileID: 0}
     - target: {fileID: 5659499168613414548, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19504,60 +19504,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
+    - target: {fileID: 3322143062568316750, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.0010829269
-      objectReference: {fileID: 0}
-    - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.952011
-      objectReference: {fileID: 0}
-    - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.3060434
-      objectReference: {fileID: 0}
-    - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.0033698971
-      objectReference: {fileID: 0}
-    - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.021362305
-      objectReference: {fileID: 0}
-    - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.0055122
+      propertyPath: m_Name
+      value: Prototype (12) - Reindeer Transport
       objectReference: {fileID: 0}
     - target: {fileID: 8680973159703357724, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0011148899
+      value: 0.00093492854
       objectReference: {fileID: 0}
     - target: {fileID: 8680973159703357724, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9402667
+      value: -0.9402681
       objectReference: {fileID: 0}
     - target: {fileID: 8680973159703357724, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.34042314
+      value: 0.34042394
       objectReference: {fileID: 0}
     - target: {fileID: 8680973159703357724, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0030797422
+      value: 0.002582371
       objectReference: {fileID: 0}
     - target: {fileID: 8680973159703357724, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.01977539
+      value: 0.016601562
       objectReference: {fileID: 0}
     - target: {fileID: 8680973159703357724, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
@@ -19567,29 +19542,59 @@ PrefabInstance:
     - target: {fileID: 2685364636385202816, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.001048848
+      value: 0.0008712857
       objectReference: {fileID: 0}
     - target: {fileID: 2685364636385202816, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.94630337
+      value: -0.9463047
       objectReference: {fileID: 0}
     - target: {fileID: 2685364636385202816, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.32326394
+      value: 0.32326487
       objectReference: {fileID: 0}
     - target: {fileID: 2685364636385202816, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0030706227
+      value: 0.0025509296
       objectReference: {fileID: 0}
     - target: {fileID: 2685364636385202816, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.019592285
+      value: 0.016296387
       objectReference: {fileID: 0}
     - target: {fileID: 2685364636385202816, guid: 5db0b5139d0a1244998ef6a68ef32984,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.0055122
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0008154063
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9520135
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.30604437
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0025371013
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.016113281
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 3.0055122
@@ -19624,11 +19629,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4790882186273152}
     m_Modifications:
-    - target: {fileID: 8300200545203762564, guid: 7dba920fd4b773246a55d3cedb41284d,
-        type: 3}
-      propertyPath: m_Name
-      value: Pilot - Mole
-      objectReference: {fileID: 0}
     - target: {fileID: 1456343834130998416, guid: 7dba920fd4b773246a55d3cedb41284d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19683,6 +19683,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8300200545203762564, guid: 7dba920fd4b773246a55d3cedb41284d,
+        type: 3}
+      propertyPath: m_Name
+      value: Pilot - Mole
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dba920fd4b773246a55d3cedb41284d, type: 3}

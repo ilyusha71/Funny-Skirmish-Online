@@ -104,6 +104,7 @@ namespace Kocmoca
             panelAstromech = panel.GetChild(4).gameObject;
             panelRadar = panel.GetChild(5).gameObject;
             panelTurret = panel.GetChild(6).gameObject;
+            turret.Initialize(panelTurret);
             panelMissile = panel.GetChild(7).gameObject;
 
             //panel.gameObject.SetActive(false);

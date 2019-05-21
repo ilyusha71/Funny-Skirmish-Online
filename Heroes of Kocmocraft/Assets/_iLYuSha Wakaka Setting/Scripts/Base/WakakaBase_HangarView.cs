@@ -19,8 +19,7 @@ namespace Kocmoca
         public float radius;
         //private int hangarCount; // /*改名*/
         private int hangarIndex;
-        private readonly int hangarMaxCount = 24;
-        private readonly int hangarHalfCount = 12;
+
 
 
         void SetHangarData()

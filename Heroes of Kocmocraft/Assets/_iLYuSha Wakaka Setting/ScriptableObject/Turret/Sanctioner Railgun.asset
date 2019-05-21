@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56df54d643e90cc47aa91f3d4ccb5bbb, type: 3}
+  m_Name: Sanctioner Railgun
+  m_EditorClassIdentifier: 
+  turretCount: 4
+  cannonName: "\u5236\u88C1\u8005\u78C1\u8F68\u70AE"
+  cannonCount: 4
+  maxAutoAimAngle: 0.8
+  maxAutoAimRange: 0.99990255
+  roundsPerMinute: 39
+  fireRate: 1.5384616
+  repeatingCount: 2
+  maxProjectileSpread: 0.11
+  shockwave: {fileID: 0}
+  ammoName: "\u84DD\u661F\u6B63\u4E49\u8D2B\u94C0\u7A7F\u7532\u5F39"
+  ammoVelocity: 6610
+  propulsion: 330500
+  flightTime: 0.37
+  operationalRange: 2445.7
+  raySize: 5
+  damage: 3102
+  dPS: 8065
+  penetration: 0
+  piercing: 20

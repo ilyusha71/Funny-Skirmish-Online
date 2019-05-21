@@ -17,87 +17,87 @@ namespace Kocmoca
     {
         // 神偷机兵
         public static readonly ModuleData MinionArmor = new ModuleData(
-            Type.MinionArmor,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+            Type.MinionArmor,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 红牛能量
         public static readonly ModuleData RedBullEnergy = new ModuleData(
-            Type.RedBullEnergy,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+            Type.RedBullEnergy,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 普鲸
         public static readonly ModuleData VladimirPutin = new ModuleData(
-            Type.VladimirPutin,AstromechDroid.StarDestroyerX,Radar.MagicMirrorLongRangeRadar,Turret.SanctionerMegaRailgun);
+            Type.VladimirPutin,AstromechDroid.StarDestroyerX,Radar.MagicMirrorLongRangeRadar, TurretF.SanctionerMegaRailgun);
 
         // 纸飞机
         public static readonly ModuleData PaperAeroplane = new ModuleData(
-            Type.PaperAeroplane,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+            Type.PaperAeroplane,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 咕咕鸡
         public static readonly ModuleData Cuckoo = new ModuleData(
-            Type.Cuckoo,AstromechDroid.ZvezdarkDeluxe,Radar.MagicMirrorLongRangeRadar,Turret.DevilTenderGazer);
+            Type.Cuckoo,AstromechDroid.ZvezdarkDeluxe,Radar.MagicMirrorLongRangeRadar, TurretF.DevilTenderGazer);
 
         // 炮弹比尔
         public static readonly ModuleData BulletBill = new ModuleData(
-            Type.BulletBill,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+            Type.BulletBill,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 时光机
         public static readonly ModuleData TimeMachine = new ModuleData(
-            Type.TimeMachine,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+            Type.TimeMachine,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 王牌狗屋
         public static readonly ModuleData AceKennel = new ModuleData(
-            Type.AceKennel,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+            Type.AceKennel,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 卡比之星
         public static readonly ModuleData KirbyStar = new ModuleData(
-            Type.KirbyStar,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+            Type.KirbyStar,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 蝎红
         public static readonly ModuleData ScorpioRouge = new ModuleData(
-            Type.ScorpioRouge,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+            Type.ScorpioRouge,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 恩威迪亚
         public static readonly ModuleData nWidia = new ModuleData(
-            Type.nWidia,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+            Type.nWidia,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 快餐侠
         public static readonly ModuleData FastFoodMan = new ModuleData(
-            Type.FastFoodMan,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+            Type.FastFoodMan,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 驯鹿空运
         public static readonly ModuleData ReindeerTransport = new ModuleData(
-            Type.ReindeerTransport,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+            Type.ReindeerTransport,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 北极星特快
         public static readonly ModuleData PolarisExpress = new ModuleData(
-            Type.PolarisExpress,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+            Type.PolarisExpress,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 远古飞鱼
         public static readonly ModuleData AncientFish = new ModuleData(
-            Type.AncientFish,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, Turret.KocmoLaserCannon);
+            Type.AncientFish,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 玩具独角兽
         public static readonly ModuleData PapoyUnicorn = new ModuleData(
-            Type.PapoyUnicorn,AstromechDroid.ZvezdarkGaming,Radar.FantasticMirrorLongRangeRadar,Turret.DevilTenderGazer);
+            Type.PapoyUnicorn,AstromechDroid.ZvezdarkGaming,Radar.FantasticMirrorLongRangeRadar, TurretF.DevilTenderGazer);
 
         // 南瓜魅影
         public static readonly ModuleData PumpkinGhost = new ModuleData(
-            Type.PumpkinGhost,AstromechDroid.StarDestroyerV,Radar.MarksmanRangeRadar,Turret.SanctionerMegaRailgun);
+            Type.PumpkinGhost,AstromechDroid.StarDestroyerV,Radar.MarksmanRangeRadar, TurretF.SanctionerMegaRailgun);
 
         // 赏金猎人
         public static readonly ModuleData BoundyHunterMKII = new ModuleData(
-            Type.BoundyHunterMKII,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+            Type.BoundyHunterMKII,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 鹰纽特
         public static readonly ModuleData InuitEagle = new ModuleData(
-            Type.InuitEagle,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+            Type.InuitEagle,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 新葡鲸
         public static readonly ModuleData GrandLisboa = new ModuleData(
-            Type.GrandLisboa,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar,Turret.KocmoLaserCannon);
+            Type.GrandLisboa,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 原型机
         public static readonly ModuleData Prototype = new ModuleData(
-            Type.Prototype,AstromechDroid.Prototype,Radar.Prototype,Turret.Prototype);
+            Type.Prototype,AstromechDroid.Prototype,Radar.Prototype, TurretF.Prototype);
 
 
         public static readonly ModuleData[] KocmocraftData = new ModuleData[24]{
@@ -179,7 +179,7 @@ namespace Kocmoca
         public readonly int ShieldPenetration;
         public readonly int HullPenetration;
 
-        public ModuleData(Type type, AstromechDroid droidType, Radar radarType, Turret turretType)
+        public ModuleData(Type type, AstromechDroid droidType, Radar radarType, TurretF turretType)
         {
             Type = type;
             switch (droidType)
@@ -335,7 +335,7 @@ namespace Kocmoca
             }
             switch (turretType)
             {
-                case Turret.DevilTenderGazer:
+                case TurretF.DevilTenderGazer:
                     TurretName = "恶魔的温情目光";
                     MaxAutoAimAngle = 0.5f; // 自动瞄准极限
                     RoundsPerMinute = 23; // 开火射速 rpm
@@ -348,7 +348,7 @@ namespace Kocmoca
                     ShieldPenetration = 23; // 護盾穿透
                     HullPenetration = 7; // 機甲穿透
                     break;
-                case Turret.SanctionerMegaRailgun:
+                case TurretF.SanctionerMegaRailgun:
                     TurretName = "制裁者的极大磁轨炮";
                     MaxAutoAimAngle = 0.7f; // 自动瞄准极限
                     RoundsPerMinute = 20; // 开火射速 rpm
@@ -361,7 +361,7 @@ namespace Kocmoca
                     ShieldPenetration = 16; // 護盾穿透
                     HullPenetration = 3; // 機甲穿透
                     break;
-                case Turret.KocmoIonPulsar:
+                case TurretF.KocmoIonPulsar:
                     TurretName = "卡斯摩的离子脉冲";
                     MaxAutoAimAngle = 1.6f; // 自动瞄准极限
                     RoundsPerMinute = 77; // 开火射速 rpm
@@ -374,7 +374,7 @@ namespace Kocmoca
                     ShieldPenetration = 3; // 護盾穿透
                     HullPenetration = 1; // 機甲穿透
                     break;
-                case Turret.KocmoLaserCannon:
+                case TurretF.KocmoLaserCannon:
                     TurretName = "卡斯摩的离子脉冲";
                     MaxAutoAimAngle = 3.0f; // 自动瞄准极限
                     RoundsPerMinute = 584; // 开火射速 rpm
@@ -387,7 +387,7 @@ namespace Kocmoca
                     ShieldPenetration = 7;
                     HullPenetration = 2;
                     break;
-                case Turret.KocmoRailgun:
+                case TurretF.KocmoRailgun:
                     TurretName = "卡斯摩的离子脉冲";
                     MaxProjectileSpread = 0.36f; //彈道散布 degree
                     ShockwaveDistance = 100; // 震波距离
@@ -399,7 +399,7 @@ namespace Kocmoca
                     ShieldPenetration = 5; // 護盾穿透
                     HullPenetration = 5; // 機甲穿透
                     break;
-                case Turret.KocmoUltraPowerPlasma:
+                case TurretF.KocmoUltraPowerPlasma:
                     TurretName = "卡斯摩的离子脉冲";
                     MaxProjectileSpread = 1.0f; //彈道散布 degree
                     ShockwaveDistance = 100; // 震波距离
@@ -411,7 +411,7 @@ namespace Kocmoca
                     ShieldPenetration = 5; // 護盾穿透
                     HullPenetration = 5; // 機甲穿透
                     break;
-                case Turret.KocmoArmorPiercing:
+                case TurretF.KocmoArmorPiercing:
                     TurretName = "卡斯摩的离子脉冲";
                     MaxProjectileSpread = 2.37f; //彈道散布 degree
                     ShockwaveDistance = 100; // 震波距离
@@ -423,7 +423,7 @@ namespace Kocmoca
                     ShieldPenetration = 5; // 護盾穿透
                     HullPenetration = 5; // 機甲穿透
                     break;
-                case Turret.Prototype:
+                case TurretF.Prototype:
                     TurretName = "未装配机炮";
                     MaxAutoAimAngle = 0;
                     RoundsPerMinute = 0;

@@ -52,18 +52,17 @@ namespace Kocmoca
         public GameObject panelMissile;
         [Header("UI - Panel - Design")]
         public DesignPanel design;
-        [Header("UI - Block - Dubi")]
+        [Header("UI - Panel - Dubi")]
         public DubiPanel dubi;
-        [Header("UI - Block - Performance")]
+        [Header("UI - Panel - Performance")]
         public PerformancePanel performance;
-
+        [Header("UI - Panel - Turret")]
+        public TurretPanel turret;
 
         [Header("Astromech Droid Data")]
         public AstromechDroid astromechDroid;
         [Header("Radar Data")]
         public Radar radar;
-        [Header("Turret Data")]
-        public Turret turret;
 
         void Awake()
         {
@@ -97,50 +96,7 @@ namespace Kocmoca
 
       
 
-        [System.Serializable]
-        public class Turret : DataBlock
-        {
-            public TextMeshProUGUI textTurretCount;
-            public TextMeshProUGUI textMaxAutoAimAngle;
-            public TextMeshProUGUI textRoundsPerMinute;
-            public TextMeshProUGUI textMaxProjectileSpread;
-            public TextMeshProUGUI textAmmoVelocity;
-            public TextMeshProUGUI textOperationalRange;
-            public TextMeshProUGUI textDamage;
-            public TextMeshProUGUI textDPS;
-            public TextMeshProUGUI textShieldPenetration;
-            public TextMeshProUGUI textHullPenetration;
 
-            public void SetData(int index)
-            {
-                //moduleData = KocmocaData.KocmocraftData[index];
-                //textTitle.text = moduleData.TurretName;
-                //textTurretCount.text = moduleData.TurretCount.ToString() + "管"  ;
-                //textMaxAutoAimAngle.text = moduleData.MaxAutoAimAngle.ToString() + " 度";
-                //textRoundsPerMinute.text = moduleData.RoundsPerMinute.ToString() + " rpm";
-                //textMaxProjectileSpread.text = moduleData.MaxProjectileSpread.ToString() + " 度";
-                //textAmmoVelocity.text = Mathf.RoundToInt(moduleData.AmmoVelocity).ToString() + " mps" ;
-                //textOperationalRange.text = Mathf.RoundToInt(moduleData.operationalRange).ToString() + " m";
-                //textDamage.text = moduleData.Damage.ToString();
-                //textDPS.text = moduleData.DPS.ToString();
-                //textShieldPenetration.text = moduleData.ShieldPenetration.ToString() + "%";
-                //textHullPenetration.text = moduleData.HullPenetration.ToString() + "%";
-
-                //textTurretCount.color = HangarData.TextColor[index];
-                //textMaxAutoAimAngle.color = HangarData.TextColor[index];
-                //textRoundsPerMinute.color = HangarData.TextColor[index];
-                //textMaxProjectileSpread.color = HangarData.TextColor[index];
-                //textAmmoVelocity.color = HangarData.TextColor[index];
-                //textOperationalRange.color = HangarData.TextColor[index];
-                //textDamage.color = HangarData.TextColor[index];
-                //textDPS.color = HangarData.TextColor[index];
-
-                //for (int i = 0; i < item.Length; i++)
-                //{
-                //    item[i].color = HangarData.TextColor[index];
-                //}
-            }
-        }
 
         void InitializePanel()
         {
@@ -259,7 +215,7 @@ namespace Kocmoca
             performance.SetData(hangarIndex, database.kocmocraft[hangarIndex]);
             astromechDroid.SetData(hangarIndex);
             radar.SetData(hangarIndex);
-            turret.SetData(hangarIndex);
+            turret.SetData(hangarIndex, database.kocmocraft[hangarIndex].turret);
             // 三视图
             topCamera.orthographicSize = database.kocmocraft[hangarIndex].view.orthoSize;
             sideCamera.orthographicSize = database.kocmocraft[hangarIndex].view.orthoSize;
@@ -328,12 +284,12 @@ namespace Kocmoca
         {
             public RectTransform scaleChiefHeight;
             public TextMeshProUGUI textChiefHeight;
-            public TextMeshProUGUI textChiefName;
+            public TextMeshProUGUI textChiefPilot;
             public TextMeshProUGUI textChiefResume;
-            public RectTransform scaleSecondHeight;
-            public TextMeshProUGUI textSecondHeight;
-            public TextMeshProUGUI textSecondName;
-            public TextMeshProUGUI textSecondResume;
+            public RectTransform scaleReserveHeight;
+            public TextMeshProUGUI textReserveHeight;
+            public TextMeshProUGUI textReservePilot;
+            public TextMeshProUGUI textReserveResume;
 
             public void Initialize(GameObject panel)
             {
@@ -345,29 +301,27 @@ namespace Kocmoca
                     {
                         case "View Scale - Chief Height": scaleChiefHeight = child.GetComponent<RectTransform>(); break;
                         case "View Text - Chief Height": textChiefHeight = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Dubi - Chief Name": textChiefName = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Dubi - Chief Name": textChiefPilot = child.GetComponent<TextMeshProUGUI>(); break;
                         case "Dubi - Chief Resume": textChiefResume = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "View Scale - Second Height": scaleSecondHeight = child.GetComponent<RectTransform>(); break;
-                        case "View Text - Second Height": textSecondHeight = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Dubi - Second Name": textSecondName = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Dubi - Second Resume": textSecondResume = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "View Scale - Reserve Height": scaleReserveHeight = child.GetComponent<RectTransform>(); break;
+                        case "View Text - Reserve Height": textReserveHeight = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Dubi - Reserve Name": textReservePilot = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Dubi - Reserve Resume": textReserveResume = child.GetComponent<TextMeshProUGUI>(); break;
                     }
                 }
                 panel.SetActive(false);
             }
             public void SetData(int index, KocmocraftModule dubi)
             {
-                dubi.X = 1007;
-                dubi.Z = 2950;
-                textChiefName.text = dubi.chief.pilot;
-                textChiefResume.text = dubi.chief.resume;
                 scaleChiefHeight.sizeDelta = new Vector2(274 * dubi.chief.height / 200, 37);
                 textChiefHeight.text = dubi.chief.height.ToString() + " cm";
+                textChiefPilot.text = dubi.chief.pilot;
+                textChiefResume.text = dubi.chief.resume;
 
-                textSecondName.text = dubi.reserve.pilot;
-                textSecondResume.text = dubi.reserve.resume;
-                scaleSecondHeight.sizeDelta = new Vector2(274 * dubi.reserve.height / 200, 37);
-                textSecondHeight.text = dubi.reserve.height.ToString() + " cm";
+                scaleReserveHeight.sizeDelta = new Vector2(274 * dubi.reserve.height / 200, 37);
+                textReserveHeight.text = dubi.reserve.height.ToString() + " cm";
+                textReservePilot.text = dubi.reserve.pilot;
+                textReserveResume.text = dubi.reserve.resume;
             }
         }
         [System.Serializable]
@@ -418,6 +372,64 @@ namespace Kocmoca
                     imgHullBar[i].enabled = i <= m_HullLevel ? true : false;
                     imgSpeedBar[i].enabled = i <= m_SpeedLevel ? true : false;
                 }
+            }
+        }
+
+        [System.Serializable]
+        public class TurretPanel
+        {
+            public TextMeshProUGUI textCannonName;
+            public TextMeshProUGUI textCannonCount;
+            public TextMeshProUGUI textMaxAutoAimAngle;
+            public TextMeshProUGUI textRoundsPerMinute;
+            public TextMeshProUGUI textMaxProjectileSpread;
+            public TextMeshProUGUI textAmmoName;
+            public TextMeshProUGUI textAmmoVelocity;
+            public TextMeshProUGUI textOperationalRange;
+            public TextMeshProUGUI textDamage;
+            public TextMeshProUGUI textDPS;
+            public TextMeshProUGUI textPenetration;
+            public TextMeshProUGUI textPiercing;
+
+            public void Initialize(GameObject panel)
+            {
+                panel.SetActive(true);
+                Transform[] obj = panel.GetComponentsInChildren<Transform>();
+                foreach (Transform child in obj)
+                {
+                    switch (child.name)
+                    {
+                        case "Turret - Cannon Name": textCannonName = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Turret - Cannon Count": textCannonCount = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Turret - Auto Aim": textMaxAutoAimAngle = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Turret - RPM": textRoundsPerMinute = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Turret - Spread": textMaxProjectileSpread = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Turret - Ammo Name": textAmmoName = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Turret - Ammo Velocity": textAmmoVelocity = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Turret - Operational Range": textOperationalRange = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Turret - Damage": textDamage = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Turret - DPS": textDPS = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Turret - Penetration": textPenetration = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Turret - Piercing": textPiercing = child.GetComponent<TextMeshProUGUI>(); break;
+                    }
+                }
+                panel.SetActive(false);
+            }
+
+            public void SetData(int index, Turret turret)
+            {
+                textCannonName.text = turret.cannonName;
+                textCannonCount.text = turret.cannonCount.ToString() + " Cannon";
+                textMaxAutoAimAngle.text = turret.maxAutoAimAngle.ToString() + "°";
+                textRoundsPerMinute.text = turret.roundsPerMinute.ToString() + " rpm";
+                textMaxProjectileSpread.text = turret.maxProjectileSpread.ToString() + "°";
+                textAmmoName.text = turret.ammoName;
+                textAmmoVelocity.text = Mathf.RoundToInt(turret.ammoVelocity*3.6f).ToString() + " Kph";
+                textOperationalRange.text = Mathf.RoundToInt(turret.operationalRange).ToString() + " m";
+                textDamage.text = turret.damage.ToString() + " Pts";
+                textDPS.text = turret.dPS.ToString() + " Pts";
+                textPenetration.text = turret.penetration.ToString() + " %";
+                textPiercing.text = turret.piercing.ToString() + " %";
             }
         }
 
