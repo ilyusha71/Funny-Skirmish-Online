@@ -2,30 +2,19 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UIEventTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class UIEventTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public AudioSource audioSource;
-    public TextMeshProUGUI tootips;
-
-    private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-        tootips = GetComponentInChildren<TextMeshProUGUI>();
-    }
+    public CanvasGroup target;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         audioSource.Play();
-        tootips.enabled = true;
+        target.alpha = 1;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        tootips.enabled = false;
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        //throw new System.NotImplementedException();
+        target.alpha = 0;
     }
 }

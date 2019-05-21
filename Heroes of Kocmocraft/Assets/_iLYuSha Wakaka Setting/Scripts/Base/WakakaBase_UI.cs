@@ -12,15 +12,11 @@ namespace Kocmoca
     {
         [Header("UI - Main")]
         public Button btnOption; // Hotkey: ESC
-        public Button btnOpenPanel; // Hotkey: P
         [Header("UI - Panel")]
-        public AudioClip sfxOpenPanel;
         public AudioClip sfxHidePanel;
         public Transform panel;
         public Button btnHidePanel;
-        private Image imgPanel;
-        private Image imgHideButton;
-        private AudioSource audioSource;
+        public AudioSource audioSource;
         private TweenerState panelState = TweenerState.Hide;
         [Header("UI - Navigation Bar - Toggle")]
         public TextMeshProUGUI textMain;
@@ -41,7 +37,7 @@ namespace Kocmoca
         public Button btnSwitchWireframe; // Hotkey: W
         public Button btnChangePilot;
         public Button btnTalk;
-        private AudioSource speech;
+        public AudioSource talkSource;
         [Header("UI - Panel")]
         public GameObject panelDesign;
         public GameObject panelDubi;
@@ -66,47 +62,19 @@ namespace Kocmoca
 
         void Awake()
         {
-            //InitializeTrackingSystem();
             //Portal.OnShutterPressedUp += EnterHangar;
-            //SFX = GetComponent<AudioSource>();
-
 
             ViewSetting();
             hangarIndex = PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
-            //billboard.localPosition = billboardHide;
             InitializePanel();
-            //blockData.localPosition = new Vector3(blockData.localPosition.x, -500, 0);
-            // Button & Toggle Event
-
-
-            // Bar
-            //barHull.Initialize(textMaxHull.transform.parent.GetComponentsInChildren<Image>(), 4000, 25000);
-            //barShield.Initialize(textMaxShield.transform.parent.GetComponentsInChildren<Image>(), 3000, 24000);
-            //barEnergy.Initialize(textMaxEnergy.transform.parent.GetComponentsInChildren<Image>(), 500, 3700);
-            //barCruise.Initialize(textCruiseSpeed.transform.parent.GetComponentsInChildren<Image>(), 20, 60);
-            //barAfterburne.Initialize(textAfterburneSpeed.transform.parent.GetComponentsInChildren<Image>(), 70, 133);
-            //barDamage.Initialize(textDamage.transform.parent.GetComponentsInChildren<Image>(), 1092, 2842);
-            //barMaxRange.Initialize(textMaxRange.transform.parent.GetComponentsInChildren<Image>(), 955, 1270);
-
             hangarState = HangarState.Ready;
-            //billboard.localPosition = billboardPos;
-            //MoveHangarRail();
         }
-
-
-      
-
-
 
         void InitializePanel()
         {
             //btnOption.onClick.AddListener(() => OpenPanel());
-            //btnOpenPanel.onClick.AddListener(() => OpenPanel());
             panel.localScale = Vector3.zero;
             btnHidePanel.onClick.AddListener(() => ClosePanel());
-            imgPanel = panel.GetComponent<Image>();
-            imgHideButton = btnHidePanel.image;
-            audioSource = panel.GetComponent<AudioSource>();
 
             // Tab
             togDesign.onValueChanged.AddListener(isOn =>
@@ -168,11 +136,10 @@ namespace Kocmoca
                 audioSource.PlayOneShot(sfxChangePilot);
                 pilot[hangarIndex].ChangeSkin();
             });
-            speech = btnTalk.GetComponent<AudioSource>();
             btnTalk.onClick.AddListener(() => 
             {
-                if (!speech.isPlaying && hangarIndex < hangarCount)
-                    speech.PlayOneShot(sfxTalk[hangarIndex], 3.7f);
+                if (!talkSource.isPlaying && hangarIndex < hangarCount)
+                    talkSource.PlayOneShot(sfxTalk[hangarIndex]);
             });
         }
 
@@ -332,7 +299,7 @@ namespace Kocmoca
             public TextMeshProUGUI textShield, textHull, textSpeed, textLicense, textShieldLevel, textHullLevel, textSpeedLevel;
             public Image[] imgShieldBar, imgHullBar, imgSpeedBar;
             private int m_ShieldLevel, m_HullLevel, m_SpeedLevel;
-
+            public TextMeshProUGUI textShieldCrystal, textEMField, textEMFieldLevel, textAirframe, textArmor, textArmorLevel, textEngine, textAfterburner, textAfterburnerLevel;
             public void Initialize(GameObject panel)
             {
                 panel.SetActive(true);
@@ -341,13 +308,22 @@ namespace Kocmoca
                 {
                     switch (child.name)
                     {
-                        case "Performance - Shield": textShield = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Performance - Hull": textHull = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Performance - Speed": textSpeed = child.GetComponent<TextMeshProUGUI>(); break;
                         case "Pilot Tier": textLicense = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Block - Shield": textShieldLevel = child.GetComponentInChildren<TextMeshProUGUI>(); imgShieldBar = child.GetComponentsInChildren<Image>(); break;
-                        case "Block - Hull": textHullLevel = child.GetComponentInChildren<TextMeshProUGUI>(); imgHullBar = child.GetComponentsInChildren<Image>(); break;
-                        case "Block - Speed": textSpeedLevel = child.GetComponentInChildren<TextMeshProUGUI>(); imgSpeedBar = child.GetComponentsInChildren<Image>(); break;
+                        case "Performance - Shield": textShield = child.GetComponent<TextMeshProUGUI>(); imgShieldBar = child.GetComponentsInChildren<Image>(); break;
+                        case "Performance - Hull": textHull = child.GetComponent<TextMeshProUGUI>(); imgHullBar = child.GetComponentsInChildren<Image>(); break;
+                        case "Performance - Speed": textSpeed = child.GetComponent<TextMeshProUGUI>(); imgSpeedBar = child.GetComponentsInChildren<Image>(); break;
+                        case "Performance - Shield Level": textShieldLevel = child.GetComponentInChildren<TextMeshProUGUI>(); break;
+                        case "Performance - Hull Level": textHullLevel = child.GetComponentInChildren<TextMeshProUGUI>(); break;
+                        case "Performance - Speed Level": textSpeedLevel = child.GetComponentInChildren<TextMeshProUGUI>(); break;
+                        case "Performance - Shield Crystal": textShieldCrystal = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - EM Field": textEMField = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - EM Field Level": textEMFieldLevel = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - Airframe": textAirframe = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - Armor": textArmor = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - Armor Level": textArmorLevel = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - Engine": textEngine = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - Afterburner": textAfterburner = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - Afterburner Level": textAfterburnerLevel = child.GetComponent<TextMeshProUGUI>(); break;
                     }
                 }
                 panel.SetActive(false);
@@ -362,9 +338,18 @@ namespace Kocmoca
                 m_ShieldLevel = performance.shield.level;
                 m_HullLevel = performance.hull.level;
                 m_SpeedLevel = performance.speed.level;
-                textShieldLevel.text = "Lv." + m_ShieldLevel + " Shield";
-                textHullLevel.text = "Lv." + m_HullLevel + " Hull";
-                textSpeedLevel.text = "Lv." + m_SpeedLevel + " Speed";
+                textShieldLevel.text = m_ShieldLevel.ToString();
+                textHullLevel.text = m_HullLevel.ToString();
+                textSpeedLevel.text = m_SpeedLevel.ToString();
+                textShieldCrystal.text = "+ " + performance.shield.shieldCrystal.ToString();
+                textEMField.text = "+ " + performance.shield.emField.ToString();
+                textEMFieldLevel.text = performance.shield.emFieldLevel.ToString();
+                textAirframe.text = "+ " + performance.hull.airframe.ToString();
+                textArmor.text = "+ " + performance.hull.armor.ToString();
+                textArmorLevel.text = performance.hull.armorLevel.ToString();
+                textEngine.text = "+ "+((int)(performance.speed.engine * 3.6f)).ToString();
+                textAfterburner.text = "+ " + ((int)(performance.speed.afterburner * 3.6f)).ToString();
+                textAfterburnerLevel.text = performance.speed.afterburnerLevel.ToString();
 
                 for (int i = 1; i < 8; i++)
                 {

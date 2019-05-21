@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 01 Red Bull Energy
   m_EditorClassIdentifier: 
-  X: 9
+  X: 73
   Y: 237
-  Z: 11
+  Z: 149
   size:
     wingspan: 5.62
     length: 5.81
@@ -33,13 +33,22 @@ MonoBehaviour:
     value: 6298
     level: 2
     proficiency: {fileID: 11400000, guid: 9185ff53d965d6d48b2bbad3e527203c, type: 2}
+    shieldCrystal: 1498
+    emFieldLevel: 2
+    emField: 4800
   hull:
     value: 4808
     level: 1
     proficiency: {fileID: 11400000, guid: 960649fe14f6f5f4096aef6310467f94, type: 2}
+    airframe: 1208
+    armorLevel: 1
+    armor: 3600
   speed:
     value: 137
     level: 7
     proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}
+    engine: 17
+    afterburnerLevel: 7
+    afterburner: 120
   engine: {fileID: 0}
   turret: {fileID: 11400000, guid: 03586d03d44a3f24eb1d5c680a971c9b, type: 2}

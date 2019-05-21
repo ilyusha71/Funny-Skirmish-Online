@@ -56,11 +56,18 @@ public abstract class Performance
 public class Shield : Performance
 {
     public Proficiency proficiency;
+    public int shieldCrystal;
+    public int emFieldLevel;
+    public int emField;
+
     public override void Calculate(float design, int type)
     {
-        float basic = 1200;
-        float diff = 1800;
-        value = (int)(design + basic + diff * proficiency.m_Proficiency[type]);
+        int basic = 1200;
+        int diff = 1800;
+        shieldCrystal = (int)design;
+        emFieldLevel = proficiency.m_Proficiency[type];
+        emField = basic + diff * emFieldLevel;
+        value = shieldCrystal+ emField;
         for (int i = 7; i > 0; i--)
         {
             if (value >= basic + diff * i + (diff / 6 * (i - 1)))
@@ -68,18 +75,25 @@ public class Shield : Performance
                 level = i;
                 break;
             }
-        }
+        }        
     }
 }
 [System.Serializable]
 public class Hull : Performance
 {
     public Proficiency proficiency;
+    public int airframe;
+    public int armorLevel;
+    public int armor;
+
     public override void Calculate(float design, int type)
     {
-        float basic = 1400;
-        float diff = 2200;
-        value = (int)(design + basic + diff * proficiency.m_Proficiency[type]);
+        int basic = 1400;
+        int diff = 2200;
+        airframe = (int)design;
+        armorLevel = proficiency.m_Proficiency[type];
+        armor = basic + diff * armorLevel;
+        value = airframe + armor;
         for (int i = 7; i > 0; i--)
         {
             if (value >= basic + diff * i + (diff / 6 * (i - 1)))
@@ -94,11 +108,18 @@ public class Hull : Performance
 public class Speed : Performance
 {
     public Proficiency proficiency;
+    public int engine;
+    public int afterburnerLevel;
+    public int afterburner;
+
     public override void Calculate(float design, int type)
     {
-        float basic = 50;
-        float diff = 10;
-        value = (int)(design + basic + diff * proficiency.m_Proficiency[type]);
+        int basic = 50;
+        int diff = 10;
+        engine = (int)design;
+        afterburnerLevel = proficiency.m_Proficiency[type];
+        afterburner = basic + diff * afterburnerLevel;
+        value = engine + afterburner;
         for (int i = 7; i > 0; i--)
         {
             if (value >= basic + diff * i + (diff / 6 * (i - 1)))

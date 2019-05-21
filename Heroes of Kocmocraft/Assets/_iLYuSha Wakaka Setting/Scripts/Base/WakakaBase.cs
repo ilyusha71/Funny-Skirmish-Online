@@ -93,8 +93,45 @@ namespace Kocmoca
             frontCamera = hangarView.GetComponentsInChildren<Camera>()[2];
 
             // UI
+            talkSource = btnTalk.transform.parent.GetComponent<AudioSource>();
+            UIEventTrigger et = togDesign.GetComponent<UIEventTrigger>();
+            et.audioSource = et.GetComponent<AudioSource>();
+            et.target = et.GetComponentInChildren<CanvasGroup>();
+            et = togDubi.GetComponent<UIEventTrigger>();
+            et.audioSource = et.GetComponent<AudioSource>();
+            et.target = et.GetComponentInChildren<CanvasGroup>();
+            et = togPerformance.GetComponent<UIEventTrigger>();
+            et.audioSource = et.GetComponent<AudioSource>();
+            et.target = et.GetComponentInChildren<CanvasGroup>();
+            et = togAstromech.GetComponent<UIEventTrigger>();
+            et.audioSource = et.GetComponent<AudioSource>();
+            et.target = et.GetComponentInChildren<CanvasGroup>();
+            et = togRadar.GetComponent<UIEventTrigger>();
+            et.audioSource = et.GetComponent<AudioSource>();
+            et.target = et.GetComponentInChildren<CanvasGroup>();
+            et = togTurret.GetComponent<UIEventTrigger>();
+            et.audioSource = et.GetComponent<AudioSource>();
+            et.target = et.GetComponentInChildren<CanvasGroup>();
+            et = togMissile.GetComponent<UIEventTrigger>();
+            et.audioSource = et.GetComponent<AudioSource>();
+            et.target = et.GetComponentInChildren<CanvasGroup>();
+
+            et = btnChangePilot.GetComponent<UIEventTrigger>();
+            et.audioSource = et.GetComponent<AudioSource>();
+            et.target = et.GetComponentInChildren<CanvasGroup>();
+            et = btnChangeSkin.GetComponent<UIEventTrigger>();
+            et.audioSource = et.GetComponent<AudioSource>();
+            et.target = et.GetComponentInChildren<CanvasGroup>();
+            et = btnSwitchWireframe.GetComponent<UIEventTrigger>();
+            et.audioSource = et.GetComponent<AudioSource>();
+            et.target = et.GetComponentInChildren<CanvasGroup>();
+            et = btnTalk.GetComponent<UIEventTrigger>();
+            et.audioSource = et.GetComponent<AudioSource>();
+            et.target = et.GetComponentInChildren<CanvasGroup>();
+
 
             panel.gameObject.SetActive(true);
+            audioSource = panel.GetComponent<AudioSource>();
             panelDesign = panel.GetChild(1).gameObject;
             design.Initialize(panelDesign);
             panelDubi = panel.GetChild(2).gameObject;
@@ -106,8 +143,6 @@ namespace Kocmoca
             panelTurret = panel.GetChild(6).gameObject;
             turret.Initialize(panelTurret);
             panelMissile = panel.GetChild(7).gameObject;
-
-            //panel.gameObject.SetActive(false);
         }
 
 
