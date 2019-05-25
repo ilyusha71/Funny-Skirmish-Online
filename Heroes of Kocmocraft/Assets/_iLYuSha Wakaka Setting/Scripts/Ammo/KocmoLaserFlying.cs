@@ -35,11 +35,7 @@ namespace Kocmoca
             vfx = GetComponent<TrailRenderer>();
         }
 
-        private void OnEnable()
-        {
-            StartCoroutine(FlyingInitialize());
 
-        }
         public Type type;
         public bool test;
         public string lastOwner;
@@ -51,18 +47,7 @@ namespace Kocmoca
             vfx.enabled = false;
             target = null;
             myRigidbody.Sleep();
-            //ResetAmmo();
-            //StartCoroutine(FlyingInitialize());
-            //test = false;
-            //if (type != Type.Unknown)
-            //{
-            //    if (owner.Type == Type.PaperAeroplane)
-            //    {
-            //        Debug.Log("Frame: " + Time.frameCount + " / " + owner.Name);
-            //        test = true;
-            //        lastType = owner.Name;
-            //    }
-            //}
+
             pointStarting = Vector3.zero;
             //timeRecovery = Time.time + 100;
             pointStarting = myTransform.position;
@@ -79,8 +64,12 @@ namespace Kocmoca
             projectileSpread = spread;
             type = owner.Type;
             gameObject.SetActive(true);
+            Flying();
         }
-
+        private void OnEnable()
+        {
+            //StartCoroutine(FlyingInitialize());
+        }
         // 使用協程是因為在PRC呼叫Ammo生成之後，AddForce的力道大於一定值會產生向前的位移偏差
         // 來自FCS的賦值InputAmmoData()會在OnEnable()之後，必須放在等待時間之後，不然owner來不及更新
         IEnumerator FlyingInitialize()
@@ -105,6 +94,37 @@ namespace Kocmoca
             //    Debug.Log(owner.Name + " / MISS");
             Recycle(gameObject);
         }
+
+        void Flying()
+        {
+            if (target)
+            {
+                targetRigid = target.GetComponent<Rigidbody>();
+                float expectedTime = Mathf.Sqrt(Vector3.SqrMagnitude(target.position - myTransform.position) / (moduleData.AmmoVelocity * moduleData.AmmoVelocity - targetRigid.velocity.sqrMagnitude));
+
+                Vector3 expectedTargetPosition = target.position + targetRigid.velocity * expectedTime;
+                Vector3 expectedTargetDirection = (expectedTargetPosition - myTransform.position).normalized;
+                myTransform.forward = expectedTargetDirection;
+            }
+            myTransform.localRotation *= Quaternion.Euler(0, projectileSpread, 0);
+            testOri = myTransform.position;
+            myRigidbody.AddForce(myTransform.forward * moduleData.propulsion);
+            vfx.enabled = true;
+
+            StartCoroutine(Re());
+        }
+
+
+
+
+        IEnumerator Re()
+        {
+            yield return moduleData.waitRecovery;
+            //if (type == Type.Cuckoo || type == Type.PapoyUnicorn)
+            //    Debug.Log(owner.Name + " / MISS");
+            Recycle(gameObject);
+        }
+
 
         private void FixedUpdate()
         {

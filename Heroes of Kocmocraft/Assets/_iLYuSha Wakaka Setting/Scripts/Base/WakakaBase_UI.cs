@@ -252,13 +252,13 @@ namespace Kocmoca
             public RectTransform scaleChiefHeight;
             public TextMeshProUGUI textChiefHeight;
             public TextMeshProUGUI textChiefPilot;
-            public TextMeshProUGUI textChiefResume;
             public RectTransform scaleReserveHeight;
             public TextMeshProUGUI textReserveHeight;
             public TextMeshProUGUI textReservePilot;
-            public TextMeshProUGUI textReserveResume;
+            public TextMeshProUGUI tipChief;
+            public TextMeshProUGUI tipReserve;
 
-            public void Initialize(GameObject panel)
+            public void Initialize(GameObject panel,GameObject tip)
             {
                 panel.SetActive(true);
                 Transform[] obj = panel.GetComponentsInChildren<Transform>();
@@ -268,27 +268,34 @@ namespace Kocmoca
                     {
                         case "View Scale - Chief Height": scaleChiefHeight = child.GetComponent<RectTransform>(); break;
                         case "View Text - Chief Height": textChiefHeight = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Dubi - Chief Name": textChiefPilot = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Dubi - Chief Resume": textChiefResume = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Dubi - Chief Pilot": textChiefPilot = child.GetComponent<TextMeshProUGUI>(); break;
                         case "View Scale - Reserve Height": scaleReserveHeight = child.GetComponent<RectTransform>(); break;
                         case "View Text - Reserve Height": textReserveHeight = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Dubi - Reserve Name": textReservePilot = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Dubi - Reserve Resume": textReserveResume = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Dubi - Reserve Pilot": textReservePilot = child.GetComponent<TextMeshProUGUI>(); break;
                     }
                 }
                 panel.SetActive(false);
+                obj = tip.GetComponentsInChildren<Transform>();
+                foreach (Transform child in obj)
+                {
+                    switch (child.name)
+                    {
+                        case "Tip - Chief": tipChief = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Tip - Reserve": tipReserve = child.GetComponent<TextMeshProUGUI>(); break;
+                    }
+                }
             }
             public void SetData(int index, KocmocraftModule dubi)
             {
+                tipChief.text = dubi.chief.resume;
+                tipReserve.text = dubi.reserve.resume;
                 scaleChiefHeight.sizeDelta = new Vector2(274 * dubi.chief.height / 200, 37);
                 textChiefHeight.text = dubi.chief.height.ToString() + " cm";
                 textChiefPilot.text = dubi.chief.pilot;
-                textChiefResume.text = dubi.chief.resume;
 
                 scaleReserveHeight.sizeDelta = new Vector2(274 * dubi.reserve.height / 200, 37);
                 textReserveHeight.text = dubi.reserve.height.ToString() + " cm";
                 textReservePilot.text = dubi.reserve.pilot;
-                textReserveResume.text = dubi.reserve.resume;
             }
         }
         [System.Serializable]

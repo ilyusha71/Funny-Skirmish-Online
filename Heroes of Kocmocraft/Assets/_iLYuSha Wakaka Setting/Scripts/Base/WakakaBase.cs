@@ -135,7 +135,7 @@ namespace Kocmoca
             panelDesign = panel.GetChild(1).gameObject;
             design.Initialize(panelDesign);
             panelDubi = panel.GetChild(2).gameObject;
-            dubi.Initialize(panelDubi);
+            dubi.Initialize(panelDubi, panel.GetChild(8).gameObject);
             panelPerformance = panel.GetChild(3).gameObject;
             performance.Initialize(panelPerformance);
             panelAstromech = panel.GetChild(4).gameObject;

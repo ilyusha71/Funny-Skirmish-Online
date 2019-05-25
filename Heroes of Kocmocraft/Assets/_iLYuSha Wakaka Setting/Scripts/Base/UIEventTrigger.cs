@@ -7,13 +7,13 @@ public class UIEventTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public AudioSource audioSource;
     public CanvasGroup target;
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         audioSource.Play();
         target.alpha = 1;
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public virtual void OnPointerExit(PointerEventData eventData)
     {
         target.alpha = 0;
     }
