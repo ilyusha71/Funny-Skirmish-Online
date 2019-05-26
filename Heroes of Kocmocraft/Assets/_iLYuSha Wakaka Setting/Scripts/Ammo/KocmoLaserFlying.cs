@@ -135,7 +135,7 @@ namespace Kocmoca
         {
             if (Physics.Linecast(pointStarting, myTransform.position, out raycastHit, ~(1 << 10)))
             {
-                KocmocraftMechDroid hull = raycastHit.transform.GetComponent<KocmocraftMechDroid>();
+                KocmocraftManager hull = raycastHit.transform.GetComponent<KocmocraftManager>();
                 if (hull)
                 {
                     float basicDamage = myRigidbody.velocity.sqrMagnitude * WeaponData.fixDamage;

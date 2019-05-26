@@ -22,6 +22,9 @@ public class KocmocraftModule : ScriptableObject
     [Header("Engine")]
     [Tooltip("发动机")]
     public Engine engine;
+    [Header("Radar")]
+    [Tooltip("雷达")]
+    public Radar radar;
     [Header("Turret")]
     [Tooltip("机炮")]
     public Turret turret;
@@ -55,24 +58,26 @@ public abstract class Performance
 {
     public int value;
     public int level;
+#if UNITY_EDITOR
     public abstract void Calculate(float design, int type);
+#endif
 }
 [System.Serializable]
 public class Shield : Performance
 {
-    public Proficiency proficiency;
-    public int shieldCrystal;
-    public int emFieldLevel;
-    public int emField;
-
-    public override void Calculate(float design, int type)
+    public int emCrystal;
+    public int emBooster;
+    public int emBoosterLevel;
+#if UNITY_EDITOR
+    public override void Calculate(float area, int type)
     {
+        Proficiency proficiency = UnityEditor.AssetDatabase.LoadAssetAtPath<Proficiency>("Assets/_iLYuSha Wakaka Setting/ScriptableObject/Proficiency/EM Booster Level.asset");
         int basic = 1200;
         int diff = 1800;
-        shieldCrystal = (int)design;
-        emFieldLevel = proficiency.m_Proficiency[type];
-        emField = basic + diff * emFieldLevel;
-        value = shieldCrystal+ emField;
+        emCrystal = (int)area;
+        emBoosterLevel = proficiency.level[type];
+        emBooster = basic + diff * emBoosterLevel;
+        value = emCrystal + emBooster;
         for (int i = 7; i > 0; i--)
         {
             if (value >= basic + diff * i + (diff / 6 * (i - 1)))
@@ -82,21 +87,22 @@ public class Shield : Performance
             }
         }        
     }
+#endif
 }
 [System.Serializable]
 public class Hull : Performance
 {
-    public Proficiency proficiency;
     public int airframe;
-    public int armorLevel;
     public int armor;
-
-    public override void Calculate(float design, int type)
+    public int armorLevel;
+#if UNITY_EDITOR
+    public override void Calculate(float volume, int type)
     {
+        Proficiency proficiency = UnityEditor.AssetDatabase.LoadAssetAtPath<Proficiency>("Assets/_iLYuSha Wakaka Setting/ScriptableObject/Proficiency/Armor Level.asset");
         int basic = 1400;
         int diff = 2200;
-        airframe = (int)design;
-        armorLevel = proficiency.m_Proficiency[type];
+        airframe = (int)volume;
+        armorLevel = proficiency.level[type];
         armor = basic + diff * armorLevel;
         value = airframe + armor;
         for (int i = 7; i > 0; i--)
@@ -108,21 +114,22 @@ public class Hull : Performance
             }
         }
     }
+#endif
 }
 [System.Serializable]
 public class Speed : Performance
 {
-    public Proficiency proficiency;
     public int engine;
-    public int afterburnerLevel;
     public int afterburner;
-
-    public override void Calculate(float design, int type)
+    public int afterburnerLevel;
+#if UNITY_EDITOR
+    public override void Calculate(float power, int type)
     {
+        Proficiency proficiency = UnityEditor.AssetDatabase.LoadAssetAtPath<Proficiency>("Assets/_iLYuSha Wakaka Setting/ScriptableObject/Proficiency/Afterburner Level.asset");
         int basic = 50;
         int diff = 12;
-        engine = (int)design;
-        afterburnerLevel = proficiency.m_Proficiency[type];
+        engine = (int)power;
+        afterburnerLevel = proficiency.level[type];
         afterburner = basic + diff * afterburnerLevel;
         value = engine + afterburner;
         for (int i = 7; i > 0; i--)
@@ -134,4 +141,5 @@ public class Speed : Performance
             }
         }
     }
+#endif
 }

@@ -347,9 +347,9 @@ namespace Kocmoca
                 textShieldLevel.text = m_ShieldLevel.ToString();
                 textHullLevel.text = m_HullLevel.ToString();
                 textSpeedLevel.text = m_SpeedLevel.ToString();
-                textShieldCrystal.text = "+ " + performance.shield.shieldCrystal.ToString();
-                textEMField.text = "+ " + performance.shield.emField.ToString();
-                textEMFieldLevel.text = performance.shield.emFieldLevel.ToString();
+                textShieldCrystal.text = "+ " + performance.shield.emCrystal.ToString();
+                textEMField.text = "+ " + performance.shield.emBooster.ToString();
+                textEMFieldLevel.text = performance.shield.emBoosterLevel.ToString();
                 textAirframe.text = "+ " + performance.hull.airframe.ToString();
                 textArmor.text = "+ " + performance.hull.armor.ToString();
                 textArmorLevel.text = performance.hull.armorLevel.ToString();

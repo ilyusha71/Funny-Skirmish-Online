@@ -57,7 +57,7 @@ namespace Kocmoca
         {
             if (Physics.Linecast(pointStarting, myTransform.position, out raycastHit))
             {
-                KocmocraftMechDroid hull = raycastHit.transform.GetComponent<KocmocraftMechDroid>();
+                KocmocraftManager hull = raycastHit.transform.GetComponent<KocmocraftManager>();
                 if (hull)
                 {
                     if (hull.Number == shooter) return;

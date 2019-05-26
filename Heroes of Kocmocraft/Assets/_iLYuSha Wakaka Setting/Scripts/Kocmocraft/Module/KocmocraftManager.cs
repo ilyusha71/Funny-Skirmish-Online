@@ -4,9 +4,10 @@
  * Last Updated: 2019/05/18
  * 
  * v19.0518
- * 1. 原KocmocraftManager已升級為KocmocraftCommander，主要用於Photon網路連線控制
+ * 1. 原KocmocraftManager已升級為Kocmoport，主要用於Photon網路連線控制
  * 2. 主要負責宇航機於機庫時的基本設定，以及相關模組的初始化
  ***************************************************************************/
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,26 @@ namespace Kocmoca
 {
     public class KocmocraftManager : MonoBehaviour
     {
+        [Header("Preset")]
+        public Shield shield;
+        public Hull hull;
+        public Speed speed;
+        public Rigidbody myRigidbody;
+        public GameObject myWreckage;
+        public Transform myCockpitViewpoint;
+        public float shieldValue, hullValue;
+        [Header("Mech")]
+        private PhotonView myPhotonView;
+        public Core Core { get; protected set; }
+        public int Number { get; protected set; }
+        private int damage;
+        [Header("Crash Info")]
+        public Dictionary<int, int> listAttacker = new Dictionary<int, int>(); // 損傷記錄索引
+        private Kocmonaut lastAttacker = new Kocmonaut { Number = -1 };
+        private Vector3 lastHitVelocity;     
+
+
+
         private int type;
         private void Reset()
         {
@@ -28,6 +49,509 @@ namespace Kocmoca
             }
 
             GetComponentInChildren<EngineController>().Preset(index.kocmocraft[type].engine);
+
+            shield = index.kocmocraft[type].shield;
+            shieldValue = shield.value;
+            hull = index.kocmocraft[type].hull;
+            hullValue = hull.value;
+            speed = index.kocmocraft[type].speed;
+            myRigidbody = GetComponent<Rigidbody>();
+            myCockpitViewpoint = transform.Find("Cockpit Viewpoint");
+            myWreckage = GetComponentInChildren<Prototype>().gameObject;
+        }
+
+        public void Initialize(KocmocraftModule module, Core core, int type, int number, GameObject pilot, GameObject wreckage)
+        {
+            // Dependent Components
+            myPhotonView = transform.root.GetComponent<PhotonView>();
+            myPhotonView.ObservedComponents.Add(this);
+            // Kocmonaut Data
+            Core = core;
+            Number = number;
+            if (core == Core.LocalPlayer)
+                SatelliteCommander.Instance.Observer.InitializeView(myCockpitViewpoint, pilot, Number);
+            else
+                SatelliteCommander.Instance.Observer.listOthers.Add(Number);
+
+
+
+
+
+
+            if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
+
+            myEngine = GetComponentInChildren<EngineController>();
+            // Modular Parameter
+            //dataEnergy = new Data { Max = KocmocraftData.Energy[type], Value = KocmocraftData.Energy[type] };
+            dataSpeed = new Data { Max = KocmocraftData.AfterburnerSpeed[type], Value = 0 };
+            valueSpeedCruise = KocmocraftData.CruiseSpeed[type];
+            valueSpeedHigh = valueSpeedCruise * 1.1f;
+        }
+
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if (stream.IsWriting)
+            {
+                stream.SendNext(shieldValue);
+                stream.SendNext(hullValue);
+            }
+            else
+            {
+                shieldValue = (float)stream.ReceiveNext();
+                hullValue = (float)stream.ReceiveNext();
+            }
+        }
+        public void Hit(DamagePower damagePower)
+        {
+            if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
+            if (hullValue <= 0) return;
+            int damageSourceNumber = damagePower.Attacker.Number;
+            // 狀況1
+            // 第一次造成傷害來源：自己 123
+            // 最後造成傷害來源：自己 123
+            // 擊落者：自己墜機 123
+            // 狀況2
+            // 第一次造成傷害來源：自己 123
+            // 最後造成傷害來源：敵人 789
+            // 擊落者：敵人 789
+            // 狀況3
+            // 第一次造成傷害來源：敵人 789
+            // 最後造成傷害來源：自己 123
+            // 擊落者：敵人
+
+            // 第一次受到損傷
+            if (lastAttacker.Number == -1)
+                lastAttacker = damagePower.Attacker;
+            else
+            {
+                if (damagePower.Attacker.Number != Number)
+                    lastAttacker = damagePower.Attacker;
+            }
+
+
+
+            /*****************************************************************************
+             * 傷害計算方法
+             * Last Updated: 2019-04-18
+             * 
+             * 護盾值 shieldValue
+             * 機甲值 hullValue
+             * 護盾傷害威力值 damagePower.Shield
+             * 機甲傷害威力值 damagePower.Hull
+             * 穿透係數 coefficientPenetration
+             * 護盾傷害值 damageShield
+             * 機甲傷害值 damageHull
+             * 總傷害值 damageTotal
+             * 
+             * 1. 計算護盾傷害與穿透係數
+             *      剩餘護盾值 = 原始護盾值 - 護盾傷害威力值
+             *      護盾值足夠
+             *          => 護盾傷害值 = 護盾傷害威力值
+             *          => 護盾穿透係數 = 0
+             *      護盾值不足
+             *          => 護盾傷害值 = 原始護盾值 = 剩餘護盾值 + 護盾傷害威力值
+             *          => 護盾穿透係數 = -1 * 剩餘護盾值 / 護盾傷害威力值
+             *          => 剩餘護盾值 = 0
+             *          
+             * 2. 計算機甲傷害
+             *      機甲傷害值 = 機甲傷害威力值 * 穿透係數
+             *      剩餘機甲值 = 原始機甲值 - 機甲傷害值
+             *      
+             *****************************************************************************/
+            //if (damagePower.Shield == -999)
+            //    coefficientPenetration = 1;
+            //else
+            //{
+            //    shieldValue -= damagePower.Shield;
+            //    if (shieldValue >= 0)
+            //    {
+            //        damageShield = damagePower.Shield;
+            //        coefficientPenetration = 0;
+            //    }
+            //    else
+            //    {
+            //        damageShield = shieldValue + damagePower.Shield;
+            //        coefficientPenetration = -shieldValue / damagePower.Shield;
+            //        shieldValue = 0;
+            //    }
+            //}
+            //damageHull = damagePower.Hull * coefficientPenetration;
+            //hullValue = Mathf.Clamp(hullValue - damageHull, 0, dataHull.Max);
+
+            /*****************************************************************************
+             * 傷害計算方法
+             * Last Updated: 2019-04-18
+             * 
+             * 護盾值 shieldValue
+             * 機甲值 hullValue
+             * 護盾傷害威力值 damagePower.Shield
+             * 機甲傷害威力值 damagePower.Hull
+             * 穿透係數 coefficientPenetration
+             * 護盾傷害值 damageShield
+             * 機甲傷害值 damageHull
+             * 總傷害值 damageTotal
+             * 
+             * 吸收伤害值 Absorb
+             * 穿透伤害值 Penetration
+             * 
+             * 1. 計算護盾傷害與穿透係數
+             *      剩餘護盾值 = 原始護盾值 - 吸收伤害值
+             *      護盾值足夠
+             *          => 剩餘機甲值 = 原始機甲值 - 穿透伤害值
+             *      護盾值不足
+             *          => 剩餘機甲值 = 原始機甲值 + 剩餘護盾值（负的不足护盾值） - 穿透伤害值
+             *          => 剩餘護盾值 = 0
+             *          
+             * 2. 計算機甲傷害
+             *      機甲傷害值 = 機甲傷害威力值 * 穿透係數
+             *      剩餘機甲值 = 原始機甲值 - 機甲傷害值
+             *      
+             *****************************************************************************/
+            if (shieldValue > 0)
+            {
+                shieldValue -= damagePower.Absorb;
+                if (shieldValue >= 0)
+                    hullValue = Mathf.Clamp(hullValue - damagePower.Penetration, 0, hull.value);
+                else
+                {
+                    hullValue = Mathf.Clamp(hullValue + shieldValue - damagePower.Penetration, 0, hull.value);
+                    shieldValue = 0;
+                }
+                damage = (int)(damagePower.Absorb + damagePower.Penetration);
+            }
+            else
+            {
+                hullValue = Mathf.Clamp(hullValue - damagePower.Damage, 0, hull.value);
+                damage = (int)damagePower.Damage;
+            }
+            /*****************************************************************************
+             * 損傷記錄
+             *****************************************************************************/
+            //damage = (int)(damageShield + damageHull);
+            if (listAttacker.ContainsKey(damageSourceNumber))
+                listAttacker[damageSourceNumber] += damage;
+            else
+                listAttacker.Add(damagePower.Attacker.Number, damage);
+
+            // 本地玩家擊中本地AI
+            if (damagePower.Attacker.Core == Core.LocalPlayer)
+                HeadUpDisplayManager.Instance.ShowHitDamage(myRigidbody.position, damage);
+            // 遠端玩家擊中本地玩家或本地AI
+            else if (damagePower.Attacker.Core == Core.RemotePlayer)
+                myPhotonView.RPC("ShowHitDamage", RpcTarget.AllViaServer, damagePower.Attacker.Number, damage);
+
+            /************************************* Crash *************************************/
+
+            if (hullValue <= 0)
+            {
+                if (Core == Core.LocalPlayer)
+                {
+                    transform.root.GetComponent<LocalPlayerController>().enabled = false;
+                    SatelliteCommander.Instance.PlayerCrash();
+                    //foreach (int key in listAttacker.Keys)
+                    //{
+                    //    HeadUpDisplayManager.Instance.ShowWhoAttackU(key, listAttacker[key]);
+                    //}
+                    HeadUpDisplayManager.Instance.ShowKillStealer(lastAttacker.Number);
+                }
+                else if (Core == Core.LocalBot)
+                {
+                  transform.root.  GetComponent<LocalBotController>().enabled = false;
+                    SatelliteCommander.Instance.BotCrash(Number);
+                }
+                myPhotonView.RPC("Crash", RpcTarget.AllViaServer, lastAttacker.Number);
+            }
+        }
+
+        [PunRPC]
+        public void ShowHitDamage(int numberShooter, int damage, PhotonMessageInfo info)
+        {
+            if (PhotonNetwork.LocalPlayer.ActorNumber == numberShooter)
+                HeadUpDisplayManager.Instance.ShowHitDamage(myRigidbody.position, damage);
+        }
+
+        //[PunRPC]
+        public void Crash(int stealerNumber, PhotonMessageInfo info)
+        {
+            // 若宇航機是本地玩家擊落，顯示擊落訊息
+            if (stealerNumber == PhotonNetwork.LocalPlayer.ActorNumber)
+                HeadUpDisplayManager.Instance.ShowDestroyed(Number);
+
+            SatelliteCommander.Instance.Observer.listOthers.Remove(Number);
+            SatelliteCommander.Instance.RemoveFlight(Number);
+            switch (Core)
+            {
+                case Core.LocalPlayer:
+                    LocalPlayerRealtimeData.Status = FlyingStatus.Crash;
+                    SatelliteCommander.Instance.Observer.TransferCamera();
+                    SatelliteCommander.Instance.ClearData();
+                    HeadUpDisplayManager.Instance.ClearData();
+                    Destroy(transform.root.GetComponent<LocalPlayerController>());
+                    transform.root.GetComponent<OnboardRadar>().Stop();
+                    //Destroy(GetComponent<OnboardRadar>());
+                    break;
+                case Core.LocalBot:
+                    Destroy(transform.root.GetComponent<LocalBotController>());
+                    transform.root.GetComponent<OnboardRadar>().Stop();
+                    //Destroy(GetComponent<OnboardRadar>());
+                    break;
+            }
+            ShowRemnant();
+            if (myPhotonView.IsMine)
+                PhotonNetwork.Destroy(transform.root.gameObject); // 改变PhotoView Fixed
+            //StartCoroutine(Crash());
+        }
+        IEnumerator Crash()
+        {
+            yield return new WaitForSeconds(0.01f);
+            //ShowRemnant();
+            //if(myPhotonView.IsMine)
+            //    PhotonNetwork.Destroy(this.gameObject);
+        }
+        private void ShowRemnant()
+        {
+            if (myRigidbody.velocity == Vector3.zero) // 撞击可能触发修正而变成0向量
+                myRigidbody.velocity = lastHitVelocity;
+            myWreckage.transform.SetParent(null);
+            myWreckage.tag = "Untagged";
+
+            ResourceManager.hitDown.Reuse(myRigidbody.position, Quaternion.identity);
+
+            Rigidbody rigid = myWreckage.AddComponent<Rigidbody>();
+            rigid.mass = 100;
+            rigid.velocity = myRigidbody.velocity;
+            rigid.AddForce(Random.rotation.eulerAngles * Random.Range(100, 500));
+            rigid.AddTorque(Random.rotation.eulerAngles * Random.Range(100, 2000));
+            Destroy(myWreckage, 15.0f);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            // 消除撞擊造成的力矩
+            myRigidbody.isKinematic = true;
+            myRigidbody.isKinematic = false;
+
+            if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
+            if (hullValue <= 0) return;
+            lastHitVelocity = myRigidbody.velocity;
+
+            // 計算傷害
+            DamagePower damagePower = new DamagePower();
+            if (collision.gameObject.CompareTag("Untagged") || collision.gameObject.CompareTag("Water"))
+            {
+                damagePower.Penetration = 50000;
+                // 下次更新要做的
+                // 入射角越大伤害越大，避免卡住
+                //Vector3 inDirection = -collision.relativeVelocity;
+                //Vector3 normal = collision.contacts[0].normal;
+                //Vector3 outDirection = Vector3.Reflect(inDirection, normal);
+                //transform.forward = outDirection;
+                //GetComponent<AvionicsSystem>().mainRot = transform.rotation;
+                //myRigidbody.AddForce(outDirection * collision.impulse.magnitude);
+            }
+            else
+                damagePower.Penetration = Mathf.Clamp((int)Mathf.Abs(collision.impulse.magnitude), 0, 5000);
+            //damagePower.Shield = -999;
+
+            // 記錄攻擊者
+            damagePower.Attacker = new Kocmonaut { Number = -1 };
+            KocmocraftManager collisionKocmocraft = collision.gameObject.GetComponent<KocmocraftManager>();
+            if (collisionKocmocraft)
+            {
+                damagePower.Attacker.Core = collisionKocmocraft.Core;
+                damagePower.Attacker.Number = collisionKocmocraft.Number;
+            }
+            else
+            {
+                damagePower.Attacker.Core = Core;
+                damagePower.Attacker.Number = Number;
+            }
+            Hit(damagePower);
+        }
+
+        private void OnCollisionExit(Collision collision)
+        {
+            // 確保撞擊後恢復一般剛體
+            myRigidbody.isKinematic = true;
+            myRigidbody.isKinematic = false;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        [Header("Dependent Components")]
+        private EngineController myEngine;
+        [Header("Modular Parameter")]
+        //public Data dataEnergy;
+        public Data dataSpeed;
+        private float valueSpeedCruise;
+        private float valueSpeedHigh;
+        private bool isCharge;
+
+        [Header("Constant")]
+        public float RotationSpeed = 50.0f;// Turn Speed
+        public float SpeedPitch = 2;// rotation X
+        public float SpeedRoll = 3;// rotation Z
+        public float SpeedYaw = 1;// rotation Y
+        public float DampingTarget = 10.0f;// rotation speed to facing to a target
+        public bool AutoPilot = false;// if True this plane will follow a target automatically
+        [HideInInspector]
+        public bool SimpleControl = true;// set true is enabled casual controling
+        [HideInInspector]
+        public bool FollowTarget = false;
+        [HideInInspector]
+        public Vector3 PositionTarget = Vector3.zero;// current target position
+        [HideInInspector]
+        private Vector3 positionTarget = Vector3.zero;
+        public Quaternion mainRot = Quaternion.identity;
+        //[HideInInspector]
+        public float roll = 0;
+        //[HideInInspector]
+        public float pitch = 0;
+        //[HideInInspector]
+        public float yaw = 0;
+        public Vector2 LimitAxisControl = new Vector2(2, 1);// limited of axis rotation magnitude
+        public bool FixedX;
+        public bool FixedY;
+        public bool FixedZ;
+        public float Mess = 30;
+        public bool DirectVelocity = true;// if true this riggidbody will not receive effect by other force.
+        public float DampingVelocity = 5;
+
+
+
+        void Start()
+        {
+            mainRot = this.transform.rotation;
+        }
+
+        void FixedUpdate()
+        {
+            if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
+
+            if (!myRigidbody)
+                return;
+
+            Quaternion AddRot = Quaternion.identity;
+            Vector3 velocityTarget = Vector3.zero;
+
+            // 转向控制
+
+            if (AutoPilot)
+            {
+                if (myRigidbody.angularVelocity.magnitude > 3)
+                    myRigidbody.Sleep();
+
+                // if auto pilot
+                if (FollowTarget)
+                {
+                    // rotation facing to the positionTarget
+                    positionTarget = Vector3.Lerp(positionTarget, PositionTarget, Time.fixedDeltaTime * DampingTarget);
+                    Vector3 relativePoint = this.transform.InverseTransformPoint(positionTarget).normalized; // 计算相对位置的单位向量
+                    mainRot = Quaternion.LookRotation(positionTarget - this.transform.position);
+                    myRigidbody.rotation = Quaternion.Lerp(myRigidbody.rotation, mainRot, Time.fixedDeltaTime * (RotationSpeed * 0.005f) * SpeedYaw);
+                    myRigidbody.rotation *= Quaternion.Euler(-relativePoint.y * SpeedPitch * 0.5f, 0, -relativePoint.x * SpeedRoll * 0.5f);
+                    // 根据单位向量分配 Pitch与 Roll的转动量
+                }
+                velocityTarget = (myRigidbody.rotation * Vector3.forward) * (dataSpeed.Value);
+            }
+            else
+            {
+                // axis control by input
+                AddRot.eulerAngles = new Vector3(pitch, yaw, -roll);
+                mainRot *= AddRot;
+
+                if (SimpleControl)
+                {
+                    Quaternion saveQ = mainRot;
+
+                    Vector3 fixedAngles = new Vector3(mainRot.eulerAngles.x, mainRot.eulerAngles.y, mainRot.eulerAngles.z);
+
+                    if (FixedX)
+                        fixedAngles.x = 1;
+                    if (FixedY)
+                        fixedAngles.y = 1;
+                    if (FixedZ)
+                        fixedAngles.z = 1;
+
+                    saveQ.eulerAngles = fixedAngles;
+
+
+                    mainRot = Quaternion.Lerp(mainRot, saveQ, Time.fixedDeltaTime * 2);
+                }
+
+                myRigidbody.rotation = Quaternion.Lerp(myRigidbody.rotation, mainRot, Time.fixedDeltaTime * RotationSpeed);
+                //Debug.Log(myRigidbody.angularVelocity.ToString("f4"));
+                //if (remote)
+                //    Debug.Log("NxtRot2: " + Time.frameCount + " / " + myRigidbody.rotation.eulerAngles);
+
+                velocityTarget = (myRigidbody.rotation * Vector3.forward) * (dataSpeed.Value);
+            }
+            // add velocity to the riggidbody
+
+            if (DirectVelocity)
+            {
+                myRigidbody.velocity = velocityTarget;
+            }
+            else
+            {
+                myRigidbody.velocity = Vector3.Lerp(myRigidbody.velocity, velocityTarget, Time.fixedDeltaTime * DampingVelocity);
+            }
+            yaw = Mathf.Lerp(yaw, 0, Time.deltaTime);
+
+
+            //dataEnergy.Value = Mathf.Clamp(dataEnergy.Value + Time.deltaTime * 71, 0, dataEnergy.Max);
+            //if (dataEnergy.Value <= 10)
+            //    isCharge = true;
+            //else if (dataEnergy.Value > 300)
+            //    isCharge = false;
+        }
+
+        // Input function. ( roll and pitch)
+        public void AxisControl(Vector2 axis)
+        {
+            if (SimpleControl)
+            {
+                LimitAxisControl.y = LimitAxisControl.x;
+            }
+            // Debug.Log(axis.x);
+            roll = Mathf.Lerp(roll, Mathf.Clamp(axis.x, -LimitAxisControl.x, LimitAxisControl.x) * SpeedRoll, Time.deltaTime);
+            pitch = Mathf.Lerp(pitch, Mathf.Clamp(axis.y, -LimitAxisControl.y, LimitAxisControl.y) * SpeedPitch, Time.deltaTime);
+        }
+        // Input function ( yaw) 
+        public void TurnControl(float turn)
+        {
+            yaw += turn * Time.deltaTime * 0.2f;
+        }
+        public void SpeedControl(float throttle, bool useAfterBurner)
+        {
+            if (isCharge)
+                useAfterBurner = false;
+            if (throttle > 0)
+            {
+                if (useAfterBurner)
+                {
+                    dataSpeed.Value = Mathf.Lerp(dataSpeed.Value, dataSpeed.Max, Time.deltaTime * (0.73f * throttle));
+                    //dataEnergy.Value = Mathf.Clamp(dataEnergy.Value - Time.deltaTime * 0.163f, 0, dataEnergy.Max);
+                }
+                else
+                    dataSpeed.Value = Mathf.Lerp(dataSpeed.Value, valueSpeedHigh, Time.deltaTime * (0.73f * throttle));
+            }
+            else if (throttle < 0)
+                dataSpeed.Value = Mathf.Lerp(dataSpeed.Value, 0, Time.deltaTime * (0.73f * -throttle));
+            else
+                dataSpeed.Value = Mathf.Lerp(dataSpeed.Value, valueSpeedCruise, Time.deltaTime);
+
+            myEngine.Power(dataSpeed.Percent);
         }
     }
 }

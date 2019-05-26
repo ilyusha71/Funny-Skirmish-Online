@@ -1,7 +1,13 @@
 ﻿/***************************************************************************
  * Onboard Radar
  * 機載雷達
- * Last Updated: 2018/10/21
+ * Last Updated: 2019/05/27
+ * 
+ * v19.0527
+ * 1. 计算相对位置，使用InverseTransformPoint比使用Vector3相减，效能提升137%
+ * 2. 计算Vector3.Dot，使用Vector3.forward比使用myTransform.forward，效能提升127%
+ * 
+ * v18.1021
  * Description:
  * 1. Radar System -> Onboard Radar
  * 2. 尋找與標示敵我航機
@@ -15,15 +21,39 @@ namespace Kocmoca
 {
     public class OnboardRadar : MonoBehaviour
     {
+        [Header("Preset")]
+        public Transform myTransform;
+        public Radar radar;
+        public Turret turret;
+        public Astromech astromech;
+
+
         [Header("Dependent Components")]
-        private Transform myTransform;
         private PhotonView myPhotonView;
         [Header("Kocmonaut Data")]
         private bool isLocalPlayer;
         public int kocmonautNumber;
         [Header("Modular Parameter")]
         public Transform[] FriendAircraftsArray;
-        public Transform[] FoeAircraftsArray;
+
+
+        public Transform[] listFriend;
+        public Transform[] listFoe;
+        private int index; // for loop index
+        private Vector3 relativePoint;
+        private float distanceSqr;
+        private float angle;
+
+        [Tooltip("距离最近的目标")]
+        public Transform nearestTarget;
+        private float nearestDistanceSqr;
+        [Tooltip("自动瞄准的目标")]
+        public Transform autoAimTarget;
+        private float minAngle;
+
+
+
+
         int faction;
         private Vector3 myPosition;
         [Header("Onboard Radar")]
@@ -42,7 +72,6 @@ namespace Kocmoca
         public Transform targetNearest;
         //private float targetNearestDistance;
         private float targetNearestDirection;
-        private float minLockTime;
         private float nextLockTime;
         [Header("Target")]
         public Transform targetTrack; // 僅用於Bot跟隨目標使用
@@ -68,11 +97,10 @@ namespace Kocmoca
             //listFriendAircrafts = KocmocaData.factionData[faction].listFriend;
             //listFoeAircrafts = KocmocaData.factionData[faction].listFoe;
             FriendAircraftsArray = SatelliteCommander.factionData[faction].arrayFriend;
-            FoeAircraftsArray = SatelliteCommander.factionData[faction].arrayFoe;
+            listFoe = SatelliteCommander.factionData[faction].arrayFoe;
             this.faction = faction;
 
             targetOnboard = new Transform[maxtOnboardCount];
-            minLockTime = 0.73f;
 
             moduleData = KocmocaData.KocmocraftData[type];
         }
@@ -84,6 +112,74 @@ namespace Kocmoca
             //RadarWarningEmitter();
             UpdateDefault();
         }
+
+
+
+
+
+        public void Search()
+        {
+            myPosition = myTransform.position;
+            nearestTarget = null;
+            nearestDistanceSqr = Mathf.Infinity;
+            autoAimTarget = null;
+            minAngle = -1;
+
+            for (index = 0; index < 50; index++)
+            {
+                if (isLocalPlayer)
+                {
+                    if (listFriend[index])
+                    {
+                        relativePoint = myTransform.InverseTransformPoint(listFoe[index].position);
+                        distanceSqr = Vector3.SqrMagnitude(relativePoint);
+                        angle = Vector3.Dot(relativePoint.normalized, Vector3.forward);
+
+                        if (distanceSqr <= radar.radiusSqr && angle >= radar.range)
+                            HeadUpDisplayManager.Instance.NewIdentifyFriend(listFriend[index]); // 標記友機
+                    }
+                }
+
+                if (listFoe[index])
+                {
+                    relativePoint = myTransform.InverseTransformPoint(listFoe[index].position);
+                    distanceSqr = Vector3.SqrMagnitude(relativePoint);
+                    angle = Vector3.Dot(relativePoint.normalized, Vector3.forward);
+
+                    if (distanceSqr <= radar.radiusSqr && angle >= radar.range)
+                    {
+                        if (isLocalPlayer)
+                            SatelliteCommander.Instance.IdentifyTarget(listFoe[index]); // 標記敵機 与下面合并
+                        //SatelliteCommander.Instance.FireControlLookTarget(listFoe[index]);  // 標記鎖定範圍的所有敵機
+
+                        // 距离最接近的目标
+                        if (distanceSqr > nearestDistanceSqr)
+                        {
+                            nearestTarget = listFoe[index];
+                            nearestDistanceSqr = distanceSqr;
+                        }
+                        // 自动瞄准的目标
+                        if (angle >= turret.maxAutoAimRange && angle >= minAngle)
+                        {
+                            autoAimTarget = listFoe[index];
+                            minAngle = angle;
+                        }                            
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         void UpdateDefault()
         {
             myPosition = myTransform.position;
@@ -144,7 +240,7 @@ namespace Kocmoca
                 }
                 else
                 {
-                    nextLockTime = Time.time + minLockTime;
+                    nextLockTime = Time.time + astromech.lockTime;
                     targetTrack = null;
                     targetRadarLockOn = null;
                 }
@@ -172,23 +268,23 @@ namespace Kocmoca
             targetAutoAim = null;
             targetNearest = null;
             targetNearestDirection = 0;
-            int countFoe = FoeAircraftsArray.Length;
+            int countFoe = listFoe.Length;
             for (int i = 0; i < countFoe; i++)
             {
-                if (i < countFoe && FoeAircraftsArray[i])
+                if (i < countFoe && listFoe[i])
                 {
-                    scanDiff = FoeAircraftsArray[i].position - myPosition;
+                    scanDiff = listFoe[i].position - myPosition;
                     scanDistanceSqr = Vector3.SqrMagnitude(scanDiff);
                     scanDirection = Vector3.Dot(scanDiff.normalized, myTransform.forward);
                     if (scanDistanceSqr <= moduleData.MaxSearchRadiusSqr && scanDirection >= moduleData.MaxSearchRange)
                     {
                         if (isLocalPlayer)
-                            SatelliteCommander.Instance.IdentifyTarget(FoeAircraftsArray[i]); // 標記搜索範圍的所有敵機
+                            SatelliteCommander.Instance.IdentifyTarget(listFoe[i]); // 標記搜索範圍的所有敵機
                         else
                         {
                             if (countOnboard < 10)
                             {
-                                targetOnboard[countOnboard] = FoeAircraftsArray[i];
+                                targetOnboard[countOnboard] = listFoe[i];
                                 countOnboard++;
                             }
                         }
@@ -196,12 +292,12 @@ namespace Kocmoca
                         if (scanDistanceSqr <= moduleData.MaxLockDistanceSqr && scanDirection >= moduleData.MaxLockRange)
                         {
                             if (isLocalPlayer)
-                                SatelliteCommander.Instance.FireControlLookTarget(FoeAircraftsArray[i]);  // 標記鎖定範圍的所有敵機
+                                SatelliteCommander.Instance.FireControlLookTarget(listFoe[i]);  // 標記鎖定範圍的所有敵機
 
                             // 尋找最接近的目標
                             if (scanDirection > targetNearestDirection)
                             {
-                                targetNearest = FoeAircraftsArray[i];
+                                targetNearest = listFoe[i];
                                 targetNearestDirection = scanDirection;
 
                                 if (scanDirection > moduleData.MaxAutoAimRange)
@@ -271,7 +367,7 @@ namespace Kocmoca
             {
                 if (targetRadarLockOn)
                 {
-                    KocmocraftMechDroid target = targetRadarLockOn.GetComponent<KocmocraftMechDroid>();
+                    KocmocraftManager target = targetRadarLockOn.GetComponentInChildren<KocmocraftManager>();
                     if (target.Core == Core.LocalPlayer || target.Core == Core.RemotePlayer)
                     {
                         //Debug.Log(myTransform.name+"/"+myPhotonView.ViewID + "/" + kocmonautNumber + "/" + Time.frameCount + "/True/");
@@ -280,7 +376,7 @@ namespace Kocmoca
                 }
                 if (targetLocked)
                 {
-                    KocmocraftMechDroid target = targetLocked.GetComponent<KocmocraftMechDroid>();
+                    KocmocraftManager target = targetLocked.GetComponentInChildren<KocmocraftManager>();
                     if (target.Core == Core.LocalPlayer || target.Core == Core.RemotePlayer)
                     {
                         //Debug.Log(myTransform.name + "/" + myPhotonView.ViewID + "/" + kocmonautNumber + "/" + Time.frameCount + "/false/");

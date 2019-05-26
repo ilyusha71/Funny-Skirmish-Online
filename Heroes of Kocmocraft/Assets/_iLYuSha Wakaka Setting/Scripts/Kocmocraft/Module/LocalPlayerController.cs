@@ -12,7 +12,7 @@ namespace Kocmoca
     public class LocalPlayerController : MonoBehaviour
     {
         // Dependent Components
-        private AvionicsSystem myAvionicsSystem;
+        private KocmocraftManager myAvionicsSystem;
         private OnboardRadar myOnboardRadar;
         private FireControlSystem myLaserFCS;
         private FireControlSystem myRocketFCS;
@@ -24,7 +24,7 @@ namespace Kocmoca
         void Start()
         {
             // Dependent Components
-            myAvionicsSystem = GetComponent<AvionicsSystem>();
+            myAvionicsSystem = GetComponentInChildren<KocmocraftManager>();
             myOnboardRadar = GetComponent<OnboardRadar>();
             myLaserFCS = GetComponentsInChildren<FireControlSystem>()[0];
             myRocketFCS = GetComponentsInChildren<FireControlSystem>()[1];

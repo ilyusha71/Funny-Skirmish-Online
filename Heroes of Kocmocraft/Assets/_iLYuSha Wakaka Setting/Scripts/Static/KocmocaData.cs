@@ -17,87 +17,87 @@ namespace Kocmoca
     {
         // 神偷机兵
         public static readonly ModuleData MinionArmor = new ModuleData(
-            Type.MinionArmor,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
+            Type.MinionArmor,AstromechDroid.ZvezdarkDeluxe,RadarF.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 红牛能量
         public static readonly ModuleData RedBullEnergy = new ModuleData(
-            Type.RedBullEnergy,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
+            Type.RedBullEnergy,AstromechDroid.ZvezdarkDeluxe,RadarF.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 普鲸
         public static readonly ModuleData VladimirPutin = new ModuleData(
-            Type.VladimirPutin,AstromechDroid.StarDestroyerX,Radar.MagicMirrorLongRangeRadar, TurretF.SanctionerMegaRailgun);
+            Type.VladimirPutin,AstromechDroid.StarDestroyerX,RadarF.MagicMirrorLongRangeRadar, TurretF.SanctionerMegaRailgun);
 
         // 纸飞机
         public static readonly ModuleData PaperAeroplane = new ModuleData(
-            Type.PaperAeroplane,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
+            Type.PaperAeroplane,AstromechDroid.ZvezdarkDeluxe,RadarF.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 咕咕鸡
         public static readonly ModuleData Cuckoo = new ModuleData(
-            Type.Cuckoo,AstromechDroid.ZvezdarkDeluxe,Radar.MagicMirrorLongRangeRadar, TurretF.DevilTenderGazer);
+            Type.Cuckoo,AstromechDroid.ZvezdarkDeluxe,RadarF.MagicMirrorLongRangeRadar, TurretF.DevilTenderGazer);
 
         // 炮弹比尔
         public static readonly ModuleData BulletBill = new ModuleData(
-            Type.BulletBill,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
+            Type.BulletBill,AstromechDroid.ZvezdarkDeluxe,RadarF.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 时光机
         public static readonly ModuleData TimeMachine = new ModuleData(
-            Type.TimeMachine,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
+            Type.TimeMachine,AstromechDroid.ZvezdarkDeluxe,RadarF.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 王牌狗屋
         public static readonly ModuleData AceKennel = new ModuleData(
-            Type.AceKennel,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
+            Type.AceKennel,AstromechDroid.ZvezdarkDeluxe,RadarF.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 卡比之星
         public static readonly ModuleData KirbyStar = new ModuleData(
-            Type.KirbyStar,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
+            Type.KirbyStar,AstromechDroid.ZvezdarkDeluxe,RadarF.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 蝎红
         public static readonly ModuleData ScorpioRouge = new ModuleData(
-            Type.ScorpioRouge,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
+            Type.ScorpioRouge,AstromechDroid.ZvezdarkDeluxe,RadarF.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 恩威迪亚
         public static readonly ModuleData nWidia = new ModuleData(
-            Type.nWidia,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
+            Type.nWidia,AstromechDroid.ZvezdarkDeluxe,RadarF.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 快餐侠
         public static readonly ModuleData FastFoodMan = new ModuleData(
-            Type.FastFoodMan,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
+            Type.FastFoodMan,AstromechDroid.ZvezdarkDeluxe,RadarF.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 驯鹿空运
         public static readonly ModuleData ReindeerTransport = new ModuleData(
-            Type.ReindeerTransport,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
+            Type.ReindeerTransport,AstromechDroid.ZvezdarkDeluxe,RadarF.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 北极星特快
         public static readonly ModuleData PolarisExpress = new ModuleData(
-            Type.PolarisExpress,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
+            Type.PolarisExpress,AstromechDroid.ZvezdarkDeluxe,RadarF.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 远古飞鱼
         public static readonly ModuleData AncientFish = new ModuleData(
-            Type.AncientFish,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
+            Type.AncientFish,AstromechDroid.ZvezdarkDeluxe,RadarF.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 玩具独角兽
         public static readonly ModuleData PapoyUnicorn = new ModuleData(
-            Type.PapoyUnicorn,AstromechDroid.ZvezdarkGaming,Radar.FantasticMirrorLongRangeRadar, TurretF.DevilTenderGazer);
+            Type.PapoyUnicorn,AstromechDroid.ZvezdarkGaming,RadarF.FantasticMirrorLongRangeRadar, TurretF.DevilTenderGazer);
 
         // 南瓜魅影
         public static readonly ModuleData PumpkinGhost = new ModuleData(
-            Type.PumpkinGhost,AstromechDroid.StarDestroyerV,Radar.MarksmanRangeRadar, TurretF.SanctionerMegaRailgun);
+            Type.PumpkinGhost,AstromechDroid.StarDestroyerV,RadarF.MarksmanRangeRadar, TurretF.SanctionerMegaRailgun);
 
         // 赏金猎人
         public static readonly ModuleData BoundyHunterMKII = new ModuleData(
-            Type.BoundyHunterMKII,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
+            Type.BoundyHunterMKII,AstromechDroid.ZvezdarkDeluxe,RadarF.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 鹰纽特
         public static readonly ModuleData InuitEagle = new ModuleData(
-            Type.InuitEagle,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
+            Type.InuitEagle,AstromechDroid.ZvezdarkDeluxe,RadarF.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 新葡鲸
         public static readonly ModuleData GrandLisboa = new ModuleData(
-            Type.GrandLisboa,AstromechDroid.ZvezdarkDeluxe,Radar.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
+            Type.GrandLisboa,AstromechDroid.ZvezdarkDeluxe,RadarF.KocmoStrategyRadar, TurretF.KocmoLaserCannon);
 
         // 原型机
         public static readonly ModuleData Prototype = new ModuleData(
-            Type.Prototype,AstromechDroid.Prototype,Radar.Prototype, TurretF.Prototype);
+            Type.Prototype,AstromechDroid.Prototype,RadarF.Prototype, TurretF.Prototype);
 
 
         public static readonly ModuleData[] KocmocraftData = new ModuleData[24]{
@@ -179,7 +179,7 @@ namespace Kocmoca
         public readonly int ShieldPenetration;
         public readonly int HullPenetration;
 
-        public ModuleData(Type type, AstromechDroid droidType, Radar radarType, TurretF turretType)
+        public ModuleData(Type type, AstromechDroid droidType, RadarF radarType, TurretF turretType)
         {
             Type = type;
             switch (droidType)
@@ -251,7 +251,7 @@ namespace Kocmoca
             }
             switch (radarType)
             {
-                case Radar.FantasticMirrorLongRangeRadar:
+                case RadarF.FantasticMirrorLongRangeRadar:
                     RadarName = "幻镜远距雷达";
                     RadarDetail = "基于魔镜雷达所发展的梦幻版本，专注于极远距离的威慑能力，但相对会在中距离与侧翼产生很大的盲区。";
                     MaxSearchRadius = 5000;
@@ -260,7 +260,7 @@ namespace Kocmoca
                     MaxLockDistance = 3200;
                     MaxLockAngle = 7;
                     break;
-                case Radar.MarksmanRangeRadar:
+                case RadarF.MarksmanRangeRadar:
                     RadarName = "神射手远距雷达";
                     RadarDetail = "神射手是一套专门用于狙击系统武装的标配雷达。";
                     MaxSearchRadius = 4400;
@@ -269,7 +269,7 @@ namespace Kocmoca
                     MaxLockDistance = 2700;
                     MaxLockAngle = 11;
                     break;
-                case Radar.MagicMirrorLongRangeRadar:
+                case RadarF.MagicMirrorLongRangeRadar:
                     RadarName = "魔镜远距雷达";
                     RadarDetail = "兼顾远距离打击的全方位雷达，也可用於狙击任务。";
                     MaxSearchRadius = 4200;
@@ -278,7 +278,7 @@ namespace Kocmoca
                     MaxLockDistance = 2500;
                     MaxLockAngle = 13;
                     break;
-                case Radar.BrokenLongRangeRadar:
+                case RadarF.BrokenLongRangeRadar:
                     RadarName = "破晓远距雷达";
                     RadarDetail = "破晓是针对指挥所掌控战场的多用途雷达，适合战术位置在大后方的宇航机配置。";
                     MaxSearchRadius = 3700;
@@ -287,7 +287,7 @@ namespace Kocmoca
                     MaxLockDistance = 2300;
                     MaxLockAngle = 16;
                     break;
-                case Radar.KocmoStrategyRadar:
+                case RadarF.KocmoStrategyRadar:
                     RadarName = "卡斯摩战术雷达";
                     RadarDetail = "多装配于警戒哨的制式雷达，同时也是一款通用于各项任务的战术雷达。";
                     MaxSearchRadius = 3300;
@@ -296,7 +296,7 @@ namespace Kocmoca
                     MaxLockDistance = 2000;
                     MaxLockAngle = 19;
                     break;
-                case Radar.KaleidoscopeRadar:
+                case RadarF.KaleidoscopeRadar:
                     RadarName = "万花筒短距雷达";
                     RadarDetail = "万花筒被研发用于近距离的护卫任务，适合僚机在任务中胜任狗逗技术的雷达。";
                     MaxSearchRadius = 2900;
@@ -305,7 +305,7 @@ namespace Kocmoca
                     MaxLockDistance = 1600;
                     MaxLockAngle = 27;
                     break;
-                case Radar.NightWatcherRadar:
+                case RadarF.NightWatcherRadar:
                     RadarName = "守夜人全方位雷达";
                     RadarDetail = "以据点防卫为主要任务的特化雷达，适合巨型宇航机取得制空权使用。";
                     MaxSearchRadius = 2200;
@@ -314,7 +314,7 @@ namespace Kocmoca
                     MaxLockDistance = 1200;
                     MaxLockAngle = 37;
                     break;
-                case Radar.SkynetRadar:
+                case RadarF.SkynetRadar:
                     RadarName = "天网超广角雷达";
                     RadarDetail = "近距离缠斗的首选雷达，主要用于占据与战术打击任务，适合机动性优良的宇航机配置。";
                     MaxSearchRadius = 1600;
@@ -323,7 +323,7 @@ namespace Kocmoca
                     MaxLockDistance = 700;
                     MaxLockAngle = 45;
                     break;
-                case Radar.Prototype:
+                case RadarF.Prototype:
                     RadarName = "未装配雷达";
                     RadarDetail = "";
                     MaxSearchRadius = 0;

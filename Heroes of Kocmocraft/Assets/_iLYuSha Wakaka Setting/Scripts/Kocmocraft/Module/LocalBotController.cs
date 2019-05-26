@@ -30,7 +30,7 @@ namespace Kocmoca
         // Dependent Components
         private Transform myTransform;
         private Rigidbody myRigidbody;
-        private AvionicsSystem myAvionicsSystem;
+        private KocmocraftManager myAvionicsSystem;
         private OnboardRadar myOnboardRadar;
         private FireControlSystem myLaserFCS;
         private FireControlSystem myRocketFCS;
@@ -80,7 +80,7 @@ namespace Kocmoca
             // Dependent Components
             myTransform = transform;
             myRigidbody = GetComponent<Rigidbody>();
-            myAvionicsSystem = GetComponent<AvionicsSystem>();
+            myAvionicsSystem = GetComponentInChildren<KocmocraftManager>();
             myAvionicsSystem.AutoPilot = true;// set auto pilot to true will make this plane flying and looking to Target automatically
             myAvionicsSystem.FollowTarget = true;
             myOnboardRadar = GetComponent<OnboardRadar>();

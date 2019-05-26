@@ -11,7 +11,7 @@
         Anonymous,
         AlphaZero,        
     }
-    public enum Radar
+    public enum RadarF
     {
         Prototype,
         FantasticMirrorLongRangeRadar,

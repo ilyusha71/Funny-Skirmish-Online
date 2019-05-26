@@ -31,7 +31,7 @@ namespace Kocmoca
             projectileSpread = spread;
             if (target)
             {
-                if (target.GetComponent<KocmocraftMechDroid>().Core == Core.LocalPlayer)
+                if (target.GetComponent<KocmocraftManager>().Core == Core.LocalPlayer)
                 {
                     targetIsLocalPlayer = true;
                     SatelliteCommander.Instance.MissileLockOnWarning(true, name);
@@ -90,7 +90,7 @@ namespace Kocmoca
         {
             if (Physics.Linecast(pointStarting, myTransform.position, out raycastHit))
             {
-                KocmocraftMechDroid hull = raycastHit.transform.GetComponent<KocmocraftMechDroid>();
+                KocmocraftManager hull = raycastHit.transform.GetComponent<KocmocraftManager>();
                 if (hull)
                 {
                     if (hull.Number == shooter) return;

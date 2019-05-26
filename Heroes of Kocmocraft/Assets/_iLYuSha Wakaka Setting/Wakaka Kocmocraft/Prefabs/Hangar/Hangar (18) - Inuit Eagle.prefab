@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &45794380914891937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 47372675374358183}
+  m_Layer: 10
+  m_Name: Cockpit Viewpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &47372675374358183
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45794380914891937}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.3, z: -0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5837645102442459931}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1109005705044194518
 GameObject:
   m_ObjectHideFlags: 0
@@ -4858,6 +4888,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5837645102442459931}
   - component: {fileID: 9127871769339002299}
+  - component: {fileID: 4833332873326536347}
+  - component: {fileID: 3961777405980311971}
   m_Layer: 0
   m_Name: Hangar (18) - Inuit Eagle
   m_TagString: Untagged
@@ -4882,6 +4914,7 @@ Transform:
   - {fileID: 2154094416752375941}
   - {fileID: 2160215263286989117}
   - {fileID: 2154368860274267543}
+  - {fileID: 47372675374358183}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -4897,6 +4930,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb56eec90e3fa2e45bfc7abdf864d331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shield:
+    value: 8377
+    level: 3
+    emCrystal: 1777
+    emBooster: 6600
+    emBoosterLevel: 3
+  hull:
+    value: 11689
+    level: 4
+    airframe: 1489
+    armor: 10200
+    armorLevel: 4
+  speed:
+    value: 106
+    level: 4
+    engine: 20
+    afterburner: 86
+    afterburnerLevel: 3
+  myRigidbody: {fileID: 4833332873326536347}
+  myWreckage: {fileID: 8065774341518655180}
+  myCockpitViewpoint: {fileID: 47372675374358183}
+  shieldValue: 8377
+  hullValue: 11689
+  dataSpeed:
+    Max: 0
+    Value: 0
+  RotationSpeed: 50
+  SpeedPitch: 2
+  SpeedRoll: 3
+  SpeedYaw: 1
+  DampingTarget: 10
+  AutoPilot: 0
+  SimpleControl: 1
+  FollowTarget: 0
+  PositionTarget: {x: 0, y: 0, z: 0}
+  mainRot: {x: 0, y: 0, z: 0, w: 1}
+  roll: 0
+  pitch: 0
+  yaw: 0
+  LimitAxisControl: {x: 2, y: 1}
+  FixedX: 0
+  FixedY: 0
+  FixedZ: 0
+  Mess: 30
+  DirectVelocity: 1
+  DampingVelocity: 5
+--- !u!54 &4833332873326536347
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703275068897121041}
+  serializedVersion: 2
+  m_Mass: 100
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &3961777405980311971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703275068897121041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e5c470e516cef489ba389a5ad2c1bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kocmonautNumber: 0
+  FriendAircraftsArray: []
+  FoeAircraftsArray: []
+  targetOnboard: []
+  targetNearest: {fileID: 0}
+  targetTrack: {fileID: 0}
+  targetLocked: {fileID: 0}
+  targetAutoAim: {fileID: 0}
+  targetRadarLockOn: {fileID: 0}
 --- !u!1 &2157370408954186417
 GameObject:
   m_ObjectHideFlags: 0
@@ -10191,6 +10307,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7304894868114583025}
     m_Modifications:
+    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
+        type: 3}
+      propertyPath: m_Name
+      value: Candle Fire
+      objectReference: {fileID: 0}
     - target: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10246,11 +10367,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
-        type: 3}
-      propertyPath: m_Name
-      value: Candle Fire
-      objectReference: {fileID: 0}
     - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
@@ -10268,15 +10384,15 @@ PrefabInstance:
       objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61f9c91edeb866647b6ece4e2ede719d, type: 3}
---- !u!4 &244737853551599704 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
-    type: 3}
-  m_PrefabInstance: {fileID: 3079275016307664448}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &244737853570001850 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3079275016307664448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &244737853551599704 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
     type: 3}
   m_PrefabInstance: {fileID: 3079275016307664448}
   m_PrefabAsset: {fileID: 0}
@@ -10287,6 +10403,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7304894868114583025}
     m_Modifications:
+    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
+        type: 3}
+      propertyPath: m_Name
+      value: Candle Fire (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10342,11 +10463,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
-        type: 3}
-      propertyPath: m_Name
-      value: Candle Fire (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
@@ -10374,15 +10490,15 @@ PrefabInstance:
       objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61f9c91edeb866647b6ece4e2ede719d, type: 3}
---- !u!198 &185476076241203663 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
-    type: 3}
-  m_PrefabInstance: {fileID: 3119941303166696501}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &185476076256492077 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3119941303166696501}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &185476076241203663 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
     type: 3}
   m_PrefabInstance: {fileID: 3119941303166696501}
   m_PrefabAsset: {fileID: 0}
@@ -10519,32 +10635,32 @@ PrefabInstance:
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.000111714005
+      value: -0.00020381805
       objectReference: {fileID: 0}
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9402716
+      value: -0.9402715
       objectReference: {fileID: 0}
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.34042513
+      value: 0.34042493
       objectReference: {fileID: 0}
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.00030851364
+      value: -0.00056222075
       objectReference: {fileID: 0}
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0019837618
+      value: -0.0036011934
       objectReference: {fileID: 0}
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00009948014
+      value: -0.00017404556
       objectReference: {fileID: 0}
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
@@ -10554,42 +10670,42 @@ PrefabInstance:
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.30604517
+      value: 0.30604503
       objectReference: {fileID: 0}
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.00030997393
+      value: -0.00054234266
       objectReference: {fileID: 0}
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.001968503
+      value: -0.0034333467
       objectReference: {fileID: 0}
     - target: {fileID: 4606776318176691689, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.000105366096
+      value: -0.00019440055
       objectReference: {fileID: 0}
     - target: {fileID: 4606776318176691689, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.94630826
+      value: -0.94630814
       objectReference: {fileID: 0}
     - target: {fileID: 4606776318176691689, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.3232657
+      value: 0.3232656
       objectReference: {fileID: 0}
     - target: {fileID: 4606776318176691689, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0003082454
+      value: -0.0005681217
       objectReference: {fileID: 0}
     - target: {fileID: 4606776318176691689, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.001968503
+      value: -0.0036164522
       objectReference: {fileID: 0}
     - target: {fileID: 9082921458514662665, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
@@ -10608,6 +10724,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3276a832ce82c014997db4ddc1e6d595, type: 3}
+--- !u!1 &8065774341518655180 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4501118946587110061, guid: 3276a832ce82c014997db4ddc1e6d595,
+    type: 3}
+  m_PrefabInstance: {fileID: 5879533782649214049}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7402980590607521724 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3973555089715676125, guid: 3276a832ce82c014997db4ddc1e6d595,
@@ -10621,6 +10743,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7304894868114583025}
     m_Modifications:
+    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
+        type: 3}
+      propertyPath: m_Name
+      value: Candle Fire (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10675,11 +10802,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
-        type: 3}
-      propertyPath: m_Name
-      value: Candle Fire (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}

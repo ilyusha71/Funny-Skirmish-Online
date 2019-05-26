@@ -4715,6 +4715,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4908477390876494}
   - component: {fileID: 322492901}
+  - component: {fileID: 5797178066644221690}
+  - component: {fileID: 8422780458372520463}
   m_Layer: 10
   m_Name: Hangar (01) - Red Bull Energy
   m_TagString: Hangar
@@ -4740,6 +4742,7 @@ Transform:
   - {fileID: 4757268206060931788}
   - {fileID: 4763642076891404194}
   - {fileID: 4763623590838686740}
+  - {fileID: 910011735197985899}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4755,6 +4758,119 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb56eec90e3fa2e45bfc7abdf864d331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shield:
+    value: 6298
+    level: 2
+    emCrystal: 1498
+    emBooster: 4800
+    emBoosterLevel: 2
+  hull:
+    value: 4808
+    level: 1
+    airframe: 1208
+    armor: 3600
+    armorLevel: 1
+  speed:
+    value: 151
+    level: 7
+    engine: 17
+    afterburner: 134
+    afterburnerLevel: 7
+  myRigidbody: {fileID: 5797178066644221690}
+  myWreckage: {fileID: 4345648418333372280}
+  myCockpitViewpoint: {fileID: 910011735197985899}
+  shieldValue: 6298
+  hullValue: 4808
+  dataSpeed:
+    Max: 0
+    Value: 0
+  RotationSpeed: 50
+  SpeedPitch: 2
+  SpeedRoll: 3
+  SpeedYaw: 1
+  DampingTarget: 10
+  AutoPilot: 0
+  SimpleControl: 1
+  FollowTarget: 0
+  PositionTarget: {x: 0, y: 0, z: 0}
+  mainRot: {x: 0, y: 0, z: 0, w: 1}
+  roll: 0
+  pitch: 0
+  yaw: 0
+  LimitAxisControl: {x: 2, y: 1}
+  FixedX: 0
+  FixedY: 0
+  FixedZ: 0
+  Mess: 30
+  DirectVelocity: 1
+  DampingVelocity: 5
+--- !u!54 &5797178066644221690
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630159191688104}
+  serializedVersion: 2
+  m_Mass: 100
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &8422780458372520463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630159191688104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e5c470e516cef489ba389a5ad2c1bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kocmonautNumber: 0
+  FriendAircraftsArray: []
+  FoeAircraftsArray: []
+  targetOnboard: []
+  targetNearest: {fileID: 0}
+  targetTrack: {fileID: 0}
+  targetLocked: {fileID: 0}
+  targetAutoAim: {fileID: 0}
+  targetRadarLockOn: {fileID: 0}
+--- !u!1 &915811860134150799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 910011735197985899}
+  m_Layer: 10
+  m_Name: Cockpit Viewpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &910011735197985899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915811860134150799}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0.197}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4908477390876494}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1532231590486531826
 GameObject:
   m_ObjectHideFlags: 0
@@ -5774,6 +5890,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.11814346
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7633285
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.145895
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.6181314
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0001411438
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00000047683716
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.000024557114
+      objectReference: {fileID: 0}
     - target: {fileID: 1506805796713864185, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -5844,41 +5995,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.000024557114
       objectReference: {fileID: 0}
-    - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.11814346
-      objectReference: {fileID: 0}
-    - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7633285
-      objectReference: {fileID: 0}
-    - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.145895
-      objectReference: {fileID: 0}
-    - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.6181314
-      objectReference: {fileID: 0}
-    - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.0001411438
-      objectReference: {fileID: 0}
-    - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.00000047683716
-      objectReference: {fileID: 0}
-    - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.000024557114
-      objectReference: {fileID: 0}
     - target: {fileID: 2761876482691409242, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_Orbits.Array.data[0].m_Radius
@@ -5896,6 +6012,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 432c1f2918c0fc942985a281f6903fa6, type: 3}
+--- !u!1 &4345648418333372280 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8996180125332291000, guid: 432c1f2918c0fc942985a281f6903fa6,
+    type: 3}
+  m_PrefabInstance: {fileID: 4653909598521234112}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2586954051614216718 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7165428353671528654, guid: 432c1f2918c0fc942985a281f6903fa6,
@@ -5909,6 +6031,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4908477390876494}
     m_Modifications:
+    - target: {fileID: 4520702761021608853, guid: 58070d4a882120e4c904a22b1c0d2966,
+        type: 3}
+      propertyPath: m_Name
+      value: Pilot - Red Bull Wing Academy
+      objectReference: {fileID: 0}
     - target: {fileID: 1438548545660035998, guid: 58070d4a882120e4c904a22b1c0d2966,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5963,11 +6090,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4520702761021608853, guid: 58070d4a882120e4c904a22b1c0d2966,
-        type: 3}
-      propertyPath: m_Name
-      value: Pilot - Red Bull Wing Academy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58070d4a882120e4c904a22b1c0d2966, type: 3}

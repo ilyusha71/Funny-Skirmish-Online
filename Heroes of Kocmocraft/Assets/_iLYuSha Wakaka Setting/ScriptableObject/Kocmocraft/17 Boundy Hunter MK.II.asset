@@ -29,24 +29,21 @@ MonoBehaviour:
   shield:
     value: 7904
     level: 3
-    proficiency: {fileID: 11400000, guid: 9185ff53d965d6d48b2bbad3e527203c, type: 2}
-    shieldCrystal: 3104
-    emFieldLevel: 2
-    emField: 4800
+    emCrystal: 3104
+    emBooster: 4800
+    emBoosterLevel: 2
   hull:
     value: 18261
     level: 6
-    proficiency: {fileID: 11400000, guid: 960649fe14f6f5f4096aef6310467f94, type: 2}
     airframe: 3661
-    armorLevel: 6
     armor: 14600
+    armorLevel: 6
   speed:
     value: 89
     level: 2
-    proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}
     engine: 15
-    afterburnerLevel: 2
     afterburner: 74
+    afterburnerLevel: 2
   engine: {fileID: 0}
   turret: {fileID: 11400000, guid: 4eede9bc364e22b42862ebe4220dcf6d, type: 2}
   astromech: {fileID: 0}
