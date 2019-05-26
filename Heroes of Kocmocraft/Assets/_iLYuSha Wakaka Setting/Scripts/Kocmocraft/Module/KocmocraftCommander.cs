@@ -35,6 +35,8 @@ namespace Kocmoca
     //[RequireComponent(typeof(PhotonRigidbodyView))]
     public class KocmocraftCommander : MonoBehaviourPun
     {
+        public KocmocraftDatabase module;
+
         // Dependent Components
         private Transform myTransform;
         private Rigidbody myRigidbody;
@@ -84,8 +86,8 @@ namespace Kocmoca
             SatelliteCommander.Instance.SetHangar(myTransform, portNumber);
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
-            gameObject.AddComponent<AvionicsSystem>().Initialize((int)Type); // local only
-            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalPlayer, (int)Type, Number, pilot,wreckage);
+            gameObject.AddComponent<AvionicsSystem>().Initialize(module.kocmocraft[(int)Type], (int)Type); // local only
+            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(module.kocmocraft[(int)Type],Core.LocalPlayer, (int)Type, Number, pilot,wreckage);
             SatelliteCommander.radarManager[portNumber] = gameObject.AddComponent<OnboardRadar>();
             SatelliteCommander.radarManager[portNumber].Initialize(Core.LocalPlayer, (int)Faction, (int)Type, Number); // local only
             gameObject.AddComponent<LocalPlayerController>();
@@ -122,7 +124,7 @@ namespace Kocmoca
                 SatelliteCommander.Instance.NewKocmonautJoin(Core.RemotePlayer, portNumber, Type, Number, myTransform.name);
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
-            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.RemotePlayer, (int)Type, Number, pilot, wreckage);
+            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(module.kocmocraft[(int)Type], Core.RemotePlayer, (int)Type, Number, pilot, wreckage);
             ActiveFCS(false);
         }
         public void InitializeLocalBot(int portNumber)
@@ -144,8 +146,8 @@ namespace Kocmoca
             SatelliteCommander.Instance.SetHangar(myTransform, portNumber);
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
-            gameObject.AddComponent<AvionicsSystem>().Initialize((int)Type); // local only
-            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.LocalBot, (int)Type, Number, pilot, wreckage);
+            gameObject.AddComponent<AvionicsSystem>().Initialize(module.kocmocraft[(int)Type], (int)Type); // local only
+            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(module.kocmocraft[(int)Type], Core.LocalBot, (int)Type, Number, pilot, wreckage);
             SatelliteCommander.radarManager[portNumber] = gameObject.AddComponent<OnboardRadar>();
             SatelliteCommander.radarManager[portNumber].Initialize(Core.LocalBot, (int)Faction, (int)Type, Number); // local only
             gameObject.AddComponent<LocalBotController>();
@@ -173,7 +175,7 @@ namespace Kocmoca
                 SatelliteCommander.Instance.NewKocmonautJoin(Core.RemoteBot, portNumber, Type, Number, myTransform.name);
             // Upagrader
             Destroy(gameObject.GetComponent<HarmonicMotion>());
-            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(Core.RemoteBot, (int)Type, Number, pilot, wreckage);
+            gameObject.AddComponent<KocmocraftMechDroid>().Initialize(module.kocmocraft[(int)Type], Core.RemoteBot, (int)Type, Number, pilot, wreckage);
             ActiveFCS(false);
         }
 

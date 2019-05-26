@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 19 Grand Lisboa
   m_EditorClassIdentifier: 
-  X: 253
-  Y: 3837
-  Z: 1049
   size:
     wingspan: 7.3
     length: 10.96
@@ -44,11 +41,12 @@ MonoBehaviour:
     armorLevel: 4
     armor: 10200
   speed:
-    value: 103
+    value: 109
     level: 4
     proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}
     engine: 23
     afterburnerLevel: 3
-    afterburner: 80
+    afterburner: 86
   engine: {fileID: 0}
   turret: {fileID: 11400000, guid: 6132b26f1d8c5b14c91f21e5b100d8e8, type: 2}
+  astromech: {fileID: 0}

@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 11 Fast Food Man
   m_EditorClassIdentifier: 
-  X: 173
-  Y: 2237
-  Z: 649
   size:
     wingspan: 6.8
     length: 8.35
@@ -44,11 +41,12 @@ MonoBehaviour:
     armorLevel: 3
     armor: 8000
   speed:
-    value: 132
-    level: 7
+    value: 144
+    level: 6
     proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}
     engine: 22
     afterburnerLevel: 6
-    afterburner: 110
+    afterburner: 122
   engine: {fileID: 0}
   turret: {fileID: 11400000, guid: 9c05b89dc525c3d47a9315799b6a13ba, type: 2}
+  astromech: {fileID: 0}

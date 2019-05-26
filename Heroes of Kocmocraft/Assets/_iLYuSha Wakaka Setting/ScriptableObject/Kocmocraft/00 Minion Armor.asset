@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 00 Minion Armor
   m_EditorClassIdentifier: 
-  X: 63
-  Y: 37
-  Z: 99
   size:
     wingspan: 8
     length: 8.96
@@ -44,11 +41,12 @@ MonoBehaviour:
     armorLevel: 7
     armor: 16800
   speed:
-    value: 79
+    value: 83
     level: 2
     proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}
     engine: 9
     afterburnerLevel: 2
-    afterburner: 70
+    afterburner: 74
   engine: {fileID: 0}
   turret: {fileID: 11400000, guid: 03586d03d44a3f24eb1d5c680a971c9b, type: 2}
+  astromech: {fileID: 0}

@@ -55,7 +55,7 @@ namespace Kocmoca
         //public ObjectPoolData ammoRemnantOPD;
         private GameObject wreckage;
 
-        public void Initialize(Core core, int type, int number, GameObject pilot, GameObject wreckage)
+        public void Initialize(KocmocraftModule module, Core core, int type, int number, GameObject pilot, GameObject wreckage)
         {
             // Dependent Components
             myRigidbody = GetComponent<Rigidbody>();
@@ -74,25 +74,25 @@ namespace Kocmoca
             else
                 SatelliteCommander.Instance.Observer.listOthers.Add(Number);
             // Modular Parameter
-            dataHull = new Data { Max = KocmocraftData.Hull[type] ,Value = KocmocraftData.Hull[type] };
-            dataShield = new Data { Max = KocmocraftData.Shield[type], Value = KocmocraftData.Shield[type] };
+            dataHull = new Data { Max = module.hull.value, Value = module.hull.value };
+            dataShield = new Data { Max = module.shield.value, Value = module.shield.value };
             // Crash
             //ammoRemnantOPD = ObjectPoolManager.Instance.CreatObjectPool(remnant, 1,5);
             this.wreckage = wreckage;
         }
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.U) && Core == Core.LocalPlayer)
-                dataHull.Value = 1000000;
+        //private void Update()
+        //{
+        //    if (Input.GetKeyDown(KeyCode.U) && Core == Core.LocalPlayer)
+        //        dataHull.Value = 1000000;
 
-            //if (dataHull.Value < (int)(dataHull.Max * 0.237f))
-            //    myOnFireParticle.Play();
-            //else
-            //    myOnFireParticle.Stop();
+        //    //if (dataHull.Value < (int)(dataHull.Max * 0.237f))
+        //    //    myOnFireParticle.Play();
+        //    //else
+        //    //    myOnFireParticle.Stop();
 
-            if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
-            dataShield.Value = Mathf.Clamp(dataShield.Value + Time.deltaTime * myAvionicsSystem.dataEnergy.Value * 0.1f, 0, dataShield.Max);
-        }
+        //    if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
+        //    dataShield.Value = Mathf.Clamp(dataShield.Value + Time.deltaTime * myAvionicsSystem.dataEnergy.Value * 0.1f, 0, dataShield.Max);
+        //}
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             if (stream.IsWriting)

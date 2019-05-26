@@ -5,24 +5,29 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Kocmocraft Module", menuName = "KocmocA Data/Create Kocmocraft Module")]
 public class KocmocraftModule : ScriptableObject
 {
-    public int X;
-    public int Y;
-    public int Z;
     [Header("Design")]
+    [Tooltip("设计")]
     public Size size;
     public View view;
     [Header("Dubi")]
+    [Tooltip("逗比")]
     public AudioClip talk;
     public Dubi chief;
     public Dubi reserve;
     [Header("Performance")]
+    [Tooltip("性能")]
     public Shield shield;
     public Hull hull;
     public Speed speed;
     [Header("Engine")]
+    [Tooltip("发动机")]
     public Engine engine;
     [Header("Turret")]
+    [Tooltip("机炮")]
     public Turret turret;
+    [Header("Astromech")]
+    [Tooltip("宇航技工")]
+    public Astromech astromech;
 
 #if UNITY_EDITOR
     public void SaveDatabase()
@@ -115,7 +120,7 @@ public class Speed : Performance
     public override void Calculate(float design, int type)
     {
         int basic = 50;
-        int diff = 10;
+        int diff = 12;
         engine = (int)design;
         afterburnerLevel = proficiency.m_Proficiency[type];
         afterburner = basic + diff * afterburnerLevel;

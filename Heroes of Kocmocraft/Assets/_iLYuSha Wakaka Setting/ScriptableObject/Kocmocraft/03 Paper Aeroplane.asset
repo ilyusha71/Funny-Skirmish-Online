@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 03 Paper Aeroplane
   m_EditorClassIdentifier: 
-  X: 93
-  Y: 637
-  Z: 249
   size:
     wingspan: 8.23
     length: 10.98
@@ -44,11 +41,12 @@ MonoBehaviour:
     armorLevel: 3
     armor: 8000
   speed:
-    value: 107
-    level: 5
+    value: 117
+    level: 4
     proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}
     engine: 7
     afterburnerLevel: 5
-    afterburner: 100
+    afterburner: 110
   engine: {fileID: 0}
   turret: {fileID: 11400000, guid: 2ea5a500f1bf9784ab65d21272d53787, type: 2}
+  astromech: {fileID: 0}

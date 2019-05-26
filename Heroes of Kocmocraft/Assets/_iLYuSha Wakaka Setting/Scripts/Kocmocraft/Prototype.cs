@@ -120,9 +120,6 @@ namespace Kocmoca
 #if UNITY_EDITOR
             int type = int.Parse(name.Split(new char[2] { '(', ')' })[1]);
             KocmocraftDatabase index = UnityEditor.AssetDatabase.LoadAssetAtPath<KocmocraftDatabase>("Assets/_iLYuSha Wakaka Setting/ScriptableObject/Kocmocraft Database.asset");
-            index.kocmocraft[type].X = type * 10 + 63;
-            index.kocmocraft[type].Y = type * 200 + 37;
-            index.kocmocraft[type].Z = type * 50 + 99;
             index.kocmocraft[type].size.wingspan = wingspan;
             index.kocmocraft[type].size.length = length;
             index.kocmocraft[type].size.height = height;

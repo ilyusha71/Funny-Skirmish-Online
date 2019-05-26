@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 02 Vladimir Putin
   m_EditorClassIdentifier: 
-  X: 83
-  Y: 437
-  Z: 199
   size:
     wingspan: 4.85
     length: 6.41
@@ -44,11 +41,12 @@ MonoBehaviour:
     armorLevel: 5
     armor: 12400
   speed:
-    value: 76
+    value: 78
     level: 2
     proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}
     engine: 16
     afterburnerLevel: 1
-    afterburner: 60
+    afterburner: 62
   engine: {fileID: 0}
   turret: {fileID: 11400000, guid: 56ca0a181c146094d91fa5d6b3ae1c98, type: 2}
+  astromech: {fileID: 0}

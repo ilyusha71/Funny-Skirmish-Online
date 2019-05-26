@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 18 Inuit Eagle
   m_EditorClassIdentifier: 
-  X: 243
-  Y: 3637
-  Z: 999
   size:
     wingspan: 8.4
     length: 4.68
@@ -44,11 +41,12 @@ MonoBehaviour:
     armorLevel: 4
     armor: 10200
   speed:
-    value: 100
+    value: 106
     level: 4
     proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}
     engine: 20
     afterburnerLevel: 3
-    afterburner: 80
+    afterburner: 86
   engine: {fileID: 0}
   turret: {fileID: 11400000, guid: 2ea5a500f1bf9784ab65d21272d53787, type: 2}
+  astromech: {fileID: 0}

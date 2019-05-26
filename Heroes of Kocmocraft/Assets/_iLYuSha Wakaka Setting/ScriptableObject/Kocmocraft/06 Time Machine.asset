@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 06 Time Machine
   m_EditorClassIdentifier: 
-  X: 123
-  Y: 1237
-  Z: 399
   size:
     wingspan: 2.96
     length: 3.74
@@ -44,11 +41,12 @@ MonoBehaviour:
     armorLevel: 1
     armor: 3600
   speed:
-    value: 124
+    value: 136
     level: 6
     proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}
     engine: 14
     afterburnerLevel: 6
-    afterburner: 110
+    afterburner: 122
   engine: {fileID: 0}
   turret: {fileID: 11400000, guid: b46ce8d2999082c4dbbd595c8185e8d5, type: 2}
+  astromech: {fileID: 0}

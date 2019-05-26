@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 17 Boundy Hunter MK.II
   m_EditorClassIdentifier: 
-  X: 233
-  Y: 3437
-  Z: 949
   size:
     wingspan: 6.83
     length: 8.76
@@ -44,11 +41,12 @@ MonoBehaviour:
     armorLevel: 6
     armor: 14600
   speed:
-    value: 85
-    level: 3
+    value: 89
+    level: 2
     proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}
     engine: 15
     afterburnerLevel: 2
-    afterburner: 70
+    afterburner: 74
   engine: {fileID: 0}
   turret: {fileID: 11400000, guid: 4eede9bc364e22b42862ebe4220dcf6d, type: 2}
+  astromech: {fileID: 0}

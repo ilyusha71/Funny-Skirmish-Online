@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 08 Kirby Star
   m_EditorClassIdentifier: 
-  X: 143
-  Y: 1637
-  Z: 499
   size:
     wingspan: 4.42
     length: 4.2
@@ -44,11 +41,12 @@ MonoBehaviour:
     armorLevel: 2
     armor: 5800
   speed:
-    value: 143
+    value: 157
     level: 7
     proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}
     engine: 23
     afterburnerLevel: 7
-    afterburner: 120
+    afterburner: 134
   engine: {fileID: 0}
   turret: {fileID: 11400000, guid: 125d195e3fab89343b0ef36120a10e79, type: 2}
+  astromech: {fileID: 0}

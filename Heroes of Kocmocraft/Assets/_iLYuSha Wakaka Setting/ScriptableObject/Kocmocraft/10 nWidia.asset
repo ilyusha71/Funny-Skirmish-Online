@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 10 nWidia
   m_EditorClassIdentifier: 
-  X: 163
-  Y: 2037
-  Z: 599
   size:
     wingspan: 11.24
     length: 9.8
@@ -44,11 +41,12 @@ MonoBehaviour:
     armorLevel: 1
     armor: 3600
   speed:
-    value: 110
+    value: 118
     level: 5
     proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}
     engine: 20
     afterburnerLevel: 4
-    afterburner: 90
+    afterburner: 98
   engine: {fileID: 0}
   turret: {fileID: 11400000, guid: 03586d03d44a3f24eb1d5c680a971c9b, type: 2}
+  astromech: {fileID: 0}

@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 13 Polaris Express
   m_EditorClassIdentifier: 
-  X: 193
-  Y: 2637
-  Z: 749
   size:
     wingspan: 9
     length: 10.41
@@ -44,11 +41,12 @@ MonoBehaviour:
     armorLevel: 3
     armor: 8000
   speed:
-    value: 125
+    value: 133
     level: 6
     proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}
     engine: 35
     afterburnerLevel: 4
-    afterburner: 90
+    afterburner: 98
   engine: {fileID: 0}
   turret: {fileID: 11400000, guid: 6132b26f1d8c5b14c91f21e5b100d8e8, type: 2}
+  astromech: {fileID: 0}

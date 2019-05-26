@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 14 Ancient Fish
   m_EditorClassIdentifier: 
-  X: 203
-  Y: 2837
-  Z: 799
   size:
     wingspan: 7.85
     length: 9.82
@@ -44,11 +41,12 @@ MonoBehaviour:
     armorLevel: 1
     armor: 3600
   speed:
-    value: 108
-    level: 5
+    value: 114
+    level: 4
     proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}
     engine: 28
     afterburnerLevel: 3
-    afterburner: 80
+    afterburner: 86
   engine: {fileID: 0}
   turret: {fileID: 11400000, guid: 459e743c4e5d9bc46b8c3ad5e179f182, type: 2}
+  astromech: {fileID: 0}

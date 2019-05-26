@@ -64,11 +64,11 @@ namespace Kocmoca
             projectileSpread = spread;
             type = owner.Type;
             gameObject.SetActive(true);
-            Flying();
+            //Flying();
         }
         private void OnEnable()
         {
-            //StartCoroutine(FlyingInitialize());
+            StartCoroutine(FlyingInitialize());
         }
         // 使用協程是因為在PRC呼叫Ammo生成之後，AddForce的力道大於一定值會產生向前的位移偏差
         // 來自FCS的賦值InputAmmoData()會在OnEnable()之後，必須放在等待時間之後，不然owner來不及更新

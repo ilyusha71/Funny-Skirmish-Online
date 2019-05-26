@@ -167,7 +167,7 @@ namespace Kocmoca
             countList = 0;
 
             uiHUD.alpha = 1;
-            dataEnergy.Max = myAvionicsSystem.dataEnergy.Max;
+            //dataEnergy.Max = myAvionicsSystem.dataEnergy.Max;
             dataSpeed.Max = myAvionicsSystem.dataSpeed.Max;
             dataHull.Max = myMechDroid.dataHull.Max;
             dataShield.Max = myMechDroid.dataShield.Max;
@@ -333,9 +333,9 @@ namespace Kocmoca
         }
         void ShowKocmocraftRealtimeStatus()
         {
-            dataEnergy.Value = myAvionicsSystem.dataEnergy.Value;
-            barEnergy.fillAmount = dataEnergy.Bar;
-            textValueEnergy.text = Mathf.Ceil(dataEnergy.Value).ToString();
+            //dataEnergy.Value = myAvionicsSystem.dataEnergy.Value;
+            //barEnergy.fillAmount = dataEnergy.Bar;
+            //textValueEnergy.text = Mathf.Ceil(dataEnergy.Value).ToString();
 
             dataSpeed.Value = myAvionicsSystem.dataSpeed.Value;
             barSpeed.fillAmount = dataSpeed.Bar;

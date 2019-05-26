@@ -54,9 +54,8 @@ namespace Kocmoca
         public PerformancePanel performance;
         [Header("UI - Panel - Turret")]
         public TurretPanel turret;
-
-        [Header("Astromech Droid Data")]
-        public AstromechDroid astromechDroid;
+        [Header("UI - Panel - Astromech")]
+        public AstromechPanel astromech;
         [Header("Radar Data")]
         public Radar radar;
 
@@ -180,7 +179,7 @@ namespace Kocmoca
             design.SetData(hangarIndex, database.kocmocraft[hangarIndex].size);
             dubi.SetData(hangarIndex, database.kocmocraft[hangarIndex]);
             performance.SetData(hangarIndex, database.kocmocraft[hangarIndex]);
-            astromechDroid.SetData(hangarIndex);
+            astromech.SetData(hangarIndex);
             radar.SetData(hangarIndex);
             turret.SetData(hangarIndex, database.kocmocraft[hangarIndex].turret);
             // 三视图
@@ -258,7 +257,7 @@ namespace Kocmoca
             public TextMeshProUGUI tipChief;
             public TextMeshProUGUI tipReserve;
 
-            public void Initialize(GameObject panel,GameObject tip)
+            public void Initialize(GameObject panel, GameObject tip)
             {
                 panel.SetActive(true);
                 Transform[] obj = panel.GetComponentsInChildren<Transform>();
@@ -366,7 +365,6 @@ namespace Kocmoca
                 }
             }
         }
-
         [System.Serializable]
         public class TurretPanel
         {
@@ -407,7 +405,6 @@ namespace Kocmoca
                 }
                 panel.SetActive(false);
             }
-
             public void SetData(int index, Turret turret)
             {
                 textCannonName.text = turret.cannonName;
@@ -424,25 +421,44 @@ namespace Kocmoca
                 textPiercing.text = turret.piercing.ToString() + " %";
             }
         }
-
-        public class PanelBlock
-        {
-            public TextMeshProUGUI textTitle;
-            public TextMeshProUGUI[] item;
-        }
-        public class DataBlock : PanelBlock
-        {
-            internal ModuleData moduleData;
-        }
-
         [System.Serializable]
-        public class AstromechDroid : DataBlock
+        public class AstromechPanel
         {
-            public TextMeshProUGUI textInfomation;
-            public TextMeshProUGUI textShieldRecharge;
-            public TextMeshProUGUI textCollisionResistance;
-            public TextMeshProUGUI textEnginePower;
+            public TextMeshProUGUI textRegeneration;
+            public TextMeshProUGUI textRoll;
+            public TextMeshProUGUI textPitch;
+            public TextMeshProUGUI textYaw;
+            public TextMeshProUGUI textAcceleration;
+            public TextMeshProUGUI textDeceleration;
             public TextMeshProUGUI textLockTime;
+            public TextMeshProUGUI textMissileCount;
+            public TextMeshProUGUI textMissileReloadTime;
+            public TextMeshProUGUI textRocketCount;
+            public TextMeshProUGUI textRocketReloadTime;
+
+            public void Initialize(GameObject panel, GameObject tip)
+            {
+                panel.SetActive(true);
+                Transform[] obj = tip.GetComponentsInChildren<Transform>();
+                foreach (Transform child in obj)
+                {
+                    switch (child.name)
+                    {
+                        case "Astromech - Regeneration": textRegeneration = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Astromech - Roll": textRoll = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Astromech - Pitch": textPitch = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Astromech - Yaw": textYaw = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Astromech - Acceleration": textAcceleration = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Astromech - Deceleration": textDeceleration = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Astromech - Lock Time": textLockTime = child.GetComponent<TextMeshProUGUI>(); break;
+                            //case "Astromech - Missile Count": textMissileCount = child.GetComponent<TextMeshProUGUI>(); break;
+                            //case "Astromech - Missile Reload Time": textMissileReloadTime = child.GetComponent<TextMeshProUGUI>(); break;
+                            //case "Astromech - Rocket Count": textRocketCount = child.GetComponent<TextMeshProUGUI>(); break;
+                            //case "Astromech - Rocket Reload Time": textRocketReloadTime = child.GetComponent<TextMeshProUGUI>(); break;
+                    }
+                }
+                panel.SetActive(false);
+            }
 
             public void SetData(int index)
             {
@@ -466,6 +482,28 @@ namespace Kocmoca
                 //}
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+        public class PanelBlock
+        {
+            public TextMeshProUGUI textTitle;
+            public TextMeshProUGUI[] item;
+        }
+        public class DataBlock : PanelBlock
+        {
+            internal ModuleData moduleData;
+        }
+
+
         [System.Serializable]
         public class Radar : DataBlock
         {

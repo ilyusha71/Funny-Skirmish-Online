@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 12 Reindeer Transport
   m_EditorClassIdentifier: 
-  X: 183
-  Y: 2437
-  Z: 699
   size:
     wingspan: 6.3
     length: 10.8
@@ -44,11 +41,12 @@ MonoBehaviour:
     armorLevel: 2
     armor: 5800
   speed:
-    value: 128
-    level: 7
+    value: 138
+    level: 6
     proficiency: {fileID: 11400000, guid: db955c7ca2d9e2d4b9c12141d3ce62dc, type: 2}
     engine: 28
     afterburnerLevel: 5
-    afterburner: 100
+    afterburner: 110
   engine: {fileID: 0}
   turret: {fileID: 11400000, guid: b46ce8d2999082c4dbbd595c8185e8d5, type: 2}
+  astromech: {fileID: 0}

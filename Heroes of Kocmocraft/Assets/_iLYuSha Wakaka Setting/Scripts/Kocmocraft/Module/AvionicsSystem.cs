@@ -16,7 +16,7 @@ namespace Kocmoca
         private Rigidbody myRigidbody;
         private EngineController myEngine;
         [Header("Modular Parameter")]
-        public Data dataEnergy;
+        //public Data dataEnergy;
         public Data dataSpeed;
         private float valueSpeedCruise;
         private float valueSpeedHigh;
@@ -38,11 +38,11 @@ namespace Kocmoca
         [HideInInspector]
         private Vector3 positionTarget = Vector3.zero;
         public Quaternion mainRot = Quaternion.identity;
-        [HideInInspector]
+        //[HideInInspector]
         public float roll = 0;
-        [HideInInspector]
+        //[HideInInspector]
         public float pitch = 0;
-        [HideInInspector]
+        //[HideInInspector]
         public float yaw = 0;
         public Vector2 LimitAxisControl = new Vector2(2, 1);// limited of axis rotation magnitude
         public bool FixedX;
@@ -52,13 +52,13 @@ namespace Kocmoca
         public bool DirectVelocity = true;// if true this riggidbody will not receive effect by other force.
         public float DampingVelocity = 5;
 
-        public void Initialize(int type)
+        public void Initialize(KocmocraftModule module, int type)
         {
             // Dependent Components
             myRigidbody = GetComponent<Rigidbody>();
             myEngine = GetComponentInChildren<EngineController>();
             // Modular Parameter
-            dataEnergy = new Data { Max = KocmocraftData.Energy[type], Value = KocmocraftData.Energy[type] };
+            //dataEnergy = new Data { Max = KocmocraftData.Energy[type], Value = KocmocraftData.Energy[type] };
             dataSpeed = new Data { Max = KocmocraftData.AfterburnerSpeed[type], Value = 0 };
             valueSpeedCruise = KocmocraftData.CruiseSpeed[type];
             valueSpeedHigh = valueSpeedCruise * 1.1f;        
@@ -89,11 +89,11 @@ namespace Kocmoca
                 {
                     // rotation facing to the positionTarget
                     positionTarget = Vector3.Lerp(positionTarget, PositionTarget, Time.fixedDeltaTime * DampingTarget);
-                    Vector3 relativePoint = this.transform.InverseTransformPoint(positionTarget).normalized;
+                    Vector3 relativePoint = this.transform.InverseTransformPoint(positionTarget).normalized; // 计算相对位置的单位向量
                     mainRot = Quaternion.LookRotation(positionTarget - this.transform.position);
                     myRigidbody.rotation = Quaternion.Lerp(myRigidbody.rotation, mainRot, Time.fixedDeltaTime * (RotationSpeed * 0.005f) * SpeedYaw);
                     myRigidbody.rotation *= Quaternion.Euler(-relativePoint.y * SpeedPitch * 0.5f, 0, -relativePoint.x * SpeedRoll * 0.5f);
-
+                    // 根据单位向量分配 Pitch与 Roll的转动量
                 }
                 velocityTarget = (myRigidbody.rotation * Vector3.forward) * (dataSpeed.Value);
             }
@@ -123,6 +123,7 @@ namespace Kocmoca
                 }
 
                 myRigidbody.rotation = Quaternion.Lerp(myRigidbody.rotation, mainRot, Time.fixedDeltaTime * RotationSpeed);
+                //Debug.Log(myRigidbody.angularVelocity.ToString("f4"));
                 //if (remote)
                 //    Debug.Log("NxtRot2: " + Time.frameCount + " / " + myRigidbody.rotation.eulerAngles);
 
@@ -141,11 +142,11 @@ namespace Kocmoca
             yaw = Mathf.Lerp(yaw, 0, Time.deltaTime);
 
 
-            dataEnergy.Value = Mathf.Clamp(dataEnergy.Value + Time.deltaTime * 71, 0, dataEnergy.Max);
-            if (dataEnergy.Value <= 10)
-                isCharge = true;
-            else if (dataEnergy.Value > 300)
-                isCharge = false;
+            //dataEnergy.Value = Mathf.Clamp(dataEnergy.Value + Time.deltaTime * 71, 0, dataEnergy.Max);
+            //if (dataEnergy.Value <= 10)
+            //    isCharge = true;
+            //else if (dataEnergy.Value > 300)
+            //    isCharge = false;
         }
 
         // Input function. ( roll and pitch)
@@ -173,7 +174,7 @@ namespace Kocmoca
                 if (useAfterBurner)
                 {
                     dataSpeed.Value = Mathf.Lerp(dataSpeed.Value, dataSpeed.Max, Time.deltaTime * (0.73f * throttle));
-                    dataEnergy.Value = Mathf.Clamp(dataEnergy.Value - Time.deltaTime * 0.163f, 0, dataEnergy.Max);
+                    //dataEnergy.Value = Mathf.Clamp(dataEnergy.Value - Time.deltaTime * 0.163f, 0, dataEnergy.Max);
                 }
                 else
                     dataSpeed.Value = Mathf.Lerp(dataSpeed.Value, valueSpeedHigh, Time.deltaTime * (0.73f * throttle));
