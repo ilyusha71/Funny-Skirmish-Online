@@ -42,10 +42,10 @@ namespace Kocmoca
         public GameObject panelDesign;
         public GameObject panelDubi;
         public GameObject panelPerformance;
-        public GameObject panelAstromech;
         public GameObject panelRadar;
         public GameObject panelTurret;
         public GameObject panelMissile;
+        public GameObject panelKocmomech;
         [Header("UI - Panel - Design")]
         public DesignPanel design;
         [Header("UI - Panel - Dubi")]
@@ -54,8 +54,8 @@ namespace Kocmoca
         public PerformancePanel performance;
         [Header("UI - Panel - Turret")]
         public TurretPanel turret;
-        [Header("UI - Panel - Astromech")]
-        public AstromechPanel astromech;
+        [Header("UI - Panel - Kocmomech")]
+        public KocmomechPanel kocmomech;
         [Header("Radar Data")]
         public Radar radar;
 
@@ -98,7 +98,7 @@ namespace Kocmoca
             togAstromech.onValueChanged.AddListener(isOn =>
             {
                 audioSource.PlayOneShot(sfxTabPress, 0.73f);
-                panelAstromech.SetActive(isOn);
+                panelKocmomech.SetActive(isOn);
                 if (isOn) OpenPanel(); else HidePanel();
             });
             togRadar.onValueChanged.AddListener(isOn =>
@@ -179,9 +179,10 @@ namespace Kocmoca
             design.SetData(hangarIndex, database.kocmocraft[hangarIndex].size);
             dubi.SetData(hangarIndex, database.kocmocraft[hangarIndex]);
             performance.SetData(hangarIndex, database.kocmocraft[hangarIndex]);
-            astromech.SetData(hangarIndex);
             radar.SetData(hangarIndex);
             turret.SetData(hangarIndex, database.kocmocraft[hangarIndex].turret);
+            kocmomech.SetData(hangarIndex, database.kocmocraft[hangarIndex].kocmomech);
+
             // 三视图
             topCamera.orthographicSize = database.kocmocraft[hangarIndex].view.orthoSize;
             sideCamera.orthographicSize = database.kocmocraft[hangarIndex].view.orthoSize;
@@ -248,12 +249,14 @@ namespace Kocmoca
         [System.Serializable]
         public class DubiPanel
         {
+            [Header("Panel")]
             public RectTransform scaleChiefHeight;
             public TextMeshProUGUI textChiefHeight;
             public TextMeshProUGUI textChiefPilot;
             public RectTransform scaleReserveHeight;
             public TextMeshProUGUI textReserveHeight;
             public TextMeshProUGUI textReservePilot;
+            [Header("Tips")]
             public TextMeshProUGUI tipChief;
             public TextMeshProUGUI tipReserve;
 
@@ -286,8 +289,6 @@ namespace Kocmoca
             }
             public void SetData(int index, KocmocraftModule dubi)
             {
-                tipChief.text = dubi.chief.resume;
-                tipReserve.text = dubi.reserve.resume;
                 scaleChiefHeight.sizeDelta = new Vector2(274 * dubi.chief.height / 200, 37);
                 textChiefHeight.text = dubi.chief.height.ToString() + " cm";
                 textChiefPilot.text = dubi.chief.pilot;
@@ -295,18 +296,32 @@ namespace Kocmoca
                 scaleReserveHeight.sizeDelta = new Vector2(274 * dubi.reserve.height / 200, 37);
                 textReserveHeight.text = dubi.reserve.height.ToString() + " cm";
                 textReservePilot.text = dubi.reserve.pilot;
+
+                tipChief.text = dubi.chief.resume;
+                tipReserve.text = dubi.reserve.resume;
             }
         }
         [System.Serializable]
         public class PerformancePanel
         {
+            [Header("Panel")]
             public RawImage raw;
             public Texture2D[] textures;
             public TextMeshProUGUI textShield, textHull, textSpeed, textLicense, textShieldLevel, textHullLevel, textSpeedLevel;
             public Image[] imgShieldBar, imgHullBar, imgSpeedBar;
             private int m_ShieldLevel, m_HullLevel, m_SpeedLevel;
-            public TextMeshProUGUI textShieldCrystal, textEMField, textEMFieldLevel, textAirframe, textArmor, textArmorLevel, textEngine, textAfterburner, textAfterburnerLevel;
-            public void Initialize(GameObject panel)
+            [Header("Tips")]
+            public TextMeshProUGUI tipEMCrystal;
+            public TextMeshProUGUI tipEMBoosterl;
+            public TextMeshProUGUI tipEMBoosterlLevel;
+            public TextMeshProUGUI tipAirframe;
+            public TextMeshProUGUI tipArmor;
+            public TextMeshProUGUI tipArmorLevel;
+            public TextMeshProUGUI tipEngine;
+            public TextMeshProUGUI tipAfterburner;
+            public TextMeshProUGUI tipAfterburnerLevel;
+
+            public void Initialize(GameObject panel, GameObject tip)
             {
                 panel.SetActive(true);
                 Transform[] obj = panel.GetComponentsInChildren<Transform>();
@@ -321,18 +336,25 @@ namespace Kocmoca
                         case "Performance - Shield Level": textShieldLevel = child.GetComponentInChildren<TextMeshProUGUI>(); break;
                         case "Performance - Hull Level": textHullLevel = child.GetComponentInChildren<TextMeshProUGUI>(); break;
                         case "Performance - Speed Level": textSpeedLevel = child.GetComponentInChildren<TextMeshProUGUI>(); break;
-                        case "Performance - Shield Crystal": textShieldCrystal = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Performance - EM Field": textEMField = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Performance - EM Field Level": textEMFieldLevel = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Performance - Airframe": textAirframe = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Performance - Armor": textArmor = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Performance - Armor Level": textArmorLevel = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Performance - Engine": textEngine = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Performance - Afterburner": textAfterburner = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Performance - Afterburner Level": textAfterburnerLevel = child.GetComponent<TextMeshProUGUI>(); break;
                     }
                 }
                 panel.SetActive(false);
+                obj = tip.GetComponentsInChildren<Transform>();
+                foreach (Transform child in obj)
+                {
+                    switch (child.name)
+                    {
+                        case "Performance - EM Crystal": tipEMCrystal = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - EM Booster": tipEMBoosterl = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - EM Booster Level": tipEMBoosterlLevel = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - Airframe": tipAirframe = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - Armor": tipArmor = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - Armor Level": tipArmorLevel = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - Engine": tipEngine = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - Afterburner": tipAfterburner = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - Afterburner Level": tipAfterburnerLevel = child.GetComponent<TextMeshProUGUI>(); break;
+                    }
+                }
             }
             public void SetData(int index,  KocmocraftModule performance)
             {
@@ -347,15 +369,16 @@ namespace Kocmoca
                 textShieldLevel.text = m_ShieldLevel.ToString();
                 textHullLevel.text = m_HullLevel.ToString();
                 textSpeedLevel.text = m_SpeedLevel.ToString();
-                textShieldCrystal.text = "+ " + performance.shield.emCrystal.ToString();
-                textEMField.text = "+ " + performance.shield.emBooster.ToString();
-                textEMFieldLevel.text = performance.shield.emBoosterLevel.ToString();
-                textAirframe.text = "+ " + performance.hull.airframe.ToString();
-                textArmor.text = "+ " + performance.hull.armor.ToString();
-                textArmorLevel.text = performance.hull.armorLevel.ToString();
-                textEngine.text = "+ "+((int)(performance.speed.engine * 3.6f)).ToString();
-                textAfterburner.text = "+ " + ((int)(performance.speed.afterburner * 3.6f)).ToString();
-                textAfterburnerLevel.text = performance.speed.afterburnerLevel.ToString();
+
+                tipEMCrystal.text = "+ " + performance.shield.emCrystal.ToString();
+                tipEMBoosterl.text = "+ " + performance.shield.emBooster.ToString();
+                tipEMBoosterlLevel.text = performance.shield.emBoosterLevel.ToString();
+                tipAirframe.text = "+ " + performance.hull.airframe.ToString();
+                tipArmor.text = "+ " + performance.hull.armor.ToString();
+                tipArmorLevel.text = performance.hull.armorLevel.ToString();
+                tipEngine.text = "+ "+((int)(performance.speed.engine * 3.6f)).ToString();
+                tipAfterburner.text = "+ " + ((int)(performance.speed.afterburner * 3.6f)).ToString();
+                tipAfterburnerLevel.text = performance.speed.afterburnerLevel.ToString();
 
                 for (int i = 1; i < 8; i++)
                 {
@@ -422,64 +445,74 @@ namespace Kocmoca
             }
         }
         [System.Serializable]
-        public class AstromechPanel
+        public class KocmomechPanel
         {
-            public TextMeshProUGUI textRegeneration;
-            public TextMeshProUGUI textRoll;
-            public TextMeshProUGUI textPitch;
-            public TextMeshProUGUI textYaw;
-            public TextMeshProUGUI textAcceleration;
-            public TextMeshProUGUI textDeceleration;
-            public TextMeshProUGUI textLockTime;
-            public TextMeshProUGUI textMissileCount;
-            public TextMeshProUGUI textMissileReloadTime;
-            public TextMeshProUGUI textRocketCount;
-            public TextMeshProUGUI textRocketReloadTime;
+            [Header("Panel")]
+            public TextMeshProUGUI textType;
+            public UIEventTriggerAnimation animLockTime;
+            [Header("Tips")]
+            public TextMeshProUGUI tipType;
+            public TextMeshProUGUI tipRegeneration;
+            public TextMeshProUGUI tipRoll;
+            public TextMeshProUGUI tipPitch;
+            public TextMeshProUGUI tipYaw;
+            public TextMeshProUGUI tipAcceleration;
+            public TextMeshProUGUI tipDeceleration;
+            public TextMeshProUGUI tipLockTime;
+            public TextMeshProUGUI tipMissileCount;
+            public TextMeshProUGUI tipMissileReloadTime;
+            public TextMeshProUGUI tipRocketCount;
+            public TextMeshProUGUI tipRocketReloadTime;
 
             public void Initialize(GameObject panel, GameObject tip)
             {
                 panel.SetActive(true);
-                Transform[] obj = tip.GetComponentsInChildren<Transform>();
+                Transform[] obj = panel.GetComponentsInChildren<Transform>();
                 foreach (Transform child in obj)
                 {
                     switch (child.name)
                     {
-                        case "Astromech - Regeneration": textRegeneration = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Astromech - Roll": textRoll = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Astromech - Pitch": textPitch = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Astromech - Yaw": textYaw = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Astromech - Acceleration": textAcceleration = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Astromech - Deceleration": textDeceleration = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Astromech - Lock Time": textLockTime = child.GetComponent<TextMeshProUGUI>(); break;
-                            //case "Astromech - Missile Count": textMissileCount = child.GetComponent<TextMeshProUGUI>(); break;
-                            //case "Astromech - Missile Reload Time": textMissileReloadTime = child.GetComponent<TextMeshProUGUI>(); break;
-                            //case "Astromech - Rocket Count": textRocketCount = child.GetComponent<TextMeshProUGUI>(); break;
-                            //case "Astromech - Rocket Reload Time": textRocketReloadTime = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Kocmomech - Type": textType = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "UI Event - Block - Lock Time": animLockTime = child.GetComponent<UIEventTriggerAnimation>(); break;
                     }
                 }
                 panel.SetActive(false);
+                obj = tip.GetComponentsInChildren<Transform>();
+                foreach (Transform child in obj)
+                {
+                    switch (child.name)
+                    {
+                        case "Tip - Kocmomech": tipType = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Kocmomech - Regeneration": tipRegeneration = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Kocmomech - Roll": tipRoll = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Kocmomech - Pitch": tipPitch = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Kocmomech - Yaw": tipYaw = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Kocmomech - Acceleration": tipAcceleration = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Kocmomech - Deceleration": tipDeceleration = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Kocmomech - Lock Time": tipLockTime = child.GetComponent<TextMeshProUGUI>(); break;
+                            //case "Kocmomech - Missile Count": tipMissileCount = child.GetComponent<TextMeshProUGUI>(); break;
+                            //case "Kocmomech - Missile Reload Time": tipMissileReloadTime = child.GetComponent<TextMeshProUGUI>(); break;
+                            //case "Kocmomech - Rocket Count": tipRocketCount = child.GetComponent<TextMeshProUGUI>(); break;
+                            //case "Kocmomech - Rocket Reload Time": tipRocketReloadTime = child.GetComponent<TextMeshProUGUI>(); break;
+                    }
+                }
             }
-
-            public void SetData(int index)
+            public void SetData(int index, Kocmomech kocmomech)
             {
-                //moduleData = KocmocaData.KocmocraftData[index];
-                //textTitle.text = moduleData.DroidName;
-                //textInfomation.text = moduleData.DroidDetail;
-                //textShieldRecharge.text = moduleData.ShieldRecharge.ToString();
-                //textCollisionResistance.text = moduleData.CollisionResistance.ToString();
-                //textEnginePower.text = moduleData.EnginePower.ToString();
-                //textLockTime.text = moduleData.LockTime.ToString() + " sec";
-
-                //textInfomation.color = HangarData.TextColor[index];
-                //textShieldRecharge.color = HangarData.TextColor[index];
-                //textCollisionResistance.color = HangarData.TextColor[index];
-                //textEnginePower.color = HangarData.TextColor[index];
-                //textLockTime.color = HangarData.TextColor[index];
-
-                //for (int i = 0; i < item.Length; i++)
-                //{
-                //    item[i].color = HangarData.TextColor[index];
-                //}
+                textType.text = kocmomech.type;
+                animLockTime.period = kocmomech.lockTime;
+                tipType.text = kocmomech.type;
+                tipRegeneration.text = "+ " + kocmomech.regeneration.ToString() + " Pts/s";
+                tipRoll.text = "+ " + kocmomech.roll.ToString() + "°/s";
+                tipPitch.text = "+ " + kocmomech.pitch.ToString() + "°/s";
+                tipYaw.text = "+ " + kocmomech.yaw.ToString() + "°/s";
+                tipAcceleration.text = "+ " + kocmomech.acceleration.ToString() + " Kph/s";
+                tipDeceleration.text = "- " + kocmomech.deceleration.ToString() + " Kph/s";
+                tipLockTime.text = "+ " + (kocmomech.lockTime*1000).ToString() + " ms";
+                //tipMissileCount.text = kocmomech.damage.ToString() + " Pts";
+                //tipMissileReloadTime.text = kocmomech.dPS.ToString() + " Pts";
+                //tipRocketCount.text = kocmomech.penetration.ToString() + " %";
+                //tipRocketReloadTime.text = kocmomech.piercing.ToString() + " %";
             }
         }
 

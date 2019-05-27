@@ -174,7 +174,7 @@ namespace Kocmoca
             }
         }
 
-        [Header("Astromech Droid Data")]
+        [Header("Kocmomech Droid Data")]
         public AstromechDroid astromechDroid;
         [Header("Radar Data")]
         public Radar radar;

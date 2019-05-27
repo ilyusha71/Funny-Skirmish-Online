@@ -131,7 +131,7 @@ namespace Kocmoca
         public readonly int CruiseSpeed;
         public readonly int AfterburnerSpeed;
         public readonly int Energy;
-        // Astromech Droid
+        // Kocmomech Droid
         public readonly string DroidName;
         public readonly string DroidDetail;
         public readonly int ShieldRecharge;

@@ -4714,9 +4714,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4908477390876494}
-  - component: {fileID: 322492901}
-  - component: {fileID: 5797178066644221690}
-  - component: {fileID: 8422780458372520463}
+  - component: {fileID: 998459192}
+  - component: {fileID: 998459191}
+  - component: {fileID: 998459190}
   m_Layer: 10
   m_Name: Hangar (01) - Red Bull Energy
   m_TagString: Hangar
@@ -4746,18 +4746,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &322492901
+--- !u!54 &998459192
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630159191688104}
+  serializedVersion: 2
+  m_Mass: 100
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &998459191
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630159191688104}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb56eec90e3fa2e45bfc7abdf864d331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
   shield:
     value: 6298
     level: 2
@@ -4776,7 +4793,8 @@ MonoBehaviour:
     engine: 17
     afterburner: 134
     afterburnerLevel: 7
-  myRigidbody: {fileID: 5797178066644221690}
+  kocmomech: {fileID: 11400000, guid: 7a1aea8a96f335241998ebb6b7dc0494, type: 2}
+  myRigidbody: {fileID: 998459192}
   myWreckage: {fileID: 4345648418333372280}
   myCockpitViewpoint: {fileID: 910011735197985899}
   shieldValue: 6298
@@ -4804,37 +4822,29 @@ MonoBehaviour:
   Mess: 30
   DirectVelocity: 1
   DampingVelocity: 5
---- !u!54 &5797178066644221690
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1630159191688104}
-  serializedVersion: 2
-  m_Mass: 100
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &8422780458372520463
+--- !u!114 &998459190
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630159191688104}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54e5c470e516cef489ba389a5ad2c1bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
+  radar: {fileID: 0}
+  turret: {fileID: 11400000, guid: 125d195e3fab89343b0ef36120a10e79, type: 2}
+  kocmomech: {fileID: 11400000, guid: 7a1aea8a96f335241998ebb6b7dc0494, type: 2}
+  myTransform: {fileID: 4908477390876494}
   kocmonautNumber: 0
   FriendAircraftsArray: []
-  FoeAircraftsArray: []
+  listFriend: []
+  listFoe: []
+  nearestTarget: {fileID: 0}
+  autoAimTarget: {fileID: 0}
   targetOnboard: []
   targetNearest: {fileID: 0}
   targetTrack: {fileID: 0}

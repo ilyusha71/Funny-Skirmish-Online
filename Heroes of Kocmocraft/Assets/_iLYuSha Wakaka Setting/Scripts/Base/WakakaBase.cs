@@ -135,14 +135,15 @@ namespace Kocmoca
             panelDesign = panel.GetChild(1).gameObject;
             design.Initialize(panelDesign);
             panelDubi = panel.GetChild(2).gameObject;
-            dubi.Initialize(panelDubi, panel.GetChild(8).gameObject);
+            dubi.Initialize(panelDubi, panel.GetChild(0).gameObject);
             panelPerformance = panel.GetChild(3).gameObject;
-            performance.Initialize(panelPerformance);
-            panelAstromech = panel.GetChild(4).gameObject;
-            panelRadar = panel.GetChild(5).gameObject;
-            panelTurret = panel.GetChild(6).gameObject;
+            performance.Initialize(panelPerformance, panel.GetChild(0).gameObject);
+            panelRadar = panel.GetChild(4).gameObject;
+            panelTurret = panel.GetChild(5).gameObject;
             turret.Initialize(panelTurret);
-            panelMissile = panel.GetChild(7).gameObject;
+            panelMissile = panel.GetChild(6).gameObject;
+            panelKocmomech = panel.GetChild(7).gameObject;
+            kocmomech.Initialize(panelKocmomech, panel.GetChild(0).gameObject);
         }
 
 

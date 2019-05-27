@@ -16,10 +16,12 @@ namespace Kocmoca
 {
     public class KocmocraftManager : MonoBehaviour
     {
+        public bool active;
         [Header("Preset")]
         public Shield shield;
         public Hull hull;
         public Speed speed;
+        public Kocmomech kocmomech;
         public Rigidbody myRigidbody;
         public GameObject myWreckage;
         public Transform myCockpitViewpoint;
@@ -32,15 +34,27 @@ namespace Kocmoca
         [Header("Crash Info")]
         public Dictionary<int, int> listAttacker = new Dictionary<int, int>(); // 損傷記錄索引
         private Kocmonaut lastAttacker = new Kocmonaut { Number = -1 };
-        private Vector3 lastHitVelocity;     
+        private Vector3 lastHitVelocity;
 
-
-
-        private int type;
+        //private int type;
         private void Reset()
         {
-            type = int.Parse(name.Split(new char[2] { '(', ')' })[1]);
+            int type = int.Parse(name.Split(new char[2] { '(', ')' })[1]);
             KocmocraftDatabase index = UnityEditor.AssetDatabase.LoadAssetAtPath<KocmocraftDatabase>("Assets/_iLYuSha Wakaka Setting/ScriptableObject/Kocmocraft Database.asset");
+            shield = index.kocmocraft[type].shield;
+            shieldValue = shield.value;
+            hull = index.kocmocraft[type].hull;
+            hullValue = hull.value;
+            speed = index.kocmocraft[type].speed;
+            kocmomech = index.kocmocraft[type].kocmomech;
+
+            myRigidbody = GetComponent<Rigidbody>();
+            myRigidbody.mass = 100;
+            myRigidbody.angularDrag = 0;
+            myRigidbody.useGravity = false;
+            myRigidbody.isKinematic = true;
+            myCockpitViewpoint = transform.Find("Cockpit Viewpoint");
+            myWreckage = GetComponentInChildren<Prototype>().gameObject;
 
             FireControlSystem[] fcs = GetComponentsInChildren<FireControlSystem>();
             for (int i = 0; i < fcs.Length; i++)
@@ -50,14 +64,7 @@ namespace Kocmoca
 
             GetComponentInChildren<EngineController>().Preset(index.kocmocraft[type].engine);
 
-            shield = index.kocmocraft[type].shield;
-            shieldValue = shield.value;
-            hull = index.kocmocraft[type].hull;
-            hullValue = hull.value;
-            speed = index.kocmocraft[type].speed;
-            myRigidbody = GetComponent<Rigidbody>();
-            myCockpitViewpoint = transform.Find("Cockpit Viewpoint");
-            myWreckage = GetComponentInChildren<Prototype>().gameObject;
+            enabled = false;
         }
 
         public void Initialize(KocmocraftModule module, Core core, int type, int number, GameObject pilot, GameObject wreckage)
@@ -327,6 +334,7 @@ namespace Kocmoca
 
         private void OnCollisionEnter(Collision collision)
         {
+            Debug.Log(name + "/" + collision.transform.name);
             // 消除撞擊造成的力矩
             myRigidbody.isKinematic = true;
             myRigidbody.isKinematic = false;
@@ -399,9 +407,7 @@ namespace Kocmoca
 
         [Header("Constant")]
         public float RotationSpeed = 50.0f;// Turn Speed
-        public float SpeedPitch = 2;// rotation X
-        public float SpeedRoll = 3;// rotation Z
-        public float SpeedYaw = 1;// rotation Y
+
         public float DampingTarget = 10.0f;// rotation speed to facing to a target
         public bool AutoPilot = false;// if True this plane will follow a target automatically
         [HideInInspector]
@@ -414,11 +420,11 @@ namespace Kocmoca
         private Vector3 positionTarget = Vector3.zero;
         public Quaternion mainRot = Quaternion.identity;
         //[HideInInspector]
-        public float roll = 0;
+        public float rollAxis = 0;
         //[HideInInspector]
-        public float pitch = 0;
+        public float pitchAxis = 0;
         //[HideInInspector]
-        public float yaw = 0;
+        public float yawAxis = 0;
         public Vector2 LimitAxisControl = new Vector2(2, 1);// limited of axis rotation magnitude
         public bool FixedX;
         public bool FixedY;
@@ -458,8 +464,8 @@ namespace Kocmoca
                     positionTarget = Vector3.Lerp(positionTarget, PositionTarget, Time.fixedDeltaTime * DampingTarget);
                     Vector3 relativePoint = this.transform.InverseTransformPoint(positionTarget).normalized; // 计算相对位置的单位向量
                     mainRot = Quaternion.LookRotation(positionTarget - this.transform.position);
-                    myRigidbody.rotation = Quaternion.Lerp(myRigidbody.rotation, mainRot, Time.fixedDeltaTime * (RotationSpeed * 0.005f) * SpeedYaw);
-                    myRigidbody.rotation *= Quaternion.Euler(-relativePoint.y * SpeedPitch * 0.5f, 0, -relativePoint.x * SpeedRoll * 0.5f);
+                    myRigidbody.rotation = Quaternion.Lerp(myRigidbody.rotation, mainRot, Time.fixedDeltaTime * (RotationSpeed * 0.005f) * kocmomech.yaw);
+                    myRigidbody.rotation *= Quaternion.Euler(-relativePoint.y * kocmomech.pitch * 0.5f, 0, -relativePoint.x * kocmomech.roll * 0.5f);
                     // 根据单位向量分配 Pitch与 Roll的转动量
                 }
                 velocityTarget = (myRigidbody.rotation * Vector3.forward) * (dataSpeed.Value);
@@ -467,7 +473,7 @@ namespace Kocmoca
             else
             {
                 // axis control by input
-                AddRot.eulerAngles = new Vector3(pitch, yaw, -roll);
+                AddRot.eulerAngles = new Vector3(pitchAxis, yawAxis, -rollAxis);
                 mainRot *= AddRot;
 
                 if (SimpleControl)
@@ -506,7 +512,7 @@ namespace Kocmoca
             {
                 myRigidbody.velocity = Vector3.Lerp(myRigidbody.velocity, velocityTarget, Time.fixedDeltaTime * DampingVelocity);
             }
-            yaw = Mathf.Lerp(yaw, 0, Time.deltaTime);
+            yawAxis = Mathf.Lerp(yawAxis, 0, Time.deltaTime);
 
 
             //dataEnergy.Value = Mathf.Clamp(dataEnergy.Value + Time.deltaTime * 71, 0, dataEnergy.Max);
@@ -516,7 +522,7 @@ namespace Kocmoca
             //    isCharge = false;
         }
 
-        // Input function. ( roll and pitch)
+        // Input function. ( rollAxis and pitchAxis)
         public void AxisControl(Vector2 axis)
         {
             if (SimpleControl)
@@ -524,13 +530,13 @@ namespace Kocmoca
                 LimitAxisControl.y = LimitAxisControl.x;
             }
             // Debug.Log(axis.x);
-            roll = Mathf.Lerp(roll, Mathf.Clamp(axis.x, -LimitAxisControl.x, LimitAxisControl.x) * SpeedRoll, Time.deltaTime);
-            pitch = Mathf.Lerp(pitch, Mathf.Clamp(axis.y, -LimitAxisControl.y, LimitAxisControl.y) * SpeedPitch, Time.deltaTime);
+            rollAxis = Mathf.Lerp(rollAxis, Mathf.Clamp(axis.x, -LimitAxisControl.x, LimitAxisControl.x) * kocmomech.roll, Time.deltaTime);
+            pitchAxis = Mathf.Lerp(pitchAxis, Mathf.Clamp(axis.y, -LimitAxisControl.y, LimitAxisControl.y) * kocmomech.pitch, Time.deltaTime);
         }
-        // Input function ( yaw) 
+        // Input function ( yawAxis) 
         public void TurnControl(float turn)
         {
-            yaw += turn * Time.deltaTime * 0.2f;
+            yawAxis += turn * Time.deltaTime * 0.2f;
         }
         public void SpeedControl(float throttle, bool useAfterBurner)
         {

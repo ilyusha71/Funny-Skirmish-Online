@@ -28,9 +28,9 @@ public class KocmocraftModule : ScriptableObject
     [Header("Turret")]
     [Tooltip("机炮")]
     public Turret turret;
-    [Header("Astromech")]
+    [Header("Kocmomech")]
     [Tooltip("宇航技工")]
-    public Astromech astromech;
+    public Kocmomech kocmomech;
 
 #if UNITY_EDITOR
     public void SaveDatabase()

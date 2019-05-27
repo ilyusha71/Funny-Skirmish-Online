@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4096866639541554}
-  - component: {fileID: 4609174754595890384}
-  - component: {fileID: 7227970822906675793}
-  - component: {fileID: 321659346347153883}
+  - component: {fileID: 464546291}
+  - component: {fileID: 464546290}
+  - component: {fileID: 464546289}
   m_Layer: 10
   m_Name: Hangar (07) - Ace Kennel
   m_TagString: Hangar
@@ -40,18 +40,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &4609174754595890384
+--- !u!54 &464546291
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413480944677018}
+  serializedVersion: 2
+  m_Mass: 100
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &464546290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413480944677018}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb56eec90e3fa2e45bfc7abdf864d331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
   shield:
     value: 3700
     level: 1
@@ -70,7 +87,8 @@ MonoBehaviour:
     engine: 9
     afterburner: 110
     afterburnerLevel: 5
-  myRigidbody: {fileID: 7227970822906675793}
+  kocmomech: {fileID: 11400000, guid: 40ac21a4d6f77bb4c9269551530616c1, type: 2}
+  myRigidbody: {fileID: 464546291}
   myWreckage: {fileID: 6893688733245438877}
   myCockpitViewpoint: {fileID: 8523034330061375139}
   shieldValue: 3700
@@ -98,37 +116,29 @@ MonoBehaviour:
   Mess: 30
   DirectVelocity: 1
   DampingVelocity: 5
---- !u!54 &7227970822906675793
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413480944677018}
-  serializedVersion: 2
-  m_Mass: 100
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &321659346347153883
+--- !u!114 &464546289
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413480944677018}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54e5c470e516cef489ba389a5ad2c1bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
+  radar: {fileID: 0}
+  turret: {fileID: 11400000, guid: 459e743c4e5d9bc46b8c3ad5e179f182, type: 2}
+  kocmomech: {fileID: 11400000, guid: 40ac21a4d6f77bb4c9269551530616c1, type: 2}
+  myTransform: {fileID: 4096866639541554}
   kocmonautNumber: 0
   FriendAircraftsArray: []
-  FoeAircraftsArray: []
+  listFriend: []
+  listFoe: []
+  nearestTarget: {fileID: 0}
+  autoAimTarget: {fileID: 0}
   targetOnboard: []
   targetNearest: {fileID: 0}
   targetTrack: {fileID: 0}
@@ -1070,32 +1080,32 @@ PrefabInstance:
     - target: {fileID: 8069551675565904159, guid: c72eb9703fea28a44b093de588c52e57,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0003915578
+      value: 0.0004176348
       objectReference: {fileID: 0}
     - target: {fileID: 8069551675565904159, guid: c72eb9703fea28a44b093de588c52e57,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.940271
+      value: 0.9402709
       objectReference: {fileID: 0}
     - target: {fileID: 8069551675565904159, guid: c72eb9703fea28a44b093de588c52e57,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.34042495
+      value: -0.34042487
       objectReference: {fileID: 0}
     - target: {fileID: 8069551675565904159, guid: c72eb9703fea28a44b093de588c52e57,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0010808408
+      value: 0.0011526047
       objectReference: {fileID: 0}
     - target: {fileID: 8069551675565904159, guid: c72eb9703fea28a44b093de588c52e57,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0069274902
+      value: -0.007385254
       objectReference: {fileID: 0}
     - target: {fileID: 7876688068549778684, guid: c72eb9703fea28a44b093de588c52e57,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00032401082
+      value: 0.00033639368
       objectReference: {fileID: 0}
     - target: {fileID: 7876688068549778684, guid: c72eb9703fea28a44b093de588c52e57,
         type: 3}
@@ -1105,42 +1115,42 @@ PrefabInstance:
     - target: {fileID: 7876688068549778684, guid: c72eb9703fea28a44b093de588c52e57,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.30604514
+      value: -0.3060451
       objectReference: {fileID: 0}
     - target: {fileID: 7876688068549778684, guid: c72eb9703fea28a44b093de588c52e57,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0010071992
+      value: 0.0010459422
       objectReference: {fileID: 0}
     - target: {fileID: 7876688068549778684, guid: c72eb9703fea28a44b093de588c52e57,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.006378174
+      value: -0.0066223145
       objectReference: {fileID: 0}
     - target: {fileID: 244091890743110516, guid: c72eb9703fea28a44b093de588c52e57,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0004054755
+      value: 0.00042523438
       objectReference: {fileID: 0}
     - target: {fileID: 244091890743110516, guid: c72eb9703fea28a44b093de588c52e57,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.94630754
+      value: 0.9463074
       objectReference: {fileID: 0}
     - target: {fileID: 244091890743110516, guid: c72eb9703fea28a44b093de588c52e57,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.32326543
+      value: -0.32326534
       objectReference: {fileID: 0}
     - target: {fileID: 244091890743110516, guid: c72eb9703fea28a44b093de588c52e57,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0011885464
+      value: 0.0012463628
       objectReference: {fileID: 0}
     - target: {fileID: 244091890743110516, guid: c72eb9703fea28a44b093de588c52e57,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0075683594
+      value: -0.00793457
       objectReference: {fileID: 0}
     - target: {fileID: 7792182630624294360, guid: c72eb9703fea28a44b093de588c52e57,
         type: 3}

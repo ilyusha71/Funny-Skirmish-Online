@@ -21,11 +21,13 @@ namespace Kocmoca
 {
     public class OnboardRadar : MonoBehaviour
     {
+        public bool active;
         [Header("Preset")]
-        public Transform myTransform;
         public Radar radar;
         public Turret turret;
-        public Astromech astromech;
+        public Kocmomech kocmomech;
+        public Transform myTransform;
+
 
 
         [Header("Dependent Components")]
@@ -86,10 +88,21 @@ namespace Kocmoca
         public Transform targetRadarLockOn; // 符合機載
 
         ModuleData moduleData;
+
+        private void Reset()
+        {
+            int type = int.Parse(name.Split(new char[2] { '(', ')' })[1]);
+            KocmocraftDatabase index = UnityEditor.AssetDatabase.LoadAssetAtPath<KocmocraftDatabase>("Assets/_iLYuSha Wakaka Setting/ScriptableObject/Kocmocraft Database.asset");
+            radar = index.kocmocraft[type].radar;
+            turret = index.kocmocraft[type].turret;
+            kocmomech = index.kocmocraft[type].kocmomech;
+            myTransform = transform;
+            enabled = false;
+        }
+
         public void Initialize(Core core, int faction, int type, int number)
         {
             // Dependent Components
-            myTransform = transform;
             myPhotonView = GetComponent<PhotonView>();
             // Modular Parameter
             isLocalPlayer = core == Core.LocalPlayer ? true : false;
@@ -103,9 +116,14 @@ namespace Kocmoca
             targetOnboard = new Transform[maxtOnboardCount];
 
             moduleData = KocmocaData.KocmocraftData[type];
+
+
+            active = true;
         }
         private void Update()
         {
+            //if (!active) return;
+
             //myPosition = myTransform.position;
             //if (isLocalPlayer) SearchFriend();
             //SearchFoe();
@@ -240,7 +258,7 @@ namespace Kocmoca
                 }
                 else
                 {
-                    nextLockTime = Time.time + astromech.lockTime;
+                    nextLockTime = Time.time + kocmomech.lockTime;
                     targetTrack = null;
                     targetRadarLockOn = null;
                 }
