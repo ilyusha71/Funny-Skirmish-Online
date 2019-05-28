@@ -285,18 +285,15 @@ MonoBehaviour:
     Max: 0
     Value: 0
   RotationSpeed: 50
-  SpeedPitch: 2
-  SpeedRoll: 3
-  SpeedYaw: 1
   DampingTarget: 10
   AutoPilot: 0
   SimpleControl: 1
   FollowTarget: 0
   PositionTarget: {x: 0, y: 0, z: 0}
   mainRot: {x: 0, y: 0, z: 0, w: 1}
-  roll: 0
-  pitch: 0
-  yaw: 0
+  rollAxis: 0
+  pitchAxis: 0
+  yawAxis: 0
   LimitAxisControl: {x: 2, y: 1}
   FixedX: 0
   FixedY: 0
@@ -10288,10 +10285,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 800871450}
     m_Modifications:
-    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
-      propertyPath: m_Name
-      value: Candle Fire
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
@@ -10348,10 +10345,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 10
+      propertyPath: m_Name
+      value: Candle Fire
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61f9c91edeb866647b6ece4e2ede719d, type: 3}
@@ -10374,10 +10371,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 800871450}
     m_Modifications:
-    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
-      propertyPath: m_Name
-      value: Candle Fire
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
@@ -10434,10 +10431,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 10
+      propertyPath: m_Name
+      value: Candle Fire
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61f9c91edeb866647b6ece4e2ede719d, type: 3}

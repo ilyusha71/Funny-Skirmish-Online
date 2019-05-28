@@ -98,18 +98,15 @@ MonoBehaviour:
     Max: 0
     Value: 0
   RotationSpeed: 50
-  SpeedPitch: 2
-  SpeedRoll: 3
-  SpeedYaw: 1
   DampingTarget: 10
   AutoPilot: 0
   SimpleControl: 1
   FollowTarget: 0
   PositionTarget: {x: 0, y: 0, z: 0}
   mainRot: {x: 0, y: 0, z: 0, w: 1}
-  roll: 0
-  pitch: 0
-  yaw: 0
+  rollAxis: 0
+  pitchAxis: 0
+  yawAxis: 0
   LimitAxisControl: {x: 2, y: 1}
   FixedX: 0
   FixedY: 0
@@ -1209,7 +1206,7 @@ PrefabInstance:
     - target: {fileID: 8302147656588348730, guid: 3f954f3b1e77f644690f4092b7539a60,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00041446084
+      value: -0.00041618937
       objectReference: {fileID: 0}
     - target: {fileID: 8302147656588348730, guid: 3f954f3b1e77f644690f4092b7539a60,
         type: 3}
@@ -1224,12 +1221,12 @@ PrefabInstance:
     - target: {fileID: 8302147656588348730, guid: 3f954f3b1e77f644690f4092b7539a60,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0011432468
+      value: -0.0011480747
       objectReference: {fileID: 0}
     - target: {fileID: 8302147656588348730, guid: 3f954f3b1e77f644690f4092b7539a60,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0073242188
+      value: 0.0073547363
       objectReference: {fileID: 0}
     - target: {fileID: 5970632058909624708, guid: 3f954f3b1e77f644690f4092b7539a60,
         type: 3}

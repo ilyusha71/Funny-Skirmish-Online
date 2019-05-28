@@ -132,8 +132,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114241211727286744}
   - {fileID: 114766526413799556}
-  viewIdField: 0
-  InstantiationId: 2
+  viewIdField: 24
+  InstantiationId: 24
   isRuntimeInstantiated: 0
 --- !u!114 &114241211727286744
 MonoBehaviour:
@@ -178,6 +178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d300cf859ca96e44987082e42774e167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  port: 0
+  Faction: 0
+  Type: 0
+  Number: 0
   module: {fileID: 11400000, guid: c15c8ad60c62341419620337e393f2cc, type: 2}
   listFCS: []
   countFCS: 0

@@ -98,18 +98,15 @@ MonoBehaviour:
     Max: 0
     Value: 0
   RotationSpeed: 50
-  SpeedPitch: 2
-  SpeedRoll: 3
-  SpeedYaw: 1
   DampingTarget: 10
   AutoPilot: 0
   SimpleControl: 1
   FollowTarget: 0
   PositionTarget: {x: 0, y: 0, z: 0}
   mainRot: {x: 0, y: 0, z: 0, w: 1}
-  roll: 0
-  pitch: 0
-  yaw: 0
+  rollAxis: 0
+  pitchAxis: 0
+  yawAxis: 0
   LimitAxisControl: {x: 2, y: 1}
   FixedX: 0
   FixedY: 0
@@ -10356,11 +10353,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1140717649146268066}
     m_Modifications:
-    - target: {fileID: 5672858574861101177, guid: d1030279124403b4a95dbbef629a8ab9,
-        type: 3}
-      propertyPath: m_Name
-      value: Dubi - Robot Cat
-      objectReference: {fileID: 0}
     - target: {fileID: 5672858574860612697, guid: d1030279124403b4a95dbbef629a8ab9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10415,6 +10407,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5672858574861101177, guid: d1030279124403b4a95dbbef629a8ab9,
+        type: 3}
+      propertyPath: m_Name
+      value: Dubi - Robot Cat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1030279124403b4a95dbbef629a8ab9, type: 3}
@@ -10524,7 +10521,7 @@ PrefabInstance:
     - target: {fileID: 5428288322500368901, guid: 8fc5bedb1ee1de44cae96c803f935048,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00020568073
+      value: 0.0002065301
       objectReference: {fileID: 0}
     - target: {fileID: 5428288322500368901, guid: 8fc5bedb1ee1de44cae96c803f935048,
         type: 3}
@@ -10539,12 +10536,12 @@ PrefabInstance:
     - target: {fileID: 5428288322500368901, guid: 8fc5bedb1ee1de44cae96c803f935048,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.000600487
+      value: 0.0006029308
       objectReference: {fileID: 0}
     - target: {fileID: 5428288322500368901, guid: 8fc5bedb1ee1de44cae96c803f935048,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0038223267
+      value: -0.0038375854
       objectReference: {fileID: 0}
     - target: {fileID: 5428288322500368901, guid: 8fc5bedb1ee1de44cae96c803f935048,
         type: 3}

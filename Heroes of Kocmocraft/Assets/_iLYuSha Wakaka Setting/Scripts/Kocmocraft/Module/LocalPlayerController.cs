@@ -25,12 +25,12 @@ namespace Kocmoca
         {
             // Dependent Components
             myAvionicsSystem = GetComponentInChildren<KocmocraftManager>();
-            myOnboardRadar = GetComponent<OnboardRadar>();
+            myOnboardRadar = GetComponentInChildren<OnboardRadar>();
             myLaserFCS = GetComponentsInChildren<FireControlSystem>()[0];
             myRocketFCS = GetComponentsInChildren<FireControlSystem>()[1];
             myMissileFCS = GetComponentsInChildren<FireControlSystem>()[2];
             // Camera Setting
-            MouseLock.MouseLocked = true;
+            MouseLock.MouseLocked = false;
         }
 
         int reverse = 1;
@@ -40,12 +40,13 @@ namespace Kocmoca
                 reverse *= -1;
             if (!myAvionicsSystem || !Active)
                 return;
+
             Operation();
         }
         void Operation()
         {
-            myAvionicsSystem.AxisControl(new Vector2(Controller.roll, reverse*Controller.pitch));
-            myAvionicsSystem.TurnControl(Controller.yaw);
+            //myAvionicsSystem.AxisControl(new Vector2(Controller.roll, reverse*Controller.pitch));
+            //myAvionicsSystem.TurnControl(Controller.yaw);
             myAvionicsSystem.SpeedControl(Controller.throttle, useAfterBurner);
 
             if (Input.GetKeyDown(Controller.KEYBOARD_CockpitView) || Input.GetKeyDown(Controller.XBOX360_CockpitView))

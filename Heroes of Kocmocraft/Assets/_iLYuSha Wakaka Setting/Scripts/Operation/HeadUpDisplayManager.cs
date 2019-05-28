@@ -440,7 +440,7 @@ namespace Kocmoca
 
             markerLock.position = screenPos;
             textTargetName.text = target.name.Split('-')[0];
-            textTargetType.text = target.name.Split('-')[2];
+            //textTargetType.text = target.name.Split('-')[2];
             textTargetDistance.text = Mathf.Floor(Mathf.Sqrt(distance)) + " m";
 
             KocmocraftManager targetInfo = target.GetComponentInChildren<KocmocraftManager>();

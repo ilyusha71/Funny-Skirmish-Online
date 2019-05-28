@@ -4760,18 +4760,15 @@ MonoBehaviour:
     Max: 0
     Value: 0
   RotationSpeed: 50
-  SpeedPitch: 2
-  SpeedRoll: 3
-  SpeedYaw: 1
   DampingTarget: 10
   AutoPilot: 0
   SimpleControl: 1
   FollowTarget: 0
   PositionTarget: {x: 0, y: 0, z: 0}
   mainRot: {x: 0, y: 0, z: 0, w: 1}
-  roll: 0
-  pitch: 0
-  yaw: 0
+  rollAxis: 0
+  pitchAxis: 0
+  yawAxis: 0
   LimitAxisControl: {x: 2, y: 1}
   FixedX: 0
   FixedY: 0
@@ -5929,11 +5926,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4464833669553941754}
     m_Modifications:
-    - target: {fileID: 933992902942848630, guid: a787ead40b8acf140bc573aaae0e6659,
-        type: 3}
-      propertyPath: m_Name
-      value: Mario
-      objectReference: {fileID: 0}
     - target: {fileID: 933992902942747222, guid: a787ead40b8acf140bc573aaae0e6659,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5988,6 +5980,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 933992902942848630, guid: a787ead40b8acf140bc573aaae0e6659,
+        type: 3}
+      propertyPath: m_Name
+      value: Mario
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a787ead40b8acf140bc573aaae0e6659, type: 3}

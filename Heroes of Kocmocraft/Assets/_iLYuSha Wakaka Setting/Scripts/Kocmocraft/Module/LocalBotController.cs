@@ -83,7 +83,7 @@ namespace Kocmoca
             myAvionicsSystem = GetComponentInChildren<KocmocraftManager>();
             myAvionicsSystem.AutoPilot = true;// set auto pilot to true will make this plane flying and looking to Target automatically
             myAvionicsSystem.FollowTarget = true;
-            myOnboardRadar = GetComponent<OnboardRadar>();
+            myOnboardRadar = GetComponentInChildren<OnboardRadar>();
             myLaserFCS = GetComponentsInChildren<FireControlSystem>()[0];
             myRocketFCS = GetComponentsInChildren<FireControlSystem>()[1];
             myMissileFCS = GetComponentsInChildren<FireControlSystem>()[2];

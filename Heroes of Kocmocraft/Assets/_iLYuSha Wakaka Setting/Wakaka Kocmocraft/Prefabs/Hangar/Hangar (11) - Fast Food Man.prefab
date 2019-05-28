@@ -277,18 +277,15 @@ MonoBehaviour:
     Max: 0
     Value: 0
   RotationSpeed: 50
-  SpeedPitch: 2
-  SpeedRoll: 3
-  SpeedYaw: 1
   DampingTarget: 10
   AutoPilot: 0
   SimpleControl: 1
   FollowTarget: 0
   PositionTarget: {x: 0, y: 0, z: 0}
   mainRot: {x: 0, y: 0, z: 0, w: 1}
-  roll: 0
-  pitch: 0
-  yaw: 0
+  rollAxis: 0
+  pitchAxis: 0
+  yawAxis: 0
   LimitAxisControl: {x: 2, y: 1}
   FixedX: 0
   FixedY: 0
@@ -10422,11 +10419,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4835592628145312}
     m_Modifications:
-    - target: {fileID: 3542106977500394432, guid: 1cad2f69ff0c729499827a4be5477520,
-        type: 3}
-      propertyPath: m_Name
-      value: Pilot - Eric Cartman
-      objectReference: {fileID: 0}
     - target: {fileID: 3540522384267295690, guid: 1cad2f69ff0c729499827a4be5477520,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10481,6 +10473,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3542106977500394432, guid: 1cad2f69ff0c729499827a4be5477520,
+        type: 3}
+      propertyPath: m_Name
+      value: Pilot - Eric Cartman
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cad2f69ff0c729499827a4be5477520, type: 3}

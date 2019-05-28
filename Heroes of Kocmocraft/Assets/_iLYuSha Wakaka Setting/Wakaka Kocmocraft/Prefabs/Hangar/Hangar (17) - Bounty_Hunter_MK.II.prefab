@@ -97,18 +97,15 @@ MonoBehaviour:
     Max: 0
     Value: 0
   RotationSpeed: 50
-  SpeedPitch: 2
-  SpeedRoll: 3
-  SpeedYaw: 1
   DampingTarget: 10
   AutoPilot: 0
   SimpleControl: 1
   FollowTarget: 0
   PositionTarget: {x: 0, y: 0, z: 0}
   mainRot: {x: 0, y: 0, z: 0, w: 1}
-  roll: 0
-  pitch: 0
-  yaw: 0
+  rollAxis: 0
+  pitchAxis: 0
+  yawAxis: 0
   LimitAxisControl: {x: 2, y: 1}
   FixedX: 0
   FixedY: 0
@@ -5680,11 +5677,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4613548342188736}
     m_Modifications:
-    - target: {fileID: 1279466575802944862, guid: 111b017849d566c419d1df4e56758be7,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype (17) - Bounty_Hunter_MK.II
-      objectReference: {fileID: 0}
     - target: {fileID: 7103894989937176421, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5740,6 +5732,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1279466575802944862, guid: 111b017849d566c419d1df4e56758be7,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype (17) - Bounty_Hunter_MK.II
+      objectReference: {fileID: 0}
     - target: {fileID: 6442631923000170363, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -5768,32 +5765,32 @@ PrefabInstance:
     - target: {fileID: 320969629551583131, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00020791587
+      value: 0.00020882487
       objectReference: {fileID: 0}
     - target: {fileID: 320969629551583131, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9402715
+      value: -0.94027156
       objectReference: {fileID: 0}
     - target: {fileID: 320969629551583131, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.34042493
+      value: 0.34042498
       objectReference: {fileID: 0}
     - target: {fileID: 320969629551583131, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.00057378405
+      value: 0.0005763173
       objectReference: {fileID: 0}
     - target: {fileID: 320969629551583131, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0036773682
+      value: 0.003692627
       objectReference: {fileID: 0}
     - target: {fileID: 760312807618863312, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00021435317
+      value: 0.00021514294
       objectReference: {fileID: 0}
     - target: {fileID: 760312807618863312, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
@@ -5803,17 +5800,17 @@ PrefabInstance:
     - target: {fileID: 760312807618863312, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.30604497
+      value: 0.30604494
       objectReference: {fileID: 0}
     - target: {fileID: 760312807618863312, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0006658434
+      value: 0.0006682872
       objectReference: {fileID: 0}
     - target: {fileID: 760312807618863312, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.004211426
+      value: 0.0042266846
       objectReference: {fileID: 0}
     - target: {fileID: 7336919774105956089, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
@@ -5851,11 +5848,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 301443422701253640}
     m_Modifications:
-    - target: {fileID: 6552136701887869553, guid: 7d54a1a0b8ae2854fb665b2035aa0196,
-        type: 3}
-      propertyPath: m_Name
-      value: Dubi - Kyle Broflovski
-      objectReference: {fileID: 0}
     - target: {fileID: 6552136701887966801, guid: 7d54a1a0b8ae2854fb665b2035aa0196,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5910,6 +5902,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552136701887869553, guid: 7d54a1a0b8ae2854fb665b2035aa0196,
+        type: 3}
+      propertyPath: m_Name
+      value: Dubi - Kyle Broflovski
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d54a1a0b8ae2854fb665b2035aa0196, type: 3}

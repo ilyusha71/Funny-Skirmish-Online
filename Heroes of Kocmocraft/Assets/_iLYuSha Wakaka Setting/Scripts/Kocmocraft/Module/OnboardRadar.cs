@@ -102,8 +102,9 @@ namespace Kocmoca
 
         public void Initialize(Core core, int faction, int type, int number)
         {
+            enabled = true;
             // Dependent Components
-            myPhotonView = GetComponent<PhotonView>();
+            myPhotonView = transform.root. GetComponent<PhotonView>();
             // Modular Parameter
             isLocalPlayer = core == Core.LocalPlayer ? true : false;
             kocmonautNumber = number;

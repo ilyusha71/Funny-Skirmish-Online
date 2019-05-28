@@ -97,18 +97,15 @@ MonoBehaviour:
     Max: 0
     Value: 0
   RotationSpeed: 50
-  SpeedPitch: 2
-  SpeedRoll: 3
-  SpeedYaw: 1
   DampingTarget: 10
   AutoPilot: 0
   SimpleControl: 1
   FollowTarget: 0
   PositionTarget: {x: 0, y: 0, z: 0}
   mainRot: {x: 0, y: 0, z: 0, w: 1}
-  roll: 0
-  pitch: 0
-  yaw: 0
+  rollAxis: 0
+  pitchAxis: 0
+  yawAxis: 0
   LimitAxisControl: {x: 2, y: 1}
   FixedX: 0
   FixedY: 0
@@ -5707,36 +5704,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.0008744
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9463047
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.32326484
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.0025604663
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.016296387
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.005291
-      objectReference: {fileID: 0}
     - target: {fileID: 5339566074417564222, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -5763,6 +5730,36 @@ PrefabInstance:
       value: -0.015319824
       objectReference: {fileID: 0}
     - target: {fileID: 5339566074417564222, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.005291
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0008744
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9463047
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.32326484
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0025604663
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.016296387
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915378080198251252, guid: d95ace2e2b8e04f45a12cc98d75cbb25,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 3.005291
@@ -5833,11 +5830,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2048928806260530071}
     m_Modifications:
-    - target: {fileID: 7549505861571388140, guid: 9035784c89261954fb1d1b3854f5d225,
-        type: 3}
-      propertyPath: m_Name
-      value: Dubi - Kirby
-      objectReference: {fileID: 0}
     - target: {fileID: 8490791040180974827, guid: 9035784c89261954fb1d1b3854f5d225,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5892,6 +5884,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549505861571388140, guid: 9035784c89261954fb1d1b3854f5d225,
+        type: 3}
+      propertyPath: m_Name
+      value: Dubi - Kirby
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9035784c89261954fb1d1b3854f5d225, type: 3}

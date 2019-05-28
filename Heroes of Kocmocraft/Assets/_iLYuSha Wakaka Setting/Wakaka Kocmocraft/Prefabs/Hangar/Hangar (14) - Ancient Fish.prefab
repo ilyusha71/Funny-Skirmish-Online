@@ -289,18 +289,15 @@ MonoBehaviour:
     Max: 0
     Value: 0
   RotationSpeed: 50
-  SpeedPitch: 2
-  SpeedRoll: 3
-  SpeedYaw: 1
   DampingTarget: 10
   AutoPilot: 0
   SimpleControl: 1
   FollowTarget: 0
   PositionTarget: {x: 0, y: 0, z: 0}
   mainRot: {x: 0, y: 0, z: 0, w: 1}
-  roll: 0
-  pitch: 0
-  yaw: 0
+  rollAxis: 0
+  pitchAxis: 0
+  yawAxis: 0
   LimitAxisControl: {x: 2, y: 1}
   FixedX: 0
   FixedY: 0
@@ -1150,11 +1147,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4277830745315218}
     m_Modifications:
-    - target: {fileID: 6749251335667252641, guid: d2ac8fd59cddc9143a1b483a931b5cd1,
-        type: 3}
-      propertyPath: m_Name
-      value: Pilot - SpongeBob
-      objectReference: {fileID: 0}
     - target: {fileID: 5024176230005769288, guid: d2ac8fd59cddc9143a1b483a931b5cd1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1209,6 +1201,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6749251335667252641, guid: d2ac8fd59cddc9143a1b483a931b5cd1,
+        type: 3}
+      propertyPath: m_Name
+      value: Pilot - SpongeBob
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2ac8fd59cddc9143a1b483a931b5cd1, type: 3}

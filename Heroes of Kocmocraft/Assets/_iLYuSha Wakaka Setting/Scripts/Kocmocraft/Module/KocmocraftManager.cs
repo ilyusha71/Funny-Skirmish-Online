@@ -25,7 +25,7 @@ namespace Kocmoca
         public Rigidbody myRigidbody;
         public GameObject myWreckage;
         public Transform myCockpitViewpoint;
-        public float shieldValue, hullValue;
+        public float shieldValue, hullValue, speedValue;
         [Header("Mech")]
         private PhotonView myPhotonView;
         public Core Core { get; protected set; }
@@ -35,6 +35,8 @@ namespace Kocmoca
         public Dictionary<int, int> listAttacker = new Dictionary<int, int>(); // 損傷記錄索引
         private Kocmonaut lastAttacker = new Kocmonaut { Number = -1 };
         private Vector3 lastHitVelocity;
+
+        Camera followCam;
 
         //private int type;
         private void Reset()
@@ -93,6 +95,10 @@ namespace Kocmoca
             dataSpeed = new Data { Max = KocmocraftData.AfterburnerSpeed[type], Value = 0 };
             valueSpeedCruise = KocmocraftData.CruiseSpeed[type];
             valueSpeedHigh = valueSpeedCruise * 1.1f;
+
+            followCam = Camera.main;
+            myRigidbody.isKinematic = false;
+            enabled = true;
         }
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -294,12 +300,12 @@ namespace Kocmoca
                     SatelliteCommander.Instance.ClearData();
                     HeadUpDisplayManager.Instance.ClearData();
                     Destroy(transform.root.GetComponent<LocalPlayerController>());
-                    transform.root.GetComponent<OnboardRadar>().Stop();
+                    transform.root.GetComponentInChildren<OnboardRadar>().Stop();
                     //Destroy(GetComponent<OnboardRadar>());
                     break;
                 case Core.LocalBot:
                     Destroy(transform.root.GetComponent<LocalBotController>());
-                    transform.root.GetComponent<OnboardRadar>().Stop();
+                    transform.root.GetComponentInChildren<OnboardRadar>().Stop();
                     //Destroy(GetComponent<OnboardRadar>());
                     break;
             }
@@ -334,7 +340,6 @@ namespace Kocmoca
 
         private void OnCollisionEnter(Collision collision)
         {
-            Debug.Log(name + "/" + collision.transform.name);
             // 消除撞擊造成的力矩
             myRigidbody.isKinematic = true;
             myRigidbody.isKinematic = false;
@@ -391,6 +396,8 @@ namespace Kocmoca
 
 
 
+        [Header("Calculate")]
+        public Vector3 mousePos;
 
 
 
@@ -472,35 +479,52 @@ namespace Kocmoca
             }
             else
             {
-                // axis control by input
-                AddRot.eulerAngles = new Vector3(pitchAxis, yawAxis, -rollAxis);
-                mainRot *= AddRot;
-
-                if (SimpleControl)
-                {
-                    Quaternion saveQ = mainRot;
-
-                    Vector3 fixedAngles = new Vector3(mainRot.eulerAngles.x, mainRot.eulerAngles.y, mainRot.eulerAngles.z);
-
-                    if (FixedX)
-                        fixedAngles.x = 1;
-                    if (FixedY)
-                        fixedAngles.y = 1;
-                    if (FixedZ)
-                        fixedAngles.z = 1;
-
-                    saveQ.eulerAngles = fixedAngles;
-
-
-                    mainRot = Quaternion.Lerp(mainRot, saveQ, Time.fixedDeltaTime * 2);
-                }
-
-                myRigidbody.rotation = Quaternion.Lerp(myRigidbody.rotation, mainRot, Time.fixedDeltaTime * RotationSpeed);
-                //Debug.Log(myRigidbody.angularVelocity.ToString("f4"));
-                //if (remote)
-                //    Debug.Log("NxtRot2: " + Time.frameCount + " / " + myRigidbody.rotation.eulerAngles);
-
+                Vector3 mousePos = followCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, followCam.farClipPlane));
+                Vector3 relativePoint = this.transform.InverseTransformPoint(mousePos).normalized; // 计算相对位置的单位向量
+                myRigidbody.rotation *= Quaternion.Euler(-relativePoint.y * kocmomech.pitch, relativePoint.x * kocmomech.yaw, -relativePoint.x * kocmomech.roll- myRigidbody.rotation.z);
                 velocityTarget = (myRigidbody.rotation * Vector3.forward) * (dataSpeed.Value);
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //// axis control by input
+                //AddRot.eulerAngles = new Vector3(pitchAxis, yawAxis, -rollAxis);
+                //mainRot *= AddRot;
+
+                //if (SimpleControl)
+                //{
+                //    Quaternion saveQ = mainRot;
+
+                //    Vector3 fixedAngles = new Vector3(mainRot.eulerAngles.x, mainRot.eulerAngles.y, mainRot.eulerAngles.z);
+
+                //    if (FixedX)
+                //        fixedAngles.x = 1;
+                //    if (FixedY)
+                //        fixedAngles.y = 1;
+                //    if (FixedZ)
+                //        fixedAngles.z = 1;
+
+                //    saveQ.eulerAngles = fixedAngles;
+
+
+                //    mainRot = Quaternion.Lerp(mainRot, saveQ, Time.fixedDeltaTime * 2);
+                //}
+
+                //myRigidbody.rotation = Quaternion.Lerp(myRigidbody.rotation, mainRot, Time.fixedDeltaTime * RotationSpeed);
+                ////Debug.Log(myRigidbody.angularVelocity.ToString("f4"));
+                ////if (remote)
+                ////    Debug.Log("NxtRot2: " + Time.frameCount + " / " + myRigidbody.rotation.eulerAngles);
+
+                //velocityTarget = (myRigidbody.rotation * Vector3.forward) * (dataSpeed.Value);
             }
             // add velocity to the riggidbody
 
@@ -540,6 +564,14 @@ namespace Kocmoca
         }
         public void SpeedControl(float throttle, bool useAfterBurner)
         {
+            if (throttle > 0)
+                speedValue += speedValue >= speed.engine ? kocmomech.acceleration : kocmomech.deceleration;
+            else if (throttle < 0)
+                speedValue += speedValue >= speed.engine ? -kocmomech.acceleration : -kocmomech.deceleration;
+            else
+                speedValue += speedValue >= speed.engine ? -kocmomech.acceleration : kocmomech.deceleration;
+
+
             if (isCharge)
                 useAfterBurner = false;
             if (throttle > 0)

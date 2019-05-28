@@ -4760,18 +4760,15 @@ MonoBehaviour:
     Max: 0
     Value: 0
   RotationSpeed: 50
-  SpeedPitch: 2
-  SpeedRoll: 3
-  SpeedYaw: 1
   DampingTarget: 10
   AutoPilot: 0
   SimpleControl: 1
   FollowTarget: 0
   PositionTarget: {x: 0, y: 0, z: 0}
   mainRot: {x: 0, y: 0, z: 0, w: 1}
-  roll: 0
-  pitch: 0
-  yaw: 0
+  rollAxis: 0
+  pitchAxis: 0
+  yawAxis: 0
   LimitAxisControl: {x: 2, y: 1}
   FixedX: 0
   FixedY: 0
@@ -5719,11 +5716,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4507466813372716}
     m_Modifications:
-    - target: {fileID: 6872156406699062250, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype (00) - Minion Armor
-      objectReference: {fileID: 0}
     - target: {fileID: 3542896726450198728, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5779,6 +5771,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6872156406699062250, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype (00) - Minion Armor
+      objectReference: {fileID: 0}
     - target: {fileID: 4324221403233353539, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -5812,27 +5809,27 @@ PrefabInstance:
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0016838161
+      value: -0.0016903875
       objectReference: {fileID: 0}
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9462954
+      value: 0.94629514
       objectReference: {fileID: 0}
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.3232613
+      value: -0.32326174
       objectReference: {fileID: 0}
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.004928827
+      value: -0.0049481387
       objectReference: {fileID: 0}
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03137207
+      value: 0.03149414
       objectReference: {fileID: 0}
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
@@ -5842,27 +5839,27 @@ PrefabInstance:
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0014750361
+      value: -0.0014812199
       objectReference: {fileID: 0}
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.952006
+      value: 0.95200586
       objectReference: {fileID: 0}
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.30604145
+      value: -0.3060414
       objectReference: {fileID: 0}
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.004590392
+      value: -0.004609614
       objectReference: {fileID: 0}
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.029052734
+      value: 0.029174805
       objectReference: {fileID: 0}
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}

@@ -4941,18 +4941,15 @@ MonoBehaviour:
     Max: 0
     Value: 0
   RotationSpeed: 50
-  SpeedPitch: 2
-  SpeedRoll: 3
-  SpeedYaw: 1
   DampingTarget: 10
   AutoPilot: 0
   SimpleControl: 1
   FollowTarget: 0
   PositionTarget: {x: 0, y: 0, z: 0}
   mainRot: {x: 0, y: 0, z: 0, w: 1}
-  roll: 0
-  pitch: 0
-  yaw: 0
+  rollAxis: 0
+  pitchAxis: 0
+  yawAxis: 0
   LimitAxisControl: {x: 2, y: 1}
   FixedX: 0
   FixedY: 0
@@ -14977,11 +14974,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4792742402706074}
     m_Modifications:
-    - target: {fileID: 5860229090473335844, guid: 710a47098c643bc458727105088e353f,
-        type: 3}
-      propertyPath: m_Name
-      value: Pilot - Hua Ji
-      objectReference: {fileID: 0}
     - target: {fileID: 8838311290669947806, guid: 710a47098c643bc458727105088e353f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15037,6 +15029,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5860229090473335844, guid: 710a47098c643bc458727105088e353f,
+        type: 3}
+      propertyPath: m_Name
+      value: Pilot - Hua Ji
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 710a47098c643bc458727105088e353f, type: 3}
 --- !u!4 &3015613018181429184 stripped
@@ -15052,11 +15049,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4792742402706074}
     m_Modifications:
-    - target: {fileID: 1685738153439644046, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype (13) - Polaris Express
-      objectReference: {fileID: 0}
     - target: {fileID: 8955136816846172835, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15111,6 +15103,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685738153439644046, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype (13) - Polaris Express
       objectReference: {fileID: 0}
     - target: {fileID: 4699940536524915828, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}

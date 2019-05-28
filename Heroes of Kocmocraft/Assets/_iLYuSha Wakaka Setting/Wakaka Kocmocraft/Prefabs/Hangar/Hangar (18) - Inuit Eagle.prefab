@@ -4975,18 +4975,15 @@ MonoBehaviour:
     Max: 0
     Value: 0
   RotationSpeed: 50
-  SpeedPitch: 2
-  SpeedRoll: 3
-  SpeedYaw: 1
   DampingTarget: 10
   AutoPilot: 0
   SimpleControl: 1
   FollowTarget: 0
   PositionTarget: {x: 0, y: 0, z: 0}
   mainRot: {x: 0, y: 0, z: 0, w: 1}
-  roll: 0
-  pitch: 0
-  yaw: 0
+  rollAxis: 0
+  pitchAxis: 0
+  yawAxis: 0
   LimitAxisControl: {x: 2, y: 1}
   FixedX: 0
   FixedY: 0
@@ -10317,10 +10314,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7304894868114583025}
     m_Modifications:
-    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
-      propertyPath: m_Name
-      value: Candle Fire
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
@@ -10377,10 +10374,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 10
+      propertyPath: m_Name
+      value: Candle Fire
       objectReference: {fileID: 0}
     - target: {fileID: 3017046265566287042, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
@@ -10413,10 +10410,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7304894868114583025}
     m_Modifications:
-    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
-      propertyPath: m_Name
-      value: Candle Fire (2)
+      propertyPath: InitialModule.startSize.scalar
+      value: 1.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
@@ -10473,20 +10480,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 1.37
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
-        type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 0.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 10
+      propertyPath: m_Name
+      value: Candle Fire (2)
       objectReference: {fileID: 0}
     - target: {fileID: 3017046265566287042, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
@@ -10645,32 +10642,32 @@ PrefabInstance:
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00021167097
+      value: -0.00021250546
       objectReference: {fileID: 0}
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9402715
+      value: -0.94027156
       objectReference: {fileID: 0}
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.34042493
+      value: 0.34042495
       objectReference: {fileID: 0}
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.00058373803
+      value: -0.0005860925
       objectReference: {fileID: 0}
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0037385225
+      value: -0.0037537813
       objectReference: {fileID: 0}
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00018030404
+      value: -0.00018106401
       objectReference: {fileID: 0}
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
@@ -10685,12 +10682,12 @@ PrefabInstance:
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0005617142
+      value: -0.00056409836
       objectReference: {fileID: 0}
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.003555417
+      value: -0.0035706758
       objectReference: {fileID: 0}
     - target: {fileID: 4606776318176691689, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
@@ -10753,10 +10750,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7304894868114583025}
     m_Modifications:
-    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
-      propertyPath: m_Name
-      value: Candle Fire (1)
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
@@ -10813,10 +10810,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 10
+      propertyPath: m_Name
+      value: Candle Fire (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3017046265566287042, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}

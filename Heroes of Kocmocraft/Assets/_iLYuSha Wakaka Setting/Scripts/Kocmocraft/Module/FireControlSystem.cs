@@ -105,7 +105,7 @@ namespace Kocmoca
             // Dependent Components
             myTransform = transform;
             myPhotonView = myTransform.root.GetComponent<PhotonView>();
-            myOnboardRadar = myTransform.root.GetComponent<OnboardRadar>();
+            myOnboardRadar = myTransform.root.GetComponentInChildren<OnboardRadar>();
             m_AudioSource = GetComponent<AudioSource>();
             // Kocmonaut Data
             kocmonautNumber = number;
@@ -162,7 +162,7 @@ namespace Kocmoca
             currentLauncher = (int)Mathf.Repeat(currentLauncher, countLauncher);
 
             target = m_FireControlSystemType == FireControlSystemType.Turret ? myOnboardRadar.targetAutoAim : myOnboardRadar.targetRadarLockOn;
-            targetNumber = target ? target.GetComponent<Kocmoport>().Number : 0;
+            targetNumber = target ? target.GetComponent<KocmocraftManager>().Number : 0;
 
             for (int t = 0; t < turnFire; t++)
             {
