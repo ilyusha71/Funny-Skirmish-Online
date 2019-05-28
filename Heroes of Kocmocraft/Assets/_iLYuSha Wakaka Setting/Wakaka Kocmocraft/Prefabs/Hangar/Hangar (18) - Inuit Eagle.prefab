@@ -4948,19 +4948,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   shield:
-    value: 8377
+    maximum: 8377
     level: 3
     emCrystal: 1777
     emBooster: 6600
     emBoosterLevel: 3
   hull:
-    value: 11689
+    maximum: 11689
     level: 4
     airframe: 1489
     armor: 10200
     armorLevel: 4
   speed:
-    value: 106
+    maximum: 106
     level: 4
     engine: 20
     afterburner: 86
@@ -4969,28 +4969,19 @@ MonoBehaviour:
   myRigidbody: {fileID: 1328959098}
   myWreckage: {fileID: 8065774341518655180}
   myCockpitViewpoint: {fileID: 47372675374358183}
-  shieldValue: 8377
-  hullValue: 11689
+  realtimeShield: 8377
+  realtimeHull: 11689
+  realSpeed: 20
+  mousePos: {x: 0, y: 0, z: 0}
   dataSpeed:
     Max: 0
     Value: 0
   RotationSpeed: 50
   DampingTarget: 10
   AutoPilot: 0
-  SimpleControl: 1
   FollowTarget: 0
   PositionTarget: {x: 0, y: 0, z: 0}
   mainRot: {x: 0, y: 0, z: 0, w: 1}
-  rollAxis: 0
-  pitchAxis: 0
-  yawAxis: 0
-  LimitAxisControl: {x: 2, y: 1}
-  FixedX: 0
-  FixedY: 0
-  FixedZ: 0
-  Mess: 30
-  DirectVelocity: 1
-  DampingVelocity: 5
 --- !u!114 &1328959096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10642,32 +10633,32 @@ PrefabInstance:
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00021250546
+      value: -0.0002133995
       objectReference: {fileID: 0}
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.94027156
+      value: -0.9402715
       objectReference: {fileID: 0}
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.34042495
+      value: 0.34042493
       objectReference: {fileID: 0}
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0005860925
+      value: -0.0005885362
       objectReference: {fileID: 0}
     - target: {fileID: 6394223834821841950, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0037537813
+      value: -0.00376904
       objectReference: {fileID: 0}
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00018106401
+      value: -0.00018185377
       objectReference: {fileID: 0}
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
@@ -10682,17 +10673,17 @@ PrefabInstance:
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.00056409836
+      value: -0.00056654215
       objectReference: {fileID: 0}
     - target: {fileID: 7535007898808321754, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0035706758
+      value: -0.0035859346
       objectReference: {fileID: 0}
     - target: {fileID: 4606776318176691689, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00020024178
+      value: -0.00020106137
       objectReference: {fileID: 0}
     - target: {fileID: 4606776318176691689, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
@@ -10707,12 +10698,12 @@ PrefabInstance:
     - target: {fileID: 4606776318176691689, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.00058504933
+      value: -0.0005874336
       objectReference: {fileID: 0}
     - target: {fileID: 4606776318176691689, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0037232637
+      value: -0.0037385225
       objectReference: {fileID: 0}
     - target: {fileID: 9082921458514662665, guid: 3276a832ce82c014997db4ddc1e6d595,
         type: 3}

@@ -839,7 +839,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 81
+    m_Bias: -150
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -867,18 +867,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 78237494}
     m_Modifications:
-    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
-      propertyPath: m_Name
-      value: Bullet_Bill_FBX (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -923,6 +911,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
+      propertyPath: m_Name
+      value: Bullet_Bill_FBX (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
 --- !u!23 &841183892875283928 stripped
@@ -950,14 +950,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1379251553708877271}
     m_Modifications:
-    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
-      propertyPath: m_Name
-      value: Bullet_Bill_Xray
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1001,6 +993,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
+      propertyPath: m_Name
+      value: Bullet_Bill_Xray
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1027,14 +1027,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1379251553708877271}
     m_Modifications:
-    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
-      propertyPath: m_Name
-      value: Bullet_Bill_Wireframe
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1078,6 +1070,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
+      propertyPath: m_Name
+      value: Bullet_Bill_Wireframe
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1104,14 +1104,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 78237494}
     m_Modifications:
-    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
-      propertyPath: m_Name
-      value: Bullet_Bill_FBX
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1155,6 +1147,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
+      propertyPath: m_Name
+      value: Bullet_Bill_FBX
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 027f5c31e8263374fbbc7d1330c70571, type: 3}

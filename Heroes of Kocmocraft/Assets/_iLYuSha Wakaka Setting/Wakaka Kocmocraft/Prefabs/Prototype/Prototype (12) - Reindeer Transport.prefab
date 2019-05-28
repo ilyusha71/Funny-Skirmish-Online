@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 133
+    m_Bias: 87
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -867,14 +867,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 339724278165261118}
     m_Modifications:
-    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
-      propertyPath: m_Name
-      value: Reindeer_Transport_Xray
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -918,6 +910,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
+      propertyPath: m_Name
+      value: Reindeer_Transport_Xray
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -944,14 +944,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 339724278165261118}
     m_Modifications:
-    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
-      propertyPath: m_Name
-      value: Reindeer_Transport_Wireframe
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -996,6 +988,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
+      propertyPath: m_Name
+      value: Reindeer_Transport_Wireframe
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1021,18 +1021,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5659499168613414548}
     m_Modifications:
-    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
-      propertyPath: m_Name
-      value: Reindeer_Transport_FBX (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1077,6 +1065,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
+      propertyPath: m_Name
+      value: Reindeer_Transport_FBX (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
 --- !u!23 &6170864153453426740 stripped
@@ -1104,14 +1104,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5659499168613414548}
     m_Modifications:
-    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
-      propertyPath: m_Name
-      value: Reindeer_Transport_FBX
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -1155,6 +1147,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
+      propertyPath: m_Name
+      value: Reindeer_Transport_FBX
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd91cad02e5d2764b9eb0be652b9ed59, type: 3}

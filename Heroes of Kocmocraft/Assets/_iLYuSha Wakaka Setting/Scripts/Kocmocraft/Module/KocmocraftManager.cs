@@ -25,7 +25,11 @@ namespace Kocmoca
         public Rigidbody myRigidbody;
         public GameObject myWreckage;
         public Transform myCockpitViewpoint;
-        public float shieldValue, hullValue, speedValue;
+        public float realtimeShield, realtimeHull, realSpeed;
+        public float shieldPercent { get { return realtimeShield / shield.maximum; } }
+        public float hullPercent { get { return realtimeHull / hull.maximum; } }
+        public float speedPercent { get { return realSpeed / speed.maximum; } }
+
         [Header("Mech")]
         private PhotonView myPhotonView;
         public Core Core { get; protected set; }
@@ -44,10 +48,11 @@ namespace Kocmoca
             int type = int.Parse(name.Split(new char[2] { '(', ')' })[1]);
             KocmocraftDatabase index = UnityEditor.AssetDatabase.LoadAssetAtPath<KocmocraftDatabase>("Assets/_iLYuSha Wakaka Setting/ScriptableObject/Kocmocraft Database.asset");
             shield = index.kocmocraft[type].shield;
-            shieldValue = shield.value;
+            realtimeShield = shield.maximum;
             hull = index.kocmocraft[type].hull;
-            hullValue = hull.value;
+            realtimeHull = hull.maximum;
             speed = index.kocmocraft[type].speed;
+            realSpeed = speed.engine;
             kocmomech = index.kocmocraft[type].kocmomech;
 
             myRigidbody = GetComponent<Rigidbody>();
@@ -98,6 +103,7 @@ namespace Kocmoca
 
             followCam = Camera.main;
             myRigidbody.isKinematic = false;
+            mainRot = transform.rotation;
             enabled = true;
         }
 
@@ -105,19 +111,19 @@ namespace Kocmoca
         {
             if (stream.IsWriting)
             {
-                stream.SendNext(shieldValue);
-                stream.SendNext(hullValue);
+                stream.SendNext(realtimeShield);
+                stream.SendNext(realtimeHull);
             }
             else
             {
-                shieldValue = (float)stream.ReceiveNext();
-                hullValue = (float)stream.ReceiveNext();
+                realtimeShield = (float)stream.ReceiveNext();
+                realtimeHull = (float)stream.ReceiveNext();
             }
         }
         public void Hit(DamagePower damagePower)
         {
             if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
-            if (hullValue <= 0) return;
+            if (realtimeHull <= 0) return;
             int damageSourceNumber = damagePower.Attacker.Number;
             // 狀況1
             // 第一次造成傷害來源：自己 123
@@ -147,8 +153,8 @@ namespace Kocmoca
              * 傷害計算方法
              * Last Updated: 2019-04-18
              * 
-             * 護盾值 shieldValue
-             * 機甲值 hullValue
+             * 護盾值 realtimeShield
+             * 機甲值 realtimeHull
              * 護盾傷害威力值 damagePower.Shield
              * 機甲傷害威力值 damagePower.Hull
              * 穿透係數 coefficientPenetration
@@ -175,28 +181,28 @@ namespace Kocmoca
             //    coefficientPenetration = 1;
             //else
             //{
-            //    shieldValue -= damagePower.Shield;
-            //    if (shieldValue >= 0)
+            //    realtimeShield -= damagePower.Shield;
+            //    if (realtimeShield >= 0)
             //    {
             //        damageShield = damagePower.Shield;
             //        coefficientPenetration = 0;
             //    }
             //    else
             //    {
-            //        damageShield = shieldValue + damagePower.Shield;
-            //        coefficientPenetration = -shieldValue / damagePower.Shield;
-            //        shieldValue = 0;
+            //        damageShield = realtimeShield + damagePower.Shield;
+            //        coefficientPenetration = -realtimeShield / damagePower.Shield;
+            //        realtimeShield = 0;
             //    }
             //}
             //damageHull = damagePower.Hull * coefficientPenetration;
-            //hullValue = Mathf.Clamp(hullValue - damageHull, 0, dataHull.Max);
+            //realtimeHull = Mathf.Clamp(realtimeHull - damageHull, 0, dataHull.Max);
 
             /*****************************************************************************
              * 傷害計算方法
              * Last Updated: 2019-04-18
              * 
-             * 護盾值 shieldValue
-             * 機甲值 hullValue
+             * 護盾值 realtimeShield
+             * 機甲值 realtimeHull
              * 護盾傷害威力值 damagePower.Shield
              * 機甲傷害威力值 damagePower.Hull
              * 穿透係數 coefficientPenetration
@@ -220,21 +226,21 @@ namespace Kocmoca
              *      剩餘機甲值 = 原始機甲值 - 機甲傷害值
              *      
              *****************************************************************************/
-            if (shieldValue > 0)
+            if (realtimeShield > 0)
             {
-                shieldValue -= damagePower.Absorb;
-                if (shieldValue >= 0)
-                    hullValue = Mathf.Clamp(hullValue - damagePower.Penetration, 0, hull.value);
+                realtimeShield -= damagePower.Absorb;
+                if (realtimeShield >= 0)
+                    realtimeHull = Mathf.Clamp(realtimeHull - damagePower.Penetration, 0, hull.maximum);
                 else
                 {
-                    hullValue = Mathf.Clamp(hullValue + shieldValue - damagePower.Penetration, 0, hull.value);
-                    shieldValue = 0;
+                    realtimeHull = Mathf.Clamp(realtimeHull + realtimeShield - damagePower.Penetration, 0, hull.maximum);
+                    realtimeShield = 0;
                 }
                 damage = (int)(damagePower.Absorb + damagePower.Penetration);
             }
             else
             {
-                hullValue = Mathf.Clamp(hullValue - damagePower.Damage, 0, hull.value);
+                realtimeHull = Mathf.Clamp(realtimeHull - damagePower.Damage, 0, hull.maximum);
                 damage = (int)damagePower.Damage;
             }
             /*****************************************************************************
@@ -255,7 +261,7 @@ namespace Kocmoca
 
             /************************************* Crash *************************************/
 
-            if (hullValue <= 0)
+            if (realtimeHull <= 0)
             {
                 if (Core == Core.LocalPlayer)
                 {
@@ -345,7 +351,7 @@ namespace Kocmoca
             myRigidbody.isKinematic = false;
 
             if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
-            if (hullValue <= 0) return;
+            if (realtimeHull <= 0) return;
             lastHitVelocity = myRigidbody.velocity;
 
             // 計算傷害
@@ -418,47 +424,18 @@ namespace Kocmoca
         public float DampingTarget = 10.0f;// rotation speed to facing to a target
         public bool AutoPilot = false;// if True this plane will follow a target automatically
         [HideInInspector]
-        public bool SimpleControl = true;// set true is enabled casual controling
-        [HideInInspector]
         public bool FollowTarget = false;
         [HideInInspector]
         public Vector3 PositionTarget = Vector3.zero;// current target position
         [HideInInspector]
         private Vector3 positionTarget = Vector3.zero;
         public Quaternion mainRot = Quaternion.identity;
-        //[HideInInspector]
-        public float rollAxis = 0;
-        //[HideInInspector]
-        public float pitchAxis = 0;
-        //[HideInInspector]
-        public float yawAxis = 0;
-        public Vector2 LimitAxisControl = new Vector2(2, 1);// limited of axis rotation magnitude
-        public bool FixedX;
-        public bool FixedY;
-        public bool FixedZ;
-        public float Mess = 30;
-        public bool DirectVelocity = true;// if true this riggidbody will not receive effect by other force.
-        public float DampingVelocity = 5;
-
-
-
-        void Start()
-        {
-            mainRot = this.transform.rotation;
-        }
 
         void FixedUpdate()
         {
             if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
-
             if (!myRigidbody)
                 return;
-
-            Quaternion AddRot = Quaternion.identity;
-            Vector3 velocityTarget = Vector3.zero;
-
-            // 转向控制
-
             if (AutoPilot)
             {
                 if (myRigidbody.angularVelocity.magnitude > 3)
@@ -475,121 +452,44 @@ namespace Kocmoca
                     myRigidbody.rotation *= Quaternion.Euler(-relativePoint.y * kocmomech.pitch * 0.5f, 0, -relativePoint.x * kocmomech.roll * 0.5f);
                     // 根据单位向量分配 Pitch与 Roll的转动量
                 }
-                velocityTarget = (myRigidbody.rotation * Vector3.forward) * (dataSpeed.Value);
+                myRigidbody.velocity = (myRigidbody.rotation * Vector3.forward) * realSpeed;
             }
             else
             {
-                Vector3 mousePos = followCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, followCam.farClipPlane));
+                Vector3 mousePos = followCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.normalized.x, Input.mousePosition.normalized.y, followCam.farClipPlane));
                 Vector3 relativePoint = this.transform.InverseTransformPoint(mousePos).normalized; // 计算相对位置的单位向量
                 myRigidbody.rotation *= Quaternion.Euler(-relativePoint.y * kocmomech.pitch, relativePoint.x * kocmomech.yaw, -relativePoint.x * kocmomech.roll- myRigidbody.rotation.z);
-                velocityTarget = (myRigidbody.rotation * Vector3.forward) * (dataSpeed.Value);
-
-
-
-
-
-
-
-
-
-
-
-
+                myRigidbody.velocity = (myRigidbody.rotation * Vector3.forward) * realSpeed;
 
                 //// axis control by input
                 //AddRot.eulerAngles = new Vector3(pitchAxis, yawAxis, -rollAxis);
                 //mainRot *= AddRot;
-
-                //if (SimpleControl)
-                //{
-                //    Quaternion saveQ = mainRot;
-
-                //    Vector3 fixedAngles = new Vector3(mainRot.eulerAngles.x, mainRot.eulerAngles.y, mainRot.eulerAngles.z);
-
-                //    if (FixedX)
-                //        fixedAngles.x = 1;
-                //    if (FixedY)
-                //        fixedAngles.y = 1;
-                //    if (FixedZ)
-                //        fixedAngles.z = 1;
-
-                //    saveQ.eulerAngles = fixedAngles;
-
-
-                //    mainRot = Quaternion.Lerp(mainRot, saveQ, Time.fixedDeltaTime * 2);
-                //}
-
                 //myRigidbody.rotation = Quaternion.Lerp(myRigidbody.rotation, mainRot, Time.fixedDeltaTime * RotationSpeed);
-                ////Debug.Log(myRigidbody.angularVelocity.ToString("f4"));
-                ////if (remote)
-                ////    Debug.Log("NxtRot2: " + Time.frameCount + " / " + myRigidbody.rotation.eulerAngles);
-
-                //velocityTarget = (myRigidbody.rotation * Vector3.forward) * (dataSpeed.Value);
+                //myRigidbody.velocity = (myRigidbody.rotation * Vector3.forward) * realSpeed);
             }
-            // add velocity to the riggidbody
-
-            if (DirectVelocity)
-            {
-                myRigidbody.velocity = velocityTarget;
-            }
-            else
-            {
-                myRigidbody.velocity = Vector3.Lerp(myRigidbody.velocity, velocityTarget, Time.fixedDeltaTime * DampingVelocity);
-            }
-            yawAxis = Mathf.Lerp(yawAxis, 0, Time.deltaTime);
-
-
-            //dataEnergy.Value = Mathf.Clamp(dataEnergy.Value + Time.deltaTime * 71, 0, dataEnergy.Max);
-            //if (dataEnergy.Value <= 10)
-            //    isCharge = true;
-            //else if (dataEnergy.Value > 300)
-            //    isCharge = false;
         }
-
-        // Input function. ( rollAxis and pitchAxis)
-        public void AxisControl(Vector2 axis)
+        private float afterburnerPower;
+        public void ControlThrottle(float throttle)
         {
-            if (SimpleControl)
-            {
-                LimitAxisControl.y = LimitAxisControl.x;
-            }
-            // Debug.Log(axis.x);
-            rollAxis = Mathf.Lerp(rollAxis, Mathf.Clamp(axis.x, -LimitAxisControl.x, LimitAxisControl.x) * kocmomech.roll, Time.deltaTime);
-            pitchAxis = Mathf.Lerp(pitchAxis, Mathf.Clamp(axis.y, -LimitAxisControl.y, LimitAxisControl.y) * kocmomech.pitch, Time.deltaTime);
+            realSpeed += Time.deltaTime * (realSpeed >= speed.engine ?
+                (throttle > 0 ? kocmomech.acceleration : -kocmomech.acceleration) :
+                (throttle < 0 ? -kocmomech.deceleration : +kocmomech.deceleration));
+            realSpeed = Mathf.Clamp(realSpeed, 0, speed.maximum);
+
+            afterburnerPower += 0.37f * (throttle > 0 ? Time.deltaTime : -Time.deltaTime);
+            afterburnerPower = Mathf.Clamp01(afterburnerPower);
+            myEngine.Power(afterburnerPower);
         }
-        // Input function ( yawAxis) 
-        public void TurnControl(float turn)
+        // 传统控制
+        private float rollAxis, pitchAxis, yawAxis;
+        public void ControlRollAndPitch(Vector2 axis)
         {
-            yawAxis += turn * Time.deltaTime * 0.2f;
+            rollAxis = Mathf.Lerp(rollAxis, Mathf.Clamp(axis.x,-1,1) * kocmomech.roll, Time.deltaTime);
+            pitchAxis = Mathf.Lerp(pitchAxis, Mathf.Clamp(axis.y, -1,1) * kocmomech.pitch, Time.deltaTime);
         }
-        public void SpeedControl(float throttle, bool useAfterBurner)
+        public void ControlYaw(float yaw)
         {
-            if (throttle > 0)
-                speedValue += speedValue >= speed.engine ? kocmomech.acceleration : kocmomech.deceleration;
-            else if (throttle < 0)
-                speedValue += speedValue >= speed.engine ? -kocmomech.acceleration : -kocmomech.deceleration;
-            else
-                speedValue += speedValue >= speed.engine ? -kocmomech.acceleration : kocmomech.deceleration;
-
-
-            if (isCharge)
-                useAfterBurner = false;
-            if (throttle > 0)
-            {
-                if (useAfterBurner)
-                {
-                    dataSpeed.Value = Mathf.Lerp(dataSpeed.Value, dataSpeed.Max, Time.deltaTime * (0.73f * throttle));
-                    //dataEnergy.Value = Mathf.Clamp(dataEnergy.Value - Time.deltaTime * 0.163f, 0, dataEnergy.Max);
-                }
-                else
-                    dataSpeed.Value = Mathf.Lerp(dataSpeed.Value, valueSpeedHigh, Time.deltaTime * (0.73f * throttle));
-            }
-            else if (throttle < 0)
-                dataSpeed.Value = Mathf.Lerp(dataSpeed.Value, 0, Time.deltaTime * (0.73f * -throttle));
-            else
-                dataSpeed.Value = Mathf.Lerp(dataSpeed.Value, valueSpeedCruise, Time.deltaTime);
-
-            myEngine.Power(dataSpeed.Percent);
+            yawAxis += yaw * Time.deltaTime * 0.2f;
         }
     }
 }

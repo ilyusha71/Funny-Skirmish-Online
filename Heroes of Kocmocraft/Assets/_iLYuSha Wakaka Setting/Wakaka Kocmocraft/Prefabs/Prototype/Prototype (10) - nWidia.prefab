@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 64
+    m_Bias: -4
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -867,14 +867,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6742183451625982748}
     m_Modifications:
-    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
-      propertyPath: m_Name
-      value: nWidia_Wireframe
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -919,6 +911,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
+      propertyPath: m_Name
+      value: nWidia_Wireframe
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -944,18 +944,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1263290930}
     m_Modifications:
-    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
-      propertyPath: m_Name
-      value: nWidia_FBX (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -1000,6 +988,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
+      propertyPath: m_Name
+      value: nWidia_FBX (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
 --- !u!4 &1456661456232391492 stripped
@@ -1027,14 +1027,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6742183451625982748}
     m_Modifications:
-    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
-      propertyPath: m_Name
-      value: nWidia_Xray
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -1078,6 +1070,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
+      propertyPath: m_Name
+      value: nWidia_Xray
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1104,14 +1104,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1263290930}
     m_Modifications:
-    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
-      propertyPath: m_Name
-      value: nWidia_FBX
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -1155,6 +1147,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
+      propertyPath: m_Name
+      value: nWidia_FBX
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbdf59ad35eb92a43912839ea0b5e01c, type: 3}

@@ -258,19 +258,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   shield:
-    value: 8566
+    maximum: 8566
     level: 3
     emCrystal: 3766
     emBooster: 4800
     emBoosterLevel: 2
   hull:
-    value: 21687
+    maximum: 21687
     level: 7
     airframe: 4887
     armor: 16800
     armorLevel: 7
   speed:
-    value: 77
+    maximum: 77
     level: 2
     engine: 15
     afterburner: 62
@@ -279,28 +279,19 @@ MonoBehaviour:
   myRigidbody: {fileID: 652498083}
   myWreckage: {fileID: 1071626222156095311}
   myCockpitViewpoint: {fileID: 4442480821269863253}
-  shieldValue: 8566
-  hullValue: 21687
+  realtimeShield: 8566
+  realtimeHull: 21687
+  realSpeed: 15
+  mousePos: {x: 0, y: 0, z: 0}
   dataSpeed:
     Max: 0
     Value: 0
   RotationSpeed: 50
   DampingTarget: 10
   AutoPilot: 0
-  SimpleControl: 1
   FollowTarget: 0
   PositionTarget: {x: 0, y: 0, z: 0}
   mainRot: {x: 0, y: 0, z: 0, w: 1}
-  rollAxis: 0
-  pitchAxis: 0
-  yawAxis: 0
-  LimitAxisControl: {x: 2, y: 1}
-  FixedX: 0
-  FixedY: 0
-  FixedZ: 0
-  Mess: 30
-  DirectVelocity: 1
-  DampingVelocity: 5
 --- !u!114 &652498081
 MonoBehaviour:
   m_ObjectHideFlags: 0

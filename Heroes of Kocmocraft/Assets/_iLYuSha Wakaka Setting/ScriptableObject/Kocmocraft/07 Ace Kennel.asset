@@ -27,19 +27,19 @@ MonoBehaviour:
   chief: {fileID: 11400000, guid: 6cdbb339c3fa0a746838114dfe62a69f, type: 2}
   reserve: {fileID: 11400000, guid: b1ebada2b188cf241aab0d6511f4529a, type: 2}
   shield:
-    value: 3700
+    maximum: 3700
     level: 1
     emCrystal: 700
     emBooster: 3000
     emBoosterLevel: 1
   hull:
-    value: 10590
+    maximum: 10590
     level: 3
     airframe: 390
     armor: 10200
     armorLevel: 4
   speed:
-    value: 119
+    maximum: 119
     level: 5
     engine: 9
     afterburner: 110

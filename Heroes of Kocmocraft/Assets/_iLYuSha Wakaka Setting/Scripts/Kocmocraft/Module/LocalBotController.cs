@@ -118,7 +118,7 @@ namespace Kocmoca
                     break;
                 case Mission.Battle:
                     AIstate = AIState.Crossfire;
-                    myAvionicsSystem.SpeedControl(1.0f, true);
+                    myAvionicsSystem.ControlThrottle(1.0f);
                     break;
                 default:break;
             }
@@ -197,7 +197,7 @@ namespace Kocmoca
 
         void Crossfire()
         {
-            myAvionicsSystem.SpeedControl(1.0f, true);
+            myAvionicsSystem.ControlThrottle(1.0f);
 
             targetTrack = myOnboardRadar.targetTrack;
             if (targetTrack)
@@ -211,7 +211,7 @@ namespace Kocmoca
 
         void GotoObservationPost()
         {
-            myAvionicsSystem.SpeedControl(1.0f, true);
+            myAvionicsSystem.ControlThrottle(1.0f);
             targetTrack = myOnboardRadar.targetTrack;
             if (targetTrack)
                 AIstate = AIState.Observe;
@@ -225,7 +225,7 @@ namespace Kocmoca
             else
                 AIstate = AIState.WP;
 
-            myAvionicsSystem.SpeedControl(-1.0f, false);
+            myAvionicsSystem.ControlThrottle(1.0f);
             targetAutoAim = myOnboardRadar.targetAutoAim;
             if (targetAutoAim)
                 myLaserFCS.Shoot();
@@ -245,7 +245,7 @@ namespace Kocmoca
                 return;
             }
             FlyToNearestBeacon();
-            myAvionicsSystem.SpeedControl(1.0f, true);
+            myAvionicsSystem.ControlThrottle(1.0f);
             targetTrack = null;
             Stabilizer();
         }
@@ -271,7 +271,7 @@ namespace Kocmoca
             else
             {
                 FlyToNearestBeacon();
-                myAvionicsSystem.SpeedControl(1.0f, true);
+                myAvionicsSystem.ControlThrottle(1.0f);
             }
             Stabilizer();
         }
@@ -333,7 +333,7 @@ namespace Kocmoca
                             IntoLeaveState();
                             return;
                         }
-                        myAvionicsSystem.SpeedControl(0.5f, true);
+                        myAvionicsSystem.ControlThrottle(0.0f);
                     }
                 }
             }
@@ -347,7 +347,7 @@ namespace Kocmoca
         void Leave()
         {
             FlyToFarthestBeacon();
-            myAvionicsSystem.SpeedControl(1.0f, true);
+            myAvionicsSystem.ControlThrottle(1.0f);
             if (myTransform.position.y < limitElevation)
             {
                 if (distanceDestination > radiusBattle || Time.time > timestatetemp + 3)

@@ -56,7 +56,7 @@ public class View
 }
 public abstract class Performance
 {
-    public int value;
+    public int maximum;
     public int level;
 #if UNITY_EDITOR
     public abstract void Calculate(float design, int type);
@@ -77,10 +77,10 @@ public class Shield : Performance
         emCrystal = (int)area;
         emBoosterLevel = proficiency.level[type];
         emBooster = basic + diff * emBoosterLevel;
-        value = emCrystal + emBooster;
+        maximum = emCrystal + emBooster;
         for (int i = 7; i > 0; i--)
         {
-            if (value >= basic + diff * i + (diff / 6 * (i - 1)))
+            if (maximum >= basic + diff * i + (diff / 6 * (i - 1)))
             {
                 level = i;
                 break;
@@ -104,10 +104,10 @@ public class Hull : Performance
         airframe = (int)volume;
         armorLevel = proficiency.level[type];
         armor = basic + diff * armorLevel;
-        value = airframe + armor;
+        maximum = airframe + armor;
         for (int i = 7; i > 0; i--)
         {
-            if (value >= basic + diff * i + (diff / 6 * (i - 1)))
+            if (maximum >= basic + diff * i + (diff / 6 * (i - 1)))
             {
                 level = i;
                 break;
@@ -131,10 +131,10 @@ public class Speed : Performance
         engine = (int)power;
         afterburnerLevel = proficiency.level[type];
         afterburner = basic + diff * afterburnerLevel;
-        value = engine + afterburner;
+        maximum = engine + afterburner;
         for (int i = 7; i > 0; i--)
         {
-            if (value >= basic + diff * i + (diff / 6 * (i - 1)))
+            if (maximum >= basic + diff * i + (diff / 6 * (i - 1)))
             {
                 level = i;
                 break;

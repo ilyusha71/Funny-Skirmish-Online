@@ -359,9 +359,9 @@ namespace Kocmoca
             public void SetData(int index,  KocmocraftModule performance)
             {
                 raw.texture = textures[index];
-                textShield.text = performance.shield.value.ToString();
-                textHull.text = performance.hull.value.ToString();
-                textSpeed.text = ((int)(performance.speed.value * 3.6f)).ToString();
+                textShield.text = performance.shield.maximum.ToString();
+                textHull.text = performance.hull.maximum.ToString();
+                textSpeed.text = ((int)(performance.speed.maximum * 3.6f)).ToString();
                 textLicense.text = "T" + PerformanceData.PilotTier[index].ToString();
                 m_ShieldLevel = performance.shield.level;
                 m_HullLevel = performance.hull.level;

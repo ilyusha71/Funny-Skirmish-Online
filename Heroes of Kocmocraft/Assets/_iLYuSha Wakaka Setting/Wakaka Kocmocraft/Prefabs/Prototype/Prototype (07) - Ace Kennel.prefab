@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 42
+    m_Bias: -15
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -871,22 +871,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3629734824415564902}
     m_Modifications:
-    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
-      propertyPath: m_Name
-      value: Ace_Kennel_Xray
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -955,6 +939,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
+      propertyPath: m_Name
+      value: Ace_Kennel_Xray
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2300002, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -990,26 +990,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8675198854870145996}
     m_Modifications:
-    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
-      propertyPath: m_Name
-      value: Ace_Kennel_FBX (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1058,6 +1038,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
+      propertyPath: m_Name
+      value: Ace_Kennel_FBX (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
 --- !u!23 &5600504583496141897 stripped
@@ -1091,22 +1091,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8675198854870145996}
     m_Modifications:
-    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
-      propertyPath: m_Name
-      value: Ace_Kennel_FBX
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1155,6 +1139,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
+      propertyPath: m_Name
+      value: Ace_Kennel_FBX
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
 --- !u!23 &6320595615895294653 stripped
@@ -1188,22 +1188,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3629734824415564902}
     m_Modifications:
-    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
-      propertyPath: m_Name
-      value: Ace_Kennel_Wireframe
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1271,6 +1255,22 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
+      propertyPath: m_Name
+      value: Ace_Kennel_Wireframe
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300002, guid: 3f8915f096280cc4aa5b11bf428f2685, type: 3}
       propertyPath: m_Materials.Array.data[0]

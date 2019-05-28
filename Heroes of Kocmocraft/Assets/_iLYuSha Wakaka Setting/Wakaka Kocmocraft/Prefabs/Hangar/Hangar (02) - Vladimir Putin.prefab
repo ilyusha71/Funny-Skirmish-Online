@@ -4733,19 +4733,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   shield:
-    value: 9688
+    maximum: 9688
     level: 4
     emCrystal: 1288
     emBooster: 8400
     emBoosterLevel: 4
   hull:
-    value: 13320
+    maximum: 13320
     level: 4
     airframe: 920
     armor: 12400
     armorLevel: 5
   speed:
-    value: 78
+    maximum: 78
     level: 2
     engine: 16
     afterburner: 62
@@ -4754,28 +4754,19 @@ MonoBehaviour:
   myRigidbody: {fileID: 897087054}
   myWreckage: {fileID: 3848459135630414417}
   myCockpitViewpoint: {fileID: 2272555553583843343}
-  shieldValue: 9688
-  hullValue: 13320
+  realtimeShield: 9688
+  realtimeHull: 13320
+  realSpeed: 16
+  mousePos: {x: 0, y: 0, z: 0}
   dataSpeed:
     Max: 0
     Value: 0
   RotationSpeed: 50
   DampingTarget: 10
   AutoPilot: 0
-  SimpleControl: 1
   FollowTarget: 0
   PositionTarget: {x: 0, y: 0, z: 0}
   mainRot: {x: 0, y: 0, z: 0, w: 1}
-  rollAxis: 0
-  pitchAxis: 0
-  yawAxis: 0
-  LimitAxisControl: {x: 2, y: 1}
-  FixedX: 0
-  FixedY: 0
-  FixedZ: 0
-  Mess: 30
-  DirectVelocity: 1
-  DampingVelocity: 5
 --- !u!114 &897087052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10521,11 +10512,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4725810067923350}
     m_Modifications:
-    - target: {fileID: 5483071484400955455, guid: 8afb1776fefc90e42ad637f86c6714c2,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype (02) - Vladimir Putin
-      objectReference: {fileID: 0}
     - target: {fileID: 6152997583720768508, guid: 8afb1776fefc90e42ad637f86c6714c2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10580,6 +10566,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5483071484400955455, guid: 8afb1776fefc90e42ad637f86c6714c2,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype (02) - Vladimir Putin
       objectReference: {fileID: 0}
     - target: {fileID: 1577825720890818124, guid: 8afb1776fefc90e42ad637f86c6714c2,
         type: 3}

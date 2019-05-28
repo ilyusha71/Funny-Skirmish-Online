@@ -45,16 +45,12 @@ namespace Kocmoca
         }
         void Operation()
         {
-            //myAvionicsSystem.AxisControl(new Vector2(Controller.roll, reverse*Controller.pitch));
-            //myAvionicsSystem.TurnControl(Controller.yaw);
-            myAvionicsSystem.SpeedControl(Controller.throttle, useAfterBurner);
+            //myAvionicsSystem.ControlRollAndPitch(new Vector2(Controller.roll, reverse * Controller.pitch));
+            //myAvionicsSystem.ControlYaw(Controller.yaw);
+            myAvionicsSystem.ControlThrottle(Controller.throttle);
 
             if (Input.GetKeyDown(Controller.KEYBOARD_CockpitView) || Input.GetKeyDown(Controller.XBOX360_CockpitView))
                 SatelliteCommander.Instance.Observer.SwitchView();
-            if (Input.GetKey(Controller.KEYBOARD_Afterburner) || Input.GetKey(Controller.XBOX360_Afterburner))
-                useAfterBurner = true;
-            else if (Input.GetKeyUp(Controller.KEYBOARD_Afterburner) || Input.GetKeyUp(Controller.XBOX360_Afterburner))
-                useAfterBurner = false;
             if (Input.GetKeyDown(Controller.KEYBOARD_LockOn) || Input.GetKeyDown(Controller.XBOX360_LockOn))
                 myOnboardRadar.ManualLockOn();
             if (Input.GetKey(Controller.KEYBOARD_Laser))

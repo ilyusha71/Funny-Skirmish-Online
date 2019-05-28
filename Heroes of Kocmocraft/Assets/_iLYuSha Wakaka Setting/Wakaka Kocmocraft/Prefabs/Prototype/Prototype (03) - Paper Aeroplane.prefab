@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 5
+    m_Bias: -2
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -867,14 +867,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 730839105770781398}
     m_Modifications:
-    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
-      propertyPath: m_Name
-      value: Paper_Aeroplane_Wireframe
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -919,6 +911,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
+      propertyPath: m_Name
+      value: Paper_Aeroplane_Wireframe
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -944,18 +944,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1064942184701146090}
     m_Modifications:
-    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
-      propertyPath: m_Name
-      value: Paper_Aeroplane_FBX (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1000,6 +988,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
+      propertyPath: m_Name
+      value: Paper_Aeroplane_FBX (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
 --- !u!23 &8317566617597044163 stripped
@@ -1027,14 +1027,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1064942184701146090}
     m_Modifications:
-    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
-      propertyPath: m_Name
-      value: Paper_Aeroplane_FBX
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1078,6 +1070,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
+      propertyPath: m_Name
+      value: Paper_Aeroplane_FBX
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
@@ -1106,14 +1106,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 730839105770781398}
     m_Modifications:
-    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
-      propertyPath: m_Name
-      value: Paper_Aeroplane_Xray
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1157,6 +1149,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
+      propertyPath: m_Name
+      value: Paper_Aeroplane_Xray
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: a6b1c43a272669545908ac9ff7b6fafd, type: 3}
       propertyPath: m_Materials.Array.data[0]

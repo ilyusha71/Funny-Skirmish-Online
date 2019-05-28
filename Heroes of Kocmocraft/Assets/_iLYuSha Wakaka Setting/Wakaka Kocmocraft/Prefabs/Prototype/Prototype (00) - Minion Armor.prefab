@@ -396,7 +396,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 41
+    m_Bias: 81
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -871,22 +871,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 161943025073471977}
     m_Modifications:
-    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
-      propertyPath: m_Name
-      value: Minion_Armor_Xray
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -931,6 +915,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
+      propertyPath: m_Name
+      value: Minion_Armor_Xray
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2300004, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -966,26 +966,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3542896726450198728}
     m_Modifications:
-    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
-      propertyPath: m_Name
-      value: Minion_Armor_Evil
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1030,6 +1010,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
+      propertyPath: m_Name
+      value: Minion_Armor_Evil
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2300004, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1067,22 +1067,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3542896726450198728}
     m_Modifications:
-    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
-      propertyPath: m_Name
-      value: Minion_Armor_FBX
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1126,6 +1110,22 @@ PrefabInstance:
     - target: {fileID: 400000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
+      propertyPath: m_Name
+      value: Minion_Armor_FBX
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300004, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1164,22 +1164,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 161943025073471977}
     m_Modifications:
-    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
-      propertyPath: m_Name
-      value: Minion_Armor_Wireframe
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1223,6 +1207,22 @@ PrefabInstance:
     - target: {fileID: 400000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
+      propertyPath: m_Name
+      value: Minion_Armor_Wireframe
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300004, guid: e86c8d669300a0741b9d59ac2d8b2c6b, type: 3}
       propertyPath: m_Materials.Array.data[0]

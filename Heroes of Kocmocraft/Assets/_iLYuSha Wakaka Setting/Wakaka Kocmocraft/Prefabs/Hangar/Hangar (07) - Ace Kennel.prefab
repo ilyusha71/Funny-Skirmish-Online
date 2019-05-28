@@ -70,19 +70,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   shield:
-    value: 3700
+    maximum: 3700
     level: 1
     emCrystal: 700
     emBooster: 3000
     emBoosterLevel: 1
   hull:
-    value: 10590
+    maximum: 10590
     level: 3
     airframe: 390
     armor: 10200
     armorLevel: 4
   speed:
-    value: 119
+    maximum: 119
     level: 5
     engine: 9
     afterburner: 110
@@ -91,28 +91,19 @@ MonoBehaviour:
   myRigidbody: {fileID: 464546291}
   myWreckage: {fileID: 6893688733245438877}
   myCockpitViewpoint: {fileID: 8523034330061375139}
-  shieldValue: 3700
-  hullValue: 10590
+  realtimeShield: 3700
+  realtimeHull: 10590
+  realSpeed: 9
+  mousePos: {x: 0, y: 0, z: 0}
   dataSpeed:
     Max: 0
     Value: 0
   RotationSpeed: 50
   DampingTarget: 10
   AutoPilot: 0
-  SimpleControl: 1
   FollowTarget: 0
   PositionTarget: {x: 0, y: 0, z: 0}
   mainRot: {x: 0, y: 0, z: 0, w: 1}
-  rollAxis: 0
-  pitchAxis: 0
-  yawAxis: 0
-  LimitAxisControl: {x: 2, y: 1}
-  FixedX: 0
-  FixedY: 0
-  FixedZ: 0
-  Mess: 30
-  DirectVelocity: 1
-  DampingVelocity: 5
 --- !u!114 &464546289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -951,10 +942,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3260558108257460465}
     m_Modifications:
-    - target: {fileID: 100004, guid: 354926ecf27b5ad4a8b9d919efd2327a, type: 3}
-      propertyPath: m_Name
-      value: snoopy
-      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 354926ecf27b5ad4a8b9d919efd2327a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -998,6 +985,10 @@ PrefabInstance:
     - target: {fileID: 400004, guid: 354926ecf27b5ad4a8b9d919efd2327a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 354926ecf27b5ad4a8b9d919efd2327a, type: 3}
+      propertyPath: m_Name
+      value: snoopy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 354926ecf27b5ad4a8b9d919efd2327a, type: 3}

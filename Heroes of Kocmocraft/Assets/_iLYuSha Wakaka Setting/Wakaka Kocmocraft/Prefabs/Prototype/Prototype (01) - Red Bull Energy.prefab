@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 131
+    m_Bias: -162
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -913,30 +913,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3709506941413967031}
     m_Modifications:
-    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Name
-      value: Red_Bull_Energy_Xray
-      objectReference: {fileID: 0}
-    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Name
-      value: Red_Bull_Energy_FBX
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -981,6 +957,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Name
+      value: Red_Bull_Energy_Xray
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.000000021855694
@@ -996,6 +980,22 @@ PrefabInstance:
     - target: {fileID: 400000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Name
+      value: Red_Bull_Energy_FBX
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1042,30 +1042,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7165428353671528654}
     m_Modifications:
-    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Name
-      value: Red_Bull_Energy_FBX
-      objectReference: {fileID: 0}
-    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Name
-      value: Red_Bull_Energy_FBX
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1110,6 +1086,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Name
+      value: Red_Bull_Energy_FBX
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.000000021855694
@@ -1125,6 +1109,22 @@ PrefabInstance:
     - target: {fileID: 400000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Name
+      value: Red_Bull_Energy_FBX
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
@@ -1165,30 +1165,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3709506941413967031}
     m_Modifications:
-    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Name
-      value: Red_Bull_Energy_Wireframe
-      objectReference: {fileID: 0}
-    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Name
-      value: Red_Bull_Energy_FBX
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1233,6 +1209,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Name
+      value: Red_Bull_Energy_Wireframe
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.000000021855694
@@ -1248,6 +1232,22 @@ PrefabInstance:
     - target: {fileID: 400000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Name
+      value: Red_Bull_Energy_FBX
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1294,34 +1294,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7165428353671528654}
     m_Modifications:
-    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Name
-      value: Red_Bull_Energy_FBX Monster
-      objectReference: {fileID: 0}
-    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Name
-      value: Red_Bull_Energy_FBX
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1366,6 +1338,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Name
+      value: Red_Bull_Energy_FBX Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.000000021855694
@@ -1381,6 +1365,22 @@ PrefabInstance:
     - target: {fileID: 400000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Name
+      value: Red_Bull_Energy_FBX
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: e0cd42566f797bb4ead8d6a12fce8f9a, type: 3}
       propertyPath: m_Materials.Array.data[0]

@@ -101,7 +101,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114241924769974728}
   - {fileID: 114392944397655898}
-  viewIdField: 19
+  viewIdField: 0
   InstantiationId: 19
   isRuntimeInstantiated: 0
 --- !u!114 &114241924769974728
@@ -194,10 +194,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4695754280995474}
     m_Modifications:
-    - target: {fileID: 1413480944677018, guid: b7cdbfc1e51478647a91dbc79c05a4ed, type: 3}
-      propertyPath: m_Name
-      value: Hangar (07) - Ace Kennel
-      objectReference: {fileID: 0}
     - target: {fileID: 4096866639541554, guid: b7cdbfc1e51478647a91dbc79c05a4ed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -241,6 +237,10 @@ PrefabInstance:
     - target: {fileID: 4096866639541554, guid: b7cdbfc1e51478647a91dbc79c05a4ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413480944677018, guid: b7cdbfc1e51478647a91dbc79c05a4ed, type: 3}
+      propertyPath: m_Name
+      value: Hangar (07) - Ace Kennel
       objectReference: {fileID: 0}
     - target: {fileID: 7545499868009063406, guid: b7cdbfc1e51478647a91dbc79c05a4ed,
         type: 3}

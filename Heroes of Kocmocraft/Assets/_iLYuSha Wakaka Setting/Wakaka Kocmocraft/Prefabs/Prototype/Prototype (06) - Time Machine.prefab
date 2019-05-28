@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 18
+    m_Bias: -25
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -867,30 +867,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5618849741889665121}
     m_Modifications:
-    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_Name
-      value: Time_Machine_Wireframe
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_DynamicOccludee
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_LightProbeUsage
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c1e742eeeede70d429a93029ba59ca05, type: 2}
     - target: {fileID: 400000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -935,6 +911,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_Name
+      value: Time_Machine_Wireframe
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c1e742eeeede70d429a93029ba59ca05, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
 --- !u!23 &875841502389012751 stripped
@@ -956,22 +956,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2072623172498796146}
     m_Modifications:
-    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_Name
-      value: Time_Machine_FBX_Early
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f2e517b34ceea52428eb99d92775f913, type: 2}
     - target: {fileID: 400000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1016,6 +1000,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_Name
+      value: Time_Machine_FBX_Early
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f2e517b34ceea52428eb99d92775f913, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
 --- !u!23 &3621406442610740036 stripped
@@ -1043,14 +1043,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2072623172498796146}
     m_Modifications:
-    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_Name
-      value: Time_Machine_FBX
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1094,6 +1086,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_Name
+      value: Time_Machine_FBX
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
@@ -1122,30 +1122,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5618849741889665121}
     m_Modifications:
-    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_Name
-      value: Time_Machine_Xray
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_DynamicOccludee
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_LightProbeUsage
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 798452fbca75fba48ac2e0fbdafa8d93, type: 2}
     - target: {fileID: 400000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1190,6 +1166,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_Name
+      value: Time_Machine_Xray
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 798452fbca75fba48ac2e0fbdafa8d93, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7d74f1ac6500914eb5c453011f96e70, type: 3}
 --- !u!23 &5373862208680813955 stripped

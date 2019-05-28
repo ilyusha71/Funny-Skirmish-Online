@@ -168,9 +168,9 @@ namespace Kocmoca
 
             uiHUD.alpha = 1;
             //dataEnergy.Max = myAvionicsSystem.dataEnergy.Max;
-            dataSpeed.Max = myMechDroid.dataSpeed.Max;
-            dataHull.Max = myMechDroid.hull.value;
-            dataShield.Max = myMechDroid.shield.value;
+            dataSpeed.Max = myMechDroid.speed.maximum;
+            dataHull.Max = myMechDroid.hull.maximum;
+            dataShield.Max = myMechDroid.shield.maximum;
 
             defaultPos = iconWarningAlarm.localPosition;
             iconWarningAlarm.localPosition = invisiblePos;
@@ -337,15 +337,15 @@ namespace Kocmoca
             //barEnergy.fillAmount = dataEnergy.Bar;
             //textValueEnergy.text = Mathf.Ceil(dataEnergy.Value).ToString();
 
-            dataSpeed.Value = myMechDroid.dataSpeed.Value;
+            dataSpeed.Value = myMechDroid.realSpeed;
             barSpeed.fillAmount = dataSpeed.Bar;
             textValueSpeed.text = Mathf.Ceil(dataSpeed.Value*3.6f).ToString();
 
-            dataHull.Value = myMechDroid.hullValue;
+            dataHull.Value = myMechDroid.realtimeHull;
             barHull.fillAmount = dataHull.Bar;
             textValueHull.text = Mathf.Ceil(dataHull.Value).ToString();
 
-            dataShield.Value = myMechDroid.shieldValue;
+            dataShield.Value = myMechDroid.realtimeShield;
             barShield.fillAmount = dataShield.Bar;
             textValueShield.text = Mathf.Ceil(dataShield.Value).ToString();
         }
@@ -444,8 +444,8 @@ namespace Kocmoca
             textTargetDistance.text = Mathf.Floor(Mathf.Sqrt(distance)) + " m";
 
             KocmocraftManager targetInfo = target.GetComponentInChildren<KocmocraftManager>();
-            //targetHull.fillAmount = targetInfo.dataHull.Percent;
-            //targetShield.fillAmount = targetInfo.dataShield.Percent;
+            targetHull.fillAmount = targetInfo.hullPercent;
+            targetShield.fillAmount = targetInfo.shieldPercent;
         }
 
 

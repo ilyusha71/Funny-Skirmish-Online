@@ -4776,19 +4776,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   shield:
-    value: 6298
+    maximum: 6298
     level: 2
     emCrystal: 1498
     emBooster: 4800
     emBoosterLevel: 2
   hull:
-    value: 4808
+    maximum: 4808
     level: 1
     airframe: 1208
     armor: 3600
     armorLevel: 1
   speed:
-    value: 151
+    maximum: 151
     level: 7
     engine: 17
     afterburner: 134
@@ -4797,28 +4797,19 @@ MonoBehaviour:
   myRigidbody: {fileID: 998459192}
   myWreckage: {fileID: 4345648418333372280}
   myCockpitViewpoint: {fileID: 910011735197985899}
-  shieldValue: 6298
-  hullValue: 4808
+  realtimeShield: 6298
+  realtimeHull: 4808
+  realSpeed: 17
+  mousePos: {x: 0, y: 0, z: 0}
   dataSpeed:
     Max: 0
     Value: 0
   RotationSpeed: 50
   DampingTarget: 10
   AutoPilot: 0
-  SimpleControl: 1
   FollowTarget: 0
   PositionTarget: {x: 0, y: 0, z: 0}
   mainRot: {x: 0, y: 0, z: 0, w: 1}
-  rollAxis: 0
-  pitchAxis: 0
-  yawAxis: 0
-  LimitAxisControl: {x: 2, y: 1}
-  FixedX: 0
-  FixedY: 0
-  FixedZ: 0
-  Mess: 30
-  DirectVelocity: 1
-  DampingVelocity: 5
 --- !u!114 &998459190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5837,11 +5828,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4908477390876494}
     m_Modifications:
-    - target: {fileID: 8996180125332291000, guid: 432c1f2918c0fc942985a281f6903fa6,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype (01) - Red Bull Energy
-      objectReference: {fileID: 0}
     - target: {fileID: 7165428353671528654, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5896,6 +5882,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996180125332291000, guid: 432c1f2918c0fc942985a281f6903fa6,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype (01) - Red Bull Energy
       objectReference: {fileID: 0}
     - target: {fileID: 1506805796713864185, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}

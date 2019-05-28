@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 17
+    m_Bias: -47
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -867,18 +867,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7103894989937176421}
     m_Modifications:
-    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
-      propertyPath: m_Name
-      value: Boundy_Hunter_MK.II_FBX (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -923,6 +911,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
+      propertyPath: m_Name
+      value: Boundy_Hunter_MK.II_FBX (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
 --- !u!23 &747515671054242817 stripped
@@ -950,14 +950,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2488856458218992126}
     m_Modifications:
-    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
-      propertyPath: m_Name
-      value: Boundy_Hunter_MK.II_Wireframe
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1001,6 +993,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
+      propertyPath: m_Name
+      value: Boundy_Hunter_MK.II_Wireframe
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300014, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1027,14 +1027,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7103894989937176421}
     m_Modifications:
-    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
-      propertyPath: m_Name
-      value: Boundy_Hunter_MK.II
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1078,6 +1070,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
+      propertyPath: m_Name
+      value: Boundy_Hunter_MK.II
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
@@ -1106,14 +1106,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2488856458218992126}
     m_Modifications:
-    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
-      propertyPath: m_Name
-      value: Boundy_Hunter_MK.II_Xray
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1157,6 +1149,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
+      propertyPath: m_Name
+      value: Boundy_Hunter_MK.II_Xray
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300014, guid: 7e67d414698ee4e46bb7958ae9881e71, type: 3}
       propertyPath: m_Materials.Array.data[0]

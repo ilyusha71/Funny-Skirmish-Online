@@ -4,48 +4,42 @@ using UnityEngine;
 
 public class TestAim : MonoBehaviour
 {
-    public Transform mk;
+    public RectTransform mk;
     public Transform ss;
     Camera followCam;
     Rigidbody myRigidbody;
     public Vector3 positionTarget;
     Quaternion mainRot;
 
+    private Vector3 pivot; // Screen centre;
+    Vector3 mousePos;
+
     private void Start()
     {
         myRigidbody = GetComponent<Rigidbody>();
         followCam = Camera.main;
+        pivot = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
     }
     void Update()
     {
+        mousePos = Vector3.ClampMagnitude(Input.mousePosition - pivot, Screen.height*0.37f);
+        mk.anchoredPosition = mousePos;
+        mousePos.z = 300;
+        mousePos += pivot;
+    }
 
-        //positionTarget = Vector3.Lerp(positionTarget, followCam.ViewportToWorldPoint(new Vector3(followCam.ScreenToViewportPoint(Input.mousePosition).x, followCam.ScreenToViewportPoint(Input.mousePosition).y, followCam.farClipPlane)), Time.fixedDeltaTime * 10);
-        //Vector3 targetPos = followCam.ViewportToWorldPoint(new Vector3(followCam.ScreenToViewportPoint(Input.mousePosition).x, followCam.ScreenToViewportPoint(Input.mousePosition).y, followCam.farClipPlane));
-        Vector3 mousePos = followCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, followCam.farClipPlane));
-        mk.position = Input.mousePosition;
+    private void FixedUpdate()
+    {
+        Vector3 targetPos = followCam.ScreenToWorldPoint(mousePos);
+        //ss.localPosition = mousePos;
 
-        //ss.localPosition = positionTarget;
-        //Vector2 screenPoint = followCam.WorldToScreenPoint(targetPos);
-
-
-        Vector3 relativePoint = this.transform.InverseTransformPoint(mousePos).normalized; // 计算相对位置的单位向量
-
-        //mainRot = Quaternion.LookRotation(positionTarget - this.transform.position);
-        //myRigidbody.rotation = Quaternion.Lerp(myRigidbody.rotation, mainRot, Time.fixedDeltaTime * (50 * 0.0005f) * 1);
-        myRigidbody.rotation *= Quaternion.Euler(-relativePoint.y * 2, relativePoint.x * 1, -relativePoint.x * 3- myRigidbody.rotation.z);
-        //float rollax = myRigidbody.rotation.z;
-        //if (rollax != 0f)
-        //{
-        //    myRigidbody.rotation *= Quaternion.Euler(0, 0, -rollax);
-        //}
-        //根据单位向量分配 Pitch与 Roll的转动量
-        //velocityTarget = (myRigidbody.rotation * Vector3.forward) * (dataSpeed.Value);
-
-
-
-        //ss.localPosition = cam.ViewportToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.farClipPlane));
-        //ss.localPosition = cam.ViewportToWorldPoint(new Vector3(cam.ScreenToViewportPoint(Input.mousePosition).x,cam.ScreenToViewportPoint(Input.mousePosition).y, cam.farClipPlane));
-
-
+        Vector3 relativePoint = this.transform.InverseTransformPoint(targetPos).normalized; // 计算相对位置的单位向量
+        Debug.Log(relativePoint.ToString("F4"));
+        myRigidbody.rotation *= Quaternion.Euler(-relativePoint.y * 2, relativePoint.x * 1, -relativePoint.x * 3);
+        if(relativePoint.z>0.98f)
+            myRigidbody.rotation *= Quaternion.Euler(-myRigidbody.rotation.eulerAngles.x, 0, -myRigidbody.rotation.eulerAngles.z);
+        myRigidbody.velocity = (myRigidbody.rotation * Vector3.forward) * 30;
     }
 }
