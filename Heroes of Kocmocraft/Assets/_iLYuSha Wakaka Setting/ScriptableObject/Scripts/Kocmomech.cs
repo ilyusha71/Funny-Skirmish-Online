@@ -26,6 +26,9 @@ public class Kocmomech : ScriptableObject
     [Header("Type")]
     [Tooltip("型号")]
     public string type;
+    [Tooltip("描述")]
+    [TextArea(3, 7)]
+    public string description;
 
     [Header("Regeneration")]
     [Tooltip("护盾再生")]
