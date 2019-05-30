@@ -27,7 +27,7 @@ public class TestAim : MonoBehaviour
     {
         myRigidbody = GetComponent<Rigidbody>();
         followCam = Camera.main;
-        range = Screen.height * 0.37f;
+        range = Screen.height * 0.47f;
         pivot = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
@@ -62,19 +62,21 @@ public class TestAim : MonoBehaviour
             mk.position = mousePos; // HUD
 
         }
+        CalculatePitch();
+        CalculatePitch2();
+        CalculatePitch3();
+        //for (int i = 0; i < 300; i++)
+        //{
+        //    WakakaCalculateRollAndPitchAngles();
+        //    WakakaCalculateRollAndPitchAngles2();
+        //    WakakaCalculateRollAndPitchAngles3();
 
-        for (int i = 0; i < 300; i++)
-        {
-            WakakaCalculateRollAndPitchAngles();
-            WakakaCalculateRollAndPitchAngles2();
-            WakakaCalculateRollAndPitchAngles3();
-
-            //CalculateRollAndPitchAngles();
-            //CalculatePitchAngles();
-            //CalculateRollAngles();
-            //CalculatePitchAngles2();
-            //CalculateRollAngles2();
-        }
+        //    //CalculateRollAndPitchAngles();
+        //    //CalculatePitchAngles();
+        //    //CalculateRollAngles();
+        //    //CalculatePitchAngles2();
+        //    //CalculateRollAngles2();
+        //}
         //if (Input.GetKeyDown(KeyCode.P))
         //{
 
@@ -123,6 +125,46 @@ public class TestAim : MonoBehaviour
     public Vector3 TRight;
     public int count = 1;
 
+    public void CalculatePitch()
+    {
+        var fwd = myTransform.forward;
+        fwd.y = 0;
+        fwd.Normalize(); // 先进行Normalize再Cross会比较快
+        // 计算 InverseTransformDirection + 反正切速度更快
+        var localFlatForward = myTransform.InverseTransformDirection(fwd);
+        PitchAngle = Mathf.Atan2(localFlatForward.y, localFlatForward.z) * Mathf.Rad2Deg; // 这个值不正确
+    }
+    public void CalculatePitch2()
+    {
+        var right = myTransform.right;
+        right.y = 0;
+        right *= Mathf.Sign(myTransform.up.y);  // 投影面法向量修正，pitch的范围将会变成-90~90
+        var fwd = Vector3.Cross(right, Vector3.up).normalized;
+        // 直接计算向量夹角
+        pitchAngle = Vector3.Angle(fwd, myTransform.forward) * -Mathf.Sign(myTransform.forward.y);
+    }
+    public void CalculatePitch3()
+    {
+        var right = myTransform.right;
+        right.y = 0;
+        right *= Mathf.Sign(myTransform.up.y);  // 投影面法向量修正，pitch的范围将会变成-90~90
+        var fwd = Vector3.Cross(right, Vector3.up).normalized;
+        // 计算两向量反余弦得出夹角
+        pitchAngle2 = Mathf.Acos(Vector3.Dot(fwd, myTransform.forward)) * -Mathf.Sign(myTransform.forward.y) * Mathf.Rad2Deg;
+    }
+
+    /***************************************************************************
+     * Roll的角度定义范围
+     * 0. Unity定义为 -180到180，右翻滚0到-180，左翻滚0到+180
+     * 1. 正向水平面，以Vector.up为正向的面，值域为-180到+180
+     *      右翻滚（顺时针）为0到-180
+     *      左翻滚（逆时针）为0到+180
+     * 2. 轴向水平面，以Vector.up与Vector.down作为正反两水平面，值域为-90到+90
+     *      右翻滚（顺时针）为0到-90
+     *      左翻滚（逆时针）为0到+90
+     *      因此正向水平面的-90到-180（右翻滚）会等于轴向水平面的+90到0（相当于反向水平面的左翻滚）
+     * 
+    ***************************************************************************/
     public void WakakaCalculateRollAndPitchAngles()
     {
         var fwd = myTransform.forward;
@@ -172,6 +214,7 @@ public class TestAim : MonoBehaviour
             RollAngle = Mathf.Atan2(localFlatRight.y, localFlatRight.x) * Mathf.Rad2Deg;
         }
     }
+
     public void CalculateRollAngles()
     {
         var fwd = myTransform.forward;
@@ -219,76 +262,30 @@ public class TestAim : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //mousePos.z = followCam.farClipPlane;
-        //var targetPos = followCam.ScreenToWorldPoint(mousePos);
-        //var localTarget = myTransform.InverseTransformPoint(targetPos);
-        //var changeRoll = Mathf.Clamp(-Mathf.Atan2(localTarget.x, localTarget.z), -aoaYaw, aoaYaw);
-        //var changePitch = Mathf.Clamp(-Mathf.Atan2(localTarget.y, localTarget.z), -aoaPitch, aoaPitch);
-        //var changeYaw = changeRoll;
+        mousePos.z = followCam.farClipPlane;
+        var targetPos = followCam.ScreenToWorldPoint(mousePos);
+        var localTarget = myTransform.InverseTransformPoint(targetPos);
+        var changeRoll = Mathf.Clamp(-Mathf.Atan2(localTarget.x, localTarget.z), -aoaYaw, aoaYaw);
+        var changePitch = Mathf.Clamp(-Mathf.Atan2(localTarget.y, localTarget.z), -aoaPitch, aoaPitch);
+        var changeYaw = changeRoll;
 
-        //CalculateRollAndPitchAngles();
-        //CalculatePitchAngles();
-        //CalculateRollAngles();
-
-
-        //TForward = transform.forward;
-        //TUp = transform.up;
-        //TRight = transform.right;
-
-        //// Calculate the flat forward direction (with no y component).
-        //var flatForward = transform.forward;
-        //flatForward.y = 0;
-        //// If the flat forward vector is non-zero (which would only happen if the plane was pointing exactly straight upwards)
-        //if (flatForward.sqrMagnitude > 0)
-        //{
-        //    flatForward.Normalize();
-        //    // calculate current pitch angle
-        //    var localFlatForward = transform.InverseTransformDirection(flatForward);
-        //    PitchAngle = Mathf.Atan2(localFlatForward.y, localFlatForward.z) * Mathf.Rad2Deg;
-        //    // calculate current roll angle
-        //    var flatRight = Vector3.Cross(Vector3.up, flatForward);
-
-        //    var localFlatRight = transform.InverseTransformDirection(flatRight);
-        //    flat = flatRight;
-        //    RollAngle = Mathf.Atan2(localFlatRight.y, localFlatRight.x) * Mathf.Rad2Deg;
-
-        //    RollAngle2 = Vector3.Angle(flatRight, transform.right) * Mathf.Sign(transform.right.y);
-
-
-        //    //Vector3.Angle(Vector3.right, flatRight); // 计算Yaw 无正负 
-        //}
-
-        //var fwd = transform.forward;
-        //fwd.y = 0;
-        ////fwd *= Mathf.Sign(transform.up.y);
-        //var right = Vector3.Cross(Vector3.up, fwd).normalized;
-        //flat2 = right;
-        //float roll = Vector3.Angle(right, transform.right) * Mathf.Sign(transform.right.y);
-        //RollAngleTest1 = roll;
-        //var localFlatRight2 = transform.InverseTransformDirection(right);
-        //RollAngleTest2 = Mathf.Atan2(localFlatRight2.y, localFlatRight2.x) * Mathf.Rad2Deg;
-
-
-
-        //if (Mathf.Abs(changeRoll) < 0.07f)
+        if (Mathf.Abs(changeRoll) < 0.07f)
         {
-            //Debug.Log(Vector3.Dot(transform.up, Vector3.right));
-            //changeRoll = ;
-            //var flatForward = transform.forward;
-            //flatForward.y = 0;
-            //// If the flat forward vector is non-zero (which would only happen if the plane was pointing exactly straight upwards)
-            //if (flatForward.sqrMagnitude > 0)
-            //{
-            //    flatForward.Normalize();
-            //    var flatRight = Vector3.Cross(Vector3.up, flatForward);
-            //    var localFlatRight = transform.InverseTransformDirection(flatRight);
-            //    changeRoll = Mathf.Atan2(localFlatRight.y, localFlatRight.x) * 0.5f;
-            //}
+            var fwd = myTransform.forward;
+            fwd.y = 0;
+            //fwd *= Mathf.Sign(myTransform.up.y); // 投影面法向量修正，roll的范围将会变成-90~90
+            fwd.Normalize(); // 先进行Normalize再Cross会比较快
+            var right = Vector3.Cross(Vector3.up, fwd);
+            // 计算 InverseTransformDirection + 反正切速度更快
+            var localFlatRight = myTransform.InverseTransformDirection(right);
+            changeRoll = 0.07f * Mathf.Sign(Mathf.Atan2(localFlatRight.y, localFlatRight.x) * Mathf.Rad2Deg);
         }
-        //myRigidbody.rotation *= Quaternion.Euler(changePitch * pitch, -changeYaw * yaw, changeRoll * roll);
-        //myRigidbody.velocity = (myRigidbody.rotation * Vector3.forward) * 90;
-
+        myRigidbody.rotation *= Quaternion.Euler(changePitch * pitch, -changeYaw * yaw, changeRoll * roll);
+        myRigidbody.velocity = (myRigidbody.rotation * Vector3.forward) * 90;
     }
+
+    public Vector3 now;
+    public Vector3 last;
 
     public int batch = 1;
     public void Ca1()
