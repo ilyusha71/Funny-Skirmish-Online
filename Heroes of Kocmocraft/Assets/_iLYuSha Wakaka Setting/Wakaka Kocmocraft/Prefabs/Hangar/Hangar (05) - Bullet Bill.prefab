@@ -4671,9 +4671,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4344818207295468}
-  - component: {fileID: 744240051}
-  - component: {fileID: 744240050}
-  - component: {fileID: 744240049}
+  - component: {fileID: 3915841011150119064}
+  - component: {fileID: 8481876722503600211}
   m_Layer: 10
   m_Name: Hangar (05) - Bullet Bill
   m_TagString: Hangar
@@ -4703,23 +4702,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!54 &744240051
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267311499308674}
-  serializedVersion: 2
-  m_Mass: 100
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &744240050
+--- !u!114 &3915841011150119064
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4728,10 +4711,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1267311499308674}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb56eec90e3fa2e45bfc7abdf864d331, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c35be0845eba2148a726ea16bbb5a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
   shield:
     maximum: 4735
     level: 1
@@ -4751,23 +4733,24 @@ MonoBehaviour:
     afterburner: 134
     afterburnerLevel: 7
   kocmomech: {fileID: 11400000, guid: 5b13533be6585bb43aab82c8f78f556d, type: 2}
-  myRigidbody: {fileID: 744240051}
-  myWreckage: {fileID: 2727021729802623997}
-  myCockpitViewpoint: {fileID: 2786907828575170770}
+  myPowerUnit: {fileID: 66619648779973615}
+  wreckage: {fileID: 0}
+  attitudeLimit: 0.2792527
+  autoLevelAngle: 0.1570796
+  autoLevelPeriod: 0.07853982
+  inverseAngle: 0.1178097
+  inversePeriod: 0.2356195
+  controlUnit: 0
+  portTransform: {fileID: 0}
+  portRigidbody: {fileID: 0}
+  portPhotonView: {fileID: 0}
+  kocmocraftNumber: 0
   realtimeShield: 4735
   realtimeHull: 7298
-  realSpeed: 15
-  mousePos: {x: 0, y: 0, z: 0}
-  dataSpeed:
-    Max: 0
-    Value: 0
-  RotationSpeed: 50
-  DampingTarget: 10
-  AutoPilot: 0
-  FollowTarget: 0
-  PositionTarget: {x: 0, y: 0, z: 0}
-  mainRot: {x: 0, y: 0, z: 0, w: 1}
---- !u!114 &744240049
+  realtimeSpeed: 15
+  afterburnerPower: 0
+  relativePos: {x: 0, y: 0, z: 0}
+--- !u!114 &8481876722503600211
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5789,27 +5772,27 @@ PrefabInstance:
     - target: {fileID: 2996517866651862255, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00021058321
+      value: -0.00021149215
       objectReference: {fileID: 0}
     - target: {fileID: 2996517866651862255, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.94027156
+      value: 0.9402715
       objectReference: {fileID: 0}
     - target: {fileID: 2996517866651862255, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.34042495
+      value: -0.34042487
       objectReference: {fileID: 0}
     - target: {fileID: 2996517866651862255, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.00058221817
+      value: -0.0005847513
       objectReference: {fileID: 0}
     - target: {fileID: 2996517866651862255, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.003730774
+      value: 0.0037460327
       objectReference: {fileID: 0}
     - target: {fileID: 2996517866651862255, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
@@ -5898,12 +5881,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c865e311b6aa301488d3fff1a509e1a2, type: 3}
---- !u!1 &2727021729802623997 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 706924293, guid: c865e311b6aa301488d3fff1a509e1a2,
-    type: 3}
-  m_PrefabInstance: {fileID: 2727021730169804024}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2727021730230115278 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 78237494, guid: c865e311b6aa301488d3fff1a509e1a2,
@@ -5917,6 +5894,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4464833669553941754}
     m_Modifications:
+    - target: {fileID: 933992902942848630, guid: a787ead40b8acf140bc573aaae0e6659,
+        type: 3}
+      propertyPath: m_Name
+      value: Mario
+      objectReference: {fileID: 0}
     - target: {fileID: 933992902942747222, guid: a787ead40b8acf140bc573aaae0e6659,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5971,11 +5953,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 933992902942848630, guid: a787ead40b8acf140bc573aaae0e6659,
-        type: 3}
-      propertyPath: m_Name
-      value: Mario
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a787ead40b8acf140bc573aaae0e6659, type: 3}

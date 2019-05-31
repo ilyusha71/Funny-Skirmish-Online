@@ -189,9 +189,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4835592628145312}
-  - component: {fileID: 1213595419}
-  - component: {fileID: 1213595418}
-  - component: {fileID: 1213595417}
+  - component: {fileID: 7971729255501995337}
+  - component: {fileID: 4488683553833286474}
   m_Layer: 10
   m_Name: Hangar (11) - Fast Food Man
   m_TagString: Hangar
@@ -220,23 +219,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!54 &1213595419
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1461499889539346}
-  serializedVersion: 2
-  m_Mass: 100
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1213595418
+--- !u!114 &7971729255501995337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,10 +228,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1461499889539346}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb56eec90e3fa2e45bfc7abdf864d331, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c35be0845eba2148a726ea16bbb5a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
   shield:
     maximum: 5523
     level: 2
@@ -268,23 +250,24 @@ MonoBehaviour:
     afterburner: 122
     afterburnerLevel: 6
   kocmomech: {fileID: 11400000, guid: 7a1aea8a96f335241998ebb6b7dc0494, type: 2}
-  myRigidbody: {fileID: 1213595419}
-  myWreckage: {fileID: 6837133154708655845}
-  myCockpitViewpoint: {fileID: 896275936904676398}
+  myPowerUnit: {fileID: 1494169263351852824}
+  wreckage: {fileID: 0}
+  attitudeLimit: 0.2792527
+  autoLevelAngle: 0.1570796
+  autoLevelPeriod: 0.07853982
+  inverseAngle: 0.1178097
+  inversePeriod: 0.2356195
+  controlUnit: 0
+  portTransform: {fileID: 0}
+  portRigidbody: {fileID: 0}
+  portPhotonView: {fileID: 0}
+  kocmocraftNumber: 0
   realtimeShield: 5523
   realtimeHull: 10600
-  realSpeed: 22
-  mousePos: {x: 0, y: 0, z: 0}
-  dataSpeed:
-    Max: 0
-    Value: 0
-  RotationSpeed: 50
-  DampingTarget: 10
-  AutoPilot: 0
-  FollowTarget: 0
-  PositionTarget: {x: 0, y: 0, z: 0}
-  mainRot: {x: 0, y: 0, z: 0, w: 1}
---- !u!114 &1213595417
+  realtimeSpeed: 22
+  afterburnerPower: 0
+  relativePos: {x: 0, y: 0, z: 0}
+--- !u!114 &4488683553833286474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10317,27 +10300,27 @@ PrefabInstance:
     - target: {fileID: 8837642824016502378, guid: d1da46c34d0e8a94d9d6ad797fa79fb8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0017939506
+      value: 0.0018008798
       objectReference: {fileID: 0}
     - target: {fileID: 8837642824016502378, guid: d1da46c34d0e8a94d9d6ad797fa79fb8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.94025856
+      value: 0.9402585
       objectReference: {fileID: 0}
     - target: {fileID: 8837642824016502378, guid: d1da46c34d0e8a94d9d6ad797fa79fb8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.34042063
+      value: -0.34042042
       objectReference: {fileID: 0}
     - target: {fileID: 8837642824016502378, guid: d1da46c34d0e8a94d9d6ad797fa79fb8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0049546957
+      value: 0.004973799
       objectReference: {fileID: 0}
     - target: {fileID: 8837642824016502378, guid: d1da46c34d0e8a94d9d6ad797fa79fb8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.03173828
+      value: -0.03186035
       objectReference: {fileID: 0}
     - target: {fileID: 8837642824016502378, guid: d1da46c34d0e8a94d9d6ad797fa79fb8,
         type: 3}
@@ -10391,12 +10374,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1da46c34d0e8a94d9d6ad797fa79fb8, type: 3}
---- !u!1 &6837133154708655845 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4507520544453199917, guid: d1da46c34d0e8a94d9d6ad797fa79fb8,
-    type: 3}
-  m_PrefabInstance: {fileID: 6948929346939389640}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6948929348142714374 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1489586382, guid: d1da46c34d0e8a94d9d6ad797fa79fb8,
@@ -10410,6 +10387,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4835592628145312}
     m_Modifications:
+    - target: {fileID: 3542106977500394432, guid: 1cad2f69ff0c729499827a4be5477520,
+        type: 3}
+      propertyPath: m_Name
+      value: Pilot - Eric Cartman
+      objectReference: {fileID: 0}
     - target: {fileID: 3540522384267295690, guid: 1cad2f69ff0c729499827a4be5477520,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10464,11 +10446,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3542106977500394432, guid: 1cad2f69ff0c729499827a4be5477520,
-        type: 3}
-      propertyPath: m_Name
-      value: Pilot - Eric Cartman
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cad2f69ff0c729499827a4be5477520, type: 3}

@@ -135,7 +135,7 @@ namespace Kocmoca
             if (PhotonNetwork.IsMasterClient)
             {
                 int countPlayer = PhotonNetwork.CurrentRoom.PlayerCount;
-                for (int portNumber = countPlayer; portNumber <100; portNumber++)
+                for (int portNumber = countPlayer; portNumber <10; portNumber++)
                 {
                     int type = Random.Range(0,20);
                     PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), DesignData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).GetComponent<Kocmoport>().InitializeLocalBot(portNumber);
@@ -217,7 +217,7 @@ namespace Kocmoca
         }
 
         // 初始化宇航員數據（僅第一次生成）
-        public void NewKocmonautJoin(Core core, int portNumber, Type type, int number, string name) // 宇航機實例化記錄宇航員資料
+        public void NewKocmonautJoin(ControlUnit core, int portNumber, Type type, int number, string name) // 宇航機實例化記錄宇航員資料
         {
             Kocmonaut kocmonaut = new Kocmonaut(
                 (Faction)(portNumber%2),

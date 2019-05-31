@@ -25,12 +25,13 @@ namespace Kocmoca
 
     public class LocalBotController : MonoBehaviour
     {
+        public static Vector3 targetPos;
         public EnergyCore[] beacons;
         private int countBeacon;
         // Dependent Components
         private Transform myTransform;
         private Rigidbody myRigidbody;
-        private KocmocraftManager myAvionicsSystem;
+        private AvionicsSystem myAvionicsSystem;
         private OnboardRadar myOnboardRadar;
         private FireControlSystem myLaserFCS;
         private FireControlSystem myRocketFCS;
@@ -75,14 +76,15 @@ namespace Kocmoca
 
         void Start()
         {
+            mission =  Mission.Default;
             beacons = FindObjectsOfType<EnergyCore>();
             countBeacon = beacons.Length;
             // Dependent Components
             myTransform = transform;
             myRigidbody = GetComponent<Rigidbody>();
-            myAvionicsSystem = GetComponentInChildren<KocmocraftManager>();
-            myAvionicsSystem.AutoPilot = true;// set auto pilot to true will make this plane flying and looking to Target automatically
-            myAvionicsSystem.FollowTarget = true;
+            myAvionicsSystem = GetComponentInChildren<AvionicsSystem>();
+            //myAvionicsSystem.AutoPilot = true;// set auto pilot to true will make this plane flying and looking to Target automatically
+            //myAvionicsSystem.FollowTarget = true;
             myOnboardRadar = GetComponentInChildren<OnboardRadar>();
             myLaserFCS = GetComponentsInChildren<FireControlSystem>()[0];
             myRocketFCS = GetComponentsInChildren<FireControlSystem>()[1];
@@ -109,19 +111,19 @@ namespace Kocmoca
             }
             nearestBeacon = beacons[nearest].transform;
 
-            switch (mission)
-            {
-                case Mission.Snipper:
-                    AIstate = AIState.WP;
-                    observationPost = Vector3.Lerp(nearestBeacon.position, myTransform.position, 1370.0f / distanceNearest);
-                    myAvionicsSystem.PositionTarget = observationPost;
-                    break;
-                case Mission.Battle:
-                    AIstate = AIState.Crossfire;
-                    myAvionicsSystem.ControlThrottle(1.0f);
-                    break;
-                default:break;
-            }
+            //switch (mission)
+            //{
+            //    case Mission.Snipper:
+            //        AIstate = AIState.WP;
+            //        observationPost = Vector3.Lerp(nearestBeacon.position, myTransform.position, 1370.0f / distanceNearest);
+            //        targetPos = observationPost;
+            //        break;
+            //    case Mission.Battle:
+            //        AIstate = AIState.Crossfire;
+            //        myAvionicsSystem.ControlThrottle(1.0f);
+            //        break;
+            //    default:break;
+            //}
         }
 
         private float dot;
@@ -140,7 +142,7 @@ namespace Kocmoca
                 }
             }
             coordinateDestination = beacons[indexNearest].transform.position;
-            myAvionicsSystem.PositionTarget = coordinateDestination;
+            targetPos = coordinateDestination;
         }
 
         void FlyToFarthestBeacon()
@@ -157,7 +159,7 @@ namespace Kocmoca
                 }
             }
             coordinateDestination = beacons[farthestBeacon].transform.position;
-            myAvionicsSystem.PositionTarget = coordinateDestination;
+            targetPos = coordinateDestination;
         }
 
         void Update()
@@ -201,7 +203,7 @@ namespace Kocmoca
 
             targetTrack = myOnboardRadar.targetTrack;
             if (targetTrack)
-                myAvionicsSystem.PositionTarget = targetTrack.position;
+                targetPos = targetTrack.position;
 
             targetAutoAim = myOnboardRadar.targetAutoAim;
             if (targetAutoAim)
@@ -221,7 +223,7 @@ namespace Kocmoca
         {
             targetTrack = myOnboardRadar.targetTrack;
             if (targetTrack)
-                myAvionicsSystem.PositionTarget = targetTrack.position;
+                targetPos = targetTrack.position;
             else
                 AIstate = AIState.WP;
 
@@ -314,7 +316,7 @@ namespace Kocmoca
             if (targetTrack)
             {
                 Vector3 targetTrackingPosition = targetTrack.position;
-                myAvionicsSystem.PositionTarget = targetTrackingPosition;
+                targetPos = targetTrackingPosition;
                 targetTrackingDiff = targetTrackingPosition - myTransform.position;
                 targetTrackingDistanceSqr = Vector3.SqrMagnitude(targetTrackingDiff);
                 targetTrackingDirection = Vector3.Dot(targetTrackingDiff.normalized, myTransform.forward);

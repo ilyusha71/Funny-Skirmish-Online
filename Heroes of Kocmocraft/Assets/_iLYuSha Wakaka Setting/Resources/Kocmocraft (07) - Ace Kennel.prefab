@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4695754280995474}
+  - component: {fileID: 114698142094624660}
   - component: {fileID: 54449835684779852}
   - component: {fileID: 205861710566832134}
   - component: {fileID: 114656438491202562}
   - component: {fileID: 114241924769974728}
   - component: {fileID: 114392944397655898}
-  - component: {fileID: 114698142094624660}
   m_Layer: 10
   m_Name: Kocmocraft (07) - Ace Kennel
   m_TagString: Kocmocraft
@@ -38,6 +38,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114698142094624660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593906188448642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d300cf859ca96e44987082e42774e167, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  port: 0
+  Faction: 0
+  Type: 0
+  Number: 0
+  module: {fileID: 11400000, guid: c15c8ad60c62341419620337e393f2cc, type: 2}
+  listFCS: []
+  countFCS: 0
+  currentFCS: 0
+  pilot: {fileID: 8582818631958900141}
+  wreckage: {fileID: 397201265369251157}
 --- !u!54 &54449835684779852
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -135,28 +157,6 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
---- !u!114 &114698142094624660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593906188448642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d300cf859ca96e44987082e42774e167, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  port: 0
-  Faction: 0
-  Type: 0
-  Number: 0
-  module: {fileID: 11400000, guid: c15c8ad60c62341419620337e393f2cc, type: 2}
-  listFCS: []
-  countFCS: 0
-  currentFCS: 0
-  pilot: {fileID: 8582818631958900141}
-  wreckage: {fileID: 397201265369251157}
 --- !u!1 &1637928791944178
 GameObject:
   m_ObjectHideFlags: 0

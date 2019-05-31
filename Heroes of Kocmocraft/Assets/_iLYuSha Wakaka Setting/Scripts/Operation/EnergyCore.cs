@@ -59,7 +59,7 @@ namespace Kocmoca
             {
                 EnergyEmitter emitter = queueEmitter.Dequeue();
                 emitter.enabled = true;
-                emitter.SetReceiver(other.transform, other.transform.root.GetComponent<Kocmoport>().Faction);
+                emitter.SetReceiver(other.transform, other.transform.root.GetComponent<Kocmoport>().m_Faction);
             }
         }
 

@@ -40,7 +40,7 @@ namespace Kocmoca
     //    //private ParticleSystem myOnFireParticle;
     //    private Transform myCockpitViewpoint;
     //    // Basic Data
-    //    public Core Core { get; protected set; }
+    //    public ControlUnit ControlUnit { get; protected set; }
     //    public int Number { get; protected set; }
     //    [Header("Modular Parameter")]
     //    public Data dataHull;
@@ -55,7 +55,7 @@ namespace Kocmoca
     //    //public ObjectPoolData ammoRemnantOPD;
     //    private GameObject wreckage;
 
-    //    public void Initialize(KocmocraftModule module, Core core, int type, int number, GameObject pilot, GameObject wreckage)
+    //    public void Initialize(KocmocraftModule module, ControlUnit core, int type, int number, GameObject pilot, GameObject wreckage)
     //    {
     //        // Dependent Components
     //        myRigidbody = GetComponent<Rigidbody>();
@@ -67,9 +67,9 @@ namespace Kocmoca
     //        //if (!myOnFireParticle) Debug.LogError("No OnFire VFX");
     //        myCockpitViewpoint = transform.Find("Cockpit Viewpoint");
     //        // Kocmonaut Data
-    //        Core = core;
+    //        ControlUnit = core;
     //        Number = number;
-    //        if (core == Core.LocalPlayer)
+    //        if (core == ControlUnit.LocalPlayer)
     //            SatelliteCommander.Instance.Observer.InitializeView(myCockpitViewpoint, pilot, Number);
     //        else
     //            SatelliteCommander.Instance.Observer.listOthers.Add(Number);
@@ -82,7 +82,7 @@ namespace Kocmoca
     //    }
     //    //private void Update()
     //    //{
-    //    //    if (Input.GetKeyDown(KeyCode.U) && Core == Core.LocalPlayer)
+    //    //    if (Input.GetKeyDown(KeyCode.U) && ControlUnit == ControlUnit.LocalPlayer)
     //    //        dataHull.Value = 1000000;
 
     //    //    //if (dataHull.Value < (int)(dataHull.Max * 0.237f))
@@ -90,7 +90,7 @@ namespace Kocmoca
     //    //    //else
     //    //    //    myOnFireParticle.Stop();
 
-    //    //    if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
+    //    //    if (ControlUnit == ControlUnit.RemotePlayer || ControlUnit == ControlUnit.RemoteBot) return;
     //    //    dataShield.Value = Mathf.Clamp(dataShield.Value + Time.deltaTime * myAvionicsSystem.dataEnergy.Value * 0.1f, 0, dataShield.Max);
     //    //}
     //    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -108,7 +108,7 @@ namespace Kocmoca
     //    }
     //    public void Hit(DamagePower damagePower)
     //    {
-    //        if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
+    //        if (ControlUnit == ControlUnit.RemotePlayer || ControlUnit == ControlUnit.RemoteBot) return;
     //        if (dataHull.Value <= 0) return;
     //        int damageSourceNumber = damagePower.Attacker.Number;
     //        // 狀況1
@@ -239,17 +239,17 @@ namespace Kocmoca
     //            listAttacker.Add(damagePower.Attacker.Number, damage);
 
     //        // 本地玩家擊中本地AI
-    //        if (damagePower.Attacker.Core == Core.LocalPlayer)
+    //        if (damagePower.Attacker.ControlUnit == ControlUnit.LocalPlayer)
     //            HeadUpDisplayManager.Instance.ShowHitDamage(myRigidbody.position, damage);
     //        // 遠端玩家擊中本地玩家或本地AI
-    //        else if (damagePower.Attacker.Core == Core.RemotePlayer)
+    //        else if (damagePower.Attacker.ControlUnit == ControlUnit.RemotePlayer)
     //            myPhotonView.RPC("ShowHitDamage", RpcTarget.AllViaServer, damagePower.Attacker.Number, damage);
 
     //        /************************************* Crash *************************************/
 
     //        if (dataHull.Value <= 0)
     //        {
-    //            if (Core == Core.LocalPlayer)
+    //            if (ControlUnit == ControlUnit.LocalPlayer)
     //            {
     //                GetComponent<LocalPlayerController>().enabled = false;
     //                SatelliteCommander.Instance.PlayerCrash();
@@ -259,7 +259,7 @@ namespace Kocmoca
     //                //}
     //                HeadUpDisplayManager.Instance.ShowKillStealer(lastAttacker.Number);
     //            }
-    //            else if (Core == Core.LocalBot)
+    //            else if (ControlUnit == ControlUnit.LocalBot)
     //            {
     //                GetComponent<LocalBotController>().enabled = false;
     //                SatelliteCommander.Instance.BotCrash(Number);
@@ -284,9 +284,9 @@ namespace Kocmoca
 
     //        SatelliteCommander.Instance.Observer.listOthers.Remove(Number);
     //        SatelliteCommander.Instance.RemoveFlight(Number);
-    //        switch (Core)
+    //        switch (ControlUnit)
     //        {
-    //            case Core.LocalPlayer:
+    //            case ControlUnit.LocalPlayer:
     //                LocalPlayerRealtimeData.Status = FlyingStatus.Crash;
     //                SatelliteCommander.Instance.Observer.TransferCamera();
     //                SatelliteCommander.Instance.ClearData();
@@ -295,7 +295,7 @@ namespace Kocmoca
     //                GetComponent<OnboardRadar>().Stop();
     //                //Destroy(GetComponent<OnboardRadar>());
     //                break;
-    //            case Core.LocalBot:
+    //            case ControlUnit.LocalBot:
     //                Destroy(GetComponent<LocalBotController>());
     //                GetComponent<OnboardRadar>().Stop();
     //                //Destroy(GetComponent<OnboardRadar>());
@@ -352,7 +352,7 @@ namespace Kocmoca
     //        myRigidbody.isKinematic = true;
     //        myRigidbody.isKinematic = false;
 
-    //        if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
+    //        if (ControlUnit == ControlUnit.RemotePlayer || ControlUnit == ControlUnit.RemoteBot) return;
     //        if (dataHull.Value <= 0) return;
     //        lastHitVelocity = myRigidbody.velocity;
 
@@ -379,12 +379,12 @@ namespace Kocmoca
     //        KocmocraftMechDroid collisionKocmocraft = collision.gameObject.GetComponent<KocmocraftMechDroid>();
     //        if (collisionKocmocraft)
     //        {
-    //            damagePower.Attacker.Core = collisionKocmocraft.Core;
+    //            damagePower.Attacker.ControlUnit = collisionKocmocraft.ControlUnit;
     //            damagePower.Attacker.Number = collisionKocmocraft.Number;
     //        }
     //        else
     //        {
-    //            damagePower.Attacker.Core = Core;
+    //            damagePower.Attacker.ControlUnit = ControlUnit;
     //            damagePower.Attacker.Number = Number;
     //        }
     //        Hit(damagePower);

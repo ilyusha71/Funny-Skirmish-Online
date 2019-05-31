@@ -116,7 +116,7 @@ namespace Kocmoca
         public Rigidbody myRigidbody;
         //private Kocmoport myKocmocraftManager;
         //private AvionicsSystem myAvionicsSystem;
-        private KocmocraftManager myMechDroid;
+        private AvionicsSystem myMechDroid;
         private FireControlSystem myRocketFCS;
         private FireControlSystem myMissileFCS;
         //private int myNumber;
@@ -146,7 +146,7 @@ namespace Kocmoca
             myRigidbody = myKocmocraft.GetComponent<Rigidbody>();
             //myKocmocraftManager = myKocmocraft.GetComponent<Kocmoport>();
             //myAvionicsSystem = myKocmocraft.GetComponent<AvionicsSystem>();
-            myMechDroid = myKocmocraft.GetComponentInChildren<KocmocraftManager>();
+            myMechDroid = myKocmocraft.GetComponentInChildren<AvionicsSystem>();
             myRocketFCS = myKocmocraft.GetComponentsInChildren<FireControlSystem>()[1];
             myMissileFCS = myKocmocraft.GetComponentsInChildren<FireControlSystem>()[2];
             //myNumber = kocmonautNumber;
@@ -337,7 +337,7 @@ namespace Kocmoca
             //barEnergy.fillAmount = dataEnergy.Bar;
             //textValueEnergy.text = Mathf.Ceil(dataEnergy.Value).ToString();
 
-            dataSpeed.Value = myMechDroid.realSpeed;
+            dataSpeed.Value = myMechDroid.realtimeSpeed;
             barSpeed.fillAmount = dataSpeed.Bar;
             textValueSpeed.text = Mathf.Ceil(dataSpeed.Value*3.6f).ToString();
 
@@ -443,7 +443,7 @@ namespace Kocmoca
             //textTargetType.text = target.name.Split('-')[2];
             textTargetDistance.text = Mathf.Floor(Mathf.Sqrt(distance)) + " m";
 
-            KocmocraftManager targetInfo = target.GetComponentInChildren<KocmocraftManager>();
+            AvionicsSystem targetInfo = target.GetComponentInChildren<AvionicsSystem>();
             targetHull.fillAmount = targetInfo.hullPercent;
             targetShield.fillAmount = targetInfo.shieldPercent;
         }

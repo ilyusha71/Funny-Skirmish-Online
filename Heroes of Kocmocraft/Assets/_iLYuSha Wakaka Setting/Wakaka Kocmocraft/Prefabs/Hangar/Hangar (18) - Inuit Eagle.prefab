@@ -4887,9 +4887,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5837645102442459931}
-  - component: {fileID: 1328959098}
-  - component: {fileID: 1328959097}
-  - component: {fileID: 1328959096}
+  - component: {fileID: 814920128890460822}
+  - component: {fileID: 6497530217801387842}
   m_Layer: 0
   m_Name: Hangar (18) - Inuit Eagle
   m_TagString: Untagged
@@ -4918,23 +4917,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!54 &1328959098
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1703275068897121041}
-  serializedVersion: 2
-  m_Mass: 100
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1328959097
+--- !u!114 &814920128890460822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4943,10 +4926,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1703275068897121041}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb56eec90e3fa2e45bfc7abdf864d331, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c35be0845eba2148a726ea16bbb5a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
   shield:
     maximum: 8377
     level: 3
@@ -4966,23 +4948,24 @@ MonoBehaviour:
     afterburner: 86
     afterburnerLevel: 3
   kocmomech: {fileID: 11400000, guid: 40ac21a4d6f77bb4c9269551530616c1, type: 2}
-  myRigidbody: {fileID: 1328959098}
-  myWreckage: {fileID: 8065774341518655180}
-  myCockpitViewpoint: {fileID: 47372675374358183}
+  myPowerUnit: {fileID: 7615175543570896412}
+  wreckage: {fileID: 0}
+  attitudeLimit: 0.2792527
+  autoLevelAngle: 0.1570796
+  autoLevelPeriod: 0.07853982
+  inverseAngle: 0.1178097
+  inversePeriod: 0.2356195
+  controlUnit: 0
+  portTransform: {fileID: 0}
+  portRigidbody: {fileID: 0}
+  portPhotonView: {fileID: 0}
+  kocmocraftNumber: 0
   realtimeShield: 8377
   realtimeHull: 11689
-  realSpeed: 20
-  mousePos: {x: 0, y: 0, z: 0}
-  dataSpeed:
-    Max: 0
-    Value: 0
-  RotationSpeed: 50
-  DampingTarget: 10
-  AutoPilot: 0
-  FollowTarget: 0
-  PositionTarget: {x: 0, y: 0, z: 0}
-  mainRot: {x: 0, y: 0, z: 0, w: 1}
---- !u!114 &1328959096
+  realtimeSpeed: 20
+  afterburnerPower: 0
+  relativePos: {x: 0, y: 0, z: 0}
+--- !u!114 &6497530217801387842
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10305,10 +10288,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7304894868114583025}
     m_Modifications:
-    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 10
+      propertyPath: m_Name
+      value: Candle Fire
       objectReference: {fileID: 0}
     - target: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
@@ -10365,10 +10348,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
-      propertyPath: m_Name
-      value: Candle Fire
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3017046265566287042, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
@@ -10382,15 +10365,15 @@ PrefabInstance:
       objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61f9c91edeb866647b6ece4e2ede719d, type: 3}
---- !u!198 &244737853570001850 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
-    type: 3}
-  m_PrefabInstance: {fileID: 3079275016307664448}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &244737853551599704 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3079275016307664448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &244737853570001850 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
     type: 3}
   m_PrefabInstance: {fileID: 3079275016307664448}
   m_PrefabAsset: {fileID: 0}
@@ -10401,20 +10384,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7304894868114583025}
     m_Modifications:
-    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 1.37
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
-        type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 0.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 10
+      propertyPath: m_Name
+      value: Candle Fire (2)
       objectReference: {fileID: 0}
     - target: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
@@ -10471,10 +10444,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
-      propertyPath: m_Name
-      value: Candle Fire (2)
+      propertyPath: InitialModule.startSize.scalar
+      value: 1.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3017046265566287042, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
@@ -10488,15 +10471,15 @@ PrefabInstance:
       objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61f9c91edeb866647b6ece4e2ede719d, type: 3}
---- !u!4 &185476076256492077 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
-    type: 3}
-  m_PrefabInstance: {fileID: 3119941303166696501}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &185476076241203663 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3119941303166696501}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &185476076256492077 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
     type: 3}
   m_PrefabInstance: {fileID: 3119941303166696501}
   m_PrefabAsset: {fileID: 0}
@@ -10722,12 +10705,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3276a832ce82c014997db4ddc1e6d595, type: 3}
---- !u!1 &8065774341518655180 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4501118946587110061, guid: 3276a832ce82c014997db4ddc1e6d595,
-    type: 3}
-  m_PrefabInstance: {fileID: 5879533782649214049}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7402980590607521724 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3973555089715676125, guid: 3276a832ce82c014997db4ddc1e6d595,
@@ -10741,10 +10718,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7304894868114583025}
     m_Modifications:
-    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 10
+      propertyPath: m_Name
+      value: Candle Fire (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3017046265545885208, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
@@ -10801,10 +10778,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3017046265546313442, guid: 61f9c91edeb866647b6ece4e2ede719d,
+    - target: {fileID: 3017046265564319226, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}
-      propertyPath: m_Name
-      value: Candle Fire (1)
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3017046265566287042, guid: 61f9c91edeb866647b6ece4e2ede719d,
         type: 3}

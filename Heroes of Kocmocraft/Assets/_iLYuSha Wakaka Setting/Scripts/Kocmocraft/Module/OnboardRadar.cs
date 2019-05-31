@@ -100,13 +100,13 @@ namespace Kocmoca
             enabled = false;
         }
 
-        public void Initialize(Core core, int faction, int type, int number)
+        public void Initialize(ControlUnit core, int faction, int type, int number)
         {
             enabled = true;
             // Dependent Components
             myPhotonView = transform.root. GetComponent<PhotonView>();
             // Modular Parameter
-            isLocalPlayer = core == Core.LocalPlayer ? true : false;
+            isLocalPlayer = core == ControlUnit.LocalPlayer ? true : false;
             kocmonautNumber = number;
             //listFriendAircrafts = KocmocaData.factionData[faction].listFriend;
             //listFoeAircrafts = KocmocaData.factionData[faction].listFoe;
@@ -386,20 +386,20 @@ namespace Kocmoca
             {
                 if (targetRadarLockOn)
                 {
-                    KocmocraftManager target = targetRadarLockOn.GetComponentInChildren<KocmocraftManager>();
-                    if (target.Core == Core.LocalPlayer || target.Core == Core.RemotePlayer)
+                    AvionicsSystem target = targetRadarLockOn.GetComponentInChildren<AvionicsSystem>();
+                    if (target.controlUnit == ControlUnit.LocalPlayer || target.controlUnit == ControlUnit.RemotePlayer)
                     {
                         //Debug.Log(myTransform.name+"/"+myPhotonView.ViewID + "/" + kocmonautNumber + "/" + Time.frameCount + "/True/");
-                        myPhotonView.RPC("RadarLockOn", RpcTarget.AllViaServer, target.Number, kocmonautNumber, true);
+                        myPhotonView.RPC("RadarLockOn", RpcTarget.AllViaServer, target.kocmocraftNumber, kocmonautNumber, true);
                     }
                 }
                 if (targetLocked)
                 {
-                    KocmocraftManager target = targetLocked.GetComponentInChildren<KocmocraftManager>();
-                    if (target.Core == Core.LocalPlayer || target.Core == Core.RemotePlayer)
+                    AvionicsSystem target = targetLocked.GetComponentInChildren<AvionicsSystem>();
+                    if (target.controlUnit == ControlUnit.LocalPlayer || target.controlUnit == ControlUnit.RemotePlayer)
                     {
                         //Debug.Log(myTransform.name + "/" + myPhotonView.ViewID + "/" + kocmonautNumber + "/" + Time.frameCount + "/false/");
-                        myPhotonView.RPC("RadarLockOn", RpcTarget.AllViaServer, target.Number, kocmonautNumber, false);
+                        myPhotonView.RPC("RadarLockOn", RpcTarget.AllViaServer, target.kocmocraftNumber, kocmonautNumber, false);
                     }
                 }
                 targetLocked = targetRadarLockOn;

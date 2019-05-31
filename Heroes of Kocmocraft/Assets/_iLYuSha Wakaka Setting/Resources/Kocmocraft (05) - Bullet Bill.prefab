@@ -39,12 +39,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4498412709666434}
+  - component: {fileID: 114560018026076618}
   - component: {fileID: 54817098951997434}
   - component: {fileID: 205924264160458330}
   - component: {fileID: 114347486915452686}
   - component: {fileID: 114878961472029604}
   - component: {fileID: 114154295836197004}
-  - component: {fileID: 114560018026076618}
   m_Layer: 10
   m_Name: Kocmocraft (05) - Bullet Bill
   m_TagString: Kocmocraft
@@ -68,6 +68,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114560018026076618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911209386030558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d300cf859ca96e44987082e42774e167, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  port: 0
+  Faction: 0
+  Type: 0
+  Number: 0
+  module: {fileID: 11400000, guid: c15c8ad60c62341419620337e393f2cc, type: 2}
+  listFCS: []
+  countFCS: 0
+  currentFCS: 0
+  pilot: {fileID: 241549553567683239}
+  wreckage: {fileID: 1973274165287695500}
 --- !u!54 &54817098951997434
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -160,28 +182,6 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
---- !u!114 &114560018026076618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1911209386030558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d300cf859ca96e44987082e42774e167, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  port: 0
-  Faction: 0
-  Type: 0
-  Number: 0
-  module: {fileID: 11400000, guid: c15c8ad60c62341419620337e393f2cc, type: 2}
-  listFCS: []
-  countFCS: 0
-  currentFCS: 0
-  pilot: {fileID: 241549553567683239}
-  wreckage: {fileID: 1973274165287695500}
 --- !u!1001 &4519971040260370289
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Kocmoca
 {
-    //public class EngineController : MonoBehaviour, IPunObservable
+    //public class PowerUnit : MonoBehaviour, IPunObservable
     //{
     //    [Header("Dependent Components")]
     //    private AudioSource myAudioSource;

@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Kocmoca
 {
     [RequireComponent(typeof(AudioSource))]
-    public class EngineController : MonoBehaviour, IPunObservable
+    public class PowerUnit : MonoBehaviour, IPunObservable
     {
         [Header("Presetting")]
         public EngineType engineType; // 未来用ScriptableObject取代

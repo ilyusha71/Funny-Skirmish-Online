@@ -162,7 +162,7 @@ namespace Kocmoca
             currentLauncher = (int)Mathf.Repeat(currentLauncher, countLauncher);
 
             target = m_FireControlSystemType == FireControlSystemType.Turret ? myOnboardRadar.targetAutoAim : myOnboardRadar.targetRadarLockOn;
-            targetNumber = target ? target.GetComponent<KocmocraftManager>().Number : 0;
+            targetNumber = target ? target.GetComponent<AvionicsSystem>().kocmocraftNumber : 0;
 
             for (int t = 0; t < turnFire; t++)
             {

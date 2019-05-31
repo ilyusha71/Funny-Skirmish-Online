@@ -3,11 +3,11 @@
 Shader "Effects/GlowAdditiveTwoColor" {
 	Properties {
 	_TintColor ("Tint Color", Color) = (0.5,0.5,0.5,0.5)
-	_CoreColor ("Core Color", Color) = (0.5,0.5,0.5,0.5)
+	_CoreColor ("ControlUnit Color", Color) = (0.5,0.5,0.5,0.5)
 	_MainTex ("Particle Texture", 2D) = "white" {}
 	_TintStrength ("Tint Color Strength", Range(0, 5)) = 1
-	_CoreStrength ("Core Color Strength", Range(0, 8)) = 1
-	_CutOutLightCore ("CutOut Light Core", Range(0, 1)) = 0.5
+	_CoreStrength ("ControlUnit Color Strength", Range(0, 8)) = 1
+	_CutOutLightCore ("CutOut Light ControlUnit", Range(0, 1)) = 0.5
 	_InvFade ("Soft Particles Factor", Range(0.01,3.0)) = 1.0
 }
 

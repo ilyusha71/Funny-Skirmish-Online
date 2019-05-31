@@ -39,12 +39,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4700067008099098}
+  - component: {fileID: 114744051696404862}
   - component: {fileID: 54814145034212924}
   - component: {fileID: 205354655984673358}
   - component: {fileID: 114573130237710884}
   - component: {fileID: 114202562202545280}
   - component: {fileID: 114326957321279530}
-  - component: {fileID: 114744051696404862}
   m_Layer: 10
   m_Name: Kocmocraft (14) - Ancient Fish
   m_TagString: Kocmocraft
@@ -68,6 +68,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114744051696404862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614426359336344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d300cf859ca96e44987082e42774e167, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  port: 0
+  Faction: 0
+  Type: 0
+  Number: 0
+  module: {fileID: 11400000, guid: c15c8ad60c62341419620337e393f2cc, type: 2}
+  listFCS: []
+  countFCS: 0
+  currentFCS: 0
+  pilot: {fileID: 4509016144288177029}
+  wreckage: {fileID: 5319154648768335789}
 --- !u!54 &54814145034212924
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -171,28 +193,6 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
---- !u!114 &114744051696404862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614426359336344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d300cf859ca96e44987082e42774e167, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  port: 0
-  Faction: 0
-  Type: 0
-  Number: 0
-  module: {fileID: 11400000, guid: c15c8ad60c62341419620337e393f2cc, type: 2}
-  listFCS: []
-  countFCS: 0
-  currentFCS: 0
-  pilot: {fileID: 4509016144288177029}
-  wreckage: {fileID: 5319154648768335789}
 --- !u!1001 &481189755714821324
 PrefabInstance:
   m_ObjectHideFlags: 0

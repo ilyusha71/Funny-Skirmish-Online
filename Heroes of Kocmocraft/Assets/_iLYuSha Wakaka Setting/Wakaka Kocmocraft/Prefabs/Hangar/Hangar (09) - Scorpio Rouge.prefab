@@ -4671,9 +4671,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4862236061290434}
-  - component: {fileID: 1946128407}
-  - component: {fileID: 1946128406}
-  - component: {fileID: 1946128405}
+  - component: {fileID: 6423073842578675920}
+  - component: {fileID: 7505045205682652930}
   m_Layer: 10
   m_Name: Hangar (09) - Scorpio Rouge
   m_TagString: Hangar
@@ -4702,23 +4701,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!54 &1946128407
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681112131345880}
-  serializedVersion: 2
-  m_Mass: 100
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1946128406
+--- !u!114 &6423073842578675920
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4727,10 +4710,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1681112131345880}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb56eec90e3fa2e45bfc7abdf864d331, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c35be0845eba2148a726ea16bbb5a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
   shield:
     maximum: 12747
     level: 5
@@ -4750,23 +4732,24 @@ MonoBehaviour:
     afterburner: 86
     afterburnerLevel: 3
   kocmomech: {fileID: 11400000, guid: 081d03b305722404c83a30321512c9b0, type: 2}
-  myRigidbody: {fileID: 1946128407}
-  myWreckage: {fileID: 8652256555571154454}
-  myCockpitViewpoint: {fileID: 3999424146900718716}
+  myPowerUnit: {fileID: 1696186403950175258}
+  wreckage: {fileID: 0}
+  attitudeLimit: 0.2792527
+  autoLevelAngle: 0.1570796
+  autoLevelPeriod: 0.07853982
+  inverseAngle: 0.1178097
+  inversePeriod: 0.2356195
+  controlUnit: 0
+  portTransform: {fileID: 0}
+  portRigidbody: {fileID: 0}
+  portPhotonView: {fileID: 0}
+  kocmocraftNumber: 0
   realtimeShield: 12747
   realtimeHull: 13743
-  realSpeed: 10
-  mousePos: {x: 0, y: 0, z: 0}
-  dataSpeed:
-    Max: 0
-    Value: 0
-  RotationSpeed: 50
-  DampingTarget: 10
-  AutoPilot: 0
-  FollowTarget: 0
-  PositionTarget: {x: 0, y: 0, z: 0}
-  mainRot: {x: 0, y: 0, z: 0, w: 1}
---- !u!114 &1946128405
+  realtimeSpeed: 10
+  afterburnerPower: 0
+  relativePos: {x: 0, y: 0, z: 0}
+--- !u!114 &7505045205682652930
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5571,6 +5554,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4862236061290434}
     m_Modifications:
+    - target: {fileID: 5766658155981536278, guid: 191dffe131fe1a74eab766767e31603e,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype (09) - Scorpio Rouge
+      objectReference: {fileID: 0}
     - target: {fileID: 1975614829, guid: 191dffe131fe1a74eab766767e31603e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5615,35 +5603,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5766658155981536278, guid: 191dffe131fe1a74eab766767e31603e,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype (09) - Scorpio Rouge
-      objectReference: {fileID: 0}
     - target: {fileID: 251573020664746667, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0015819517
+      value: 0.0015882105
       objectReference: {fileID: 0}
     - target: {fileID: 251573020664746667, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9520043
+      value: 0.95200425
       objectReference: {fileID: 0}
     - target: {fileID: 251573020664746667, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.3060411
+      value: -0.306041
       objectReference: {fileID: 0}
     - target: {fileID: 251573020664746667, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.004919737
+      value: 0.004939139
       objectReference: {fileID: 0}
     - target: {fileID: 251573020664746667, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.03112793
+      value: -0.03125
       objectReference: {fileID: 0}
     - target: {fileID: 251573020664746667, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
@@ -5653,27 +5636,27 @@ PrefabInstance:
     - target: {fileID: 1342047077400039042, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0018022505
+      value: 0.0018087775
       objectReference: {fileID: 0}
     - target: {fileID: 1342047077400039042, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9462936
+      value: 0.94629335
       objectReference: {fileID: 0}
     - target: {fileID: 1342047077400039042, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.32326058
+      value: -0.32326102
       objectReference: {fileID: 0}
     - target: {fileID: 1342047077400039042, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0052753384
+      value: 0.0052945316
       objectReference: {fileID: 0}
     - target: {fileID: 1342047077400039042, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.033569336
+      value: -0.033691406
       objectReference: {fileID: 0}
     - target: {fileID: 1342047077400039042, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
@@ -5683,32 +5666,32 @@ PrefabInstance:
     - target: {fileID: 8591215522802542771, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.001974061
+      value: 0.0019809902
       objectReference: {fileID: 0}
     - target: {fileID: 8591215522802542771, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.94025594
+      value: 0.94025564
       objectReference: {fileID: 0}
     - target: {fileID: 8591215522802542771, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.3404192
+      value: -0.34041968
       objectReference: {fileID: 0}
     - target: {fileID: 8591215522802542771, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0054520364
+      value: 0.0054711998
       objectReference: {fileID: 0}
     - target: {fileID: 8591215522802542771, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.03491211
+      value: -0.03503418
       objectReference: {fileID: 0}
     - target: {fileID: 8591215522802542771, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.9957085
+      value: 2.995678
       objectReference: {fileID: 0}
     - target: {fileID: 4706497761202401759, guid: 191dffe131fe1a74eab766767e31603e,
         type: 3}
@@ -5733,12 +5716,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2888413149898109440}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8652256555571154454 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5766658155981536278, guid: 191dffe131fe1a74eab766767e31603e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2888413149898109440}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4374681757163821559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5746,6 +5723,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4862236061290434}
     m_Modifications:
+    - target: {fileID: 4360793036511909537, guid: 9e01fcce3e5c9464688149d4f5847f2a,
+        type: 3}
+      propertyPath: m_Name
+      value: Pilot - No Face
+      objectReference: {fileID: 0}
     - target: {fileID: 3820389764394341770, guid: 9e01fcce3e5c9464688149d4f5847f2a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5800,11 +5782,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4360793036511909537, guid: 9e01fcce3e5c9464688149d4f5847f2a,
-        type: 3}
-      propertyPath: m_Name
-      value: Pilot - No Face
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e01fcce3e5c9464688149d4f5847f2a, type: 3}

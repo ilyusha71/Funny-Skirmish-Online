@@ -22,6 +22,7 @@ namespace Kocmoca
         public Hull hull;
         public Speed speed;
         public Kocmomech kocmomech;
+        public Transform myTransform;
         public Rigidbody myRigidbody;
         public GameObject myWreckage;
         public Transform myCockpitViewpoint;
@@ -30,9 +31,20 @@ namespace Kocmoca
         public float hullPercent { get { return realtimeHull / hull.maximum; } }
         public float speedPercent { get { return realSpeed / speed.maximum; } }
 
+        public float attitudeLimit = 0.2792527f; // 16度
+        public float autoLevelAngle = 0.1570796f; // 9度
+        public float autoLevelPeriod = 0.07853982f; // equal half auto level angle
+        public float inverseAngle = 0.1178097f; // 3/4 auto level angle
+        public float inversePeriod = 0.2356195f; // equal half auto level angle
+
+
+        public Vector3 localTarget;
+
         [Header("Mech")]
         private PhotonView myPhotonView;
-        public Core Core { get; protected set; }
+        public ControlUnit controlUnit = ControlUnit.LocalPlayer;
+
+        //public ControlUnit ControlUnit { get; protected set; }
         public int Number { get; protected set; }
         private int damage;
         [Header("Crash Info")]
@@ -40,7 +52,6 @@ namespace Kocmoca
         private Kocmonaut lastAttacker = new Kocmonaut { Number = -1 };
         private Vector3 lastHitVelocity;
 
-        Camera followCam;
 
         //private int type;
         private void Reset()
@@ -69,20 +80,22 @@ namespace Kocmoca
                 fcs[i].Preset(type);
             }
 
-            GetComponentInChildren<EngineController>().Preset(index.kocmocraft[type].engine);
+            GetComponentInChildren<PowerUnit>().Preset(index.kocmocraft[type].engine);
 
             enabled = false;
         }
 
-        public void Initialize(KocmocraftModule module, Core core, int type, int number, GameObject pilot, GameObject wreckage)
+        public void Initialize(KocmocraftModule module, ControlUnit core, int number, GameObject pilot, GameObject wreckage)
         {
+            myTransform = myTransform.root;
+            myRigidbody = GetComponent<Rigidbody>();
             // Dependent Components
             myPhotonView = transform.root.GetComponent<PhotonView>();
             myPhotonView.ObservedComponents.Add(this);
             // Kocmonaut Data
-            Core = core;
+            controlUnit = core;
             Number = number;
-            if (core == Core.LocalPlayer)
+            if (controlUnit == ControlUnit.LocalPlayer)
                 SatelliteCommander.Instance.Observer.InitializeView(myCockpitViewpoint, pilot, Number);
             else
                 SatelliteCommander.Instance.Observer.listOthers.Add(Number);
@@ -92,18 +105,12 @@ namespace Kocmoca
 
 
 
-            if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
+            if (controlUnit == ControlUnit.RemotePlayer || controlUnit == ControlUnit.RemoteBot) return;
 
-            myEngine = GetComponentInChildren<EngineController>();
-            // Modular Parameter
-            //dataEnergy = new Data { Max = KocmocraftData.Energy[type], Value = KocmocraftData.Energy[type] };
-            dataSpeed = new Data { Max = KocmocraftData.AfterburnerSpeed[type], Value = 0 };
-            valueSpeedCruise = KocmocraftData.CruiseSpeed[type];
-            valueSpeedHigh = valueSpeedCruise * 1.1f;
+            //myEngine = GetComponentInChildren<PowerUnit>();
 
-            followCam = Camera.main;
             myRigidbody.isKinematic = false;
-            mainRot = transform.rotation;
+            //mainRot = transform.rotation;
             enabled = true;
         }
 
@@ -122,7 +129,7 @@ namespace Kocmoca
         }
         public void Hit(DamagePower damagePower)
         {
-            if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
+            if (controlUnit == ControlUnit.RemotePlayer || controlUnit == ControlUnit.RemoteBot) return;
             if (realtimeHull <= 0) return;
             int damageSourceNumber = damagePower.Attacker.Number;
             // 狀況1
@@ -253,17 +260,17 @@ namespace Kocmoca
                 listAttacker.Add(damagePower.Attacker.Number, damage);
 
             // 本地玩家擊中本地AI
-            if (damagePower.Attacker.Core == Core.LocalPlayer)
+            if (damagePower.Attacker.ControlUnit == ControlUnit.LocalPlayer)
                 HeadUpDisplayManager.Instance.ShowHitDamage(myRigidbody.position, damage);
             // 遠端玩家擊中本地玩家或本地AI
-            else if (damagePower.Attacker.Core == Core.RemotePlayer)
+            else if (damagePower.Attacker.ControlUnit == ControlUnit.RemotePlayer)
                 myPhotonView.RPC("ShowHitDamage", RpcTarget.AllViaServer, damagePower.Attacker.Number, damage);
 
             /************************************* Crash *************************************/
 
             if (realtimeHull <= 0)
             {
-                if (Core == Core.LocalPlayer)
+                if (controlUnit == ControlUnit.LocalPlayer)
                 {
                     transform.root.GetComponent<LocalPlayerController>().enabled = false;
                     SatelliteCommander.Instance.PlayerCrash();
@@ -273,9 +280,9 @@ namespace Kocmoca
                     //}
                     HeadUpDisplayManager.Instance.ShowKillStealer(lastAttacker.Number);
                 }
-                else if (Core == Core.LocalBot)
+                else if (controlUnit == ControlUnit.LocalBot)
                 {
-                  transform.root.  GetComponent<LocalBotController>().enabled = false;
+                    transform.root.GetComponent<LocalBotController>().enabled = false;
                     SatelliteCommander.Instance.BotCrash(Number);
                 }
                 myPhotonView.RPC("Crash", RpcTarget.AllViaServer, lastAttacker.Number);
@@ -298,9 +305,9 @@ namespace Kocmoca
 
             SatelliteCommander.Instance.Observer.listOthers.Remove(Number);
             SatelliteCommander.Instance.RemoveFlight(Number);
-            switch (Core)
+            switch (controlUnit)
             {
-                case Core.LocalPlayer:
+                case ControlUnit.LocalPlayer:
                     LocalPlayerRealtimeData.Status = FlyingStatus.Crash;
                     SatelliteCommander.Instance.Observer.TransferCamera();
                     SatelliteCommander.Instance.ClearData();
@@ -309,7 +316,7 @@ namespace Kocmoca
                     transform.root.GetComponentInChildren<OnboardRadar>().Stop();
                     //Destroy(GetComponent<OnboardRadar>());
                     break;
-                case Core.LocalBot:
+                case ControlUnit.LocalBot:
                     Destroy(transform.root.GetComponent<LocalBotController>());
                     transform.root.GetComponentInChildren<OnboardRadar>().Stop();
                     //Destroy(GetComponent<OnboardRadar>());
@@ -344,56 +351,6 @@ namespace Kocmoca
             Destroy(myWreckage, 15.0f);
         }
 
-        private void OnCollisionEnter(Collision collision)
-        {
-            // 消除撞擊造成的力矩
-            myRigidbody.isKinematic = true;
-            myRigidbody.isKinematic = false;
-
-            if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
-            if (realtimeHull <= 0) return;
-            lastHitVelocity = myRigidbody.velocity;
-
-            // 計算傷害
-            DamagePower damagePower = new DamagePower();
-            if (collision.gameObject.CompareTag("Untagged") || collision.gameObject.CompareTag("Water"))
-            {
-                damagePower.Penetration = 50000;
-                // 下次更新要做的
-                // 入射角越大伤害越大，避免卡住
-                //Vector3 inDirection = -collision.relativeVelocity;
-                //Vector3 normal = collision.contacts[0].normal;
-                //Vector3 outDirection = Vector3.Reflect(inDirection, normal);
-                //transform.forward = outDirection;
-                //GetComponent<AvionicsSystem>().mainRot = transform.rotation;
-                //myRigidbody.AddForce(outDirection * collision.impulse.magnitude);
-            }
-            else
-                damagePower.Penetration = Mathf.Clamp((int)Mathf.Abs(collision.impulse.magnitude), 0, 5000);
-            //damagePower.Shield = -999;
-
-            // 記錄攻擊者
-            damagePower.Attacker = new Kocmonaut { Number = -1 };
-            KocmocraftManager collisionKocmocraft = collision.gameObject.GetComponent<KocmocraftManager>();
-            if (collisionKocmocraft)
-            {
-                damagePower.Attacker.Core = collisionKocmocraft.Core;
-                damagePower.Attacker.Number = collisionKocmocraft.Number;
-            }
-            else
-            {
-                damagePower.Attacker.Core = Core;
-                damagePower.Attacker.Number = Number;
-            }
-            Hit(damagePower);
-        }
-
-        private void OnCollisionExit(Collision collision)
-        {
-            // 確保撞擊後恢復一般剛體
-            myRigidbody.isKinematic = true;
-            myRigidbody.isKinematic = false;
-        }
 
 
 
@@ -402,94 +359,6 @@ namespace Kocmoca
 
 
 
-        [Header("Calculate")]
-        public Vector3 mousePos;
 
-
-
-
-
-        [Header("Dependent Components")]
-        private EngineController myEngine;
-        [Header("Modular Parameter")]
-        //public Data dataEnergy;
-        public Data dataSpeed;
-        private float valueSpeedCruise;
-        private float valueSpeedHigh;
-        private bool isCharge;
-
-        [Header("Constant")]
-        public float RotationSpeed = 50.0f;// Turn Speed
-
-        public float DampingTarget = 10.0f;// rotation speed to facing to a target
-        public bool AutoPilot = false;// if True this plane will follow a target automatically
-        [HideInInspector]
-        public bool FollowTarget = false;
-        [HideInInspector]
-        public Vector3 PositionTarget = Vector3.zero;// current target position
-        [HideInInspector]
-        private Vector3 positionTarget = Vector3.zero;
-        public Quaternion mainRot = Quaternion.identity;
-
-        void FixedUpdate()
-        {
-            if (Core == Core.RemotePlayer || Core == Core.RemoteBot) return;
-            if (!myRigidbody)
-                return;
-            if (AutoPilot)
-            {
-                if (myRigidbody.angularVelocity.magnitude > 3)
-                    myRigidbody.Sleep();
-
-                // if auto pilot
-                if (FollowTarget)
-                {
-                    // rotation facing to the positionTarget
-                    positionTarget = Vector3.Lerp(positionTarget, PositionTarget, Time.fixedDeltaTime * DampingTarget);
-                    Vector3 relativePoint = this.transform.InverseTransformPoint(positionTarget).normalized; // 计算相对位置的单位向量
-                    mainRot = Quaternion.LookRotation(positionTarget - this.transform.position);
-                    myRigidbody.rotation = Quaternion.Lerp(myRigidbody.rotation, mainRot, Time.fixedDeltaTime * (RotationSpeed * 0.005f) * kocmomech.yaw);
-                    myRigidbody.rotation *= Quaternion.Euler(-relativePoint.y * kocmomech.pitch * 0.5f, 0, -relativePoint.x * kocmomech.roll * 0.5f);
-                    // 根据单位向量分配 Pitch与 Roll的转动量
-                }
-                myRigidbody.velocity = (myRigidbody.rotation * Vector3.forward) * realSpeed;
-            }
-            else
-            {
-                Vector3 mousePos = followCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.normalized.x, Input.mousePosition.normalized.y, followCam.farClipPlane));
-                Vector3 relativePoint = this.transform.InverseTransformPoint(mousePos).normalized; // 计算相对位置的单位向量
-                myRigidbody.rotation *= Quaternion.Euler(-relativePoint.y * kocmomech.pitch, relativePoint.x * kocmomech.yaw, -relativePoint.x * kocmomech.roll- myRigidbody.rotation.z);
-                myRigidbody.velocity = (myRigidbody.rotation * Vector3.forward) * realSpeed;
-
-                //// axis control by input
-                //AddRot.eulerAngles = new Vector3(pitchAxis, yawAxis, -rollAxis);
-                //mainRot *= AddRot;
-                //myRigidbody.rotation = Quaternion.Lerp(myRigidbody.rotation, mainRot, Time.fixedDeltaTime * RotationSpeed);
-                //myRigidbody.velocity = (myRigidbody.rotation * Vector3.forward) * realSpeed);
-            }
-        }
-        private float afterburnerPower;
-        public void ControlThrottle(float throttle)
-        {
-            realSpeed += Time.deltaTime * (realSpeed >= speed.engine ?
-                (throttle > 0 ? kocmomech.acceleration : -kocmomech.acceleration) :
-                (throttle < 0 ? -kocmomech.deceleration : +kocmomech.deceleration));
-            realSpeed = Mathf.Clamp(realSpeed, 0, speed.maximum);
-
-            afterburnerPower += 0.37f * (throttle > 0 ? Time.deltaTime : -Time.deltaTime);
-            afterburnerPower = Mathf.Clamp01(afterburnerPower);
-            myEngine.Power(afterburnerPower);
-        }
-        // 传统控制
-        private float rollAxis, pitchAxis, yawAxis;
-        public void ControlRollAndPitch(Vector2 axis)
-        {
-            rollAxis = Mathf.Lerp(rollAxis, Mathf.Clamp(axis.x,-1,1) * kocmomech.roll, Time.deltaTime);
-            pitchAxis = Mathf.Lerp(pitchAxis, Mathf.Clamp(axis.y, -1,1) * kocmomech.pitch, Time.deltaTime);
-        }
-        public void ControlYaw(float yaw)
-        {
-            yawAxis += yaw * Time.deltaTime * 0.2f;
-        }
     }
 }

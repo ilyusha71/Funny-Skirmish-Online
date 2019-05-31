@@ -1307,25 +1307,25 @@ namespace Kocmoca
 
     public struct Kocmonaut
     {
-        public Core Core;
+        public ControlUnit ControlUnit;
         public Type Type;
         public int Number;
         public Faction Faction;
         public Order Order;
         public string Name;
 
-        public Kocmonaut(Faction setFaction, Order setOrder, Type setType, int setNumber, string setName, Core setCore)
+        public Kocmonaut(Faction setFaction, Order setOrder, Type setType, int setNumber, string setName, ControlUnit setCore)
         {
             Faction = setFaction;
             Order = setOrder;
             Type = setType;
             Number = setNumber;
             Name = setName;
-            Core = setCore;
+            ControlUnit = setCore;
         }
     }
 
-    public enum Core
+    public enum ControlUnit
     {
         LocalPlayer = 0,
         LocalBot = -1,

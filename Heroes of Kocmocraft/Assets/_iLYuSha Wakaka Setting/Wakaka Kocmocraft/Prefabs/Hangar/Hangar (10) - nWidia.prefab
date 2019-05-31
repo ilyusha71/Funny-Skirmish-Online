@@ -4855,9 +4855,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4915294787258302}
-  - component: {fileID: 1546218499}
-  - component: {fileID: 1546218498}
-  - component: {fileID: 1546218497}
+  - component: {fileID: 1380759969090414771}
+  - component: {fileID: 2983380929419986858}
   m_Layer: 10
   m_Name: Hangar (10) - nWidia
   m_TagString: Hangar
@@ -4886,23 +4885,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!54 &1546218499
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910837519299430}
-  serializedVersion: 2
-  m_Mass: 100
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1546218498
+--- !u!114 &1380759969090414771
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4911,10 +4894,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1910837519299430}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb56eec90e3fa2e45bfc7abdf864d331, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c35be0845eba2148a726ea16bbb5a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
   shield:
     maximum: 14780
     level: 6
@@ -4934,23 +4916,24 @@ MonoBehaviour:
     afterburner: 98
     afterburnerLevel: 4
   kocmomech: {fileID: 11400000, guid: a9c33a1cce93512419a9a8fb34f150ed, type: 2}
-  myRigidbody: {fileID: 1546218499}
-  myWreckage: {fileID: 835083758026277379}
-  myCockpitViewpoint: {fileID: 5238051836225498392}
+  myPowerUnit: {fileID: 2768093460060664725}
+  wreckage: {fileID: 0}
+  attitudeLimit: 0.2792527
+  autoLevelAngle: 0.1570796
+  autoLevelPeriod: 0.07853982
+  inverseAngle: 0.1178097
+  inversePeriod: 0.2356195
+  controlUnit: 0
+  portTransform: {fileID: 0}
+  portRigidbody: {fileID: 0}
+  portPhotonView: {fileID: 0}
+  kocmocraftNumber: 0
   realtimeShield: 14780
   realtimeHull: 9823
-  realSpeed: 20
-  mousePos: {x: 0, y: 0, z: 0}
-  dataSpeed:
-    Max: 0
-    Value: 0
-  RotationSpeed: 50
-  DampingTarget: 10
-  AutoPilot: 0
-  FollowTarget: 0
-  PositionTarget: {x: 0, y: 0, z: 0}
-  mainRot: {x: 0, y: 0, z: 0, w: 1}
---- !u!114 &1546218497
+  realtimeSpeed: 20
+  afterburnerPower: 0
+  relativePos: {x: 0, y: 0, z: 0}
+--- !u!114 &2983380929419986858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19827,12 +19810,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3035d27be165d540878f8fd636d1188, type: 3}
---- !u!1 &835083758026277379 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4700316991066538017, guid: a3035d27be165d540878f8fd636d1188,
-    type: 3}
-  m_PrefabInstance: {fileID: 5380729696404881954}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5380729697331546128 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1263290930, guid: a3035d27be165d540878f8fd636d1188,

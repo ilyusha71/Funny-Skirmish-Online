@@ -4853,9 +4853,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4792742402706074}
-  - component: {fileID: 2094818105}
-  - component: {fileID: 2094818104}
-  - component: {fileID: 2094818103}
+  - component: {fileID: 590301033535966452}
+  - component: {fileID: 1647681974663654035}
   m_Layer: 10
   m_Name: Hangar (13) - Polaris Express
   m_TagString: Hangar
@@ -4884,23 +4883,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!54 &2094818105
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1454046219406400}
-  serializedVersion: 2
-  m_Mass: 100
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &2094818104
+--- !u!114 &590301033535966452
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4909,10 +4892,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1454046219406400}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb56eec90e3fa2e45bfc7abdf864d331, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c35be0845eba2148a726ea16bbb5a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
   shield:
     maximum: 10768
     level: 4
@@ -4932,23 +4914,24 @@ MonoBehaviour:
     afterburner: 98
     afterburnerLevel: 4
   kocmomech: {fileID: 11400000, guid: a9c33a1cce93512419a9a8fb34f150ed, type: 2}
-  myRigidbody: {fileID: 2094818105}
-  myWreckage: {fileID: 7750637446065753508}
-  myCockpitViewpoint: {fileID: 8559143378311922333}
+  myPowerUnit: {fileID: 6219723523697072326}
+  wreckage: {fileID: 0}
+  attitudeLimit: 0.2792527
+  autoLevelAngle: 0.1570796
+  autoLevelPeriod: 0.07853982
+  inverseAngle: 0.1178097
+  inversePeriod: 0.2356195
+  controlUnit: 0
+  portTransform: {fileID: 0}
+  portRigidbody: {fileID: 0}
+  portPhotonView: {fileID: 0}
+  kocmocraftNumber: 0
   realtimeShield: 10768
   realtimeHull: 13537
-  realSpeed: 35
-  mousePos: {x: 0, y: 0, z: 0}
-  dataSpeed:
-    Max: 0
-    Value: 0
-  RotationSpeed: 50
-  DampingTarget: 10
-  AutoPilot: 0
-  FollowTarget: 0
-  PositionTarget: {x: 0, y: 0, z: 0}
-  mainRot: {x: 0, y: 0, z: 0, w: 1}
---- !u!114 &2094818103
+  realtimeSpeed: 35
+  afterburnerPower: 0
+  relativePos: {x: 0, y: 0, z: 0}
+--- !u!114 &1647681974663654035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14965,6 +14948,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4792742402706074}
     m_Modifications:
+    - target: {fileID: 5860229090473335844, guid: 710a47098c643bc458727105088e353f,
+        type: 3}
+      propertyPath: m_Name
+      value: Pilot - Hua Ji
+      objectReference: {fileID: 0}
     - target: {fileID: 8838311290669947806, guid: 710a47098c643bc458727105088e353f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15020,11 +15008,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5860229090473335844, guid: 710a47098c643bc458727105088e353f,
-        type: 3}
-      propertyPath: m_Name
-      value: Pilot - Hua Ji
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 710a47098c643bc458727105088e353f, type: 3}
 --- !u!4 &3015613018181429184 stripped
@@ -15040,6 +15023,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4792742402706074}
     m_Modifications:
+    - target: {fileID: 1685738153439644046, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype (13) - Polaris Express
+      objectReference: {fileID: 0}
     - target: {fileID: 8955136816846172835, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15094,11 +15082,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1685738153439644046, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype (13) - Polaris Express
       objectReference: {fileID: 0}
     - target: {fileID: 4699940536524915828, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
@@ -15207,12 +15190,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51f3b3ce441b79a41ba25beb0ad808b8, type: 3}
---- !u!1 &7750637446065753508 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1685738153439644046, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
-    type: 3}
-  m_PrefabInstance: {fileID: 9001352438577415210}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &48469938937247369 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8955136816846172835, guid: 51f3b3ce441b79a41ba25beb0ad808b8,

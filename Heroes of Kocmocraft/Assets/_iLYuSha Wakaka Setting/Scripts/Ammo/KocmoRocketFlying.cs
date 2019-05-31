@@ -57,10 +57,10 @@ namespace Kocmoca
         {
             if (Physics.Linecast(pointStarting, myTransform.position, out raycastHit))
             {
-                KocmocraftManager hull = raycastHit.transform.GetComponent<KocmocraftManager>();
+                AvionicsSystem hull = raycastHit.transform.GetComponent<AvionicsSystem>();
                 if (hull)
                 {
-                    if (hull.Number == shooter) return;
+                    if (hull.kocmocraftNumber == shooter) return;
                     float basicDamage = myRigidbody.velocity.magnitude * KocmoRocketLauncher.coefficientDamageBasic;
                     hull.Hit(new DamagePower()
                     {

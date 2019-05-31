@@ -27,6 +27,7 @@ public class TestAim : MonoBehaviour
     public float decayAngle;
     public float inverseAngle;
     public float terminalAngle;
+    public float terminalAngle2;
 
     public float kappa;
 
@@ -45,7 +46,7 @@ public class TestAim : MonoBehaviour
         decayAngle = 9 * Mathf.Deg2Rad;
         inverseAngle = decayAngle * 0.75f;
         terminalAngle = decayAngle *0.5f;
-
+        terminalAngle2 = terminalAngle * 3;
         //kappa = Mathf.PI / (2 * (autoLevelRange - inverseAngle));
 
 
