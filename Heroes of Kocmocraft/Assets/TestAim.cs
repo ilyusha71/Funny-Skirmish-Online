@@ -23,6 +23,13 @@ public class TestAim : MonoBehaviour
     public float aoaYaw;
     public float aoaPitch;
 
+
+    public float decayAngle;
+    public float inverseAngle;
+    public float terminalAngle;
+
+    public float kappa;
+
     private void Start()
     {
         myRigidbody = GetComponent<Rigidbody>();
@@ -32,8 +39,15 @@ public class TestAim : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
 
-        aoaYaw = Mathf.Tan(7 * Mathf.Deg2Rad);
-        aoaPitch = Mathf.Tan(7 * Mathf.Deg2Rad);
+        aoaYaw = 16 * Mathf.Deg2Rad;
+        aoaPitch = 9 * Mathf.Deg2Rad;
+
+        decayAngle = 9 * Mathf.Deg2Rad;
+        inverseAngle = decayAngle * 0.75f;
+        terminalAngle = decayAngle *0.5f;
+
+        //kappa = Mathf.PI / (2 * (autoLevelRange - inverseAngle));
+
 
         myTransform = transform;
     }
@@ -86,6 +100,80 @@ public class TestAim : MonoBehaviour
         //}
     }
 
+    public float changeYaw;
+    public float changeRoll;
+    public float sin;
+    public float signRoll;
+    public float signChange;
+
+    public float angle;
+    public float rad;
+    public float log;
+    private void FixedUpdate()
+    {
+        mousePos.z = followCam.farClipPlane;
+        var targetPos = followCam.ScreenToWorldPoint(mousePos);
+        var localTarget = myTransform.InverseTransformPoint(targetPos);
+
+        var changePitch = Mathf.Clamp(-Mathf.Atan2(localTarget.y, localTarget.z), -aoaPitch, aoaPitch);
+         changeYaw = Mathf.Clamp(-Mathf.Atan2(localTarget.x, localTarget.z), -aoaYaw, aoaYaw);
+
+
+        var fwd = myTransform.forward;
+        fwd.y = 0;
+        //fwd *= Mathf.Sign(myTransform.up.y); // 投影面法向量修正，roll的范围将会变成-90~90
+        fwd.Normalize(); // 先进行Normalize再Cross会比较快
+        var right = Vector3.Cross(Vector3.up, fwd);
+        // 计算 InverseTransformDirection + 反正切速度更快
+        var localFlatRight = myTransform.InverseTransformDirection(right);
+        var rollAngle = Mathf.Atan2(localFlatRight.y, localFlatRight.x);
+        //var yawAbs = Mathf.Abs(changeYaw);
+        signRoll = Mathf.Sign(rollAngle);
+        signChange = Mathf.Sign(changeYaw);
+
+        // changeRoll为机翼翻滚值，会因changePitch与changeYaw修正           
+        // 机翼自动归正，当changePitch与changeYaw逐渐变小皆进入autoLevelRange的范围
+        if (Mathf.Abs(changeYaw) <= decayAngle && Mathf.Abs(changePitch) <= decayAngle)
+        {
+            // 分为三个阶段
+            // 周期 1.00 T = decayAngle，0.75 T = inverseAngle，0.50 T = terminalAngle
+            if (Mathf.Abs(changeYaw) < inverseAngle)
+            {
+                //if (Mathf.Abs(changeYaw) < terminalAngle)
+                //    changeRoll = 0.0123456789f;// Mathf.Abs(rollAngle / Mathf.PI) * -Mathf.Sign(changeYaw);
+                //// 第二阶段：反转点inverseAngle为T=3/4
+                //else
+                    changeRoll = decayAngle * Mathf.Cos(changeYaw * Mathf.PI / (terminalAngle*3) + Mathf.PI) * -Mathf.Sign(rollAngle); // 正确    
+                //changeRoll = Mathf.Clamp(changeRoll, -inverseAngle, inverseAngle);
+
+            }
+            // 第一阶段：衰退阶段为Cosine函数75%~100%，周期与振幅均为autoLevelRange，decayPeriod为半周期
+            else
+                changeRoll = decayAngle * Mathf.Cos(changeYaw * Mathf.PI / terminalAngle) * Mathf.Sign(changeYaw); // 正确
+
+            // 第二阶段：反转平缓为一余弦函数，随着changeYaw持续减小，changeRoll会从最大反转角逐渐趋于0
+            // 振幅为inverseAngle
+            //else
+            //    changeRoll = (rollAngle * Mathf.Cos(changeYaw * Mathf.PI / inverseAngle)) * Mathf.Sign(changeYaw);
+
+            ////changeRoll = atYaw* Mathf.Sign(rollAngle);
+
+            //    changeRoll = (changeRoll * 2 - atYaw * Mathf.Sign(changeRoll)) * Mathf.Sign(rollAngle);
+            //changeRoll = (changeRoll * 2 - atYaw * Mathf.Sign(changeRoll));
+        }
+        else
+            changeRoll = changeYaw;
+        myRigidbody.rotation *= Quaternion.Euler(changePitch * pitch, -changeYaw * yaw, changeRoll * roll);
+        myRigidbody.velocity = (myRigidbody.rotation * Vector3.forward) * 90;
+
+
+
+
+
+
+
+    }
+
     //public float AngleYaw;
     //public float AnglePitch;
 
@@ -105,7 +193,7 @@ public class TestAim : MonoBehaviour
     public float pitchAngle2;
     [Header("Roll")]
     public float RollAngle;
-    public float rollAngle;
+    //public float rollAngle;
     public float rollAngle2;
 
     [Header("Other")]
@@ -182,7 +270,7 @@ public class TestAim : MonoBehaviour
         fwd.Normalize(); // 先进行Normalize再Cross会比较快
         var right = Vector3.Cross(Vector3.up, fwd);
         // 直接计算向量夹角（Angle效能极差，比使用反余弦还要多14%的耗时）
-        rollAngle = Vector3.Angle(right, myTransform.right) * Mathf.Sign(myTransform.right.y);
+        rollAngle2 = Vector3.Angle(right, myTransform.right) * Mathf.Sign(myTransform.right.y);
     }
     public void WakakaCalculateRollAndPitchAngles3()
     {
@@ -222,7 +310,7 @@ public class TestAim : MonoBehaviour
         //fwd *= Mathf.Sign(myTransform.up.y); // 投影面法向量修正，roll的范围将会变成-90~90
         var right = Vector3.Cross(Vector3.up, fwd).normalized;
         // 直接计算向量夹角（比使用反余弦还要多14%的耗时）
-        rollAngle = Vector3.Angle(right, myTransform.right) * Mathf.Sign(myTransform.right.y);
+        rollAngle2 = Vector3.Angle(right, myTransform.right) * Mathf.Sign(myTransform.right.y);
         // 计算两向量反余弦得出夹角
         rollAngle2 = Mathf.Acos(Vector3.Dot(right, myTransform.right)) * Mathf.Sign(myTransform.right.y) * Mathf.Rad2Deg;
     }
@@ -260,29 +348,6 @@ public class TestAim : MonoBehaviour
         pitchAngle2 = Mathf.Acos(Vector3.Dot(fwd, myTransform.forward)) * -Mathf.Sign(myTransform.forward.y) * Mathf.Rad2Deg;
     }
 
-    private void FixedUpdate()
-    {
-        mousePos.z = followCam.farClipPlane;
-        var targetPos = followCam.ScreenToWorldPoint(mousePos);
-        var localTarget = myTransform.InverseTransformPoint(targetPos);
-        var changeRoll = Mathf.Clamp(-Mathf.Atan2(localTarget.x, localTarget.z), -aoaYaw, aoaYaw);
-        var changePitch = Mathf.Clamp(-Mathf.Atan2(localTarget.y, localTarget.z), -aoaPitch, aoaPitch);
-        var changeYaw = changeRoll;
-
-        if (Mathf.Abs(changeRoll) < 0.07f)
-        {
-            var fwd = myTransform.forward;
-            fwd.y = 0;
-            //fwd *= Mathf.Sign(myTransform.up.y); // 投影面法向量修正，roll的范围将会变成-90~90
-            fwd.Normalize(); // 先进行Normalize再Cross会比较快
-            var right = Vector3.Cross(Vector3.up, fwd);
-            // 计算 InverseTransformDirection + 反正切速度更快
-            var localFlatRight = myTransform.InverseTransformDirection(right);
-            changeRoll = 0.07f * Mathf.Sign(Mathf.Atan2(localFlatRight.y, localFlatRight.x) * Mathf.Rad2Deg);
-        }
-        myRigidbody.rotation *= Quaternion.Euler(changePitch * pitch, -changeYaw * yaw, changeRoll * roll);
-        myRigidbody.velocity = (myRigidbody.rotation * Vector3.forward) * 90;
-    }
 
     public Vector3 now;
     public Vector3 last;
