@@ -29,19 +29,18 @@ namespace Kocmoca
         public RocketFireControlSystem myRocketFCS;
         public MissileFireControlSystem myMissileFCS;
         public Cinemachine.CinemachineVirtualCamera cmVirtualCamera;
-
         [Header("Constant")]
         public float attitudeLimit = 0.2792527f; // 16度
         public float autoLevelAngle = 0.1570796f; // 9度
         public float autoLevelPeriod = 0.07853982f; // equal half auto level angle
         public float inverseAngle = 0.1178097f; // 3/4 auto level angle
         public float inversePeriod = 0.2356195f; // equal half auto level angle
-        [Header("Initialize Data")]
+        [Header("Active System")]
         public ControlUnit controlUnit;
-        public Transform portTransform;
-        public Rigidbody portRigidbody;
-        public PhotonView portPhotonView;
-        public int kocmocraftNumber;
+        public int kocmoNumber;
+        private Transform portTransform;
+        private Rigidbody portRigidbody;
+        private PhotonView portPhotonView;
         [Header("Variable")]
         [Tooltip("The position of target relative to own position.")]
         public Vector3 localTargetPos;
@@ -66,6 +65,7 @@ namespace Kocmoca
             hull = index.kocmocraft[type].hull;
             speed = index.kocmocraft[type].speed;
             kocmomech = module.kocmomech;
+            GetComponent<OnboardRadar>().Preset(module);
             myPrototype = GetComponentInChildren<Prototype>();
             myPrototype.CreatePrototypeDatabase();
             myPowerUnit = GetComponentInChildren<PowerUnit>();
@@ -83,20 +83,20 @@ namespace Kocmoca
             enabled = false;
             Debug.Log("<color=lime>" + name + " data has been preset.</color>");
         }
-        public void Active(ControlUnit core, Transform rootTransform, Rigidbody rootRigidbody, PhotonView rootPhotonView, int rootNumber, GameObject pilot)
+        public void Active(Transform rootTransform, Rigidbody rootRigidbody, PhotonView rootPhotonView, ControlUnit core, int rootNumber)
         {
-            controlUnit = core;
             portTransform = rootTransform;
             portRigidbody = rootRigidbody;
             portPhotonView = rootPhotonView;
             portPhotonView.ObservedComponents.Add(this);
-            kocmocraftNumber = rootNumber;
+            controlUnit = core;
+            kocmoNumber = rootNumber;
             enabled = true;
 
             // 以下为暂时
             Transform   myCockpitViewpoint = transform.Find("Cockpit Viewpoint");
             if (controlUnit == ControlUnit.LocalPlayer)
-                SatelliteCommander.Instance.Observer.InitializeView(myCockpitViewpoint, pilot, rootNumber);
+                SatelliteCommander.Instance.Observer.InitializeView(myCockpitViewpoint, rootNumber);
             else
                 SatelliteCommander.Instance.Observer.listOthers.Add(rootNumber);
         }
@@ -190,12 +190,12 @@ namespace Kocmoca
             if (collisionKocmocraft)
             {
                 damagePower.Attacker.ControlUnit = collisionKocmocraft.controlUnit;
-                damagePower.Attacker.Number = collisionKocmocraft.kocmocraftNumber;
+                damagePower.Attacker.Number = collisionKocmocraft.kocmoNumber;
             }
             else
             {
                 damagePower.Attacker.ControlUnit = controlUnit;
-                damagePower.Attacker.Number = kocmocraftNumber;
+                damagePower.Attacker.Number = kocmoNumber;
             }
             Hit(damagePower);
         }
@@ -228,7 +228,7 @@ namespace Kocmoca
                 lastAttacker = damagePower.Attacker;
             else
             {
-                if (damagePower.Attacker.Number != kocmocraftNumber)
+                if (damagePower.Attacker.Number != kocmoNumber)
                     lastAttacker = damagePower.Attacker;
             }
 
@@ -361,7 +361,7 @@ namespace Kocmoca
                 else if (controlUnit == ControlUnit.LocalBot)
                 {
                     transform.root.GetComponent<LocalBotController>().enabled = false;
-                    SatelliteCommander.Instance.BotCrash(kocmocraftNumber);
+                    SatelliteCommander.Instance.BotCrash(kocmoNumber);
                 }
                 portPhotonView.RPC("Crash", RpcTarget.AllViaServer, lastAttacker.Number);
             }
@@ -370,10 +370,10 @@ namespace Kocmoca
         {
             // 若宇航機是本地玩家擊落，顯示擊落訊息
             if (stealerNumber == PhotonNetwork.LocalPlayer.ActorNumber)
-                HeadUpDisplayManager.Instance.ShowDestroyed(kocmocraftNumber);
+                HeadUpDisplayManager.Instance.ShowDestroyed(kocmoNumber);
 
-            SatelliteCommander.Instance.Observer.listOthers.Remove(kocmocraftNumber);
-            SatelliteCommander.Instance.RemoveFlight(kocmocraftNumber);
+            SatelliteCommander.Instance.Observer.listOthers.Remove(kocmoNumber);
+            SatelliteCommander.Instance.RemoveFlight(kocmoNumber);
             switch (controlUnit)
             {
                 case ControlUnit.LocalPlayer:

@@ -18,7 +18,7 @@ namespace Kocmoca
         [Header("Observer")]
         public Transform Target;// player ( Your Plane)
         public Transform targetViewpoint; // 視角位置
-        public GameObject targetPilot; // 飛行員層級
+        //public GameObject targetPilot; // 飛行員層級
 
         private CameraSway sway;
         private bool isCockpitView = false;
@@ -46,17 +46,17 @@ namespace Kocmoca
         {
             Controller.controlMode = ControlMode.Flying;
         }
-        public void InitializeView(Transform cockpitViewpoint, GameObject pilot, int kocmonautNumber)
+        public void InitializeView(Transform cockpitViewpoint, int kocmonautNumber)
         {
             //isLocalView = true;
             isCockpitView = true;
             targetViewpoint = cockpitViewpoint;
-            targetPilot = pilot;
+            //targetPilot = pilot;
             sway = GetComponent<CameraSway>();
             playerFaction = SatelliteCommander.Instance.listKocmonaut[kocmonautNumber].Faction;
             HeadUpDisplayManager.Instance.ShowObserver(playerFaction, targetViewpoint.root.name);
 
-            pilot.SetActive(false);
+            //pilot.SetActive(false);
             Target = null;
             pivot.SetParent(targetViewpoint.parent);
             pivot.localPosition = targetViewpoint.localPosition;
@@ -116,7 +116,7 @@ namespace Kocmoca
 
             if (isCockpitView && targetViewpoint)
             {
-                targetPilot.SetActive(false);
+                //targetPilot.SetActive(false);
                 Target = null;
                 pivot.SetParent(targetViewpoint.parent);
                 pivot.localPosition = targetViewpoint.localPosition;
@@ -125,12 +125,12 @@ namespace Kocmoca
             }
             else
             {
-                targetPilot.SetActive(true);
+                //targetPilot.SetActive(true);
                 Target = targetViewpoint;
                 pivot.SetParent(null);
                 sway.enabled = false;
                 ReturnToZero();
-                Offset = KocmocraftData.GetCameraOffset(Target.root.GetComponent<Kocmoport>().m_Type);
+                //Offset = KocmocraftData.GetCameraOffset(Target.root.GetComponent<Kocmoport>().m_Type);
             }
         }
 

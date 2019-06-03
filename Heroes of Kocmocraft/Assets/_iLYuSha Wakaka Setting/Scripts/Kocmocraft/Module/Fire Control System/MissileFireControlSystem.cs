@@ -41,7 +41,7 @@ namespace Kocmoca
                 countAmmo--;
                 nextRound = Time.time + turret.fireRate;
                 target = radar.nearestTarget;
-                targetNumber = target ? target.GetComponent<AvionicsSystem>().kocmocraftNumber : 0;
+                targetNumber = target ? target.GetComponent<AvionicsSystem>().kocmoNumber : 0;
                 myPhotonView.RPC("MissileLaunch", RpcTarget.AllViaServer, kocmoNumber, targetNumber);
             }
         }

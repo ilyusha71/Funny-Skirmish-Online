@@ -95,10 +95,10 @@ namespace Kocmoca
             // Kocmonaut Data
             controlUnit = core;
             Number = number;
-            if (controlUnit == ControlUnit.LocalPlayer)
-                SatelliteCommander.Instance.Observer.InitializeView(myCockpitViewpoint, pilot, Number);
-            else
-                SatelliteCommander.Instance.Observer.listOthers.Add(Number);
+            //if (controlUnit == ControlUnit.LocalPlayer)
+            //    SatelliteCommander.Instance.Observer.InitializeView(myCockpitViewpoint, pilot, Number);
+            //else
+            //    SatelliteCommander.Instance.Observer.listOthers.Add(Number);
 
 
 

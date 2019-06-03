@@ -557,7 +557,6 @@ namespace Kocmoca
 
     }
 
-
     public static class LobbyInfomation
     {
         public static readonly string SCENE_LOBBY = "New Galaxy Lobby";
@@ -574,6 +573,9 @@ namespace Kocmoca
         public static readonly string PREFS_TYPE = "Prefs Type";
         public static readonly string PREFS_SKIN = "Prefs Skin";
         public static readonly string PREFS_LOAD_SCENE = "LoadScene";
+        public static readonly string PROPERTY_TYPE = "Player Type";
+        public static readonly string PROPERTY_SKIN = "Player Skin";
+
     }
 
     public static class HangarData

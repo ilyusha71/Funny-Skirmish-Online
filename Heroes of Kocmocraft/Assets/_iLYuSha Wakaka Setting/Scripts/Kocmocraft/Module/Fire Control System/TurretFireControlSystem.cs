@@ -68,7 +68,7 @@ namespace Kocmoca
             currentTurret++;
             currentTurret = (int)Mathf.Repeat(currentTurret, countTurret);
             target = radar.autoAimTarget;
-            targetNumber = target ? target.GetComponent<AvionicsSystem>().kocmocraftNumber : 0;
+            targetNumber = target ? target.GetComponent<AvionicsSystem>().kocmoNumber : 0;
 
             // volley on one side
             for (int t = 0; t < turnFire; t++)
