@@ -16,12 +16,19 @@ namespace Kocmoca
     public class AvionicsSystem : MonoBehaviour
     {
         [Header("Preset Data")]
+        public Type kocmocraftType;
         public Shield shield;
         public Hull hull;
         public Speed speed;
         public Kocmomech kocmomech;
+        [Header("Preset System")]
+        public Prototype myPrototype;
+        public Transform myWreckage;
         public PowerUnit myPowerUnit;
-        public Transform wreckage;
+        public TurretFireControlSystem myTurretFCS;
+        public RocketFireControlSystem myRocketFCS;
+        public MissileFireControlSystem myMissileFCS;
+        public Cinemachine.CinemachineVirtualCamera cmVirtualCamera;
 
         [Header("Constant")]
         public float attitudeLimit = 0.2792527f; // 16度
@@ -36,40 +43,45 @@ namespace Kocmoca
         public PhotonView portPhotonView;
         public int kocmocraftNumber;
         [Header("Variable")]
+        [Tooltip("The position of target relative to own position.")]
+        public Vector3 localTargetPos;
         public float realtimeShield, realtimeHull, realtimeSpeed;
         public float shieldPercent { get { return realtimeShield / shield.maximum; } }
         public float hullPercent { get { return realtimeHull / hull.maximum; } }
         public float speedPercent { get { return realtimeSpeed / speed.maximum; } }
+        [Tooltip("About Engine sounds and effects level")]
         public float afterburnerPower;
-        public Vector3 relativePos;
+    
         public Dictionary<int, int> listAttacker = new Dictionary<int, int>(); // 損傷記錄索引
         public Kocmonaut lastAttacker = new Kocmonaut { Number = -1 };
         private int damage; // 确认是否宣告？
 
         private void Reset()
         {
-            //enabled = true;
             int type = int.Parse(name.Split(new char[2] { '(', ')' })[1]);
+            kocmocraftType = (Type)type;
             KocmocraftDatabase index = UnityEditor.AssetDatabase.LoadAssetAtPath<KocmocraftDatabase>("Assets/_iLYuSha Wakaka Setting/ScriptableObject/Kocmocraft Database.asset");
             KocmocraftModule module = index.kocmocraft[type];
-
             shield = index.kocmocraft[type].shield;
             hull = index.kocmocraft[type].hull;
             speed = index.kocmocraft[type].speed;
             kocmomech = module.kocmomech;
-
+            myPrototype = GetComponentInChildren<Prototype>();
+            myPrototype.CreatePrototypeDatabase();
+            myPowerUnit = GetComponentInChildren<PowerUnit>();
+            myTurretFCS = GetComponentInChildren<TurretFireControlSystem>();
+            myTurretFCS.Preset(module);
+            myRocketFCS = GetComponentInChildren<RocketFireControlSystem>();
+            myRocketFCS.Preset(module);
+            myMissileFCS = GetComponentInChildren<MissileFireControlSystem>();
+            myMissileFCS.Preset(module);
+            myWreckage = myPrototype.transform;
+            cmVirtualCamera = GetComponent<Cinemachine.CinemachineVirtualCamera>();
             realtimeShield = shield.maximum;
             realtimeHull = hull.maximum;
             realtimeSpeed = speed.engine;
-
-            myPowerUnit = GetComponentInChildren<PowerUnit>();
-
-            FireControlSystem[] fcs = GetComponentsInChildren<FireControlSystem>();
-            for (int i = 0; i < fcs.Length; i++)
-            {
-                fcs[i].Preset(type);
-            }
             enabled = false;
+            Debug.Log("<color=lime>" + name + " data has been preset.</color>");
         }
         public void Active(ControlUnit core, Transform rootTransform, Rigidbody rootRigidbody, PhotonView rootPhotonView, int rootNumber, GameObject pilot)
         {
@@ -95,14 +107,14 @@ namespace Kocmoca
             switch (controlUnit)
             {
                 case ControlUnit.LocalBot:
-                    relativePos = portTransform.InverseTransformPoint(LocalBotController.targetPos);break;
+                    localTargetPos = portTransform.InverseTransformPoint(LocalBotController.targetPos);break;
                 case ControlUnit.LocalPlayer:
-                    relativePos = portTransform.InverseTransformPoint(LocalPlayerController.targetPos); break;
+                    localTargetPos = portTransform.InverseTransformPoint(LocalPlayerController.targetPos); break;
                 default: return;
             }
 
-            var pitchChange = Mathf.Clamp(-Mathf.Atan2(relativePos.y, relativePos.z), -attitudeLimit, attitudeLimit);
-            var yawChange = Mathf.Clamp(-Mathf.Atan2(relativePos.x, relativePos.z), -attitudeLimit, attitudeLimit);
+            var pitchChange = Mathf.Clamp(-Mathf.Atan2(localTargetPos.y, localTargetPos.z), -attitudeLimit, attitudeLimit);
+            var yawChange = Mathf.Clamp(-Mathf.Atan2(localTargetPos.x, localTargetPos.z), -attitudeLimit, attitudeLimit);
             var yawAbs = Mathf.Abs(yawChange);
 
             if (yawAbs <= autoLevelAngle && Mathf.Abs(pitchChange) <= autoLevelAngle)

@@ -117,8 +117,8 @@ namespace Kocmoca
         //private Kocmoport myKocmocraftManager;
         //private AvionicsSystem myAvionicsSystem;
         private AvionicsSystem myMechDroid;
-        private FireControlSystem myRocketFCS;
-        private FireControlSystem myMissileFCS;
+        private RocketFireControlSystem myRocketFCS;
+        private MissileFireControlSystem myMissileFCS;
         //private int myNumber;
         //private Faction myFaction;
         //public WeaponManager myWeaponManager;
@@ -147,8 +147,8 @@ namespace Kocmoca
             //myKocmocraftManager = myKocmocraft.GetComponent<Kocmoport>();
             //myAvionicsSystem = myKocmocraft.GetComponent<AvionicsSystem>();
             myMechDroid = myKocmocraft.GetComponentInChildren<AvionicsSystem>();
-            myRocketFCS = myKocmocraft.GetComponentsInChildren<FireControlSystem>()[1];
-            myMissileFCS = myKocmocraft.GetComponentsInChildren<FireControlSystem>()[2];
+            myRocketFCS = myMechDroid.myRocketFCS;
+            myMissileFCS = myMechDroid.myMissileFCS;
             //myNumber = kocmonautNumber;
             //myFaction = SatelliteCommander.Instance.listKocmonaut[myNumber].Faction;
 
@@ -352,17 +352,17 @@ namespace Kocmoca
         void ShowFCS()
         {
             textRocketCount.text = "" + myRocketFCS.countAmmo;
-            if (myRocketFCS.countAmmo < myRocketFCS.maxAmmoCapacity)
-                textRocketReloadPecentage.text = (int)(1 - myRocketFCS.reloadingProcess) + "%";
+            //if (myRocketFCS.countAmmo < myRocketFCS.maxAmmoCapacity)
+            //    textRocketReloadPecentage.text = (int)(1 - myRocketFCS.reloadingProcess) + "%";
             // 效能差8~10倍 不要使用string.Format("{0:0%}", 1 - myRocketFCS.reloadingProcess);
-            else
-                textRocketReloadPecentage.text = "MAX";
+            //else
+            //    textRocketReloadPecentage.text = "MAX";
 
             textMissileCount.text = "" + myMissileFCS.countAmmo;
-            if (myMissileFCS.countAmmo < myMissileFCS.maxAmmoCapacity)
-                textMissileReloadPecentage.text = (int)(1 - myMissileFCS.reloadingProcess) + "%";
-            else
-                textMissileReloadPecentage.text = "MAX";
+            //if (myMissileFCS.countAmmo < myMissileFCS.maxAmmoCapacity)
+            //    textMissileReloadPecentage.text = (int)(1 - myMissileFCS.reloadingProcess) + "%";
+            //else
+            //    textMissileReloadPecentage.text = "MAX";
         }
 
         // Observer UI Method

@@ -4694,10 +4694,10 @@ Transform:
   - {fileID: 965474414747969870}
   - {fileID: 9222718202266794175}
   - {fileID: 2300782366760546425}
-  - {fileID: 3773773518778078179}
   - {fileID: 3325421998921312495}
   - {fileID: 3330852584836816115}
   - {fileID: 3325456393423471873}
+  - {fileID: 3773773518778078179}
   - {fileID: 382111876373018635}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -4714,6 +4714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c35be0845eba2148a726ea16bbb5a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kocmocraftType: 0
   shield:
     maximum: 0
     level: 0
@@ -4733,8 +4734,13 @@ MonoBehaviour:
     afterburner: 0
     afterburnerLevel: 0
   kocmomech: {fileID: 11400000, guid: a8a9109a58d032642a1fbcd771fbbe4d, type: 2}
+  myPrototype: {fileID: 0}
+  myWreckage: {fileID: 0}
   myPowerUnit: {fileID: 8324857028421648447}
-  wreckage: {fileID: 0}
+  myTurretFCS: {fileID: 0}
+  myMissileFCS: {fileID: 0}
+  myRocketFCS: {fileID: 0}
+  cmVirtualCamera: {fileID: 0}
   attitudeLimit: 0.2792527
   autoLevelAngle: 0.1570796
   autoLevelPeriod: 0.07853982
@@ -4745,11 +4751,11 @@ MonoBehaviour:
   portRigidbody: {fileID: 0}
   portPhotonView: {fileID: 0}
   kocmocraftNumber: 0
+  localTargetPos: {x: 0, y: 0, z: 0}
   realtimeShield: 0
   realtimeHull: 0
   realtimeSpeed: 0
   afterburnerPower: 0
-  relativePos: {x: 0, y: 0, z: 0}
 --- !u!114 &2093312679609936582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4840,7 +4846,7 @@ Transform:
   m_Children:
   - {fileID: 3325715201962543803}
   m_Father: {fileID: 4507466813372716}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &3390184570835865853
 AudioSource:
@@ -4997,7 +5003,7 @@ Transform:
   m_Children:
   - {fileID: 3330611662613285749}
   m_Father: {fileID: 4507466813372716}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &3390972414192883399
 AudioSource:
@@ -5214,7 +5220,7 @@ Transform:
   m_Children:
   - {fileID: 3325802599936777635}
   m_Father: {fileID: 4507466813372716}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &3389658170692499533
 AudioSource:
@@ -5644,7 +5650,7 @@ Transform:
   m_Children:
   - {fileID: 5975829069979370451}
   m_Father: {fileID: 4507466813372716}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6425515557776190811
 MonoBehaviour:
@@ -5690,11 +5696,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4507466813372716}
     m_Modifications:
-    - target: {fileID: 6872156406699062250, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype (00) - Minion Armor
-      objectReference: {fileID: 0}
     - target: {fileID: 3542896726450198728, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5749,6 +5750,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6872156406699062250, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype (00) - Minion Armor
       objectReference: {fileID: 0}
     - target: {fileID: 4324221403233353539, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}

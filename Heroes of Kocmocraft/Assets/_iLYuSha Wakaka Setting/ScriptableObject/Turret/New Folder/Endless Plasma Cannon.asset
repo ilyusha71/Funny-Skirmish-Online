@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56df54d643e90cc47aa91f3d4ccb5bbb, type: 3}
+  m_Name: Endless Plasma Cannon
+  m_EditorClassIdentifier: 
+  cannonName: "\u65E0\u5C3D\u7535\u6D46\u70AE"
+  cannonCount: 6
+  maxAutoAimAngle: 1.96
+  maxAutoAimRange: 0.9994149
+  roundsPerMinute: 373
+  fireRate: 0.16085792
+  repeatingCount: 1
+  maxProjectileSpread: 1
+  shockwave: {fileID: 0}
+  ammoName: "\u6781\u5927\u6D53\u7F29\u7535\u6D46"
+  ammoVelocity: 3074
+  propulsion: 153700
+  flightTime: 0.37
+  operationalRange: 1137.38
+  raySize: 0.5
+  damage: 670
+  dPS: 12512
+  penetration: 50
+  piercing: 3

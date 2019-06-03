@@ -77,7 +77,7 @@ namespace Kocmoca
             FireControlSystem[] fcs = GetComponentsInChildren<FireControlSystem>();
             for (int i = 0; i < fcs.Length; i++)
             {
-                fcs[i].Preset(type);
+                //fcs[i].Preset(type);
             }
 
             GetComponentInChildren<PowerUnit>().Preset(index.kocmocraft[type].engine);

@@ -23,7 +23,7 @@ namespace Kocmoca
             }
 
             CheckSkin();
-            CreatePrototypeDatabase();
+            Debug.Log("<color=lime>" + name + " data has been preset.</color>");
         }
 
         #region Skin
@@ -71,6 +71,10 @@ namespace Kocmoca
             }
             skin[nowSkin].SetActive(true);
         }
+        public int GetRandomSkinIndex()
+        {
+            return Random.Range(1, countSkin);
+        }
         public void RandomSkin()
         {
             nowSkin = Random.Range(1, countSkin);
@@ -83,7 +87,7 @@ namespace Kocmoca
         #endregion
 
         #region Free Look
-        void CreatePrototypeDatabase()
+        public void CreatePrototypeDatabase()
         {
             Vector3 size = GetComponent<BoxCollider>().size;
             float wingspan = size.x;
@@ -134,7 +138,6 @@ namespace Kocmoca
             index.kocmocraft[type].speed.Calculate(PerformanceData.EngineSpeed[type], type);
             index.kocmocraft[type].name = string.Format("{0:00}", type);
             UnityEditor.AssetDatabase.SaveAssets();
-            Debug.Log("<color=lime>" + name + " data has been preset.</color>");
 #endif
         }
         #endregion

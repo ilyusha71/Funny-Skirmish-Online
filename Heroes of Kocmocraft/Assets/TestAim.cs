@@ -48,6 +48,7 @@ public class TestAim : MonoBehaviour
         terminalAngle = decayAngle *0.5f;
         terminalAngle2 = terminalAngle * 3;
         //kappa = Mathf.PI / (2 * (autoLevelRange - inverseAngle));
+        ccc = vvv.GetCinemachineComponent<Cinemachine.CinemachineComposer>();
 
 
         myTransform = transform;
@@ -110,6 +111,9 @@ public class TestAim : MonoBehaviour
     public float angle;
     public float rad;
     public float log;
+
+    public Cinemachine.CinemachineVirtualCamera vvv;
+    public Cinemachine.CinemachineComposer ccc;
     private void FixedUpdate()
     {
         mousePos.z = followCam.farClipPlane;
@@ -169,10 +173,14 @@ public class TestAim : MonoBehaviour
 
 
 
+        //Vector2 guessPos = myTransform.TransformPoint( new Vector3(0, 10, 0));
+        //Vector2 go = followCam.WorldToScreenPoint(guessPos);
+        //Debug.LogWarning(go.ToString("F4"));
 
-
-
-
+        //Vector2 go2 = followCam.WorldToScreenPoint(vvv.m_LookAt.position + ccc.m_TrackedObjectOffset);
+        //Debug.Log(go2.ToString("F4"));
+        //Debug.LogWarning(myTransform.position.ToString("F4"));
+        Debug.Log(ccc.m_TrackedObjectOffset.ToString("F4"));
     }
 
     //public float AngleYaw;
