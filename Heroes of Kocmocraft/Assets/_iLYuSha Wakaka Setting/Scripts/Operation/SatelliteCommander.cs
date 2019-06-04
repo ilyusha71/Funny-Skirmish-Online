@@ -78,8 +78,8 @@ namespace Kocmoca
         public Transform[] kocmoWing; // 宇航聯隊 = 10 宇航團（10名玩家）
         public Transform[] kocmoGroup; // 宇航團 = 5 宇航中隊（玩家為長機，其餘僚機為Bot）
         public Transform[] kocmoSquadron; // 宇航中隊 = 1架主力宇航機 + 4架迷你特攻機
-        private Vector3[] portalPos; // 中隊傳送點
-        private Quaternion[] portalRot;
+        public static Vector3[] portalPos; // 中隊傳送點
+        public static Quaternion[] portalRot;
 
         [Header("Commander")]
         public AudioClip[] soundTakeOff;

@@ -95,6 +95,8 @@ namespace Kocmoca
             m_Number = photonView.Owner.ActorNumber;
             name = "[Player] " + photonView.Owner.NickName;
             photonView.RPC("SynchronizePlayerKocmoport", RpcTarget.Others);
+            portalPos = SatelliteCommander.portalPos[m_Port];
+            portalRot = SatelliteCommander.portalRot[m_Port];
             Takeoff();
         }
         public void CreateBotKocmoport(int port, int type)
@@ -107,6 +109,8 @@ namespace Kocmoca
             m_Number = port * 1000;
             name = KocmocraftData.GetBotName(m_Port);
             photonView.RPC("SynchronizeBotPlayerKocmoport", RpcTarget.Others, m_Port, m_Type, m_Skin);
+            portalPos = SatelliteCommander.portalPos[m_Port];
+            portalRot = SatelliteCommander.portalRot[m_Port];
         }
         [PunRPC]
         public void SynchronizePlayerKocmoport(int type, int skin, PhotonMessageInfo info)
@@ -118,6 +122,8 @@ namespace Kocmoca
             m_Skin = (int)photonView.Owner.CustomProperties[LobbyInfomation.PROPERTY_SKIN];
             m_Number = photonView.Owner.ActorNumber;
             name = "[Remote] " + photonView.Owner.NickName;
+            portalPos = SatelliteCommander.portalPos[m_Port];
+            portalRot = SatelliteCommander.portalRot[m_Port];
         }
         [PunRPC]
         public void SynchronizeBotPlayerKocmoport(int port, int type, int skin, PhotonMessageInfo info)
@@ -129,6 +135,8 @@ namespace Kocmoca
             m_Skin = skin;
             m_Number = m_Port * 1000;
             name = KocmocraftData.GetBotName(m_Port);
+            portalPos = SatelliteCommander.portalPos[m_Port];
+            portalRot = SatelliteCommander.portalRot[m_Port];
         }
         [PunRPC]
         public void  Takeoff()
