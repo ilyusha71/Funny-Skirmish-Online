@@ -10,4 +10,10 @@ public class Radar : ScriptableObject
     public  int radiusSqr;
     public  int angle;
     public  float range;
+
+    public void Calculate()
+    {
+        radiusSqr = radius * radius;
+        range = Mathf.Cos(angle * 0.5f * Mathf.Deg2Rad);
+    }
 }

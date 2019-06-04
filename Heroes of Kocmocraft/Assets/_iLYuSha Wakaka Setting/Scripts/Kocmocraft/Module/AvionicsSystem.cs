@@ -15,20 +15,21 @@ namespace Kocmoca
 {
     public class AvionicsSystem : MonoBehaviour
     {
-        [Header("Preset Data")]
+        [Header("Preset Module Data")]
         public Type kocmocraftType;
         public Shield shield;
         public Hull hull;
         public Speed speed;
         public Kocmomech kocmomech;
-        [Header("Preset System")]
+        [Header("Preset Module System")]
         public Prototype myPrototype;
         public Transform myWreckage;
+        public PilotManager myDubis;
         public PowerUnit myPowerUnit;
         public TurretFireControlSystem myTurretFCS;
         public RocketFireControlSystem myRocketFCS;
         public MissileFireControlSystem myMissileFCS;
-        public Cinemachine.CinemachineVirtualCamera cmVirtualCamera;
+        public Cinemachine.CinemachineVirtualCamera cockpitView;
         [Header("Constant")]
         public float attitudeLimit = 0.2792527f; // 16度
         public float autoLevelAngle = 0.1570796f; // 9度
@@ -50,7 +51,7 @@ namespace Kocmoca
         public float speedPercent { get { return realtimeSpeed / speed.maximum; } }
         [Tooltip("About Engine sounds and effects level")]
         public float afterburnerPower;
-    
+
         public Dictionary<int, int> listAttacker = new Dictionary<int, int>(); // 損傷記錄索引
         public Kocmonaut lastAttacker = new Kocmonaut { Number = -1 };
         private int damage; // 确认是否宣告？
@@ -67,6 +68,7 @@ namespace Kocmoca
             kocmomech = module.kocmomech;
             GetComponent<OnboardRadar>().Preset(module);
             myPrototype = GetComponentInChildren<Prototype>();
+            myDubis = GetComponentInChildren<PilotManager>();
             myPrototype.CreatePrototypeDatabase();
             myPowerUnit = GetComponentInChildren<PowerUnit>();
             myTurretFCS = GetComponentInChildren<TurretFireControlSystem>();
@@ -76,12 +78,27 @@ namespace Kocmoca
             myMissileFCS = GetComponentInChildren<MissileFireControlSystem>();
             myMissileFCS.Preset(module);
             myWreckage = myPrototype.transform;
-            cmVirtualCamera = GetComponent<Cinemachine.CinemachineVirtualCamera>();
+
+            // Cockpit View setting
+            cockpitView = GetComponentsInChildren<Cinemachine.CinemachineVirtualCamera>()[3];
+            cockpitView.m_Follow = myDubis.transform;
+            cockpitView.m_LookAt = myDubis.transform;
+            cockpitView.m_Lens.FieldOfView = 60;
+            cockpitView.m_Lens.NearClipPlane = 0.5f;
+            cockpitView.m_Lens.FarClipPlane = 15000;
+            Cinemachine.CinemachineTransposer transposer = cockpitView.GetCinemachineComponent<Cinemachine.CinemachineTransposer>();
+            transposer.m_XDamping = 0;
+            transposer.m_YDamping = 0;
+            transposer.m_ZDamping = 0;
+            cockpitView.GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset = new Vector3(0, 0, 10);
+            cockpitView.enabled = false;
+
+            // Initial value
             realtimeShield = shield.maximum;
             realtimeHull = hull.maximum;
             realtimeSpeed = speed.engine;
             enabled = false;
-            Debug.Log("<color=lime>" + name + " data has been preset.</color>");
+            Debug.Log("<color=Yellow>" + name + " data has been preset.</color>");
         }
         public void Active(Transform rootTransform, Rigidbody rootRigidbody, PhotonView rootPhotonView, ControlUnit core, int rootNumber)
         {
@@ -92,13 +109,12 @@ namespace Kocmoca
             controlUnit = core;
             kocmoNumber = rootNumber;
             enabled = true;
-
-            // 以下为暂时
-            Transform   myCockpitViewpoint = transform.Find("Cockpit Viewpoint");
+            //// 以下为暂时
+            //Transform   myCockpitViewpoint = transform.Find("Cockpit Viewpoint");
             if (controlUnit == ControlUnit.LocalPlayer)
-                SatelliteCommander.Instance.Observer.InitializeView(myCockpitViewpoint, rootNumber);
-            else
-                SatelliteCommander.Instance.Observer.listOthers.Add(rootNumber);
+                SatelliteCommander.Instance.Observer.AssignPilotView(cockpitView);
+            //else
+            //    SatelliteCommander.Instance.Observer.listOthers.Add(rootNumber);
         }
         void FixedUpdate()
         {
@@ -107,7 +123,7 @@ namespace Kocmoca
             switch (controlUnit)
             {
                 case ControlUnit.LocalBot:
-                    localTargetPos = portTransform.InverseTransformPoint(LocalBotController.targetPos);break;
+                    localTargetPos = portTransform.InverseTransformPoint(LocalBotController.targetPos); break;
                 case ControlUnit.LocalPlayer:
                     localTargetPos = portTransform.InverseTransformPoint(LocalPlayerController.targetPos); break;
                 default: return;
@@ -378,7 +394,7 @@ namespace Kocmoca
             {
                 case ControlUnit.LocalPlayer:
                     LocalPlayerRealtimeData.Status = FlyingStatus.Crash;
-                    SatelliteCommander.Instance.Observer.TransferCamera();
+                    //SatelliteCommander.Instance.Observer.TransferCamera();
                     SatelliteCommander.Instance.ClearData();
                     HeadUpDisplayManager.Instance.ClearData();
                     Destroy(transform.root.GetComponent<LocalPlayerController>());

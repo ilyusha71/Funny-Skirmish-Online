@@ -7,7 +7,11 @@ using UnityEngine.Jobs;
 
 public class TestAim : MonoBehaviour
 {
+    Cinemachine.CinemachineBrain brain;
+    Cinemachine.CinemachineComposer composer;
+  public  Cinemachine.CinemachineVirtualCamera cam;
 
+    public Transform trackpp;
     public Transform myTransform;
     public RectTransform mk;
     public Transform ss;
@@ -33,6 +37,9 @@ public class TestAim : MonoBehaviour
 
     private void Start()
     {
+        composer = cam.GetCinemachineComponent<Cinemachine.CinemachineComposer>();
+        brain = Cinemachine.CinemachineCore.Instance.FindPotentialTargetBrain(cam);
+
         myRigidbody = GetComponent<Rigidbody>();
         followCam = Camera.main;
         range = Screen.height * 0.47f;
@@ -48,7 +55,7 @@ public class TestAim : MonoBehaviour
         terminalAngle = decayAngle *0.5f;
         terminalAngle2 = terminalAngle * 3;
         //kappa = Mathf.PI / (2 * (autoLevelRange - inverseAngle));
-        ccc = vvv.GetCinemachineComponent<Cinemachine.CinemachineComposer>();
+        //ccc = vvv.GetCinemachineComponent<Cinemachine.CinemachineComposer>();
 
 
         myTransform = transform;
@@ -66,6 +73,9 @@ public class TestAim : MonoBehaviour
 
     void Update()
     {
+
+
+
         if (Input.GetKeyDown(KeyCode.L))
             range +=50;
         if (Input.GetKeyDown(KeyCode.K))
@@ -116,6 +126,9 @@ public class TestAim : MonoBehaviour
     public Cinemachine.CinemachineComposer ccc;
     private void FixedUpdate()
     {
+        Vector3 tp = brain.OutputCamera.WorldToScreenPoint(composer.TrackedPoint);
+        trackpp.position = tp;
+
         mousePos.z = followCam.farClipPlane;
         var targetPos = followCam.ScreenToWorldPoint(mousePos);
         var localTarget = myTransform.InverseTransformPoint(targetPos);
@@ -180,7 +193,7 @@ public class TestAim : MonoBehaviour
         //Vector2 go2 = followCam.WorldToScreenPoint(vvv.m_LookAt.position + ccc.m_TrackedObjectOffset);
         //Debug.Log(go2.ToString("F4"));
         //Debug.LogWarning(myTransform.position.ToString("F4"));
-        Debug.Log(ccc.m_TrackedObjectOffset.ToString("F4"));
+        //Debug.Log(ccc.m_TrackedObjectOffset.ToString("F4"));
     }
 
     //public float AngleYaw;

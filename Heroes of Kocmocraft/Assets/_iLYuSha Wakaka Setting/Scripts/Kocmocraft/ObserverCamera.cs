@@ -10,6 +10,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Cinemachine;
 
 namespace Kocmoca
 {
@@ -37,133 +38,153 @@ namespace Kocmoca
         public int observerNumber;
         public int indexOtherViewpoint;
 
+        public CinemachineVirtualCamera pilotView;
 
-        private void Awake()
+        public void AssignPilotView(CinemachineVirtualCamera pilot)
         {
-            InitializeTrackingSystem();
-        }
-        private void Start()
-        {
-            Controller.controlMode = ControlMode.Flying;
-        }
-        public void InitializeView(Transform cockpitViewpoint, int kocmonautNumber)
-        {
-            //isLocalView = true;
-            isCockpitView = true;
-            targetViewpoint = cockpitViewpoint;
-            //targetPilot = pilot;
-            sway = GetComponent<CameraSway>();
-            playerFaction = SatelliteCommander.Instance.listKocmonaut[kocmonautNumber].Faction;
-            HeadUpDisplayManager.Instance.ShowObserver(playerFaction, targetViewpoint.root.name);
-
-            //pilot.SetActive(false);
-            Target = null;
-            pivot.SetParent(targetViewpoint.parent);
-            pivot.localPosition = targetViewpoint.localPosition;
-            pivot.localRotation = targetViewpoint.localRotation;
-            ReturnToZero();
-            sway.enabled = true;
+            pilotView = pilot;
+            pilotView.enabled = true;
         }
 
-        // 本地玩家坠机后转移摄影机
-        public void TransferCamera()
-        {
-            pivot.SetParent(null);
-            sway.enabled = false;
-            ReturnToZero();
-            StartCoroutine(Delay());
-        }
-        IEnumerator Delay()
-        {
-            yield return new WaitForSeconds(1.73f);
-            LocalPlayerRealtimeData.Status = FlyingStatus.Respawn;
-            //isLocalView = false;
-            NextBotViewpoint();
-        }
-        public void NextBotViewpoint()
-        {
-            int lastTarget = observerNumber;
-            do
-            {
-                indexOtherViewpoint++;
-                indexOtherViewpoint = (int)Mathf.Repeat(indexOtherViewpoint, listOthers.Count);
-                observerNumber = listOthers[indexOtherViewpoint];
-            }
-            while (observerNumber == 0 || observerNumber == lastTarget);
-            Target = SatelliteCommander.Instance.listKocmocraft[observerNumber].Find("Cockpit Viewpoint");
-            Kocmonaut observer = SatelliteCommander.Instance.listKocmonaut[observerNumber];
-            HeadUpDisplayManager.Instance.ShowObserver(observer.Faction, Target.root.name);
-            Offset = KocmocraftData.GetCameraOffset(observer.Type);
-        }
-        public void PreviousBotViewpoint()
-        {
-            int lastTarget = observerNumber;
-            do
-            {
-                indexOtherViewpoint--;
-                indexOtherViewpoint = (int)Mathf.Repeat(indexOtherViewpoint, listOthers.Count);
-                observerNumber = listOthers[indexOtherViewpoint];
-            }
-            while (observerNumber == 0 || observerNumber == lastTarget);
-            Target = SatelliteCommander.Instance.listKocmocraft[observerNumber].Find("Cockpit Viewpoint");
-            Kocmonaut observer = SatelliteCommander.Instance.listKocmonaut[observerNumber];
-            HeadUpDisplayManager.Instance.ShowObserver(observer.Faction, Target.root.name);
-            Offset = KocmocraftData.GetCameraOffset(observer.Type);
-        }
-        public void SwitchView()
-        {
-            isCockpitView = !isCockpitView;
 
-            if (isCockpitView && targetViewpoint)
-            {
-                //targetPilot.SetActive(false);
-                Target = null;
-                pivot.SetParent(targetViewpoint.parent);
-                pivot.localPosition = targetViewpoint.localPosition;
-                pivot.localRotation = targetViewpoint.localRotation;
-                sway.enabled = true;
-            }
-            else
-            {
-                //targetPilot.SetActive(true);
-                Target = targetViewpoint;
-                pivot.SetParent(null);
-                sway.enabled = false;
-                ReturnToZero();
-                //Offset = KocmocraftData.GetCameraOffset(Target.root.GetComponent<Kocmoport>().m_Type);
-            }
-        }
 
-        private void Update()
-        {
-            if (LocalPlayerRealtimeData.Status == FlyingStatus.Respawn)
-            {
-                if (Input.GetKeyDown(KeyCode.D))
-                    NextBotViewpoint();
-                else if (Input.GetKeyDown(KeyCode.A))
-                    PreviousBotViewpoint();
-            }
-        }
 
-        void FixedUpdate()
-        {
-            if (!Target)
-                return;
 
-            if (LocalPlayerRealtimeData.Status == FlyingStatus.Flying)
-            {
-                pivot.rotation = Target.rotation;
-                positionTargetUp = Vector3.Lerp(positionTargetUp, ((-Target.forward * Offset.z) + (Target.up * Offset.y)), Time.fixedDeltaTime * TurnSpeedMult);
-                positionTarget = Target.position + (positionTargetUp);
-                float distance = Vector3.Distance(positionTarget, pivot.position);
-                pivot.position = Vector3.Lerp(pivot.position, positionTarget, Time.fixedDeltaTime * (distance * FollowSpeedMult));
-            }
-            else if (LocalPlayerRealtimeData.Status == FlyingStatus.Respawn)
-            {
-                pivot.position = Target.position;
-                pivot.rotation = Target.rotation;
-                Control();
-            }
-        }
+
+
+
+
+
+
+
+
+
+        //private void Awake()
+        //{
+        //    InitializeTrackingSystem();
+        //}
+        //private void Start()
+        //{
+        //    Controller.controlMode = ControlMode.Flying;
+        //}
+        //public void InitializeView(Transform cockpitViewpoint, int kocmonautNumber)
+        //{
+        //    //isLocalView = true;
+        //    isCockpitView = true;
+        //    targetViewpoint = cockpitViewpoint;
+        //    //targetPilot = pilot;
+        //    sway = GetComponent<CameraSway>();
+        //    playerFaction = SatelliteCommander.Instance.listKocmonaut[kocmonautNumber].Faction;
+        //    HeadUpDisplayManager.Instance.ShowObserver(playerFaction, targetViewpoint.root.name);
+
+        //    //pilot.SetActive(false);
+        //    Target = null;
+        //    pivot.SetParent(targetViewpoint.parent);
+        //    pivot.localPosition = targetViewpoint.localPosition;
+        //    pivot.localRotation = targetViewpoint.localRotation;
+        //    ReturnToZero();
+        //    sway.enabled = true;
+        //}
+
+        //// 本地玩家坠机后转移摄影机
+        //public void TransferCamera()
+        //{
+        //    pivot.SetParent(null);
+        //    sway.enabled = false;
+        //    ReturnToZero();
+        //    StartCoroutine(Delay());
+        //}
+        //IEnumerator Delay()
+        //{
+        //    yield return new WaitForSeconds(1.73f);
+        //    LocalPlayerRealtimeData.Status = FlyingStatus.Respawn;
+        //    //isLocalView = false;
+        //    NextBotViewpoint();
+        //}
+        //public void NextBotViewpoint()
+        //{
+        //    int lastTarget = observerNumber;
+        //    do
+        //    {
+        //        indexOtherViewpoint++;
+        //        indexOtherViewpoint = (int)Mathf.Repeat(indexOtherViewpoint, listOthers.Count);
+        //        observerNumber = listOthers[indexOtherViewpoint];
+        //    }
+        //    while (observerNumber == 0 || observerNumber == lastTarget);
+        //    Target = SatelliteCommander.Instance.listKocmocraft[observerNumber].Find("Cockpit Viewpoint");
+        //    Kocmonaut observer = SatelliteCommander.Instance.listKocmonaut[observerNumber];
+        //    HeadUpDisplayManager.Instance.ShowObserver(observer.Faction, Target.root.name);
+        //    Offset = KocmocraftData.GetCameraOffset(observer.Type);
+        //}
+        //public void PreviousBotViewpoint()
+        //{
+        //    int lastTarget = observerNumber;
+        //    do
+        //    {
+        //        indexOtherViewpoint--;
+        //        indexOtherViewpoint = (int)Mathf.Repeat(indexOtherViewpoint, listOthers.Count);
+        //        observerNumber = listOthers[indexOtherViewpoint];
+        //    }
+        //    while (observerNumber == 0 || observerNumber == lastTarget);
+        //    Target = SatelliteCommander.Instance.listKocmocraft[observerNumber].Find("Cockpit Viewpoint");
+        //    Kocmonaut observer = SatelliteCommander.Instance.listKocmonaut[observerNumber];
+        //    HeadUpDisplayManager.Instance.ShowObserver(observer.Faction, Target.root.name);
+        //    Offset = KocmocraftData.GetCameraOffset(observer.Type);
+        //}
+        //public void SwitchView()
+        //{
+        //    isCockpitView = !isCockpitView;
+
+        //    if (isCockpitView && targetViewpoint)
+        //    {
+        //        //targetPilot.SetActive(false);
+        //        Target = null;
+        //        pivot.SetParent(targetViewpoint.parent);
+        //        pivot.localPosition = targetViewpoint.localPosition;
+        //        pivot.localRotation = targetViewpoint.localRotation;
+        //        sway.enabled = true;
+        //    }
+        //    else
+        //    {
+        //        //targetPilot.SetActive(true);
+        //        Target = targetViewpoint;
+        //        pivot.SetParent(null);
+        //        sway.enabled = false;
+        //        ReturnToZero();
+        //        //Offset = KocmocraftData.GetCameraOffset(Target.root.GetComponent<Kocmoport>().m_Type);
+        //    }
+        //}
+
+        //private void Update()
+        //{
+        //    if (LocalPlayerRealtimeData.Status == FlyingStatus.Respawn)
+        //    {
+        //        if (Input.GetKeyDown(KeyCode.D))
+        //            NextBotViewpoint();
+        //        else if (Input.GetKeyDown(KeyCode.A))
+        //            PreviousBotViewpoint();
+        //    }
+        //}
+
+        //void FixedUpdate()
+        //{
+        //    if (!Target)
+        //        return;
+
+        //    if (LocalPlayerRealtimeData.Status == FlyingStatus.Flying)
+        //    {
+        //        pivot.rotation = Target.rotation;
+        //        positionTargetUp = Vector3.Lerp(positionTargetUp, ((-Target.forward * Offset.z) + (Target.up * Offset.y)), Time.fixedDeltaTime * TurnSpeedMult);
+        //        positionTarget = Target.position + (positionTargetUp);
+        //        float distance = Vector3.Distance(positionTarget, pivot.position);
+        //        pivot.position = Vector3.Lerp(pivot.position, positionTarget, Time.fixedDeltaTime * (distance * FollowSpeedMult));
+        //    }
+        //    else if (LocalPlayerRealtimeData.Status == FlyingStatus.Respawn)
+        //    {
+        //        pivot.position = Target.position;
+        //        pivot.rotation = Target.rotation;
+        //        Control();
+        //    }
+        //}
     }
 }

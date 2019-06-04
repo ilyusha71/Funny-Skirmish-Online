@@ -131,17 +131,18 @@ namespace Photon.Realtime.Demo
             int localType = PlayerPrefs.GetInt(Kocmoca.LobbyInfomation.PREFS_TYPE);
             int localSkin = PlayerPrefs.GetInt(Kocmoca.LobbyInfomation.PREFS_SKIN + localType);
 
-            Hashtable skin = new Hashtable
+            Hashtable propertiesKocmocraft = new Hashtable
             {
-            { Kocmoca.LobbyInfomation.PLAYER_SKIN_OPTION, localSkin }
+                { Kocmoca.LobbyInfomation.PROPERTY_TYPE, 1 },
+                { Kocmoca.LobbyInfomation.PROPERTY_SKIN, 2 }
             };
-            PhotonNetwork.SetPlayerCustomProperties(skin);
+            PhotonNetwork.SetPlayerCustomProperties(propertiesKocmocraft);
 
-            Hashtable propKocmocraft = new Hashtable
-            {
-                { "KocmocraftType", 6 }
-            };
-            PhotonNetwork.SetPlayerCustomProperties(propKocmocraft);
+            //Hashtable propKocmocraft = new Hashtable
+            //{
+            //    { Kocmoca.LobbyInfomation.PROPERTY_SKIN, localSkin }
+            //};
+            //PhotonNetwork.SetPlayerCustomProperties(propKocmocraft);
 
             Hashtable props = new Hashtable
             {

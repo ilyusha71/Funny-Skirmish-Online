@@ -135,7 +135,7 @@ namespace Kocmoca
             if (PhotonNetwork.IsMasterClient)
             {
                 int countPlayer = PhotonNetwork.CurrentRoom.PlayerCount;
-                for (int portNumber = countPlayer; portNumber <10; portNumber++)
+                for (int portNumber = countPlayer; portNumber <0; portNumber++)
                 {
                     int type = Random.Range(0,20);
                     PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), DesignData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).GetComponent<Kocmoport>().InitializeLocalBot(portNumber);
@@ -144,14 +144,16 @@ namespace Kocmoca
         }
         public void SpawnPlayerKocmocraft()
         {
-            ClearData();
-            HeadUpDisplayManager.Instance.ClearData();
-            isCrash = false;
-            myAudioSource.PlayOneShot(ResourceManager.instance.soundTakeOff, 0.37f);
-            int type =7;// PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
-                        //string typeName = "Kocmocraft(" + type.ToString("00")+ ") - " + KocmocraftData.GetKocmocraftName(type);
-            PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), DesignData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).GetComponent<Kocmoport>().InitializeLocalPlayer();
-            LocalPlayerRealtimeData.Status = FlyingStatus.Flying;
+            PhotonNetwork.Instantiate("Kocmoport", new Vector3(0, -10000, 0), Quaternion.identity, 0).GetComponent<Kocmoport>().CreatePlayerKocmoport();
+
+            //ClearData();
+            //HeadUpDisplayManager.Instance.ClearData();
+            //isCrash = false;
+            //myAudioSource.PlayOneShot(ResourceManager.instance.soundTakeOff, 0.37f);
+            //int type =7;// PlayerPrefs.GetInt(LobbyInfomation.PREFS_TYPE);
+            //            //string typeName = "Kocmocraft(" + type.ToString("00")+ ") - " + KocmocraftData.GetKocmocraftName(type);
+            //PhotonNetwork.Instantiate(string.Format("Kocmocraft ({0}) - {1}", type.ToString("00"), DesignData.Code[type]), new Vector3(0, 10000, 0), Quaternion.identity, 0).GetComponent<Kocmoport>().InitializeLocalPlayer();
+            //LocalPlayerRealtimeData.Status = FlyingStatus.Flying;
         }
         void SpawnBotKocmocraft(int kocmonautNumber,int portNumber)
         {

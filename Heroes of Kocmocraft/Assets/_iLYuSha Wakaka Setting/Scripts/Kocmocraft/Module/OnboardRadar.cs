@@ -34,13 +34,11 @@ namespace Kocmoca
         private Transform portTransform;
         private PhotonView portPhotonView;
 
-
-
-
         private int index; // for loop index
         private Vector3 relativePoint;
         private float distanceSqr;
         private float angle;
+        [Header("Variable")]
         [Tooltip("距离最近的目标")]
         public Transform nearestTarget;
         private float nearestDistanceSqr;
@@ -114,7 +112,7 @@ namespace Kocmoca
             //if (isLocalPlayer) SearchFriend();
             //SearchFoe();
             //RadarWarningEmitter();
-            UpdateDefault();
+            //UpdateDefault();
         }
         public void Search()
         {
@@ -130,7 +128,7 @@ namespace Kocmoca
                 {
                     if (listFriend[index])
                     {
-                        relativePoint = portTransform.InverseTransformPoint(listFoe[index].position);
+                        relativePoint = portTransform.InverseTransformPoint(listFriend[index].position);
                         distanceSqr = Vector3.SqrMagnitude(relativePoint);
                         angle = Vector3.Dot(relativePoint.normalized, Vector3.forward);
 

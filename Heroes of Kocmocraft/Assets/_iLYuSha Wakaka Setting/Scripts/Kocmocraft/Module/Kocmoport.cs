@@ -95,6 +95,7 @@ namespace Kocmoca
             m_Number = photonView.Owner.ActorNumber;
             name = "[Player] " + photonView.Owner.NickName;
             photonView.RPC("SynchronizePlayerKocmoport", RpcTarget.Others);
+            Takeoff();
         }
         public void CreateBotKocmoport(int port, int type)
         {
@@ -163,6 +164,7 @@ namespace Kocmoca
                 isLocal = false;
                 Destroy(GetComponentInChildren<OnboardRadar>());
             }
+            myAvionicsSystem = GetComponentInChildren<AvionicsSystem>();
             turretPos = myAvionicsSystem.myTurretFCS.ActiveTurret(photonView, m_Number, isLocal);
             rocketHardpointPos = myAvionicsSystem.myRocketFCS.ActiveHardpoint(photonView, m_Number, isLocal);
             missileHardpointPos = myAvionicsSystem.myRocketFCS.ActiveHardpoint(photonView, m_Number, isLocal);

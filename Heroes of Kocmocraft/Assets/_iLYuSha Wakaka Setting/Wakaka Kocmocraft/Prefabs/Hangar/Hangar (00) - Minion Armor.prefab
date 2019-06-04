@@ -4698,7 +4698,6 @@ Transform:
   - {fileID: 3330852584836816115}
   - {fileID: 3325456393423471873}
   - {fileID: 3773773518778078179}
-  - {fileID: 382111876373018635}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4716,45 +4715,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kocmocraftType: 0
   shield:
-    maximum: 0
-    level: 0
-    emCrystal: 0
-    emBooster: 0
-    emBoosterLevel: 0
+    maximum: 5539
+    level: 2
+    emCrystal: 2539
+    emBooster: 3000
+    emBoosterLevel: 1
   hull:
-    maximum: 0
-    level: 0
-    airframe: 0
-    armor: 0
-    armorLevel: 0
+    maximum: 19136
+    level: 7
+    airframe: 2336
+    armor: 16800
+    armorLevel: 7
   speed:
-    maximum: 0
-    level: 0
-    engine: 0
-    afterburner: 0
-    afterburnerLevel: 0
+    maximum: 83
+    level: 2
+    engine: 9
+    afterburner: 74
+    afterburnerLevel: 2
   kocmomech: {fileID: 11400000, guid: a8a9109a58d032642a1fbcd771fbbe4d, type: 2}
-  myPrototype: {fileID: 0}
-  myWreckage: {fileID: 0}
+  myPrototype: {fileID: 7191531426942205143}
+  myWreckage: {fileID: 965474414747969870}
+  myDubis: {fileID: 6905099963731030023}
   myPowerUnit: {fileID: 8324857028421648447}
-  myTurretFCS: {fileID: 0}
-  myMissileFCS: {fileID: 0}
-  myRocketFCS: {fileID: 0}
-  cmVirtualCamera: {fileID: 0}
+  myTurretFCS: {fileID: 9093106293725022227}
+  myRocketFCS: {fileID: 8120167204869844173}
+  myMissileFCS: {fileID: 1500355739073351361}
+  cockpitView: {fileID: 6425515557776190811}
   attitudeLimit: 0.2792527
   autoLevelAngle: 0.1570796
   autoLevelPeriod: 0.07853982
   inverseAngle: 0.1178097
   inversePeriod: 0.2356195
   controlUnit: 0
-  portTransform: {fileID: 0}
-  portRigidbody: {fileID: 0}
-  portPhotonView: {fileID: 0}
-  kocmocraftNumber: 0
+  kocmoNumber: 0
   localTargetPos: {x: 0, y: 0, z: 0}
-  realtimeShield: 0
-  realtimeHull: 0
-  realtimeSpeed: 0
+  realtimeShield: 5539
+  realtimeHull: 19136
+  realtimeSpeed: 9
   afterburnerPower: 0
 --- !u!114 &2093312679609936582
 MonoBehaviour:
@@ -4768,13 +4765,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e5c470e516cef489ba389a5ad2c1bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
-  radar: {fileID: 0}
+  radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 03586d03d44a3f24eb1d5c680a971c9b, type: 2}
   kocmomech: {fileID: 11400000, guid: a8a9109a58d032642a1fbcd771fbbe4d, type: 2}
-  myTransform: {fileID: 4507466813372716}
-  kocmonautNumber: 0
-  FriendAircraftsArray: []
+  kocmoNumber: 0
+  indexFaction: 0
+  isLocalPlayer: 0
   listFriend: []
   listFoe: []
   nearestTarget: {fileID: 0}
@@ -4785,36 +4781,6 @@ MonoBehaviour:
   targetLocked: {fileID: 0}
   targetAutoAim: {fileID: 0}
   targetRadarLockOn: {fileID: 0}
---- !u!1 &385103392897451311
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 382111876373018635}
-  m_Layer: 0
-  m_Name: Cockpit Viewpoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &382111876373018635
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 385103392897451311}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.15, z: 1.278}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4507466813372716}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3327055184630462651
 GameObject:
   m_ObjectHideFlags: 0
@@ -4824,10 +4790,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3325456393423471873}
-  - component: {fileID: 3390184570835865853}
-  - component: {fileID: 3440597136900874477}
+  - component: {fileID: 1500355739073351361}
   m_Layer: 0
-  m_Name: FCS - Missile
+  m_Name: Missile Fire Control System (MFCS)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4848,103 +4813,7 @@ Transform:
   m_Father: {fileID: 4507466813372716}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &3390184570835865853
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3327055184630462651}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 0
-  MinDistance: 1
-  MaxDistance: 30
-  Pan2D: 0
-  rolloffMode: 2
-  BypassEffects: 1
-  BypassListenerEffects: 1
-  BypassReverbZones: 1
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
---- !u!114 &3440597136900874477
+--- !u!114 &1500355739073351361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4953,25 +4822,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3327055184630462651}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a811e5889a18cc34088852b63eaf8fe4, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d32739ae8e1a4c488260a86f576ac08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FireControlSystemType: 2
-  m_AudioSource: {fileID: 3390184570835865853}
-  fireSound: {fileID: 8300000, guid: 741f0bdc95c049440a1460c51edfa9ea, type: 3}
-  moduleData:
-    Type: 0
-    FireSound: {fileID: 0}
-  maxAmmoCapacity: 7
-  fireRate: 0.8795075
-  countLauncher: 2
-  launcher:
-  - {x: -1.4733, y: 0.962, z: 0.557}
-  - {x: 1.4733, y: 0.962, z: 0.557}
-  turnFire: 1
-  isLocal: 0
-  timeReload: 15
-  target: {fileID: 0}
+  radar: {fileID: 2093312679609936582}
+  turret: {fileID: 11400000, guid: 03586d03d44a3f24eb1d5c680a971c9b, type: 2}
+  countAmmo: 0
 --- !u!1 &3327207328643020197
 GameObject:
   m_ObjectHideFlags: 0
@@ -4981,10 +4837,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3325421998921312495}
-  - component: {fileID: 3390972414192883399}
-  - component: {fileID: 3440589135192097907}
+  - component: {fileID: 9093106293725022227}
   m_Layer: 0
-  m_Name: FCS - Turret
+  m_Name: Turret Fire Control System (TFCS)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5005,103 +4860,7 @@ Transform:
   m_Father: {fileID: 4507466813372716}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &3390972414192883399
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3327207328643020197}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 0
-  MinDistance: 1
-  MaxDistance: 100
-  Pan2D: 0
-  rolloffMode: 2
-  BypassEffects: 1
-  BypassListenerEffects: 1
-  BypassReverbZones: 1
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
---- !u!114 &3440589135192097907
+--- !u!114 &9093106293725022227
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5110,25 +4869,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3327207328643020197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a811e5889a18cc34088852b63eaf8fe4, type: 3}
+  m_Script: {fileID: 11500000, guid: 45e0f0611b46b544295d21ea4986df77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FireControlSystemType: 0
-  m_AudioSource: {fileID: 3390972414192883399}
-  fireSound: {fileID: 0}
-  moduleData:
-    Type: 0
-    FireSound: {fileID: 0}
-  maxAmmoCapacity: 999
-  fireRate: 0.10273973
-  countLauncher: 2
-  launcher:
-  - {x: 2.45, y: -0.52, z: 1.38}
-  - {x: -2.45, y: -0.52, z: 1.38}
-  turnFire: 1
-  isLocal: 0
-  timeReload: 0
-  target: {fileID: 0}
+  radar: {fileID: 2093312679609936582}
+  turret: {fileID: 11400000, guid: 03586d03d44a3f24eb1d5c680a971c9b, type: 2}
 --- !u!1 &3327309518994330173
 GameObject:
   m_ObjectHideFlags: 0
@@ -5198,10 +4943,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3330852584836816115}
-  - component: {fileID: 3389658170692499533}
-  - component: {fileID: 3440194822468391803}
+  - component: {fileID: 8120167204869844173}
   m_Layer: 0
-  m_Name: FCS - Rocket
+  m_Name: Rocket Fire Control System (RFCS)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5222,103 +4966,7 @@ Transform:
   m_Father: {fileID: 4507466813372716}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &3389658170692499533
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3327355163240742313}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 0
-  MinDistance: 1
-  MaxDistance: 30
-  Pan2D: 0
-  rolloffMode: 2
-  BypassEffects: 1
-  BypassListenerEffects: 1
-  BypassReverbZones: 1
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
---- !u!114 &3440194822468391803
+--- !u!114 &8120167204869844173
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5327,25 +4975,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3327355163240742313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a811e5889a18cc34088852b63eaf8fe4, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b7afde23b6b28e45aed4a9456042eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FireControlSystemType: 1
-  m_AudioSource: {fileID: 3389658170692499533}
-  fireSound: {fileID: 8300000, guid: fe0b6bc7132a4dc45a070543fa6e8c63, type: 3}
-  moduleData:
-    Type: 0
-    FireSound: {fileID: 0}
-  maxAmmoCapacity: 12
-  fireRate: 0.2967359
-  countLauncher: 2
-  launcher:
-  - {x: 1.4833, y: 0.969, z: 0.237}
-  - {x: -1.4833, y: 0.969, z: 0.237}
-  turnFire: 1
-  isLocal: 0
-  timeReload: 9.3
-  target: {fileID: 0}
+  radar: {fileID: 2093312679609936582}
+  turret: {fileID: 11400000, guid: 03586d03d44a3f24eb1d5c680a971c9b, type: 2}
+  countAmmo: 0
 --- !u!1 &3327594042340412491
 GameObject:
   m_ObjectHideFlags: 0
@@ -5388,7 +5023,7 @@ GameObject:
   - component: {fileID: 8324857028421648447}
   - component: {fileID: 4870732657617550954}
   m_Layer: 10
-  m_Name: Engine
+  m_Name: Power Unit (PU)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5565,6 +5200,7 @@ GameObject:
   - component: {fileID: 5975829069979370451}
   - component: {fileID: 5585668439135221922}
   - component: {fileID: 5353412520540105363}
+  - component: {fileID: 8606595377899711190}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -5610,16 +5246,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 1
+  m_BindingMode: 3
   m_FollowOffset: {x: 0, y: 1.37, z: 0}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
   m_RollDamping: 0
   m_AngularDamping: 0
+--- !u!114 &8606595377899711190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941552663385188108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4044717213e31446939f7bd49c896ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjectOffset: {x: 0, y: 0, z: 10}
+  m_LookaheadTime: 0
+  m_LookaheadSmoothing: 10
+  m_LookaheadIgnoreY: 0
+  m_HorizontalDamping: 0.5
+  m_VerticalDamping: 0.5
+  m_ScreenX: 0.5
+  m_ScreenY: 0.5
+  m_DeadZoneWidth: 0
+  m_DeadZoneHeight: 0
+  m_SoftZoneWidth: 0.8
+  m_SoftZoneHeight: 0.8
+  m_BiasX: 0
+  m_BiasY: 0
+  m_CenterOnActivate: 1
 --- !u!1 &7168442588257779395
 GameObject:
   m_ObjectHideFlags: 0
@@ -5631,7 +5294,7 @@ GameObject:
   - component: {fileID: 3773773518778078179}
   - component: {fileID: 6425515557776190811}
   m_Layer: 0
-  m_Name: CM vcam1
+  m_Name: Cockpit View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5644,8 +5307,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7168442588257779395}
-  m_LocalRotation: {x: -0, y: -3.449986e-32, z: 7.892648e-25, w: 1}
-  m_LocalPosition: {x: 0.00012207031, y: 1.3699999, z: 1}
+  m_LocalRotation: {x: 0.06802363, y: 1.3682137e-15, z: -2.0067208e-14, w: 0.99768376}
+  m_LocalPosition: {x: 0, y: 1.37, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5975829069979370451}
@@ -5670,13 +5333,13 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
+  m_LookAt: {fileID: 9222718202266794175}
   m_Follow: {fileID: 9222718202266794175}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 10
-    NearClipPlane: 0.1
-    FarClipPlane: 5000
+    NearClipPlane: 0.5
+    FarClipPlane: 15000
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -5696,6 +5359,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4507466813372716}
     m_Modifications:
+    - target: {fileID: 6872156406699062250, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype (00) - Minion Armor
+      objectReference: {fileID: 0}
     - target: {fileID: 3542896726450198728, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5751,75 +5419,70 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6872156406699062250, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype (00) - Minion Armor
-      objectReference: {fileID: 0}
     - target: {fileID: 4324221403233353539, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.001675531
+      value: -0.0016824246
       objectReference: {fileID: 0}
     - target: {fileID: 4324221403233353539, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.94026023
+      value: 0.9402601
       objectReference: {fileID: 0}
     - target: {fileID: 4324221403233353539, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.34042105
+      value: -0.3404211
       objectReference: {fileID: 0}
     - target: {fileID: 4324221403233353539, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0046293135
+      value: -0.0046483637
       objectReference: {fileID: 0}
     - target: {fileID: 4324221403233353539, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.029663086
+      value: 0.029662844
       objectReference: {fileID: 0}
     - target: {fileID: 4324221403233353539, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00012207031
+      value: -0.00014662743
       objectReference: {fileID: 0}
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0016969442
+      value: -0.0017035208
       objectReference: {fileID: 0}
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.94629514
+      value: 0.9462951
       objectReference: {fileID: 0}
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.32326165
+      value: -0.32326138
       objectReference: {fileID: 0}
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0049673617
+      value: -0.004986619
       objectReference: {fileID: 0}
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03161621
+      value: 0.031616837
       objectReference: {fileID: 0}
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00018310547
+      value: -0.00016665459
       objectReference: {fileID: 0}
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0014874784
+      value: -0.0014936572
       objectReference: {fileID: 0}
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
@@ -5829,37 +5492,27 @@ PrefabInstance:
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.30604187
+      value: -0.30604163
       objectReference: {fileID: 0}
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.004629075
+      value: -0.0046483
       objectReference: {fileID: 0}
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.029296875
+      value: 0.02929667
       objectReference: {fileID: 0}
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00012207031
+      value: -0.00014305115
       objectReference: {fileID: 0}
     - target: {fileID: 3681763571495133398, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
-      propertyPath: m_Orbits.Array.data[0].m_Radius
-      value: 7.1800003
-      objectReference: {fileID: 0}
-    - target: {fileID: 3681763571495133398, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
-        type: 3}
-      propertyPath: m_Orbits.Array.data[2].m_Height
-      value: -4.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 3681763571495133398, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
-        type: 3}
-      propertyPath: m_Orbits.Array.data[2].m_Radius
-      value: 7.1800003
+      propertyPath: m_Heading.m_Bias
+      value: -51
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27, type: 3}
@@ -5869,6 +5522,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4345102897486410118}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7191531426942205143 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6881952862742515025, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
+    type: 3}
+  m_PrefabInstance: {fileID: 4345102897486410118}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2debeac66cfd7f4d9739633285e6af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4621300367974266797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5944,3 +5609,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4621300367974266797}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6905099963731030023 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2301902248906377130, guid: a551df76584dd3a479568a370c258123,
+    type: 3}
+  m_PrefabInstance: {fileID: 4621300367974266797}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d39a67e1e208b4caff907c4e848ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

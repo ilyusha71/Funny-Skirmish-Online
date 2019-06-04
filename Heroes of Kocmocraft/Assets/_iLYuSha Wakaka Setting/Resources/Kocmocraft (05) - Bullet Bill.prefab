@@ -80,11 +80,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d300cf859ca96e44987082e42774e167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  port: 0
-  Faction: 0
-  Type: 0
-  Number: 0
+  kocmocraft: []
+  m_Core: 0
+  m_Port: 0
+  m_Faction: 0
+  m_Type: 0
+  m_Skin: 0
+  m_Number: 0
+  myAvionicsSystem: {fileID: 0}
   module: {fileID: 11400000, guid: c15c8ad60c62341419620337e393f2cc, type: 2}
+  rootTransform: {fileID: 0}
+  rootRigidbody: {fileID: 0}
   listFCS: []
   countFCS: 0
   currentFCS: 0
@@ -148,8 +154,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114878961472029604}
   - {fileID: 114154295836197004}
-  viewIdField: 0
-  InstantiationId: 7
+  viewIdField: 12
+  InstantiationId: 12
   isRuntimeInstantiated: 0
 --- !u!114 &114878961472029604
 MonoBehaviour:
@@ -189,6 +195,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4498412709666434}
     m_Modifications:
+    - target: {fileID: 1267311499308674, guid: fc989c15518deff40aafd5b1afdb2f90, type: 3}
+      propertyPath: m_Name
+      value: Hangar (05) - Bullet Bill
+      objectReference: {fileID: 0}
     - target: {fileID: 4344818207295468, guid: fc989c15518deff40aafd5b1afdb2f90, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -232,10 +242,6 @@ PrefabInstance:
     - target: {fileID: 4344818207295468, guid: fc989c15518deff40aafd5b1afdb2f90, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1267311499308674, guid: fc989c15518deff40aafd5b1afdb2f90, type: 3}
-      propertyPath: m_Name
-      value: Hangar (05) - Bullet Bill
       objectReference: {fileID: 0}
     - target: {fileID: 886530518226538519, guid: fc989c15518deff40aafd5b1afdb2f90,
         type: 3}

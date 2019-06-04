@@ -50,11 +50,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d300cf859ca96e44987082e42774e167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  port: 0
-  Faction: 0
-  Type: 0
-  Number: 0
+  kocmocraft: []
+  m_Core: 0
+  m_Port: 0
+  m_Faction: 0
+  m_Type: 0
+  m_Skin: 0
+  m_Number: 0
+  myAvionicsSystem: {fileID: 0}
   module: {fileID: 11400000, guid: c15c8ad60c62341419620337e393f2cc, type: 2}
+  rootTransform: {fileID: 0}
+  rootRigidbody: {fileID: 0}
   listFCS: []
   countFCS: 0
   currentFCS: 0
@@ -123,8 +129,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114241924769974728}
   - {fileID: 114392944397655898}
-  viewIdField: 0
-  InstantiationId: 19
+  viewIdField: 7
+  InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &114241924769974728
 MonoBehaviour:
@@ -194,6 +200,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4695754280995474}
     m_Modifications:
+    - target: {fileID: 1413480944677018, guid: b7cdbfc1e51478647a91dbc79c05a4ed, type: 3}
+      propertyPath: m_Name
+      value: Hangar (07) - Ace Kennel
+      objectReference: {fileID: 0}
     - target: {fileID: 4096866639541554, guid: b7cdbfc1e51478647a91dbc79c05a4ed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -237,10 +247,6 @@ PrefabInstance:
     - target: {fileID: 4096866639541554, guid: b7cdbfc1e51478647a91dbc79c05a4ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1413480944677018, guid: b7cdbfc1e51478647a91dbc79c05a4ed, type: 3}
-      propertyPath: m_Name
-      value: Hangar (07) - Ace Kennel
       objectReference: {fileID: 0}
     - target: {fileID: 7545499868009063406, guid: b7cdbfc1e51478647a91dbc79c05a4ed,
         type: 3}

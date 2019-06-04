@@ -70,8 +70,8 @@ namespace Kocmoca
             //myAvionicsSystem.ControlYaw(Controller.yaw);
             moduleAvionicsSystem.ControlThrottle(Controller.throttle);
 
-            if (Input.GetKeyDown(Controller.KEYBOARD_CockpitView) || Input.GetKeyDown(Controller.XBOX360_CockpitView))
-                SatelliteCommander.Instance.Observer.SwitchView();
+            //if (Input.GetKeyDown(Controller.KEYBOARD_CockpitView) || Input.GetKeyDown(Controller.XBOX360_CockpitView))
+            //    SatelliteCommander.Instance.Observer.SwitchView();
             if (Input.GetKeyDown(Controller.KEYBOARD_LockOn) || Input.GetKeyDown(Controller.XBOX360_LockOn))
                 moduleOnboardRadar.ManualLockOn();
             if (Input.GetKey(Controller.KEYBOARD_Laser))

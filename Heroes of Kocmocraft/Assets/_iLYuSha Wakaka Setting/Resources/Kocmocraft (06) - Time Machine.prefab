@@ -226,8 +226,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114785314439724286}
   - {fileID: 114904454429539992}
-  viewIdField: 0
-  InstantiationId: 25
+  viewIdField: 9
+  InstantiationId: 9
   isRuntimeInstantiated: 0
 --- !u!114 &114785314439724286
 MonoBehaviour:
@@ -272,11 +272,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d300cf859ca96e44987082e42774e167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  port: 0
-  Faction: 0
-  Type: 0
-  Number: 0
+  kocmocraft: []
+  m_Core: 0
+  m_Port: 0
+  m_Faction: 0
+  m_Type: 0
+  m_Skin: 0
+  m_Number: 0
+  myAvionicsSystem: {fileID: 0}
   module: {fileID: 11400000, guid: c15c8ad60c62341419620337e393f2cc, type: 2}
+  rootTransform: {fileID: 0}
+  rootRigidbody: {fileID: 0}
   listFCS: []
   countFCS: 0
   currentFCS: 0
@@ -289,6 +295,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4684453883842506}
     m_Modifications:
+    - target: {fileID: 1243008839029272, guid: 4f708efe013eeb04c9d2e745f542ac95, type: 3}
+      propertyPath: m_Name
+      value: Hangar (06) - Time Machine
+      objectReference: {fileID: 0}
     - target: {fileID: 4200221936029446, guid: 4f708efe013eeb04c9d2e745f542ac95, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -332,10 +342,6 @@ PrefabInstance:
     - target: {fileID: 4200221936029446, guid: 4f708efe013eeb04c9d2e745f542ac95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1243008839029272, guid: 4f708efe013eeb04c9d2e745f542ac95, type: 3}
-      propertyPath: m_Name
-      value: Hangar (06) - Time Machine
       objectReference: {fileID: 0}
     - target: {fileID: 982200941009115735, guid: 4f708efe013eeb04c9d2e745f542ac95,
         type: 3}
