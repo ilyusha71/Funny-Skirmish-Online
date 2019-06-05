@@ -142,6 +142,7 @@ namespace Kocmoca
         public void  Takeoff()
         {
             GameObject go = Instantiate(kocmocraft[m_Type], rootTransform);
+            go.GetComponentInChildren<Prototype>().LoadSkin(m_Skin);
             SatelliteCommander.Instance.AddSearchArray(rootTransform, m_Port / 2, (int)m_Faction, m_Number);
             // Kocmonaut Info ( first time only )
             if (!SatelliteCommander.Instance.listKocmonaut.ContainsKey(m_Number))

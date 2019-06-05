@@ -4835,7 +4835,7 @@ GameObject:
   - component: {fileID: 8549403580969806099}
   - component: {fileID: 1496903413528735389}
   m_Layer: 0
-  m_Name: Cockpit View
+  m_Name: Cockpit View 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5478,6 +5478,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4908477390876494}
     m_Modifications:
+    - target: {fileID: 8996180125332291000, guid: 432c1f2918c0fc942985a281f6903fa6,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype (01) - Red Bull Energy
+      objectReference: {fileID: 0}
     - target: {fileID: 7165428353671528654, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5533,11 +5538,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8996180125332291000, guid: 432c1f2918c0fc942985a281f6903fa6,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype (01) - Red Bull Energy
-      objectReference: {fileID: 0}
     - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -5576,7 +5576,7 @@ PrefabInstance:
     - target: {fileID: 1506805796713864185, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.15345927
+      value: -0.15345928
       objectReference: {fileID: 0}
     - target: {fileID: 1506805796713864185, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
@@ -5586,7 +5586,7 @@ PrefabInstance:
     - target: {fileID: 1506805796713864185, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.18950634
+      value: -0.18950635
       objectReference: {fileID: 0}
     - target: {fileID: 1506805796713864185, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
@@ -5646,7 +5646,7 @@ PrefabInstance:
     - target: {fileID: 2761876482691409242, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_Heading.m_Bias
-      value: -136
+      value: -74
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 432c1f2918c0fc942985a281f6903fa6, type: 3}
@@ -5675,6 +5675,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4908477390876494}
     m_Modifications:
+    - target: {fileID: 4520702761021608853, guid: 58070d4a882120e4c904a22b1c0d2966,
+        type: 3}
+      propertyPath: m_Name
+      value: Pilot - Red Bull Wing Academy
+      objectReference: {fileID: 0}
     - target: {fileID: 1438548545660035998, guid: 58070d4a882120e4c904a22b1c0d2966,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5729,11 +5734,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4520702761021608853, guid: 58070d4a882120e4c904a22b1c0d2966,
-        type: 3}
-      propertyPath: m_Name
-      value: Pilot - Red Bull Wing Academy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58070d4a882120e4c904a22b1c0d2966, type: 3}
