@@ -30,6 +30,7 @@ namespace Kocmoca
         public RocketFireControlSystem myRocketFCS;
         public MissileFireControlSystem myMissileFCS;
         public Cinemachine.CinemachineVirtualCamera cockpitView;
+        public Cinemachine.CinemachineVirtualCamera followView;
         [Header("Constant")]
         public float attitudeLimit = 0.2792527f; // 16度
         public float autoLevelAngle = 0.1570796f; // 9度
@@ -90,8 +91,30 @@ namespace Kocmoca
             transposer.m_XDamping = 0;
             transposer.m_YDamping = 0;
             transposer.m_ZDamping = 0;
+            transposer.m_PitchDamping = 1;
+            transposer.m_YawDamping = 1;
             cockpitView.GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset = new Vector3(0, 0, 10);
             cockpitView.enabled = false;
+
+            // Follow View setting
+            followView = GetComponentsInChildren<Cinemachine.CinemachineVirtualCamera>()[4];
+            followView.m_Follow = myPrototype.transform;
+            followView.m_LookAt = myPrototype.transform;
+            followView.m_Lens.FieldOfView = 60;
+            followView.m_Lens.NearClipPlane = 0.1f;
+            followView.m_Lens.FarClipPlane = 15000;
+            transposer = followView.GetCinemachineComponent<Cinemachine.CinemachineTransposer>();
+            float offsetZ = -module.size.wingspan * 3.5f - module.size.length * 0.5f;
+            float offsetY = -offsetZ * Mathf.Tan(17 * Mathf.Deg2Rad);
+            transposer.m_FollowOffset = new Vector3(0, offsetY, offsetZ);
+            transposer.m_XDamping = 0;
+            transposer.m_YDamping = 0;
+            transposer.m_ZDamping = 0;
+            transposer.m_PitchDamping = 1;
+            transposer.m_YawDamping = 1;
+            // Aim 瞄准机身前缘方向
+            followView.GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset = new Vector3(0, module.size.height * 0.5f, module.size.length * 5);
+            followView.enabled = false;
 
             // Initial value
             realtimeShield = shield.maximum;
@@ -112,7 +135,10 @@ namespace Kocmoca
             //// 以下为暂时
             //Transform   myCockpitViewpoint = transform.Find("Cockpit Viewpoint");
             if (controlUnit == ControlUnit.LocalPlayer)
-                SatelliteCommander.Instance.Observer.AssignPilotView(cockpitView);
+            {
+                SatelliteCommander.Instance.Observer.AssignPilotView(cockpitView, followView);
+            }
+
             //else
             //    SatelliteCommander.Instance.Observer.listOthers.Add(rootNumber);
         }

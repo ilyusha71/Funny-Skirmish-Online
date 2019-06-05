@@ -38,13 +38,28 @@ namespace Kocmoca
         public int observerNumber;
         public int indexOtherViewpoint;
 
-        public CinemachineVirtualCamera pilotView;
+        public CinemachineVirtualCamera cmCockpit, cmFollow;
+        public CinemachineFreeLook[] observerView;
 
-        public void AssignPilotView(CinemachineVirtualCamera pilot)
+        public void AssignPilotView(CinemachineVirtualCamera cockpitView, CinemachineVirtualCamera followView)
         {
-            pilotView = pilot;
-            pilotView.enabled = true;
+            cmCockpit = cockpitView;
+            cmCockpit.enabled = true;
+            cmFollow = followView;
         }
+        /// <summary>
+        /// Update is called every frame, if the MonoBehaviour is enabled.
+        /// </summary>
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                cmCockpit.enabled = !cmCockpit.isActiveAndEnabled;
+                cmFollow.enabled = !cmFollow.isActiveAndEnabled;
+            }
+        }
+
+
 
 
 
