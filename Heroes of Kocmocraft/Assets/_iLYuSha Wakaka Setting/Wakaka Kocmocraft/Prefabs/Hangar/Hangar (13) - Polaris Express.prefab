@@ -80,7 +80,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 0
-  MaxDistance: 700
+  MaxDistance: 73
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -91,49 +91,31 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.9892473
-      inSlope: -7.185185
-      outSlope: -7.185185
+      value: 1
+      inSlope: -0.012996988
+      outSlope: -0.012996988
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 1
     - serializedVersion: 3
-      time: 0.023459144
-      value: 0.44594383
-      inSlope: -11.153371
-      outSlope: -11.153371
+      time: 0.5
+      value: 0.5
+      inSlope: -1.5130057
+      outSlope: -1.5130057
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.0724839
-      value: 0.1686198
-      inSlope: -0.63409567
-      outSlope: -0.63409567
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.17001635
-      value: 0.07343195
-      inSlope: -0.33359975
-      outSlope: -0.33359975
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0.9116022
+      outWeight: 0.35634467
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -0.0010003992
-      outSlope: -0.0010003992
+      inSlope: -0.16709724
+      outSlope: -0.16709724
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 1
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -14660,7 +14642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4044717213e31446939f7bd49c896ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0, y: 2.955, z: 52.05}
+  m_TrackedObjectOffset: {x: 0, y: 2.955, z: 72.869995}
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 0
@@ -15064,27 +15046,27 @@ PrefabInstance:
     - target: {fileID: 4699940536524915828, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.001862779
+      value: -0.0018973795
       objectReference: {fileID: 0}
     - target: {fileID: 4699940536524915828, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.94025743
+      value: 0.9402571
       objectReference: {fileID: 0}
     - target: {fileID: 4699940536524915828, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.3404204
+      value: -0.34041968
       objectReference: {fileID: 0}
     - target: {fileID: 4699940536524915828, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0051457877
+      value: -0.005241483
       objectReference: {fileID: 0}
     - target: {fileID: 4699940536524915828, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.032958984
+      value: 0.033569336
       objectReference: {fileID: 0}
     - target: {fileID: 4699940536524915828, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
@@ -15094,27 +15076,27 @@ PrefabInstance:
     - target: {fileID: 4428016676824310270, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0018610654
+      value: -0.0018941013
       objectReference: {fileID: 0}
     - target: {fileID: 4428016676824310270, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9462925
+      value: 0.9462919
       objectReference: {fileID: 0}
     - target: {fileID: 4428016676824310270, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.32326046
+      value: -0.32326034
       objectReference: {fileID: 0}
     - target: {fileID: 4428016676824310270, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0054484005
+      value: -0.005544841
       objectReference: {fileID: 0}
     - target: {fileID: 4428016676824310270, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03466797
+      value: 0.03527832
       objectReference: {fileID: 0}
     - target: {fileID: 4428016676824310270, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
@@ -15124,27 +15106,27 @@ PrefabInstance:
     - target: {fileID: 4254546686355513023, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0016005037
+      value: -0.0016315877
       objectReference: {fileID: 0}
     - target: {fileID: 4254546686355513023, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9520039
+      value: 0.9520036
       objectReference: {fileID: 0}
     - target: {fileID: 4254546686355513023, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.3060413
+      value: -0.30604064
       objectReference: {fileID: 0}
     - target: {fileID: 4254546686355513023, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.004977822
+      value: -0.00507465
       objectReference: {fileID: 0}
     - target: {fileID: 4254546686355513023, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03149414
+      value: 0.032104492
       objectReference: {fileID: 0}
     - target: {fileID: 4254546686355513023, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
@@ -15154,7 +15136,7 @@ PrefabInstance:
     - target: {fileID: 983709023147103737, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_Heading.m_Bias
-      value: -26
+      value: 146
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51f3b3ce441b79a41ba25beb0ad808b8, type: 3}

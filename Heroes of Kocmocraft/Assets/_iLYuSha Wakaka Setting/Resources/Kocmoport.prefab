@@ -75,14 +75,11 @@ MonoBehaviour:
   m_Skin: 0
   m_Number: 0
   myAvionicsSystem: {fileID: 0}
-  module: {fileID: 11400000, guid: c15c8ad60c62341419620337e393f2cc, type: 2}
-  rootTransform: {fileID: 0}
-  rootRigidbody: {fileID: 0}
+  rootTransform: {fileID: 4939656300128508}
+  rootRigidbody: {fileID: 4167487636832991923}
   listFCS: []
   countFCS: 0
   currentFCS: 0
-  pilot: {fileID: 0}
-  wreckage: {fileID: 0}
 --- !u!54 &4167487636832991923
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -95,7 +92,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

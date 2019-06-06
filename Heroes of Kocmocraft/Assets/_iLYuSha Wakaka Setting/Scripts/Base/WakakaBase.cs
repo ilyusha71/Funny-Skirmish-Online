@@ -23,7 +23,7 @@ namespace Kocmoca
         public Prototype[] prototype;
         public PilotManager[] pilot;
         public CinemachineFreeLook[] cmFreeLook;
-        public CinemachineVirtualCamera[] cmVirtualCam;
+        public CinemachineVirtualCamera[] cmCockpit;
 
         [Header("Resources - Signboard")]
         public GameObject Signboard;
@@ -56,7 +56,7 @@ namespace Kocmoca
             prototype = new Prototype[hangarCount];
             pilot = new PilotManager[hangarCount];
             cmFreeLook = new CinemachineFreeLook[hangarCount];
-            cmVirtualCam = new CinemachineVirtualCamera[hangarCount];
+            cmCockpit = new CinemachineVirtualCamera[hangarCount];
             for (int i = 0; i < countApron; i++)
             {
                 apron[i].localPosition = new Vector3(630 - (i % 12 / 3) * 360 - i % 3 * 90, 0, 0);
@@ -84,7 +84,7 @@ namespace Kocmoca
                     cmFreeLook[i].m_Orbits[2].m_Radius = database.kocmocraft[i].view.near;
                     cmFreeLook[i].enabled = false;
 
-         
+                    cmCockpit[i] = hangar[i].GetComponent<AvionicsSystem>().cockpitView;         
                 }
             }
 

@@ -133,7 +133,7 @@ namespace Photon.Realtime.Demo
 
             Hashtable propertiesKocmocraft = new Hashtable
             {
-                { Kocmoca.LobbyInfomation.PROPERTY_TYPE, 16 },
+                { Kocmoca.LobbyInfomation.PROPERTY_TYPE, 18 },
                 { Kocmoca.LobbyInfomation.PROPERTY_SKIN, 1 }
             };
             PhotonNetwork.SetPlayerCustomProperties(propertiesKocmocraft);

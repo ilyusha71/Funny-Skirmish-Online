@@ -115,7 +115,8 @@ namespace Kocmoca
 
         void Start()
         {
-            Power(0.3f);
+            // Burn-In
+            Power(0.4f);
             PhotonView view = transform.root.GetComponent<PhotonView>();
             if (view)
                 view.ObservedComponents.Add(this);
@@ -132,7 +133,6 @@ namespace Kocmoca
                 enginePower = (float)stream.ReceiveNext();
             }
         }
-
         public void Power(float power)
         {
             enginePower = power;

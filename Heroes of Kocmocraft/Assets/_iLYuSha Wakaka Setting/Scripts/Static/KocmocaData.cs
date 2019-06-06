@@ -1329,11 +1329,12 @@ namespace Kocmoca
 
     public enum ControlUnit
     {
-        LocalPlayer = 0,
-        LocalBot = -1,
-        RemotePlayer = 100,
-        RemoteBot = 99,
-        Unknown = -999,
+        None = 0,
+        LocalPlayer,
+        LocalBot,
+        RemotePlayer,
+        RemoteBot,
+        Unknown,
     }
     public enum Faction
     {

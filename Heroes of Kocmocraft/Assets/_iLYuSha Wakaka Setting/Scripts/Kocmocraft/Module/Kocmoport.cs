@@ -41,92 +41,94 @@ using UnityEngine;
 
 namespace Kocmoca
 {
-    [RequireComponent(typeof(PhotonView))]
+    [RequireComponent (typeof (PhotonView))]
     public class Kocmoport : MonoBehaviourPun
     {
-        [Header("Kocmoport 宇航站")]
-        [Tooltip("宇航機")]
+        [Header ("Kocmoport 宇航站")]
+        [Tooltip ("宇航機")]
         public GameObject[] kocmocraft;
-        [Tooltip("控制單元")]
+        [Tooltip ("控制單元")]
         public ControlUnit m_Core;
-        [Tooltip("宇航站编号00~99")]
+        [Tooltip ("宇航站编号00~99")]
         public int m_Port;
-        [Tooltip("阵营")]
+        [Tooltip ("阵营")]
         public int m_Faction;
-        [Tooltip("宇航机型号")]
+        [Tooltip ("宇航机型号")]
         public int m_Type;
-        [Tooltip("宇航机塗裝")]
+        [Tooltip ("宇航机塗裝")]
         public int m_Skin;
-        [Tooltip("宇航机编号")]
+        [Tooltip ("宇航机编号")]
         public int m_Number;
         private Vector3 portalPos;
         private Quaternion portalRot;
 
         public AvionicsSystem myAvionicsSystem;
 
-        // 暂时
-        public KocmocraftDatabase module;
         public Transform rootTransform;
         public Rigidbody rootRigidbody;
 
         // Basic Data
 
-        [Header("Weapon Manager")]
+        [Header ("Weapon Manager")]
         public FireControlSystem[] listFCS;
         public int countFCS;
         public int currentFCS;
         private ObjectPoolData[] listAmmoOPD;
-        [Header("Child Node")]
-        public GameObject pilot;
-        public GameObject wreckage;
 
-        private void Awake()
+        /// <summary>
+        /// Reset is called when the user hits the Reset button in the Inspector's
+        /// context menu or when adding the component the first time.
+        /// </summary>
+        void Reset ()
         {
             rootTransform = transform;
-            rootRigidbody = GetComponent<Rigidbody>();
+            rootRigidbody = GetComponent<Rigidbody> ();
+            rootRigidbody.isKinematic = true;
         }
-        public void CreatePlayerKocmoport()
+        public void CreatePlayerKocmoport ()
         {
+            photonView.RPC ("SynchronizePlayerKocmoport", RpcTarget.Others);
             m_Core = ControlUnit.LocalPlayer;
-            m_Port = photonView.Owner.GetPlayerNumber();
+            m_Port = photonView.Owner.GetPlayerNumber ();
             m_Faction = m_Port % 2;
-            m_Type = (int)photonView.Owner.CustomProperties[LobbyInfomation.PROPERTY_TYPE];
-            m_Skin = (int)photonView.Owner.CustomProperties[LobbyInfomation.PROPERTY_SKIN];
+            m_Type = (int) photonView.Owner.CustomProperties[LobbyInfomation.PROPERTY_TYPE];
+            m_Skin = (int) photonView.Owner.CustomProperties[LobbyInfomation.PROPERTY_SKIN];
             m_Number = photonView.Owner.ActorNumber;
             name = "[Player] " + photonView.Owner.NickName;
-            photonView.RPC("SynchronizePlayerKocmoport", RpcTarget.Others);
             portalPos = SatelliteCommander.portalPos[m_Port];
             portalRot = SatelliteCommander.portalRot[m_Port];
-            Takeoff();
+            Takeoff ();
         }
-        public void CreateBotKocmoport(int port, int type)
+        public void CreateBotKocmoport (int port, int type)
         {
             m_Core = ControlUnit.LocalBot;
             m_Port = port;
             m_Faction = m_Port % 2;
             m_Type = type;
-            m_Skin = kocmocraft[m_Type].GetComponentInChildren<Prototype>().GetRandomSkinIndex();
+            m_Skin = kocmocraft[m_Type].GetComponentInChildren<Prototype> ().GetRandomSkinIndex ();
+            photonView.RPC ("SynchronizeBotPlayerKocmoport", RpcTarget.Others, m_Port, m_Type, m_Skin);
             m_Number = port * 1000;
-            name = KocmocraftData.GetBotName(m_Port);
-            photonView.RPC("SynchronizeBotPlayerKocmoport", RpcTarget.Others, m_Port, m_Type, m_Skin);
+            name = KocmocraftData.GetBotName (m_Port);
             portalPos = SatelliteCommander.portalPos[m_Port];
             portalRot = SatelliteCommander.portalRot[m_Port];
         }
+
         [PunRPC]
-        public void SynchronizePlayerKocmoport(int type, int skin, PhotonMessageInfo info)
+        public void SynchronizePlayerKocmoport (PhotonMessageInfo info)
         {
             m_Core = ControlUnit.RemotePlayer;
-            m_Port = photonView.Owner.GetPlayerNumber();
+            m_Port = photonView.Owner.GetPlayerNumber ();
             m_Faction = m_Port % 2;
-            m_Type = (int)photonView.Owner.CustomProperties[LobbyInfomation.PROPERTY_TYPE];
-            m_Skin = (int)photonView.Owner.CustomProperties[LobbyInfomation.PROPERTY_SKIN];
+            m_Type = (int) photonView.Owner.CustomProperties[LobbyInfomation.PROPERTY_TYPE];
+            m_Skin = (int) photonView.Owner.CustomProperties[LobbyInfomation.PROPERTY_SKIN];
             m_Number = photonView.Owner.ActorNumber;
             name = "[Remote] " + photonView.Owner.NickName;
             portalPos = SatelliteCommander.portalPos[m_Port];
             portalRot = SatelliteCommander.portalRot[m_Port];
         }
+
         [PunRPC]
-        public void SynchronizeBotPlayerKocmoport(int port, int type, int skin, PhotonMessageInfo info)
+        public void SynchronizeBotPlayerKocmoport (int port, int type, int skin, PhotonMessageInfo info)
         {
             m_Core = ControlUnit.RemoteBot;
             m_Port = port;
@@ -134,247 +136,259 @@ namespace Kocmoca
             m_Type = type;
             m_Skin = skin;
             m_Number = m_Port * 1000;
-            name = KocmocraftData.GetBotName(m_Port);
+            name = KocmocraftData.GetBotName (m_Port);
             portalPos = SatelliteCommander.portalPos[m_Port];
             portalRot = SatelliteCommander.portalRot[m_Port];
+            Takeoff ();
         }
-        [PunRPC]
-        public void  Takeoff()
-        {
-            GameObject go = Instantiate(kocmocraft[m_Type], rootTransform);
-            go.GetComponentInChildren<Prototype>().LoadSkin(m_Skin);
-            // ObserverCamera
-            SatelliteCommander.Instance.AddSearchArray(rootTransform, m_Port / 2, (int)m_Faction, m_Number);
-            // Kocmonaut Info ( first time only )
-            if (!SatelliteCommander.Instance.listKocmonaut.ContainsKey(m_Number))
-                SatelliteCommander.Instance.NewKocmonautJoin(ControlUnit.LocalPlayer, m_Port, (Type)m_Type, m_Number, name);
 
-            GetComponentInChildren<AvionicsSystem>().Active(rootTransform, rootRigidbody, photonView, m_Core, m_Number);
+        [PunRPC]
+        public void Takeoff ()
+        {
+            GameObject go = Instantiate (kocmocraft[m_Type], rootTransform);
+            go.GetComponentInChildren<Prototype> ().LoadSkin (m_Skin);
+            // ObserverCamera
+            SatelliteCommander.Instance.AddSearchArray (rootTransform, m_Port / 2, (int) m_Faction, m_Number);
+            // Kocmonaut Info ( first time only )
+            if (!SatelliteCommander.Instance.listKocmonaut.ContainsKey (m_Number))
+                SatelliteCommander.Instance.NewKocmonautJoin (ControlUnit.LocalPlayer, m_Port, (Type) m_Type, m_Number, name);
+
+            GetComponentInChildren<AvionicsSystem> ().Active (rootTransform, rootRigidbody, photonView, m_Core, m_Number);
             bool isLocal;
             if (m_Core == ControlUnit.LocalPlayer || m_Core == ControlUnit.LocalBot)
             {
                 isLocal = true;
-                rootTransform.SetPositionAndRotation(portalPos, portalRot);
+                rootTransform.SetPositionAndRotation (portalPos, portalRot);
                 if (m_Core == ControlUnit.LocalPlayer)
                 {
-                    go.AddComponent<LocalPlayerController>();
-                    GetComponentInChildren<OnboardRadar>().Active(rootTransform, photonView, m_Faction, m_Number, true);
-                    FindObjectOfType<HeadUpDisplayManager>().InitializeHUD(rootTransform);
+                    go.AddComponent<LocalPlayerController> ();
+                    GetComponentInChildren<OnboardRadar> ().Active (rootTransform, photonView, m_Faction, m_Number, true);
+                    FindObjectOfType<HeadUpDisplayManager> ().InitializeHUD (rootTransform);
                     LocalPlayerRealtimeData.Number = m_Number;
                     LocalPlayerRealtimeData.Faction = SatelliteCommander.Instance.listKocmonaut[m_Number].Faction;
                 }
                 else
                 {
-                    go.AddComponent<LocalBotController>();
-                    GetComponentInChildren<OnboardRadar>().Active(rootTransform, photonView, m_Faction, m_Number, false);
+                    go.AddComponent<LocalBotController> ();
+                    GetComponentInChildren<OnboardRadar> ().Active (rootTransform, photonView, m_Faction, m_Number, false);
                 }
             }
             else
             {
                 isLocal = false;
-                Destroy(GetComponentInChildren<OnboardRadar>());
+                Destroy (GetComponentInChildren<OnboardRadar> ());
             }
-            myAvionicsSystem = GetComponentInChildren<AvionicsSystem>();
-            turretPos = myAvionicsSystem.myTurretFCS.ActiveTurret(photonView, m_Number, isLocal);
-            rocketHardpointPos = myAvionicsSystem.myRocketFCS.ActiveHardpoint(photonView, m_Number, isLocal);
-            missileHardpointPos = myAvionicsSystem.myRocketFCS.ActiveHardpoint(photonView, m_Number, isLocal);
+            myAvionicsSystem = GetComponentInChildren<AvionicsSystem> ();
+            turretPos = myAvionicsSystem.myTurretFCS.ActiveTurret (photonView, m_Number, isLocal);
+            rocketHardpointPos = myAvionicsSystem.myRocketFCS.ActiveHardpoint (photonView, m_Number, isLocal);
+            missileHardpointPos = myAvionicsSystem.myRocketFCS.ActiveHardpoint (photonView, m_Number, isLocal);
             listAmmoOPD = ResourceManager.instance.listAmmoOPD;
             // 記錄子彈 也記錄音效
+            rootRigidbody.isKinematic = false;
         }
-
 
         private Vector3[] turretPos;
         private Vector3 rocketHardpointPos;
         private Vector3 missileHardpointPos;
-        private void ActiveFCS(bool isLocal)
+        private void ActiveFCS (bool isLocal)
         {
 
         }
-        public void LaunchWeapon()
+        public void LaunchWeapon ()
         {
-            listFCS[currentFCS].Shoot();
+            listFCS[currentFCS].Shoot ();
         }
-        public int SwitchWeapon()
+        public int SwitchWeapon ()
         {
             currentFCS++;
-            currentFCS = (int)Mathf.Repeat(currentFCS, countFCS);
+            currentFCS = (int) Mathf.Repeat (currentFCS, countFCS);
             return currentFCS;
         }
-        public int SwitchWeapon(int index)
+        public int SwitchWeapon (int index)
         {
             currentFCS = index;
             return currentFCS;
         }
 
-
-
-
-
         [PunRPC]
-        public void RadarLockOn(int targetNumber, int radarNumber, bool isLockOn, PhotonMessageInfo info)
+        public void RadarLockOn (int targetNumber, int radarNumber, bool isLockOn, PhotonMessageInfo info)
         {
             if (targetNumber == PhotonNetwork.LocalPlayer.ActorNumber) // Radar warning receiver RWR 是否為本地端玩家
             {
                 //Debug.LogWarning(myTransform.name + "/" + radarNumber + "/" + Time.frameCount + "/"+ isLockOn + "/");
-                SatelliteCommander.Instance.RadarLockOnWarning(isLockOn, radarNumber);
+                SatelliteCommander.Instance.RadarLockOnWarning (isLockOn, radarNumber);
             }
         }
+
         [PunRPC]
-        public void TurretFire(int index, int shooterNumber, int targetNumber, float spread, PhotonMessageInfo info)
+        public void TurretFire (int index, int shooterNumber, int targetNumber, float spread, PhotonMessageInfo info)
         {
-            listAmmoOPD[0].ReuseAmmo(rootTransform.TransformPoint(turretPos[index]), rootTransform.rotation).GetComponent<Ammo>().InputAmmoData(shooterNumber, targetNumber, rootRigidbody.velocity, spread);
-        }
-        [PunRPC]
-        public void RockeLaunch(int shooterNumber, int targetNumber, PhotonMessageInfo info)
-        {
-            listAmmoOPD[1].Reuse(rootTransform.TransformPoint(rocketHardpointPos), rootTransform.rotation).GetComponent<Ammo>().InputAmmoData(shooterNumber, targetNumber, rootRigidbody.velocity, 0);
-        }
-        [PunRPC]
-        public void MissileLaunch( int shooterNumber, int targetNumber, PhotonMessageInfo info)
-        {
-            listAmmoOPD[2].Reuse(rootTransform.TransformPoint(missileHardpointPos), rootTransform.rotation).GetComponent<Ammo>().InputAmmoData(shooterNumber, targetNumber, rootRigidbody.velocity, 0);
-        }
-        [PunRPC]
-        public void Crash(int stealerNumber, PhotonMessageInfo info)
-        {
-            GetComponentInChildren<AvionicsSystem>().Crash(stealerNumber, info);
+            listAmmoOPD[0].ReuseAmmo (rootTransform.TransformPoint (turretPos[index]), rootTransform.rotation).GetComponent<Ammo> ().InputAmmoData (shooterNumber, targetNumber, rootRigidbody.velocity, spread);
         }
 
         [PunRPC]
-        public void ShowHitDamage(int shooterNumber, int damage, PhotonMessageInfo info)
+        public void RockeLaunch (int shooterNumber, int targetNumber, PhotonMessageInfo info)
+        {
+            listAmmoOPD[1].Reuse (rootTransform.TransformPoint (rocketHardpointPos), rootTransform.rotation).GetComponent<Ammo> ().InputAmmoData (shooterNumber, targetNumber, rootRigidbody.velocity, 0);
+        }
+
+        [PunRPC]
+        public void MissileLaunch (int shooterNumber, int targetNumber, PhotonMessageInfo info)
+        {
+            listAmmoOPD[2].Reuse (rootTransform.TransformPoint (missileHardpointPos), rootTransform.rotation).GetComponent<Ammo> ().InputAmmoData (shooterNumber, targetNumber, rootRigidbody.velocity, 0);
+        }
+
+        [PunRPC]
+        public void Crash (int stealerNumber, PhotonMessageInfo info)
+        {
+            GetComponentInChildren<AvionicsSystem> ().Crash (stealerNumber, info);
+        }
+
+        [PunRPC]
+        public void ShowHitDamage (int shooterNumber, int damage, PhotonMessageInfo info)
         {
             if (PhotonNetwork.LocalPlayer.ActorNumber == shooterNumber)
-                HeadUpDisplayManager.Instance.ShowHitDamage(rootRigidbody.position, damage);
+                HeadUpDisplayManager.Instance.ShowHitDamage (rootRigidbody.position, damage);
         }
 
-
-
-        public void InitializeLocalPlayer()
+        public void InitializeLocalPlayer ()
         {
             //Controller.ChangeMode(ControlMode.Flying);
             // Load Data
-            m_Port = photonView.Owner.GetPlayerNumber();
+            m_Port = photonView.Owner.GetPlayerNumber ();
             m_Faction = m_Port % 2;
-            m_Type = (int.Parse(name.Split(new char[2] { '(', ')' })[1]));
+            m_Type = (int.Parse (name.Split (new char[2]
+            {
+                '(',
+                ')'
+            }) [1]));
             m_Number = photonView.Owner.ActorNumber;
             object indexSkin;
-            if (photonView.Owner.CustomProperties.TryGetValue(LobbyInfomation.PLAYER_SKIN_OPTION, out indexSkin))
+            if (photonView.Owner.CustomProperties.TryGetValue (LobbyInfomation.PLAYER_SKIN_OPTION, out indexSkin))
             {
-                GetComponentInChildren<Prototype>().LoadSkin((int)indexSkin);
+                GetComponentInChildren<Prototype> ().LoadSkin ((int) indexSkin);
             }
 
             name = photonView.Owner.NickName + "-" +
-                DesignData.Code[(int)m_Type] + "-" +
-                DesignData.Project[(int)m_Type];
+                DesignData.Code[(int) m_Type] + "-" +
+                DesignData.Project[(int) m_Type];
             // Add Search List
-            SatelliteCommander.Instance.AddSearchArray(rootTransform, m_Port / 2, (int)m_Faction, m_Number);
+            SatelliteCommander.Instance.AddSearchArray (rootTransform, m_Port / 2, (int) m_Faction, m_Number);
             // Kocmonaut Info ( first time only )
-            if (!SatelliteCommander.Instance.listKocmonaut.ContainsKey(m_Number))
-                SatelliteCommander.Instance.NewKocmonautJoin(ControlUnit.LocalPlayer, m_Port, (Type)m_Type, m_Number, name);
+            if (!SatelliteCommander.Instance.listKocmonaut.ContainsKey (m_Number))
+                SatelliteCommander.Instance.NewKocmonautJoin (ControlUnit.LocalPlayer, m_Port, (Type) m_Type, m_Number, name);
             // Hangar Info ( local only )
-            SatelliteCommander.Instance.SetHangar(rootTransform, m_Port);
+            SatelliteCommander.Instance.SetHangar (rootTransform, m_Port);
             // Upagrader
             //Destroy(gameObject.GetComponent<HarmonicMotion>());
             //gameObject.AddComponent<AvionicsSystem>().Initialize(module.rootTransform[(int)Type], (int)Type); // local only
             //GetComponentInChildren<AvionicsSystem>().Active(ControlUnit.LocalPlayer, rootTransform, rootRigidbody, photonView, m_Number, pilot);
-            SatelliteCommander.radarManager[m_Port] = GetComponentInChildren<OnboardRadar>();
+            SatelliteCommander.radarManager[m_Port] = GetComponentInChildren<OnboardRadar> ();
             //SatelliteCommander.radarManager[m_Port].Initialize(ControlUnit.LocalPlayer, (int)m_Faction, (int)m_Type, m_Number); // local only
-            gameObject.AddComponent<LocalPlayerController>();
-            ActiveFCS(true);
+            gameObject.AddComponent<LocalPlayerController> ();
+            ActiveFCS (true);
             // Synchronize
-            photonView.RPC("SynchronizePlayerKocmocraft", RpcTarget.Others);
+            photonView.RPC ("SynchronizePlayerKocmocraft", RpcTarget.Others);
             // Local Data - Initialize
-            FindObjectOfType<HeadUpDisplayManager>().InitializeHUD(rootTransform);
+            FindObjectOfType<HeadUpDisplayManager> ().InitializeHUD (rootTransform);
             LocalPlayerRealtimeData.Number = m_Number;
             LocalPlayerRealtimeData.Faction = SatelliteCommander.Instance.listKocmonaut[m_Number].Faction;
         }
+
         [PunRPC]
-        public void SynchronizePlayerKocmocraft(PhotonMessageInfo info)
+        public void SynchronizePlayerKocmocraft (PhotonMessageInfo info)
         {
             // Load Data
-            m_Port = photonView.Owner.GetPlayerNumber();
+            m_Port = photonView.Owner.GetPlayerNumber ();
             m_Faction = m_Port % 2;
-            m_Type = (int.Parse(name.Split(new char[2] { '(', ')' })[1]));
+            m_Type = (int.Parse (name.Split (new char[2]
+            {
+                '(',
+                ')'
+            }) [1]));
             m_Number = photonView.Owner.ActorNumber;
 
             object indexSkin;
-            if (photonView.Owner.CustomProperties.TryGetValue(LobbyInfomation.PLAYER_SKIN_OPTION, out indexSkin))
+            if (photonView.Owner.CustomProperties.TryGetValue (LobbyInfomation.PLAYER_SKIN_OPTION, out indexSkin))
             {
-                GetComponentInChildren<Prototype>().LoadSkin((int)indexSkin);
+                GetComponentInChildren<Prototype> ().LoadSkin ((int) indexSkin);
             }
 
             name = photonView.Owner.NickName + "-" +
-                DesignData.Code[(int)m_Type] + "-" +
-                DesignData.Project[(int)m_Type];
+                DesignData.Code[(int) m_Type] + "-" +
+                DesignData.Project[(int) m_Type];
             // Add Search List
-            SatelliteCommander.Instance.AddSearchArray(rootTransform, m_Port / 2, (int)m_Faction, m_Number);
+            SatelliteCommander.Instance.AddSearchArray (rootTransform, m_Port / 2, (int) m_Faction, m_Number);
             // Kocmonaut Info ( first time only )
-            if (!SatelliteCommander.Instance.listKocmonaut.ContainsKey(m_Number))
-                SatelliteCommander.Instance.NewKocmonautJoin(ControlUnit.RemotePlayer, m_Port, (Type)m_Type, m_Number, name);
+            if (!SatelliteCommander.Instance.listKocmonaut.ContainsKey (m_Number))
+                SatelliteCommander.Instance.NewKocmonautJoin (ControlUnit.RemotePlayer, m_Port, (Type) m_Type, m_Number, name);
             // Upagrader
-            Destroy(gameObject.GetComponent<HarmonicMotion>());
+            Destroy (gameObject.GetComponent<HarmonicMotion> ());
             //GetComponentInChildren<AvionicsSystem>().Active(ControlUnit.RemotePlayer, rootTransform, rootRigidbody, photonView, m_Number, pilot);
-            ActiveFCS(false);
+            ActiveFCS (false);
         }
-        public void InitializeLocalBot(int port)
+        public void InitializeLocalBot (int port)
         {
             m_Port = port;
             // Load Data
             m_Faction = m_Port % 2;
-            m_Type = (int.Parse(name.Split(new char[2] { '(', ')' })[1]));
-            m_Number = KocmocraftData.GetKocmonautNumber(m_Port);
-            GetComponentInChildren<Prototype>().RandomSkin();
-            name = KocmocraftData.GetBotName(m_Port) + "-" +
-                DesignData.Code[(int)m_Type] + "-" +
-                DesignData.Project[(int)m_Type];
+            m_Type = (int.Parse (name.Split (new char[2]
+            {
+                '(',
+                ')'
+            }) [1]));
+            m_Number = KocmocraftData.GetKocmonautNumber (m_Port);
+            GetComponentInChildren<Prototype> ().RandomSkin ();
+            name = KocmocraftData.GetBotName (m_Port) + "-" +
+                DesignData.Code[(int) m_Type] + "-" +
+                DesignData.Project[(int) m_Type];
             // Add Search List
-            SatelliteCommander.Instance.AddSearchArray(rootTransform, m_Port / 2, (int)m_Faction, m_Number);
+            SatelliteCommander.Instance.AddSearchArray (rootTransform, m_Port / 2, (int) m_Faction, m_Number);
             // Kocmonaut Info ( first time only )
-            if (!SatelliteCommander.Instance.listKocmonaut.ContainsKey(m_Number))
-                SatelliteCommander.Instance.NewKocmonautJoin(ControlUnit.LocalBot, m_Port, (Type)m_Type, m_Number, name);
+            if (!SatelliteCommander.Instance.listKocmonaut.ContainsKey (m_Number))
+                SatelliteCommander.Instance.NewKocmonautJoin (ControlUnit.LocalBot, m_Port, (Type) m_Type, m_Number, name);
             // Hangar Info ( local only )
-            SatelliteCommander.Instance.SetHangar(rootTransform, m_Port);
+            SatelliteCommander.Instance.SetHangar (rootTransform, m_Port);
             // Upagrader
-            Destroy(gameObject.GetComponent<HarmonicMotion>());
+            Destroy (gameObject.GetComponent<HarmonicMotion> ());
             //gameObject.AddComponent<AvionicsSystem>().Initialize(module.rootTransform[(int)Type], (int)Type); // local only
             //GetComponentInChildren<AvionicsSystem>().Active(ControlUnit.LocalBot, rootTransform, rootRigidbody, photonView, m_Number, pilot);
-            SatelliteCommander.radarManager[m_Port] = GetComponentInChildren<OnboardRadar>();
+            SatelliteCommander.radarManager[m_Port] = GetComponentInChildren<OnboardRadar> ();
             //SatelliteCommander.radarManager[m_Port].Initialize(ControlUnit.LocalBot, (int)m_Faction, (int)m_Type, m_Number); // local only
-            gameObject.AddComponent<LocalBotController>();
+            gameObject.AddComponent<LocalBotController> ();
             //if (m_Type == Type.VladimirPutin || m_Type == Type.Cuckoo || m_Type == Type.PapoyUnicorn || m_Type == Type.PumpkinGhost)
             //    GetComponent<LocalBotController>().mission = Mission.Snipper;
             //else if (m_Type == Type.MinionArmor || m_Type == Type.PaperAeroplane || m_Type == Type.BulletBill || m_Type == Type.TimeMachine || m_Type == Type.nWidia)
             //    GetComponent<LocalBotController>().mission = Mission.Battle;
-            ActiveFCS(true);
-            photonView.RPC("SynchronizeBotKocmocraft", RpcTarget.Others, m_Port);
+            ActiveFCS (true);
+            photonView.RPC ("SynchronizeBotKocmocraft", RpcTarget.Others, m_Port);
         }
+
         [PunRPC]
-        public void SynchronizeBotKocmocraft(int port, PhotonMessageInfo info)
+        public void SynchronizeBotKocmocraft (int port, PhotonMessageInfo info)
         {
             // Load Data
             m_Port = port;
             m_Faction = m_Port % 2;
-            m_Type = (int.Parse(name.Split(new char[2] { '(', ')' })[1]));
-            m_Number = KocmocraftData.GetKocmonautNumber(m_Port);
-            name = KocmocraftData.GetBotName(m_Port) + "-" +
-                DesignData.Code[(int)m_Type] + "-" +
-                DesignData.Project[(int)m_Type];
+            m_Type = (int.Parse (name.Split (new char[2]
+            {
+                '(',
+                ')'
+            }) [1]));
+            m_Number = KocmocraftData.GetKocmonautNumber (m_Port);
+            name = KocmocraftData.GetBotName (m_Port) + "-" +
+                DesignData.Code[(int) m_Type] + "-" +
+                DesignData.Project[(int) m_Type];
             // Add Search List
-            SatelliteCommander.Instance.AddSearchArray(rootTransform, m_Port / 2, (int)m_Faction, m_Number);
+            SatelliteCommander.Instance.AddSearchArray (rootTransform, m_Port / 2, (int) m_Faction, m_Number);
             // Kocmonaut Info ( first time only )
-            if (!SatelliteCommander.Instance.listKocmonaut.ContainsKey(m_Number))
-                SatelliteCommander.Instance.NewKocmonautJoin(ControlUnit.RemoteBot, m_Port, (Type)m_Type, m_Number, name);
+            if (!SatelliteCommander.Instance.listKocmonaut.ContainsKey (m_Number))
+                SatelliteCommander.Instance.NewKocmonautJoin (ControlUnit.RemoteBot, m_Port, (Type) m_Type, m_Number, name);
             // Upagrader
-            Destroy(gameObject.GetComponent<HarmonicMotion>());
+            Destroy (gameObject.GetComponent<HarmonicMotion> ());
             //GetComponentInChildren<AvionicsSystem>().Active(ControlUnit.RemoteBot, rootTransform,rootRigidbody, photonView,m_Number, pilot );
-            ActiveFCS(false);
+            ActiveFCS (false);
         }
-
-
-
-
-
-
 
     }
 }

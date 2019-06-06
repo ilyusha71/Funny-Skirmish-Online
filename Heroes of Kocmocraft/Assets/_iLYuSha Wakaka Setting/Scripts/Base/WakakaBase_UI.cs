@@ -133,7 +133,7 @@ namespace Kocmoca
             btnChangePilot.onClick.AddListener(() =>
             {
                 audioSource.PlayOneShot(sfxChangePilot);
-                pilot[hangarIndex].ChangeSkin();
+                pilot[hangarIndex].ChangePilot();
             });
             btnTalk.onClick.AddListener(() => 
             {
