@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1810261163081695264}
   - component: {fileID: 2619728791406706203}
   m_Layer: 10
-  m_Name: Power Unit (PU)
+  m_Name: Power Controller (PC)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,33 +41,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 430569315}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
+  m_Script: {fileID: 11500000, guid: f2e815f49ee19b74fb70a71340dffa77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  engineType: 103
-  engineSound: {fileID: 2619728791406706203}
+  engineType: 0
+  engineSound: {fileID: 0}
   airflow: []
   countAirflow: 0
   enginePower: 0.5
   thrusterStartLife: 0
   currentLifeTime: 0
-  propeller:
-  - Hopter: {fileID: 561915071634915754}
-    Clip: {fileID: 7400000, guid: 40a702d4ba3682f4abb0ac3863222d1d, type: 2}
-    Omega: 1
-    Reverse: 1
-  - Hopter: {fileID: 561915071634915752}
-    Clip: {fileID: 7400000, guid: 40a702d4ba3682f4abb0ac3863222d1d, type: 2}
-    Omega: 1
-    Reverse: 0
-  - Hopter: {fileID: 561915071634915758}
-    Clip: {fileID: 7400000, guid: 40a702d4ba3682f4abb0ac3863222d1d, type: 2}
-    Omega: 1.37
-    Reverse: 1
-  - Hopter: {fileID: 561915071634915756}
-    Clip: {fileID: 7400000, guid: 40a702d4ba3682f4abb0ac3863222d1d, type: 2}
-    Omega: 1.37
-    Reverse: 0
+  propeller: []
 --- !u!82 &2619728791406706203
 AudioSource:
   m_ObjectHideFlags: 0
@@ -77,11 +61,11 @@ AudioSource:
   m_GameObject: {fileID: 430569315}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243706063939286974, guid: be36d0f6984b7eb46890f3f2eecc9e68,
+  OutputAudioMixerGroup: {fileID: 243026207885717156, guid: ecc5f9c3be930c54e9d6e194aca8aadf,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 18e8ee00d483da745b66d187cd0c2c55, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1939ac767fafecf4ba185dc63dbc0615, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -90,7 +74,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 0
-  MaxDistance: 73
+  MaxDistance: 200
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -102,29 +86,29 @@ AudioSource:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -0.012996988
-      outSlope: -0.012996988
+      inSlope: -0.40615207
+      outSlope: -0.40615207
       tangentMode: 0
-      weightedMode: 0
+      weightedMode: 2
       inWeight: 0
-      outWeight: 1
+      outWeight: 0.6882938
     - serializedVersion: 3
-      time: 0.5
-      value: 0.5
-      inSlope: -1.5130057
-      outSlope: -1.5130057
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.9116022
-      outWeight: 0.35634467
+      time: 0.19200897
+      value: 0.36531067
+      inSlope: -0.2206344
+      outSlope: -0.22349481
+      tangentMode: 1
+      weightedMode: 3
+      inWeight: 0.54113746
+      outWeight: 0.9659241
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -0.16709724
+      inSlope: -1.4400226
       outSlope: -0.16709724
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 1
+      tangentMode: 1
+      weightedMode: 3
+      inWeight: 0.06951491
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -228,28 +212,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kocmocraftType: 14
   shield:
-    maximum: 15471
     level: 6
+    maximum: 15471
     emCrystal: 3471
-    emBooster: 12000
     emBoosterLevel: 6
+    emBooster: 12000
   hull:
-    maximum: 7808
     level: 2
+    maximum: 7708
     airframe: 4208
-    armor: 3600
     armorLevel: 1
+    armor: 3500
   speed:
-    maximum: 114
     level: 4
-    engine: 28
-    afterburner: 86
+    maximum: 115
+    powerUnit: 29
     afterburnerLevel: 3
+    afterburner: 86
   kocmomech: {fileID: 11400000, guid: a9c33a1cce93512419a9a8fb34f150ed, type: 2}
   myPrototype: {fileID: 5139540870060169282}
   myWreckage: {fileID: 8204294457946708579}
   myDubis: {fileID: 1936469738224801316}
-  myPowerUnit: {fileID: 1810261163081695264}
+  myPowerController: {fileID: 1810261163081695264}
   myTurretFCS: {fileID: 4597442837427066096}
   myRocketFCS: {fileID: 1430316839470259032}
   myMissileFCS: {fileID: 600367974808476688}
@@ -264,8 +248,8 @@ MonoBehaviour:
   kocmoNumber: 0
   localTargetPos: {x: 0, y: 0, z: 0}
   realtimeShield: 15471
-  realtimeHull: 7808
-  realtimeSpeed: 28
+  realtimeHull: 7708
+  realtimeSpeed: 29
   afterburnerPower: 0
 --- !u!114 &2436020604803870285
 MonoBehaviour:
@@ -926,130 +910,100 @@ PrefabInstance:
     - target: {fileID: 3002018173699066957, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0016845909
+      value: -0.0019586382
       objectReference: {fileID: 0}
     - target: {fileID: 3002018173699066957, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9520025
+      value: 0.9519975
       objectReference: {fileID: 0}
     - target: {fileID: 3002018173699066957, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.30604073
+      value: -0.30603886
       objectReference: {fileID: 0}
     - target: {fileID: 3002018173699066957, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0052394564
+      value: -0.006091743
       objectReference: {fileID: 0}
     - target: {fileID: 3002018173699066957, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03314209
+      value: 0.038513184
       objectReference: {fileID: 0}
     - target: {fileID: 3002018173699066957, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.469818
+      value: 4.469757
       objectReference: {fileID: 0}
     - target: {fileID: 2333235854404729362, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0017723292
+      value: -0.0020618883
       objectReference: {fileID: 0}
     - target: {fileID: 2333235854404729362, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.94629395
+      value: 0.94628894
       objectReference: {fileID: 0}
     - target: {fileID: 2333235854404729362, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.32326126
+      value: -0.32325926
       objectReference: {fileID: 0}
     - target: {fileID: 2333235854404729362, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.005188614
+      value: -0.006035804
       objectReference: {fileID: 0}
     - target: {fileID: 2333235854404729362, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03302002
+      value: 0.038391113
       objectReference: {fileID: 0}
     - target: {fileID: 2333235854404729362, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.469818
+      value: 4.469757
       objectReference: {fileID: 0}
     - target: {fileID: 1345527041466539840, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.001976356
+      value: -0.0023227779
       objectReference: {fileID: 0}
     - target: {fileID: 1345527041466539840, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9402557
+      value: 0.9402497
       objectReference: {fileID: 0}
     - target: {fileID: 1345527041466539840, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.34041977
+      value: -0.34041753
       objectReference: {fileID: 0}
     - target: {fileID: 1345527041466539840, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.005461216
+      value: -0.00641784
       objectReference: {fileID: 0}
     - target: {fileID: 1345527041466539840, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.034973145
+      value: 0.04107666
       objectReference: {fileID: 0}
     - target: {fileID: 1345527041466539840, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.4697876
+      value: 4.4697266
       objectReference: {fileID: 0}
     - target: {fileID: 8400637698540158171, guid: ef4c2ee132a9f04429f1a396f845f249,
         type: 3}
       propertyPath: m_Heading.m_Bias
-      value: -155
+      value: 160
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef4c2ee132a9f04429f1a396f845f249, type: 3}
---- !u!4 &8204294457946708579 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5506300234452335841, guid: ef4c2ee132a9f04429f1a396f845f249,
-    type: 3}
-  m_PrefabInstance: {fileID: 4445559384477591170}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &561915071634915754 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4214699043802851112, guid: ef4c2ee132a9f04429f1a396f845f249,
-    type: 3}
-  m_PrefabInstance: {fileID: 4445559384477591170}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &561915071634915756 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4214699043802851118, guid: ef4c2ee132a9f04429f1a396f845f249,
-    type: 3}
-  m_PrefabInstance: {fileID: 4445559384477591170}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &561915071634915758 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4214699043802851116, guid: ef4c2ee132a9f04429f1a396f845f249,
-    type: 3}
-  m_PrefabInstance: {fileID: 4445559384477591170}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &561915071634915752 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4214699043802851114, guid: ef4c2ee132a9f04429f1a396f845f249,
-    type: 3}
-  m_PrefabInstance: {fileID: 4445559384477591170}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5139540870060169282 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8854813008685776576, guid: ef4c2ee132a9f04429f1a396f845f249,
@@ -1062,6 +1016,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2debeac66cfd7f4d9739633285e6af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &8204294457946708579 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5506300234452335841, guid: ef4c2ee132a9f04429f1a396f845f249,
+    type: 3}
+  m_PrefabInstance: {fileID: 4445559384477591170}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7319635373158234856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1069,6 +1029,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4277830745315218}
     m_Modifications:
+    - target: {fileID: 6749251335667252641, guid: d2ac8fd59cddc9143a1b483a931b5cd1,
+        type: 3}
+      propertyPath: m_Name
+      value: Pilot - SpongeBob
+      objectReference: {fileID: 0}
     - target: {fileID: 5024176230005769288, guid: d2ac8fd59cddc9143a1b483a931b5cd1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1123,11 +1088,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6749251335667252641, guid: d2ac8fd59cddc9143a1b483a931b5cd1,
-        type: 3}
-      propertyPath: m_Name
-      value: Pilot - SpongeBob
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2ac8fd59cddc9143a1b483a931b5cd1, type: 3}

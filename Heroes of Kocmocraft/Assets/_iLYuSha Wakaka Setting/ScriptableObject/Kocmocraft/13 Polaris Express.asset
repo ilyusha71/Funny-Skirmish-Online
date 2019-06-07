@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 13 Polaris Express
   m_EditorClassIdentifier: 
+  type: 13
   size:
     wingspan: 9
     length: 10.41
@@ -24,27 +25,40 @@ MonoBehaviour:
     near: 7.9049997
     far: 24.505
   talk: {fileID: 8300000, guid: f76fb0c7eab68b1468946a26869d7dd7, type: 3}
+  radio: {fileID: 8300000, guid: f76fb0c7eab68b1468946a26869d7dd7, type: 3}
   chief: {fileID: 11400000, guid: 226e9b1f8399bb1448e73f087c819b67, type: 2}
   reserve: {fileID: 11400000, guid: e86cd75373df2f749b269c4048cdc509, type: 2}
   shield:
+    level: 4
     maximum: 10768
-    level: 4
     emCrystal: 4168
-    emBooster: 6600
     emBoosterLevel: 3
+    emBooster: 6600
   hull:
-    maximum: 13537
     level: 4
+    maximum: 13237
     airframe: 5537
-    armor: 8000
     armorLevel: 3
+    armor: 7700
   speed:
-    maximum: 133
-    level: 6
-    engine: 35
-    afterburner: 98
+    level: 5
+    maximum: 129
+    powerUnit: 31
     afterburnerLevel: 4
-  engine: {fileID: 0}
+    afterburner: 98
+  powerUnit:
+    totalPower: 31
+    mainEngine:
+    - {fileID: 11400000, guid: 1fe45559059faf64a8a57dd732534b5c, type: 2}
+    mainEngineCount: 1
+    mainPower: 13
+    auxiliaryPowerUnit:
+    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
+    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
+    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
+    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
+    auxiliaryPowerUnitCount: 4
+    auxiliaryPower: 18
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 6132b26f1d8c5b14c91f21e5b100d8e8, type: 2}
   kocmomech: {fileID: 11400000, guid: a9c33a1cce93512419a9a8fb34f150ed, type: 2}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6219723523697072326}
   - component: {fileID: 7115639933277650488}
   m_Layer: 10
-  m_Name: Power Unit (PU)
+  m_Name: Power Controller (PC)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,16 +44,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 189575453}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
+  m_Script: {fileID: 11500000, guid: f2e815f49ee19b74fb70a71340dffa77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  engineType: 107
-  engineSound: {fileID: 7115639933277650488}
-  airflow:
-  - {fileID: 198786151791423010}
-  - {fileID: 198983618570831362}
-  - {fileID: 198044994907150062}
-  countAirflow: 3
+  engineType: 0
+  engineSound: {fileID: 0}
+  airflow: []
+  countAirflow: 0
   enginePower: 0.5
   thrusterStartLife: 0
   currentLifeTime: 0
@@ -67,11 +64,11 @@ AudioSource:
   m_GameObject: {fileID: 189575453}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243706063939286974, guid: be36d0f6984b7eb46890f3f2eecc9e68,
+  OutputAudioMixerGroup: {fileID: 243026207885717156, guid: ecc5f9c3be930c54e9d6e194aca8aadf,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: b708ae86047881e45bbaf645ff6df31e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1939ac767fafecf4ba185dc63dbc0615, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.097
+  m_Volume: 1
   m_Pitch: 1.3
   Loop: 1
   Mute: 0
@@ -80,7 +77,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 0
-  MaxDistance: 73
+  MaxDistance: 200
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -92,29 +89,29 @@ AudioSource:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -0.012996988
-      outSlope: -0.012996988
+      inSlope: -0.40615207
+      outSlope: -0.40615207
       tangentMode: 0
-      weightedMode: 0
+      weightedMode: 2
       inWeight: 0
-      outWeight: 1
+      outWeight: 0.6882938
     - serializedVersion: 3
-      time: 0.5
-      value: 0.5
-      inSlope: -1.5130057
-      outSlope: -1.5130057
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.9116022
-      outWeight: 0.35634467
+      time: 0.19200897
+      value: 0.36531067
+      inSlope: -0.2206344
+      outSlope: -0.22349481
+      tangentMode: 1
+      weightedMode: 3
+      inWeight: 0.54113746
+      outWeight: 0.9659241
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -0.16709724
+      inSlope: -1.4400226
       outSlope: -0.16709724
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 1
+      tangentMode: 1
+      weightedMode: 3
+      inWeight: 0.06951491
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -4880,28 +4877,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kocmocraftType: 13
   shield:
+    level: 4
     maximum: 10768
-    level: 4
     emCrystal: 4168
-    emBooster: 6600
     emBoosterLevel: 3
+    emBooster: 6600
   hull:
-    maximum: 13537
     level: 4
+    maximum: 13237
     airframe: 5537
-    armor: 8000
     armorLevel: 3
+    armor: 7700
   speed:
-    maximum: 133
-    level: 6
-    engine: 35
-    afterburner: 98
+    level: 5
+    maximum: 129
+    powerUnit: 31
     afterburnerLevel: 4
+    afterburner: 98
   kocmomech: {fileID: 11400000, guid: a9c33a1cce93512419a9a8fb34f150ed, type: 2}
   myPrototype: {fileID: 3248036604015611836}
   myWreckage: {fileID: 48469938937247369}
   myDubis: {fileID: 5757124689325997663}
-  myPowerUnit: {fileID: 6219723523697072326}
+  myPowerController: {fileID: 6219723523697072326}
   myTurretFCS: {fileID: 3543721477446367988}
   myRocketFCS: {fileID: 2729543230111655989}
   myMissileFCS: {fileID: 8794841718309983005}
@@ -4916,8 +4913,8 @@ MonoBehaviour:
   kocmoNumber: 0
   localTargetPos: {x: 0, y: 0, z: 0}
   realtimeShield: 10768
-  realtimeHull: 13537
-  realtimeSpeed: 35
+  realtimeHull: 13237
+  realtimeSpeed: 31
   afterburnerPower: 0
 --- !u!114 &1647681974663654035
 MonoBehaviour:
@@ -14896,6 +14893,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4792742402706074}
     m_Modifications:
+    - target: {fileID: 5860229090473335844, guid: 710a47098c643bc458727105088e353f,
+        type: 3}
+      propertyPath: m_Name
+      value: Pilot - Hua Ji
+      objectReference: {fileID: 0}
     - target: {fileID: 8838311290669947806, guid: 710a47098c643bc458727105088e353f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14951,11 +14953,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5860229090473335844, guid: 710a47098c643bc458727105088e353f,
-        type: 3}
-      propertyPath: m_Name
-      value: Pilot - Hua Ji
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 710a47098c643bc458727105088e353f, type: 3}
 --- !u!114 &5757124689325997663 stripped
@@ -14983,6 +14980,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4792742402706074}
     m_Modifications:
+    - target: {fileID: 1685738153439644046, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype (13) - Polaris Express
+      objectReference: {fileID: 0}
     - target: {fileID: 8955136816846172835, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15038,105 +15040,100 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1685738153439644046, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype (13) - Polaris Express
-      objectReference: {fileID: 0}
     - target: {fileID: 4699940536524915828, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0018973795
+      value: -0.0022158918
       objectReference: {fileID: 0}
     - target: {fileID: 4699940536524915828, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9402571
+      value: 0.9402517
       objectReference: {fileID: 0}
     - target: {fileID: 4699940536524915828, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.34041968
+      value: -0.34041783
       objectReference: {fileID: 0}
     - target: {fileID: 4699940536524915828, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.005241483
+      value: -0.0061215153
       objectReference: {fileID: 0}
     - target: {fileID: 4699940536524915828, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.033569336
+      value: 0.03918457
       objectReference: {fileID: 0}
     - target: {fileID: 4699940536524915828, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.0160866
+      value: 3.0160255
       objectReference: {fileID: 0}
     - target: {fileID: 4428016676824310270, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0018941013
+      value: -0.0021767914
       objectReference: {fileID: 0}
     - target: {fileID: 4428016676824310270, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9462919
+      value: 0.9462867
       objectReference: {fileID: 0}
     - target: {fileID: 4428016676824310270, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.32326034
+      value: -0.3232588
       objectReference: {fileID: 0}
     - target: {fileID: 4428016676824310270, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.005544841
+      value: -0.00637272
       objectReference: {fileID: 0}
     - target: {fileID: 4428016676824310270, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03527832
+      value: 0.040527344
       objectReference: {fileID: 0}
     - target: {fileID: 4428016676824310270, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.0160866
+      value: 3.0160255
       objectReference: {fileID: 0}
     - target: {fileID: 4254546686355513023, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0016315877
+      value: -0.0019243509
       objectReference: {fileID: 0}
     - target: {fileID: 4254546686355513023, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9520036
+      value: 0.9519982
       objectReference: {fileID: 0}
     - target: {fileID: 4254546686355513023, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.30604064
+      value: -0.3060391
       objectReference: {fileID: 0}
     - target: {fileID: 4254546686355513023, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.00507465
+      value: -0.0059850803
       objectReference: {fileID: 0}
     - target: {fileID: 4254546686355513023, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.032104492
+      value: 0.037841797
       objectReference: {fileID: 0}
     - target: {fileID: 4254546686355513023, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.0160866
+      value: 3.0160255
       objectReference: {fileID: 0}
     - target: {fileID: 983709023147103737, guid: 51f3b3ce441b79a41ba25beb0ad808b8,
         type: 3}
       propertyPath: m_Heading.m_Bias
-      value: 146
+      value: -122
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51f3b3ce441b79a41ba25beb0ad808b8, type: 3}

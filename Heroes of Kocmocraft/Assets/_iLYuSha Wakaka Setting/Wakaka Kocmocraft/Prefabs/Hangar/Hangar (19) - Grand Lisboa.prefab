@@ -4867,7 +4867,7 @@ GameObject:
   - component: {fileID: 7344339367128106465}
   - component: {fileID: 2341244009222353798}
   m_Layer: 0
-  m_Name: Power Unit (PU)
+  m_Name: Power Controller (PC)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4899,11 +4899,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3874015486970303239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
+  m_Script: {fileID: 11500000, guid: f2e815f49ee19b74fb70a71340dffa77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   engineType: 0
-  engineSound: {fileID: 2341244009222353798}
+  engineSound: {fileID: 0}
   airflow: []
   countAirflow: 0
   enginePower: 0.5
@@ -4919,11 +4919,11 @@ AudioSource:
   m_GameObject: {fileID: 3874015486970303239}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243706063939286974, guid: be36d0f6984b7eb46890f3f2eecc9e68,
+  OutputAudioMixerGroup: {fileID: 243026207885717156, guid: ecc5f9c3be930c54e9d6e194aca8aadf,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: a5682e3dc49874845ad29ca0990eeebe, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1939ac767fafecf4ba185dc63dbc0615, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4932,7 +4932,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 0
-  MaxDistance: 73
+  MaxDistance: 200
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -4944,29 +4944,29 @@ AudioSource:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -0.012996988
-      outSlope: -0.012996988
+      inSlope: -0.40615207
+      outSlope: -0.40615207
       tangentMode: 0
-      weightedMode: 0
+      weightedMode: 2
       inWeight: 0
-      outWeight: 1
+      outWeight: 0.6882938
     - serializedVersion: 3
-      time: 0.5
-      value: 0.5
-      inSlope: -1.5130057
-      outSlope: -1.5130057
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.9116022
-      outWeight: 0.35634467
+      time: 0.19200897
+      value: 0.36531067
+      inSlope: -0.2206344
+      outSlope: -0.22349481
+      tangentMode: 1
+      weightedMode: 3
+      inWeight: 0.54113746
+      outWeight: 0.9659241
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -0.16709724
+      inSlope: -1.4400226
       outSlope: -0.16709724
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 1
+      tangentMode: 1
+      weightedMode: 3
+      inWeight: 0.06951491
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -9732,28 +9732,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kocmocraftType: 19
   shield:
+    level: 4
     maximum: 10037
-    level: 4
     emCrystal: 3437
-    emBooster: 6600
     emBoosterLevel: 3
+    emBooster: 6600
   hull:
-    maximum: 14224
     level: 5
+    maximum: 13824
     airframe: 4024
-    armor: 10200
     armorLevel: 4
+    armor: 9800
   speed:
-    maximum: 109
     level: 4
-    engine: 23
-    afterburner: 86
+    maximum: 111
+    powerUnit: 25
     afterburnerLevel: 3
+    afterburner: 86
   kocmomech: {fileID: 11400000, guid: a9c33a1cce93512419a9a8fb34f150ed, type: 2}
   myPrototype: {fileID: 1243241079355538113}
   myWreckage: {fileID: 7650138812551424764}
   myDubis: {fileID: 323628417039408247}
-  myPowerUnit: {fileID: 7344339367128106465}
+  myPowerController: {fileID: 7344339367128106465}
   myTurretFCS: {fileID: 6048737126002092063}
   myRocketFCS: {fileID: 2387727924992427441}
   myMissileFCS: {fileID: 9056541897286848997}
@@ -9768,8 +9768,8 @@ MonoBehaviour:
   kocmoNumber: 0
   localTargetPos: {x: 0, y: 0, z: 0}
   realtimeShield: 10037
-  realtimeHull: 14224
-  realtimeSpeed: 23
+  realtimeHull: 13824
+  realtimeSpeed: 25
   afterburnerPower: 0
 --- !u!114 &1622409376994048699
 MonoBehaviour:
@@ -14893,6 +14893,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6880489889023573415}
     m_Modifications:
+    - target: {fileID: 5993399817167931893, guid: 71ea99ef8601b8742b3a4f907dbff14e,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype (19) - Grand Lisboa
+      objectReference: {fileID: 0}
     - target: {fileID: 7083841227839621808, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14948,100 +14953,90 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1920524507018268266, guid: 71ea99ef8601b8742b3a4f907dbff14e,
-        type: 3}
-      propertyPath: m_Heading.m_Bias
-      value: -86
-      objectReference: {fileID: 0}
-    - target: {fileID: 5993399817167931893, guid: 71ea99ef8601b8742b3a4f907dbff14e,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype (19) - Grand Lisboa
-      objectReference: {fileID: 0}
     - target: {fileID: 4411412569810748574, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.12742257
+      value: 0.12734951
       objectReference: {fileID: 0}
     - target: {fileID: 4411412569810748574, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.8719178
+      value: -0.8719984
       objectReference: {fileID: 0}
     - target: {fileID: 4411412569810748574, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.31567803
+      value: 0.31570774
       objectReference: {fileID: 0}
     - target: {fileID: 4411412569810748574, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.35195225
+      value: 0.35175204
       objectReference: {fileID: 0}
     - target: {fileID: 4411412569810748574, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.0825653
+      value: 2.0815735
       objectReference: {fileID: 0}
     - target: {fileID: 4411412569810748574, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.1583605
+      value: 2.1593065
       objectReference: {fileID: 0}
     - target: {fileID: 6288508970976808597, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.1145193
+      value: 0.114456795
       objectReference: {fileID: 0}
     - target: {fileID: 6288508970976808597, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.88285416
+      value: -0.8829324
       objectReference: {fileID: 0}
     - target: {fileID: 6288508970976808597, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.28381142
+      value: 0.28383642
       objectReference: {fileID: 0}
     - target: {fileID: 6288508970976808597, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.3562372
+      value: 0.35604343
       objectReference: {fileID: 0}
     - target: {fileID: 6288508970976808597, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.082016
+      value: 2.08107
       objectReference: {fileID: 0}
     - target: {fileID: 6288508970976808597, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.1588793
+      value: 2.1597948
       objectReference: {fileID: 0}
     - target: {fileID: 8515772757361809012, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.121012434
+      value: 0.1209676
       objectReference: {fileID: 0}
     - target: {fileID: 8515772757361809012, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.8775016
+      value: -0.8775543
       objectReference: {fileID: 0}
     - target: {fileID: 8515772757361809012, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.29976088
+      value: 0.2997789
       objectReference: {fileID: 0}
     - target: {fileID: 8515772757361809012, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.35424626
+      value: 0.35411584
       objectReference: {fileID: 0}
     - target: {fileID: 8515772757361809012, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.0827332
+      value: 2.0820923
       objectReference: {fileID: 0}
     - target: {fileID: 8515772757361809012, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
@@ -15051,7 +15046,12 @@ PrefabInstance:
     - target: {fileID: 8515772757361809012, guid: 71ea99ef8601b8742b3a4f907dbff14e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.1581926
+      value: 2.1588182
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920524507018268266, guid: 71ea99ef8601b8742b3a4f907dbff14e,
+        type: 3}
+      propertyPath: m_Heading.m_Bias
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71ea99ef8601b8742b3a4f907dbff14e, type: 3}
@@ -15080,6 +15080,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6880489889023573415}
     m_Modifications:
+    - target: {fileID: 6562244118934979955, guid: b0a7d492971b53843a40197d686450e1,
+        type: 3}
+      propertyPath: m_Name
+      value: Pilot - Angry Man
+      objectReference: {fileID: 0}
     - target: {fileID: 8632262064536444325, guid: b0a7d492971b53843a40197d686450e1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15134,11 +15139,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6562244118934979955, guid: b0a7d492971b53843a40197d686450e1,
-        type: 3}
-      propertyPath: m_Name
-      value: Pilot - Angry Man
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0a7d492971b53843a40197d686450e1, type: 3}

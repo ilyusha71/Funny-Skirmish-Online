@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Kocmoca
 {
     [RequireComponent(typeof(AudioSource))]
-    public class PowerUnit : MonoBehaviour, IPunObservable
+    public class PowerController : MonoBehaviour, IPunObservable
     {
         [Header("Presetting")]
         public EngineType engineType; // 未来用ScriptableObject取代
@@ -34,10 +34,10 @@ namespace Kocmoca
             }
             public void Power(float power)
             {
-                Animation[Clip.name].speed = Reverse ? -Omega* power : Omega* power;
+                Animation[Clip.name].speed = Reverse ? -Omega * power : Omega * power;
             }
         }
-        [Range(0,1)]public float enginePower = 0.5f;
+        [Range(0, 1)] public float enginePower = 0.5f;
         private float MaxVolume;
         private float MinPitch;
         private float MaxPitch;
@@ -50,7 +50,7 @@ namespace Kocmoca
         private int countPropeller;
 
 #if UNITY_EDITOR
-     public   void Preset(Engine engine)
+        public void Preset(PowerUnit engine)
         {
             engineSound = GetComponent<AudioSource>();
             airflow = GetComponentsInChildren<ParticleSystem>();
@@ -141,7 +141,7 @@ namespace Kocmoca
 
             if (countAirflow > 0)
             {
-                 currentLifeTime = thrusterStartLife * enginePower;
+                currentLifeTime = thrusterStartLife * enginePower;
 
                 //If the thrusters are powered on at all...
                 if (currentLifeTime > 0f)

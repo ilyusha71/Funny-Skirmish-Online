@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 04 Cuckoo
   m_EditorClassIdentifier: 
+  type: 4
   size:
     wingspan: 10.38
     length: 9.3
@@ -24,27 +25,36 @@ MonoBehaviour:
     near: 7.8900003
     far: 24.49
   talk: {fileID: 8300000, guid: dabc9c24b50b1be46906ce603d5a391c, type: 3}
+  radio: {fileID: 8300000, guid: dabc9c24b50b1be46906ce603d5a391c, type: 3}
   chief: {fileID: 11400000, guid: f7d45e9278e93f24196492b8fee59e37, type: 2}
   reserve: {fileID: 11400000, guid: b1ebada2b188cf241aab0d6511f4529a, type: 2}
   shield:
-    maximum: 14039
     level: 6
+    maximum: 14039
     emCrystal: 3839
-    emBooster: 10200
     emBoosterLevel: 5
+    emBooster: 10200
   hull:
-    maximum: 14881
     level: 5
+    maximum: 14481
     airframe: 4681
-    armor: 10200
     armorLevel: 4
+    armor: 9800
   speed:
-    maximum: 62
     level: 1
-    engine: 0
-    afterburner: 62
+    maximum: 66
+    powerUnit: 4
     afterburnerLevel: 1
-  engine: {fileID: 0}
+    afterburner: 62
+  powerUnit:
+    totalPower: 4
+    mainEngine:
+    - {fileID: 11400000, guid: d93255cafd43f364ab691f28d3b66817, type: 2}
+    mainEngineCount: 1
+    mainPower: 4
+    auxiliaryPowerUnit: []
+    auxiliaryPowerUnitCount: 0
+    auxiliaryPower: 0
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: b14464baee62d574c97e78a6e1621b0d, type: 2}
   kocmomech: {fileID: 11400000, guid: 081d03b305722404c83a30321512c9b0, type: 2}

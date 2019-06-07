@@ -114,7 +114,7 @@ namespace Kocmoca
             }
             if (isCockpitView)
             {
-                hangar[hangarIndex].GetComponentInChildren<PilotManager> ().HidePilot();
+                // hangar[hangarIndex].GetComponentInChildren<PilotManager> ().HidePilot();
                 cmCockpit[hangarIndex].enabled = true;
             }
             else

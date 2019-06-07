@@ -9,10 +9,11 @@ public class KocmocraftDatabaseEditor : Editor
     public override void OnInspectorGUI()
     {
         var scripts = targets.OfType<KocmocraftModule>();
-        if (GUILayout.Button("Save Database"))
+        if (GUILayout.Button("Calculate and Save Database"))
         {
             foreach (var script in scripts)
             {
+                script.Calculate();
                 Debug.Log("<color=lime>" + script.name + "</color>  data has been save.");
                 EditorUtility.SetDirty(script);
                 AssetDatabase.SaveAssets();

@@ -4716,28 +4716,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kocmocraftType: 5
   shield:
-    maximum: 4735
     level: 1
+    maximum: 4735
     emCrystal: 1735
-    emBooster: 3000
     emBoosterLevel: 1
+    emBooster: 3000
   hull:
-    maximum: 7298
     level: 2
+    maximum: 7098
     airframe: 1498
-    armor: 5800
     armorLevel: 2
+    armor: 5600
   speed:
-    maximum: 149
     level: 7
-    engine: 15
-    afterburner: 134
+    maximum: 150
+    powerUnit: 16
     afterburnerLevel: 7
+    afterburner: 134
   kocmomech: {fileID: 11400000, guid: 5b13533be6585bb43aab82c8f78f556d, type: 2}
   myPrototype: {fileID: 6215904343430984676}
   myWreckage: {fileID: 2727021730230115278}
   myDubis: {fileID: 6267145605935599174}
-  myPowerUnit: {fileID: 66619648779973615}
+  myPowerController: {fileID: 66619648779973615}
   myTurretFCS: {fileID: 952405222450545683}
   myRocketFCS: {fileID: 685444028706821437}
   myMissileFCS: {fileID: 6125403111139921858}
@@ -4752,8 +4752,8 @@ MonoBehaviour:
   kocmoNumber: 0
   localTargetPos: {x: 0, y: 0, z: 0}
   realtimeShield: 4735
-  realtimeHull: 7298
-  realtimeSpeed: 15
+  realtimeHull: 7098
+  realtimeSpeed: 16
   afterburnerPower: 0
 --- !u!114 &8481876722503600211
 MonoBehaviour:
@@ -5094,7 +5094,7 @@ GameObject:
   - component: {fileID: 66619648779973615}
   - component: {fileID: 1875748426870465452}
   m_Layer: 10
-  m_Name: Power Unit (PU)
+  m_Name: Power Controller (PC)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5124,14 +5124,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5057239215749350857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
+  m_Script: {fileID: 11500000, guid: f2e815f49ee19b74fb70a71340dffa77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  engineType: 101
-  engineSound: {fileID: 1875748426870465452}
-  airflow:
-  - {fileID: 198821393486232796}
-  countAirflow: 1
+  engineType: 0
+  engineSound: {fileID: 0}
+  airflow: []
+  countAirflow: 0
   enginePower: 0.5
   thrusterStartLife: 0
   currentLifeTime: 0
@@ -5145,11 +5144,11 @@ AudioSource:
   m_GameObject: {fileID: 5057239215749350857}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243706063939286974, guid: be36d0f6984b7eb46890f3f2eecc9e68,
+  OutputAudioMixerGroup: {fileID: 243026207885717156, guid: ecc5f9c3be930c54e9d6e194aca8aadf,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: a5682e3dc49874845ad29ca0990eeebe, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1939ac767fafecf4ba185dc63dbc0615, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5158,7 +5157,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 0
-  MaxDistance: 73
+  MaxDistance: 200
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -5170,29 +5169,29 @@ AudioSource:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -0.012996988
-      outSlope: -0.012996988
+      inSlope: -0.40615207
+      outSlope: -0.40615207
       tangentMode: 0
-      weightedMode: 0
+      weightedMode: 2
       inWeight: 0
-      outWeight: 1
+      outWeight: 0.6882938
     - serializedVersion: 3
-      time: 0.5
-      value: 0.5
-      inSlope: -1.5130057
-      outSlope: -1.5130057
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.9116022
-      outWeight: 0.35634467
+      time: 0.19200897
+      value: 0.36531067
+      inSlope: -0.2206344
+      outSlope: -0.22349481
+      tangentMode: 1
+      weightedMode: 3
+      inWeight: 0.54113746
+      outWeight: 0.9659241
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -0.16709724
+      inSlope: -1.4400226
       outSlope: -0.16709724
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 1
+      tangentMode: 1
+      weightedMode: 3
+      inWeight: 0.06951491
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -5506,6 +5505,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4344818207295468}
     m_Modifications:
+    - target: {fileID: 706924293, guid: c865e311b6aa301488d3fff1a509e1a2, type: 3}
+      propertyPath: m_Name
+      value: Prototype (05) - Bullet Bill
+      objectReference: {fileID: 0}
     - target: {fileID: 78237494, guid: c865e311b6aa301488d3fff1a509e1a2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5550,39 +5553,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 706924293, guid: c865e311b6aa301488d3fff1a509e1a2, type: 3}
-      propertyPath: m_Name
-      value: Prototype (05) - Bullet Bill
-      objectReference: {fileID: 0}
-    - target: {fileID: 1322357959527230499, guid: c865e311b6aa301488d3fff1a509e1a2,
-        type: 3}
-      propertyPath: m_Heading.m_Bias
-      value: -138
-      objectReference: {fileID: 0}
     - target: {fileID: 2996517866651862255, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0002288371
+      value: -0.00026491281
       objectReference: {fileID: 0}
     - target: {fileID: 2996517866651862255, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9402715
+      value: 0.94027144
       objectReference: {fileID: 0}
     - target: {fileID: 2996517866651862255, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.34042487
+      value: -0.3404248
       objectReference: {fileID: 0}
     - target: {fileID: 2996517866651862255, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.00063255423
+      value: -0.000732839
       objectReference: {fileID: 0}
     - target: {fileID: 2996517866651862255, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0040512085
+      value: 0.0046920776
       objectReference: {fileID: 0}
     - target: {fileID: 2996517866651862255, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
@@ -5592,57 +5586,57 @@ PrefabInstance:
     - target: {fileID: 5223311811011076255, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0002555102
+      value: -0.00028938052
       objectReference: {fileID: 0}
     - target: {fileID: 5223311811011076255, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9463081
-      objectReference: {fileID: 0}
-    - target: {fileID: 5223311811011076255, guid: c865e311b6aa301488d3fff1a509e1a2,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.32326543
+      value: 0.9463078
       objectReference: {fileID: 0}
     - target: {fileID: 5223311811011076255, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0007452369
+      value: -0.00084412086
       objectReference: {fileID: 0}
     - target: {fileID: 5223311811011076255, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.004737854
+      value: 0.0053634644
       objectReference: {fileID: 0}
     - target: {fileID: 5223311811011076255, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.4977825
       objectReference: {fileID: 0}
+    - target: {fileID: 5223311811011076255, guid: c865e311b6aa301488d3fff1a509e1a2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.9970818
+      objectReference: {fileID: 0}
     - target: {fileID: 6423319245386108786, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0002018213
+      value: -0.00023300943
       objectReference: {fileID: 0}
     - target: {fileID: 6423319245386108786, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.95201683
+      value: 0.9520168
       objectReference: {fileID: 0}
     - target: {fileID: 6423319245386108786, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.30604494
+      value: -0.3060449
       objectReference: {fileID: 0}
     - target: {fileID: 6423319245386108786, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0006282329
+      value: -0.00072509045
       objectReference: {fileID: 0}
     - target: {fileID: 6423319245386108786, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0039749146
+      value: 0.004585266
       objectReference: {fileID: 0}
     - target: {fileID: 6423319245386108786, guid: c865e311b6aa301488d3fff1a509e1a2,
         type: 3}
@@ -5653,6 +5647,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 2.9970894
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322357959527230499, guid: c865e311b6aa301488d3fff1a509e1a2,
+        type: 3}
+      propertyPath: m_Heading.m_Bias
+      value: -23
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c865e311b6aa301488d3fff1a509e1a2, type: 3}
@@ -5681,6 +5680,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4344818207295468}
     m_Modifications:
+    - target: {fileID: 8400600666457442965, guid: ef515334dfd89cc42b39a9f1c7d1c3a2,
+        type: 3}
+      propertyPath: m_Name
+      value: Pilot - Mario
+      objectReference: {fileID: 0}
     - target: {fileID: 8395460542057651129, guid: ef515334dfd89cc42b39a9f1c7d1c3a2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5735,11 +5739,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8400600666457442965, guid: ef515334dfd89cc42b39a9f1c7d1c3a2,
-        type: 3}
-      propertyPath: m_Name
-      value: Pilot - Mario
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef515334dfd89cc42b39a9f1c7d1c3a2, type: 3}

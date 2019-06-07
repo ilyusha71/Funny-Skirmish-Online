@@ -124,19 +124,19 @@ namespace Kocmoca
 #if UNITY_EDITOR
             int type = int.Parse(name.Split(new char[2] { '(', ')' })[1]);
             KocmocraftDatabase index = UnityEditor.AssetDatabase.LoadAssetAtPath<KocmocraftDatabase>("Assets/_iLYuSha Wakaka Setting/ScriptableObject/Kocmocraft Database.asset");
-            index.kocmocraft[type].size.wingspan = wingspan;
-            index.kocmocraft[type].size.length = length;
-            index.kocmocraft[type].size.height = height;
-            index.kocmocraft[type].size.wingspanScale = wingspanScale;
-            index.kocmocraft[type].size.lengthScale = lengthScale;
-            index.kocmocraft[type].size.heightScale = heightScale;
-            index.kocmocraft[type].view.orthoSize = orthoSize;
-            index.kocmocraft[type].view.near = near;
-            index.kocmocraft[type].view.far = far;
-            index.kocmocraft[type].shield.Calculate((wingspan * length + length * height + height * wingspan) * 20, type);
-            index.kocmocraft[type].hull.Calculate(wingspan * length * height * 10, type);
-            index.kocmocraft[type].speed.Calculate(PerformanceData.EngineSpeed[type], type);
-            index.kocmocraft[type].name = string.Format("{0:00}", type);
+            KocmocraftModule module = index.kocmocraft[type];
+            module.type = (Type)type;
+            module.size.wingspan = wingspan;
+            module.size.length = length;
+            module.size.height = height;
+            module.size.wingspanScale = wingspanScale;
+            module.size.lengthScale = lengthScale;
+            module.size.heightScale = heightScale;
+            module.view.orthoSize = orthoSize;
+            module.view.near = near;
+            module.view.far = far;
+            module.name = string.Format("{0:00}", type);
+            module.Calculate();
             UnityEditor.AssetDatabase.SaveAssets();
 #endif
         }

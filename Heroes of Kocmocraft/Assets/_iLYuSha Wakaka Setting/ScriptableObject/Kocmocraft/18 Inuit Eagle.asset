@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 18 Inuit Eagle
   m_EditorClassIdentifier: 
+  type: 18
   size:
     wingspan: 8.4
     length: 4.68
@@ -24,27 +25,38 @@ MonoBehaviour:
     near: 6.8999996
     far: 23.5
   talk: {fileID: 8300000, guid: 052625d9a0ac4a64d89b14811e2e98e1, type: 3}
+  radio: {fileID: 8300000, guid: 052625d9a0ac4a64d89b14811e2e98e1, type: 3}
   chief: {fileID: 11400000, guid: eae1145052b43054e8a0af4066eba50e, type: 2}
   reserve: {fileID: 11400000, guid: 5e592ef959b550d4496f6567510d03ac, type: 2}
   shield:
-    maximum: 8377
     level: 3
+    maximum: 8377
     emCrystal: 1777
-    emBooster: 6600
     emBoosterLevel: 3
+    emBooster: 6600
   hull:
-    maximum: 11689
     level: 4
+    maximum: 11289
     airframe: 1489
-    armor: 10200
     armorLevel: 4
+    armor: 9800
   speed:
-    maximum: 106
     level: 4
-    engine: 20
-    afterburner: 86
+    maximum: 106
+    powerUnit: 20
     afterburnerLevel: 3
-  engine: {fileID: 0}
+    afterburner: 86
+  powerUnit:
+    totalPower: 20
+    mainEngine:
+    - {fileID: 11400000, guid: 7cfa3fb822ff60c4bb85bec05c19b754, type: 2}
+    mainEngineCount: 1
+    mainPower: 16
+    auxiliaryPowerUnit:
+    - {fileID: 11400000, guid: f5a831b549f11074a8dd65702b95f0ba, type: 2}
+    - {fileID: 11400000, guid: f5a831b549f11074a8dd65702b95f0ba, type: 2}
+    auxiliaryPowerUnitCount: 2
+    auxiliaryPower: 4
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 2ea5a500f1bf9784ab65d21272d53787, type: 2}
   kocmomech: {fileID: 11400000, guid: 40ac21a4d6f77bb4c9269551530616c1, type: 2}

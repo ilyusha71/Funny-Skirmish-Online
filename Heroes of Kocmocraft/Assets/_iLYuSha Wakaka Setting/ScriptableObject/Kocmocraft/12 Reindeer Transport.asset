@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 12 Reindeer Transport
   m_EditorClassIdentifier: 
+  type: 12
   size:
     wingspan: 6.3
     length: 10.8
@@ -24,27 +25,39 @@ MonoBehaviour:
     near: 8.1
     far: 24.699999
   talk: {fileID: 8300000, guid: cd26650c86b018546a0dfbd5b3b9b7d4, type: 3}
+  radio: {fileID: 8300000, guid: cd26650c86b018546a0dfbd5b3b9b7d4, type: 3}
   chief: {fileID: 11400000, guid: afa5a0e652345fa49b988b9ef06cc9e4, type: 2}
   reserve: {fileID: 11400000, guid: f9053e5e9f7260d46868fb57081b1990, type: 2}
   shield:
-    maximum: 9592
     level: 4
+    maximum: 9592
     emCrystal: 2992
-    emBooster: 6600
     emBoosterLevel: 3
+    emBooster: 6600
   hull:
-    maximum: 9045
     level: 3
+    maximum: 8845
     airframe: 3245
-    armor: 5800
     armorLevel: 2
+    armor: 5600
   speed:
-    maximum: 138
-    level: 6
-    engine: 28
-    afterburner: 110
+    level: 7
+    maximum: 146
+    powerUnit: 36
     afterburnerLevel: 5
-  engine: {fileID: 0}
+    afterburner: 110
+  powerUnit:
+    totalPower: 36
+    mainEngine:
+    - {fileID: 11400000, guid: e9e5f8d104f83f34b8cf2adf755992dc, type: 2}
+    - {fileID: 11400000, guid: e9e5f8d104f83f34b8cf2adf755992dc, type: 2}
+    mainEngineCount: 2
+    mainPower: 24
+    auxiliaryPowerUnit:
+    - {fileID: 11400000, guid: e9e5f8d104f83f34b8cf2adf755992dc, type: 2}
+    - {fileID: 11400000, guid: e9e5f8d104f83f34b8cf2adf755992dc, type: 2}
+    auxiliaryPowerUnitCount: 2
+    auxiliaryPower: 12
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: b46ce8d2999082c4dbbd595c8185e8d5, type: 2}
   kocmomech: {fileID: 11400000, guid: 5b13533be6585bb43aab82c8f78f556d, type: 2}

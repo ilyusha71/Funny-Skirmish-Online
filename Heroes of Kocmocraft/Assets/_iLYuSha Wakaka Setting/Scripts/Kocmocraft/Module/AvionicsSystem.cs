@@ -15,194 +15,194 @@ namespace Kocmoca
 {
     public class AvionicsSystem : MonoBehaviour
     {
-        [Header ("Preset Module Data")]
+        [Header("Preset Module Data")]
         public Type kocmocraftType;
         public Shield shield;
         public Hull hull;
         public Speed speed;
         public Kocmomech kocmomech;
-        [Header ("Preset Module System")]
+        [Header("Preset Module System")]
         public Prototype myPrototype;
         public Transform myWreckage;
         public PilotManager myDubis;
-        public PowerUnit myPowerUnit;
+        public PowerController myPowerController;
         public TurretFireControlSystem myTurretFCS;
         public RocketFireControlSystem myRocketFCS;
         public MissileFireControlSystem myMissileFCS;
         public Cinemachine.CinemachineVirtualCamera cockpitView;
         public Cinemachine.CinemachineVirtualCamera followView;
-        [Header ("Constant")]
+        [Header("Constant")]
         public float attitudeLimit = 0.2792527f; // 16度
         public float autoLevelAngle = 0.1570796f; // 9度
         public float autoLevelPeriod = 0.07853982f; // equal half auto level angle
         public float inverseAngle = 0.1178097f; // 3/4 auto level angle
         public float inversePeriod = 0.2356195f; // equal half auto level angle
-        [Header ("Active System")]
+        [Header("Active System")]
         public ControlUnit controlUnit;
         public int kocmoNumber;
         private Transform portTransform;
         private Rigidbody portRigidbody;
         private PhotonView portPhotonView;
-        [Header ("Variable")]
-        [Tooltip ("The position of target relative to own position.")]
+        [Header("Variable")]
+        [Tooltip("The position of target relative to own position.")]
         public Vector3 localTargetPos;
         public float realtimeShield, realtimeHull, realtimeSpeed;
         public float shieldPercent { get { return realtimeShield / shield.maximum; } }
         public float hullPercent { get { return realtimeHull / hull.maximum; } }
         public float speedPercent { get { return realtimeSpeed / speed.maximum; } }
 
-        [Tooltip ("About Engine sounds and effects level")]
+        [Tooltip("About Engine sounds and effects level")]
         public float afterburnerPower;
 
-        public Dictionary<int, int> listAttacker = new Dictionary<int, int> (); // 損傷記錄索引
+        public Dictionary<int, int> listAttacker = new Dictionary<int, int>(); // 損傷記錄索引
         public Kocmonaut lastAttacker = new Kocmonaut { Number = -1 };
         private int damage; // 确认是否宣告？
 
-        private void Reset ()
+        private void Reset()
         {
-            int type = int.Parse (name.Split (new char[2] { '(', ')' }) [1]);
-            kocmocraftType = (Type) type;
-            KocmocraftDatabase index = UnityEditor.AssetDatabase.LoadAssetAtPath<KocmocraftDatabase> ("Assets/_iLYuSha Wakaka Setting/ScriptableObject/Kocmocraft Database.asset");
+            int type = int.Parse(name.Split(new char[2] { '(', ')' })[1]);
+            KocmocraftDatabase index = UnityEditor.AssetDatabase.LoadAssetAtPath<KocmocraftDatabase>("Assets/_iLYuSha Wakaka Setting/ScriptableObject/Kocmocraft Database.asset");
             KocmocraftModule module = index.kocmocraft[type];
-            shield = index.kocmocraft[type].shield;
-            hull = index.kocmocraft[type].hull;
-            speed = index.kocmocraft[type].speed;
+            kocmocraftType = (Type)type;
+            shield = module.shield;
+            hull = module.hull;
+            speed = module.speed;
             kocmomech = module.kocmomech;
-            GetComponent<OnboardRadar> ().Preset (module);
-            myPrototype = GetComponentInChildren<Prototype> ();
-            myDubis = GetComponentInChildren<PilotManager> ();
-            myPrototype.CreatePrototypeDatabase ();
-            myPowerUnit = GetComponentInChildren<PowerUnit> ();
-            myTurretFCS = GetComponentInChildren<TurretFireControlSystem> ();
-            myTurretFCS.Preset (module);
-            myRocketFCS = GetComponentInChildren<RocketFireControlSystem> ();
-            myRocketFCS.Preset (module);
-            myMissileFCS = GetComponentInChildren<MissileFireControlSystem> ();
-            myMissileFCS.Preset (module);
+            myPrototype = GetComponentInChildren<Prototype>();
+            myPrototype.CreatePrototypeDatabase();
             myWreckage = myPrototype.transform;
+            myDubis = GetComponentInChildren<PilotManager>();
+            myPowerController = GetComponentInChildren<PowerController>();
+            myTurretFCS = GetComponentInChildren<TurretFireControlSystem>();
+            myRocketFCS = GetComponentInChildren<RocketFireControlSystem>();
+            myMissileFCS = GetComponentInChildren<MissileFireControlSystem>();
+            GetComponent<OnboardRadar>().Preset(module);
+            myTurretFCS.Preset(module);
+            myRocketFCS.Preset(module);
+            myMissileFCS.Preset(module);
 
             // Cockpit View setting
-            cockpitView = GetComponentsInChildren<Cinemachine.CinemachineVirtualCamera> () [3];
+            cockpitView = GetComponentsInChildren<Cinemachine.CinemachineVirtualCamera>()[3];
             cockpitView.m_Follow = myDubis.transform;
             cockpitView.m_LookAt = myDubis.transform;
             cockpitView.m_Lens.FieldOfView = 60;
             cockpitView.m_Lens.NearClipPlane = 0.5f;
             cockpitView.m_Lens.FarClipPlane = 15000;
-            Cinemachine.CinemachineTransposer transposer = cockpitView.GetCinemachineComponent<Cinemachine.CinemachineTransposer> ();
+            Cinemachine.CinemachineTransposer transposer = cockpitView.GetCinemachineComponent<Cinemachine.CinemachineTransposer>();
             transposer.m_XDamping = 0;
             transposer.m_YDamping = 0;
             transposer.m_ZDamping = 0;
             transposer.m_PitchDamping = 1;
             transposer.m_YawDamping = 1;
-            cockpitView.GetCinemachineComponent<Cinemachine.CinemachineComposer> ().m_TrackedObjectOffset = new Vector3 (0, 0, 10);
+            cockpitView.GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset = new Vector3(0, 0, 10);
             cockpitView.enabled = false;
 
             // Follow View setting
-            followView = GetComponentsInChildren<Cinemachine.CinemachineVirtualCamera> () [4];
+            followView = GetComponentsInChildren<Cinemachine.CinemachineVirtualCamera>()[4];
             followView.m_Follow = myPrototype.transform;
             followView.m_LookAt = myPrototype.transform;
             followView.m_Lens.FieldOfView = 60;
             followView.m_Lens.NearClipPlane = 0.1f;
             followView.m_Lens.FarClipPlane = 15000;
-            transposer = followView.GetCinemachineComponent<Cinemachine.CinemachineTransposer> ();
+            transposer = followView.GetCinemachineComponent<Cinemachine.CinemachineTransposer>();
             float offsetZ = -module.size.wingspan * 3.5f - module.size.length * 0.5f;
-            float offsetY = -offsetZ * Mathf.Tan (17 * Mathf.Deg2Rad);
-            transposer.m_FollowOffset = new Vector3 (0, offsetY, offsetZ);
+            float offsetY = -offsetZ * Mathf.Tan(17 * Mathf.Deg2Rad);
+            transposer.m_FollowOffset = new Vector3(0, offsetY, offsetZ);
             transposer.m_XDamping = 0;
             transposer.m_YDamping = 0;
             transposer.m_ZDamping = 0;
             transposer.m_PitchDamping = 1;
             transposer.m_YawDamping = 1;
             // Aim 瞄准机身前缘方向
-            followView.GetCinemachineComponent<Cinemachine.CinemachineComposer> ().m_TrackedObjectOffset = new Vector3 (0, module.size.height * 0.5f, module.size.length * 7);
+            followView.GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset = new Vector3(0, module.size.height * 0.5f, module.size.length * 7);
             followView.enabled = false;
 
             controlUnit = ControlUnit.None;
             // Initial value
             realtimeShield = shield.maximum;
             realtimeHull = hull.maximum;
-            realtimeSpeed = speed.engine;
+            realtimeSpeed = speed.powerUnit;
             enabled = false;
-            Debug.Log ("<color=Yellow>" + name + " data has been preset.</color>");
+            Debug.Log("<color=Yellow>" + name + " data has been preset.</color>");
         }
-        public void Active (Transform rootTransform, Rigidbody rootRigidbody, PhotonView rootPhotonView, ControlUnit core, int rootNumber)
+        public void Active(Transform rootTransform, Rigidbody rootRigidbody, PhotonView rootPhotonView, ControlUnit core, int rootNumber)
         {
             portTransform = rootTransform;
             portRigidbody = rootRigidbody;
             portPhotonView = rootPhotonView;
-            portPhotonView.ObservedComponents.Add (this);
+            portPhotonView.ObservedComponents.Add(this);
             controlUnit = core;
             kocmoNumber = rootNumber;
             enabled = true;
             if (controlUnit == ControlUnit.LocalPlayer)
-                SatelliteCommander.Instance.Observer.AssignPilotView (cockpitView, followView);
+                SatelliteCommander.Instance.Observer.AssignPilotView(cockpitView, followView);
         }
-        private void FixedUpdate ()
+        private void FixedUpdate()
         {
             //if (portRigidbody.angularVelocity.magnitude > 3)
             //    portRigidbody.Sleep();
             switch (controlUnit)
             {
                 case ControlUnit.LocalBot:
-                    localTargetPos = portTransform.InverseTransformPoint (LocalBotController.targetPos);
+                    localTargetPos = portTransform.InverseTransformPoint(LocalBotController.targetPos);
                     break;
                 case ControlUnit.LocalPlayer:
-                    localTargetPos = portTransform.InverseTransformPoint (LocalPlayerController.targetPos);
+                    localTargetPos = portTransform.InverseTransformPoint(LocalPlayerController.targetPos);
                     break;
                 default:
                     return;
             }
 
-            var pitchChange = Mathf.Clamp (-Mathf.Atan2 (localTargetPos.y, localTargetPos.z), -attitudeLimit, attitudeLimit);
-            var yawChange = Mathf.Clamp (-Mathf.Atan2 (localTargetPos.x, localTargetPos.z), -attitudeLimit, attitudeLimit);
-            var yawAbs = Mathf.Abs (yawChange);
+            var pitchChange = Mathf.Clamp(-Mathf.Atan2(localTargetPos.y, localTargetPos.z), -attitudeLimit, attitudeLimit);
+            var yawChange = Mathf.Clamp(-Mathf.Atan2(localTargetPos.x, localTargetPos.z), -attitudeLimit, attitudeLimit);
+            var yawAbs = Mathf.Abs(yawChange);
 
-            if (yawAbs <= autoLevelAngle && Mathf.Abs (pitchChange) <= autoLevelAngle)
+            if (yawAbs <= autoLevelAngle && Mathf.Abs(pitchChange) <= autoLevelAngle)
             {
                 if (yawAbs > inverseAngle)
                 {
-                    var rollChange = autoLevelAngle * Mathf.Cos (yawChange * Mathf.PI / autoLevelPeriod) * Mathf.Sign (yawChange);
-                    portRigidbody.rotation *= Quaternion.Euler (pitchChange * kocmomech.pitch, -yawChange * kocmomech.yaw, rollChange * kocmomech.roll);
+                    var rollChange = autoLevelAngle * Mathf.Cos(yawChange * Mathf.PI / autoLevelPeriod) * Mathf.Sign(yawChange);
+                    portRigidbody.rotation *= Quaternion.Euler(pitchChange * kocmomech.pitch, -yawChange * kocmomech.yaw, rollChange * kocmomech.roll);
                 }
                 else
                 {
                     var fwd = portTransform.forward;
                     fwd.y = 0;
                     //fwd *= Mathf.Sign(portTransform.up.y); // 投影面法向量修正，roll的范围将会变成-90~90
-                    fwd.Normalize (); // 先进行Normalize再Cross会比较快
-                    var right = Vector3.Cross (Vector3.up, fwd);
+                    fwd.Normalize(); // 先进行Normalize再Cross会比较快
+                    var right = Vector3.Cross(Vector3.up, fwd);
                     // 计算 InverseTransformDirection + 反正切 (Atan) 速度更快
-                    var localFlatRight = portTransform.InverseTransformDirection (right);
-                    var rollAngle = Mathf.Atan2 (localFlatRight.y, localFlatRight.x);
-                    var rollChange = autoLevelAngle * Mathf.Cos (yawChange * Mathf.PI / inversePeriod + Mathf.PI) * -Mathf.Sign (rollAngle); // 正确    
-                    portRigidbody.rotation *= Quaternion.Euler (pitchChange * kocmomech.pitch, -yawChange * kocmomech.yaw, rollChange * kocmomech.roll);
+                    var localFlatRight = portTransform.InverseTransformDirection(right);
+                    var rollAngle = Mathf.Atan2(localFlatRight.y, localFlatRight.x);
+                    var rollChange = autoLevelAngle * Mathf.Cos(yawChange * Mathf.PI / inversePeriod + Mathf.PI) * -Mathf.Sign(rollAngle); // 正确    
+                    portRigidbody.rotation *= Quaternion.Euler(pitchChange * kocmomech.pitch, -yawChange * kocmomech.yaw, rollChange * kocmomech.roll);
                 }
             }
             else
             {
                 var rollChange = yawChange;
-                portRigidbody.rotation *= Quaternion.Euler (pitchChange * kocmomech.pitch, -yawChange * kocmomech.yaw, rollChange * kocmomech.roll);
+                portRigidbody.rotation *= Quaternion.Euler(pitchChange * kocmomech.pitch, -yawChange * kocmomech.yaw, rollChange * kocmomech.roll);
             }
             portRigidbody.velocity = (portRigidbody.rotation * Vector3.forward) * realtimeSpeed;
         }
-        public void ControlThrottle (float throttle)
+        public void ControlThrottle(float throttle)
         {
-            if (realtimeSpeed >= speed.engine)
+            if (realtimeSpeed >= speed.powerUnit)
             {
-                realtimeSpeed += (throttle == 0 ? -3.0f : Mathf.Sign (throttle) * kocmomech.acceleration) * Time.deltaTime;
-                afterburnerPower += (throttle == 0 ? -0.1f : Mathf.Sign (throttle) * 0.2f) * Time.deltaTime;
-                afterburnerPower = Mathf.Clamp (afterburnerPower, 0.4f, 1.0f);
+                realtimeSpeed += (throttle == 0 ? -3.0f : Mathf.Sign(throttle) * kocmomech.acceleration) * Time.deltaTime;
+                afterburnerPower += (throttle == 0 ? -0.1f : Mathf.Sign(throttle) * 0.2f) * Time.deltaTime;
+                afterburnerPower = Mathf.Clamp(afterburnerPower, 0.4f, 1.0f);
             }
             else
             {
-                realtimeSpeed += (throttle == 0 ? +3.0f : Mathf.Sign (throttle) * kocmomech.deceleration) * Time.deltaTime;
+                realtimeSpeed += (throttle == 0 ? +3.0f : Mathf.Sign(throttle) * kocmomech.deceleration) * Time.deltaTime;
                 // 當速度低於 engine 提供的巡航速度時，AB power 與當前速度成線性關係
-                afterburnerPower = 0.4f * Mathf.InverseLerp (0, speed.engine, realtimeSpeed);
+                afterburnerPower = 0.4f * Mathf.InverseLerp(0, speed.powerUnit, realtimeSpeed);
             }
-            realtimeSpeed = Mathf.Clamp (realtimeSpeed, 0, speed.maximum);
-            myPowerUnit.Power (afterburnerPower);
+            realtimeSpeed = Mathf.Clamp(realtimeSpeed, 0, speed.maximum);
+            myPowerController.Power(afterburnerPower);
         }
-        private void OnCollisionEnter (Collision collision)
+        private void OnCollisionEnter(Collision collision)
         {
             // 消除撞擊造成的力矩
             portRigidbody.isKinematic = true;
@@ -213,8 +213,8 @@ namespace Kocmoca
             //lastHitVelocity = portRigidbody.velocity;
 
             // 計算傷害
-            DamagePower damagePower = new DamagePower ();
-            if (collision.gameObject.CompareTag ("Untagged") || collision.gameObject.CompareTag ("Water"))
+            DamagePower damagePower = new DamagePower();
+            if (collision.gameObject.CompareTag("Untagged") || collision.gameObject.CompareTag("Water"))
             {
                 damagePower.Penetration = 50000;
                 // 下次更新要做的
@@ -227,12 +227,12 @@ namespace Kocmoca
                 //portRigidbody.AddForce(outDirection * collision.impulse.magnitude);
             }
             else
-                damagePower.Penetration = Mathf.Clamp ((int) Mathf.Abs (collision.impulse.magnitude), 0, 5000);
+                damagePower.Penetration = Mathf.Clamp((int)Mathf.Abs(collision.impulse.magnitude), 0, 5000);
             //damagePower.Shield = -999;
 
             // 記錄攻擊者
             damagePower.Attacker = new Kocmonaut { Number = -1 };
-            AvionicsSystem collisionKocmocraft = collision.gameObject.GetComponent<AvionicsSystem> ();
+            AvionicsSystem collisionKocmocraft = collision.gameObject.GetComponent<AvionicsSystem>();
             if (collisionKocmocraft)
             {
                 damagePower.Attacker.ControlUnit = collisionKocmocraft.controlUnit;
@@ -243,15 +243,15 @@ namespace Kocmoca
                 damagePower.Attacker.ControlUnit = controlUnit;
                 damagePower.Attacker.Number = kocmoNumber;
             }
-            Hit (damagePower);
+            Hit(damagePower);
         }
-        private void OnCollisionExit (Collision collision)
+        private void OnCollisionExit(Collision collision)
         {
             // 確保撞擊後恢復一般剛體
             portRigidbody.isKinematic = true;
             portRigidbody.isKinematic = false;
         }
-        public void Hit (DamagePower damagePower)
+        public void Hit(DamagePower damagePower)
         {
             if (controlUnit == ControlUnit.RemotePlayer || controlUnit == ControlUnit.RemoteBot) return;
             if (realtimeHull <= 0) return;
@@ -359,34 +359,34 @@ namespace Kocmoca
             {
                 realtimeShield -= damagePower.Absorb;
                 if (realtimeShield >= 0)
-                    realtimeHull = Mathf.Clamp (realtimeHull - damagePower.Penetration, 0, hull.maximum);
+                    realtimeHull = Mathf.Clamp(realtimeHull - damagePower.Penetration, 0, hull.maximum);
                 else
                 {
-                    realtimeHull = Mathf.Clamp (realtimeHull + realtimeShield - damagePower.Penetration, 0, hull.maximum);
+                    realtimeHull = Mathf.Clamp(realtimeHull + realtimeShield - damagePower.Penetration, 0, hull.maximum);
                     realtimeShield = 0;
                 }
-                damage = (int) (damagePower.Absorb + damagePower.Penetration);
+                damage = (int)(damagePower.Absorb + damagePower.Penetration);
             }
             else
             {
-                realtimeHull = Mathf.Clamp (realtimeHull - damagePower.Damage, 0, hull.maximum);
-                damage = (int) damagePower.Damage;
+                realtimeHull = Mathf.Clamp(realtimeHull - damagePower.Damage, 0, hull.maximum);
+                damage = (int)damagePower.Damage;
             }
             /*****************************************************************************
              * 損傷記錄
              *****************************************************************************/
             //damage = (int)(damageShield + damageHull);
-            if (listAttacker.ContainsKey (damageSourceNumber))
+            if (listAttacker.ContainsKey(damageSourceNumber))
                 listAttacker[damageSourceNumber] += damage;
             else
-                listAttacker.Add (damagePower.Attacker.Number, damage);
+                listAttacker.Add(damagePower.Attacker.Number, damage);
 
             // 本地玩家擊中本地AI
             if (damagePower.Attacker.ControlUnit == ControlUnit.LocalPlayer)
-                HeadUpDisplayManager.Instance.ShowHitDamage (portRigidbody.position, damage);
+                HeadUpDisplayManager.Instance.ShowHitDamage(portRigidbody.position, damage);
             // 遠端玩家擊中本地玩家或本地AI
             else if (damagePower.Attacker.ControlUnit == ControlUnit.RemotePlayer)
-                portPhotonView.RPC ("ShowHitDamage", RpcTarget.AllViaServer, damagePower.Attacker.Number, damage);
+                portPhotonView.RPC("ShowHitDamage", RpcTarget.AllViaServer, damagePower.Attacker.Number, damage);
 
             /************************************* Crash *************************************/
 
@@ -394,53 +394,53 @@ namespace Kocmoca
             {
                 if (controlUnit == ControlUnit.LocalPlayer)
                 {
-                    transform.root.GetComponent<LocalPlayerController> ().enabled = false;
-                    SatelliteCommander.Instance.PlayerCrash ();
+                    transform.root.GetComponent<LocalPlayerController>().enabled = false;
+                    SatelliteCommander.Instance.PlayerCrash();
                     //foreach (int key in listAttacker.Keys)
                     //{
                     //    HeadUpDisplayManager.Instance.ShowWhoAttackU(key, listAttacker[key]);
                     //}
-                    HeadUpDisplayManager.Instance.ShowKillStealer (lastAttacker.Number);
+                    HeadUpDisplayManager.Instance.ShowKillStealer(lastAttacker.Number);
                 }
                 else if (controlUnit == ControlUnit.LocalBot)
                 {
-                    transform.root.GetComponent<LocalBotController> ().enabled = false;
-                    SatelliteCommander.Instance.BotCrash (kocmoNumber);
+                    transform.root.GetComponent<LocalBotController>().enabled = false;
+                    SatelliteCommander.Instance.BotCrash(kocmoNumber);
                 }
-                portPhotonView.RPC ("Crash", RpcTarget.AllViaServer, lastAttacker.Number);
+                portPhotonView.RPC("Crash", RpcTarget.AllViaServer, lastAttacker.Number);
             }
         }
-        public void Crash (int stealerNumber, PhotonMessageInfo info)
+        public void Crash(int stealerNumber, PhotonMessageInfo info)
         {
             // 若宇航機是本地玩家擊落，顯示擊落訊息
             if (stealerNumber == PhotonNetwork.LocalPlayer.ActorNumber)
-                HeadUpDisplayManager.Instance.ShowDestroyed (kocmoNumber);
+                HeadUpDisplayManager.Instance.ShowDestroyed(kocmoNumber);
 
-            SatelliteCommander.Instance.Observer.listOthers.Remove (kocmoNumber);
-            SatelliteCommander.Instance.RemoveFlight (kocmoNumber);
+            SatelliteCommander.Instance.Observer.listOthers.Remove(kocmoNumber);
+            SatelliteCommander.Instance.RemoveFlight(kocmoNumber);
             switch (controlUnit)
             {
                 case ControlUnit.LocalPlayer:
                     LocalPlayerRealtimeData.Status = FlyingStatus.Crash;
                     //SatelliteCommander.Instance.Observer.TransferCamera();
-                    SatelliteCommander.Instance.ClearData ();
-                    HeadUpDisplayManager.Instance.ClearData ();
-                    Destroy (transform.root.GetComponent<LocalPlayerController> ());
-                    transform.root.GetComponentInChildren<OnboardRadar> ().Stop ();
+                    SatelliteCommander.Instance.ClearData();
+                    HeadUpDisplayManager.Instance.ClearData();
+                    Destroy(transform.root.GetComponent<LocalPlayerController>());
+                    transform.root.GetComponentInChildren<OnboardRadar>().Stop();
                     //Destroy(GetComponent<OnboardRadar>());
                     break;
                 case ControlUnit.LocalBot:
-                    Destroy (transform.root.GetComponent<LocalBotController> ());
-                    transform.root.GetComponentInChildren<OnboardRadar> ().Stop ();
+                    Destroy(transform.root.GetComponent<LocalBotController>());
+                    transform.root.GetComponentInChildren<OnboardRadar>().Stop();
                     //Destroy(GetComponent<OnboardRadar>());
                     break;
             }
-            ShowRemnant ();
+            ShowRemnant();
             if (portPhotonView.IsMine)
-                PhotonNetwork.Destroy (transform.root.gameObject); // 改变PhotoView Fixed
+                PhotonNetwork.Destroy(transform.root.gameObject); // 改变PhotoView Fixed
             //StartCoroutine(Crash());
         }
-        private void ShowRemnant ()
+        private void ShowRemnant()
         {
             // 重写
             //if (portRigidbody.velocity == Vector3.zero) // 撞击可能触发修正而变成0向量
@@ -460,19 +460,19 @@ namespace Kocmoca
 
         // 传统控制
         private float rollAxis, pitchAxis, yawAxis;
-        public void ControlRollAndPitch (Vector2 axis)
+        public void ControlRollAndPitch(Vector2 axis)
         {
-            rollAxis = Mathf.Lerp (rollAxis, Mathf.Clamp (axis.x, -1, 1) * kocmomech.roll, Time.deltaTime);
-            pitchAxis = Mathf.Lerp (pitchAxis, Mathf.Clamp (axis.y, -1, 1) * kocmomech.pitch, Time.deltaTime);
+            rollAxis = Mathf.Lerp(rollAxis, Mathf.Clamp(axis.x, -1, 1) * kocmomech.roll, Time.deltaTime);
+            pitchAxis = Mathf.Lerp(pitchAxis, Mathf.Clamp(axis.y, -1, 1) * kocmomech.pitch, Time.deltaTime);
         }
-        public void ControlYaw (float yaw)
+        public void ControlYaw(float yaw)
         {
             yawAxis += yaw * Time.deltaTime * 0.2f;
         }
 
         //[Header("Dependent Components")]
         //private Rigidbody portRigidbody;
-        //private PowerUnit myEngine;
+        //private PowerController myEngine;
         //[Header("Modular Parameter")]
         ////public Data dataEnergy;
         //public Data dataSpeed;
@@ -514,7 +514,7 @@ namespace Kocmoca
         //{
         //    // Dependent Components
         //    portRigidbody = GetComponent<Rigidbody>();
-        //    myEngine = GetComponentInChildren<PowerUnit>();
+        //    myEngine = GetComponentInChildren<PowerController>();
         //    // Modular Parameter
         //    //dataEnergy = new Data { Max = KocmocraftData.Energy[type], Value = KocmocraftData.Energy[type] };
         //    dataSpeed = new Data { Max = KocmocraftData.AfterburnerSpeed[type], Value = 0 };

@@ -15,7 +15,7 @@ namespace Kocmoca
         public KocmocraftDatabase database;
         [Header("Scene - Airport")]
         public Transform airport;
-        public Transform[] apron,hangar;
+        public Transform[] apron, hangar;
         public Transform apronView, hangarView;
         public Camera topCamera, sideCamera, frontCamera;
         public int hangarCount;
@@ -57,6 +57,7 @@ namespace Kocmoca
             pilot = new PilotManager[hangarCount];
             cmFreeLook = new CinemachineFreeLook[hangarCount];
             cmCockpit = new CinemachineVirtualCamera[hangarCount];
+            radioClips = new AudioClip[hangarCount];
             for (int i = 0; i < countApron; i++)
             {
                 apron[i].localPosition = new Vector3(630 - (i % 12 / 3) * 360 - i % 3 * 90, 0, 0);
@@ -77,14 +78,15 @@ namespace Kocmoca
                     pilot[i] = hangar[i].GetComponentInChildren<PilotManager>();
                     cmFreeLook[i] = prototype[i].cmFreeLook;
                     cmFreeLook[i].enabled = true;
-                    cmFreeLook[i].m_Orbits[0].m_Height = database.kocmocraft[i].view.orthoSize+3;
+                    cmFreeLook[i].m_Orbits[0].m_Height = database.kocmocraft[i].view.orthoSize + 3;
                     cmFreeLook[i].m_Orbits[2].m_Height = -database.kocmocraft[i].view.orthoSize;
                     cmFreeLook[i].m_Orbits[0].m_Radius = database.kocmocraft[i].view.near;
                     cmFreeLook[i].m_Orbits[1].m_Radius = 11;
                     cmFreeLook[i].m_Orbits[2].m_Radius = database.kocmocraft[i].view.near;
                     cmFreeLook[i].enabled = false;
 
-                    cmCockpit[i] = hangar[i].GetComponent<AvionicsSystem>().cockpitView;         
+                    cmCockpit[i] = hangar[i].GetComponent<AvionicsSystem>().cockpitView;
+                    radioClips[i] = database.kocmocraft[i].radio;
                 }
             }
 
@@ -93,57 +95,37 @@ namespace Kocmoca
             frontCamera = hangarView.GetComponentsInChildren<Camera>()[2];
 
             // UI
-            talkSource = btnTalk.transform.parent.GetComponent<AudioSource>();
-            UIEventTrigger et = togDesign.GetComponent<UIEventTrigger>();
-            et.audioSource = et.GetComponent<AudioSource>();
-            et.target = et.GetComponentInChildren<CanvasGroup>();
-            et = togDubi.GetComponent<UIEventTrigger>();
-            et.audioSource = et.GetComponent<AudioSource>();
-            et.target = et.GetComponentInChildren<CanvasGroup>();
-            et = togPerformance.GetComponent<UIEventTrigger>();
-            et.audioSource = et.GetComponent<AudioSource>();
-            et.target = et.GetComponentInChildren<CanvasGroup>();
-            et = togAstromech.GetComponent<UIEventTrigger>();
-            et.audioSource = et.GetComponent<AudioSource>();
-            et.target = et.GetComponentInChildren<CanvasGroup>();
-            et = togRadar.GetComponent<UIEventTrigger>();
-            et.audioSource = et.GetComponent<AudioSource>();
-            et.target = et.GetComponentInChildren<CanvasGroup>();
-            et = togTurret.GetComponent<UIEventTrigger>();
-            et.audioSource = et.GetComponent<AudioSource>();
-            et.target = et.GetComponentInChildren<CanvasGroup>();
-            et = togMissile.GetComponent<UIEventTrigger>();
-            et.audioSource = et.GetComponent<AudioSource>();
-            et.target = et.GetComponentInChildren<CanvasGroup>();
+            var tipsBlock = panel.GetChild(0).gameObject;
+            togTabs = audioTabPress.GetComponentsInChildren<Toggle>();
+            panelCounts = togTabs.Length;
+            panels = new GameObject[panelCounts];
+            for (int i = 0; i < panelCounts; i++)
+            {
+                var et = togTabs[i].GetComponent<UIEventTrigger>();
+                et.audioSource = et.GetComponent<AudioSource>();
+                et.target = et.GetComponentInChildren<CanvasGroup>();
+                panels[i] = panel.GetChild(i + 1).gameObject;
+            }
+            designPanel.Initialize(panels[0]);
+            pilotPanel.Initialize(panels[1], tipsBlock);
+            performancePanel.Initialize(panels[2], tipsBlock);
+            turretPanel.Initialize(panels[4]);
+            kocmomechPanel.Initialize(panels[6], tipsBlock);
 
-            et = btnChangePilot.GetComponent<UIEventTrigger>();
-            et.audioSource = et.GetComponent<AudioSource>();
-            et.target = et.GetComponentInChildren<CanvasGroup>();
-            et = btnChangeSkin.GetComponent<UIEventTrigger>();
-            et.audioSource = et.GetComponent<AudioSource>();
-            et.target = et.GetComponentInChildren<CanvasGroup>();
-            et = btnSwitchWireframe.GetComponent<UIEventTrigger>();
-            et.audioSource = et.GetComponent<AudioSource>();
-            et.target = et.GetComponentInChildren<CanvasGroup>();
-            et = btnTalk.GetComponent<UIEventTrigger>();
-            et.audioSource = et.GetComponent<AudioSource>();
-            et.target = et.GetComponentInChildren<CanvasGroup>();
-
-
-            panel.gameObject.SetActive(true);
-            audioSource = panel.GetComponent<AudioSource>();
-            panelDesign = panel.GetChild(1).gameObject;
-            design.Initialize(panelDesign);
-            panelDubi = panel.GetChild(2).gameObject;
-            dubi.Initialize(panelDubi, panel.GetChild(0).gameObject);
-            panelPerformance = panel.GetChild(3).gameObject;
-            performance.Initialize(panelPerformance, panel.GetChild(0).gameObject);
-            panelRadar = panel.GetChild(4).gameObject;
-            panelTurret = panel.GetChild(5).gameObject;
-            turret.Initialize(panelTurret);
-            panelMissile = panel.GetChild(6).gameObject;
-            panelKocmomech = panel.GetChild(7).gameObject;
-            kocmomech.Initialize(panelKocmomech, panel.GetChild(0).gameObject);
+            var buttons = audioButtonPress.GetComponentsInChildren<Button>();
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                var et = buttons[i].GetComponent<UIEventTrigger>();
+                et.audioSource = et.GetComponent<AudioSource>();
+                et.target = et.GetComponentInChildren<CanvasGroup>();
+            }
+            btnChangePainting = buttons[5];
+            btnSwitchWireframe = buttons[4];
+            btnChangePilot = buttons[3];
+            btnSwitchCockpitView = buttons[2]; // Hotkey: C
+            btnRadio = buttons[1];
+            radioAudio = btnRadio.GetComponentsInChildren<AudioSource>()[1];
+            btnOption = buttons[0]; // Hotkey: ESC
         }
 
 
@@ -184,7 +166,7 @@ namespace Kocmoca
     {
         public override void OnInspectorGUI()
         {
-            
+
             //Sticker = (GameObject)EditorGUILayout.ObjectField("Sticker", Sticker, typeof(GameObject), true);
             //WallStickerHangarNumber = (Texture2D)EditorGUILayout.ObjectField("Wall Sticker Hangar Number", WallStickerHangarNumber, typeof(Texture2D), true);
             //GroundStickerHangarNumber = (Texture2D)EditorGUILayout.ObjectField("Ground Sticker Hangar Number", GroundStickerHangarNumber, typeof(Texture2D), true);

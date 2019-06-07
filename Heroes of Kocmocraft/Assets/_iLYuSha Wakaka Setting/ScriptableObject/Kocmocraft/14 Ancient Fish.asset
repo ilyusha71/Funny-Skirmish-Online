@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 14 Ancient Fish
   m_EditorClassIdentifier: 
+  type: 14
   size:
     wingspan: 7.85
     length: 9.82
@@ -24,27 +25,39 @@ MonoBehaviour:
     near: 7.6099997
     far: 24.21
   talk: {fileID: 8300000, guid: 48fe630357bef4942bfac8c9223d5fca, type: 3}
+  radio: {fileID: 8300000, guid: 48fe630357bef4942bfac8c9223d5fca, type: 3}
   chief: {fileID: 11400000, guid: 5ac6fddaf44e8db419a81af928ad8bb5, type: 2}
   reserve: {fileID: 11400000, guid: b74c17b5e0f68f64f9909a07c1d5c467, type: 2}
   shield:
-    maximum: 15471
     level: 6
+    maximum: 15471
     emCrystal: 3471
-    emBooster: 12000
     emBoosterLevel: 6
+    emBooster: 12000
   hull:
-    maximum: 7808
     level: 2
+    maximum: 7708
     airframe: 4208
-    armor: 3600
     armorLevel: 1
+    armor: 3500
   speed:
-    maximum: 114
     level: 4
-    engine: 28
-    afterburner: 86
+    maximum: 115
+    powerUnit: 29
     afterburnerLevel: 3
-  engine: {fileID: 0}
+    afterburner: 86
+  powerUnit:
+    totalPower: 29
+    mainEngine:
+    - {fileID: 11400000, guid: dca5b71d4d5905f4aa6c0eb9d7371e5e, type: 2}
+    - {fileID: 11400000, guid: dca5b71d4d5905f4aa6c0eb9d7371e5e, type: 2}
+    mainEngineCount: 2
+    mainPower: 18
+    auxiliaryPowerUnit:
+    - {fileID: 11400000, guid: f327136124c0bbf4faea5deca7e666ff, type: 2}
+    - {fileID: 11400000, guid: f327136124c0bbf4faea5deca7e666ff, type: 2}
+    auxiliaryPowerUnitCount: 2
+    auxiliaryPower: 11
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 459e743c4e5d9bc46b8c3ad5e179f182, type: 2}
   kocmomech: {fileID: 11400000, guid: a9c33a1cce93512419a9a8fb34f150ed, type: 2}

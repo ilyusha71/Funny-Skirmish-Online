@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 10 nWidia
   m_EditorClassIdentifier: 
+  type: 10
   size:
     wingspan: 11.24
     length: 9.8
@@ -24,27 +25,39 @@ MonoBehaviour:
     near: 8.32
     far: 24.919998
   talk: {fileID: 8300000, guid: f76fb0c7eab68b1468946a26869d7dd7, type: 3}
+  radio: {fileID: 8300000, guid: f76fb0c7eab68b1468946a26869d7dd7, type: 3}
   chief: {fileID: 11400000, guid: dc63383007779684a8512a58ca7d0003, type: 2}
   reserve: {fileID: 11400000, guid: 7fca45a720a4bf449b211960556923d8, type: 2}
   shield:
-    maximum: 14780
     level: 6
+    maximum: 14780
     emCrystal: 4580
-    emBooster: 10200
     emBoosterLevel: 5
+    emBooster: 10200
   hull:
-    maximum: 9823
     level: 3
+    maximum: 9723
     airframe: 6223
-    armor: 3600
     armorLevel: 1
+    armor: 3500
   speed:
-    maximum: 118
     level: 5
-    engine: 20
-    afterburner: 98
+    maximum: 131
+    powerUnit: 33
     afterburnerLevel: 4
-  engine: {fileID: 0}
+    afterburner: 98
+  powerUnit:
+    totalPower: 33
+    mainEngine:
+    - {fileID: 11400000, guid: e9e5f8d104f83f34b8cf2adf755992dc, type: 2}
+    - {fileID: 11400000, guid: e9e5f8d104f83f34b8cf2adf755992dc, type: 2}
+    mainEngineCount: 2
+    mainPower: 24
+    auxiliaryPowerUnit:
+    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
+    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
+    auxiliaryPowerUnitCount: 2
+    auxiliaryPower: 9
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 03586d03d44a3f24eb1d5c680a971c9b, type: 2}
   kocmomech: {fileID: 11400000, guid: a9c33a1cce93512419a9a8fb34f150ed, type: 2}

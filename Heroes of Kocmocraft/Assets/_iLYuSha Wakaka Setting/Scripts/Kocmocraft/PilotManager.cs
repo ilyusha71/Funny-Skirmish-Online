@@ -39,8 +39,8 @@ public class PilotManager : MonoBehaviour
         dubi[nowDubi].SetActive (!isCockpitView);
         return nowDubi;
     }
-    public void HidePilot ()
-    {
-        dubi[nowDubi].SetActive (false);
-    }
+    // public void ShowPilot (bool show)
+    // {
+    //     dubi[nowDubi].SetActive (false);
+    // }
 }

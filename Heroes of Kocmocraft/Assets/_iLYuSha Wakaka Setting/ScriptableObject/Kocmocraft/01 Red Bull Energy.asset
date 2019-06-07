@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 01 Red Bull Energy
   m_EditorClassIdentifier: 
+  type: 1
   size:
     wingspan: 5.62
     length: 5.81
@@ -24,27 +25,38 @@ MonoBehaviour:
     near: 5.605
     far: 22.205
   talk: {fileID: 8300000, guid: 2eb6524149e1bf24298c0f54483ec49d, type: 3}
+  radio: {fileID: 8300000, guid: 2eb6524149e1bf24298c0f54483ec49d, type: 3}
   chief: {fileID: 11400000, guid: 96a15a2172cf73a43bd53316bf39da09, type: 2}
   reserve: {fileID: 11400000, guid: fa590946fbf422448a0f135f921887d8, type: 2}
   shield:
-    maximum: 6298
     level: 2
+    maximum: 6298
     emCrystal: 1498
-    emBooster: 4800
     emBoosterLevel: 2
+    emBooster: 4800
   hull:
-    maximum: 4808
     level: 1
+    maximum: 4708
     airframe: 1208
-    armor: 3600
     armorLevel: 1
+    armor: 3500
   speed:
-    maximum: 151
     level: 7
-    engine: 17
-    afterburner: 134
+    maximum: 149
+    powerUnit: 15
     afterburnerLevel: 7
-  engine: {fileID: 0}
+    afterburner: 134
+  powerUnit:
+    totalPower: 15
+    mainEngine:
+    - {fileID: 11400000, guid: f327136124c0bbf4faea5deca7e666ff, type: 2}
+    mainEngineCount: 1
+    mainPower: 11
+    auxiliaryPowerUnit:
+    - {fileID: 11400000, guid: f5a831b549f11074a8dd65702b95f0ba, type: 2}
+    - {fileID: 11400000, guid: f5a831b549f11074a8dd65702b95f0ba, type: 2}
+    auxiliaryPowerUnitCount: 2
+    auxiliaryPower: 4
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 125d195e3fab89343b0ef36120a10e79, type: 2}
   kocmomech: {fileID: 11400000, guid: 7a1aea8a96f335241998ebb6b7dc0494, type: 2}

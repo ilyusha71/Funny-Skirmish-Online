@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 15 Papoy Unicorn
   m_EditorClassIdentifier: 
+  type: 15
   size:
     wingspan: 5.7
     length: 8.86
@@ -24,27 +25,40 @@ MonoBehaviour:
     near: 7.13
     far: 23.73
   talk: {fileID: 8300000, guid: 46d7756c3900cfd43872fa833ad4823a, type: 3}
+  radio: {fileID: 8300000, guid: 46d7756c3900cfd43872fa833ad4823a, type: 3}
   chief: {fileID: 11400000, guid: 2be8a662cacd97e42a32d9b4e936256b, type: 2}
   reserve: {fileID: 11400000, guid: 5e592ef959b550d4496f6567510d03ac, type: 2}
   shield:
-    maximum: 16496
     level: 7
+    maximum: 16496
     emCrystal: 2696
-    emBooster: 13800
     emBoosterLevel: 7
+    emBooster: 13800
   hull:
-    maximum: 8724
-    level: 2
+    level: 3
+    maximum: 8524
     airframe: 2924
-    armor: 5800
     armorLevel: 2
+    armor: 5600
   speed:
-    maximum: 81
     level: 2
-    engine: 19
-    afterburner: 62
+    maximum: 83
+    powerUnit: 21
     afterburnerLevel: 1
-  engine: {fileID: 0}
+    afterburner: 62
+  powerUnit:
+    totalPower: 21
+    mainEngine:
+    - {fileID: 11400000, guid: 1fe45559059faf64a8a57dd732534b5c, type: 2}
+    mainEngineCount: 1
+    mainPower: 13
+    auxiliaryPowerUnit:
+    - {fileID: 11400000, guid: b587e5f9547761d4b829385c8a0c764c, type: 2}
+    - {fileID: 11400000, guid: b587e5f9547761d4b829385c8a0c764c, type: 2}
+    - {fileID: 11400000, guid: b587e5f9547761d4b829385c8a0c764c, type: 2}
+    - {fileID: 11400000, guid: b587e5f9547761d4b829385c8a0c764c, type: 2}
+    auxiliaryPowerUnitCount: 4
+    auxiliaryPower: 8
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: d116ef1748c93cf4b8d003e9fc535359, type: 2}
   kocmomech: {fileID: 11400000, guid: 081d03b305722404c83a30321512c9b0, type: 2}

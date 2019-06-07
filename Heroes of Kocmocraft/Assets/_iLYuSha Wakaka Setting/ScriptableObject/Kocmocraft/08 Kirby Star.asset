@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 08 Kirby Star
   m_EditorClassIdentifier: 
+  type: 8
   size:
     wingspan: 4.42
     length: 4.2
@@ -24,27 +25,40 @@ MonoBehaviour:
     near: 4.91
     far: 21.509998
   talk: {fileID: 8300000, guid: 8970193bec4fba8439c4f7b613ff6d45, type: 3}
+  radio: {fileID: 8300000, guid: 8970193bec4fba8439c4f7b613ff6d45, type: 3}
   chief: {fileID: 11400000, guid: 331d99e80d211454096351b9cd46a261, type: 2}
   reserve: {fileID: 11400000, guid: b1ebada2b188cf241aab0d6511f4529a, type: 2}
   shield:
+    level: 1
     maximum: 3622
-    level: 1
     emCrystal: 622
-    emBooster: 3000
     emBoosterLevel: 1
+    emBooster: 3000
   hull:
-    maximum: 6071
     level: 1
+    maximum: 5871
     airframe: 271
-    armor: 5800
     armorLevel: 2
+    armor: 5600
   speed:
-    maximum: 157
     level: 7
-    engine: 23
-    afterburner: 134
+    maximum: 161
+    powerUnit: 27
     afterburnerLevel: 7
-  engine: {fileID: 0}
+    afterburner: 134
+  powerUnit:
+    totalPower: 27
+    mainEngine:
+    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
+    mainEngineCount: 1
+    mainPower: 9
+    auxiliaryPowerUnit:
+    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
+    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
+    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
+    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
+    auxiliaryPowerUnitCount: 4
+    auxiliaryPower: 18
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 125d195e3fab89343b0ef36120a10e79, type: 2}
   kocmomech: {fileID: 11400000, guid: 7a1aea8a96f335241998ebb6b7dc0494, type: 2}

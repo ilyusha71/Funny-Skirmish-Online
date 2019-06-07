@@ -4759,28 +4759,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kocmocraftType: 1
   shield:
-    maximum: 6298
     level: 2
+    maximum: 6298
     emCrystal: 1498
-    emBooster: 4800
     emBoosterLevel: 2
+    emBooster: 4800
   hull:
-    maximum: 4808
     level: 1
+    maximum: 4708
     airframe: 1208
-    armor: 3600
     armorLevel: 1
+    armor: 3500
   speed:
-    maximum: 151
     level: 7
-    engine: 17
-    afterburner: 134
+    maximum: 149
+    powerUnit: 15
     afterburnerLevel: 7
+    afterburner: 134
   kocmomech: {fileID: 11400000, guid: 7a1aea8a96f335241998ebb6b7dc0494, type: 2}
   myPrototype: {fileID: 7126141733101786079}
   myWreckage: {fileID: 2586954051614216718}
   myDubis: {fileID: 8264771957393829613}
-  myPowerUnit: {fileID: 1991601198784472630}
+  myPowerController: {fileID: 1991601198784472630}
   myTurretFCS: {fileID: 297792029836579239}
   myRocketFCS: {fileID: 6546470811724589540}
   myMissileFCS: {fileID: 5379130123190166914}
@@ -4795,8 +4795,8 @@ MonoBehaviour:
   kocmoNumber: 0
   localTargetPos: {x: 0, y: 0, z: 0}
   realtimeShield: 6298
-  realtimeHull: 4808
-  realtimeSpeed: 17
+  realtimeHull: 4708
+  realtimeSpeed: 15
   afterburnerPower: 0
 --- !u!114 &1657341413352830641
 MonoBehaviour:
@@ -5468,7 +5468,7 @@ GameObject:
   - component: {fileID: 1991601198784472630}
   - component: {fileID: 8174007902536738121}
   m_Layer: 10
-  m_Name: Power Unit (PU)
+  m_Name: Power Controller (PC)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5500,14 +5500,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8691217102453135536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb35152a1a01aaa4e8dff01ee9c0ea96, type: 3}
+  m_Script: {fileID: 11500000, guid: f2e815f49ee19b74fb70a71340dffa77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  engineType: 100
-  engineSound: {fileID: 8174007902536738121}
-  airflow:
-  - {fileID: 198212925749257700}
-  countAirflow: 1
+  engineType: 0
+  engineSound: {fileID: 0}
+  airflow: []
+  countAirflow: 0
   enginePower: 0.5
   thrusterStartLife: 0
   currentLifeTime: 0
@@ -5521,11 +5520,11 @@ AudioSource:
   m_GameObject: {fileID: 8691217102453135536}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243706063939286974, guid: be36d0f6984b7eb46890f3f2eecc9e68,
+  OutputAudioMixerGroup: {fileID: 243026207885717156, guid: ecc5f9c3be930c54e9d6e194aca8aadf,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 1939ac767fafecf4ba185dc63dbc0615, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5534,7 +5533,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 0
-  MaxDistance: 73
+  MaxDistance: 200
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -5546,29 +5545,29 @@ AudioSource:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -0.012996988
-      outSlope: -0.012996988
+      inSlope: -0.40615207
+      outSlope: -0.40615207
       tangentMode: 0
-      weightedMode: 0
+      weightedMode: 2
       inWeight: 0
-      outWeight: 1
+      outWeight: 0.6882938
     - serializedVersion: 3
-      time: 0.5
-      value: 0.5
-      inSlope: -1.5130057
-      outSlope: -1.5130057
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.9116022
-      outWeight: 0.35634467
+      time: 0.19200897
+      value: 0.36531067
+      inSlope: -0.2206344
+      outSlope: -0.22349481
+      tangentMode: 1
+      weightedMode: 3
+      inWeight: 0.54113746
+      outWeight: 0.9659241
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -0.16709724
+      inSlope: -1.4400226
       outSlope: -0.16709724
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 1
+      tangentMode: 1
+      weightedMode: 3
+      inWeight: 0.06951491
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -5625,6 +5624,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4908477390876494}
     m_Modifications:
+    - target: {fileID: 8996180125332291000, guid: 432c1f2918c0fc942985a281f6903fa6,
+        type: 3}
+      propertyPath: m_Name
+      value: Prototype (01) - Red Bull Energy
+      objectReference: {fileID: 0}
     - target: {fileID: 7165428353671528654, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5680,25 +5684,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8996180125332291000, guid: 432c1f2918c0fc942985a281f6903fa6,
-        type: 3}
-      propertyPath: m_Name
-      value: Prototype (01) - Red Bull Energy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2761876482691409242, guid: 432c1f2918c0fc942985a281f6903fa6,
-        type: 3}
-      propertyPath: m_Heading.m_Bias
-      value: 173
-      objectReference: {fileID: 0}
     - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.11814345
-      objectReference: {fileID: 0}
-    - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7633285
+      value: -0.11814342
       objectReference: {fileID: 0}
     - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
@@ -5708,7 +5697,7 @@ PrefabInstance:
     - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.6181314
+      value: -0.61813146
       objectReference: {fileID: 0}
     - target: {fileID: 5034534724978173768, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
@@ -5728,7 +5717,7 @@ PrefabInstance:
     - target: {fileID: 1506805796713864185, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.15345927
+      value: -0.15345931
       objectReference: {fileID: 0}
     - target: {fileID: 1506805796713864185, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
@@ -5738,7 +5727,7 @@ PrefabInstance:
     - target: {fileID: 1506805796713864185, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.18950634
+      value: -0.18950632
       objectReference: {fileID: 0}
     - target: {fileID: 1506805796713864185, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
@@ -5763,22 +5752,17 @@ PrefabInstance:
     - target: {fileID: 1603001622991993250, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.1357989
-      objectReference: {fileID: 0}
-    - target: {fileID: 1603001622991993250, guid: 432c1f2918c0fc942985a281f6903fa6,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.75883675
+      value: -0.13579862
       objectReference: {fileID: 0}
     - target: {fileID: 1603001622991993250, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.16769771
+      value: -0.1676979
       objectReference: {fileID: 0}
     - target: {fileID: 1603001622991993250, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.614494
+      value: -0.61449397
       objectReference: {fileID: 0}
     - target: {fileID: 1603001622991993250, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
@@ -5794,6 +5778,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.000024557114
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761876482691409242, guid: 432c1f2918c0fc942985a281f6903fa6,
+        type: 3}
+      propertyPath: m_Heading.m_Bias
+      value: -66
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 432c1f2918c0fc942985a281f6903fa6, type: 3}
@@ -5822,6 +5811,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4908477390876494}
     m_Modifications:
+    - target: {fileID: 4520702761021608853, guid: 58070d4a882120e4c904a22b1c0d2966,
+        type: 3}
+      propertyPath: m_Name
+      value: Pilot - Red Bull Wing Academy
+      objectReference: {fileID: 0}
     - target: {fileID: 1438548545660035998, guid: 58070d4a882120e4c904a22b1c0d2966,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5876,11 +5870,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4520702761021608853, guid: 58070d4a882120e4c904a22b1c0d2966,
-        type: 3}
-      propertyPath: m_Name
-      value: Pilot - Red Bull Wing Academy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58070d4a882120e4c904a22b1c0d2966, type: 3}

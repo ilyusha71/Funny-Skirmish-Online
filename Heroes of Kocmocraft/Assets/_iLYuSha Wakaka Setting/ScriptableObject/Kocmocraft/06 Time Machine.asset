@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 06 Time Machine
   m_EditorClassIdentifier: 
+  type: 6
   size:
     wingspan: 2.96
     length: 3.74
@@ -24,27 +25,36 @@ MonoBehaviour:
     near: 4.57
     far: 21.17
   talk: {fileID: 8300000, guid: 2b53d6faa061198479e064b70e2b67d0, type: 3}
+  radio: {fileID: 8300000, guid: 2b53d6faa061198479e064b70e2b67d0, type: 3}
   chief: {fileID: 11400000, guid: d3a828ba39ef3704688d517502acc6a5, type: 2}
   reserve: {fileID: 11400000, guid: 2f3d269446d63f04e941dbb62a865325, type: 2}
   shield:
-    maximum: 6964
     level: 2
+    maximum: 6964
     emCrystal: 364
-    emBooster: 6600
     emBoosterLevel: 3
+    emBooster: 6600
   hull:
-    maximum: 3718
     level: 1
+    maximum: 3618
     airframe: 118
-    armor: 3600
     armorLevel: 1
+    armor: 3500
   speed:
-    maximum: 136
-    level: 6
-    engine: 14
-    afterburner: 122
+    level: 5
+    maximum: 126
+    powerUnit: 4
     afterburnerLevel: 6
-  engine: {fileID: 0}
+    afterburner: 122
+  powerUnit:
+    totalPower: 4
+    mainEngine:
+    - {fileID: 11400000, guid: d93255cafd43f364ab691f28d3b66817, type: 2}
+    mainEngineCount: 1
+    mainPower: 4
+    auxiliaryPowerUnit: []
+    auxiliaryPowerUnitCount: 0
+    auxiliaryPower: 0
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: b46ce8d2999082c4dbbd595c8185e8d5, type: 2}
   kocmomech: {fileID: 11400000, guid: 7a1aea8a96f335241998ebb6b7dc0494, type: 2}

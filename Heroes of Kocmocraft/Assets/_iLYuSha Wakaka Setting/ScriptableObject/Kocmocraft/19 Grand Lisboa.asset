@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 19 Grand Lisboa
   m_EditorClassIdentifier: 
+  type: 19
   size:
     wingspan: 7.3
     length: 10.96
@@ -24,27 +25,38 @@ MonoBehaviour:
     near: 8.18
     far: 24.779999
   talk: {fileID: 8300000, guid: ca402a30c6f4ed345ad9d07ba2f6a127, type: 3}
+  radio: {fileID: 8300000, guid: ca402a30c6f4ed345ad9d07ba2f6a127, type: 3}
   chief: {fileID: 11400000, guid: 685f5c60a5e973846942b7dd81abd500, type: 2}
   reserve: {fileID: 11400000, guid: ad7ae36e58689304b99625de9cbfa57c, type: 2}
   shield:
+    level: 4
     maximum: 10037
-    level: 4
     emCrystal: 3437
-    emBooster: 6600
     emBoosterLevel: 3
+    emBooster: 6600
   hull:
-    maximum: 14224
     level: 5
+    maximum: 13824
     airframe: 4024
-    armor: 10200
     armorLevel: 4
+    armor: 9800
   speed:
-    maximum: 109
     level: 4
-    engine: 23
-    afterburner: 86
+    maximum: 111
+    powerUnit: 25
     afterburnerLevel: 3
-  engine: {fileID: 0}
+    afterburner: 86
+  powerUnit:
+    totalPower: 25
+    mainEngine:
+    - {fileID: 11400000, guid: 7cfa3fb822ff60c4bb85bec05c19b754, type: 2}
+    mainEngineCount: 1
+    mainPower: 16
+    auxiliaryPowerUnit:
+    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
+    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
+    auxiliaryPowerUnitCount: 2
+    auxiliaryPower: 9
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 6132b26f1d8c5b14c91f21e5b100d8e8, type: 2}
   kocmomech: {fileID: 11400000, guid: a9c33a1cce93512419a9a8fb34f150ed, type: 2}

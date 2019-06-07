@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 02 Vladimir Putin
   m_EditorClassIdentifier: 
+  type: 2
   size:
     wingspan: 4.85
     length: 6.41
@@ -24,27 +25,37 @@ MonoBehaviour:
     near: 5.9049997
     far: 22.505
   talk: {fileID: 8300000, guid: a26cbe7928117944c9ecfc54c45d0b4a, type: 3}
+  radio: {fileID: 8300000, guid: a26cbe7928117944c9ecfc54c45d0b4a, type: 3}
   chief: {fileID: 11400000, guid: ad7ae36e58689304b99625de9cbfa57c, type: 2}
   reserve: {fileID: 11400000, guid: e86cd75373df2f749b269c4048cdc509, type: 2}
   shield:
+    level: 4
     maximum: 9688
-    level: 4
     emCrystal: 1288
-    emBooster: 8400
     emBoosterLevel: 4
+    emBooster: 8400
   hull:
-    maximum: 13320
     level: 4
+    maximum: 12820
     airframe: 920
-    armor: 12400
     armorLevel: 5
+    armor: 11900
   speed:
-    maximum: 78
     level: 2
-    engine: 16
-    afterburner: 62
+    maximum: 80
+    powerUnit: 18
     afterburnerLevel: 1
-  engine: {fileID: 0}
+    afterburner: 62
+  powerUnit:
+    totalPower: 18
+    mainEngine:
+    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
+    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
+    mainEngineCount: 2
+    mainPower: 18
+    auxiliaryPowerUnit: []
+    auxiliaryPowerUnitCount: 0
+    auxiliaryPower: 0
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 56ca0a181c146094d91fa5d6b3ae1c98, type: 2}
   kocmomech: {fileID: 11400000, guid: b69b083b643ab7d4f8b4f00371532b36, type: 2}

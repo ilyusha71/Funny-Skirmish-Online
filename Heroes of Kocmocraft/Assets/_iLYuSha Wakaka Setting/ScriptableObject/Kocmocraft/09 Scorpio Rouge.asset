@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 09 Scorpio Rouge
   m_EditorClassIdentifier: 
+  type: 9
   size:
     wingspan: 9.65
     length: 10.9
@@ -24,27 +25,38 @@ MonoBehaviour:
     near: 8.15
     far: 24.75
   talk: {fileID: 8300000, guid: 965fad436d644844da138d3f8a91a6d8, type: 3}
+  radio: {fileID: 8300000, guid: 965fad436d644844da138d3f8a91a6d8, type: 3}
   chief: {fileID: 11400000, guid: 46f52eaaff5018d45a2b842a693d81b3, type: 2}
   reserve: {fileID: 11400000, guid: f9053e5e9f7260d46868fb57081b1990, type: 2}
   shield:
-    maximum: 12747
     level: 5
+    maximum: 12747
     emCrystal: 4347
-    emBooster: 8400
     emBoosterLevel: 4
+    emBooster: 8400
   hull:
-    maximum: 13743
-    level: 4
+    level: 5
+    maximum: 13443
     airframe: 5743
-    armor: 8000
     armorLevel: 3
+    armor: 7700
   speed:
-    maximum: 96
-    level: 3
-    engine: 10
-    afterburner: 86
+    level: 4
+    maximum: 113
+    powerUnit: 27
     afterburnerLevel: 3
-  engine: {fileID: 0}
+    afterburner: 86
+  powerUnit:
+    totalPower: 27
+    mainEngine:
+    - {fileID: 11400000, guid: 7cfa3fb822ff60c4bb85bec05c19b754, type: 2}
+    mainEngineCount: 1
+    mainPower: 16
+    auxiliaryPowerUnit:
+    - {fileID: 11400000, guid: f327136124c0bbf4faea5deca7e666ff, type: 2}
+    - {fileID: 11400000, guid: f327136124c0bbf4faea5deca7e666ff, type: 2}
+    auxiliaryPowerUnitCount: 2
+    auxiliaryPower: 11
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 03586d03d44a3f24eb1d5c680a971c9b, type: 2}
   kocmomech: {fileID: 11400000, guid: 081d03b305722404c83a30321512c9b0, type: 2}

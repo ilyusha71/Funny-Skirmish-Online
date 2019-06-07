@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 16 Pumpkin Ghost
   m_EditorClassIdentifier: 
+  type: 16
   size:
     wingspan: 9.8
     length: 6.86
@@ -24,27 +25,37 @@ MonoBehaviour:
     near: 7.6000004
     far: 24.199999
   talk: {fileID: 8300000, guid: 0463d7137f743a0409b642cf1a89f2df, type: 3}
+  radio: {fileID: 8300000, guid: 0463d7137f743a0409b642cf1a89f2df, type: 3}
   chief: {fileID: 11400000, guid: d3a828ba39ef3704688d517502acc6a5, type: 2}
   reserve: {fileID: 11400000, guid: 2f3d269446d63f04e941dbb62a865325, type: 2}
   shield:
-    maximum: 8566
     level: 3
+    maximum: 8566
     emCrystal: 3766
-    emBooster: 4800
     emBoosterLevel: 2
+    emBooster: 4800
   hull:
-    maximum: 21687
     level: 7
+    maximum: 20987
     airframe: 4887
-    armor: 16800
     armorLevel: 7
+    armor: 16100
   speed:
-    maximum: 77
     level: 2
-    engine: 15
-    afterburner: 62
+    maximum: 77
+    powerUnit: 15
     afterburnerLevel: 1
-  engine: {fileID: 0}
+    afterburner: 62
+  powerUnit:
+    totalPower: 15
+    mainEngine:
+    - {fileID: 11400000, guid: dca5b71d4d5905f4aa6c0eb9d7371e5e, type: 2}
+    mainEngineCount: 1
+    mainPower: 9
+    auxiliaryPowerUnit:
+    - {fileID: 11400000, guid: 1fe45559059faf64a8a57dd732534b5c, type: 2}
+    auxiliaryPowerUnitCount: 1
+    auxiliaryPower: 6
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: db3d3e464409f7047a2fc29602c41d1a, type: 2}
   kocmomech: {fileID: 11400000, guid: b69b083b643ab7d4f8b4f00371532b36, type: 2}

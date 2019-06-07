@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b633e957d3f09f4eb04388624a231ef, type: 3}
   m_Name: 05 Bullet Bill
   m_EditorClassIdentifier: 
+  type: 5
   size:
     wingspan: 6.28
     length: 6.12
@@ -24,27 +25,36 @@ MonoBehaviour:
     near: 5.84
     far: 22.439999
   talk: {fileID: 8300000, guid: 1b30525f3c6731b41accdc02182fa782, type: 3}
+  radio: {fileID: 8300000, guid: 1b30525f3c6731b41accdc02182fa782, type: 3}
   chief: {fileID: 11400000, guid: ae06fcc2ee3db7c4eb0b917369419c48, type: 2}
   reserve: {fileID: 11400000, guid: b1ebada2b188cf241aab0d6511f4529a, type: 2}
   shield:
-    maximum: 4735
     level: 1
+    maximum: 4735
     emCrystal: 1735
-    emBooster: 3000
     emBoosterLevel: 1
+    emBooster: 3000
   hull:
-    maximum: 7298
     level: 2
+    maximum: 7098
     airframe: 1498
-    armor: 5800
     armorLevel: 2
+    armor: 5600
   speed:
-    maximum: 149
     level: 7
-    engine: 15
-    afterburner: 134
+    maximum: 150
+    powerUnit: 16
     afterburnerLevel: 7
-  engine: {fileID: 0}
+    afterburner: 134
+  powerUnit:
+    totalPower: 16
+    mainEngine:
+    - {fileID: 11400000, guid: 7cfa3fb822ff60c4bb85bec05c19b754, type: 2}
+    mainEngineCount: 1
+    mainPower: 16
+    auxiliaryPowerUnit: []
+    auxiliaryPowerUnitCount: 0
+    auxiliaryPower: 0
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: b46ce8d2999082c4dbbd595c8185e8d5, type: 2}
   kocmomech: {fileID: 11400000, guid: 5b13533be6585bb43aab82c8f78f556d, type: 2}

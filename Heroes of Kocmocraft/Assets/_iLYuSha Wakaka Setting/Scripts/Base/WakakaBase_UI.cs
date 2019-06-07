@@ -1,4 +1,14 @@
-﻿using DG.Tweening;
+﻿/***************************************************************************
+ * Wakaka Base UI
+ * 基地UI
+ * Last Updated: 2019/06/07
+ * 
+ * v19.0607
+ * 1. Panel
+ * 
+ ***************************************************************************/
+
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,53 +20,37 @@ namespace Kocmoca
 {
     public partial class WakakaBase : MonoBehaviour
     {
-        [Header("UI - Main")]
-        public Button btnOption; // Hotkey: ESC
         [Header("UI - Panel")]
         public AudioClip sfxHidePanel;
         public Transform panel;
         public Button btnHidePanel;
-        public AudioSource audioSource;
         private TweenerState panelState = TweenerState.Hide;
-        [Header("UI - Navigation Bar - Toggle")]
+        [Header("UI - Navigation Bar - Toggle Tab")]
         public TextMeshProUGUI textMain;
-        public AudioClip sfxTabPress;
-        public Toggle togDesign; // Hotkey: F1
-        public Toggle togDubi; // Hotkey: F2
-        public Toggle togPerformance; // Hotkey: F3
-        public Toggle togAstromech; // Hotkey: F4
-        public Toggle togRadar; // Hotkey: F5
-        public Toggle togTurret; // Hotkey: F6
-        public Toggle togMissile; // Hotkey: F7
+        public AudioSource audioTabPress;
+        public Toggle[] togTabs; // Hotkey: F1~F8
+        public GameObject[] panels;
+        public int panelCounts;
         [Header("UI - Navigation Bar - Button")]
+        public AudioSource audioButtonPress;
         public AudioClip sfxChangeSkin;
+        public AudioClip sfxChangePainting;
         public AudioClip sfxSwitchWireframe;
-        public AudioClip sfxChangePilot; // Hotkey: K
-        public AudioClip[] sfxTalk; // Hotkey: T
-        public Button btnChangeSkin; // Hotkey: C
-        public Button btnSwitchWireframe; // Hotkey: W
+        public AudioClip sfxChangePilot;
+        public AudioSource radioAudio;
+        public AudioClip[] radioClips;
+        public Button btnChangePainting;
+        public Button btnSwitchWireframe;
         public Button btnChangePilot;
-        public Button btnTalk;
-        public AudioSource talkSource;
+        public Button btnSwitchCockpitView; // Hotkey: C
+        public Button btnRadio; // Hotkey: R
+        public Button btnOption; // Hotkey: ESC
         [Header("UI - Panel")]
-        public GameObject panelDesign;
-        public GameObject panelDubi;
-        public GameObject panelPerformance;
-        public GameObject panelRadar;
-        public GameObject panelTurret;
-        public GameObject panelMissile;
-        public GameObject panelKocmomech;
-        [Header("UI - Panel - Design")]
-        public DesignPanel design;
-        [Header("UI - Panel - Dubi")]
-        public DubiPanel dubi;
-        [Header("UI - Panel - Performance")]
-        public PerformancePanel performance;
-        [Header("UI - Panel - Turret")]
-        public TurretPanel turret;
-        [Header("UI - Panel - Kocmomech")]
-        public KocmomechPanel kocmomech;
-        [Header("Radar Data")]
+        public DesignPanel designPanel;
+        public PilotPanel pilotPanel;
+        public PerformancePanel performancePanel;
+        public TurretPanel turretPanel;
+        public KocmomechPanel kocmomechPanel;
         public Radar radar;
 
         void Awake()
@@ -71,74 +65,49 @@ namespace Kocmoca
 
         void InitializePanel()
         {
-            //btnOption.onClick.AddListener(() => OpenPanel());
+            // Panel setting
             panel.localScale = Vector3.zero;
             btnHidePanel.onClick.AddListener(() => ClosePanel());
 
-            // Tab
-            togDesign.onValueChanged.AddListener(isOn =>
+            // Toggle tabs & panels
+            for (int i = 0; i < panelCounts; i++)
             {
-                audioSource.PlayOneShot(sfxTabPress, 0.73f);
-                panelDesign.SetActive(isOn);
-                if (isOn) OpenPanel(); else HidePanel();
-            });
-            togDubi.onValueChanged.AddListener(isOn =>
-            {
-                audioSource.PlayOneShot(sfxTabPress, 0.73f);
-                panelDubi.SetActive(isOn);
-                if (isOn) OpenPanel(); else HidePanel();
-            });
-            togPerformance.onValueChanged.AddListener(isOn =>
-            {
-                audioSource.PlayOneShot(sfxTabPress, 0.73f);
-                panelPerformance.SetActive(isOn);
-                if (isOn) OpenPanel(); else HidePanel();
+                int index = i;
+                togTabs[index].onValueChanged.AddListener(isOn =>
+                {
+                    audioTabPress.Play();
+                    panels[index].SetActive(isOn);
+                    if (isOn) OpenPanel(); else HidePanel();
+                });
+            }
 
-            });
-            togAstromech.onValueChanged.AddListener(isOn =>
+            // Button
+            btnChangePainting.onClick.AddListener(() =>
             {
-                audioSource.PlayOneShot(sfxTabPress, 0.73f);
-                panelKocmomech.SetActive(isOn);
-                if (isOn) OpenPanel(); else HidePanel();
-            });
-            togRadar.onValueChanged.AddListener(isOn =>
-            {
-                audioSource.PlayOneShot(sfxTabPress, 0.73f);
-                panelRadar.SetActive(isOn);
-                if (isOn) OpenPanel(); else HidePanel();
-            });
-            togTurret.onValueChanged.AddListener(isOn =>
-            {
-                audioSource.PlayOneShot(sfxTabPress, 0.73f);
-                panelTurret.SetActive(isOn);
-                if (isOn) OpenPanel(); else HidePanel();
-            });
-            togMissile.onValueChanged.AddListener(isOn =>
-            {
-                audioSource.PlayOneShot(sfxTabPress, 0.73f);
-                panelMissile.SetActive(isOn);
-                if (isOn) OpenPanel(); else HidePanel();
-            });
-
-            btnChangeSkin.onClick.AddListener(() =>
-            {
-                audioSource.PlayOneShot(sfxChangeSkin);
+                audioButtonPress.clip = sfxChangePainting;
+                audioButtonPress.Play();
                 PlayerPrefs.SetInt(LobbyInfomation.PREFS_SKIN + hangarIndex, prototype[hangarIndex].ChangeSkin());
             });
             btnSwitchWireframe.onClick.AddListener(() =>
             {
-                audioSource.PlayOneShot(sfxSwitchWireframe);
+                audioButtonPress.clip = sfxSwitchWireframe;
+                audioButtonPress.Play();
                 prototype[hangarIndex].SwitchWireframe();
             });
             btnChangePilot.onClick.AddListener(() =>
             {
-                audioSource.PlayOneShot(sfxChangePilot);
+                audioButtonPress.clip = sfxChangePilot;
+                audioButtonPress.Play();
                 pilot[hangarIndex].ChangePilot();
             });
-            btnTalk.onClick.AddListener(() => 
+            btnSwitchCockpitView.onClick.AddListener(() =>
             {
-                if (!talkSource.isPlaying && hangarIndex < hangarCount)
-                    talkSource.PlayOneShot(sfxTalk[hangarIndex]);
+                SwitchCockpit();
+            });
+            btnRadio.onClick.AddListener(() =>
+            {
+                radioAudio.clip = radioClips[hangarIndex];
+                radioAudio.Play();
             });
         }
 
@@ -162,26 +131,21 @@ namespace Kocmoca
             panel.DOScale(Vector3.zero, 0.37f);
             panelState = TweenerState.Hide;
 
-            togDesign.isOn = false;
-            togDubi.isOn = false;
-            togPerformance.isOn = false;
-            togAstromech.isOn = false;
-            togRadar.isOn = false;
-            togTurret.isOn = false;
-            togMissile.isOn = false;
+            for (int i = 0; i < panelCounts; i++)
+            {
+                togTabs[i].isOn = false;
+            }
         }
-
-
 
         void LoadHangarData()
         {
             textMain.text = DesignData.Code[hangarIndex];
-            design.SetData(hangarIndex, database.kocmocraft[hangarIndex].size);
-            dubi.SetData(hangarIndex, database.kocmocraft[hangarIndex]);
-            performance.SetData(hangarIndex, database.kocmocraft[hangarIndex]);
+            designPanel.SetData(hangarIndex, database.kocmocraft[hangarIndex].size);
+            pilotPanel.SetData(hangarIndex, database.kocmocraft[hangarIndex]);
+            performancePanel.SetData(hangarIndex, database.kocmocraft[hangarIndex]);
             radar.SetData(hangarIndex);
-            turret.SetData(hangarIndex, database.kocmocraft[hangarIndex].turret);
-            kocmomech.SetData(hangarIndex, database.kocmocraft[hangarIndex].kocmomech);
+            turretPanel.SetData(hangarIndex, database.kocmocraft[hangarIndex].turret);
+            kocmomechPanel.SetData(hangarIndex, database.kocmocraft[hangarIndex].kocmomech);
 
             // 三视图
             topCamera.orthographicSize = database.kocmocraft[hangarIndex].view.orthoSize;
@@ -247,7 +211,7 @@ namespace Kocmoca
             }
         }
         [System.Serializable]
-        public class DubiPanel
+        public class PilotPanel
         {
             [Header("Panel")]
             public RectTransform scaleChiefHeight;
@@ -356,7 +320,7 @@ namespace Kocmoca
                     }
                 }
             }
-            public void SetData(int index,  KocmocraftModule performance)
+            public void SetData(int index, KocmocraftModule performance)
             {
                 raw.texture = textures[index];
                 textShield.text = performance.shield.maximum.ToString();
@@ -376,7 +340,7 @@ namespace Kocmoca
                 tipAirframe.text = "+ " + performance.hull.airframe.ToString();
                 tipArmor.text = "+ " + performance.hull.armor.ToString();
                 tipArmorLevel.text = performance.hull.armorLevel.ToString();
-                tipEngine.text = "+ "+((int)(performance.speed.engine * 3.6f)).ToString();
+                tipEngine.text = "+ " + ((int)(performance.speed.powerUnit * 3.6f)).ToString();
                 tipAfterburner.text = "+ " + ((int)(performance.speed.afterburner * 3.6f)).ToString();
                 tipAfterburnerLevel.text = performance.speed.afterburnerLevel.ToString();
 
@@ -436,7 +400,7 @@ namespace Kocmoca
                 textRoundsPerMinute.text = turret.roundsPerMinute.ToString() + " rpm";
                 textMaxProjectileSpread.text = turret.maxProjectileSpread.ToString() + "°";
                 textAmmoName.text = turret.ammoName;
-                textAmmoVelocity.text = Mathf.RoundToInt(turret.ammoVelocity*3.6f).ToString() + " Kph";
+                textAmmoVelocity.text = Mathf.RoundToInt(turret.ammoVelocity * 3.6f).ToString() + " Kph";
                 textOperationalRange.text = Mathf.RoundToInt(turret.operationalRange).ToString() + " m";
                 textDamage.text = turret.damage.ToString() + " Pts";
                 textDPS.text = turret.dPS.ToString() + " Pts";
@@ -508,7 +472,7 @@ namespace Kocmoca
                 tipYaw.text = "+ " + kocmomech.yaw.ToString() + "°/s";
                 tipAcceleration.text = "+ " + kocmomech.acceleration.ToString() + " Kph/s";
                 tipDeceleration.text = "- " + kocmomech.deceleration.ToString() + " Kph/s";
-                tipLockTime.text = "+ " + (kocmomech.lockTime*1000).ToString() + " ms";
+                tipLockTime.text = "+ " + (kocmomech.lockTime * 1000).ToString() + " ms";
                 //tipMissileCount.text = kocmomech.damage.ToString() + " Pts";
                 //tipMissileReloadTime.text = kocmomech.dPS.ToString() + " Pts";
                 //tipRocketCount.text = kocmomech.penetration.ToString() + " %";
