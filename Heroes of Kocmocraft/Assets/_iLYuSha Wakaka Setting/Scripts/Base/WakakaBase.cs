@@ -109,6 +109,8 @@ namespace Kocmoca
             designPanel.Initialize(panels[0]);
             pilotPanel.Initialize(panels[1], tipsBlock);
             performancePanel.Initialize(panels[2], tipsBlock);
+            powerSystemPanel.Initialize(panels[3], tipsBlock);
+
             turretPanel.Initialize(panels[4]);
             kocmomechPanel.Initialize(panels[6], tipsBlock);
 

@@ -24,7 +24,6 @@ MonoBehaviour:
     orthoSize: 5.48
     near: 8.18
     far: 24.779999
-  talk: {fileID: 8300000, guid: ca402a30c6f4ed345ad9d07ba2f6a127, type: 3}
   radio: {fileID: 8300000, guid: ca402a30c6f4ed345ad9d07ba2f6a127, type: 3}
   chief: {fileID: 11400000, guid: 685f5c60a5e973846942b7dd81abd500, type: 2}
   reserve: {fileID: 11400000, guid: ad7ae36e58689304b99625de9cbfa57c, type: 2}
@@ -43,10 +42,10 @@ MonoBehaviour:
   speed:
     level: 4
     maximum: 111
-    powerUnit: 25
+    powerSystem: 25
     afterburnerLevel: 3
     afterburner: 86
-  powerUnit:
+  powerSystem:
     totalPower: 25
     mainEngine:
     - {fileID: 11400000, guid: 7cfa3fb822ff60c4bb85bec05c19b754, type: 2}

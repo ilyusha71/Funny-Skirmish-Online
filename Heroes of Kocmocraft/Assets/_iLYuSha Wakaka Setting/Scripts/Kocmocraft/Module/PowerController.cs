@@ -50,7 +50,7 @@ namespace Kocmoca
         private int countPropeller;
 
 #if UNITY_EDITOR
-        public void Preset(PowerUnit engine)
+        public void Preset(PowerSystem powerSystem)
         {
             engineSound = GetComponent<AudioSource>();
             airflow = GetComponentsInChildren<ParticleSystem>();
@@ -60,6 +60,8 @@ namespace Kocmoca
 
         void Awake()
         {
+                        engineSound = GetComponent<AudioSource>();
+
             switch (engineType)
             {
                 case EngineType.Turbojet:

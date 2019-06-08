@@ -18,7 +18,7 @@ public class KocmocraftModule : ScriptableObject
     public Hull hull;
     public Speed speed;
     [Header("Engine")]
-    public PowerUnit powerUnit;
+    public PowerSystem powerSystem;
     [Header("Radar")]
     public Radar radar;
     [Header("Turret")]
@@ -44,7 +44,7 @@ public class KocmocraftModule : ScriptableObject
         var afterburner = UnityEditor.AssetDatabase.LoadAssetAtPath<Proficiency>(dataPath + "Proficiency/Afterburner Level.asset");
         shield.Calculate(size.SurfaceArea, emBooster.level[(int)type]);
         hull.Calculate(size.Volume, armor.level[(int)type]);
-        speed.Calculate(powerUnit.Calculate(), afterburner.level[(int)type]);
+        speed.Calculate(powerSystem.Calculate(), afterburner.level[(int)type]);
         turret.Calculate();
         kocmomech.Calculate();
     }
@@ -132,20 +132,20 @@ public class Hull : Performance
 [System.Serializable]
 public class Speed : Performance
 {
-    [Header("动力单元")]
-    public int powerUnit;
+    [Header("动力系统")]
+    public int powerSystem;
     [Header("后燃器")]
     public int afterburnerLevel;
     public int afterburner;
 #if UNITY_EDITOR
     public void Calculate(int power, int proficiency)
     {
-        powerUnit = power;
+        powerSystem = power;
         int basic = 50;
         int diff = 12;
         afterburnerLevel = proficiency;
         afterburner = basic + diff * afterburnerLevel;
-        maximum = powerUnit + afterburner;
+        maximum = powerSystem + afterburner;
         for (int i = 7; i > 0; i--)
         {
             if (maximum >= basic + diff * i + (diff / 6 * (i - 1)))
@@ -158,7 +158,7 @@ public class Speed : Performance
 #endif
 }
 [System.Serializable]
-public class PowerUnit
+public class PowerSystem
 {
     public int totalPower;
     [Header("Main Power")]
@@ -179,6 +179,7 @@ public class PowerUnit
         for (int i = 0; i < mainEngineCount; i++)
         {
             power += mainEngine[i].power;
+            mainEngine[0].typeCN =  mainEngine[0].typeName ;
         }
         mainPower = (int)power;
         // Auxiliary Power
@@ -187,6 +188,8 @@ public class PowerUnit
         for (int i = 0; i < auxiliaryPowerUnitCount; i++)
         {
             power += auxiliaryPowerUnit[i].power * 0.5f;
+                        auxiliaryPowerUnit[0].typeCN =  auxiliaryPowerUnit[0].typeName ;
+
         }
         auxiliaryPower = (int)power;
 

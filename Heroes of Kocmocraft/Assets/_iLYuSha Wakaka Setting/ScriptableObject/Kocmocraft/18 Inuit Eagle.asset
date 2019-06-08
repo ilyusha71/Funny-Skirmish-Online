@@ -24,7 +24,6 @@ MonoBehaviour:
     orthoSize: 4.2
     near: 6.8999996
     far: 23.5
-  talk: {fileID: 8300000, guid: 052625d9a0ac4a64d89b14811e2e98e1, type: 3}
   radio: {fileID: 8300000, guid: 052625d9a0ac4a64d89b14811e2e98e1, type: 3}
   chief: {fileID: 11400000, guid: eae1145052b43054e8a0af4066eba50e, type: 2}
   reserve: {fileID: 11400000, guid: 5e592ef959b550d4496f6567510d03ac, type: 2}
@@ -41,17 +40,18 @@ MonoBehaviour:
     armorLevel: 4
     armor: 9800
   speed:
-    level: 4
-    maximum: 106
-    powerUnit: 20
+    level: 5
+    maximum: 122
+    powerSystem: 36
     afterburnerLevel: 3
     afterburner: 86
-  powerUnit:
-    totalPower: 20
+  powerSystem:
+    totalPower: 36
     mainEngine:
     - {fileID: 11400000, guid: 7cfa3fb822ff60c4bb85bec05c19b754, type: 2}
-    mainEngineCount: 1
-    mainPower: 16
+    - {fileID: 11400000, guid: 7cfa3fb822ff60c4bb85bec05c19b754, type: 2}
+    mainEngineCount: 2
+    mainPower: 32
     auxiliaryPowerUnit:
     - {fileID: 11400000, guid: f5a831b549f11074a8dd65702b95f0ba, type: 2}
     - {fileID: 11400000, guid: f5a831b549f11074a8dd65702b95f0ba, type: 2}

@@ -6,6 +6,9 @@ public class Engine : ScriptableObject
 {
     public EngineType type;
     public string typeName;
+    public string typeEN;
+    public string typeCN;
+    public Sprite icon;
     public int power;
     [Header("Engine Sound")]
     public AudioClip sound;

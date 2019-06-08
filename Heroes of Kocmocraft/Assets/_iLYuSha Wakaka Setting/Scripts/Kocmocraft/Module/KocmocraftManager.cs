@@ -63,7 +63,7 @@ namespace Kocmoca
             hull = index.kocmocraft[type].hull;
             realtimeHull = hull.maximum;
             speed = index.kocmocraft[type].speed;
-            realSpeed = speed.powerUnit;
+            realSpeed = speed.powerSystem;
             kocmomech = index.kocmocraft[type].kocmomech;
 
             myRigidbody = GetComponent<Rigidbody>();
@@ -80,7 +80,7 @@ namespace Kocmoca
                 //fcs[i].Preset(type);
             }
 
-            GetComponentInChildren<PowerController>().Preset(index.kocmocraft[type].powerUnit);
+            // GetComponentInChildren<PowerController>().Preset(index.kocmocraft[type].powerUnit);
 
             enabled = false;
         }

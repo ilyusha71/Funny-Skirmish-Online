@@ -10,8 +10,8 @@ TextureImporter:
     21300010: UI-Hangar_5
     21300012: UI-Hangar_6
     21300014: UI-Hangar_7
-    21300016: UI-Hangar_8
-    21300018: UI-Hangar_9
+    21300016: Engine - Turbofan
+    21300018: Engine - Turboprop
     21300020: UI-Hangar_10
     21300022: UI-Hangar_11
     21300024: UI-Icon-Design
@@ -30,12 +30,12 @@ TextureImporter:
     21300050: UI-Hangar_17
     21300052: UI-Hangar_18
     21300054: UI-Hangar_19
-    21300056: UI-Hangar_20
+    21300056: Engine - Turboshaft
     21300058: UI-Hangar_21
     21300060: UI-Hangar_22
     21300062: UI-Hangar_23
     21300064: UI-Hangar_24
-    21300066: UI-Hangar_25
+    21300066: Engine - Turbojet
     21300068: UI-Hangar_26
     21300070: UI-Hangar_27
     21300072: UI-Hangar_28
@@ -45,6 +45,12 @@ TextureImporter:
     21300080: UI-Hangar_32
     21300082: UI-Hangar_33
     21300084: UI-Hangar_34
+    21300086: Engine - Pulsejet
+    21300088: Engine - Ion
+    21300090: Engine - Rocket
+    21300092: Engine - Wing
+    21300094: Engine - Reverse
+    21300096: Engine - Floater
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -309,13 +315,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI-Hangar_8
+      name: Engine - Turbofan
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 912
-        height: 135
+        width: 200
+        height: 112
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -324,26 +330,6 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 3f6a9dff7f38d454db9c2fc0e2ec11e1
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI-Hangar_9
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 135
-        width: 912
-        height: 103
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4d71e832b2d822741b7359c5ef1f0b5f
       vertices: []
       indices: 
       edges: []
@@ -689,26 +675,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI-Hangar_20
-      rect:
-        serializedVersion: 2
-        x: 976
-        y: 0
-        width: 48
-        height: 72
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 601da5e0e35e5d74c8e4439ac2e8a64b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: UI-Hangar_10
       rect:
         serializedVersion: 2
@@ -957,7 +923,7 @@ TextureImporter:
         width: 37
         height: 37
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -977,13 +943,193 @@ TextureImporter:
         width: 26
         height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: d9fb383ed57af814291af1a9b31a525e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engine - Turbojet
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 200
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bba3f2e147bbb5943a5fffbe75dcacd4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engine - Pulsejet
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 200
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52077ceaa5ec7fa45b3d9614d7d0c39c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engine - Turboshaft
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 200
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2484d2f10f46760488450a924e33cf2b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engine - Turboprop
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 112
+        width: 200
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b287f12c7eb7ee44aa1b960554d1969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engine - Ion
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 112
+        width: 200
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 543b0ccf34fe3e74bb99c1b1b8823cbc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engine - Rocket
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 112
+        width: 200
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c02bdda66e73b64f8e4200908da3176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engine - Wing
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 200
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d714611af88c3742a1565a2523a70f5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engine - Reverse
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 112
+        width: 200
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e304953dfd935d4b8d9c84f756a5801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engine - Floater
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 112
+        width: 200
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58b372cebeea0c148b130dccb96a9e3e
       vertices: []
       indices: 
       edges: []

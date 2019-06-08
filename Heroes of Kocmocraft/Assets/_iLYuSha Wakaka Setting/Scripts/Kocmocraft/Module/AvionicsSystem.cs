@@ -121,7 +121,7 @@ namespace Kocmoca
             // Initial value
             realtimeShield = shield.maximum;
             realtimeHull = hull.maximum;
-            realtimeSpeed = speed.powerUnit;
+            realtimeSpeed = speed.powerSystem;
             enabled = false;
             Debug.Log("<color=Yellow>" + name + " data has been preset.</color>");
         }
@@ -187,7 +187,7 @@ namespace Kocmoca
         }
         public void ControlThrottle(float throttle)
         {
-            if (realtimeSpeed >= speed.powerUnit)
+            if (realtimeSpeed >= speed.powerSystem)
             {
                 realtimeSpeed += (throttle == 0 ? -3.0f : Mathf.Sign(throttle) * kocmomech.acceleration) * Time.deltaTime;
                 afterburnerPower += (throttle == 0 ? -0.1f : Mathf.Sign(throttle) * 0.2f) * Time.deltaTime;
@@ -197,7 +197,7 @@ namespace Kocmoca
             {
                 realtimeSpeed += (throttle == 0 ? +3.0f : Mathf.Sign(throttle) * kocmomech.deceleration) * Time.deltaTime;
                 // 當速度低於 engine 提供的巡航速度時，AB power 與當前速度成線性關係
-                afterburnerPower = 0.4f * Mathf.InverseLerp(0, speed.powerUnit, realtimeSpeed);
+                afterburnerPower = 0.4f * Mathf.InverseLerp(0, speed.powerSystem, realtimeSpeed);
             }
             realtimeSpeed = Mathf.Clamp(realtimeSpeed, 0, speed.maximum);
             myPowerController.Power(afterburnerPower);

@@ -24,7 +24,6 @@ MonoBehaviour:
     orthoSize: 4.9
     near: 7.6000004
     far: 24.199999
-  talk: {fileID: 8300000, guid: 0463d7137f743a0409b642cf1a89f2df, type: 3}
   radio: {fileID: 8300000, guid: 0463d7137f743a0409b642cf1a89f2df, type: 3}
   chief: {fileID: 11400000, guid: d3a828ba39ef3704688d517502acc6a5, type: 2}
   reserve: {fileID: 11400000, guid: 2f3d269446d63f04e941dbb62a865325, type: 2}
@@ -42,20 +41,21 @@ MonoBehaviour:
     armor: 16100
   speed:
     level: 2
-    maximum: 77
-    powerUnit: 15
+    maximum: 84
+    powerSystem: 22
     afterburnerLevel: 1
     afterburner: 62
-  powerUnit:
-    totalPower: 15
+  powerSystem:
+    totalPower: 22
     mainEngine:
     - {fileID: 11400000, guid: dca5b71d4d5905f4aa6c0eb9d7371e5e, type: 2}
     mainEngineCount: 1
     mainPower: 9
     auxiliaryPowerUnit:
     - {fileID: 11400000, guid: 1fe45559059faf64a8a57dd732534b5c, type: 2}
-    auxiliaryPowerUnitCount: 1
-    auxiliaryPower: 6
+    - {fileID: 11400000, guid: 1fe45559059faf64a8a57dd732534b5c, type: 2}
+    auxiliaryPowerUnitCount: 2
+    auxiliaryPower: 13
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: db3d3e464409f7047a2fc29602c41d1a, type: 2}
   kocmomech: {fileID: 11400000, guid: b69b083b643ab7d4f8b4f00371532b36, type: 2}

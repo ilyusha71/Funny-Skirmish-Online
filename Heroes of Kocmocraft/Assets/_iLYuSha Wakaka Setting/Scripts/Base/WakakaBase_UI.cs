@@ -49,6 +49,7 @@ namespace Kocmoca
         public DesignPanel designPanel;
         public PilotPanel pilotPanel;
         public PerformancePanel performancePanel;
+        public PowerSystemPanel powerSystemPanel;
         public TurretPanel turretPanel;
         public KocmomechPanel kocmomechPanel;
         public Radar radar;
@@ -143,6 +144,7 @@ namespace Kocmoca
             designPanel.SetData(hangarIndex, database.kocmocraft[hangarIndex].size);
             pilotPanel.SetData(hangarIndex, database.kocmocraft[hangarIndex]);
             performancePanel.SetData(hangarIndex, database.kocmocraft[hangarIndex]);
+            powerSystemPanel.SetData(hangarIndex, database.kocmocraft[hangarIndex].powerSystem);
             radar.SetData(hangarIndex);
             turretPanel.SetData(hangarIndex, database.kocmocraft[hangarIndex].turret);
             kocmomechPanel.SetData(hangarIndex, database.kocmocraft[hangarIndex].kocmomech);
@@ -157,11 +159,11 @@ namespace Kocmoca
         [System.Serializable]
         public class DesignPanel
         {
-            public TextMeshProUGUI textSeason;
-            public TextMeshProUGUI textMission;
-            public TextMeshProUGUI textOKB;
-            public TextMeshProUGUI textProject;
             public TextMeshProUGUI textCode;
+            public TextMeshProUGUI textProject;
+            public TextMeshProUGUI textOKB;
+            public TextMeshProUGUI textMission;
+            public TextMeshProUGUI textSeason;
             public TextMeshProUGUI textDescription;
             public RectTransform scaleWingspan;
             public RectTransform scaleLength;
@@ -178,11 +180,11 @@ namespace Kocmoca
                 {
                     switch (child.name)
                     {
-                        case "Design - Season": textSeason = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Design - Mission": textMission = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Design - OKB": textOKB = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Design - Project": textProject = child.GetComponent<TextMeshProUGUI>(); break;
                         case "Design - Code": textCode = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Design - Project": textProject = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Design - OKB": textOKB = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Design - Mission": textMission = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Design - Season": textSeason = child.GetComponent<TextMeshProUGUI>(); break;
                         case "Design - Description": textDescription = child.GetComponent<TextMeshProUGUI>(); break;
                         case "View Scale - Wingspan": scaleWingspan = child.GetComponent<RectTransform>(); break;
                         case "View Text - Wingspan": textWingspan = child.GetComponent<TextMeshProUGUI>(); break;
@@ -196,11 +198,11 @@ namespace Kocmoca
             }
             public void SetData(int index, Size size)
             {
-                textSeason.text = DesignData.Season[index];
-                textMission.text = DesignData.Mission[index];
-                textOKB.text = DesignData.OKB[index];
-                textProject.text = DesignData.Project[index];
                 textCode.text = DesignData.Code[index];
+                textProject.text = DesignData.Project[index];
+                textOKB.text = DesignData.OKB[index];
+                textMission.text = DesignData.Mission[index];
+                textSeason.text = DesignData.Season[index];
                 textDescription.text = DesignData.Description[index];
                 scaleWingspan.sizeDelta = new Vector2(274 * size.wingspanScale, 37);
                 scaleLength.sizeDelta = new Vector2(274 * size.lengthScale, 37);
@@ -266,6 +268,88 @@ namespace Kocmoca
             }
         }
         [System.Serializable]
+        public class PowerSystemPanel
+        {
+            [Header("Panel")]
+            public Image iconMainEngine;
+            public UITitleTranslation textMainEngine;
+            public TextMeshProUGUI textMainPower;
+            public Image iconAuxiliaryPowerUnit;
+            public UITitleTranslation textAuxiliaryPowerUnit;
+            public TextMeshProUGUI textAuxiliaryPower;
+            public TextMeshProUGUI textTotalPower;
+            [Header("Tips")]
+            public TextMeshProUGUI tipMainEngine;
+            public TextMeshProUGUI tipMainEngineCount;
+            public TextMeshProUGUI tipAuxiliaryPowerUnit;
+            public TextMeshProUGUI tipAuxiliaryPowerUnitCount;
+
+            public void Initialize(GameObject panel, GameObject tip)
+            {
+                panel.SetActive(true);
+                Transform[] obj = panel.GetComponentsInChildren<Transform>();
+                foreach (Transform child in obj)
+                {
+                    switch (child.name)
+                    {
+                        case "Icon - Main Engine": iconMainEngine = child.GetComponent<Image>(); break;
+                        case "Item Text - Main Engine Type": textMainEngine = child.GetComponent<UITitleTranslation>(); break;
+                        case "PS - Main Power": textMainPower = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Icon - Auxiliary Power Unit": iconAuxiliaryPowerUnit = child.GetComponent<Image>(); break;
+                        case "Item Text - Auxiliary Power Unit Type": textAuxiliaryPowerUnit = child.GetComponent<UITitleTranslation>(); break;
+                        case "PS - Auxiliary Power": textAuxiliaryPower = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "PS - Total Power": textTotalPower = child.GetComponent<TextMeshProUGUI>(); break;
+                    }
+                }
+                panel.SetActive(false);
+                obj = tip.GetComponentsInChildren<Transform>();
+                foreach (Transform child in obj)
+                {
+                    switch (child.name)
+                    {
+                        case "PS - Main Engine": tipMainEngine = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "PS - Main Engine Count": tipMainEngineCount = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "PS - Auxiliary Power Unit": tipAuxiliaryPowerUnit = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "PS - Auxiliary Power Unit Count": tipAuxiliaryPowerUnitCount = child.GetComponent<TextMeshProUGUI>(); break;
+                    }
+                }
+            }
+            public void SetData(int index, PowerSystem powerSystem)
+            {
+                iconMainEngine.sprite = powerSystem.mainEngine[0].icon;
+                textMainEngine.en = powerSystem.mainEngine[0].typeEN;
+                textMainEngine.cn = powerSystem.mainEngine[0].typeCN;
+                textMainEngine.textTitle.text = textMainEngine.en;
+                textMainPower.text = ((int)(powerSystem.mainPower * 3.6f)).ToString();
+                tipMainEngine.text = "+ " + ((int)(powerSystem.mainEngine[0].power * 3.6f)).ToString() + " Kph";
+                tipMainEngineCount.text = "Power Unit x " + powerSystem.mainEngineCount.ToString();
+                textTotalPower.text = ((int)(powerSystem.totalPower * 3.6f)).ToString();
+
+                if (powerSystem.auxiliaryPowerUnitCount != 0)
+                {
+                    iconAuxiliaryPowerUnit.enabled = true;
+                    iconAuxiliaryPowerUnit.sprite = powerSystem.auxiliaryPowerUnit[0].icon;
+                    textAuxiliaryPowerUnit.en = powerSystem.auxiliaryPowerUnit[0].typeEN;
+                    textAuxiliaryPowerUnit.cn = powerSystem.auxiliaryPowerUnit[0].typeCN;
+                    textAuxiliaryPowerUnit.textTitle.text = textAuxiliaryPowerUnit.en;
+                    textAuxiliaryPower.text = ((int)(powerSystem.auxiliaryPower * 3.6f)).ToString();
+                    tipAuxiliaryPowerUnit.text = "+ " + ((int)(powerSystem.auxiliaryPowerUnit[0].power * 0.5f * 3.6f)) + " Kph";
+                    tipAuxiliaryPowerUnitCount.text = "Power Unit x " + powerSystem.auxiliaryPowerUnitCount.ToString();
+                }
+                else
+                {
+                    iconAuxiliaryPowerUnit.enabled = false;
+                    textAuxiliaryPowerUnit.en = "Not configured";
+                    textAuxiliaryPowerUnit.cn = "未配置";
+                    textAuxiliaryPowerUnit.textTitle.text = textAuxiliaryPowerUnit.en;
+                    textAuxiliaryPower.text = "0";
+                    tipAuxiliaryPowerUnit.text = "+ 0 Kph";
+                    tipAuxiliaryPowerUnitCount.text = "Power Unit x 0";
+                }
+
+            }
+        }
+        [System.Serializable]
         public class PerformancePanel
         {
             [Header("Panel")]
@@ -281,7 +365,7 @@ namespace Kocmoca
             public TextMeshProUGUI tipAirframe;
             public TextMeshProUGUI tipArmor;
             public TextMeshProUGUI tipArmorLevel;
-            public TextMeshProUGUI tipEngine;
+            public TextMeshProUGUI tipPowerSystem;
             public TextMeshProUGUI tipAfterburner;
             public TextMeshProUGUI tipAfterburnerLevel;
 
@@ -314,7 +398,7 @@ namespace Kocmoca
                         case "Performance - Airframe": tipAirframe = child.GetComponent<TextMeshProUGUI>(); break;
                         case "Performance - Armor": tipArmor = child.GetComponent<TextMeshProUGUI>(); break;
                         case "Performance - Armor Level": tipArmorLevel = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Performance - Engine": tipEngine = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Performance - Power System": tipPowerSystem = child.GetComponent<TextMeshProUGUI>(); break;
                         case "Performance - Afterburner": tipAfterburner = child.GetComponent<TextMeshProUGUI>(); break;
                         case "Performance - Afterburner Level": tipAfterburnerLevel = child.GetComponent<TextMeshProUGUI>(); break;
                     }
@@ -340,7 +424,7 @@ namespace Kocmoca
                 tipAirframe.text = "+ " + performance.hull.airframe.ToString();
                 tipArmor.text = "+ " + performance.hull.armor.ToString();
                 tipArmorLevel.text = performance.hull.armorLevel.ToString();
-                tipEngine.text = "+ " + ((int)(performance.speed.powerUnit * 3.6f)).ToString();
+                tipPowerSystem.text = "+ " + ((int)(performance.speed.powerSystem * 3.6f)).ToString();
                 tipAfterburner.text = "+ " + ((int)(performance.speed.afterburner * 3.6f)).ToString();
                 tipAfterburnerLevel.text = performance.speed.afterburnerLevel.ToString();
 
@@ -376,12 +460,12 @@ namespace Kocmoca
                 {
                     switch (child.name)
                     {
-                        case "Turret - Cannon Name": textCannonName = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Turret - Cannon Name": textCannonName = child.GetComponent<TextMeshProUGUI>(); break; // 改成Type
                         case "Turret - Cannon Count": textCannonCount = child.GetComponent<TextMeshProUGUI>(); break;
                         case "Turret - Auto Aim": textMaxAutoAimAngle = child.GetComponent<TextMeshProUGUI>(); break;
                         case "Turret - RPM": textRoundsPerMinute = child.GetComponent<TextMeshProUGUI>(); break;
                         case "Turret - Spread": textMaxProjectileSpread = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Turret - Ammo Name": textAmmoName = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Turret - Ammo Name": textAmmoName = child.GetComponent<TextMeshProUGUI>(); break; // 改成Type
                         case "Turret - Ammo Velocity": textAmmoVelocity = child.GetComponent<TextMeshProUGUI>(); break;
                         case "Turret - Operational Range": textOperationalRange = child.GetComponent<TextMeshProUGUI>(); break;
                         case "Turret - Damage": textDamage = child.GetComponent<TextMeshProUGUI>(); break;
