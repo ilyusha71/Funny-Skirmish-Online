@@ -13,17 +13,24 @@ MonoBehaviour:
   m_Name: 01 Red Bull Energy
   m_EditorClassIdentifier: 
   type: 1
-  size:
-    wingspan: 5.62
-    length: 5.81
-    height: 3.7
-    wingspanScale: 0.96729773
-    lengthScale: 1
-    heightScale: 0.6368331
-  view:
-    orthoSize: 2.905
-    near: 5.605
-    far: 22.205
+  design:
+    code: Red Bull Energy
+    project: "\u7EA2\u725B\u80FD\u91CF"
+    OKB: "\u7EA2\u725B\u822A\u5929"
+    debut: "\u7B2C\u4E00\u8D5B\u5B63"
+    mission: "\u7279\u653B\u6253\u51FB"
+    development: "\u6BCF\u5E74\u5B9A\u671F\u4E3E\u529E\u7684\u5B87\u822A\u673A\u8D5B\u4E8B\u90FD\u5438\u5F15\u7740\u4E0D\u5C11\u84DD\u661F\u5382\u724C\u7684\u8D5E\u52A9\uFF0C\u300C\u7EA2\u725B\u80FD\u91CF\u300D\u6B63\u662F\u7EA2\u725B\u4E3A\u5B87\u822A\u673A\u7ADE\u6280\u63A8\u51FA\u7684\u9996\u6B3E\u6982\u5FF5\u673A\uFF0C\u6781\u5177\u8C61\u5F81\u6027\u7684\u7FC5\u8180\u6B63\u662F\u7EA2\u725B\u53E3\u53F7\u7684\u6700\u4F73\u5B9E\u8DF5\u3002"
+    size:
+      wingspan: 5.62
+      length: 5.81
+      height: 3.7
+      wingspanScale: 0.96729773
+      lengthScale: 1
+      heightScale: 0.6368331
+    view:
+      orthoSize: 2.905
+      near: 5.605
+      far: 22.205
   radio: {fileID: 8300000, guid: 2eb6524149e1bf24298c0f54483ec49d, type: 3}
   chief: {fileID: 11400000, guid: 96a15a2172cf73a43bd53316bf39da09, type: 2}
   reserve: {fileID: 11400000, guid: fa590946fbf422448a0f135f921887d8, type: 2}
@@ -46,16 +53,35 @@ MonoBehaviour:
     afterburnerLevel: 7
     afterburner: 134
   powerSystem:
-    totalPower: 15
-    mainEngine:
+    cruiseSpeed: 15
+    acceleration: 6.1795382
+    total:
+      thrust: 14640
+      speed: 54
+      acceleration: 22
+    listMPU:
     - {fileID: 11400000, guid: f327136124c0bbf4faea5deca7e666ff, type: 2}
-    mainEngineCount: 1
-    mainPower: 11
-    auxiliaryPowerUnit:
+    mpuCount: 1
+    mpu:
+      thrust: 10736
+      speed: 40
+      acceleration: 16
+    mainPower:
+      thrust: 10736
+      speed: 40
+      acceleration: 16
+    listAPU:
     - {fileID: 11400000, guid: f5a831b549f11074a8dd65702b95f0ba, type: 2}
     - {fileID: 11400000, guid: f5a831b549f11074a8dd65702b95f0ba, type: 2}
-    auxiliaryPowerUnitCount: 2
-    auxiliaryPower: 4
+    apuCount: 2
+    apu:
+      thrust: 1952
+      speed: 7
+      acceleration: 3
+    auxiliaryPower:
+      thrust: 3904
+      speed: 14
+      acceleration: 6
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 125d195e3fab89343b0ef36120a10e79, type: 2}
   kocmomech: {fileID: 11400000, guid: 7a1aea8a96f335241998ebb6b7dc0494, type: 2}

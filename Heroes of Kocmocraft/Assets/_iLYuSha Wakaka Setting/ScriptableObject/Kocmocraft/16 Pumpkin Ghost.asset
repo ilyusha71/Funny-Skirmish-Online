@@ -13,17 +13,24 @@ MonoBehaviour:
   m_Name: 16 Pumpkin Ghost
   m_EditorClassIdentifier: 
   type: 16
-  size:
-    wingspan: 9.8
-    length: 6.86
-    height: 7.27
-    wingspanScale: 1
-    lengthScale: 0.7
-    heightScale: 0.7418367
-  view:
-    orthoSize: 4.9
-    near: 7.6000004
-    far: 24.199999
+  design:
+    code: Pumpkin Ghost
+    project: "\u5357\u74DC\u9B45\u5F71"
+    OKB: "\u8282\u5E86\u4FDD\u536B\u4E2D\u5FC3"
+    debut: "\u7B2C\u4E09\u8D5B\u5B63"
+    mission: "\u8FDC\u7A0B\u8F70\u70B8"
+    development: "\u300C\u5357\u74DC\u9B45\u5F71\u300D\u662F\u4E07\u5723\u5730\u533A\u4E3A\u4E86\u53D8\u88C5\u72C2\u6B22\u65E5\u800C\u8BDE\u751F\u7684\u5DC5\u5CF0\u4E4B\u4F5C\uFF0C\u65B0\u578B\u7684\u6DA1\u8F6E\u8F74\u53D1\u52A8\u673A\u80FD\u8D1F\u62C5\u8D77\u5E9E\u5927\u7684\u673A\u4F53\uFF0C\u4F7F\u5F97\u8282\u5E86\u4FDD\u536B\u4E2D\u5FC3\u5728\u91CD\u578B\u673A\u7684\u53D1\u5C55\u4E0A\u79F0\u9738\u9017\u6BD4\u754C\u3002"
+    size:
+      wingspan: 9.8
+      length: 6.86
+      height: 7.27
+      wingspanScale: 1
+      lengthScale: 0.7
+      heightScale: 0.7418367
+    view:
+      orthoSize: 4.9
+      near: 7.6000004
+      far: 24.199999
   radio: {fileID: 8300000, guid: 0463d7137f743a0409b642cf1a89f2df, type: 3}
   chief: {fileID: 11400000, guid: d3a828ba39ef3704688d517502acc6a5, type: 2}
   reserve: {fileID: 11400000, guid: 2f3d269446d63f04e941dbb62a865325, type: 2}
@@ -46,16 +53,35 @@ MonoBehaviour:
     afterburnerLevel: 1
     afterburner: 62
   powerSystem:
-    totalPower: 22
-    mainEngine:
+    cruiseSpeed: 22
+    acceleration: 3.497562
+    total:
+      thrust: 21472
+      speed: 79
+      acceleration: 12
+    listMPU:
     - {fileID: 11400000, guid: dca5b71d4d5905f4aa6c0eb9d7371e5e, type: 2}
-    mainEngineCount: 1
-    mainPower: 9
-    auxiliaryPowerUnit:
+    mpuCount: 1
+    mpu:
+      thrust: 8784
+      speed: 32
+      acceleration: 5
+    mainPower:
+      thrust: 8784
+      speed: 32
+      acceleration: 5
+    listAPU:
     - {fileID: 11400000, guid: 1fe45559059faf64a8a57dd732534b5c, type: 2}
     - {fileID: 11400000, guid: 1fe45559059faf64a8a57dd732534b5c, type: 2}
-    auxiliaryPowerUnitCount: 2
-    auxiliaryPower: 13
+    apuCount: 2
+    apu:
+      thrust: 6344
+      speed: 23
+      acceleration: 4
+    auxiliaryPower:
+      thrust: 12688
+      speed: 47
+      acceleration: 7
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: db3d3e464409f7047a2fc29602c41d1a, type: 2}
   kocmomech: {fileID: 11400000, guid: b69b083b643ab7d4f8b4f00371532b36, type: 2}

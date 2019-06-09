@@ -13,17 +13,24 @@ MonoBehaviour:
   m_Name: 05 Bullet Bill
   m_EditorClassIdentifier: 
   type: 5
-  size:
-    wingspan: 6.28
-    length: 6.12
-    height: 3.9
-    wingspanScale: 1
-    lengthScale: 0.97452223
-    heightScale: 0.6210191
-  view:
-    orthoSize: 3.14
-    near: 5.84
-    far: 22.439999
+  design:
+    code: Bullet Bill
+    project: "\u70AE\u5F39\u6BD4\u5C14"
+    OKB: "\u4EFB\u5929\u5802\u8BBE\u8BA1\u5C40"
+    debut: "\u7B2C\u4E00\u8D5B\u5B63"
+    mission: "\u51B2\u950B\u70AE\u7070"
+    development: "\u4EFB\u5929\u5802\u8BBE\u8BA1\u5C40\u65E9\u572821\u4E16\u7EAA\u521D\u5C31\u5F00\u59CB\u8FDB\u884C\u5B87\u822A\u673A\u7684\u76F8\u5173\u5F00\u53D1\uFF0C\u300C\u70AE\u5F39\u6BD4\u5C14\u300D\u662F\u7B2C\u4E00\u6B3E\u6B63\u5F0F\u91CF\u4EA7\u7684\u5B87\u822A\u673A\uFF0C\u6700\u5927\u7279\u8272\u662F\u53EF\u63A7\u5F0F\u706B\u7BAD\u53D1\u52A8\u673A\uFF0C\u8FD9\u4F7F\u5F97\u76EE\u524D\u7684\u5B87\u822A\u673A\u90FD\u5F88\u96BE\u51FB\u843D\u5B83\u3002"
+    size:
+      wingspan: 6.28
+      length: 6.12
+      height: 3.9
+      wingspanScale: 1
+      lengthScale: 0.97452223
+      heightScale: 0.6210191
+    view:
+      orthoSize: 3.14
+      near: 5.84
+      far: 22.439999
   radio: {fileID: 8300000, guid: 1b30525f3c6731b41accdc02182fa782, type: 3}
   chief: {fileID: 11400000, guid: ae06fcc2ee3db7c4eb0b917369419c48, type: 2}
   reserve: {fileID: 11400000, guid: b1ebada2b188cf241aab0d6511f4529a, type: 2}
@@ -46,14 +53,33 @@ MonoBehaviour:
     afterburnerLevel: 7
     afterburner: 134
   powerSystem:
-    totalPower: 16
-    mainEngine:
+    cruiseSpeed: 16
+    acceleration: 5.670917
+    total:
+      thrust: 15616
+      speed: 58
+      acceleration: 20
+    listMPU:
     - {fileID: 11400000, guid: 7cfa3fb822ff60c4bb85bec05c19b754, type: 2}
-    mainEngineCount: 1
-    mainPower: 16
-    auxiliaryPowerUnit: []
-    auxiliaryPowerUnitCount: 0
-    auxiliaryPower: 0
+    mpuCount: 1
+    mpu:
+      thrust: 15616
+      speed: 58
+      acceleration: 20
+    mainPower:
+      thrust: 15616
+      speed: 58
+      acceleration: 20
+    listAPU: []
+    apuCount: 0
+    apu:
+      thrust: 0
+      speed: 0
+      acceleration: 0
+    auxiliaryPower:
+      thrust: 0
+      speed: 0
+      acceleration: 0
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: b46ce8d2999082c4dbbd595c8185e8d5, type: 2}
   kocmomech: {fileID: 11400000, guid: 5b13533be6585bb43aab82c8f78f556d, type: 2}

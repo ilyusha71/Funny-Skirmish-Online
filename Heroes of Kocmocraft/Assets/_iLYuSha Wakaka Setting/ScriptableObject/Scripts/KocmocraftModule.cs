@@ -7,8 +7,7 @@ public class KocmocraftModule : ScriptableObject
 {
     public Kocmoca.Type type;
     [Header("Design")]
-    public Size size;
-    public View view;
+    public Design design;
     [Header("Pilot")]
     public AudioClip radio;
     public Dubi chief;
@@ -42,27 +41,35 @@ public class KocmocraftModule : ScriptableObject
         var emBooster = UnityEditor.AssetDatabase.LoadAssetAtPath<Proficiency>(dataPath + "Proficiency/EM Booster Level.asset");
         var armor = UnityEditor.AssetDatabase.LoadAssetAtPath<Proficiency>(dataPath + "Proficiency/Armor Level.asset");
         var afterburner = UnityEditor.AssetDatabase.LoadAssetAtPath<Proficiency>(dataPath + "Proficiency/Afterburner Level.asset");
-        shield.Calculate(size.SurfaceArea, emBooster.level[(int)type]);
-        hull.Calculate(size.Volume, armor.level[(int)type]);
-        speed.Calculate(powerSystem.Calculate(), afterburner.level[(int)type]);
+        shield.Calculate(design.size.SurfaceArea, emBooster.level[(int)type]);
+        hull.Calculate(design.size.Volume, armor.level[(int)type]);
+        powerSystem.Calculate(design.size.Mass);
+        speed.Calculate(powerSystem.cruiseSpeed, afterburner.level[(int)type]);
         turret.Calculate();
         kocmomech.Calculate();
     }
 #endif
 }
 [System.Serializable]
-public class Size
+public class Design
 {
-    public float wingspan, length, height, wingspanScale, lengthScale, heightScale;
+    [System.Serializable]
+    public class View { public float orthoSize, near, far; }
+    [System.Serializable]
+    public class Size
+    {
+        public float wingspan, length, height, wingspanScale, lengthScale, heightScale;
 #if UNITY_EDITOR
-    public float SurfaceArea { get { return 2 * (wingspan * length + length * height + height * wingspan); } }
-    public float Volume { get { return wingspan * length * height; } }
+        public float SurfaceArea { get { return 2 * (wingspan * length + length * height + height * wingspan); } }
+        public float Volume { get { return wingspan * length * height; } }
+        public float Mass { get { return 30 * (wingspan * length + length * height + height * wingspan) + wingspan * length * height; } }
 #endif
-}
-[System.Serializable]
-public class View
-{
-    public float orthoSize, near, far;
+    }
+    public string code, project, OKB, debut, mission;
+    [TextArea(3, 7)]
+    public string development;
+    public View view;
+    public Size size;
 }
 public abstract class Performance
 {
@@ -160,41 +167,66 @@ public class Speed : Performance
 [System.Serializable]
 public class PowerSystem
 {
-    public int totalPower;
-    [Header("Main Power")]
-    public Engine[] mainEngine;
-    public int mainEngineCount;
-    public int mainPower;
-    [Header("Auxiliary Power")]
-    public Engine[] auxiliaryPowerUnit;
-    public int auxiliaryPowerUnitCount;
-    public int auxiliaryPower;
-
-#if UNITY_EDITOR
-    public int Calculate()
+    [System.Serializable]
+    public class PowerUnit
     {
+        public int thrust, speed, acceleration;
+    }
+    [Header("Power System (PS)")]
+    public int cruiseSpeed;
+    public float acceleration;
+    public PowerUnit total;
+    [Header("Main Power Unit (MPU)")]
+    public Engine[] listMPU;
+    public int mpuCount;
+    public PowerUnit mpu;
+    public PowerUnit mainPower;
+    [Header("Auxiliary Power Unit (APU)")]
+    public Engine[] listAPU;
+    public int apuCount;
+    public PowerUnit apu;
+    public PowerUnit auxiliaryPower;
+#if UNITY_EDITOR
+    public void Calculate(float mass)
+    {
+        var thrustFactor = 976f;
+        // Main Power Unit
+        var mpuPower = listMPU[0].power;
+        mpuCount = listMPU.Length;
+        mpu.thrust = Mathf.RoundToInt(mpuPower * thrustFactor);
+        mpu.speed = Mathf.RoundToInt(mpuPower * 3.6f);
+        mpu.acceleration = Mathf.RoundToInt(mpuPower * 3.6f * thrustFactor / mass);
         // Main Power
-        var power = 0.0f;
-        mainEngineCount = mainEngine.Length;
-        for (int i = 0; i < mainEngineCount; i++)
+        var mp = mpuCount * mpuPower;
+        mainPower.thrust = Mathf.RoundToInt(mp * thrustFactor);
+        mainPower.speed = Mathf.RoundToInt(mp * 3.6f);
+        mainPower.acceleration = Mathf.RoundToInt(mp * 3.6f * thrustFactor / mass);
+        // Auxiliary Power Unit
+        apuCount = listAPU.Length;
+        if (apuCount > 0)
         {
-            power += mainEngine[i].power;
-            mainEngine[0].typeCN =  mainEngine[0].typeName ;
+            var apuPower = listAPU[0].power * 0.5f;
+            apu.thrust = Mathf.RoundToInt(apuPower * thrustFactor);
+            apu.speed = Mathf.RoundToInt(apuPower * 3.6f);
+            apu.acceleration = Mathf.RoundToInt(apuPower * 3.6f * thrustFactor / mass);
+            // Auxiliary Power
+            var ap = apuCount * apuPower;
+            auxiliaryPower.thrust = Mathf.RoundToInt(ap * thrustFactor);
+            auxiliaryPower.speed = Mathf.RoundToInt(ap * 3.6f);
+            auxiliaryPower.acceleration = Mathf.RoundToInt(ap * 3.6f * thrustFactor / mass);
+            // Output
+            cruiseSpeed = Mathf.RoundToInt(mp + ap);
+            acceleration = (mp + ap) * thrustFactor / mass;
         }
-        mainPower = (int)power;
-        // Auxiliary Power
-        auxiliaryPowerUnitCount = auxiliaryPowerUnit.Length;
-        power = 0.0f;
-        for (int i = 0; i < auxiliaryPowerUnitCount; i++)
+        else
         {
-            power += auxiliaryPowerUnit[i].power * 0.5f;
-                        auxiliaryPowerUnit[0].typeCN =  auxiliaryPowerUnit[0].typeName ;
-
+            cruiseSpeed = Mathf.RoundToInt(mp);
+            acceleration = mp * thrustFactor / mass;
         }
-        auxiliaryPower = (int)power;
-
-        totalPower = mainPower + auxiliaryPower;
-        return totalPower;
+        // Total
+        total.thrust = mainPower.thrust + auxiliaryPower.thrust;
+        total.speed = mainPower.speed + auxiliaryPower.speed;
+        total.acceleration = mainPower.acceleration + auxiliaryPower.acceleration;
     }
 #endif
 }

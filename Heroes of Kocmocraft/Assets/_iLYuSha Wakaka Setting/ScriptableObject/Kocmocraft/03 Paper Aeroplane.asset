@@ -13,17 +13,24 @@ MonoBehaviour:
   m_Name: 03 Paper Aeroplane
   m_EditorClassIdentifier: 
   type: 3
-  size:
-    wingspan: 8.23
-    length: 10.98
-    height: 3.63
-    wingspanScale: 0.7495446
-    lengthScale: 1
-    heightScale: 0.33060113
-  view:
-    orthoSize: 5.49
-    near: 8.19
-    far: 24.789999
+  design:
+    code: Paper Aeroplane
+    project: "\u7EB8\u98DE\u673A"
+    OKB: "\u8FA3\u9E21\u8BBE\u8BA1\u5C40"
+    debut: "\u7B2C\u4E00\u8D5B\u5B63"
+    mission: "\u65D7\u8230\u6307\u6325"
+    development: "\u4EE5\u56DE\u6536\u8D77\u5BB6\u7684\u8FA3\u9E21\u8BBE\u8BA1\u5C40\u65E9\u671F\u4EE5\u7A7A\u529B\u8BBE\u8BA1\u7684\u4F20\u7EDF\u98DE\u884C\u5668\u4E3A\u4E3B\uFF0C\u300C\u7EB8\u98DE\u673A\u300D\u7B97\u662F\u8FA3\u9E21\u8BBE\u8BA1\u5C40\u7684\u5165\u95E8\u673A\u79CD\uFF0C\u4F46\u51ED\u501F\u7740\u7B80\u5355\u7684\u5236\u7A0B\u4E0E\u5EC9\u4EF7\u662F\u5176\u4F9D\u65E7\u80FD\u5728\u9017\u6BD4\u754C\u751F\u5B58\u7684\u4E3B\u8981\u539F\u56E0\u3002"
+    size:
+      wingspan: 8.23
+      length: 10.98
+      height: 3.63
+      wingspanScale: 0.7495446
+      lengthScale: 1
+      heightScale: 0.33060113
+    view:
+      orthoSize: 5.49
+      near: 8.19
+      far: 24.789999
   radio: {fileID: 8300000, guid: bfd7cd6fb28660a4c87826e42d157737, type: 3}
   chief: {fileID: 11400000, guid: fa557642ba589504f84616d07566faca, type: 2}
   reserve: {fileID: 11400000, guid: dffaa870388b8474da406a4561aaf8cf, type: 2}
@@ -46,16 +53,35 @@ MonoBehaviour:
     afterburnerLevel: 5
     afterburner: 110
   powerSystem:
-    totalPower: 18
-    mainEngine:
+    cruiseSpeed: 18
+    acceleration: 3.4239225
+    total:
+      thrust: 17568
+      speed: 64
+      acceleration: 12
+    listMPU:
     - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
-    mainEngineCount: 1
-    mainPower: 9
-    auxiliaryPowerUnit:
+    mpuCount: 1
+    mpu:
+      thrust: 8784
+      speed: 32
+      acceleration: 6
+    mainPower:
+      thrust: 8784
+      speed: 32
+      acceleration: 6
+    listAPU:
     - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
     - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
-    auxiliaryPowerUnitCount: 2
-    auxiliaryPower: 9
+    apuCount: 2
+    apu:
+      thrust: 4392
+      speed: 16
+      acceleration: 3
+    auxiliaryPower:
+      thrust: 8784
+      speed: 32
+      acceleration: 6
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 2ea5a500f1bf9784ab65d21272d53787, type: 2}
   kocmomech: {fileID: 11400000, guid: 40ac21a4d6f77bb4c9269551530616c1, type: 2}

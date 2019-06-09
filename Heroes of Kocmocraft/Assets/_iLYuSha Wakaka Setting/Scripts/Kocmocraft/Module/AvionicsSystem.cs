@@ -105,7 +105,7 @@ namespace Kocmoca
             followView.m_Lens.NearClipPlane = 0.1f;
             followView.m_Lens.FarClipPlane = 15000;
             transposer = followView.GetCinemachineComponent<Cinemachine.CinemachineTransposer>();
-            float offsetZ = -module.size.wingspan * 3.5f - module.size.length * 0.5f;
+            float offsetZ = -module.design.size.wingspan * 3.5f - module.design.size.length * 0.5f;
             float offsetY = -offsetZ * Mathf.Tan(17 * Mathf.Deg2Rad);
             transposer.m_FollowOffset = new Vector3(0, offsetY, offsetZ);
             transposer.m_XDamping = 0;
@@ -114,7 +114,7 @@ namespace Kocmoca
             transposer.m_PitchDamping = 1;
             transposer.m_YawDamping = 1;
             // Aim 瞄准机身前缘方向
-            followView.GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset = new Vector3(0, module.size.height * 0.5f, module.size.length * 7);
+            followView.GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_TrackedObjectOffset = new Vector3(0, module.design.size.height * 0.5f, module.design.size.length * 7);
             followView.enabled = false;
 
             controlUnit = ControlUnit.None;

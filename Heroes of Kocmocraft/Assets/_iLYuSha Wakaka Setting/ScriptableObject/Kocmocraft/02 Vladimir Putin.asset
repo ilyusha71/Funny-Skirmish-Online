@@ -13,17 +13,24 @@ MonoBehaviour:
   m_Name: 02 Vladimir Putin
   m_EditorClassIdentifier: 
   type: 2
-  size:
-    wingspan: 4.85
-    length: 6.41
-    height: 2.96
-    wingspanScale: 0.75663024
-    lengthScale: 1
-    heightScale: 0.4617785
-  view:
-    orthoSize: 3.205
-    near: 5.9049997
-    far: 22.505
+  design:
+    code: Vladimir Putin
+    project: "\u666E\u9CB8"
+    OKB: "\u6BDB\u718A\u8BBE\u8BA1\u5C40"
+    debut: "\u7B2C\u4E00\u8D5B\u5B63"
+    mission: "\u8FDC\u7A0B\u8F70\u70B8"
+    development: "\u300C\u666E\u9CB8\u300D\u662F\u751F\u6D3B\u5728\u5317\u6781\u6D77\u6781\u6DF1\u5904\u7684\u7A00\u6709\u7269\u79CD\uFF0C\u6BDB\u718A\u8BBE\u8BA1\u5C40\u770B\u4E2D\u5B83\u4EEC\u5728\u9AD8\u538B\u73AF\u5883\u7684\u751F\u5B58\u529B\u800C\u6539\u9020\u6210\u91CD\u578B\u5B87\u822A\u673A\uFF0C\u968F\u7740\u66F4\u591A\u66F4\u5927\u7684\u5B87\u822A\u673A\u9762\u4E16\uFF0C\u5931\u53BB\u4F18\u52BF\u7684\u666E\u9CB8\u88AB\u8FEB\u9B54\u6539\u6210\u91CD\u88C5\u706B\u70AE\u673A\u578B\u3002"
+    size:
+      wingspan: 4.85
+      length: 6.41
+      height: 2.96
+      wingspanScale: 0.75663024
+      lengthScale: 1
+      heightScale: 0.4617785
+    view:
+      orthoSize: 3.205
+      near: 5.9049997
+      far: 22.505
   radio: {fileID: 8300000, guid: a26cbe7928117944c9ecfc54c45d0b4a, type: 3}
   chief: {fileID: 11400000, guid: ad7ae36e58689304b99625de9cbfa57c, type: 2}
   reserve: {fileID: 11400000, guid: e86cd75373df2f749b269c4048cdc509, type: 2}
@@ -46,15 +53,34 @@ MonoBehaviour:
     afterburnerLevel: 1
     afterburner: 62
   powerSystem:
-    totalPower: 22
-    mainEngine:
+    cruiseSpeed: 22
+    acceleration: 10.605736
+    total:
+      thrust: 21472
+      speed: 79
+      acceleration: 38
+    listMPU:
     - {fileID: 11400000, guid: f327136124c0bbf4faea5deca7e666ff, type: 2}
     - {fileID: 11400000, guid: f327136124c0bbf4faea5deca7e666ff, type: 2}
-    mainEngineCount: 2
-    mainPower: 22
-    auxiliaryPowerUnit: []
-    auxiliaryPowerUnitCount: 0
-    auxiliaryPower: 0
+    mpuCount: 2
+    mpu:
+      thrust: 10736
+      speed: 40
+      acceleration: 19
+    mainPower:
+      thrust: 21472
+      speed: 79
+      acceleration: 38
+    listAPU: []
+    apuCount: 0
+    apu:
+      thrust: 0
+      speed: 0
+      acceleration: 0
+    auxiliaryPower:
+      thrust: 0
+      speed: 0
+      acceleration: 0
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 56ca0a181c146094d91fa5d6b3ae1c98, type: 2}
   kocmomech: {fileID: 11400000, guid: b69b083b643ab7d4f8b4f00371532b36, type: 2}

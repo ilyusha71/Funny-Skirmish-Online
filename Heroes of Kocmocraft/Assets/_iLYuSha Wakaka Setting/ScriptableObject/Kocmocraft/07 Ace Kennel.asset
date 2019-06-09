@@ -13,17 +13,24 @@ MonoBehaviour:
   m_Name: 07 Ace Kennel
   m_EditorClassIdentifier: 
   type: 7
-  size:
-    wingspan: 3.89
-    length: 3.77
-    height: 2.66
-    wingspanScale: 1
-    lengthScale: 0.9691516
-    heightScale: 0.68380463
-  view:
-    orthoSize: 1.945
-    near: 4.645
-    far: 21.244999
+  design:
+    code: Ace Kennel
+    project: "\u738B\u724C\u72D7\u5C4B"
+    OKB: "\u8FA3\u9E21\u8BBE\u8BA1\u5C40"
+    debut: "\u7B2C\u4E00\u8D5B\u5B63"
+    mission: "\u7279\u653B\u6253\u51FB"
+    development: "\u4E3A\u4E86\u5B9E\u73B0\u53F2\u52AA\u6BD4\u7684\u98DE\u884C\u68A6\uFF0C\u8FA3\u9E21\u8BBE\u8BA1\u5C40\u5C1D\u8BD5\u5C06\u5495\u5495\u9E21\u672A\u7528\u5B8C\u7684\u5E9F\u6599\u5C3D\u6570\u6539\u88C5\u5728\u72D7\u5C4B\u4E0A\uFF0C\u8FD9\u4F7F\u5F97\u72D7\u5C4B\u7684\u6709\u673A\u7269\u5916\u58F3\u66F4\u52A0\u8010\u7528\uFF0C\u4F18\u79C0\u7684\u751F\u5B58\u80FD\u529B\u4E5F\u4F7F\u5176\u5728\u77ED\u65F6\u95F4\u83B7\u5F97\u4E86\u300C\u738B\u724C\u300D\u7684\u8363\u8000\u3002"
+    size:
+      wingspan: 3.89
+      length: 3.77
+      height: 2.66
+      wingspanScale: 1
+      lengthScale: 0.9691516
+      heightScale: 0.68380463
+    view:
+      orthoSize: 1.945
+      near: 4.645
+      far: 21.244999
   radio: {fileID: 8300000, guid: 47599d7c8c54c2a4bbedf8fc17c9fcee, type: 3}
   chief: {fileID: 11400000, guid: 6cdbb339c3fa0a746838114dfe62a69f, type: 2}
   reserve: {fileID: 11400000, guid: b1ebada2b188cf241aab0d6511f4529a, type: 2}
@@ -46,14 +53,33 @@ MonoBehaviour:
     afterburnerLevel: 5
     afterburner: 110
   powerSystem:
-    totalPower: 10
-    mainEngine:
+    cruiseSpeed: 10
+    acceleration: 8.952185
+    total:
+      thrust: 9760
+      speed: 36
+      acceleration: 32
+    listMPU:
     - {fileID: 11400000, guid: c7b8cc66683040d489dee07b6b02d0db, type: 2}
-    mainEngineCount: 1
-    mainPower: 10
-    auxiliaryPowerUnit: []
-    auxiliaryPowerUnitCount: 0
-    auxiliaryPower: 0
+    mpuCount: 1
+    mpu:
+      thrust: 9760
+      speed: 36
+      acceleration: 32
+    mainPower:
+      thrust: 9760
+      speed: 36
+      acceleration: 32
+    listAPU: []
+    apuCount: 0
+    apu:
+      thrust: 0
+      speed: 0
+      acceleration: 0
+    auxiliaryPower:
+      thrust: 0
+      speed: 0
+      acceleration: 0
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 459e743c4e5d9bc46b8c3ad5e179f182, type: 2}
   kocmomech: {fileID: 11400000, guid: 40ac21a4d6f77bb4c9269551530616c1, type: 2}

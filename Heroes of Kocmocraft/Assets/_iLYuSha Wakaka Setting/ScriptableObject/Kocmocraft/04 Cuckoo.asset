@@ -13,17 +13,24 @@ MonoBehaviour:
   m_Name: 04 Cuckoo
   m_EditorClassIdentifier: 
   type: 4
-  size:
-    wingspan: 10.38
-    length: 9.3
-    height: 4.85
-    wingspanScale: 1
-    lengthScale: 0.8959538
-    heightScale: 0.46724468
-  view:
-    orthoSize: 5.19
-    near: 7.8900003
-    far: 24.49
+  design:
+    code: Cuckoo
+    project: "\u5495\u5495\u9E21 "
+    OKB: "\u8FA3\u9E21\u8BBE\u8BA1\u5C40"
+    debut: "\u7B2C\u4E00\u8D5B\u5B63"
+    mission: "\u8FDC\u7A0B\u8F70\u70B8"
+    development: "\u8FA3\u9E21\u8BBE\u8BA1\u5C401000\u5468\u5E74\u7EAA\u5FF5\u65E5\u4EAE\u76F8\u7684\u300C\u5495\u5495\u9E21\u300D\u662F\u84DD\u661F\u81F3\u4ECA\u6700\u5927\u7684\u5B87\u822A\u673A\uFF0C\u4EE4\u8BB8\u591A\u9017\u6BD4\u90FD\u611F\u5230\u60CA\u8BB6\u5730\u662F\u8FD9\u8258\u5E9E\u7136\u5927\u7269\u7ADF\u7136\u80FD\u5728\u5B87\u822A\u673A\u8D5B\u4E8B\u53D6\u5F97\u4E00\u4E9B\u961F\u4F0D\u7684\u9752\u7750\uFF0C\u54C7\u5494\u5494\u3002"
+    size:
+      wingspan: 10.38
+      length: 9.3
+      height: 4.85
+      wingspanScale: 1
+      lengthScale: 0.8959538
+      heightScale: 0.46724468
+    view:
+      orthoSize: 5.19
+      near: 7.8900003
+      far: 24.49
   radio: {fileID: 8300000, guid: dabc9c24b50b1be46906ce603d5a391c, type: 3}
   chief: {fileID: 11400000, guid: f7d45e9278e93f24196492b8fee59e37, type: 2}
   reserve: {fileID: 11400000, guid: b1ebada2b188cf241aab0d6511f4529a, type: 2}
@@ -46,14 +53,33 @@ MonoBehaviour:
     afterburnerLevel: 1
     afterburner: 62
   powerSystem:
-    totalPower: 4
-    mainEngine:
+    cruiseSpeed: 4
+    acceleration: 0.6268817
+    total:
+      thrust: 3904
+      speed: 14
+      acceleration: 2
+    listMPU:
     - {fileID: 11400000, guid: d93255cafd43f364ab691f28d3b66817, type: 2}
-    mainEngineCount: 1
-    mainPower: 4
-    auxiliaryPowerUnit: []
-    auxiliaryPowerUnitCount: 0
-    auxiliaryPower: 0
+    mpuCount: 1
+    mpu:
+      thrust: 3904
+      speed: 14
+      acceleration: 2
+    mainPower:
+      thrust: 3904
+      speed: 14
+      acceleration: 2
+    listAPU: []
+    apuCount: 0
+    apu:
+      thrust: 0
+      speed: 0
+      acceleration: 0
+    auxiliaryPower:
+      thrust: 0
+      speed: 0
+      acceleration: 0
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: b14464baee62d574c97e78a6e1621b0d, type: 2}
   kocmomech: {fileID: 11400000, guid: 081d03b305722404c83a30321512c9b0, type: 2}

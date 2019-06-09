@@ -13,17 +13,24 @@ MonoBehaviour:
   m_Name: 18 Inuit Eagle
   m_EditorClassIdentifier: 
   type: 18
-  size:
-    wingspan: 8.4
-    length: 4.68
-    height: 3.79
-    wingspanScale: 1
-    lengthScale: 0.55714285
-    heightScale: 0.4511905
-  view:
-    orthoSize: 4.2
-    near: 6.8999996
-    far: 23.5
+  design:
+    code: Inuit Eagle
+    project: "\u9E70\u7EBD\u7279"
+    OKB: "\u5357\u65B9\u516C\u56ED\u8BBE\u8BA1\u5C40"
+    debut: "\u7B2C\u4E09\u8D5B\u5B63"
+    mission: "\u65D7\u8230\u6307\u6325"
+    development: "\u5357\u65B9\u516C\u56ED\u8C0D\u62A5\u90E8\u95E8\u9488\u5BF9\u53CD\u533F\u7EB5\u53CD\u4F2A\u88C5\u7684\u6218\u672F\u601D\u60F3\u4E0E\u8BBE\u8BA1\u5C40\u5408\u4F5C\u8BBE\u8BA1\u4E86\u300C\u9E70\u7EBD\u7279\u300D\u79FB\u52A8\u6307\u6325\u6240\uFF0C\u8FD9\u662F\u7B2C\u4E00\u6B3E\u4E13\u7528\u4E8E\u6307\u6325\u8D5B\u4E8B\u7684\u5B87\u822A\u673A\uFF0C\u800C\u6307\u6325\u673A\u7684\u6982\u5FF5\u4E00\u76F4\u8981\u5230\u7B2C\u56DB\u8D5B\u5B63\u624D\u88AB\u8BA4\u53EF\u3002"
+    size:
+      wingspan: 8.4
+      length: 4.68
+      height: 3.79
+      wingspanScale: 1
+      lengthScale: 0.55714285
+      heightScale: 0.4511905
+    view:
+      orthoSize: 4.2
+      near: 6.8999996
+      far: 23.5
   radio: {fileID: 8300000, guid: 052625d9a0ac4a64d89b14811e2e98e1, type: 3}
   chief: {fileID: 11400000, guid: eae1145052b43054e8a0af4066eba50e, type: 2}
   reserve: {fileID: 11400000, guid: 5e592ef959b550d4496f6567510d03ac, type: 2}
@@ -46,17 +53,36 @@ MonoBehaviour:
     afterburnerLevel: 3
     afterburner: 86
   powerSystem:
-    totalPower: 36
-    mainEngine:
+    cruiseSpeed: 36
+    acceleration: 12.479275
+    total:
+      thrust: 35136
+      speed: 129
+      acceleration: 45
+    listMPU:
     - {fileID: 11400000, guid: 7cfa3fb822ff60c4bb85bec05c19b754, type: 2}
     - {fileID: 11400000, guid: 7cfa3fb822ff60c4bb85bec05c19b754, type: 2}
-    mainEngineCount: 2
-    mainPower: 32
-    auxiliaryPowerUnit:
+    mpuCount: 2
+    mpu:
+      thrust: 15616
+      speed: 58
+      acceleration: 20
+    mainPower:
+      thrust: 31232
+      speed: 115
+      acceleration: 40
+    listAPU:
     - {fileID: 11400000, guid: f5a831b549f11074a8dd65702b95f0ba, type: 2}
     - {fileID: 11400000, guid: f5a831b549f11074a8dd65702b95f0ba, type: 2}
-    auxiliaryPowerUnitCount: 2
-    auxiliaryPower: 4
+    apuCount: 2
+    apu:
+      thrust: 1952
+      speed: 7
+      acceleration: 2
+    auxiliaryPower:
+      thrust: 3904
+      speed: 14
+      acceleration: 5
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 2ea5a500f1bf9784ab65d21272d53787, type: 2}
   kocmomech: {fileID: 11400000, guid: 40ac21a4d6f77bb4c9269551530616c1, type: 2}

@@ -17,7 +17,6 @@ namespace Kocmoca
         public Transform airport;
         public Transform[] apron, hangar;
         public Transform apronView, hangarView;
-        public Camera topCamera, sideCamera, frontCamera;
         public int hangarCount;
         [Header("Scene - Hangar Parameter")]
         public Prototype[] prototype;
@@ -78,11 +77,11 @@ namespace Kocmoca
                     pilot[i] = hangar[i].GetComponentInChildren<PilotManager>();
                     cmFreeLook[i] = prototype[i].cmFreeLook;
                     cmFreeLook[i].enabled = true;
-                    cmFreeLook[i].m_Orbits[0].m_Height = database.kocmocraft[i].view.orthoSize + 3;
-                    cmFreeLook[i].m_Orbits[2].m_Height = -database.kocmocraft[i].view.orthoSize;
-                    cmFreeLook[i].m_Orbits[0].m_Radius = database.kocmocraft[i].view.near;
+                    cmFreeLook[i].m_Orbits[0].m_Height = database.kocmocraft[i].design.view.orthoSize + 3;
+                    cmFreeLook[i].m_Orbits[2].m_Height = -database.kocmocraft[i].design.view.orthoSize;
+                    cmFreeLook[i].m_Orbits[0].m_Radius = database.kocmocraft[i].design.view.near;
                     cmFreeLook[i].m_Orbits[1].m_Radius = 11;
-                    cmFreeLook[i].m_Orbits[2].m_Radius = database.kocmocraft[i].view.near;
+                    cmFreeLook[i].m_Orbits[2].m_Radius = database.kocmocraft[i].design.view.near;
                     cmFreeLook[i].enabled = false;
 
                     cmCockpit[i] = hangar[i].GetComponent<AvionicsSystem>().cockpitView;
@@ -90,9 +89,9 @@ namespace Kocmoca
                 }
             }
 
-            topCamera = hangarView.GetComponentsInChildren<Camera>()[0];
-            sideCamera = hangarView.GetComponentsInChildren<Camera>()[1];
-            frontCamera = hangarView.GetComponentsInChildren<Camera>()[2];
+            // topCamera = hangarView.GetComponentsInChildren<Camera>()[0];
+            // sideCamera = hangarView.GetComponentsInChildren<Camera>()[1];
+            // frontCamera = hangarView.GetComponentsInChildren<Camera>()[2];
 
             // UI
             var tipsBlock = panel.GetChild(0).gameObject;
@@ -106,7 +105,7 @@ namespace Kocmoca
                 et.target = et.GetComponentInChildren<CanvasGroup>();
                 panels[i] = panel.GetChild(i + 1).gameObject;
             }
-            designPanel.Initialize(panels[0]);
+            designPanel.Initialize(panels[0],hangarView);
             pilotPanel.Initialize(panels[1], tipsBlock);
             performancePanel.Initialize(panels[2], tipsBlock);
             powerSystemPanel.Initialize(panels[3], tipsBlock);

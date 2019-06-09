@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class UITitleTranslation : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class UITextConverter : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public TextMeshProUGUI textTitle;
     public string en;

@@ -13,17 +13,24 @@ MonoBehaviour:
   m_Name: 19 Grand Lisboa
   m_EditorClassIdentifier: 
   type: 19
-  size:
-    wingspan: 7.3
-    length: 10.96
-    height: 5.03
-    wingspanScale: 0.6660584
-    lengthScale: 1
-    heightScale: 0.4589416
-  view:
-    orthoSize: 5.48
-    near: 8.18
-    far: 24.779999
+  design:
+    code: Grand Lisboa
+    project: "\u65B0\u8461\u9CB8"
+    OKB: "\u6BDB\u718A\u8BBE\u8BA1\u5C40"
+    debut: "\u7B2C\u4E09\u8D5B\u5B63"
+    mission: "\u636E\u70B9\u63A8\u8FDB"
+    development: "\u4F5C\u4E3A\u84DD\u661F\u7B2C\u4E00\u8D4C\u57CE\u7684\u6FB3\u95E8\u6253\u7B97\u6295\u8D44\u5B87\u822A\u673A\u7ADE\u6280\u5217\u4E3A\u8D4C\u535A\u8D5B\u4E8B\uFF0C\u6FB3\u95E8\u8D4C\u738B\u51B3\u5B9A\u8D5E\u52A9\u6BDB\u718A\u8BBE\u8BA1\u5C40\u8FDB\u884C\u65B0\u8D5B\u5B63\u5B87\u822A\u673A\u7684\u5F00\u53D1\uFF0C\u9996\u6B3E\u6982\u5FF5\u673A\u300C\u65B0\u8461\u9CB8\u300D\u5C06\u4E8E\u7B2C\u4E09\u8D5B\u5B63\u524D\u5915\u516C\u5F00\u53D1\u8868\u3002"
+    size:
+      wingspan: 7.3
+      length: 10.96
+      height: 5.03
+      wingspanScale: 0.6660584
+      lengthScale: 1
+      heightScale: 0.4589416
+    view:
+      orthoSize: 5.48
+      near: 8.18
+      far: 24.779999
   radio: {fileID: 8300000, guid: ca402a30c6f4ed345ad9d07ba2f6a127, type: 3}
   chief: {fileID: 11400000, guid: 685f5c60a5e973846942b7dd81abd500, type: 2}
   reserve: {fileID: 11400000, guid: ad7ae36e58689304b99625de9cbfa57c, type: 2}
@@ -46,16 +53,35 @@ MonoBehaviour:
     afterburnerLevel: 3
     afterburner: 86
   powerSystem:
-    totalPower: 25
-    mainEngine:
+    cruiseSpeed: 25
+    acceleration: 4.389978
+    total:
+      thrust: 24400
+      speed: 90
+      acceleration: 16
+    listMPU:
     - {fileID: 11400000, guid: 7cfa3fb822ff60c4bb85bec05c19b754, type: 2}
-    mainEngineCount: 1
-    mainPower: 16
-    auxiliaryPowerUnit:
+    mpuCount: 1
+    mpu:
+      thrust: 15616
+      speed: 58
+      acceleration: 10
+    mainPower:
+      thrust: 15616
+      speed: 58
+      acceleration: 10
+    listAPU:
     - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
     - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
-    auxiliaryPowerUnitCount: 2
-    auxiliaryPower: 9
+    apuCount: 2
+    apu:
+      thrust: 4392
+      speed: 16
+      acceleration: 3
+    auxiliaryPower:
+      thrust: 8784
+      speed: 32
+      acceleration: 6
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 6132b26f1d8c5b14c91f21e5b100d8e8, type: 2}
   kocmomech: {fileID: 11400000, guid: a9c33a1cce93512419a9a8fb34f150ed, type: 2}

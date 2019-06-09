@@ -13,17 +13,24 @@ MonoBehaviour:
   m_Name: 13 Polaris Express
   m_EditorClassIdentifier: 
   type: 13
-  size:
-    wingspan: 9
-    length: 10.41
-    height: 5.91
-    wingspanScale: 0.86455333
-    lengthScale: 1
-    heightScale: 0.56772333
-  view:
-    orthoSize: 5.205
-    near: 7.9049997
-    far: 24.505
+  design:
+    code: Polaris Express
+    project: "\u5317\u6781\u661F\u7279\u5FEB"
+    OKB: "\u6BDB\u718A\u8BBE\u8BA1\u5C40"
+    debut: "\u7B2C\u4E8C\u8D5B\u5B63"
+    mission: "\u636E\u70B9\u63A8\u8FDB"
+    development: "\u6BDB\u718A\u8BBE\u8BA1\u5C40\u6E21\u8FC7\u7ECF\u6D4E\u8427\u6761\u7684\u56F0\u96BE\u540E\u518D\u5EA6\u5C55\u5F00\u4E86\u5B87\u822A\u673A\u7684\u7814\u53D1\uFF0C\u65B0\u6539\u826F\u7684\u7279\u5FEB\u8F66\u52A0\u88C5\u4E86\u4E94\u5177\u6DA1\u8F6E\u6247\u53D1\u52A8\u673A\u63D0\u4F9B\u6781\u4F73\u7684\u7EED\u822A\u529B\uFF0C\u540C\u65F6\u300C\u5317\u6781\u661F\u7279\u5FEB\u300D\u4E5F\u662F\u7B2C\u4E8C\u8D5B\u5B63\u6700\u5927\u7684\u5B87\u822A\u673A\u3002"
+    size:
+      wingspan: 9
+      length: 10.41
+      height: 5.91
+      wingspanScale: 0.86455333
+      lengthScale: 1
+      heightScale: 0.56772333
+    view:
+      orthoSize: 5.205
+      near: 7.9049997
+      far: 24.505
   radio: {fileID: 8300000, guid: f76fb0c7eab68b1468946a26869d7dd7, type: 3}
   chief: {fileID: 11400000, guid: 226e9b1f8399bb1448e73f087c819b67, type: 2}
   reserve: {fileID: 11400000, guid: e86cd75373df2f749b269c4048cdc509, type: 2}
@@ -46,18 +53,37 @@ MonoBehaviour:
     afterburnerLevel: 4
     afterburner: 98
   powerSystem:
-    totalPower: 31
-    mainEngine:
+    cruiseSpeed: 31
+    acceleration: 4.4456196
+    total:
+      thrust: 30256
+      speed: 112
+      acceleration: 16
+    listMPU:
     - {fileID: 11400000, guid: 1fe45559059faf64a8a57dd732534b5c, type: 2}
-    mainEngineCount: 1
-    mainPower: 13
-    auxiliaryPowerUnit:
+    mpuCount: 1
+    mpu:
+      thrust: 12688
+      speed: 47
+      acceleration: 7
+    mainPower:
+      thrust: 12688
+      speed: 47
+      acceleration: 7
+    listAPU:
     - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
     - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
     - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
     - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
-    auxiliaryPowerUnitCount: 4
-    auxiliaryPower: 18
+    apuCount: 4
+    apu:
+      thrust: 4392
+      speed: 16
+      acceleration: 2
+    auxiliaryPower:
+      thrust: 17568
+      speed: 65
+      acceleration: 9
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 6132b26f1d8c5b14c91f21e5b100d8e8, type: 2}
   kocmomech: {fileID: 11400000, guid: a9c33a1cce93512419a9a8fb34f150ed, type: 2}

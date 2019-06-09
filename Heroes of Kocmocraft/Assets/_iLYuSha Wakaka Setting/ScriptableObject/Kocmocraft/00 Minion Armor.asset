@@ -13,17 +13,24 @@ MonoBehaviour:
   m_Name: 00 Minion Armor
   m_EditorClassIdentifier: 
   type: 0
-  size:
-    wingspan: 8
-    length: 8.96
-    height: 3.26
-    wingspanScale: 0.89285713
-    lengthScale: 1
-    heightScale: 0.36383927
-  view:
-    orthoSize: 4.48
-    near: 7.1800003
-    far: 23.779999
+  design:
+    code: Minion Armor
+    project: "\u795E\u5077\u673A\u5175"
+    OKB: "\u683C\u9C81\u5B9E\u9A8C\u5BA4"
+    debut: "\u7B2C\u4E00\u8D5B\u5B63"
+    mission: "\u636E\u70B9\u63A8\u8FDB"
+    development: "\u683C\u9C81\u5B9E\u9A8C\u5BA4\u65E9\u671F\u4E3A\u4E86\u79F0\u9738\u9017\u6BD4\u754C\u5F00\u53D1\u4E86\u300C\u795E\u5077\u52C7\u8005\u300D\uFF0C\u4F46\u968F\u7740\u6218\u573A\u4E0A\u5347\u81F3\u661F\u9645\u7A7A\u95F4\u540E\uFF0C\u5B87\u822A\u673A\u6210\u4E3A\u4E3B\u6D41\uFF0C\u800C\u88AB\u6539\u826F\u4E3A\u9002\u7528\u4E8E\u661F\u6218\u7684\u300C\u795E\u5077\u673A\u5175\u300D\uFF0C\u6B64\u4E3E\u5F00\u521B\u4E86\u5B87\u822A\u673A\u7ADE\u6280\u7684\u65F6\u4EE3\u3002"
+    size:
+      wingspan: 8
+      length: 8.96
+      height: 3.26
+      wingspanScale: 0.89285713
+      lengthScale: 1
+      heightScale: 0.36383927
+    view:
+      orthoSize: 4.48
+      near: 7.1800003
+      far: 23.779999
   radio: {fileID: 8300000, guid: d84a2511bda992e40afff7664d76cd03, type: 3}
   chief: {fileID: 11400000, guid: a362bb5747f85ff438256eb8b6d67238, type: 2}
   reserve: {fileID: 11400000, guid: f9053e5e9f7260d46868fb57081b1990, type: 2}
@@ -46,14 +53,33 @@ MonoBehaviour:
     afterburnerLevel: 2
     afterburner: 74
   powerSystem:
-    totalPower: 13
-    mainEngine:
+    cruiseSpeed: 13
+    acceleration: 3.138446
+    total:
+      thrust: 12688
+      speed: 47
+      acceleration: 11
+    listMPU:
     - {fileID: 11400000, guid: 1fe45559059faf64a8a57dd732534b5c, type: 2}
-    mainEngineCount: 1
-    mainPower: 13
-    auxiliaryPowerUnit: []
-    auxiliaryPowerUnitCount: 0
-    auxiliaryPower: 0
+    mpuCount: 1
+    mpu:
+      thrust: 12688
+      speed: 47
+      acceleration: 11
+    mainPower:
+      thrust: 12688
+      speed: 47
+      acceleration: 11
+    listAPU: []
+    apuCount: 0
+    apu:
+      thrust: 0
+      speed: 0
+      acceleration: 0
+    auxiliaryPower:
+      thrust: 0
+      speed: 0
+      acceleration: 0
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 03586d03d44a3f24eb1d5c680a971c9b, type: 2}
   kocmomech: {fileID: 11400000, guid: a8a9109a58d032642a1fbcd771fbbe4d, type: 2}

@@ -25,8 +25,8 @@ namespace Kocmoca
         public Transform panel;
         public Button btnHidePanel;
         private TweenerState panelState = TweenerState.Hide;
+        public UITextConverter display;
         [Header("UI - Navigation Bar - Toggle Tab")]
-        public TextMeshProUGUI textMain;
         public AudioSource audioTabPress;
         public Toggle[] togTabs; // Hotkey: F1~F8
         public GameObject[] panels;
@@ -63,7 +63,6 @@ namespace Kocmoca
             InitializePanel();
             hangarState = HangarState.Ready;
         }
-
         void InitializePanel()
         {
             // Panel setting
@@ -111,21 +110,18 @@ namespace Kocmoca
                 radioAudio.Play();
             });
         }
-
         public void OpenPanel()
         {
             panel.DOKill();
             panel.DOScale(Vector3.one, 0.37f);
             panelState = TweenerState.Open;
         }
-
         public void HidePanel()
         {
             panel.DOKill();
             panel.DOScale(Vector3.zero, 0.37f);
             panelState = TweenerState.Hide;
         }
-
         public void ClosePanel()
         {
             panel.DOKill();
@@ -137,43 +133,31 @@ namespace Kocmoca
                 togTabs[i].isOn = false;
             }
         }
-
         void LoadHangarData()
         {
-            textMain.text = DesignData.Code[hangarIndex];
-            designPanel.SetData(hangarIndex, database.kocmocraft[hangarIndex].size);
-            pilotPanel.SetData(hangarIndex, database.kocmocraft[hangarIndex]);
-            performancePanel.SetData(hangarIndex, database.kocmocraft[hangarIndex]);
-            powerSystemPanel.SetData(hangarIndex, database.kocmocraft[hangarIndex].powerSystem);
+            KocmocraftModule module = database.kocmocraft[hangarIndex];
+            designPanel.SetData(module.design);
+            pilotPanel.SetData(hangarIndex, module);
+            performancePanel.SetData(hangarIndex, module);
+            powerSystemPanel.SetData(hangarIndex, module.powerSystem);
             radar.SetData(hangarIndex);
-            turretPanel.SetData(hangarIndex, database.kocmocraft[hangarIndex].turret);
-            kocmomechPanel.SetData(hangarIndex, database.kocmocraft[hangarIndex].kocmomech);
-
-            // 三视图
-            topCamera.orthographicSize = database.kocmocraft[hangarIndex].view.orthoSize;
-            sideCamera.orthographicSize = database.kocmocraft[hangarIndex].view.orthoSize;
-            frontCamera.orthographicSize = database.kocmocraft[hangarIndex].view.orthoSize;
+            turretPanel.SetData(hangarIndex, module.turret);
+            kocmomechPanel.SetData(hangarIndex, module.kocmomech);
         }
-
-
         [System.Serializable]
         public class DesignPanel
         {
-            public TextMeshProUGUI textCode;
-            public TextMeshProUGUI textProject;
-            public TextMeshProUGUI textOKB;
-            public TextMeshProUGUI textMission;
-            public TextMeshProUGUI textSeason;
-            public TextMeshProUGUI textDescription;
-            public RectTransform scaleWingspan;
-            public RectTransform scaleLength;
-            public RectTransform scaleHeight;
-            public TextMeshProUGUI textWingspan;
-            public TextMeshProUGUI textLength;
-            public TextMeshProUGUI textHeight;
-
-            public void Initialize(GameObject panel)
+            public UITextConverter display;
+            public TextMeshProUGUI textCode, textProject, textOKB, textMission, textDebut, textDevelopment;
+            public Camera topCamera, sideCamera, frontCamera;
+            public RectTransform scaleWingspan, scaleLength, scaleHeight;
+            public TextMeshProUGUI textWingspan, textLength, textHeight;
+#if UNITY_EDITOR
+            public void Initialize(GameObject panel, Transform hangarView)
             {
+                topCamera = hangarView.GetComponentsInChildren<Camera>()[0];
+                sideCamera = hangarView.GetComponentsInChildren<Camera>()[1];
+                frontCamera = hangarView.GetComponentsInChildren<Camera>()[2];
                 panel.SetActive(true);
                 Transform[] obj = panel.GetComponentsInChildren<Transform>();
                 foreach (Transform child in obj)
@@ -184,32 +168,39 @@ namespace Kocmoca
                         case "Design - Project": textProject = child.GetComponent<TextMeshProUGUI>(); break;
                         case "Design - OKB": textOKB = child.GetComponent<TextMeshProUGUI>(); break;
                         case "Design - Mission": textMission = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Design - Season": textSeason = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Design - Description": textDescription = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Design - Debut": textDebut = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Design - Development": textDevelopment = child.GetComponent<TextMeshProUGUI>(); break;
                         case "View Scale - Wingspan": scaleWingspan = child.GetComponent<RectTransform>(); break;
-                        case "View Text - Wingspan": textWingspan = child.GetComponent<TextMeshProUGUI>(); break;
                         case "View Scale - Length": scaleLength = child.GetComponent<RectTransform>(); break;
-                        case "View Text - Length": textLength = child.GetComponent<TextMeshProUGUI>(); break;
                         case "View Scale - Height": scaleHeight = child.GetComponent<RectTransform>(); break;
+                        case "View Text - Wingspan": textWingspan = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "View Text - Length": textLength = child.GetComponent<TextMeshProUGUI>(); break;
                         case "View Text - Height": textHeight = child.GetComponent<TextMeshProUGUI>(); break;
                     }
                 }
                 panel.SetActive(false);
             }
-            public void SetData(int index, Size size)
+#endif
+            public void SetData(Design design)
             {
-                textCode.text = DesignData.Code[index];
-                textProject.text = DesignData.Project[index];
-                textOKB.text = DesignData.OKB[index];
-                textMission.text = DesignData.Mission[index];
-                textSeason.text = DesignData.Season[index];
-                textDescription.text = DesignData.Description[index];
-                scaleWingspan.sizeDelta = new Vector2(274 * size.wingspanScale, 37);
-                scaleLength.sizeDelta = new Vector2(274 * size.lengthScale, 37);
-                scaleHeight.sizeDelta = new Vector2(274 * size.heightScale, 37);
-                textWingspan.text = size.wingspan.ToString() + " m";
-                textLength.text = size.length.ToString() + " m";
-                textHeight.text = size.height.ToString() + " m";
+                display.en = design.code;
+                display.cn = design.project;
+                display.textTitle.text = display.en;
+                textCode.text = design.code;
+                textProject.text = design.project;
+                textOKB.text = design.OKB;
+                textDebut.text = design.debut;
+                textMission.text = design.mission;
+                textDevelopment.text = design.development;
+                topCamera.orthographicSize = design.view.orthoSize;
+                sideCamera.orthographicSize = design.view.orthoSize;
+                frontCamera.orthographicSize = design.view.orthoSize;
+                scaleWingspan.sizeDelta = new Vector2(274 * design.size.wingspanScale, 37);
+                scaleLength.sizeDelta = new Vector2(274 * design.size.lengthScale, 37);
+                scaleHeight.sizeDelta = new Vector2(274 * design.size.heightScale, 37);
+                textWingspan.text = design.size.wingspan.ToString() + " m";
+                textLength.text = design.size.length.ToString() + " m";
+                textHeight.text = design.size.height.ToString() + " m";
             }
         }
         [System.Serializable]
@@ -225,7 +216,7 @@ namespace Kocmoca
             [Header("Tips")]
             public TextMeshProUGUI tipChief;
             public TextMeshProUGUI tipReserve;
-
+#if UNITY_EDITOR
             public void Initialize(GameObject panel, GameObject tip)
             {
                 panel.SetActive(true);
@@ -253,6 +244,7 @@ namespace Kocmoca
                     }
                 }
             }
+#endif
             public void SetData(int index, KocmocraftModule dubi)
             {
                 scaleChiefHeight.sizeDelta = new Vector2(274 * dubi.chief.height / 200, 37);
@@ -268,88 +260,6 @@ namespace Kocmoca
             }
         }
         [System.Serializable]
-        public class PowerSystemPanel
-        {
-            [Header("Panel")]
-            public Image iconMainEngine;
-            public UITitleTranslation textMainEngine;
-            public TextMeshProUGUI textMainPower;
-            public Image iconAuxiliaryPowerUnit;
-            public UITitleTranslation textAuxiliaryPowerUnit;
-            public TextMeshProUGUI textAuxiliaryPower;
-            public TextMeshProUGUI textTotalPower;
-            [Header("Tips")]
-            public TextMeshProUGUI tipMainEngine;
-            public TextMeshProUGUI tipMainEngineCount;
-            public TextMeshProUGUI tipAuxiliaryPowerUnit;
-            public TextMeshProUGUI tipAuxiliaryPowerUnitCount;
-
-            public void Initialize(GameObject panel, GameObject tip)
-            {
-                panel.SetActive(true);
-                Transform[] obj = panel.GetComponentsInChildren<Transform>();
-                foreach (Transform child in obj)
-                {
-                    switch (child.name)
-                    {
-                        case "Icon - Main Engine": iconMainEngine = child.GetComponent<Image>(); break;
-                        case "Item Text - Main Engine Type": textMainEngine = child.GetComponent<UITitleTranslation>(); break;
-                        case "PS - Main Power": textMainPower = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "Icon - Auxiliary Power Unit": iconAuxiliaryPowerUnit = child.GetComponent<Image>(); break;
-                        case "Item Text - Auxiliary Power Unit Type": textAuxiliaryPowerUnit = child.GetComponent<UITitleTranslation>(); break;
-                        case "PS - Auxiliary Power": textAuxiliaryPower = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "PS - Total Power": textTotalPower = child.GetComponent<TextMeshProUGUI>(); break;
-                    }
-                }
-                panel.SetActive(false);
-                obj = tip.GetComponentsInChildren<Transform>();
-                foreach (Transform child in obj)
-                {
-                    switch (child.name)
-                    {
-                        case "PS - Main Engine": tipMainEngine = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "PS - Main Engine Count": tipMainEngineCount = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "PS - Auxiliary Power Unit": tipAuxiliaryPowerUnit = child.GetComponent<TextMeshProUGUI>(); break;
-                        case "PS - Auxiliary Power Unit Count": tipAuxiliaryPowerUnitCount = child.GetComponent<TextMeshProUGUI>(); break;
-                    }
-                }
-            }
-            public void SetData(int index, PowerSystem powerSystem)
-            {
-                iconMainEngine.sprite = powerSystem.mainEngine[0].icon;
-                textMainEngine.en = powerSystem.mainEngine[0].typeEN;
-                textMainEngine.cn = powerSystem.mainEngine[0].typeCN;
-                textMainEngine.textTitle.text = textMainEngine.en;
-                textMainPower.text = ((int)(powerSystem.mainPower * 3.6f)).ToString();
-                tipMainEngine.text = "+ " + ((int)(powerSystem.mainEngine[0].power * 3.6f)).ToString() + " Kph";
-                tipMainEngineCount.text = "Power Unit x " + powerSystem.mainEngineCount.ToString();
-                textTotalPower.text = ((int)(powerSystem.totalPower * 3.6f)).ToString();
-
-                if (powerSystem.auxiliaryPowerUnitCount != 0)
-                {
-                    iconAuxiliaryPowerUnit.enabled = true;
-                    iconAuxiliaryPowerUnit.sprite = powerSystem.auxiliaryPowerUnit[0].icon;
-                    textAuxiliaryPowerUnit.en = powerSystem.auxiliaryPowerUnit[0].typeEN;
-                    textAuxiliaryPowerUnit.cn = powerSystem.auxiliaryPowerUnit[0].typeCN;
-                    textAuxiliaryPowerUnit.textTitle.text = textAuxiliaryPowerUnit.en;
-                    textAuxiliaryPower.text = ((int)(powerSystem.auxiliaryPower * 3.6f)).ToString();
-                    tipAuxiliaryPowerUnit.text = "+ " + ((int)(powerSystem.auxiliaryPowerUnit[0].power * 0.5f * 3.6f)) + " Kph";
-                    tipAuxiliaryPowerUnitCount.text = "Power Unit x " + powerSystem.auxiliaryPowerUnitCount.ToString();
-                }
-                else
-                {
-                    iconAuxiliaryPowerUnit.enabled = false;
-                    textAuxiliaryPowerUnit.en = "Not configured";
-                    textAuxiliaryPowerUnit.cn = "未配置";
-                    textAuxiliaryPowerUnit.textTitle.text = textAuxiliaryPowerUnit.en;
-                    textAuxiliaryPower.text = "0";
-                    tipAuxiliaryPowerUnit.text = "+ 0 Kph";
-                    tipAuxiliaryPowerUnitCount.text = "Power Unit x 0";
-                }
-
-            }
-        }
-        [System.Serializable]
         public class PerformancePanel
         {
             [Header("Panel")]
@@ -359,16 +269,10 @@ namespace Kocmoca
             public Image[] imgShieldBar, imgHullBar, imgSpeedBar;
             private int m_ShieldLevel, m_HullLevel, m_SpeedLevel;
             [Header("Tips")]
-            public TextMeshProUGUI tipEMCrystal;
-            public TextMeshProUGUI tipEMBoosterl;
-            public TextMeshProUGUI tipEMBoosterlLevel;
-            public TextMeshProUGUI tipAirframe;
-            public TextMeshProUGUI tipArmor;
-            public TextMeshProUGUI tipArmorLevel;
-            public TextMeshProUGUI tipPowerSystem;
-            public TextMeshProUGUI tipAfterburner;
-            public TextMeshProUGUI tipAfterburnerLevel;
-
+            public TextMeshProUGUI tipEMCrystal, tipEMBoosterl, tipEMBoosterlLevel;
+            public TextMeshProUGUI tipAirframe, tipArmor, tipArmorLevel;
+            public TextMeshProUGUI tipPowerSystem, tipAfterburner, tipAfterburnerLevel;
+#if UNITY_EDITOR
             public void Initialize(GameObject panel, GameObject tip)
             {
                 panel.SetActive(true);
@@ -404,6 +308,7 @@ namespace Kocmoca
                     }
                 }
             }
+#endif
             public void SetData(int index, KocmocraftModule performance)
             {
                 raw.texture = textures[index];
@@ -437,6 +342,120 @@ namespace Kocmoca
             }
         }
         [System.Serializable]
+        public class PowerSystemPanel
+        {
+            [System.Serializable]
+            public class PowerUnitText
+            {
+                public TextMeshProUGUI textThrust, textSpeed, textAcceleration;
+            }
+            /* abbr. */
+            // MPU: Main Power Unit
+            // APU: Auxiliary Power Unit
+            // MP: Main Power
+            // AP: Auxiliary Power
+            [Header("Panel")]
+            public Image iconMPU;
+            public Image iconAPU;
+            public UITextConverter textMPU, textAPU;
+            public PowerUnitText mainPower, auxiliaryPower, total;
+            [Header("Tips")]
+            public TextMeshProUGUI tipMPUCount;
+            public TextMeshProUGUI tipAPUCount;
+            public PowerUnitText mpu;
+            public PowerUnitText apu;
+#if UNITY_EDITOR
+            public void Initialize(GameObject panel, GameObject tip)
+            {
+                panel.SetActive(true);
+                Transform[] obj = panel.GetComponentsInChildren<Transform>();
+                foreach (Transform child in obj)
+                {
+                    switch (child.name)
+                    {
+                        case "Icon - MPU": iconMPU = child.GetComponent<Image>(); break;
+                        case "Icon - APU": iconAPU = child.GetComponent<Image>(); break;
+                        case "Item Text - MPU Type": textMPU = child.GetComponent<UITextConverter>(); break;
+                        case "Item Text - APU Type": textAPU = child.GetComponent<UITextConverter>(); break;
+                        case "Main Power - Thrust": mainPower.textThrust = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Main Power - Speed": mainPower.textSpeed = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Main Power - Acceleration": mainPower.textAcceleration = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Auxiliary Power - Thrust": auxiliaryPower.textThrust = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Auxiliary Power - Speed": auxiliaryPower.textSpeed = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Auxiliary Power - Acceleration": auxiliaryPower.textAcceleration = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Total - Thrust": total.textThrust = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Total - Speed": total.textSpeed = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "Total - Acceleration": total.textAcceleration = child.GetComponent<TextMeshProUGUI>(); break;
+                    }
+                }
+                panel.SetActive(false);
+                obj = tip.GetComponentsInChildren<Transform>();
+                foreach (Transform child in obj)
+                {
+                    switch (child.name)
+                    {
+                        case "MPU - Count": tipMPUCount = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "MPU - Thrust": mpu.textThrust = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "MPU - Speed": mpu.textSpeed = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "MPU - Acceleration": mpu.textAcceleration = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "APU - Count": tipAPUCount = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "APU - Thrust": apu.textThrust = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "APU - Speed": apu.textSpeed = child.GetComponent<TextMeshProUGUI>(); break;
+                        case "APU - Acceleration": apu.textAcceleration = child.GetComponent<TextMeshProUGUI>(); break;
+                    }
+                }
+            }
+#endif
+            public void SetData(int index, PowerSystem powerSystem)
+            {
+                iconMPU.sprite = powerSystem.listMPU[0].icon;
+                textMPU.en = powerSystem.listMPU[0].typeEN;
+                textMPU.cn = powerSystem.listMPU[0].typeCN;
+                textMPU.textTitle.text = textMPU.en;
+                mainPower.textThrust.text = powerSystem.mainPower.thrust.ToString();
+                mainPower.textSpeed.text = powerSystem.mainPower.speed.ToString();
+                mainPower.textAcceleration.text = powerSystem.mainPower.acceleration.ToString();
+                total.textSpeed.text = powerSystem.total.speed.ToString();
+
+                tipMPUCount.text = "x " + powerSystem.mpuCount.ToString();
+                mpu.textThrust.text = "+ " + powerSystem.mpu.thrust.ToString();
+                mpu.textSpeed.text = "+ " + powerSystem.mpu.speed.ToString();
+                mpu.textAcceleration.text = "+ " + powerSystem.mpu.acceleration.ToString();
+
+                if (powerSystem.apuCount > 0)
+                {
+                    iconAPU.enabled = true;
+                    iconAPU.sprite = powerSystem.listAPU[0].icon;
+                    textAPU.en = powerSystem.listAPU[0].typeEN;
+                    textAPU.cn = powerSystem.listAPU[0].typeCN;
+                    textAPU.textTitle.text = textAPU.en;
+                    auxiliaryPower.textThrust.text = powerSystem.auxiliaryPower.thrust.ToString();
+                    auxiliaryPower.textSpeed.text = powerSystem.auxiliaryPower.speed.ToString();
+                    auxiliaryPower.textAcceleration.text = powerSystem.auxiliaryPower.acceleration.ToString();
+
+                    tipAPUCount.text = "x " + powerSystem.apuCount.ToString();
+                    apu.textThrust.text = "+ " + powerSystem.apu.thrust.ToString();
+                    apu.textSpeed.text = "+ " + powerSystem.apu.speed.ToString();
+                    apu.textAcceleration.text = "+ " + powerSystem.apu.acceleration.ToString();
+                }
+                else
+                {
+                    iconAPU.enabled = false;
+                    textAPU.en = "Not configured";
+                    textAPU.cn = "未配置";
+                    textAPU.textTitle.text = textAPU.en;
+                    auxiliaryPower.textThrust.text = "0";
+                    auxiliaryPower.textSpeed.text = "0";
+                    auxiliaryPower.textAcceleration.text = "0";
+
+                    tipAPUCount.text = "x 0";
+                    apu.textThrust.text = "+ 0";
+                    apu.textSpeed.text = "+ 0";
+                    apu.textAcceleration.text = "+ 0";
+                }
+            }
+        }
+        [System.Serializable]
         public class TurretPanel
         {
             public TextMeshProUGUI textCannonName;
@@ -451,7 +470,7 @@ namespace Kocmoca
             public TextMeshProUGUI textDPS;
             public TextMeshProUGUI textPenetration;
             public TextMeshProUGUI textPiercing;
-
+#if UNITY_EDITOR
             public void Initialize(GameObject panel)
             {
                 panel.SetActive(true);
@@ -476,6 +495,7 @@ namespace Kocmoca
                 }
                 panel.SetActive(false);
             }
+#endif
             public void SetData(int index, Turret turret)
             {
                 textCannonName.text = turret.cannonName;
@@ -511,7 +531,7 @@ namespace Kocmoca
             public TextMeshProUGUI tipMissileReloadTime;
             public TextMeshProUGUI tipRocketCount;
             public TextMeshProUGUI tipRocketReloadTime;
-
+#if UNITY_EDITOR
             public void Initialize(GameObject panel, GameObject tip)
             {
                 panel.SetActive(true);
@@ -545,6 +565,7 @@ namespace Kocmoca
                     }
                 }
             }
+#endif
             public void SetData(int index, Kocmomech kocmomech)
             {
                 textType.text = kocmomech.type;
@@ -563,15 +584,6 @@ namespace Kocmoca
                 //tipRocketReloadTime.text = kocmomech.piercing.ToString() + " %";
             }
         }
-
-
-
-
-
-
-
-
-
 
 
         public class PanelBlock

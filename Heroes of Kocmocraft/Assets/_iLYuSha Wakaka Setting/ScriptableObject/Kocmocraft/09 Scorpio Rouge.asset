@@ -13,17 +13,24 @@ MonoBehaviour:
   m_Name: 09 Scorpio Rouge
   m_EditorClassIdentifier: 
   type: 9
-  size:
-    wingspan: 9.65
-    length: 10.9
-    height: 5.46
-    wingspanScale: 0.8853211
-    lengthScale: 1
-    heightScale: 0.50091743
-  view:
-    orthoSize: 5.45
-    near: 8.15
-    far: 24.75
+  design:
+    code: Scorpio Rouge
+    project: "\u874E\u7EA2"
+    OKB: "\u9017\u6BD4\u7687\u5BB6\u8BBE\u8BA1\u5C40"
+    debut: "\u7B2C\u4E8C\u8D5B\u5B63"
+    mission: "\u62A4\u536B\u652F\u63F4"
+    development: "\u9017\u6BD4\u7687\u5BB6\u8BBE\u8BA1\u5C40\u5728\u7B2C\u4E00\u8D5B\u5B63\u7684\u4F5C\u54C1\u5E76\u672A\u53D7\u5230\u5B87\u822A\u7ADE\u6280\u7684\u5173\u6CE8\uFF0C\u4E5F\u7531\u4E8E\u6CA1\u6709\u5927\u5382\u724C\u7684\u8D44\u91D1\u63F4\u52A9\uFF0C\u300C\u874E\u7EA2\u300D\u5728\u7814\u53D1\u4E0A\u6295\u5165\u4E86\u66F4\u591A\u7684\u65F6\u95F4\u7528\u4EE5\u6D4B\u8BD5\u66F4\u6D6A\u66F4\u9A9A\u7684\u64CD\u4F5C\u6027\u80FD\u4EE5\u9762\u5BF9\u7B2C\u4E8C\u8D5B\u5B63\u7684\u7ADE\u4E89\u3002"
+    size:
+      wingspan: 9.65
+      length: 10.9
+      height: 5.46
+      wingspanScale: 0.8853211
+      lengthScale: 1
+      heightScale: 0.50091743
+    view:
+      orthoSize: 5.45
+      near: 8.15
+      far: 24.75
   radio: {fileID: 8300000, guid: 965fad436d644844da138d3f8a91a6d8, type: 3}
   chief: {fileID: 11400000, guid: 46f52eaaff5018d45a2b842a693d81b3, type: 2}
   reserve: {fileID: 11400000, guid: f9053e5e9f7260d46868fb57081b1990, type: 2}
@@ -46,16 +53,35 @@ MonoBehaviour:
     afterburnerLevel: 3
     afterburner: 86
   powerSystem:
-    totalPower: 27
-    mainEngine:
+    cruiseSpeed: 27
+    acceleration: 3.7136679
+    total:
+      thrust: 26352
+      speed: 98
+      acceleration: 13
+    listMPU:
     - {fileID: 11400000, guid: 7cfa3fb822ff60c4bb85bec05c19b754, type: 2}
-    mainEngineCount: 1
-    mainPower: 16
-    auxiliaryPowerUnit:
+    mpuCount: 1
+    mpu:
+      thrust: 15616
+      speed: 58
+      acceleration: 8
+    mainPower:
+      thrust: 15616
+      speed: 58
+      acceleration: 8
+    listAPU:
     - {fileID: 11400000, guid: f327136124c0bbf4faea5deca7e666ff, type: 2}
     - {fileID: 11400000, guid: f327136124c0bbf4faea5deca7e666ff, type: 2}
-    auxiliaryPowerUnitCount: 2
-    auxiliaryPower: 11
+    apuCount: 2
+    apu:
+      thrust: 5368
+      speed: 20
+      acceleration: 3
+    auxiliaryPower:
+      thrust: 10736
+      speed: 40
+      acceleration: 5
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 03586d03d44a3f24eb1d5c680a971c9b, type: 2}
   kocmomech: {fileID: 11400000, guid: 081d03b305722404c83a30321512c9b0, type: 2}
