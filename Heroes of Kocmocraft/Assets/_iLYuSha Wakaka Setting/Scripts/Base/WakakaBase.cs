@@ -97,21 +97,20 @@ namespace Kocmoca
             var tipsBlock = panel.GetChild(0).gameObject;
             togTabs = audioTabPress.GetComponentsInChildren<Toggle>();
             panelCounts = togTabs.Length;
-            panels = new GameObject[panelCounts];
+            panels = new RectTransform[panelCounts];
             for (int i = 0; i < panelCounts; i++)
             {
                 var et = togTabs[i].GetComponent<UIEventTrigger>();
                 et.audioSource = et.GetComponent<AudioSource>();
                 et.target = et.GetComponentInChildren<CanvasGroup>();
-                panels[i] = panel.GetChild(i + 1).gameObject;
+                panels[i] = panel.GetChild(i + 1).GetComponent<RectTransform>();
             }
             designPanel.Initialize(panels[0],hangarView);
             pilotPanel.Initialize(panels[1], tipsBlock);
             performancePanel.Initialize(panels[2], tipsBlock);
             powerSystemPanel.Initialize(panels[3], tipsBlock);
-
-            turretPanel.Initialize(panels[4]);
-            kocmomechPanel.Initialize(panels[6], tipsBlock);
+            turretPanel.Initialize(panels[5]);
+            kocmomechPanel.Initialize(panels[7], tipsBlock);
 
             var buttons = audioButtonPress.GetComponentsInChildren<Button>();
             for (int i = 0; i < buttons.Length; i++)

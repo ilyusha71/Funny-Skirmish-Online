@@ -20,6 +20,10 @@ MonoBehaviour:
     debut: "\u7B2C\u4E8C\u8D5B\u5B63"
     mission: "\u7279\u653B\u6253\u51FB"
     development: "\u5728\u5B87\u822A\u673A\u7ADE\u6280\u7B2C\u4E00\u8D5B\u5B63\u7ED3\u675F\u5F8C\u4E0D\u4E45\uFF0C\u9017\u6BD4\u754C\u7684\u65B0\u5BA0\u513F\u5361\u6BD4\u5BA3\u5E03\u52A0\u5165\u54C7\u5494\u5494\u4E16\u754C\uFF0C\u8001\u4E1C\u5BB6\u4EFB\u5929\u5802\u8BBE\u8BA1\u5C40\u4E3A\u5176\u6253\u9020\u4E86\u6781\u4E3A\u8F7B\u5DE7\u7684\u300C\u661F\u578B\u300D\u6B66\u88C5\u5B87\u822A\u673A\uFF0C\u671F\u5F85\u5B83\u4E0E\u5E08\u5144\u70AE\u5F39\u6BD4\u5C14\u7684\u642D\u914D\u8868\u73B0\u3002"
+    view:
+      orthoSize: 2.21
+      near: 4.91
+      far: 21.509998
     size:
       wingspan: 4.42
       length: 4.2
@@ -27,10 +31,6 @@ MonoBehaviour:
       wingspanScale: 1
       lengthScale: 0.9502262
       heightScale: 0.33031675
-    view:
-      orthoSize: 2.21
-      near: 4.91
-      far: 21.509998
   radio: {fileID: 8300000, guid: 8970193bec4fba8439c4f7b613ff6d45, type: 3}
   chief: {fileID: 11400000, guid: 331d99e80d211454096351b9cd46a261, type: 2}
   reserve: {fileID: 11400000, guid: b1ebada2b188cf241aab0d6511f4529a, type: 2}
@@ -47,18 +47,18 @@ MonoBehaviour:
     armorLevel: 2
     armor: 5600
   speed:
-    level: 7
-    maximum: 161
-    powerSystem: 27
+    level: 6
+    maximum: 143
+    powerSystem: 9
     afterburnerLevel: 7
     afterburner: 134
   powerSystem:
-    cruiseSpeed: 27
-    acceleration: 27.404913
+    cruiseSpeed: 9
+    acceleration: 9.134971
     total:
-      thrust: 26352
-      speed: 97
-      acceleration: 99
+      thrust: 8784
+      speed: 32
+      acceleration: 33
     listMPU:
     - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
     mpuCount: 1
@@ -70,20 +70,16 @@ MonoBehaviour:
       thrust: 8784
       speed: 32
       acceleration: 33
-    listAPU:
-    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
-    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
-    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
-    - {fileID: 11400000, guid: 196b0aa12ad87214083f3cd63102ded4, type: 2}
-    apuCount: 4
+    listAPU: []
+    apuCount: 0
     apu:
       thrust: 4392
       speed: 16
       acceleration: 16
     auxiliaryPower:
-      thrust: 17568
-      speed: 65
-      acceleration: 66
+      thrust: 0
+      speed: 0
+      acceleration: 0
   radar: {fileID: 11400000, guid: 8bd3f2030b6d1b042ae776538f162852, type: 2}
   turret: {fileID: 11400000, guid: 125d195e3fab89343b0ef36120a10e79, type: 2}
   kocmomech: {fileID: 11400000, guid: 7a1aea8a96f335241998ebb6b7dc0494, type: 2}

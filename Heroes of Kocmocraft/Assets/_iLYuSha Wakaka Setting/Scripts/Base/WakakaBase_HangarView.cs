@@ -38,8 +38,28 @@ namespace Kocmoca
             MoveHangarRail ();
 
         }
+
+        public void Test01 ()
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                if (Input.GetKeyDown ((KeyCode) (i + 282)))
+                {
+                    togTabs[i].isOn = !togTabs[i].isOn;
+                }
+            }
+        }
         void Update ()
         {
+            // Toggle Tab Hotkey
+            for (int i = 0; i < 8; i++)
+            {
+                if (Input.GetKeyDown ((KeyCode) (i + 282)))
+                {
+                    togTabs[i].isOn = !togTabs[i].isOn;
+                }
+            }
+
             if (Input.GetKeyDown (KeyCode.C))
                 SwitchCockpit ();
 
@@ -80,11 +100,10 @@ namespace Kocmoca
                     else
                         return;
                 }
-                if (Input.GetKey (KeyCode.Mouse1))
-                    panel.localPosition = KocmocaData.invisible;
 
                 if (Input.GetKey (KeyCode.Mouse1))
                 {
+                    panel.localPosition = KocmocaData.invisible;
                     cmFreeLook[hangarIndex].m_XAxis.m_InputAxisValue = Input.GetAxis ("Mouse X");
                     cmFreeLook[hangarIndex].m_YAxis.m_InputAxisValue = Input.GetAxis ("Mouse Y");
                 }
