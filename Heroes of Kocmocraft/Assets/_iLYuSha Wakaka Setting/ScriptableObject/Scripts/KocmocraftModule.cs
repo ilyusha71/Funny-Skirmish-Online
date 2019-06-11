@@ -43,7 +43,7 @@ public class KocmocraftModule : ScriptableObject
         var afterburner = UnityEditor.AssetDatabase.LoadAssetAtPath<Proficiency> (dataPath + "Proficiency/Afterburner Level.asset");
         shield.Calculate (design.size.SurfaceArea, emBooster.level[(int) type]);
         hull.Calculate (design.size.Volume, armor.level[(int) type]);
-        powerSystem.Calculate (design.size.Mass);
+        powerSystem.Calculate (design.size.weight);
         speed.Calculate (powerSystem.cruiseSpeed, afterburner.level[(int) type]);
         turret.Calculate ();
         kocmomech.Calculate ();
@@ -60,7 +60,7 @@ public class Design
     [System.Serializable]
     public class Size
     {
-        public float wingspan, length, height, wingspanScale, lengthScale, heightScale;
+        public float wingspan, length, height, wingspanScale, lengthScale, heightScale, weight;
 #if UNITY_EDITOR
         public float SurfaceArea { get { return 2 * (wingspan * length + length * height + height * wingspan); } }
         public float Volume { get { return wingspan * length * height; } }
@@ -94,7 +94,7 @@ public class Shield : Performance
 #if UNITY_EDITOR
     public void Calculate (float surfaceArea, int proficiency)
     {
-        emCrystal = (int) (surfaceArea * 10);
+        emCrystal = Mathf.RoundToInt (surfaceArea * 10);
         int basic = 1200;
         int diff = 1800;
         emBoosterLevel = proficiency;
@@ -123,7 +123,7 @@ public class Hull : Performance
 #if UNITY_EDITOR
     public void Calculate (float volume, int proficiency)
     {
-        airframe = (int) (volume * 10);
+        airframe = Mathf.RoundToInt (volume * 10);
         int basic = 1400;
         int diff = 2100;
         armorLevel = proficiency;

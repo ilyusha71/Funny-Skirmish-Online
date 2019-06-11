@@ -164,6 +164,7 @@ namespace Kocmoca
             public Camera topCamera, sideCamera, frontCamera;
             public RectTransform scaleWingspan, scaleLength, scaleHeight;
             public TextMeshProUGUI textWingspan, textLength, textHeight;
+            public TextMeshProUGUI textWeight;
 #if UNITY_EDITOR
             public void Initialize (RectTransform panel, Transform hangarView)
             {
@@ -211,6 +212,9 @@ namespace Kocmoca
                         case "View Text - Height":
                             textHeight = child.GetComponent<TextMeshProUGUI> ();
                             break;
+                        case "Design - Weight":
+                            textWeight = child.GetComponent<TextMeshProUGUI> ();
+                            break;
                     }
                 }
                 panel.anchoredPosition = KocmocaData.invisible;
@@ -236,6 +240,7 @@ namespace Kocmoca
                 textWingspan.text = design.size.wingspan.ToString () + " m";
                 textLength.text = design.size.length.ToString () + " m";
                 textHeight.text = design.size.height.ToString () + " m";
+                textWeight.text = design.size.weight.ToString ();
             }
         }
 
@@ -400,7 +405,7 @@ namespace Kocmoca
                 raw.texture = textures[index];
                 textShield.text = performance.shield.maximum.ToString ();
                 textHull.text = performance.hull.maximum.ToString ();
-                textSpeed.text = ((int) (performance.speed.maximum * 3.6f)).ToString ();
+                textSpeed.text = Mathf.RoundToInt (performance.speed.maximum * 3.6f).ToString ();
                 textLicense.text = "T" + PerformanceData.PilotTier[index].ToString ();
                 m_ShieldLevel = performance.shield.level;
                 m_HullLevel = performance.hull.level;
@@ -415,8 +420,8 @@ namespace Kocmoca
                 tipAirframe.text = "+ " + performance.hull.airframe.ToString ();
                 tipArmor.text = "+ " + performance.hull.armor.ToString ();
                 tipArmorLevel.text = performance.hull.armorLevel.ToString ();
-                tipPowerSystem.text = "+ " + ((int) (performance.speed.powerSystem * 3.6f)).ToString ();
-                tipAfterburner.text = "+ " + ((int) (performance.speed.afterburner * 3.6f)).ToString ();
+                tipPowerSystem.text = "+ " + Mathf.RoundToInt (performance.speed.powerSystem * 3.6f).ToString ();
+                tipAfterburner.text = "+ " + Mathf.RoundToInt (performance.speed.afterburner * 3.6f).ToString ();
                 tipAfterburnerLevel.text = performance.speed.afterburnerLevel.ToString ();
 
                 for (int i = 1; i < 8; i++)

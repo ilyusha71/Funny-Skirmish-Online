@@ -20,6 +20,10 @@ MonoBehaviour:
     debut: "\u7B2C\u4E00\u8D5B\u5B63"
     mission: "\u8FDC\u7A0B\u8F70\u70B8"
     development: "\u8FA3\u9E21\u8BBE\u8BA1\u5C401000\u5468\u5E74\u7EAA\u5FF5\u65E5\u4EAE\u76F8\u7684\u300C\u5495\u5495\u9E21\u300D\u662F\u84DD\u661F\u81F3\u4ECA\u6700\u5927\u7684\u5B87\u822A\u673A\uFF0C\u4EE4\u8BB8\u591A\u9017\u6BD4\u90FD\u611F\u5230\u60CA\u8BB6\u5730\u662F\u8FD9\u8258\u5E9E\u7136\u5927\u7269\u7ADF\u7136\u80FD\u5728\u5B87\u822A\u673A\u8D5B\u4E8B\u53D6\u5F97\u4E00\u4E9B\u961F\u4F0D\u7684\u9752\u7750\uFF0C\u54C7\u5494\u5494\u3002"
+    view:
+      orthoSize: 5.19
+      near: 7.8900003
+      far: 24.49
     size:
       wingspan: 10.38
       length: 9.3
@@ -27,23 +31,20 @@ MonoBehaviour:
       wingspanScale: 1
       lengthScale: 0.8959538
       heightScale: 0.46724468
-    view:
-      orthoSize: 5.19
-      near: 7.8900003
-      far: 24.49
+      weight: 6228
   radio: {fileID: 8300000, guid: dabc9c24b50b1be46906ce603d5a391c, type: 3}
   chief: {fileID: 11400000, guid: f7d45e9278e93f24196492b8fee59e37, type: 2}
   reserve: {fileID: 11400000, guid: b1ebada2b188cf241aab0d6511f4529a, type: 2}
   shield:
     level: 6
-    maximum: 14039
-    emCrystal: 3839
+    maximum: 14040
+    emCrystal: 3840
     emBoosterLevel: 5
     emBooster: 10200
   hull:
     level: 5
-    maximum: 14481
-    airframe: 4681
+    maximum: 14482
+    airframe: 4682
     armorLevel: 4
     armor: 9800
   speed:
@@ -54,7 +55,7 @@ MonoBehaviour:
     afterburner: 62
   powerSystem:
     cruiseSpeed: 4
-    acceleration: 0.6268817
+    acceleration: 0.6268465
     total:
       thrust: 3904
       speed: 14

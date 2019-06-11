@@ -20,6 +20,10 @@ MonoBehaviour:
     debut: "\u7B2C\u4E00\u8D5B\u5B63"
     mission: "\u636E\u70B9\u63A8\u8FDB"
     development: "\u683C\u9C81\u5B9E\u9A8C\u5BA4\u65E9\u671F\u4E3A\u4E86\u79F0\u9738\u9017\u6BD4\u754C\u5F00\u53D1\u4E86\u300C\u795E\u5077\u52C7\u8005\u300D\uFF0C\u4F46\u968F\u7740\u6218\u573A\u4E0A\u5347\u81F3\u661F\u9645\u7A7A\u95F4\u540E\uFF0C\u5B87\u822A\u673A\u6210\u4E3A\u4E3B\u6D41\uFF0C\u800C\u88AB\u6539\u826F\u4E3A\u9002\u7528\u4E8E\u661F\u6218\u7684\u300C\u795E\u5077\u673A\u5175\u300D\uFF0C\u6B64\u4E3E\u5F00\u521B\u4E86\u5B87\u822A\u673A\u7ADE\u6280\u7684\u65F6\u4EE3\u3002"
+    view:
+      orthoSize: 4.48
+      near: 7.1800003
+      far: 23.779999
     size:
       wingspan: 8
       length: 8.96
@@ -27,10 +31,7 @@ MonoBehaviour:
       wingspanScale: 0.89285713
       lengthScale: 1
       heightScale: 0.36383927
-    view:
-      orthoSize: 4.48
-      near: 7.1800003
-      far: 23.779999
+      weight: 4043
   radio: {fileID: 8300000, guid: d84a2511bda992e40afff7664d76cd03, type: 3}
   chief: {fileID: 11400000, guid: a362bb5747f85ff438256eb8b6d67238, type: 2}
   reserve: {fileID: 11400000, guid: f9053e5e9f7260d46868fb57081b1990, type: 2}
@@ -42,8 +43,8 @@ MonoBehaviour:
     emBooster: 3000
   hull:
     level: 7
-    maximum: 18436
-    airframe: 2336
+    maximum: 18437
+    airframe: 2337
     armorLevel: 7
     armor: 16100
   speed:
@@ -54,7 +55,7 @@ MonoBehaviour:
     afterburner: 74
   powerSystem:
     cruiseSpeed: 13
-    acceleration: 3.138446
+    acceleration: 3.1382637
     total:
       thrust: 12688
       speed: 47

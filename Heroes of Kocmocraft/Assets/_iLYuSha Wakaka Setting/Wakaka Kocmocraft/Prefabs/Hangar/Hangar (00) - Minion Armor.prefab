@@ -4723,14 +4723,14 @@ MonoBehaviour:
     emBooster: 3000
   hull:
     level: 7
-    maximum: 18436
-    airframe: 2336
+    maximum: 18437
+    airframe: 2337
     armorLevel: 7
     armor: 16100
   speed:
     level: 2
     maximum: 87
-    powerUnit: 13
+    powerSystem: 13
     afterburnerLevel: 2
     afterburner: 74
   kocmomech: {fileID: 11400000, guid: a8a9109a58d032642a1fbcd771fbbe4d, type: 2}
@@ -4752,7 +4752,7 @@ MonoBehaviour:
   kocmoNumber: 0
   localTargetPos: {x: 0, y: 0, z: 0}
   realtimeShield: 5539
-  realtimeHull: 18436
+  realtimeHull: 18437
   realtimeSpeed: 13
   afterburnerPower: 0
 --- !u!114 &2093312679609936582
@@ -5598,57 +5598,57 @@ PrefabInstance:
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0022035984
+      value: -0.00221017
       objectReference: {fileID: 0}
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9462863
+      value: 0.9462861
       objectReference: {fileID: 0}
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.32325795
+      value: -0.3232585
       objectReference: {fileID: 0}
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0064499667
+      value: -0.0064691603
       objectReference: {fileID: 0}
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.041015625
+      value: 0.041137695
       objectReference: {fileID: 0}
     - target: {fileID: 3572888297011845825, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00024414062
+      value: -0.00030517578
       objectReference: {fileID: 0}
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.002110332
+      value: -0.0021165458
       objectReference: {fileID: 0}
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9519944
+      value: 0.9519941
       objectReference: {fileID: 0}
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.30603766
+      value: -0.30603817
       objectReference: {fileID: 0}
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.006566166
+      value: -0.0065854182
       objectReference: {fileID: 0}
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.041503906
+      value: 0.041625977
       objectReference: {fileID: 0}
     - target: {fileID: 237294308329435751, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
@@ -5658,7 +5658,7 @@ PrefabInstance:
     - target: {fileID: 3681763571495133398, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27,
         type: 3}
       propertyPath: m_Heading.m_Bias
-      value: -25
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc7e5c5a374a1c24f8d0f617ddfa7c27, type: 3}

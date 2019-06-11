@@ -4760,8 +4760,8 @@ MonoBehaviour:
   kocmocraftType: 1
   shield:
     level: 2
-    maximum: 6298
-    emCrystal: 1498
+    maximum: 6299
+    emCrystal: 1499
     emBoosterLevel: 2
     emBooster: 4800
   hull:
@@ -4773,7 +4773,7 @@ MonoBehaviour:
   speed:
     level: 7
     maximum: 149
-    powerUnit: 15
+    powerSystem: 15
     afterburnerLevel: 7
     afterburner: 134
   kocmomech: {fileID: 11400000, guid: 7a1aea8a96f335241998ebb6b7dc0494, type: 2}
@@ -4794,7 +4794,7 @@ MonoBehaviour:
   controlUnit: 0
   kocmoNumber: 0
   localTargetPos: {x: 0, y: 0, z: 0}
-  realtimeShield: 6298
+  realtimeShield: 6299
   realtimeHull: 4708
   realtimeSpeed: 15
   afterburnerPower: 0
@@ -5782,7 +5782,7 @@ PrefabInstance:
     - target: {fileID: 2761876482691409242, guid: 432c1f2918c0fc942985a281f6903fa6,
         type: 3}
       propertyPath: m_Heading.m_Bias
-      value: -66
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 432c1f2918c0fc942985a281f6903fa6, type: 3}

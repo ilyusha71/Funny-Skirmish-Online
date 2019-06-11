@@ -4717,8 +4717,8 @@ MonoBehaviour:
   kocmocraftType: 3
   shield:
     level: 3
-    maximum: 8001
-    emCrystal: 3201
+    maximum: 8002
+    emCrystal: 3202
     emBoosterLevel: 2
     emBooster: 4800
   hull:
@@ -4730,7 +4730,7 @@ MonoBehaviour:
   speed:
     level: 5
     maximum: 128
-    powerUnit: 18
+    powerSystem: 18
     afterburnerLevel: 5
     afterburner: 110
   kocmomech: {fileID: 11400000, guid: 40ac21a4d6f77bb4c9269551530616c1, type: 2}
@@ -4751,7 +4751,7 @@ MonoBehaviour:
   controlUnit: 0
   kocmoNumber: 0
   localTargetPos: {x: 0, y: 0, z: 0}
-  realtimeShield: 8001
+  realtimeShield: 8002
   realtimeHull: 10980
   realtimeSpeed: 18
   afterburnerPower: 0
@@ -5686,27 +5686,27 @@ PrefabInstance:
     - target: {fileID: 2402936865304439520, guid: 262a142ffc5cfec46b2fb4c73aa48386,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0010060816
+      value: -0.0010126679
       objectReference: {fileID: 0}
     - target: {fileID: 2402936865304439520, guid: 262a142ffc5cfec46b2fb4c73aa48386,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9463036
+      value: 0.9463035
       objectReference: {fileID: 0}
     - target: {fileID: 2402936865304439520, guid: 262a142ffc5cfec46b2fb4c73aa48386,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.3232645
+      value: -0.32326445
       objectReference: {fileID: 0}
     - target: {fileID: 2402936865304439520, guid: 262a142ffc5cfec46b2fb4c73aa48386,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0029456913
+      value: -0.0029648836
       objectReference: {fileID: 0}
     - target: {fileID: 2402936865304439520, guid: 262a142ffc5cfec46b2fb4c73aa48386,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.018737793
+      value: 0.018859863
       objectReference: {fileID: 0}
     - target: {fileID: 2402936865304439520, guid: 262a142ffc5cfec46b2fb4c73aa48386,
         type: 3}
@@ -5781,7 +5781,7 @@ PrefabInstance:
     - target: {fileID: 3003935237082986994, guid: 262a142ffc5cfec46b2fb4c73aa48386,
         type: 3}
       propertyPath: m_Heading.m_Bias
-      value: -133
+      value: -24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 262a142ffc5cfec46b2fb4c73aa48386, type: 3}

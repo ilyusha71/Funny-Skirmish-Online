@@ -9547,14 +9547,14 @@ MonoBehaviour:
     emBooster: 6600
   hull:
     level: 3
-    maximum: 8845
-    airframe: 3245
+    maximum: 8846
+    airframe: 3246
     armorLevel: 2
     armor: 5600
   speed:
     level: 7
     maximum: 146
-    powerUnit: 36
+    powerSystem: 36
     afterburnerLevel: 5
     afterburner: 110
   kocmomech: {fileID: 11400000, guid: 5b13533be6585bb43aab82c8f78f556d, type: 2}
@@ -9576,7 +9576,7 @@ MonoBehaviour:
   kocmoNumber: 0
   localTargetPos: {x: 0, y: 0, z: 0}
   realtimeShield: 9592
-  realtimeHull: 8845
+  realtimeHull: 8846
   realtimeSpeed: 36
   afterburnerPower: 0
 --- !u!114 &6295919777028361074
@@ -19557,27 +19557,27 @@ PrefabInstance:
     - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0019418001
+      value: 0.0019480137
       objectReference: {fileID: 0}
     - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9519978
+      value: -0.95199764
       objectReference: {fileID: 0}
     - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.30603924
+      value: 0.30603912
       objectReference: {fileID: 0}
     - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.006042838
+      value: 0.006062179
       objectReference: {fileID: 0}
     - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.038208008
+      value: 0.038330078
       objectReference: {fileID: 0}
     - target: {fileID: 5274863046876904439, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
@@ -19647,7 +19647,7 @@ PrefabInstance:
     - target: {fileID: 9103679950146316416, guid: 5db0b5139d0a1244998ef6a68ef32984,
         type: 3}
       propertyPath: m_Heading.m_Bias
-      value: 95
+      value: 167
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5db0b5139d0a1244998ef6a68ef32984, type: 3}

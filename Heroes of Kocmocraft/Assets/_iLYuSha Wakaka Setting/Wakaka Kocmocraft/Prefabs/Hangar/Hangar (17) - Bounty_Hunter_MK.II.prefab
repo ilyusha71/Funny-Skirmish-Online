@@ -55,20 +55,20 @@ MonoBehaviour:
   kocmocraftType: 17
   shield:
     level: 3
-    maximum: 7904
-    emCrystal: 3104
+    maximum: 7905
+    emCrystal: 3105
     emBoosterLevel: 2
     emBooster: 4800
   hull:
     level: 6
-    maximum: 17661
-    airframe: 3661
+    maximum: 17662
+    airframe: 3662
     armorLevel: 6
     armor: 14000
   speed:
     level: 3
     maximum: 102
-    powerUnit: 28
+    powerSystem: 28
     afterburnerLevel: 2
     afterburner: 74
   kocmomech: {fileID: 11400000, guid: a8a9109a58d032642a1fbcd771fbbe4d, type: 2}
@@ -89,8 +89,8 @@ MonoBehaviour:
   controlUnit: 0
   kocmoNumber: 0
   localTargetPos: {x: 0, y: 0, z: 0}
-  realtimeShield: 7904
-  realtimeHull: 17661
+  realtimeShield: 7905
+  realtimeHull: 17662
   realtimeSpeed: 28
   afterburnerPower: 0
 --- !u!114 &279939917534942815
@@ -5772,7 +5772,7 @@ PrefabInstance:
     - target: {fileID: 760312807618863312, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00025473532
+      value: 0.00025552508
       objectReference: {fileID: 0}
     - target: {fileID: 760312807618863312, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
@@ -5782,17 +5782,17 @@ PrefabInstance:
     - target: {fileID: 760312807618863312, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.30604538
+      value: 0.3060454
       objectReference: {fileID: 0}
     - target: {fileID: 760312807618863312, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0007916688
+      value: 0.00079411257
       objectReference: {fileID: 0}
     - target: {fileID: 760312807618863312, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.005004883
+      value: 0.0050201416
       objectReference: {fileID: 0}
     - target: {fileID: 760312807618863312, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
@@ -5802,7 +5802,7 @@ PrefabInstance:
     - target: {fileID: 7336919774105956089, guid: 111b017849d566c419d1df4e56758be7,
         type: 3}
       propertyPath: m_Heading.m_Bias
-      value: 169
+      value: -24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 111b017849d566c419d1df4e56758be7, type: 3}
