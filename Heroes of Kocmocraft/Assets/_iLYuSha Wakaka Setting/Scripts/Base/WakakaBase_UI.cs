@@ -594,18 +594,12 @@ namespace Kocmoca
         [System.Serializable]
         public class TurretPanel
         {
-            public TextMeshProUGUI textCannonName;
-            public TextMeshProUGUI textCannonCount;
-            public TextMeshProUGUI textMaxAutoAimAngle;
-            public TextMeshProUGUI textRoundsPerMinute;
-            public TextMeshProUGUI textMaxProjectileSpread;
-            public TextMeshProUGUI textAmmoName;
-            public TextMeshProUGUI textAmmoVelocity;
-            public TextMeshProUGUI textOperationalRange;
-            public TextMeshProUGUI textDamage;
-            public TextMeshProUGUI textDPS;
-            public TextMeshProUGUI textPenetration;
-            public TextMeshProUGUI textPiercing;
+            [Header ("Cannon")]
+            public UITextConverter textCannonType;
+            public TextMeshProUGUI textCount, textAutoAim, textRPM, textSpread, textDPS;
+            [Header ("Ammo")]
+            public UITextConverter textAmmoType;
+            public TextMeshProUGUI textVelocity, textRange, textDamage, textPenetration, textPiercing;
 #if UNITY_EDITOR
             public void Initialize (RectTransform panel)
             {
@@ -614,40 +608,40 @@ namespace Kocmoca
                 {
                     switch (child.name)
                     {
-                        case "Turret - Cannon Name":
-                            textCannonName = child.GetComponent<TextMeshProUGUI> ();
-                            break; // 改成Type
-                        case "Turret - Cannon Count":
-                            textCannonCount = child.GetComponent<TextMeshProUGUI> ();
+                        case "Item Text - Cannon Type":
+                            textCannonType = child.GetComponent<UITextConverter> ();
                             break;
-                        case "Turret - Auto Aim":
-                            textMaxAutoAimAngle = child.GetComponent<TextMeshProUGUI> ();
+                        case "Cannon - Count":
+                            textCount = child.GetComponent<TextMeshProUGUI> ();
                             break;
-                        case "Turret - RPM":
-                            textRoundsPerMinute = child.GetComponent<TextMeshProUGUI> ();
+                        case "Cannon - Auto Aim":
+                            textAutoAim = child.GetComponent<TextMeshProUGUI> ();
                             break;
-                        case "Turret - Spread":
-                            textMaxProjectileSpread = child.GetComponent<TextMeshProUGUI> ();
+                        case "Cannon - RPM":
+                            textRPM = child.GetComponent<TextMeshProUGUI> ();
                             break;
-                        case "Turret - Ammo Name":
-                            textAmmoName = child.GetComponent<TextMeshProUGUI> ();
-                            break; // 改成Type
-                        case "Turret - Ammo Velocity":
-                            textAmmoVelocity = child.GetComponent<TextMeshProUGUI> ();
+                        case "Cannon - Spread":
+                            textSpread = child.GetComponent<TextMeshProUGUI> ();
                             break;
-                        case "Turret - Operational Range":
-                            textOperationalRange = child.GetComponent<TextMeshProUGUI> ();
-                            break;
-                        case "Turret - Damage":
-                            textDamage = child.GetComponent<TextMeshProUGUI> ();
-                            break;
-                        case "Turret - DPS":
+                        case "Cannon - DPS":
                             textDPS = child.GetComponent<TextMeshProUGUI> ();
                             break;
-                        case "Turret - Penetration":
+                        case "Item Text - Ammo Type":
+                            textAmmoType = child.GetComponent<UITextConverter> ();
+                            break;
+                        case "Ammo - Velocity":
+                            textVelocity = child.GetComponent<TextMeshProUGUI> ();
+                            break;
+                        case "Ammo - Range":
+                            textRange = child.GetComponent<TextMeshProUGUI> ();
+                            break;
+                        case "Ammo - Damage":
+                            textDamage = child.GetComponent<TextMeshProUGUI> ();
+                            break;
+                        case "Ammo - Penetration":
                             textPenetration = child.GetComponent<TextMeshProUGUI> ();
                             break;
-                        case "Turret - Piercing":
+                        case "Ammo - Piercing":
                             textPiercing = child.GetComponent<TextMeshProUGUI> ();
                             break;
                     }
@@ -657,18 +651,18 @@ namespace Kocmoca
 #endif
             public void SetData (int index, Turret turret)
             {
-                textCannonName.text = turret.cannonName;
-                textCannonCount.text = turret.cannonCount.ToString () + " Cannon";
-                textMaxAutoAimAngle.text = turret.maxAutoAimAngle.ToString () + "°";
-                textRoundsPerMinute.text = turret.roundsPerMinute.ToString () + " rpm";
-                textMaxProjectileSpread.text = turret.maxProjectileSpread.ToString () + "°";
-                textAmmoName.text = turret.ammoName;
-                textAmmoVelocity.text = Mathf.RoundToInt (turret.ammoVelocity * 3.6f).ToString () + " Kph";
-                textOperationalRange.text = Mathf.RoundToInt (turret.operationalRange).ToString () + " m";
-                textDamage.text = turret.damage.ToString () + " Pts";
-                textDPS.text = turret.dPS.ToString () + " Pts";
-                textPenetration.text = turret.penetration.ToString () + " %";
-                textPiercing.text = turret.piercing.ToString () + " %";
+                // textCannonName.text = turret.cannonName;
+                // textCannonCount.text = turret.cannonCount.ToString () + " Cannon";
+                // textMaxAutoAimAngle.text = turret.maxAutoAimAngle.ToString () + "°";
+                // textRoundsPerMinute.text = turret.roundsPerMinute.ToString () + " rpm";
+                // textMaxProjectileSpread.text = turret.maxProjectileSpread.ToString () + "°";
+                // textAmmoName.text = turret.ammoName;
+                // textAmmoVelocity.text = Mathf.RoundToInt (turret.ammoVelocity * 3.6f).ToString () + " Kph";
+                // textOperationalRange.text = Mathf.RoundToInt (turret.operationalRange).ToString () + " m";
+                // textDamage.text = turret.damage.ToString () + " Pts";
+                // textDPS.text = turret.dPS.ToString () + " Pts";
+                // textPenetration.text = turret.penetration.ToString () + " %";
+                // textPiercing.text = turret.piercing.ToString () + " %";
             }
         }
 
