@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56df54d643e90cc47aa91f3d4ccb5bbb, type: 3}
   m_Name: Evil Eye
   m_EditorClassIdentifier: 
-  turretCount: 4
   cannonName: "\u90AA\u773C\u9AD8\u80FD\u5C04\u7EBF\u70AE"
+  typeEN: 
+  typeCN: 
+  cannonTypeEN: "\u90AA\u773C\u9AD8\u80FD\u5C04\u7EBF\u70AE"
+  cannonTypeCN: "\u90AA\u773C\u9AD8\u80FD\u5C04\u7EBF\u70AE"
+  develoment: 
   cannonCount: 4
   maxAutoAimAngle: 0.5
   maxAutoAimRange: 0.9999619
@@ -23,6 +27,8 @@ MonoBehaviour:
   maxProjectileSpread: 0.09
   shockwave: {fileID: 0}
   ammoName: "\u4E07\u6076\u7684\u76EE\u5149"
+  ammoTypeEN: "\u4E07\u6076\u7684\u76EE\u5149"
+  ammoTypeCN: "\u4E07\u6076\u7684\u76EE\u5149"
   ammoVelocity: 9990
   propulsion: 499500
   flightTime: 0.27

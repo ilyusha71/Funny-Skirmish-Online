@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: U.S Vulcan MK.II
   m_EditorClassIdentifier: 
   cannonName: "\u9E70\u9171\u5BB6\u706B\u795E\u673A\u70AE\u4E8C\u578B"
+  typeEN: U.S Vulcan MK.II
+  typeCN: "\u9E70\u9171\u5BB6\u706B\u795E\u673A\u70AE\u4E8C\u578B"
+  cannonTypeEN: U.S Vulcan MK.II
+  cannonTypeCN: "\u9E70\u9171\u5BB6\u706B\u795E\u673A\u70AE\u4E8C\u578B"
+  develoment: "\u706B\u795E\u673A\u70AE\u7CFB\u5217\u4E00\u76F4\u662F\u9E70\u9171\u5BB6\u7684\u6807\u914D\u6B66\u5668\uFF0C\u4E3A\u4E86\u5B87\u822A\u673A\u8D5B\u4E8B\u800C\u53D1\u5C55\u51FA\u4E09\u8054\u88C5\u70AE\u5854\u7684MK.II\u91CD\u88C5\u7248\u672C\u3002"
   cannonCount: 6
   maxAutoAimAngle: 1.37
   maxAutoAimRange: 0.99971414
@@ -22,6 +27,8 @@ MonoBehaviour:
   maxProjectileSpread: 3.99
   shockwave: {fileID: 0}
   ammoName: "\u9E70\u9171\u5BB6\u7279\u5236\u7A7F\u7532\u71C3\u70E7\u5F39"
+  ammoTypeEN: U.S. API
+  ammoTypeCN: "\u9E70\u9171\u5BB6\u7279\u5236\u7A7F\u7532\u71C3\u70E7\u5F39"
   ammoVelocity: 1685
   propulsion: 84250
   flightTime: 0.27
@@ -29,5 +36,5 @@ MonoBehaviour:
   raySize: 0.5
   damage: 201
   dPS: 5785
-  penetration: 1
-  piercing: 5
+  penetration: 0
+  piercing: 20

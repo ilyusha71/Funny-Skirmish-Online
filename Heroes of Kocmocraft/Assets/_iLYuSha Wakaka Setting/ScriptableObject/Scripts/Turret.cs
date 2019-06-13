@@ -10,6 +10,10 @@ public class Turret : ScriptableObject
     public string cannonName;
     public string typeEN;
     public string typeCN;
+    public string cannonTypeEN;
+    public string cannonTypeCN;
+    [TextArea (3, 7)]
+    public string develoment;
     [Tooltip ("機炮數量")]
     public int cannonCount;
     [Tooltip ("自動瞄準角")]
@@ -27,6 +31,8 @@ public class Turret : ScriptableObject
 
     [Header ("Ammo")]
     public string ammoName;
+    public string ammoTypeEN;
+    public string ammoTypeCN;
     [Tooltip ("彈藥飛行速率")]
     public float ammoVelocity;
     [Tooltip ("Calculate: 推力")]

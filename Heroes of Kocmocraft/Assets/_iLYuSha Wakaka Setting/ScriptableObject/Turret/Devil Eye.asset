@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56df54d643e90cc47aa91f3d4ccb5bbb, type: 3}
   m_Name: Devil Eye
   m_EditorClassIdentifier: 
-  turretCount: 6
   cannonName: "\u9B54\u773C\u9AD8\u80FD\u5C04\u7EBF\u70AE"
+  typeEN: 
+  typeCN: 
+  cannonTypeEN: "\u9B54\u773C\u9AD8\u80FD\u5C04\u7EBF\u70AE"
+  cannonTypeCN: "\u9B54\u773C\u9AD8\u80FD\u5C04\u7EBF\u70AE"
+  develoment: 
   cannonCount: 6
   maxAutoAimAngle: 0.4
   maxAutoAimRange: 0.9999756
@@ -23,6 +27,8 @@ MonoBehaviour:
   maxProjectileSpread: 0.11
   shockwave: {fileID: 0}
   ammoName: "\u6E29\u60C5\u7684\u76EE\u5149"
+  ammoTypeEN: "\u6E29\u60C5\u7684\u76EE\u5149"
+  ammoTypeCN: "\u6E29\u60C5\u7684\u76EE\u5149"
   ammoVelocity: 9710
   propulsion: 485500
   flightTime: 0.27

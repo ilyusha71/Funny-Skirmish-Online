@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: U.S Vulcan MK.VII
   m_EditorClassIdentifier: 
   cannonName: "\u9E70\u9171\u5BB6\u706B\u795E\u673A\u70AE\u4E03\u578B"
+  typeEN: U.S Vulcan MK.VII
+  typeCN: "\u9E70\u9171\u5BB6\u706B\u795E\u673A\u70AE\u4E03\u578B"
+  cannonTypeEN: U.S Vulcan MK.VII
+  cannonTypeCN: "\u9E70\u9171\u5BB6\u706B\u795E\u673A\u70AE\u4E03\u578B"
+  develoment: "MK.VII\u662F\u7279\u5236\u7684\u6781\u9AD8\u901F\u5355\u8054\u88C5\u706B\u795E\u673A\u70AE\u7248\u672C\uFF0C\u4E13\u95E8\u4E3A\u4E86\u72D7\u6597\u578B\u7684\u5B87\u822A\u673A\u800C\u5F00\u53D1\u3002\r"
   cannonCount: 2
   maxAutoAimAngle: 1.37
   maxAutoAimRange: 0.99971414
@@ -21,13 +26,15 @@ MonoBehaviour:
   repeatingCount: 1
   maxProjectileSpread: 3.36
   shockwave: {fileID: 0}
-  ammoName: "\u9E70\u9171\u5BB6\u7279\u5236\u7A7F\u7532\u71C3\u70E7\u5F39"
-  ammoVelocity: 2355
-  propulsion: 117750
+  ammoName: "\u9E70\u9171\u5BB6\u7279\u5236\u9AD8\u7206\u5F48"
+  ammoTypeEN: U.S. HE
+  ammoTypeCN: "\u9E70\u9171\u5BB6\u7279\u5236\u9AD8\u7206\u5F48"
+  ammoVelocity: 2350
+  propulsion: 117500
   flightTime: 0.27
-  operationalRange: 635.85004
+  operationalRange: 634.5
   raySize: 0.5
-  damage: 393
-  dPS: 5059
-  penetration: 5
-  piercing: 14
+  damage: 392
+  dPS: 5038
+  penetration: 0
+  piercing: 7

@@ -651,18 +651,23 @@ namespace Kocmoca
 #endif
             public void SetData (int index, Turret turret)
             {
-                // textCannonName.text = turret.cannonName;
-                // textCannonCount.text = turret.cannonCount.ToString () + " Cannon";
-                // textMaxAutoAimAngle.text = turret.maxAutoAimAngle.ToString () + "°";
-                // textRoundsPerMinute.text = turret.roundsPerMinute.ToString () + " rpm";
-                // textMaxProjectileSpread.text = turret.maxProjectileSpread.ToString () + "°";
-                // textAmmoName.text = turret.ammoName;
-                // textAmmoVelocity.text = Mathf.RoundToInt (turret.ammoVelocity * 3.6f).ToString () + " Kph";
-                // textOperationalRange.text = Mathf.RoundToInt (turret.operationalRange).ToString () + " m";
-                // textDamage.text = turret.damage.ToString () + " Pts";
-                // textDPS.text = turret.dPS.ToString () + " Pts";
-                // textPenetration.text = turret.penetration.ToString () + " %";
-                // textPiercing.text = turret.piercing.ToString () + " %";
+                textCannonType.en = turret.cannonTypeEN;
+                textCannonType.cn = turret.cannonTypeCN;
+                textCannonType.textTitle.text = textCannonType.en;
+                textCount.text = turret.cannonCount.ToString ();
+                textAutoAim.text = turret.maxAutoAimAngle.ToString ();
+                textRPM.text = turret.roundsPerMinute.ToString ();
+                textSpread.text = turret.maxProjectileSpread.ToString ();
+                textDPS.text = turret.dPS.ToString ();
+
+                textAmmoType.en = turret.ammoTypeEN;
+                textAmmoType.cn = turret.ammoTypeCN;
+                textAmmoType.textTitle.text = textCannonType.en;
+                textVelocity.text = Mathf.RoundToInt (turret.ammoVelocity * 3.6f).ToString ();
+                textRange.text = Mathf.RoundToInt (turret.operationalRange).ToString ();
+                textDamage.text = turret.damage.ToString ();
+                textPenetration.text = turret.penetration.ToString ();
+                textPiercing.text = turret.piercing.ToString ();
             }
         }
 
