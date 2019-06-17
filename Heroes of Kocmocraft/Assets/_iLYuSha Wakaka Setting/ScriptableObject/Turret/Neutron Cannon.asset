@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56df54d643e90cc47aa91f3d4ccb5bbb, type: 3}
+  m_Name: Neutron Cannon
+  m_EditorClassIdentifier: 
+  cannonName: "\u4E2D\u5B50\u70AE"
+  typeEN: 
+  typeCN: 
+  cannonTypeEN: Neutron Cannon
+  cannonTypeCN: "\u4E2D\u5B50\u70AE"
+  develoment: 
+  cannonCount: 4
+  maxAutoAimAngle: 1.3
+  maxAutoAimRange: 0.9997426
+  roundsPerMinute: 45
+  fireRate: 1.3333334
+  repeatingCount: 3
+  maxProjectileSpread: 0.73
+  shockwave: {fileID: 0}
+  ammoName: "\u9AD8\u5BC6\u5EA6\u4E2D\u5B50\u56E2"
+  ammoTypeEN: Neutron
+  ammoTypeCN: "\u4E2D\u5B50"
+  ammoVelocity: 3970
+  propulsion: 198500
+  flightTime: 0.37
+  operationalRange: 1468.9
+  raySize: 0.5
+  coefficient: 0.000071
+  damage: 1119
+  dPS: 5035
+  penetration: 10
+  piercing: 3

@@ -109,7 +109,7 @@ namespace Kocmoca
             pilotPanel.Initialize(panels[1], tipsBlock);
             performancePanel.Initialize(panels[2], tipsBlock);
             powerSystemPanel.Initialize(panels[3], tipsBlock);
-            turretPanel.Initialize(panels[5]);
+            turretPanel.Initialize(panels[5], tipsBlock);
             kocmomechPanel.Initialize(panels[7], tipsBlock);
 
             var buttons = audioButtonPress.GetComponentsInChildren<Button>();

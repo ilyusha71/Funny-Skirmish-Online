@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Kocmoca;
 using UnityEngine;
 
 [CreateAssetMenu (fileName = "Turret Data", menuName = "KocmocA Data/Create Turret Data")]
@@ -44,6 +45,7 @@ public class Turret : ScriptableObject
     public float raySize;
     public WaitForSeconds waitRecovery;
     [Header ("Damage")]
+    public float coefficient = 0.000071f;
     [Tooltip ("Calculate: 單發傷害")]
     public float damage;
     [Tooltip ("Calculate: 每秒鐘平均傷害")]
@@ -59,7 +61,7 @@ public class Turret : ScriptableObject
         fireRate = 60 / roundsPerMinute;
         propulsion = ammoVelocity * 50;
         operationalRange = ammoVelocity * flightTime;
-        damage = (int) (ammoVelocity * ammoVelocity * 0.000071f);
-        dPS = (int) (ammoVelocity * ammoVelocity * 0.000071f * (roundsPerMinute / 60) * (cannonCount / 2) * repeatingCount);
+        damage = (int) (ammoVelocity * ammoVelocity * coefficient);
+        dPS = (int) (ammoVelocity * ammoVelocity * coefficient * (roundsPerMinute / 60) * (cannonCount / 2) * repeatingCount);
     }
 }

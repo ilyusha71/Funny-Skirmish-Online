@@ -597,11 +597,12 @@ namespace Kocmoca
             [Header ("Cannon")]
             public UITextConverter textCannonType;
             public TextMeshProUGUI textCount, textAutoAim, textRPM, textSpread, textDPS;
+            public TextMeshProUGUI tipCannon;
             [Header ("Ammo")]
             public UITextConverter textAmmoType;
             public TextMeshProUGUI textVelocity, textRange, textDamage, textPenetration, textPiercing;
 #if UNITY_EDITOR
-            public void Initialize (RectTransform panel)
+            public void Initialize (RectTransform panel, GameObject tip)
             {
                 Transform[] obj = panel.GetComponentsInChildren<Transform> ();
                 foreach (Transform child in obj)
@@ -646,6 +647,16 @@ namespace Kocmoca
                             break;
                     }
                 }
+                  obj = tip.GetComponentsInChildren<Transform> ();
+                foreach (Transform child in obj)
+                {
+                    switch (child.name)
+                    {
+                        case "Tip - Cannon":
+                            tipCannon = child.GetComponent<TextMeshProUGUI> ();
+                            break;
+                    }
+                }
                 panel.anchoredPosition = KocmocaData.invisible;
             }
 #endif
@@ -659,6 +670,7 @@ namespace Kocmoca
                 textRPM.text = turret.roundsPerMinute.ToString ();
                 textSpread.text = turret.maxProjectileSpread.ToString ();
                 textDPS.text = turret.dPS.ToString ();
+                tipCannon.text = turret.develoment;
 
                 textAmmoType.en = turret.ammoTypeEN;
                 textAmmoType.cn = turret.ammoTypeCN;
