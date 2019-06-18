@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CanEditMultipleObjects]
 [CustomEditor(typeof(KocmocraftModule))]
-public class KocmocraftDatabaseEditor : Editor
+public class KocmocraftModuleEditor : Editor
 {
     public override void OnInspectorGUI()
     {

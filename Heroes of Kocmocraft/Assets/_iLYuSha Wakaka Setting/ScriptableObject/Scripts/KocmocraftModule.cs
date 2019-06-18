@@ -19,8 +19,10 @@ public class KocmocraftModule : ScriptableObject
     [Header ("Engine")]
     public PowerSystem powerSystem;
     [Header ("Radar")]
+    public RadarType radarOption;
     public Radar radar;
     [Header ("Turret")]
+    public TurretOption turretOption;
     public Turret turret;
     [Header ("Kocmomech")]
     public Kocmomech kocmomech;
@@ -239,5 +241,41 @@ public class PowerSystem
         total.speed = mainPower.speed + auxiliaryPower.speed;
         total.acceleration = mainPower.acceleration + auxiliaryPower.acceleration;
     }
-#endif
+#endif   
+}
+public enum RadarType
+{
+    Radar = 0,
+}
+
+public enum TurretOption
+{
+    x1_US_Vulcan_MK_VII = 101,
+    x1_Ultra_Speed_Plasma = 103,
+    x1_Zvezdark = 111,
+
+    x2_US_Vulcan_MK_IV = 201,
+    x2_Kocmo_Plasma = 203,
+    x2_Long_range_Railgun = 205,
+    x2_Evil_Eye = 207,
+    x2_Neutron_Cannon = 213,
+
+    x3_US_Vulcan_MK_II = 301,
+    x3_High_Penetrating_Plasma = 303,
+    x3_Mega_Railgun = 305,
+    x3_Devil_Eye = 307,
+}
+public enum HardpointType
+{
+
+}
+public enum KocmomechType
+{
+    Dogfighter_MK_I = 0,
+    Flag_Catcher_MK_I = 1,
+    Flag_Catcher_MK_II = 2,
+    Invader_MK_I = 3,
+    Invader_MK_II = 4,
+    Engineer_MK_I = 5,
+    Engineer_MK_II = 6,
 }
