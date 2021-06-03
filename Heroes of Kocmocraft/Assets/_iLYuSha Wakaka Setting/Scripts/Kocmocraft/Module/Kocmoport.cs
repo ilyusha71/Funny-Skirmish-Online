@@ -91,7 +91,7 @@ namespace Kocmoca
             m_Core = ControlUnit.LocalPlayer;
             m_Port = photonView.Owner.GetPlayerNumber ();
             m_Faction = m_Port % 2;
-            m_Type = (int) photonView.Owner.CustomProperties[LobbyInfomation.PROPERTY_TYPE];
+            m_Type = 0;//(int) photonView.Owner.CustomProperties[LobbyInfomation.PROPERTY_TYPE];
             m_Skin = (int) photonView.Owner.CustomProperties[LobbyInfomation.PROPERTY_SKIN];
             m_Number = photonView.Owner.ActorNumber;
             name = "[Player] " + photonView.Owner.NickName;
